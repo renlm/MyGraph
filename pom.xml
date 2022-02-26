@@ -113,15 +113,22 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>layui</artifactId>
-			<version>2.6.8</version>
+			<groupId>org.xwiki.contrib</groupId>
+			<artifactId>mxgraph-core</artifactId>
+			<version>4.2.2_14.4.3</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.webjars.bowergithub.jgraph</groupId>
-			<artifactId>mxgraph</artifactId>
-			<version>4.0.0</version>
+			<groupId>org.xwiki.contrib</groupId>
+			<artifactId>mxgraph-editor</artifactId>
+			<version>4.2.2_14.4.3</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>layui</artifactId>
+			<version>2.6.8</version>
 		</dependency>
 	</dependencies>
 
@@ -130,6 +137,11 @@
 			<id>alimaven</id>
 			<name>aliyun maven</name>
 			<url>https://maven.aliyun.com/repository/public</url>
+		</repository>
+		<repository>
+			<id>xwikimaven</id>
+			<name>XWiki Releases</name>
+			<url>https://maven.xwiki.org/releases</url>
 		</repository>
 	</repositories>
 
