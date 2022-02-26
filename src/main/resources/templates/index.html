@@ -5,7 +5,7 @@
     <title>Grapheditor</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="styles/grapheditor.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/mxgraph-editor/styles/grapheditor.min.css}">
 	<script type="text/javascript">
 		// Parses URL parameters. Supported parameters are:
 		// - lang=xy: Specifies the language of the user interface.
@@ -37,23 +37,30 @@
 	
 		// Default resources are included in grapheditor resources
 		mxLoadResources = false;
+		
+		// 更改配置
+		window.RESOURCES_PATH = '[(@{/webjars/mxgraph-editor/resources})]';
+		window.STENCIL_PATH = '[(@{/webjars/mxgraph-editor/stencils})]';
+		window.IMAGE_PATH = '[(@{/webjars/mxgraph-editor/images})]';
+		window.STYLE_PATH = '[(@{/webjars/mxgraph-editor/styles})]';
+		window.CSS_PATH = '[(@{/webjars/mxgraph-editor/styles})]';
 	</script>
-	<script type="text/javascript" src="js/Init.js"></script>
-	<script type="text/javascript" src="deflate/pako.min.js"></script>
-	<script type="text/javascript" src="deflate/base64.js"></script>
-	<script type="text/javascript" src="jscolor/jscolor.js"></script>
-	<script type="text/javascript" src="sanitizer/sanitizer.min.js"></script>
-	<script type="text/javascript" src="../../../src/js/mxClient.js"></script>
-	<script type="text/javascript" src="js/EditorUi.js"></script>
-	<script type="text/javascript" src="js/Editor.js"></script>
-	<script type="text/javascript" src="js/Sidebar.js"></script>
-	<script type="text/javascript" src="js/Graph.js"></script>
-	<script type="text/javascript" src="js/Format.js"></script>
-	<script type="text/javascript" src="js/Shapes.js"></script>
-	<script type="text/javascript" src="js/Actions.js"></script>
-	<script type="text/javascript" src="js/Menus.js"></script>
-	<script type="text/javascript" src="js/Toolbar.js"></script>
-	<script type="text/javascript" src="js/Dialogs.js"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Init.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/deflate/pako.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/deflate/base64.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/jscolor/jscolor.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/sanitizer/sanitizer.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-client/mxClient.bundle.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/EditorUi.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Editor.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Sidebar.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Graph.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Format.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Shapes.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Actions.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Menus.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Toolbar.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Dialogs.js}"></script>
 </head>
 <body class="geEditor">
 	<script type="text/javascript">
