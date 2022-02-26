@@ -1,0 +1,53 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /VirtualPhone
+    
+mybatis-plus:
+  configuration:
+    localCacheScope: STATEMENT
+    cacheEnabled: true
+  global-config:
+    db-config:
+      update-strategy: IGNORED
+
+spring:
+  profiles:
+    active: test
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+  thymeleaf:
+    cache: false
+  jackson: 
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+  redis:
+    host: 192.168.133.176
+    port: 6379
+    timeout: 6000
+    password: 
+    database: 2
+    clientName: VirtualPhoneTest
+  security:
+    user:
+      name: vp
+      password: Aa123456^
+      roles: admin
+  datasource:
+    dynamic:
+      primary: master
+      strict: true
+      datasource:
+        master:
+          url: jdbc:mysql://192.168.133.176:3306/component?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+          username: gcj_admin
+          password: test
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+virtualphone:
+  huawei:
+    app-key: N6DX91STJfnmjO0G3GCVH45kYvf7
+    app-secret: 7Sr8dvQL35bxlzFreB31i8g03uRo
+    api-host: https://rtcapi.cn-north-1.myhuaweicloud.com:12543
