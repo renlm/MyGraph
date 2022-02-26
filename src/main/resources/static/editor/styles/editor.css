@@ -4,8 +4,8 @@
 }
 
 .no-scrollbar ::-webkit-scrollbar {
-	width: 0!important;
-	height: 0!important;
+	width: 0 !important;
+	height: 0 !important;
 }
 
 ::-webkit-scrollbar-track {
@@ -33,7 +33,7 @@ table.gird-picker tr td {
 }
 
 .ermodel-json {
-	display: none!important;
+	display: none !important;
 }
 
 .ermodel-name {
@@ -62,7 +62,7 @@ table.gird-picker tr td {
 
 .ermodel-fields tr.ermodel-pk td.ermodel-key {
 	width: 5px;
-	background-image: url("img/pk.png");
+	background-image: url("../images/pk.png");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 16px 16px;
