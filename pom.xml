@@ -120,8 +120,8 @@
 
 		<dependency>
 			<groupId>org.webjars.bowergithub.jgraph</groupId>
-			<artifactId>drawio</artifactId>
-			<version>10.6.5</version>
+			<artifactId>mxgraph</artifactId>
+			<version>4.0.0</version>
 		</dependency>
 	</dependencies>
 
