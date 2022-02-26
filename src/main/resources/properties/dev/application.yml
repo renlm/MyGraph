@@ -1,7 +1,7 @@
 server:
   port: 80
   servlet:
-    context-path: /MyGraph
+    context-path: /graph
     
 mybatis-plus:
   configuration:
@@ -25,7 +25,7 @@ spring:
       WRITE_DATES_AS_TIMESTAMPS: true
   security:
     user:
-      name: admin
+      name: graph
       password: Aa123456^
       roles: admin
   datasource:
@@ -34,9 +34,9 @@ spring:
       strict: true
       datasource:
         master:
-          url: jdbc:mysql://192.168.133.176:3306/graph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+          url: jdbc:mysql://renlm.cn:3306/graph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
           username: graph
-          password: dev
+          password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
           driver-class-name: com.mysql.cj.jdbc.Driver
           init:
             schema: classpath:schema/schema.sql

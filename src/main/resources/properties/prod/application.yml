@@ -1,5 +1,5 @@
 server:
-  port: 18090
+  port: 8090
     
 mybatis-plus:
   configuration:
@@ -21,16 +21,9 @@ spring:
   jackson: 
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
-  redis:
-    host: redis-a21009a-marketingRedis.dcs.huaweicloud.com
-    port: 6379
-    timeout: 6000
-    password: y4ul5dBfPdlQ
-    database: 2
-    clientName: VirtualPhoneProd
   security:
     user:
-      name: vp
+      name: graph
       password: Aa123456^
       roles: admin
   datasource:
@@ -39,13 +32,7 @@ spring:
       strict: true
       datasource:
         master:
-          url: jdbc:mysql://10.125.4.249:3308/component?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
-          username: component
-          password: "X2xMGSJjLKC779#"
+          url: jdbc:mysql://renlm.cn:3306/graph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+          username: graph
+          password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
           driver-class-name: com.mysql.cj.jdbc.Driver
-
-virtualphone:
-  huawei:
-    app-key: 874g33d0M7K8kj0Uh9aT3H50mjN6
-    app-secret: e9kM6bT6Sa00Cjv96Ec2ahYdA2j2
-    api-host: https://rtcapi.cn-north-1.myhuaweicloud.com:12543
