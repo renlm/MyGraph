@@ -161,12 +161,6 @@
 			<properties>
 				<profiles.active>properties/dev</profiles.active>
 			</properties>
-		</profile>
-		<profile>
-			<id>test</id>
-			<properties>
-				<profiles.active>properties/test</profiles.active>
-			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
@@ -175,6 +169,12 @@
 			<id>prod</id>
 			<properties>
 				<profiles.active>properties/prod</profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<profiles.active>properties/test</profiles.active>
 			</properties>
 		</profile>
 	</profiles>
@@ -186,8 +186,8 @@
 				<directory>src/main/resources</directory>
 				<excludes>
 					<exclude>properties/dev/*</exclude>
-					<exclude>properties/test/*</exclude>
 					<exclude>properties/prod/*</exclude>
+					<exclude>properties/test/*</exclude>
 				</excludes>
 			</resource>
 			<resource>
