@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/mxgraph-editor/styles/grapheditor.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/editor/styles/editor.css}">
 	<script type="text/javascript">
 		// Parses URL parameters. Supported parameters are:
 		// - lang=xy: Specifies the language of the user interface.
@@ -39,12 +40,15 @@
 		mxLoadResources = false;
 		
 		// 更改配置
-		window.RESOURCES_PATH = '[(@{/webjars/mxgraph-editor/resources})]';
+		window.RESOURCES_PATH = '[(@{/static/editor/resources})]';
+		window.RESOURCE_BASE = window.RESOURCES_PATH + '/editor';
 		window.STENCIL_PATH = '[(@{/webjars/mxgraph-editor/stencils})]';
 		window.IMAGE_PATH = '[(@{/webjars/mxgraph-editor/images})]';
 		window.STYLE_PATH = '[(@{/webjars/mxgraph-editor/styles})]';
 		window.CSS_PATH = '[(@{/webjars/mxgraph-editor/styles})]';
 		window.mxBasePath = '[(@{/webjars/mxgraph-client})]';
+		window.mxLanguage = urlParams["lang"] || "zh";
+		window.mxLanguages = ["zh"];
 	</script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Init.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/deflate/pako.min.js}"></script>
@@ -74,20 +78,11 @@
 			{
 				editorUiInit.apply(this, arguments);
 				this.actions.get('export').setEnabled(false);
-
-				// Updates action states which require a backend
-				if (!Editor.useLocalStorage)
-				{
-					mxUtils.post(OPEN_URL, '', mxUtils.bind(this, function(req)
-					{
-						var enabled = req.getStatus() != 404;
-						this.actions.get('open').setEnabled(enabled || Graph.fileSupport);
-						this.actions.get('import').setEnabled(enabled || Graph.fileSupport);
-						this.actions.get('save').setEnabled(enabled);
-						this.actions.get('saveAs').setEnabled(enabled);
-						this.actions.get('export').setEnabled(enabled);
-					}));
-				}
+				this.actions.get('open').setEnabled(false);
+				this.actions.get('import').setEnabled(false);
+				this.actions.get('save').setEnabled(true);
+				this.actions.get('saveAs').setEnabled(false);
+				this.actions.get('export').setEnabled(false);
 			};
 			
 			// Adds required resources (disables loading of fallback properties, this can only
