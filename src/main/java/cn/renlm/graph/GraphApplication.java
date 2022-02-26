@@ -13,9 +13,9 @@ import cn.hutool.extra.spring.EnableSpringUtil;
  */
 @EnableSpringUtil
 @SpringBootApplication
-public class VirtualPhoneApplication {
+public class GraphApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(VirtualPhoneApplication.class, args);
+		SpringApplication.run(GraphApplication.class, args);
 	}
 }

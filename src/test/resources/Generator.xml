@@ -3,13 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="https://www.renlm.cn/schemas/MyGenerator.xsd">
 
-	<url>jdbc:mysql://192.168.133.176:3306/component</url>
-	<username>gcj_admin</username>
-	<password>test</password>
+	<url>jdbc:mysql://renlm.cn:3306/graph</url>
+	<username>graph</username>
+	<password>Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504</password>
 
-	<module name="huawei" package="com.lei.du">
-		<table author="Renlm" name="virtual_phone_key" entity="true" />
-		<table author="Renlm" name="virtual_phone_pool" entity="true" />
-		<table author="Renlm" name="virtual_phone_ax" entity="true" />
+	<module name="graph" package="cn.renlm">
+		<table author="Renlm" name="graph" />
 	</module>
 </generator>
