@@ -1,7 +1,7 @@
 server:
   port: 80
   servlet:
-    context-path: /graph
+    context-path: /dev
     
 mybatis-plus:
   configuration:
