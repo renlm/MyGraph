@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.renlm.graph.common.Result;
+import cn.renlm.graph.dto.GraphDto;
 
 /**
  * 图形设计
@@ -27,9 +28,8 @@ public class GraphController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/saveEditor")
-	public Result saveEditor(HttpServletRequest request) {
+	public Result saveEditor(HttpServletRequest request, GraphDto form) {
 		try {
-
 			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
