@@ -1,4 +1,4 @@
-package com.lei.du;
+package cn.renlm.graph;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
