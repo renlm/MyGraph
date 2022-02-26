@@ -70,7 +70,7 @@
 <body class="geEditor">
 	<div id="graphJson" style="display: none;">[(${graphJson})]</div>
 	<script type="text/javascript">
-		var __GraphJson = JSON.parse($("#graphJson").html());
+		var __GraphJson = JSON.parse(document.getElementById("graphJson").innerHTML);
 		document.title = __GraphJson.name;
 		// Extends EditorUi to update I/O action states based on availability of backend
 		(function()
@@ -78,8 +78,8 @@
 			var editorUiInit = EditorUi.prototype.init;
 			
 			EditorUi.prototype.init = function()
-			{// 折叠左侧边栏
-				this.hsplitPosition = 0;
+			{
+				// 左侧边栏
 				this.hsplitClickEnabled = true;
 				
 				// 隐藏顶部菜单栏
@@ -87,16 +87,13 @@
 				this.menubarContainer.style.display = "none";
 				this.toolbarContainer.firstChild.style.borderTop = "none";
 				
-				// 隐藏格式面板
-				this.formatWidth = 0;
-				
 				// 隐藏页脚
 				this.footerHeight = 0;
 				
 				// 网格大小
 				this.editor.graph.gridEnabled = __GraphJson.gridEnabled;
 				this.editor.graph.gridSize = __GraphJson.gridSize;
-				this.editor.graph.view.gridColor = __GraphJson.gridColor;
+				if(__GraphJson.gridColor) { this.editor.graph.view.gridColor = __GraphJson.gridColor; }
 				// 页面视图
 				this.editor.graph.pageVisible = __GraphJson.pageVisible;
 				// 背景色

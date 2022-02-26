@@ -118,7 +118,7 @@ public class Graph implements Serializable {
     private String background;
 
     /**
-     * 显示链接箭头（默认否）
+     * 显示连接箭头（默认否）
      */
     @TableField("connection_arrows_enabled")
     private Boolean connectionArrowsEnabled;

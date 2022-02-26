@@ -41,7 +41,7 @@ COMMENT ON COLUMN graph.grid_size							IS '网格大小（默认1）';
 COMMENT ON COLUMN graph.grid_color							IS '网格颜色';
 COMMENT ON COLUMN graph.page_visible						IS '页面视图（默认否）';	
 COMMENT ON COLUMN graph.background       					IS '背景色';
-COMMENT ON COLUMN graph.connection_arrows_enabled			IS '显示链接箭头（默认否）';
+COMMENT ON COLUMN graph.connection_arrows_enabled			IS '显示连接箭头（默认否）';
 COMMENT ON COLUMN graph.connectable							IS '显示连接点（默认是）';
 COMMENT ON COLUMN graph.guides_enabled						IS '显示参考线（默认是）';
 COMMENT ON COLUMN graph.xml       							IS 'XML文本';

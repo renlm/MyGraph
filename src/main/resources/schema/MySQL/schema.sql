@@ -16,7 +16,7 @@ CREATE TABLE graph(
     grid_color					VARCHAR(255)								COMMENT '网格颜色',
     page_visible				TINYINT(1) 		NOT NULL DEFAULT 0			COMMENT '页面视图（默认否）',
     background       			VARCHAR(255)								COMMENT '背景色',
-    connection_arrows_enabled	TINYINT(1) 		NOT NULL DEFAULT 0			COMMENT '显示链接箭头（默认否）',
+    connection_arrows_enabled	TINYINT(1) 		NOT NULL DEFAULT 0			COMMENT '显示连接箭头（默认否）',
     connectable					TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示连接点（默认是）',
     guides_enabled				TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示参考线（默认是）',
     xml       					TEXT										COMMENT 'XML文本',

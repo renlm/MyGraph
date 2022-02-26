@@ -8,6 +8,6 @@
 	<password>Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504</password>
 
 	<module name="graph" package="cn.renlm">
-		<table author="Renlm" name="graph" />
+		<table author="Renlm" name="graph" entity="true" />
 	</module>
 </generator>
