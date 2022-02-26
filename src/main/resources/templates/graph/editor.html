@@ -1,6 +1,6 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=5,IE=9" ><![endif]-->
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
     <title>Grapheditor</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -67,7 +67,7 @@
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Toolbar.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Dialogs.js}"></script>
 </head>
-<body class="geEditor">
+<body class="geEditor" layout:fragment="content">
 	<div id="graphJson" style="display: none;">[(${graphJson})]</div>
 	<script type="text/javascript">
 		var __GraphJson = JSON.parse(document.getElementById("graphJson").innerHTML);
