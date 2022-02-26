@@ -3,6 +3,41 @@
  */
 (function($) {
 	$.extend({
+		EditMxgraph: function (UI, GJSON) {
+			// 左侧边栏
+			UI.hsplitClickEnabled = true;
+			
+			// 隐藏顶部菜单栏
+			UI.menubarHeight = 0;
+			UI.menubarContainer.style.display = "none";
+			UI.toolbarContainer.firstChild.style.borderTop = "none";
+			
+			// 隐藏页脚
+			UI.footerHeight = 0;
+			
+			// 网格大小
+			UI.editor.graph.gridEnabled = GJSON.gridEnabled;
+			UI.editor.graph.gridSize = GJSON.gridSize;
+			if(GJSON.gridColor) { UI.editor.graph.view.gridColor = GJSON.gridColor; }
+			// 页面视图
+			UI.editor.graph.pageVisible = GJSON.pageVisible;
+			// 背景色
+			UI.editor.graph.background = GJSON.background;
+			// 连接箭头
+			UI.editor.graph.connectionArrowsEnabled = GJSON.connectionArrowsEnabled;
+			// 连接点
+			UI.editor.graph.setConnectable(GJSON.connectable);
+			// 参考线
+			UI.editor.graph.graphHandler.guidesEnabled = GJSON.guidesEnabled;
+			// 分页分割线
+			UI.editor.graph.pageBreaksVisible = false;
+			// 分割线为虚线
+			UI.editor.graph.pageBreakDashed = true;
+			
+			// 国际化
+			UI.sidebar.palettes.bpmn[0].innerHTML = mxResources.get('bpmn');
+			UI.sidebar.palettes.flowchart[0].innerHTML = mxResources.get('flowchart');
+		},
 		/**
 		 * 自定义元图Demo-ER模型
 		 * @author Renlm

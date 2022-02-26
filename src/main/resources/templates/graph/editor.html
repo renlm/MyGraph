@@ -80,39 +80,9 @@
 			
 			EditorUi.prototype.init = function()
 			{
-				// 左侧边栏
-				this.hsplitClickEnabled = true;
-				
-				// 隐藏顶部菜单栏
-				this.menubarHeight = 0;
-				this.menubarContainer.style.display = "none";
-				this.toolbarContainer.firstChild.style.borderTop = "none";
-				
-				// 隐藏页脚
-				this.footerHeight = 0;
-				
-				// 网格大小
-				this.editor.graph.gridEnabled = __GraphJson.gridEnabled;
-				this.editor.graph.gridSize = __GraphJson.gridSize;
-				if(__GraphJson.gridColor) { this.editor.graph.view.gridColor = __GraphJson.gridColor; }
-				// 页面视图
-				this.editor.graph.pageVisible = __GraphJson.pageVisible;
-				// 背景色
-				this.editor.graph.background = __GraphJson.background;
-				// 连接箭头
-				this.editor.graph.connectionArrowsEnabled = __GraphJson.connectionArrowsEnabled;
-				// 连接点
-				this.editor.graph.setConnectable(__GraphJson.connectable);
-				// 参考线
-				this.editor.graph.graphHandler.guidesEnabled = __GraphJson.guidesEnabled;
-				// 分页分割线
-				this.editor.graph.pageBreaksVisible = false;
-				// 分割线为虚线
-				this.editor.graph.pageBreakDashed = true;
-				
 				// 应用设置并刷新
 				editorUiInit.apply(this, arguments);
-				$.editMxgraph(this);
+				$.EditMxgraph(this, __GraphJson);
 				this.refresh();
 				
 				// 解析数据
