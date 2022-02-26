@@ -1,0 +1,153 @@
+<!--
+/**
+* 分页组件
+* @param id 唯一ID
+*/
+-->
+<!--
+/**
+* 组件参数
+* @param cleanBorder  是否去除框线（默认是）
+* @param limit        分页长度（默认8）
+* @param limits       可选分页长度列表（默认[8, 16, 20, 24, 32, 48, 96]）
+* @param pageFunc     分页数据请求方法
+* @param dataEmit     回显设置分页数据方法（注意：小写）
+*/
+-->
+<th:block th:fragment="pager(id)">
+<template th:id="|${id}|">
+	<div class="layui-table-page" 
+		v-show="totalCount>0"
+		:style="{borderWidth: cleanBorder ? '0px' : '1px'}">
+		<div>
+      		<div class="layui-box layui-laypage layui-laypage-default">
+        		<a class="layui-laypage-prev"
+        			href="javascript:void(0);"
+          			:class="{'layui-disabled': pageNum === 1}"
+          			@click="findPage(pageNum - 1)">
+          			<i class="layui-icon layui-icon-left"></i>
+        		</a>
+        		<template v-for="(item,index) in pageBtns">
+          			<span class="layui-laypage-spr" v-if="item === 0" :key="index">…</span>
+          			<span v-if="item === pageNum" :key="index" class="layui-laypage-curr">
+            			<em class="layui-laypage-em"></em>
+            			<em>{{ item }}</em>
+          			</span>
+          			<a href="javascript:void(0);"
+            			v-if="item && item !== pageNum"
+            			:key="index"
+            			:class="{'layui-laypage-first':item===1,'layui-laypage-last':item===totalPage}"
+            			:title="item===1?'首页':(item===totalPage?'尾页':'')"
+            			@click="findPage(item)">
+            			{{ item }}
+          			</a>
+        		</template>
+        		<a class="layui-laypage-next"
+        			href="javascript:void(0);"
+          			:class="{'layui-disabled': pageNum === totalPage}"
+          			@click="findPage(pageNum + 1)">
+          			<i class="layui-icon layui-icon-right"></i>
+        		</a>
+        		<span class="layui-laypage-skip">
+          			到第<input v-model="skipPageNum" type="text" class="layui-input" @keyup.enter="findPage(skipPageNum)">页
+          			<button type="button" class="layui-laypage-btn" @click="findPage(skipPageNum)">确定</button>
+        		</span>
+        		<span class="layui-laypage-count">共 {{ totalCount }} 条</span>
+        		<span class="layui-laypage-limits">
+          			<select v-model="pageSize" lay-ignore @change="findPage(pageNum)">
+            			<option v-for="(size, index) in limits" :key="index" :value="size">{{ size }} 条/页</option>
+          			</select>
+        		</span>
+      		</div>
+    	</div>
+	</div>
+</template>
+<script type="text/javascript">
+	Vue.component("[(${id})]", {
+		template: "#[(${id})]",
+		props: {
+		    cleanBorder: {
+		      	type: Boolean,
+		      	comment: "是否去除框线（默认是）",
+		      	default: true
+		    },
+		    limit: {
+		      	type: Number,
+		      	comment: "分页长度",
+		      	default: 8
+		    },
+		    limits: {
+		      	type: Array,
+		      	comment: "可选分页长度列表",
+		      	default: () => [8, 16, 20, 24, 32, 48, 96]
+		    },
+		    pageFunc: {
+		      	type: Function,
+		      	comment: "分页数据请求方法",
+		      	default: () => {
+		      	}
+		    },
+		    dataEmit: {
+		      	type: String,
+		      	comment: "回显设置分页数据方法（注意：小写）",
+		      	default: "emitdata"
+		    }
+		},
+	    data () {
+	    	return {
+	        	pageNum: 1,
+	          	skipPageNum: 1,
+	          	pageSize: this.limit,
+	          	totalCount: 0
+	   		}
+		},
+		computed: {
+	  		totalPage () {
+	       		return Math.ceil(this.totalCount / this.pageSize) || 1;
+	        },
+	        pageBtns () {
+	          	if (this.totalPage <= 5) {
+	            	return [...new Array(this.totalPage)].map((v, i) => i + 1);
+	          	}
+	          	if (this.pageNum <= 2) {
+	            	return [1, 2, 3, 0, this.totalPage];
+	          	}
+	          	if (this.pageNum >= this.totalPage - 1) {
+	            	return [1, 0, this.totalPage - 2, this.totalPage - 1, this.totalPage];
+	          	}
+	          	if (this.pageNum === 3) {
+	            	return [1, 2, 3, 4, 0, this.totalPage];
+	          	}
+	          	if (this.pageNum === this.totalPage - 2) {
+	            	return [1, 0, this.totalPage - 3, this.totalPage - 2, this.totalPage - 1, this.totalPage];
+	          	} else {
+	            	return [1, 0, this.pageNum - 1, this.pageNum, this.pageNum + 1, 0, this.totalPage];
+	          	}
+			}
+		},
+		created () {
+	   		this.findPage();
+		},
+		methods: {
+	  		findPage (page, size) {
+	    		const that = this;
+	          	if (isNaN(page) && isNaN(this.pageNum)) {
+	            	return;
+	          	}
+	          	const paramPage = Math.min((isNaN(page) ? this.pageNum : page) || this.pageNum, this.totalPage || 1);
+	          	const paramSize = size || this.pageSize;
+	          	if (!isNaN(page) && (paramPage < 1 || paramPage > this.totalPage)) {
+	            	return;
+	     		}
+	          	this.pageFunc(paramPage, paramSize).then((response) => {
+	            	that.pageNum = paramPage;
+	            	that.skipPageNum = paramPage;
+	            	that.paramSize = paramSize;
+	            	that.totalCount = parseInt(response.total);
+	            	that.$emit(that.dataEmit, response);
+	          	});
+	 		}
+		}
+	});
+</script>
+</th:block>
