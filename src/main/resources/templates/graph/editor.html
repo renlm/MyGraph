@@ -1,0 +1,162 @@
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=5,IE=9" ><![endif]-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grapheditor</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/mxgraph-editor/styles/grapheditor.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/editor/styles/editor.css}">
+	<script type="text/javascript">
+		// Parses URL parameters. Supported parameters are:
+		// - lang=xy: Specifies the language of the user interface.
+		// - touch=1: Enables a touch-style user interface.
+		// - storage=local: Enables HTML5 local storage.
+		// - chrome=0: Chromeless mode.
+		var urlParams = (function(url)
+		{
+			var result = new Object();
+			var idx = url.lastIndexOf('?');
+	
+			if (idx > 0)
+			{
+				var params = url.substring(idx + 1).split('&');
+				
+				for (var i = 0; i < params.length; i++)
+				{
+					idx = params[i].indexOf('=');
+					
+					if (idx > 0)
+					{
+						result[params[i].substring(0, idx)] = params[i].substring(idx + 1);
+					}
+				}
+			}
+			
+			return result;
+		})(window.location.href);
+	
+		// Default resources are included in grapheditor resources
+		mxLoadResources = false;
+		
+		// 更改配置
+		window.RESOURCES_PATH = '[(@{/static/editor/resources})]';
+		window.RESOURCE_BASE = window.RESOURCES_PATH + '/editor';
+		window.STENCIL_PATH = '[(@{/webjars/mxgraph-editor/stencils})]';
+		window.IMAGE_PATH = '[(@{/webjars/mxgraph-editor/images})]';
+		window.STYLE_PATH = '[(@{/webjars/mxgraph-editor/styles})]';
+		window.CSS_PATH = '[(@{/webjars/mxgraph-editor/styles})]';
+		window.mxBasePath = '[(@{/webjars/mxgraph-client})]';
+		window.mxLanguage = urlParams["lang"] || "zh";
+		window.mxLanguages = ["zh"];
+	</script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Init.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/deflate/pako.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/deflate/base64.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/jscolor/jscolor.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/sanitizer/sanitizer.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-client/mxClient.bundle.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/EditorUi.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Editor.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Sidebar.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Graph.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Format.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Shapes.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Actions.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Menus.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Toolbar.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Dialogs.js}"></script>
+</head>
+<body class="geEditor">
+	<div id="graphJson" style="display: none;">[(${graphJson})]</div>
+	<script type="text/javascript">
+		var __GraphJson = JSON.parse($("#graphJson").html());
+		document.title = __GraphJson.name;
+		// Extends EditorUi to update I/O action states based on availability of backend
+		(function()
+		{
+			var editorUiInit = EditorUi.prototype.init;
+			
+			EditorUi.prototype.init = function()
+			{// 折叠左侧边栏
+				this.hsplitPosition = 0;
+				this.hsplitClickEnabled = true;
+				
+				// 隐藏顶部菜单栏
+				this.menubarHeight = 0;
+				this.menubarContainer.style.display = "none";
+				this.toolbarContainer.firstChild.style.borderTop = "none";
+				
+				// 隐藏格式面板
+				this.formatWidth = 0;
+				
+				// 隐藏页脚
+				this.footerHeight = 0;
+				
+				// 网格大小
+				this.editor.graph.gridEnabled = __GraphJson.gridEnabled;
+				this.editor.graph.gridSize = __GraphJson.gridSize;
+				this.editor.graph.view.gridColor = __GraphJson.gridColor;
+				// 页面视图
+				this.editor.graph.pageVisible = __GraphJson.pageVisible;
+				// 背景色
+				this.editor.graph.background = __GraphJson.background;
+				// 连接箭头
+				this.editor.graph.connectionArrowsEnabled = __GraphJson.connectionArrowsEnabled;
+				// 连接点
+				this.editor.graph.setConnectable(__GraphJson.connectable);
+				// 参考线
+				this.editor.graph.graphHandler.guidesEnabled = __GraphJson.guidesEnabled;
+				// 分页分割线
+				this.editor.graph.pageBreaksVisible = false;
+				// 分割线为虚线
+				this.editor.graph.pageBreakDashed = true;
+				
+				// 应用设置并刷新
+				editorUiInit.apply(this, arguments);
+				this.refresh();
+				
+				// 解析数据
+				this.actions.get('export').setEnabled(false);
+				this.actions.get('open').setEnabled(false);
+				this.actions.get('import').setEnabled(false);
+				this.actions.get('save').setEnabled(true);
+				this.actions.get('saveAs').setEnabled(false);
+				this.actions.get('export').setEnabled(false);
+				if(__GraphJson.xml) {
+					var xmlDoc = mxUtils.parseXml(Base64.decode(__GraphJson.xml));
+					var codec = new mxCodec(xmlDoc);
+					codec.decode(xmlDoc.documentElement, this.editor.graph.getModel());
+					this.editor.setModified(false);
+				}
+				
+				// 缩放视图
+				this.editor.graph.zoomTo(__GraphJson.zoom);
+			};
+			
+			// Adds required resources (disables loading of fallback properties, this can only
+			// be used if we know that all keys are defined in the language specific file)
+			mxResources.loadDefaultBundle = false;
+			var bundle = mxResources.getDefaultBundle(RESOURCE_BASE, mxLanguage) ||
+				mxResources.getSpecialBundle(RESOURCE_BASE, mxLanguage);
+
+			// Fixes possible asynchronous requests
+			mxUtils.getAll([bundle, STYLE_PATH + '/default.xml'], function(xhr)
+			{
+				// Adds bundle text to resources
+				mxResources.parse(xhr[0].getText());
+				
+				// Configures the default graph theme
+				var themes = new Object();
+				themes[Graph.prototype.defaultThemeName] = xhr[1].getDocumentElement(); 
+				
+				// Main
+				new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
+			}, function()
+			{
+				document.body.innerHTML = '<center style="margin-top:10%;">Error loading resource files. Please check browser console.</center>';
+			});
+		})();
+	</script>
+</body>
+</html>
