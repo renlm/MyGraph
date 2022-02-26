@@ -1,6 +1,7 @@
 ::-webkit-scrollbar {
 	width: 14px;
 	height: 14px;
+	background-color: #F5F5F5;
 }
 
 .no-scrollbar ::-webkit-scrollbar {
@@ -9,6 +10,12 @@
 }
 
 ::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
+	-moz-box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
+	-o-box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
+	box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
+	border-radius: 10px;
+	background-color: #F5F5F5;
 	background-clip: padding-box;
 	border: solid transparent;
 }
@@ -18,6 +25,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
+	-webkit-box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
+	-moz-box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
+	-o-box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
+	box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
 	background-color: rgba(0, 0, 0, .1);
 	background-clip: padding-box;
 	border: solid transparent;
