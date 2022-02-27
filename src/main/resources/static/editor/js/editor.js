@@ -38,6 +38,43 @@
 			UI.sidebar.palettes.bpmn[0].innerHTML = mxResources.get('bpmn');
 			UI.sidebar.palettes.flowchart[0].innerHTML = mxResources.get('flowchart');
 			
+			// 自定义Action（插入ER模型）
+			UI.actions.put('insertERModel', new Action(mxResources.get('ERModel'), function()
+			{
+				if (UI.editor.graph.isEnabled() && !UI.editor.graph.isCellLocked(UI.editor.graph.getDefaultParent()))
+				{
+					var __demo = $.CreateERModelVertexDemo(UI.sidebar, false);
+					var __cell = UI.editor.graph.getSelectionCell();
+					var __geometry = UI.editor.graph.getCellGeometry(__cell ? __cell : UI.editor.graph.getChildCells()[UI.editor.graph.getChildCells().length - 1]);
+					var __cells = UI.editor.graph.importCells([__demo.cell], __geometry ? __geometry.x : 0, __geometry ? (__geometry.y + __geometry.height + 10) : 0);
+					UI.editor.graph.clearSelection();
+					UI.editor.graph.setSelectionCells(__cells);
+					UI.editor.graph.scrollCellToVisible(UI.editor.graph.getSelectionCell());
+				}
+			})).isEnabled = UI.actions.actions.save.isEnabled;
+			
+			// 自定义Action（数据库表选择器）
+			UI.actions.put('insertDbTable', new Action(mxResources.get('DbTable'), function()
+			{
+				if (UI.editor.graph.isEnabled() && !UI.editor.graph.isCellLocked(UI.editor.graph.getDefaultParent()))
+				{
+					var __demo = $.CreateERModelVertexDemo(UI.sidebar, false);
+					var __cell = UI.editor.graph.getSelectionCell();
+					var __geometry = UI.editor.graph.getCellGeometry(__cell ? __cell : UI.editor.graph.getChildCells()[UI.editor.graph.getChildCells().length - 1]);
+					var __cells = UI.editor.graph.importCells([__demo.cell], __geometry ? __geometry.x : 0, __geometry ? (__geometry.y + __geometry.height + 10) : 0);
+					UI.editor.graph.clearSelection();
+					UI.editor.graph.setSelectionCells(__cells);
+					UI.editor.graph.scrollCellToVisible(UI.editor.graph.getSelectionCell());
+				}
+			})).isEnabled = UI.actions.actions.save.isEnabled;
+			
+			// 自定义工具栏（插入）
+			UI.menus.menus.insert.funct = function(menu, parent)
+			{
+				UI.menus.addMenuItems(menu, ['insertERModel', 'insertDbTable', 'insertLink', 'insertImage'], parent);
+				UI.menus.addSubmenu('layout', menu, parent);
+			};
+			
 			// 重写保存方法
 			UI.actions.actions.save.funct = function () {
 				if (UI.editor.graph.isEditing()) 
@@ -107,7 +144,7 @@
 				{ name: "deleted", 		comment: "是否删除（默认否）", 	type: -7,	typeName: 'bool',		size: 1,	digit: 0,	isNullable: false,	autoIncrement: false,	columnDef: false,	isPk: false, isFk: false },
 				{ name: "remark", 		comment: "备注", 				type: 12,	typeName: 'varchar',	size: 255,	digit: 0,	isNullable: true,	autoIncrement: false,	columnDef: null,	isPk: false, isFk: false }
 			];
-			return FormatERModel(sidebar, isAddEntry, { tableName: tableName, comment: tableName, fields: fields });
+			return $.FormatERModel(sidebar, isAddEntry, { tableName: tableName, comment: tableName, fields: fields });
 		},
 		/**
 		 * 自定义元图-ER模型
@@ -118,7 +155,7 @@
 		 * @return {width,height,html,cell,func}
 		 */
 		FormatERModel: function(sidebar, isAddEntry, erDto) {
-			var formatJson = __TPLERModel(erDto);
+			var formatJson = $.TPLERModel(erDto);
 			var resJson = FormatERModelVertexTemplateEntry(sidebar,
 				isAddEntry,
 				'verticalAlign=top;align=left;overflow=fill;html=1;shadow=1;',
