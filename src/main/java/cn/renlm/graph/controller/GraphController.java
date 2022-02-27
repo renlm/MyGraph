@@ -35,7 +35,7 @@ public class GraphController {
 	private IGraphService iGraphService;
 
 	/**
-	 * 编辑器
+	 * 图形编辑
 	 * 
 	 * @param model
 	 * @param uuid
@@ -50,7 +50,22 @@ public class GraphController {
 	}
 
 	/**
-	 * 保存编辑器
+	 * 图形预览
+	 * 
+	 * @param model
+	 * @param uuid
+	 * @return
+	 */
+	@RequestMapping("/viewer")
+	public String viewer(ModelMap model, String uuid) {
+		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
+		graph.setXml(Base64.encodeUrlSafe(graph.getXml()));
+		model.put("graphJson", JSONUtil.toJsonStr(graph));
+		return "graph/viewer";
+	}
+
+	/**
+	 * 保存
 	 * 
 	 * @param request
 	 * @param form
