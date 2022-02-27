@@ -67,7 +67,7 @@ td.mxPopupMenuIcon table tr td {
 
 .ermodel-name {
 	width: 100%;
-	padding: 2px;
+	padding: 2px 4px 0px 2px;
 	cursor: pointer;
 	box-sizing: border-box;
 }
