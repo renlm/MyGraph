@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.GraphDto;
@@ -39,6 +40,7 @@ public class GraphController {
 	@RequestMapping("/editor")
 	public String editor(ModelMap model, String uuid) {
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
+		graph.setXml(Base64.encodeUrlSafe(graph.getXml()));
 		model.put("graphJson", JSONUtil.toJsonStr(graph));
 		return "graph/editor";
 	}

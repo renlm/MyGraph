@@ -71,13 +71,12 @@
 <body class="geEditor" layout:fragment="content">
 	<div id="graphJson" style="display: none;">[(${graphJson})]</div>
 	<script type="text/javascript">
-		var __GraphJson = JSON.parse(document.getElementById("graphJson").innerHTML);
-		document.title = __GraphJson.name;
 		// Extends EditorUi to update I/O action states based on availability of backend
 		(function()
 		{
 			var editorUiInit = EditorUi.prototype.init;
-			
+			var __GraphJson = JSON.parse(document.getElementById("graphJson").innerHTML);
+			document.title = __GraphJson.name;
 			EditorUi.prototype.init = function()
 			{
 				// 应用设置并刷新
