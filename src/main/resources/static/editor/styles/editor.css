@@ -53,6 +53,14 @@ table.gird-picker tr td {
 		url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='10' transform='translate(0.5,0.5)'><path stroke='black' fill='none' d='M 2 2 Q 6 2 6 5 Q 6 8 2 8 M 6 5 L 18 5'/></svg>");
 }
 
+.ermodel-json, .ermodel-name, .ermodel-fields {
+	margin: 0;
+	padding: 0;
+	font: 14px/normal "microsoft yahei", "Times New Roman", "宋体", Times,
+		serif;
+	letter-spacing: 1px;
+}
+
 .ermodel-json {
 	display: none !important;
 }
@@ -75,6 +83,8 @@ table.gird-picker tr td {
 	width: 100%;
 	font-size: 1em;
 	cursor: pointer;
+	border-collapse: separate;
+	border-spacing: 2px;
 }
 
 .ermodel-fields tr>td.ermodel-key {
@@ -91,7 +101,8 @@ table.gird-picker tr td {
 
 .ermodel-fields tr.ermodel-fk td.ermodel-key {
 	padding-right: 0px;
-	display: inline-block;
+	display: table;
+	text-align: center;
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: inherit;
 	text-rendering: auto;
@@ -106,13 +117,13 @@ table.gird-picker tr td {
 
 .ermodel-fields tr.ermodel-col td.ermodel-key {
 	padding-right: 0px;
-	display: inline-block;
+	display: table;
+	text-align: center;
 	font: normal normal normal 14px/1 FontAwesome;
 	font-size: inherit;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	display: inline-block;
 }
 
 .ermodel-fields tr.ermodel-col td.ermodel-key:before {
