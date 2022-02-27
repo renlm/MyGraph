@@ -127,6 +127,28 @@
 					layer.close(layerIndex);
 				}
 			};
+			
+			// 重写双击事件
+			var graphDblClick = UI.editor.graph.dblClick;
+			UI.editor.graph.dblClick = function(evt, cell)
+			{
+				// ER模型双击事件
+				var __JsonERModel = null;
+				try {
+					var __RegERModel = new RegExp("<div[^>]*?>([^<>]*?)</div>");
+					var __IsERModel = cell.value ? __RegERModel.test(cell.value) : false;
+					var __JsonStrERModel = __IsERModel ? Base64.decode(cell.value.match(__RegERModel)[1]) : null;
+					__JsonERModel = __JsonStrERModel ? JSON.parse(__JsonStrERModel) : null;
+				} catch (e) { }
+				if(evt && __JsonERModel) {
+					console.log(__JsonERModel);
+				}
+				// 其它
+				else if (this.isEnabled())
+				{
+					graphDblClick.apply(this, arguments);
+				}
+			};
 		},
 		/**
 		 * 自定义元图Demo-ER模型
