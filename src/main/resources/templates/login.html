@@ -10,13 +10,12 @@
 	<link rel="shortcut icon" href="./static/favicon.ico" type="image/x-icon" />
 	<link rel="stylesheet" href="./static/skin/css/font.css">
 	<link rel="stylesheet" href="./static/skin/css/weadmin.css">
-	<script src="./webjars/layui/layui.js" charset="utf-8"></script>
 </head>
 <body class="login-bg">
 	<div class="login">
 		<div class="message">图形设计登录</div>
 		<div id="darkbannerwrap"></div>
-		<form method="post" class="layui-form">
+		<form method="post" class="layui-form" th:action="@{/auth}">
 			<input name="username" 
 				placeholder="用户名" 
 				type="text" 
@@ -29,6 +28,7 @@
 				placeholder="密码" 
 				type="password" 
 				class="layui-input" 
+				autocomplete="new-password"
 				/>
 			<hr class="hr15">
 			<input class="loginin" 
@@ -41,13 +41,5 @@
 			<hr class="hr20">
 		</form>
 	</div>
-	<script type="text/javascript">
-		layui.form.on('submit(login)', function(data) {
-			layer.msg(JSON.stringify(data.field), function() {
-				location.href = './'
-			});
-			return false;
-		});
-	</script>
 </body>
 </html>
