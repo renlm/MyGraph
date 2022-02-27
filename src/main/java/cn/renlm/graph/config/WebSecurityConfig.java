@@ -67,6 +67,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// 登录访问限制
 				.anyRequest()
 					.authenticated()
+				// Iframe同源访问
+				.and()
+					.headers()
+					.frameOptions()
+					.sameOrigin()
 				// 登录
 				.and()
 					.formLogin()

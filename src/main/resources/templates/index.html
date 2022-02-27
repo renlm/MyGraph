@@ -21,19 +21,18 @@
 			<div class="logo">
 				<a href="./index.html">在线画图</a>
 			</div>
-			<div class="left_open">
-				<!-- <i title="展开左侧栏" class="iconfont">&#xe699;</i> -->
+			<!-- <div class="left_open">
 				<i title="展开左侧栏" class="layui-icon layui-icon-shrink-right"></i>
-				
-			</div>
+			</div> -->
 			<ul class="layui-nav left fast-add" lay-filter="">
 				<li class="layui-nav-item">
-					<a href="javascript:;">+新增</a>
-					<dl class="layui-nav-child">
-						<dd>
-							<a onclick="WeAdminShow('用户','https://www.jiuwei.com/')"><i class="layui-icon layui-icon-user"></i>用户</a>
-						</dd>
-					</dl>
+					<a href="javascript:;"><i class="layui-icon layui-icon-read"></i> 设计图库</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:;"><i class="layui-icon layui-icon-util"></i> 我的作品</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:;"><i class="layui-icon layui-icon-chart"></i> 数据源</a>
 				</li>
 			</ul>
 			<ul class="layui-nav right" lay-filter="">
@@ -58,20 +57,17 @@
 		<!-- 顶部结束 -->
 		<!-- 中部开始 -->
 		<!-- 左侧菜单开始 -->
-		<div class="left-nav">
+		<!-- <div class="left-nav">
 			<div id="side-nav"></div>
-		</div>
+		</div> -->
 		<!-- <div class="x-slide_left"></div> -->
 		<!-- 左侧菜单结束 -->
 		<!-- 右侧主体开始 -->
 		<div class="page-content">
 			<div class="layui-tab tab" lay-filter="wenav_tab" id="WeTabTip" lay-allowclose="true">
-				<ul class="layui-tab-title" id="tabName">
-					<li lay-id="1">设计图库</li>
-				</ul>
 				<div class="layui-tab-content">
 					<div class="layui-tab-item layui-show">
-						<iframe src='' frameborder="0" scrolling="yes" class="weIframe"></iframe>
+						<iframe th:src='@{/graph/editor?uuid=198124BBCF284A40BB24CA315A7B8E36}' frameborder="0" scrolling="yes" class="weIframe"></iframe>
 					</div>
 				</div>
 			</div>

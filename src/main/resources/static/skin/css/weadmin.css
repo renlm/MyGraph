@@ -258,8 +258,9 @@ body {
   color: #fff;
   font-size: 18px;
   padding-left: 20px;
+  padding-right: 20px;
   line-height: 45px;
-  width: 200px;
+  width: auto;
 }
 .container .right {
   background-color: rgba(0, 0, 0, 0);
@@ -376,7 +377,7 @@ body {
   top: 46px;
   right: 0;
   bottom: 42px;
-  left: 221px;
+  left: 0px;
   overflow: hidden;
   z-index: 1;
 }
@@ -422,7 +423,7 @@ body {
 }
 .page-content .layui-tab-content {
   position: absolute;
-  top: 36px;
+  top: 0px;
   bottom: 0px;
   width: 100%;
   background: #fff 0 0 no-repeat;
