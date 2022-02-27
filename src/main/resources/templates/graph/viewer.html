@@ -41,7 +41,6 @@
 		mxLoadResources = false;
 		
 		// 更改配置
-		window.SAVE_URL = '[(@{/graph/ajax/saveEditor})]';
 		window.RESOURCES_PATH = '[(@{/static/editor/resources})]';
 		window.RESOURCE_BASE = window.RESOURCES_PATH + '/editor';
 		window.STENCIL_PATH = '[(@{/webjars/mxgraph-editor/stencils})]';
@@ -69,7 +68,7 @@
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Toolbar.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Dialogs.js}"></script>
 </head>
-<body class="geEditor" layout:fragment="content">
+<body id="__GeEditor" class="geEditor" layout:fragment="content">
 	<div id="graphJson" style="display: none;">[(${graphJson})]</div>
 	<script type="text/javascript">
 		// Extends EditorUi to update I/O action states based on availability of backend
@@ -80,19 +79,14 @@
 			document.title = __GraphJson.name;
 			EditorUi.prototype.init = function()
 			{
-				// 缩放视图
-				this.editor.graph.zoomTo(__GraphJson.zoom);
-				
-				// 应用设置并刷新
-				editorUiInit.apply(this, arguments);
-				$.EditMxgraph(this, __GraphJson);
-				this.refresh();
+				// 禁止编辑
+				this.editor.graph.setEnabled(false);
 				
 				// 解析数据
 				this.actions.get('export').setEnabled(false);
 				this.actions.get('open').setEnabled(false);
 				this.actions.get('import').setEnabled(false);
-				this.actions.get('save').setEnabled(true);
+				this.actions.get('save').setEnabled(false);
 				this.actions.get('saveAs').setEnabled(false);
 				this.actions.get('export').setEnabled(false);
 				if(__GraphJson.xml) {
@@ -101,6 +95,35 @@
 					codec.decode(xmlDoc.documentElement, this.editor.graph.getModel());
 					this.editor.setModified(false);
 				}
+				
+				// 折叠左侧边栏
+				this.hsplitPosition = 0;
+				this.hsplitClickEnabled = false;
+				
+				// 隐藏格式面板
+				this.formatWidth = 0;
+				
+				// 隐藏无关组件
+				this.hsplit.style.display = "none";
+				this.diagramContainer.style.marginLeft = "-12px";
+				$(".geSprite-formatpanel").parent().hide().next(".geSeparator").hide();
+				
+				// 适应窗口以截取封面
+				if(urlParams["headless"] == "true") {
+					this.actions.get("fitWindow").funct();
+					this.toolbarContainer.style.display = "none";
+					this.diagramContainer.style.marginTop = "-39px";
+					document.getElementById("__GeEditor").className += " no-scrollbar";
+				} 
+				// 缩放视图
+				else {
+					this.editor.graph.zoomTo(__GraphJson.zoom);
+				}
+				
+				// 应用设置并刷新
+				editorUiInit.apply(this, arguments);
+				$.EditMxgraph(this, __GraphJson);
+				this.refresh();
 			};
 			
 			// Adds required resources (disables loading of fallback properties, this can only

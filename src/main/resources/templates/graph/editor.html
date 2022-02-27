@@ -80,14 +80,6 @@
 			document.title = __GraphJson.name;
 			EditorUi.prototype.init = function()
 			{
-				// 缩放视图
-				this.editor.graph.zoomTo(__GraphJson.zoom);
-				
-				// 应用设置并刷新
-				editorUiInit.apply(this, arguments);
-				$.EditMxgraph(this, __GraphJson);
-				this.refresh();
-				
 				// 解析数据
 				this.actions.get('export').setEnabled(false);
 				this.actions.get('open').setEnabled(false);
@@ -101,6 +93,14 @@
 					codec.decode(xmlDoc.documentElement, this.editor.graph.getModel());
 					this.editor.setModified(false);
 				}
+				
+				// 缩放视图
+				this.editor.graph.zoomTo(__GraphJson.zoom);
+				
+				// 应用设置并刷新
+				editorUiInit.apply(this, arguments);
+				$.EditMxgraph(this, __GraphJson);
+				this.refresh();
 			};
 			
 			// Adds required resources (disables loading of fallback properties, this can only
