@@ -2,6 +2,12 @@
 	display: none;
 }
 
+.loginout {
+	display: block;
+    padding: 0 20px;
+	color: #333;
+}
+
 .layui-nav .layui-nav-more {
 	content: '';
 	width: 0;

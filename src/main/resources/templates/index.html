@@ -35,24 +35,25 @@
 					<a href="javascript:;"><i class="layui-icon layui-icon-chart"></i> 数据源</a>
 				</li>
 			</ul>
-			<ul class="layui-nav right" lay-filter="">
+			<ul class="layui-nav right">
 				<li class="layui-nav-item">
-					<a href="javascript:;">Admin</a>
+					<a href="javascript:void(0);">Admin</a>
 					<dl class="layui-nav-child">
-						<!-- 二级菜单 -->
 						<dd>
 							<a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>
 						</dd>
 						<dd>
-							<a onclick="WeAdminShow('切换帐号','./login.html')">切换帐号</a>
+							<a onclick="WeAdminShow('切换帐号','./login.html')">修改密码</a>
 						</dd>
 						<dd>
-							<a class="loginout" href="./login.html">退出</a>
+							<form class="loginout" method="post" 
+								th:action="@{/logout}"
+								onclick="this.submit();">退出
+							</form>
 						</dd>
 					</dl>
 				</li>
 			</ul>
-
 		</div>
 		<!-- 顶部结束 -->
 		<!-- 中部开始 -->
