@@ -37,6 +37,59 @@
 			// 国际化
 			UI.sidebar.palettes.bpmn[0].innerHTML = mxResources.get('bpmn');
 			UI.sidebar.palettes.flowchart[0].innerHTML = mxResources.get('flowchart');
+			
+			// 重写保存方法
+			UI.actions.actions.save.funct = function () {
+				if (UI.editor.graph.isEditing()) 
+				{
+					UI.editor.graph.stopEditing();
+				}
+				
+				try 
+				{
+					var layerIndex = layer.load(2);
+					var xml = mxUtils.getXml(UI.editor.getGraphXml());
+					if (xml.length < MAX_REQUEST_SIZE) 
+					{
+						var __settings = "&uuid=" + GJSON.uuid;
+						__settings += "&zoom=" + UI.editor.graph.view.getScale();
+						__settings += "&dx=" + UI.editor.graph.view.getTranslate().x;
+						__settings += "&dy=" + UI.editor.graph.view.getTranslate().y;
+						__settings += "&gridEnabled=" + UI.editor.graph.gridEnabled;
+						__settings += "&gridSize=" + UI.editor.graph.gridSize;
+						__settings += "&gridColor=" + UI.editor.graph.view.gridColor;
+						__settings += "&pageVisible=" + UI.editor.graph.pageVisible;
+						__settings += "&background=" + UI.editor.graph.background;
+						__settings += "&connectable=" + UI.editor.graph.isConnectable();
+						__settings += "&guidesEnabled=" + UI.editor.graph.graphHandler.guidesEnabled;
+						__settings += "&connectionArrowsEnabled=" + UI.editor.graph.connectionArrowsEnabled;
+						var req = new mxXmlRequest(SAVE_URL, __settings + '&xml=' + Base64.encode(xml), 'POST', false);
+						req.send();
+						var resJson = JSON.parse(req.request.responseText);
+						if(resJson.statusCode == 200) {
+							layer.msg(resJson.message?resJson.message:"已保存", { icon: 1, time: 1500 });
+						} else {
+							layer.msg(resJson.message?resJson.message:"服务器出错了", { icon: 5, shift:6 });
+						}
+					} 
+					else 
+					{
+						mxUtils.alert(mxResources.get('drawingTooLarge'));
+						mxUtils.popup(xml);
+						return;
+					}
+			
+					UI.editor.setModified(false);
+				} 
+				catch (e) 
+				{
+					UI.editor.setStatus(mxUtils.htmlEntities(mxResources.get('errorSaving')));
+				} 
+				finally 
+				{
+					layer.close(layerIndex);
+				}
+			};
 		},
 		/**
 		 * 自定义元图Demo-ER模型
