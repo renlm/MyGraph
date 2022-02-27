@@ -19,6 +19,21 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/**
+	 * 登录页
+	 */
+	public static final String LoginPage = "/login";
+
+	/**
+	 * 退出地址
+	 */
+	public static final String logoutUrl = "/logout";
+
+	/**
+	 * 登录接口
+	 */
+	public static final String LoginProcessingUrl = "/auth";
+
+	/**
 	 * 静态资源
 	 */
 	public static final String[] STATIC_PATHS = {"/static/**", "/webjars/**"};
@@ -26,10 +41,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
 	 * 白名单
 	 */
-	public static final String[] WHITE_LIST = {"/api/**"};
+	public static final String[] WHITE_LIST = {"/api/**", LoginPage, logoutUrl,
+			LoginProcessingUrl};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		// 登录
+		http.formLogin().loginPage(LoginPage)
+				.loginProcessingUrl(LoginProcessingUrl);
+		// 注销
+		http.logout().logoutUrl(logoutUrl);
 		// 启用csrf
 		http.csrf().csrfTokenRepository(
 				CookieCsrfTokenRepository.withHttpOnlyFalse());
