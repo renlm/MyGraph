@@ -54,7 +54,7 @@
 	</script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Init.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/deflate/pako.min.js}"></script>
-	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/deflate/base64.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/js-base64/base64.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/jscolor/jscolor.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/sanitizer/sanitizer.min.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-client/mxClient.bundle.min.js}"></script>
@@ -80,6 +80,9 @@
 			document.title = __GraphJson.name;
 			EditorUi.prototype.init = function()
 			{
+				// 缩放视图
+				this.editor.graph.zoomTo(__GraphJson.zoom);
+				
 				// 应用设置并刷新
 				editorUiInit.apply(this, arguments);
 				$.EditMxgraph(this, __GraphJson);
@@ -98,9 +101,6 @@
 					codec.decode(xmlDoc.documentElement, this.editor.graph.getModel());
 					this.editor.setModified(false);
 				}
-				
-				// 缩放视图
-				this.editor.graph.zoomTo(__GraphJson.zoom);
 			};
 			
 			// Adds required resources (disables loading of fallback properties, this can only

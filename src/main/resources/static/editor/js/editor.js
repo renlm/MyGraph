@@ -63,7 +63,7 @@
 						__settings += "&connectable=" + UI.editor.graph.isConnectable();
 						__settings += "&guidesEnabled=" + UI.editor.graph.graphHandler.guidesEnabled;
 						__settings += "&connectionArrowsEnabled=" + UI.editor.graph.connectionArrowsEnabled;
-						var req = new mxXmlRequest(SAVE_URL, __settings + '&xml=' + Base64.encode(xml), 'POST', false);
+						var req = new mxXmlRequest(SAVE_URL, __settings + '&xml=' + Base64.encodeURI(xml), 'POST', false);
 						req.send();
 						var resJson = JSON.parse(req.request.responseText);
 						if(resJson.statusCode == 200) {
