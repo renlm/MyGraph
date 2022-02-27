@@ -114,7 +114,7 @@
 					admin = layui.admin,
 					menu = layui.menu;
 				$(function(){
-					menu.getMenu('./json/menu.json');
+					menu.getMenu('./static/json/menu.json');
 					var login = JSON.parse(localStorage.getItem("login"));
 					login = true;
 					if(login){
