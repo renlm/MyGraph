@@ -1,3 +1,27 @@
 [v-cloak] {
 	display: none;
 }
+
+.layui-nav .layui-nav-more {
+	content: '';
+	width: 0;
+	height: 0;
+	border-style: solid dashed dashed;
+	border-color: #fff transparent transparent;
+	overflow: hidden;
+	cursor: pointer;
+	transition: all .2s;
+	-webkit-transition: all .2s;
+	position: absolute;
+	top: 50%;
+	right: 3px;
+	margin-top: -3px;
+	border-width: 6px;
+	border-top-color: rgba(255, 255, 255, .7)
+}
+
+.layui-nav .layui-nav-mored, .layui-nav-itemed>a .layui-nav-more {
+	margin-top: -9px;
+	border-style: dashed dashed solid;
+	border-color: transparent transparent #fff
+}
