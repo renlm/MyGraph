@@ -1,5 +1,8 @@
 package cn.renlm.graph.controller;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.GraphDto;
@@ -56,6 +60,21 @@ public class GraphController {
 	@RequestMapping("/ajax/saveEditor")
 	public Result saveEditor(HttpServletRequest request, GraphDto form) {
 		try {
+			Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, form.getUuid()));
+			graph.setZoom(ObjectUtil.defaultIfNull(form.getZoom(), new BigDecimal(1)));
+			graph.setDx(ObjectUtil.defaultIfNull(form.getDx(), 0));
+			graph.setDy(ObjectUtil.defaultIfNull(form.getDy(), 0));
+			graph.setGridEnabled(ObjectUtil.defaultIfNull(form.getGridEnabled(), true));
+			graph.setGridSize(ObjectUtil.defaultIfNull(form.getGridSize(), 1));
+			graph.setGridColor(form.getGridColor());
+			graph.setPageVisible(ObjectUtil.defaultIfNull(form.getPageVisible(), false));
+			graph.setBackground(form.getBackground());
+			graph.setConnectionArrowsEnabled(ObjectUtil.defaultIfNull(form.getConnectionArrowsEnabled(), false));
+			graph.setConnectable(ObjectUtil.defaultIfNull(form.getConnectable(), true));
+			graph.setGuidesEnabled(ObjectUtil.defaultIfNull(form.getGuidesEnabled(), true));
+			graph.setXml(Base64.decodeStr(form.getXml()));
+			graph.setUpdatedAt(new Date());
+			iGraphService.updateById(graph);
 			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
