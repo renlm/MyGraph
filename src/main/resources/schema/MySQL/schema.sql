@@ -19,7 +19,7 @@ CREATE TABLE graph(
     connection_arrows_enabled	TINYINT(1) 		NOT NULL DEFAULT 0			COMMENT '显示连接箭头（默认否）',
     connectable					TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示连接点（默认是）',
     guides_enabled				TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示参考线（默认是）',
-    xml       					TEXT										COMMENT 'XML文本',
+    xml       					LONGTEXT									COMMENT 'XML文本',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
