@@ -76,6 +76,7 @@
 		(function()
 		{
 			var editorUiInit = EditorUi.prototype.init;
+			var __CSRF = "[(${_csrf.parameterName})]=[(${_csrf.token})]";
 			var __GraphJson = JSON.parse(document.getElementById("graphJson").innerHTML);
 			document.title = __GraphJson.name;
 			EditorUi.prototype.init = function()
@@ -98,6 +99,7 @@
 				this.editor.graph.zoomTo(__GraphJson.zoom);
 				
 				// 应用设置并刷新
+				this.__CSRF = __CSRF;
 				editorUiInit.apply(this, arguments);
 				$.EditMxgraph(this, __GraphJson);
 				this.refresh();

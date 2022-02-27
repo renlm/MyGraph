@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * 安全框架
@@ -29,8 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// 禁用csrf
-		http.csrf().disable();
+		// 启用csrf
+		http.csrf().csrfTokenRepository(
+				CookieCsrfTokenRepository.withHttpOnlyFalse());
 		// 资源访问控制
 		http.authorizeRequests()
 				// 放行所有OPTIONS请求
