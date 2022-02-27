@@ -28,9 +28,13 @@ layui.define('jquery', function(exports) {
 				var items = [];
 				var _ul = $('<ul></ul>').addClass('nav').attr('id', 'nav');
 				$.each(menuList, function(index, val) {
-					var item = '<li id="menu' + val.id + '"><a _href="' + val.url + '"><i class="iconfont">' + val.icon +
-						'</i><cite>' + val.name +
-						'</cite><i class="iconfont nav_right">&#xe697;</i></a></li>';
+					var item = '<li data-index="' + index + '" id="menu' + val.id + '">';
+					item += 	'<a _href="' + val.url + '">';
+					item += 		'<i class="' + val.iconCls + '"></i>';
+					item += 		'<cite>' + val.name + '</cite>';
+					item += 		(val.children && val.children.length > 0) ? '<i class="iconfont nav_right">&#xe697;</i>' : '';
+					item += 	'</a>';
+					item +=    '</li>';
 
 					items.push(item);
 					if (val.children && val.children.length) {

@@ -1,23 +1,24 @@
 {
 	"status": 0,
 	"msg": "ok",
-	"data": [{
+	"data": [
+		{
 			"id": 1,
 			"name": "设计图库",
-			"icon": "&#xe6b8;",
-			"url": ""
+			"iconCls": "layui-icon layui-icon-read",
+			"url": "/graph/libs"
 		},
 		{
 			"id": 2,
 			"name": "我的作品",
-			"icon": "&#xe705;",
-			"url": ""
+			"iconCls": "layui-icon layui-icon-util",
+			"url": "/graph/mines"
 		},
 		{
 			"id": 3,
 			"name": "数据源",
-			"icon": "&#xe705;",
-			"url": ""
+			"iconCls": "layui-icon layui-icon-chart",
+			"url": "/datasource/list"
 		}
 	]
 }
