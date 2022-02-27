@@ -23,5 +23,5 @@
 .layui-nav .layui-nav-mored, .layui-nav-itemed>a .layui-nav-more {
 	margin-top: -9px;
 	border-style: dashed dashed solid;
-	border-color: transparent transparent #fff
+	border-color: #fff transparent transparent;
 }
