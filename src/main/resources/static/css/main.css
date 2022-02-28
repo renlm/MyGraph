@@ -11,16 +11,17 @@
 	padding: 0px;
 }
 
-.container .layui-tab-title{
+.container .layui-tab-title {
 	border: none;
 }
 
-.container .layui-this{
+.container .layui-tab-title .layui-this {
 	color: #fff;
 }
 
-.container .layui-this:after {
+.container .layui-tab-title .layui-this:after {
 	border: none;
+	height: 0px;
 	background-color: #222;
 }
 
