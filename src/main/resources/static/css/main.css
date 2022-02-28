@@ -6,6 +6,24 @@
 	display: none;
 }
 
+.container {
+	margin: 0px;
+	padding: 0px;
+}
+
+.container .layui-tab-title{
+	border: none;
+}
+
+.container .layui-this{
+	color: #fff;
+}
+
+.container .layui-this:after {
+	border: none;
+	background-color: #222;
+}
+
 .header {
 	width: 100%;
 	height: 45px;
@@ -23,39 +41,17 @@
 	width: auto;
 }
 
-.header .right {
-	background-color: rgba(0, 0, 0, 0);
-	float: right;
-}
-
-.header .left_open {
-	height: 45px;
-	float: left;
-}
-
-.header .left_open i {
-	display: block;
-	background: rgba(255, 255, 255, 0.1) 0 0 no-repeat;
-	color: #fff;
-	width: 32px;
-	height: 32px;
-	line-height: 32px;
-	border-radius: 3px;
-	text-align: center;
-	margin-top: 7px;
-	cursor: pointer;
-}
-
-.header .left_open i:hover {
-	background: rgba(255, 255, 255, 0.3) 0 0 no-repeat;
-}
-
 .header .left {
 	background-color: rgba(0, 0, 0, 0);
 	float: left;
 }
 
-.header .layui-nav-item {
+.header .right {
+	background-color: rgba(0, 0, 0, 0);
+	float: right;
+}
+
+.header .layui-nav .layui-nav-item {
 	line-height: 45px;
 }
 
@@ -79,11 +75,7 @@
 	color: #333;
 }
 
-.header .layui-nav-child i {
-	margin-right: 10px;
-}
-
-.page-content {
+.iframer {
 	position: absolute;
 	top: 46px;
 	right: 0;
@@ -91,73 +83,14 @@
 	left: 0px;
 	overflow: hidden;
 	z-index: 1;
+	padding: 0px;
 }
 
-.page-content-bg {
-	position: absolute;
-	top: 46px;
-	right: 0;
-	bottom: 42px;
-	left: 221px;
-	background: rgba(0, 0, 0, 0.5) 0 0 no-repeat;
-	overflow: hidden;
-	z-index: 100;
-	display: none;
-}
-
-.page-content .tab {
+.iframer .layui-tab-item, .iframer .layui-tab-item iframe {
 	height: 100%;
 	width: 100%;
 	background: #EFEEF0 0 0 no-repeat;
 	margin: 0px;
-}
-
-.page-content .layui-tab-title {
-	height: 35px;
-	background: #EFEEF0 0 0 no-repeat;
-	position: relative;
-	z-index: 100;
-}
-
-.page-content .layui-tab-title li {
-	line-height: 35px;
-}
-
-.page-content .layui-tab-title li .layui-tab-close {
-	border-radius: 50%;
-}
-
-.page-content .layui-tab-title .layui-this:after {
-	height: 36px;
-}
-
-.page-content .layui-tab-title .layui-this {
-	background: #fff 0 0 no-repeat;
-}
-
-.page-content .layui-tab-bar {
-	height: 34px;
-	line-height: 35px;
-}
-
-.page-content .layui-tab-content {
-	position: absolute;
-	top: 0px;
-	bottom: 0px;
-	width: 100%;
-	background: #fff 0 0 no-repeat;
-	padding: 0px;
-	overflow: hidden;
-}
-
-.page-content .layui-tab-content .layui-tab-item {
-	width: 100%;
-	height: 100%;
-}
-
-.page-content .layui-tab-content .layui-tab-item iframe {
-	width: 100%;
-	height: 100%;
 }
 
 .footer {

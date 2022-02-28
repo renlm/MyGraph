@@ -4,65 +4,74 @@
 	<title>在线画图</title>
 </head>
 <body layout:fragment="content">
-	<!-- 顶部开始 -->
-	<div class="header">
-		<div class="logo">
-			<a th:href="@{/}">在线画图</a>
+	<!-- 页面主体 -->
+	<div class="container layui-tab tab">
+		<!-- 头部开始 -->
+		<div class="header">
+			<div class="logo">
+				<a th:href="@{/}">在线画图</a>
+			</div>
+			<ul class="layui-tab-title layui-nav left">
+				<li class="layui-nav-item layui-this">
+					<a href="javascript:void(0);">
+						<i class="layui-icon layui-icon-read"></i> 设计图库
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);">
+						<i class="layui-icon layui-icon-chart"></i> 数据源
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);">
+						<i class="layui-icon layui-icon-util"></i> 我的
+					</a>
+				</li>
+			</ul>
+			<ul class="layui-nav right">
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);">Admin</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>
+						</dd>
+						<dd>
+							<a onclick="WeAdminShow('修改密码','./login.html')">修改密码</a>
+						</dd>
+						<dd>
+							<form class="loginout" method="post" 
+								th:action="@{/logout}"
+								onclick="this.submit();">退出
+							</form>
+						</dd>
+					</dl>
+				</li>
+			</ul>
 		</div>
-		<ul class="layui-nav left">
-			<li class="layui-nav-item">
-				<a href="javascript:void(0);">
-					<i class="layui-icon layui-icon-read"></i> 设计图库
-				</a>
-			</li>
-			<li class="layui-nav-item">
-				<a href="javascript:void(0);">
-					<i class="layui-icon layui-icon-util"></i> 我的作品
-				</a>
-			</li>
-			<li class="layui-nav-item">
-				<a href="javascript:void(0);">
-					<i class="layui-icon layui-icon-chart"></i> 数据源
-				</a>
-			</li>
-		</ul>
-		<ul class="layui-nav right">
-			<li class="layui-nav-item">
-				<a href="javascript:void(0);">Admin</a>
-				<dl class="layui-nav-child">
-					<dd>
-						<a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>
-					</dd>
-					<dd>
-						<a onclick="WeAdminShow('修改密码','./login.html')">修改密码</a>
-					</dd>
-					<dd>
-						<form class="loginout" method="post" 
-							th:action="@{/logout}"
-							onclick="this.submit();">退出
-						</form>
-					</dd>
-				</dl>
-			</li>
-		</ul>
-	</div>
-	<!-- 顶部结束 -->
-	<!-- 中部开始 -->
-	<div class="page-content">
-		<div class="layui-tab tab" id="TabTip">
-			<div class="layui-tab-content">
-				<div class="layui-tab-item layui-show">
-					<iframe frameborder="0" scrolling="yes" class="TabIframe"
-						th:src="@{/graph/editor?uuid=198124BBCF284A40BB24CA315A7B8E36}">
-					</iframe>
-				</div>
+		<!-- 头部结束 -->
+		<!-- 中部开始 -->
+		<div class="iframer layui-tab-content">
+			<div class="layui-tab-item layui-show">
+				<iframe frameborder="0" scrolling="yes" class="TabIframe"
+					th:src="@{/graph/editor?uuid=198124BBCF284A40BB24CA315A7B8E36}">
+				</iframe>
+			</div>
+			<div class="layui-tab-item layui-show">
+				<iframe frameborder="0" scrolling="yes" class="TabIframe"
+					src="https://www.baidu.com/">
+				</iframe>
+			</div>
+			<div class="layui-tab-item layui-show">
+				<iframe frameborder="0" scrolling="yes" class="TabIframe"
+					src="https://www.baidu.com/">
+				</iframe>
 			</div>
 		</div>
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<div class="footer">
+			<div class="copyright">© 2021 Renlm 京ICP备2021000671号</div>
+		</div>
+		<!-- 底部结束 -->
 	</div>
-	<!-- 中部结束 -->
-	<!-- 底部开始 -->
-	<div class="footer">
-		<div class="copyright">© 2021 Renlm 京ICP备2021000671号</div>
-	</div>
-	<!-- 底部结束 -->
 </html>
