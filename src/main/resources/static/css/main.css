@@ -59,8 +59,24 @@
 	line-height: 45px;
 }
 
+.header .layui-nav .layui-nav-item a {
+	color: #fff;
+}
+
 .header .layui-nav-child {
 	top: 50px;
+}
+
+.header .layui-nav .layui-nav-child a {
+	cursor: pointer;
+	color: #333;
+}
+
+.header .layui-nav .layui-nav-child form {
+	cursor: pointer;
+	display: block;
+	padding: 0 20px;
+	color: #333;
 }
 
 .header .layui-nav-child i {
