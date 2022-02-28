@@ -21,7 +21,12 @@
 
 .container .layui-tab-title .layui-this:after {
 	top: 40px;
+	margin-left: 15px;
 	height: 5px;
+	-webkit-width: calc(100% - 30px);
+	-moz-width: calc(100% - 30px);
+	-o-width: calc(100% - 30px);
+	width: calc(100% - 30px);
 	border: none;
 	border-radius: 0px;
 	background-color: #5FB878;
