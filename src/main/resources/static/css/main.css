@@ -67,6 +67,10 @@
 	color: #fff;
 }
 
+.header .layui-nav-bar {
+	margin-left: 15px;
+}
+
 .header .layui-nav-child {
 	top: 50px;
 }
