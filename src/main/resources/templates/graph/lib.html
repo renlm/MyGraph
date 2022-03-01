@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN" layout:decorate="~{layout/decorate}">
+<head>
+	<title>图库</title>
+	<link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/mxgraph/lib.css}" rel="stylesheet" />
+	<script th:src="@{/webjars/layui/layui.js}"></script>
+	<script th:src="@{/webjars/vue/vue.min.js}"></script>
+	<script th:src="@{/webjars/masonry/masonry.pkgd.min.js}"></script>
+	<script th:src="@{/webjars/imagesloaded/imagesloaded.pkgd.min.js}"></script>
+</head>
+<body layout:fragment="content">
+	<div id="vue-app" class="wrap" v-cloak>
+		<div class="navi navi-black">
+			<div class="nav">
+				<ul class="nav-lists">
+					<li class="nav_search_top_box">
+						<div class="nav_search_top">
+							<div class="banner-seek hider-seek clearfix">
+								<input class="fl box-text search-box-text" type="text" autocomplete="off" 
+									placeholder="搜索关键字"
+									v-model="keywords"
+									@input="searchInputChange"
+									@keyup.enter="searchData"
+								/> 
+								<i class="mxgraph-iconfont clear-search-input"
+									:style="{display:clearSearchShow?'block':'none'}"
+									@click="clearSearch">
+								</i> 
+								<a class="fl box-btn" @click="searchData">
+									<i class="mxgraph-iconfont iconfont-search"></i>
+								</a>
+								<div class="seek-head-select"
+									@mouseover="selectSeekStyle"
+									@mouseout="outSeekStyle">
+									<p class="seek-Selected">
+										<span>{{seekSelected.name}}</span>
+										<i class="mxgraph-iconfont" :class="seekIcon"></i>
+									</p>
+									<ul class="seek-select-head-list" 
+										:style="{display:seekShow?'block':'none'}">
+										<li :class="{'seek-select-color':seekSelected.code?false:true}"
+											@click="selectSeek(null,'全部分类')">
+											全部分类
+										</li>
+										<li v-for="(value, key) in MXGRAPH_CATEGORY" 
+											:key="key"
+											:class="{'seek-select-color':seekSelected.code==key}"
+											@click="selectSeek(key,value)">
+											{{value}}
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="nothing" v-show="response.total==0">
+			<img th:src="@{/static/css/mxgraph/img/none.png}" />
+		</div>
+		<div class="masonry" v-show="response.total>0">
+	        <div class="masonry__gutter"></div>
+	        <div class="masonry__column"></div>
+	        <div class="masonry__item"
+	        	v-for="(mxgraph,index) in response.records" 
+				v-bind:data-id="mxgraph.id"
+				@click="openMxgraphViewer(mxgraph.uuid, mxgraph.text)">
+				<div class="min-img">
+					<img :alt="mxgraph.text"
+						:title="'创作者：'+mxgraph.creatorNickname"
+						:src="mxgraph.cover?(ctx+'/sys/file/download/'+mxgraph.cover+'?inline'):defaultImgSrc"
+						@error="nofind($event)"
+					/>
+				</div>
+				<p class="title">
+					<span class="category">{{MXGRAPH_CATEGORY[mxgraph.category]}}</span>
+					<span class="name">{{mxgraph.text}}</span>
+				</p>
+			</div>
+	    </div>
+		<mxgraph-page ref="mxgraphPager"
+			:limit="response.size" 
+			:page-func="findPage" 
+			data-emit="emitdata"
+			@emitdata="pageData">
+		</mxgraph-page>
+	</div>
+	<script th:replace="fragments/pagination :: pager('mxgraph-page')"></script>
+	<script type="text/javascript" th:inline="javascript">
+		new Vue({
+		    el: "#vue-app",
+		    data () { 
+		    	return {
+		    		keywords: null,
+		    		clearSearchShow: false,
+		    		seekShow: false,
+		    		seekIcon: "iconfont-xiala",
+		    		seekSelected: { code: null, name: "全部分类" },
+		    		MXGRAPH_CATEGORY: JSON.parse('[[${#DictUtil.CODEMAP("MXGRAPH_CATEGORY")}]]'),
+	    			defaultImgSrc: "[(@{/static/css/mxgraph/img/placeholder.png})]",
+			    	response: { current: 1, pages: 1, records: [], size: 16, total: 0 }
+		    	};
+		    },
+		    methods: {
+		    	searchInputChange() {
+		    		if(this.keywords) {
+		    			this.clearSearchShow = true;
+		    		} else {
+		    			this.clearSearchShow = false;
+		    		}
+		    	},
+		    	clearSearch() {
+		    		this.keywords = null;
+		    		this.clearSearchShow = false;
+		    	},
+		    	selectSeekStyle() {
+		    		this.seekShow = true;
+		    		this.seekIcon = "iconfont-xiangshang";
+		    	},
+		    	outSeekStyle() {
+		    		this.seekShow = false;
+		    		this.seekIcon = "iconfont-xiala";
+		    	},
+		    	selectSeek(key, value) {
+		    		if(key) {
+		    			this.seekSelected = { code: key, name: value };
+		    		} else {
+		    			this.seekSelected = { code: null, name: "全部分类" };
+		    		}
+		    		this.searchData();
+		    		this.seekShow = false;
+		    	},
+		    	nofind(event) { 
+	            	const img = event.srcElement; 
+	            	img.src = this.defaultImgSrc;
+	            	img.onerror = null;
+	        	},
+	        	searchData () {
+	        		this.$refs.mxgraphPager.findPage(1, this.response.size);
+	        	},
+		    	findPage (page, size) {
+	                return fetch("[(@{/mxgraph/ajax/publicPage})]?current=" + page 
+	                		+ "&size=" + size 
+	                		+ "&category=" + (this.seekSelected.code?this.seekSelected.code:"")
+	                		+ "&keywords=" + (this.keywords?this.keywords:""))
+		                .then(function(response) {
+		                    return response.json();
+		                });
+	    	 	},
+	    	 	pageData (res) {
+	    	  		this.response = res;
+	    		},
+	    		openMxgraphEditor (uuid, title) {
+	    			openMxgraphEditor(uuid, title);
+	    		}
+		    },
+		    watch: {
+		    	response() {
+		    		var that = this;
+		    		this.$nextTick(function() {
+		    			if(window.$masonry) {
+		    				window.$masonry.masonry("destroy");
+		    			}
+		    			window.$masonry = $(".masonry").masonry({
+	    					columnWidth: ".masonry__column",
+				  		 	gutter: ".masonry__gutter",
+				  			itemSelector: ".masonry__item"
+	    				});
+		    			window.$masonry.imagesLoaded().progress(function() {
+		    				window.$masonry.masonry("layout");
+		    			});
+		    		});
+				}
+			}
+	    });
+	</script>
+</body>
+</html>
