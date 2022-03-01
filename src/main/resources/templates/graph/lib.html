@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-	<title>图库</title>
-	<link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet" />
-	<link th:href="@{/static/css/mxgraph/lib.css}" rel="stylesheet" />
-	<script th:src="@{/webjars/layui/layui.js}"></script>
-	<script th:src="@{/webjars/vue/vue.min.js}"></script>
+	<title>公共图库</title>
+	<link th:href="@{/static/css/lib.css}" rel="stylesheet" />
 	<script th:src="@{/webjars/masonry/masonry.pkgd.min.js}"></script>
 	<script th:src="@{/webjars/imagesloaded/imagesloaded.pkgd.min.js}"></script>
 </head>
@@ -43,7 +40,7 @@
 											@click="selectSeek(null,'全部分类')">
 											全部分类
 										</li>
-										<li v-for="(value, key) in MXGRAPH_CATEGORY" 
+										<li v-for="(value, key) in category" 
 											:key="key"
 											:class="{'seek-select-color':seekSelected.code==key}"
 											@click="selectSeek(key,value)">
@@ -75,7 +72,7 @@
 					/>
 				</div>
 				<p class="title">
-					<span class="category">{{MXGRAPH_CATEGORY[mxgraph.category]}}</span>
+					<span class="category">{{category[mxgraph.category]}}</span>
 					<span class="name">{{mxgraph.text}}</span>
 				</p>
 			</div>
@@ -98,7 +95,7 @@
 		    		seekShow: false,
 		    		seekIcon: "iconfont-xiala",
 		    		seekSelected: { code: null, name: "全部分类" },
-		    		MXGRAPH_CATEGORY: JSON.parse('[[${#DictUtil.CODEMAP("MXGRAPH_CATEGORY")}]]'),
+		    		category: { UML: "UML", FLOW: "流程图", ER: "ER模型", GENERAL: "一般设计", OTHER: "其它" },
 	    			defaultImgSrc: "[(@{/static/css/mxgraph/img/placeholder.png})]",
 			    	response: { current: 1, pages: 1, records: [], size: 16, total: 0 }
 		    	};
