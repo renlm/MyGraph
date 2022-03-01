@@ -27,6 +27,12 @@
 						<i class="layui-icon layui-icon-util"></i> 我的
 					</a>
 				</li>
+				<li class="layui-nav-item hide" id="newTabTitle">
+					<a href="javascript:void(0);">
+						<i class="layui-icon layui-icon-form hide"></i> 
+						<span>选项卡</span>
+					</a>
+				</li>
 			</ul>
 			<ul class="layui-nav right">
 				<li class="layui-nav-item">
@@ -57,14 +63,13 @@
 				</iframe>
 			</div>
 			<div class="layui-tab-item">
-				<iframe frameborder="0" scrolling="yes" class="TabIframe"
-					th:src="@{/graph/editor?uuid=198124BBCF284A40BB24CA315A7B8E36}">
-				</iframe>
+				<iframe frameborder="0" scrolling="yes" class="TabIframe"></iframe>
 			</div>
 			<div class="layui-tab-item">
-				<iframe frameborder="0" scrolling="yes" class="TabIframe"
-					th:src="@{/graph/editor?uuid=198124BBCF284A40BB24CA315A7B8E36}">
-				</iframe>
+				<iframe frameborder="0" scrolling="yes" class="TabIframe"></iframe>
+			</div>
+			<div class="layui-tab-item" id="newTabItem">
+				<iframe frameborder="0" scrolling="yes" class="TabIframe"></iframe>
 			</div>
 		</div>
 		<!-- 中部结束 -->

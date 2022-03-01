@@ -63,11 +63,11 @@
 	        <div class="masonry__item"
 	        	v-for="(graph,index) in response.records" 
 				v-bind:data-id="graph.id"
-				@click="openMxgraphViewer(graph.uuid, graph.text)">
+				@click="openGraphViewer(graph.uuid, graph.name)">
 				<div class="min-img">
 					<img :alt="graph.text"
 						:title="'创作者：'+graph.creatorNickname"
-						:src="graph.cover?(ctx+'/sys/file/download/'+graph.cover+'?inline'):defaultImgSrc"
+						:src="graph.cover?(ctx+'/file/download/'+graph.cover+'?inline'):defaultImgSrc"
 						@error="nofind($event)"
 					/>
 				</div>
@@ -101,6 +101,14 @@
 		    	};
 		    },
 		    methods: {
+		    	openGraphViewer(uuid, name) {
+		    		var $NewTabTitle = $(top.document.getElementById("newTabTitle"));
+		    		var $NewTabItem = $(top.document.getElementById("newTabItem"));
+		    		$NewTabTitle.find("a>span").html(name);
+		    		$NewTabTitle.addClass("layui-this").removeClass("hide").siblings().removeClass("layui-this");
+		    		$NewTabItem.find("iframe").attr("src", "[(@{/graph/editor?uuid=})]" + uuid);
+		    		$NewTabItem.addClass("layui-show").siblings().removeClass("layui-show");
+		    	},
 		    	searchInputChange() {
 		    		if(this.keywords) {
 		    			this.clearSearchShow = true;
