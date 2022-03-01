@@ -140,7 +140,7 @@
 		    	findPage (page, size) {
 	                return fetch("[(@{/graph/ajax/page})]?current=" + page 
 	                		+ "&size=" + size 
-	                		+ "&category=" + (this.seekSelected.code?this.seekSelected.code:"")
+	                		+ "&categoryCode=" + (this.seekSelected.code?this.seekSelected.code:"")
 	                		+ "&keywords=" + (this.keywords?this.keywords:""))
 		                .then(function(response) {
 		                    return response.json();

@@ -162,6 +162,8 @@ input, textarea, select, button {
 	cursor: pointer;
 	color: #a6a6a6;
 	font-size: 22px;
+	height: 40px;
+    line-height: 40px;
 }
 
 .box-btn {
