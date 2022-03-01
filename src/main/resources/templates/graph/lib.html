@@ -20,19 +20,19 @@
 									@input="searchInputChange"
 									@keyup.enter="searchData"
 								/> 
-								<i class="mxgraph-iconfont clear-search-input"
+								<i class="graph-iconfont clear-search-input"
 									:style="{display:clearSearchShow?'block':'none'}"
 									@click="clearSearch">
 								</i> 
 								<a class="fl box-btn" @click="searchData">
-									<i class="mxgraph-iconfont iconfont-search"></i>
+									<i class="graph-iconfont iconfont-search"></i>
 								</a>
 								<div class="seek-head-select"
 									@mouseover="selectSeekStyle"
 									@mouseout="outSeekStyle">
 									<p class="seek-Selected">
 										<span>{{seekSelected.name}}</span>
-										<i class="mxgraph-iconfont" :class="seekIcon"></i>
+										<i class="graph-iconfont" :class="seekIcon"></i>
 									</p>
 									<ul class="seek-select-head-list" 
 										:style="{display:seekShow?'block':'none'}">
@@ -61,30 +61,30 @@
 	        <div class="masonry__gutter"></div>
 	        <div class="masonry__column"></div>
 	        <div class="masonry__item"
-	        	v-for="(mxgraph,index) in response.records" 
-				v-bind:data-id="mxgraph.id"
-				@click="openMxgraphViewer(mxgraph.uuid, mxgraph.text)">
+	        	v-for="(graph,index) in response.records" 
+				v-bind:data-id="graph.id"
+				@click="openMxgraphViewer(graph.uuid, graph.text)">
 				<div class="min-img">
-					<img :alt="mxgraph.text"
-						:title="'创作者：'+mxgraph.creatorNickname"
-						:src="mxgraph.cover?(ctx+'/sys/file/download/'+mxgraph.cover+'?inline'):defaultImgSrc"
+					<img :alt="graph.text"
+						:title="'创作者：'+graph.creatorNickname"
+						:src="graph.cover?(ctx+'/sys/file/download/'+graph.cover+'?inline'):defaultImgSrc"
 						@error="nofind($event)"
 					/>
 				</div>
 				<p class="title">
-					<span class="category">{{category[mxgraph.category]}}</span>
-					<span class="name">{{mxgraph.text}}</span>
+					<span class="category">{{category[graph.categoryCode]}}</span>
+					<span class="name">{{graph.name}}</span>
 				</p>
 			</div>
 	    </div>
-		<mxgraph-page ref="mxgraphPager"
+		<graph-page ref="graphPager"
 			:limit="response.size" 
 			:page-func="findPage" 
 			data-emit="emitdata"
 			@emitdata="pageData">
-		</mxgraph-page>
+		</graph-page>
 	</div>
-	<script th:replace="fragments/pagination :: pager('mxgraph-page')"></script>
+	<script th:replace="fragments/pagination :: pager('graph-page')"></script>
 	<script type="text/javascript" th:inline="javascript">
 		new Vue({
 		    el: "#vue-app",
@@ -135,7 +135,7 @@
 	            	img.onerror = null;
 	        	},
 	        	searchData () {
-	        		this.$refs.mxgraphPager.findPage(1, this.response.size);
+	        		this.$refs.graphPager.findPage(1, this.response.size);
 	        	},
 		    	findPage (page, size) {
 	                return fetch("[(@{/graph/ajax/page})]?current=" + page 
