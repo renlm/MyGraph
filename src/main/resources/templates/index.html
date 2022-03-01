@@ -53,17 +53,17 @@
 		<div class="iframer layui-tab-content">
 			<div class="layui-tab-item layui-show">
 				<iframe frameborder="0" scrolling="yes" class="TabIframe"
+					th:src="@{/graph/lib}">
+				</iframe>
+			</div>
+			<div class="layui-tab-item">
+				<iframe frameborder="0" scrolling="yes" class="TabIframe"
 					th:src="@{/graph/editor?uuid=198124BBCF284A40BB24CA315A7B8E36}">
 				</iframe>
 			</div>
-			<div class="layui-tab-item layui-show">
+			<div class="layui-tab-item">
 				<iframe frameborder="0" scrolling="yes" class="TabIframe"
-					th:src="@{/graph/editor?uuid=198124BBCF284A40BB24CA315A7B8E37}">
-				</iframe>
-			</div>
-			<div class="layui-tab-item layui-show">
-				<iframe frameborder="0" scrolling="yes" class="TabIframe"
-					th:src="@{/graph/editor?uuid=198124BBCF284A40BB24CA315A7B8E38}">
+					th:src="@{/graph/editor?uuid=198124BBCF284A40BB24CA315A7B8E36}">
 				</iframe>
 			</div>
 		</div>
