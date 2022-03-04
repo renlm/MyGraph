@@ -7,6 +7,7 @@ INSERT INTO user (
 	nickname, 
 	mobile, 
 	email, 
+	role,
 	enabled
 ) VALUES (
 	'04AB1FE543D74862A1B35676C7BBE61B', 
@@ -15,6 +16,7 @@ INSERT INTO user (
 	'任黎明',
 	'17338158607',
 	'renlm@21cn.com',
+	'admin',
 	1
 );
 

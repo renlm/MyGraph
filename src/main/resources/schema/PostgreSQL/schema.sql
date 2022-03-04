@@ -8,6 +8,7 @@ CREATE TABLE "user" (
     nickname					VARCHAR(255)	NOT NULL,
     mobile						VARCHAR(30),
     email						VARCHAR(128),
+    role						VARCHAR(64),
     created_at            		TIMESTAMP 		NOT NULL DEFAULT NOW(),
     updated_at     				TIMESTAMP,
     enabled                		BOOLEAN 		NOT NULL DEFAULT TRUE
@@ -20,6 +21,7 @@ COMMENT ON COLUMN "user".password       					IS '密码';
 COMMENT ON COLUMN "user".nickname       					IS '昵称';
 COMMENT ON COLUMN "user".mobile       						IS '手机号码';
 COMMENT ON COLUMN "user".email                    			IS '邮箱地址';
+COMMENT ON COLUMN "user".role                    			IS '角色（admin，user，self）';
 COMMENT ON COLUMN "user".created_at                    		IS '创建时间';
 COMMENT ON COLUMN "user".updated_at                    		IS '更新时间';
 COMMENT ON COLUMN "user".enabled                       		IS '是否启用（默认启用）';

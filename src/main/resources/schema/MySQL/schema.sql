@@ -8,6 +8,7 @@ CREATE TABLE user (
     nickname                 	VARCHAR(255)    				NOT NULL 		COMMENT '昵称',
     mobile                   	VARCHAR(30)    									COMMENT '手机号码',
     email                    	VARCHAR(128)    								COMMENT '邮箱地址',
+    role						VARCHAR(64)										COMMENT '角色（admin，user，self）',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     enabled TINYINT(1) DEFAULT 1 NOT NULL COMMENT '是否启用（默认启用）'
