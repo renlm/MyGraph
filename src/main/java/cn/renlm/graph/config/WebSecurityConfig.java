@@ -1,12 +1,24 @@
 package cn.renlm.graph.config;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationDetailsSource;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+import cn.renlm.graph.security.MyDaoAuthenticationProvider;
+import cn.renlm.graph.security.MyWebAuthenticationDetails;
+import cn.renlm.graph.security.UserService;
 
 /**
  * 安全框架
@@ -31,13 +43,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
 	 * 登录接口
 	 */
-	public static final String LoginProcessingUrl = "/auth";
+	public static final String LoginProcessingUrl = "/dologin";
 
 	/**
 	 * 白名单
 	 */
-	public static final String[] WHITE_LIST = { 
-			"/api/**", 
+	public static final String[] WHITE_LIST = {  
+			"/captcha",
+			"/register",
+			"/doRegister",
 			LoginPage, 
 			logoutUrl, 
 			LoginProcessingUrl 
@@ -50,6 +64,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			"/static/**", 
 			"/webjars/**" 
 		};
+	
+	@Autowired
+	private UserService userService;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -77,6 +94,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.formLogin()
 					.loginPage(LoginPage)
 					.loginProcessingUrl(LoginProcessingUrl)
+					.authenticationDetailsSource(authenticationDetailsSource())
 				// 注销
 				.and()
 					.logout()
@@ -86,5 +104,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers(STATIC_PATHS);
+	}
+	
+	/**
+	 * 登录认证
+	 * 
+	 * @param messageSource
+	 * @return
+	 */
+	@Bean
+	DaoAuthenticationProvider daoAuthenticationProvider(MessageSource messageSource) {
+		return new MyDaoAuthenticationProvider(userService, new BCryptPasswordEncoder(), messageSource);
+	}
+
+	/**
+	 * 附加信息
+	 * 
+	 * @return
+	 */
+	@Bean
+	AuthenticationDetailsSource<HttpServletRequest, MyWebAuthenticationDetails> authenticationDetailsSource() {
+		return new AuthenticationDetailsSource<HttpServletRequest, MyWebAuthenticationDetails>() {
+			@Override
+			public MyWebAuthenticationDetails buildDetails(HttpServletRequest context) {
+				return new MyWebAuthenticationDetails(context);
+			}
+		};
 	}
 }
