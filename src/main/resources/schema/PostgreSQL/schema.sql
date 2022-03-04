@@ -1,3 +1,29 @@
+-- 用户
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (
+    id                			BIGSERIAL 		PRIMARY KEY,
+    user_id       				VARCHAR(32)		UNIQUE NOT NULL,
+    username					VARCHAR(255)	UNIQUE NOT NULL,
+    password       				TEXT			NOT NULL,
+    nickname					VARCHAR(255)	NOT NULL,
+    mobile						VARCHAR(30),
+    email						VARCHAR(128),
+    created_at            		TIMESTAMP 		NOT NULL DEFAULT NOW(),
+    updated_at     				TIMESTAMP,
+    enabled                		BOOLEAN 		NOT NULL DEFAULT TRUE
+)WITH(OIDS=FALSE);
+COMMENT ON TABLE user 										IS '用户';
+COMMENT ON COLUMN user.id                					IS '主键ID';
+COMMENT ON COLUMN user.user_id       						IS '用户ID';
+COMMENT ON COLUMN user.username       						IS '登录账号';
+COMMENT ON COLUMN user.password       						IS '密码';
+COMMENT ON COLUMN user.nickname       						IS '昵称';
+COMMENT ON COLUMN user.mobile       						IS '手机号码';
+COMMENT ON COLUMN user.email                    			IS '邮箱地址';
+COMMENT ON COLUMN user.created_at                    		IS '创建时间';
+COMMENT ON COLUMN user.updated_at                    		IS '更新时间';
+COMMENT ON COLUMN user.enabled                       		IS '是否启用（默认启用）';
+
 -- 数据源
 DROP TABLE IF EXISTS ds;
 CREATE TABLE ds(
