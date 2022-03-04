@@ -21,16 +21,12 @@ public class Result implements Serializable {
 
 	private int statusCode;
 
-	private String title = "操作提示";
-
 	private String message;
-
-	private String filePath;
 
 	private Object data;
 
 	public static Result of(HttpStatus status) {
-		return new Result(status.value(), "操作提示", null, null, status.getReasonPhrase());
+		return new Result(status.value(), status.getReasonPhrase(), null);
 	}
 
 	public static Result success() {
@@ -47,5 +43,9 @@ public class Result implements Serializable {
 
 	public static Result error(String message) {
 		return Result.of(HttpStatus.INTERNAL_SERVER_ERROR).setMessage(message);
+	}
+
+	public boolean isSuccess() {
+		return this.statusCode == HttpStatus.OK.value();
 	}
 }
