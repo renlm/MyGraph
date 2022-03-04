@@ -1,3 +1,18 @@
+-- 用户
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    user_id            			CHAR(32)		UNIQUE			NOT NULL		COMMENT '用户ID',
+    username                   	VARCHAR(255)    UNIQUE 			NOT NULL 		COMMENT '登录账号',
+    password                  	TEXT    						NOT NULL 		COMMENT '密码',
+    nickname                 	VARCHAR(255)    				NOT NULL 		COMMENT '昵称',
+    mobile                   	VARCHAR(30)    									COMMENT '手机号码',
+    email                    	VARCHAR(128)    								COMMENT '邮箱地址',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    enabled TINYINT(1) DEFAULT 1 NOT NULL COMMENT '是否启用（默认启用）'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '用户';
+
 -- 图形设计
 DROP TABLE IF EXISTS graph;
 CREATE TABLE graph(
@@ -20,8 +35,10 @@ CREATE TABLE graph(
     connectable					TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示连接点（默认是）',
     guides_enabled				TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示参考线（默认是）',
     xml       					LONGTEXT									COMMENT 'XML文本',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
-    remark VARCHAR(800) COMMENT '备注'
+    remark VARCHAR(255) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '图形设计';

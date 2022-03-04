@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-02-27
+ * @since 2022-03-04
  */
 @Getter
 @Setter
@@ -140,6 +140,18 @@ public class Graph implements Serializable {
      */
     @TableField("xml")
     private String xml;
+
+    /**
+     * 创建人（用户ID）
+     */
+    @TableField("creator_user_id")
+    private String creatorUserId;
+
+    /**
+     * 创建人（昵称）
+     */
+    @TableField("creator_nickname")
+    private String creatorNickname;
 
     /**
      * 创建时间
