@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("user")
-public class User implements Serializable {
+@TableName("users")
+public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

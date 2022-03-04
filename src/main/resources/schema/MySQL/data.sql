@@ -1,6 +1,6 @@
 -- 用户
-DELETE FROM user;
-INSERT INTO user (
+DELETE FROM users;
+INSERT INTO users (
 	user_id, 
 	username, 
 	password, 

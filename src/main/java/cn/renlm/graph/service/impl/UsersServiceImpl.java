@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import cn.renlm.graph.entity.User;
-import cn.renlm.graph.mapper.UserMapper;
-import cn.renlm.graph.service.IUserService;
+import cn.renlm.graph.entity.Users;
+import cn.renlm.graph.mapper.UsersMapper;
+import cn.renlm.graph.service.IUsersService;
 
 /**
  * <p>
@@ -17,6 +17,6 @@ import cn.renlm.graph.service.IUserService;
  * @since 2022-03-04
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements IUsersService {
 
 }

@@ -1,6 +1,6 @@
 package cn.renlm.graph.mapper;
 
-import cn.renlm.graph.entity.User;
+import cn.renlm.graph.entity.Users;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author Renlm
  * @since 2022-03-04
  */
-public interface UserMapper extends BaseMapper<User> {
+public interface UsersMapper extends BaseMapper<Users> {
 
 }

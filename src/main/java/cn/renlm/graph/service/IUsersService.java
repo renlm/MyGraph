@@ -1,6 +1,6 @@
 package cn.renlm.graph.service;
 
-import cn.renlm.graph.entity.User;
+import cn.renlm.graph.entity.Users;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author Renlm
  * @since 2022-03-04
  */
-public interface IUserService extends IService<User> {
+public interface IUsersService extends IService<Users> {
 
 }

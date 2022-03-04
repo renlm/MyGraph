@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 
 import cn.hutool.core.util.BooleanUtil;
-import cn.renlm.graph.entity.User;
+import cn.renlm.graph.entity.Users;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UserDto extends User implements org.springframework.security.core.userdetails.UserDetails {
+public class UserDto extends Users implements org.springframework.security.core.userdetails.UserDetails {
 
 	private static final long serialVersionUID = 1L;
 

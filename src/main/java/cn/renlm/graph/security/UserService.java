@@ -17,8 +17,8 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.UserDto;
-import cn.renlm.graph.entity.User;
-import cn.renlm.graph.service.IUserService;
+import cn.renlm.graph.entity.Users;
+import cn.renlm.graph.service.IUsersService;
 
 /**
  * 用户信息
@@ -30,12 +30,12 @@ import cn.renlm.graph.service.IUserService;
 public class UserService implements UserDetailsService {
 
 	@Autowired
-	private IUserService iUserService;
+	private IUsersService iUsersService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = iUserService.getOne(Wrappers.<User>lambdaQuery().func(wrapper -> {
-			wrapper.eq(User::getUsername, username);
+		Users user = iUsersService.getOne(Wrappers.<Users>lambdaQuery().func(wrapper -> {
+			wrapper.eq(Users::getUsername, username);
 		}));
 		UserDto userDetails = BeanUtil.copyProperties(user, UserDto.class);
 		List<GrantedAuthority> authorities = CollUtil.newArrayList();

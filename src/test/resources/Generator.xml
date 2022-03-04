@@ -8,7 +8,7 @@
 	<password>K86erp7IMYust^tn50jlsdi^_fyw4bnmdf4K</password>
 
 	<module name="graph" package="cn.renlm">
-		<table author="Renlm" name="user" entity="true" />
+		<table author="Renlm" name="users" entity="true" />
 		<table author="Renlm" name="ds" entity="true" />
 		<table author="Renlm" name="er" entity="true" />
 		<table author="Renlm" name="ds_er_rel" entity="true" />

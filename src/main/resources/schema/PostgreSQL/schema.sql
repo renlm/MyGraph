@@ -1,6 +1,6 @@
 -- 用户
-DROP TABLE IF EXISTS "user";
-CREATE TABLE "user" (
+DROP TABLE IF EXISTS users;
+CREATE TABLE users (
     id                			BIGSERIAL 		PRIMARY KEY,
     user_id       				VARCHAR(32)		UNIQUE NOT NULL,
     username					VARCHAR(255)	UNIQUE NOT NULL,
@@ -13,18 +13,18 @@ CREATE TABLE "user" (
     updated_at     				TIMESTAMP,
     enabled                		BOOLEAN 		NOT NULL DEFAULT TRUE
 )WITH(OIDS=FALSE);
-COMMENT ON TABLE "user" 									IS '用户';
-COMMENT ON COLUMN "user".id                					IS '主键ID';
-COMMENT ON COLUMN "user".user_id       						IS '用户ID';
-COMMENT ON COLUMN "user".username       					IS '登录账号';
-COMMENT ON COLUMN "user".password       					IS '密码';
-COMMENT ON COLUMN "user".nickname       					IS '昵称';
-COMMENT ON COLUMN "user".mobile       						IS '手机号码';
-COMMENT ON COLUMN "user".email                    			IS '邮箱地址';
-COMMENT ON COLUMN "user".role                    			IS '角色（admin，user，self）';
-COMMENT ON COLUMN "user".created_at                    		IS '创建时间';
-COMMENT ON COLUMN "user".updated_at                    		IS '更新时间';
-COMMENT ON COLUMN "user".enabled                       		IS '是否启用（默认启用）';
+COMMENT ON TABLE users 										IS '用户';
+COMMENT ON COLUMN users.id                					IS '主键ID';
+COMMENT ON COLUMN users.user_id       						IS '用户ID';
+COMMENT ON COLUMN users.username       						IS '登录账号';
+COMMENT ON COLUMN users.password       						IS '密码';
+COMMENT ON COLUMN users.nickname       						IS '昵称';
+COMMENT ON COLUMN users.mobile       						IS '手机号码';
+COMMENT ON COLUMN users.email                    			IS '邮箱地址';
+COMMENT ON COLUMN users.role                    			IS '角色（admin，user，self）';
+COMMENT ON COLUMN users.created_at                    		IS '创建时间';
+COMMENT ON COLUMN users.updated_at                    		IS '更新时间';
+COMMENT ON COLUMN users.enabled                       		IS '是否启用（默认启用）';
 
 -- 数据源
 DROP TABLE IF EXISTS ds;

@@ -19,8 +19,8 @@ import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.UserDto;
-import cn.renlm.graph.entity.User;
-import cn.renlm.graph.service.IUserService;
+import cn.renlm.graph.entity.Users;
+import cn.renlm.graph.service.IUsersService;
 
 /**
  * 登录
@@ -33,7 +33,7 @@ import cn.renlm.graph.service.IUserService;
 public class LoginController {
 
 	@Autowired
-	private IUserService iUserService;
+	private IUsersService iUsersService;
 
 	/**
 	 * 登录页
@@ -66,8 +66,8 @@ public class LoginController {
 	@PostMapping("/doRegister")
 	public Result doRegister(UserDto form, String confirmpwd) {
 		try {
-			User user = iUserService.getOne(Wrappers.<User>lambdaQuery().func(wrapper -> {
-				wrapper.eq(User::getUsername, form.getUsername());
+			Users user = iUsersService.getOne(Wrappers.<Users>lambdaQuery().func(wrapper -> {
+				wrapper.eq(Users::getUsername, form.getUsername());
 			}));
 			if (user != null) {
 				return Result.error("账号已存在");
@@ -83,7 +83,7 @@ public class LoginController {
 			form.setRole(Role.self.name());
 			form.setCreatedAt(new Date());
 			form.setEnabled(true);
-			iUserService.save(form);
+			iUsersService.save(form);
 			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -120,10 +120,10 @@ public class LoginController {
 			if (!ReUtil.isMatch(ConstVal.password_reg, password)) {
 				return Result.error(ConstVal.password_msg);
 			}
-			iUserService.update(Wrappers.<User>lambdaUpdate().func(wrapper -> {
-				wrapper.set(User::getPassword, new BCryptPasswordEncoder().encode(password));
-				wrapper.set(User::getUpdatedAt, new Date());
-				wrapper.eq(User::getId, user.getId());
+			iUsersService.update(Wrappers.<Users>lambdaUpdate().func(wrapper -> {
+				wrapper.set(Users::getPassword, new BCryptPasswordEncoder().encode(password));
+				wrapper.set(Users::getUpdatedAt, new Date());
+				wrapper.eq(Users::getId, user.getId());
 			}));
 			return Result.success();
 		} catch (Exception e) {
