@@ -21,16 +21,13 @@ import cn.renlm.graph.service.IGraphService;
  * @since 2022-02-26
  */
 @Service
-public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph>
-		implements
-			IGraphService {
+public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements IGraphService {
 
 	@Override
 	public Page<Graph> findPage(Page<Graph> page, GraphDto form) {
 		page.setOptimizeCountSql(false);
 		return this.page(page, Wrappers.<Graph>lambdaQuery().func(wrapper -> {
-			wrapper.select(Graph.class,
-					field -> !StrUtil.equals(field.getColumn(), "xml"));
+			wrapper.select(Graph.class, field -> !StrUtil.equals(field.getColumn(), "xml"));
 			wrapper.eq(Graph::getIsPublic, true);
 			wrapper.eq(Graph::getDeleted, false);
 			wrapper.orderByDesc(Graph::getUpdatedAt);
