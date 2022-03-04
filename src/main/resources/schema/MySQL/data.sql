@@ -25,9 +25,13 @@ DELETE FROM graph;
 INSERT INTO graph (
 	uuid, 
 	name, 
+	category_code,
+	category_name,
 	is_public
 ) VALUES (
 	'198124BBCF284A40BB24CA315A7B8E36', 
 	'演示DEMO',
+	'ER',
+	'ER模型',
 	1
 );

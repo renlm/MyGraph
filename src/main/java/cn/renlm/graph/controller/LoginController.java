@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.ConstVal;
@@ -80,6 +81,7 @@ public class LoginController {
 			}
 			form.setUserId(IdUtil.simpleUUID().toUpperCase());
 			form.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
+			form.setNickname(ObjectUtil.defaultIfBlank(form.getNickname(), form.getUsername()));
 			form.setRole(Role.self.name());
 			form.setCreatedAt(new Date());
 			form.setDisabled(false);

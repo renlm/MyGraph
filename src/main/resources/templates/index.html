@@ -36,13 +36,10 @@
 			</ul>
 			<ul class="layui-nav right">
 				<li class="layui-nav-item">
-					<a href="javascript:void(0);">Admin</a>
+					<a href="javascript:void(0);" sec:authentication="principal.username"></a>
 					<dl class="layui-nav-child">
 						<dd>
-							<a onclick="WeAdminShow('个人信息','http://www.baidu.com')">个人信息</a>
-						</dd>
-						<dd>
-							<a onclick="WeAdminShow('修改密码','./login.html')">修改密码</a>
+							<a onclick="$.editPwd();">修改密码</a>
 						</dd>
 						<dd>
 							<form class="loginout" method="post" 
