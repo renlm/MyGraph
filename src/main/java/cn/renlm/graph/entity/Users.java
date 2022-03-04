@@ -87,10 +87,10 @@ public class Users implements Serializable {
     private Date updatedAt;
 
     /**
-     * 是否启用（默认启用）
+     * 是否禁用（默认否）
      */
-    @TableField("enabled")
-    private Boolean enabled;
+    @TableField("disabled")
+    private Boolean disabled;
 
 
 }

@@ -46,6 +46,6 @@ public class UserDto extends Users implements org.springframework.security.core.
 
 	@Override
 	public boolean isEnabled() {
-		return BooleanUtil.isTrue(this.getEnabled());
+		return BooleanUtil.isFalse(this.getDisabled());
 	}
 }

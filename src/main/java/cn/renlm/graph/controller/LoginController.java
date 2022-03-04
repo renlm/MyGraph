@@ -82,7 +82,7 @@ public class LoginController {
 			form.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
 			form.setRole(Role.self.name());
 			form.setCreatedAt(new Date());
-			form.setEnabled(true);
+			form.setDisabled(false);
 			iUsersService.save(form);
 			return Result.success();
 		} catch (Exception e) {
