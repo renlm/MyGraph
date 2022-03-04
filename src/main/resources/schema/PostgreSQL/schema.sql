@@ -1,3 +1,143 @@
+-- 数据源
+DROP TABLE IF EXISTS ds;
+CREATE TABLE ds(
+    id                			BIGSERIAL 		PRIMARY KEY,
+    uuid       					VARCHAR(32)		UNIQUE NOT NULL,
+    url							VARCHAR(500)	NOT NULL,
+    schema       				VARCHAR(255),
+    username					VARCHAR(255)	NOT NULL,
+    password					VARCHAR(255)	NOT NULL,
+    created_at            		TIMESTAMP 		NOT NULL DEFAULT NOW(),
+    creator_user_id             VARCHAR(32)		NOT NULL,
+    creator_nickname           	VARCHAR(255),
+    updated_at     				TIMESTAMP,
+    updator_user_id             VARCHAR(32),
+    updator_nickname           	VARCHAR(255),
+    deleted                		BOOLEAN 		NOT NULL DEFAULT FALSE,
+    remark               		VARCHAR(800)
+)WITH(OIDS=FALSE);
+COMMENT ON TABLE ds 										IS '数据源';
+COMMENT ON COLUMN ds.id                						IS '主键ID';
+COMMENT ON COLUMN ds.uuid       							IS 'UUID';
+COMMENT ON COLUMN ds.url       								IS 'JDBC链接';
+COMMENT ON COLUMN ds.schema       							IS '模式';
+COMMENT ON COLUMN ds.username       						IS '账号';
+COMMENT ON COLUMN ds.password       						IS '密码';
+COMMENT ON COLUMN ds.created_at                    			IS '创建时间';
+COMMENT ON COLUMN ds.creator_user_id                    	IS '创建人（用户ID）';
+COMMENT ON COLUMN ds.creator_nickname                   	IS '创建人（昵称）';
+COMMENT ON COLUMN ds.updated_at                    			IS '更新时间';
+COMMENT ON COLUMN ds.updator_user_id                    	IS '更新人（用户ID）';
+COMMENT ON COLUMN ds.updator_nickname                  		IS '更新人（昵称）';
+COMMENT ON COLUMN ds.deleted                       			IS '是否删除（默认否）';
+COMMENT ON COLUMN ds.remark                        			IS '备注';
+
+-- ER模型
+DROP TABLE IF EXISTS er;
+CREATE TABLE er(
+    id                			BIGSERIAL 		PRIMARY KEY,
+    uuid       					VARCHAR(32)		UNIQUE NOT NULL,
+    table_name       			VARCHAR(255)	NOT NULL,
+    comment       				VARCHAR(500),
+    created_at            		TIMESTAMP 		NOT NULL DEFAULT NOW(),
+    creator_user_id             VARCHAR(32)		NOT NULL,
+    creator_nickname           	VARCHAR(255),
+    updated_at     				TIMESTAMP,
+    updator_user_id             VARCHAR(32),
+    updator_nickname           	VARCHAR(255),
+    deleted                		BOOLEAN 		NOT NULL DEFAULT FALSE,
+    remark               		VARCHAR(800)
+)WITH(OIDS=FALSE);
+COMMENT ON TABLE er 										IS 'ER模型';
+COMMENT ON COLUMN er.id                						IS '主键ID';
+COMMENT ON COLUMN er.uuid       							IS 'UUID';
+COMMENT ON COLUMN er.table_name       						IS '表名';
+COMMENT ON COLUMN er.comment       							IS '注释';
+COMMENT ON COLUMN er.created_at                    			IS '创建时间';
+COMMENT ON COLUMN er.creator_user_id                  		IS '创建人（用户ID）';
+COMMENT ON COLUMN er.creator_nickname             			IS '创建人（昵称）';
+COMMENT ON COLUMN er.updated_at                    			IS '更新时间';
+COMMENT ON COLUMN er.updator_user_id                		IS '更新人（用户ID）';
+COMMENT ON COLUMN er.updator_nickname               		IS '更新人（昵称）';
+COMMENT ON COLUMN er.deleted                       			IS '是否删除（默认否）';
+COMMENT ON COLUMN er.remark                        			IS '备注';
+
+-- 数据源-ER模型关系
+DROP TABLE IF EXISTS ds_er_rel;
+CREATE TABLE ds_er_rel(
+    id                			BIGSERIAL 		PRIMARY KEY,
+    ds_id						BIGINT			NOT NULL,
+    er_id						BIGINT			NOT NULL,
+    created_at            		TIMESTAMP 		NOT NULL DEFAULT NOW(),
+    creator_user_id             VARCHAR(32)		NOT NULL,
+    creator_nickname           	VARCHAR(255),
+    updated_at     				TIMESTAMP,
+    updator_user_id             VARCHAR(32),
+    updator_nickname           	VARCHAR(255),
+    deleted                		BOOLEAN 		NOT NULL DEFAULT FALSE
+)WITH(OIDS=FALSE);
+COMMENT ON TABLE ds_er_rel 									IS '数据源-ER模型关系';
+COMMENT ON COLUMN ds_er_rel.id                				IS '主键ID';
+COMMENT ON COLUMN ds_er_rel.ds_id                			IS '数据源表主键ID';
+COMMENT ON COLUMN ds_er_rel.er_id                			IS 'ER模型表主键ID';
+COMMENT ON COLUMN ds_er_rel.created_at                      IS '创建时间';
+COMMENT ON COLUMN ds_er_rel.creator_user_id              	IS '创建人（用户ID）';
+COMMENT ON COLUMN ds_er_rel.creator_nickname             	IS '创建人（昵称）';
+COMMENT ON COLUMN ds_er_rel.updated_at                  	IS '更新时间';
+COMMENT ON COLUMN ds_er_rel.updator_user_id               	IS '更新人（用户ID）';
+COMMENT ON COLUMN ds_er_rel.updator_nickname             	IS '更新人（昵称）';
+COMMENT ON COLUMN ds_er_rel.deleted                      	IS '是否删除（默认否）';
+
+-- ER模型-字段
+DROP TABLE IF EXISTS er_field;
+CREATE TABLE er_field(
+    id                			BIGSERIAL 		PRIMARY KEY,
+    er_id                		BIGINT			NOT NULL,
+    uuid       					VARCHAR(32)		UNIQUE NOT NULL,
+    name       					VARCHAR(255)	NOT NULL,
+    comment       				VARCHAR(500),
+    type       					INT				NOT NULL,
+    type_name      				VARCHAR(255)	NOT NULL,
+    size       					INT,
+    digit       				INT,
+    is_nullable                	BOOLEAN,
+    auto_increment              BOOLEAN,
+    column_def              	VARCHAR(255),
+    is_pk                		BOOLEAN 		NOT NULL DEFAULT FALSE,
+    is_fk                		BOOLEAN 		NOT NULL DEFAULT FALSE,
+    created_at            		TIMESTAMP 		NOT NULL DEFAULT NOW(),
+    creator_user_id             VARCHAR(32)		NOT NULL,
+    creator_nickname           	VARCHAR(255),
+    updated_at     				TIMESTAMP,
+    updator_user_id             VARCHAR(32),
+    updator_nickname           	VARCHAR(255),
+    deleted                		BOOLEAN 		NOT NULL DEFAULT FALSE,
+    remark               		VARCHAR(800)
+)WITH(OIDS=FALSE);
+COMMENT ON TABLE er_field 									IS 'ER模型-字段';
+COMMENT ON COLUMN er_field.id                				IS '主键ID';
+COMMENT ON COLUMN er_field.er_id                			IS 'ER模型ID';
+COMMENT ON COLUMN er_field.uuid       						IS 'UUID';
+COMMENT ON COLUMN er_field.name       						IS '列名';
+COMMENT ON COLUMN er_field.comment       					IS '注释';
+COMMENT ON COLUMN er_field.type       						IS '类型，java.sql.Types';
+COMMENT ON COLUMN er_field.type_name       					IS '类型名称';
+COMMENT ON COLUMN er_field.size       						IS '精度';
+COMMENT ON COLUMN er_field.digit       						IS '标度';
+COMMENT ON COLUMN er_field.is_nullable       				IS '是否可为空';
+COMMENT ON COLUMN er_field.auto_increment       			IS '是否自增';
+COMMENT ON COLUMN er_field.column_def       				IS '字段默认值';
+COMMENT ON COLUMN er_field.is_pk       						IS '是否为主键（默认否）';
+COMMENT ON COLUMN er_field.is_fk       						IS '是否为外键（默认否）';
+COMMENT ON COLUMN er_field.created_at                    	IS '创建时间';
+COMMENT ON COLUMN er_field.creator_user_id               	IS '创建人（用户ID）';
+COMMENT ON COLUMN er_field.creator_nickname             	IS '创建人（昵称）';
+COMMENT ON COLUMN er_field.updated_at                    	IS '更新时间';
+COMMENT ON COLUMN er_field.updator_user_id                	IS '更新人（用户ID）';
+COMMENT ON COLUMN er_field.updator_nickname               	IS '更新人（昵称）';
+COMMENT ON COLUMN er_field.deleted                       	IS '是否删除（默认否）';
+COMMENT ON COLUMN er_field.remark                        	IS '备注';
+
 -- 图形设计
 DROP TABLE IF EXISTS graph;
 CREATE TABLE graph(
