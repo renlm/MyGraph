@@ -1,6 +1,6 @@
 -- 用户
-DROP TABLE IF EXISTS user;
-CREATE TABLE user (
+DROP TABLE IF EXISTS "user";
+CREATE TABLE "user" (
     id                			BIGSERIAL 		PRIMARY KEY,
     user_id       				VARCHAR(32)		UNIQUE NOT NULL,
     username					VARCHAR(255)	UNIQUE NOT NULL,
@@ -12,21 +12,21 @@ CREATE TABLE user (
     updated_at     				TIMESTAMP,
     enabled                		BOOLEAN 		NOT NULL DEFAULT TRUE
 )WITH(OIDS=FALSE);
-COMMENT ON TABLE user 										IS '用户';
-COMMENT ON COLUMN user.id                					IS '主键ID';
-COMMENT ON COLUMN user.user_id       						IS '用户ID';
-COMMENT ON COLUMN user.username       						IS '登录账号';
-COMMENT ON COLUMN user.password       						IS '密码';
-COMMENT ON COLUMN user.nickname       						IS '昵称';
-COMMENT ON COLUMN user.mobile       						IS '手机号码';
-COMMENT ON COLUMN user.email                    			IS '邮箱地址';
-COMMENT ON COLUMN user.created_at                    		IS '创建时间';
-COMMENT ON COLUMN user.updated_at                    		IS '更新时间';
-COMMENT ON COLUMN user.enabled                       		IS '是否启用（默认启用）';
+COMMENT ON TABLE "user" 									IS '用户';
+COMMENT ON COLUMN "user".id                					IS '主键ID';
+COMMENT ON COLUMN "user".user_id       						IS '用户ID';
+COMMENT ON COLUMN "user".username       					IS '登录账号';
+COMMENT ON COLUMN "user".password       					IS '密码';
+COMMENT ON COLUMN "user".nickname       					IS '昵称';
+COMMENT ON COLUMN "user".mobile       						IS '手机号码';
+COMMENT ON COLUMN "user".email                    			IS '邮箱地址';
+COMMENT ON COLUMN "user".created_at                    		IS '创建时间';
+COMMENT ON COLUMN "user".updated_at                    		IS '更新时间';
+COMMENT ON COLUMN "user".enabled                       		IS '是否启用（默认启用）';
 
 -- 数据源
 DROP TABLE IF EXISTS ds;
-CREATE TABLE ds(
+CREATE TABLE ds (
     id                			BIGSERIAL 		PRIMARY KEY,
     uuid       					VARCHAR(32)		UNIQUE NOT NULL,
     url							VARCHAR(500)	NOT NULL,
@@ -60,7 +60,7 @@ COMMENT ON COLUMN ds.remark                        			IS '备注';
 
 -- ER模型
 DROP TABLE IF EXISTS er;
-CREATE TABLE er(
+CREATE TABLE er (
     id                			BIGSERIAL 		PRIMARY KEY,
     uuid       					VARCHAR(32)		UNIQUE NOT NULL,
     table_name       			VARCHAR(255)	NOT NULL,
@@ -90,7 +90,7 @@ COMMENT ON COLUMN er.remark                        			IS '备注';
 
 -- 数据源-ER模型关系
 DROP TABLE IF EXISTS ds_er_rel;
-CREATE TABLE ds_er_rel(
+CREATE TABLE ds_er_rel (
     id                			BIGSERIAL 		PRIMARY KEY,
     ds_id						BIGINT			NOT NULL,
     er_id						BIGINT			NOT NULL,
@@ -116,7 +116,7 @@ COMMENT ON COLUMN ds_er_rel.deleted                      	IS '是否删除（默
 
 -- ER模型-字段
 DROP TABLE IF EXISTS er_field;
-CREATE TABLE er_field(
+CREATE TABLE er_field (
     id                			BIGSERIAL 		PRIMARY KEY,
     er_id                		BIGINT			NOT NULL,
     uuid       					VARCHAR(32)		UNIQUE NOT NULL,
@@ -166,7 +166,7 @@ COMMENT ON COLUMN er_field.remark                        	IS '备注';
 
 -- 图形设计
 DROP TABLE IF EXISTS graph;
-CREATE TABLE graph(
+CREATE TABLE graph (
     id                			BIGSERIAL 		PRIMARY KEY,
     uuid       					VARCHAR(32)		UNIQUE NOT NULL,
     name       					VARCHAR(255)	NOT NULL,

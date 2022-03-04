@@ -1,6 +1,6 @@
 -- 用户
-DELETE FROM user;
-INSERT INTO user (
+DELETE FROM "user";
+INSERT INTO "user" (
 	user_id, 
 	username, 
 	password, 
@@ -15,7 +15,7 @@ INSERT INTO user (
 	'任黎明',
 	'17338158607',
 	'renlm@21cn.com',
-	1
+	true
 );
 
 -- 图形设计
@@ -27,5 +27,5 @@ INSERT INTO graph (
 ) VALUES (
 	'198124BBCF284A40BB24CA315A7B8E36', 
 	'演示DEMO',
-	1
+	true
 );

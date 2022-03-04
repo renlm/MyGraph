@@ -142,18 +142,6 @@ public class Graph implements Serializable {
     private String xml;
 
     /**
-     * 创建人（用户ID）
-     */
-    @TableField("creator_user_id")
-    private String creatorUserId;
-
-    /**
-     * 创建人（昵称）
-     */
-    @TableField("creator_nickname")
-    private String creatorNickname;
-
-    /**
      * 创建时间
      */
     @TableField("created_at")
