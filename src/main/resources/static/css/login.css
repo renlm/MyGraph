@@ -102,3 +102,72 @@
 	padding: 0px;
 	width: 100%;
 }
+
+.captcha {
+    display: block;
+    box-sizing: border-box;
+}
+
+.codeInput {
+    width: 60%!important;
+    border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+    float: left;
+}
+
+.codeImg {
+	width: 40%;
+	height: 50px;
+    float: left;
+    cursor: pointer;
+    border-width: 1px 1px 1px 0px;
+    border-style: solid solid solid none;
+    border-color: #dcdee0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+#ie-warn {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background: #fae692;
+    padding: 5px 0;
+    font-size: 12px;
+    z-index: 1000;
+    display: none;
+}
+
+#ie-warn p {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.remind .browser, .remind .register {
+	height: 20px;
+	line-height: 20px;
+	vertical-align: middle;
+}
+
+.remind .browser {
+	float: left;
+}
+
+.remind .browser img {
+	width: 20px;
+	height: 20px;
+	float: left;
+}
+
+.remind .browser span {
+	color: gray;
+	padding: 2px 4px;
+}
+
+.remind .register {
+	float: right;
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN" layout:decorate="~{layout/decorate}">
+<head>
+<title>修改密码</title>
+</head>
+<body layout:fragment="content">
+	<div class="layui-container" style="padding-top: 20px;">
+		<div class="layui-row">
+			<div class="layui-col-md12">
+				<form class="layui-form">
+					<div class="layui-form-item">
+						<label class="layui-form-label">新密码</label>
+						<div class="layui-input-block">
+							<input type="password" 
+								name="password"
+								lay-verify="required" 
+								placeholder="请输入新密码" 
+								autocomplete="new-password"
+								class="layui-input" 
+								/>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">确认密码</label>
+						<div class="layui-input-block">
+							<input type="password" 
+								name="confirmpwd"
+								lay-verify="required" 
+								placeholder="请确认密码" 
+								autocomplete="new-password"
+								class="layui-input" 
+								/>
+						</div>
+					</div>
+					<button type="button" class="layui-btn layui-btn-fluid" lay-submit lay-filter="formEditPwd">保存</button>
+				</form>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	layui.use('form', function() {
+		var form = layui.form;
+		form.on('submit(formEditPwd)', function(data) {
+			if(data.field.password != data.field.confirmpwd){
+				layer.msg("两次输入的密码不一致", { icon: 5, shift:6, time: 1200, offset: '0px' });
+				return;
+			}
+			
+			var pwdRegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\W)[\\s\\S]{6,20}");
+			if(!pwdRegExp.test(data.field.password)){
+	            layer.msg("密码限定6~20个字符，大小写字母、数字及特殊字符至少各一个", { icon: 5, shift:6, time: 5000, offset: '0px' });
+				return;
+			}
+			
+			$.post(ctx + "/doEditPwd", 
+				{ password: data.field.password, confirmpwd: data.field.confirmpwd }, 
+				function(response) {
+					if(response.statusCode === 200) {
+						parent.layer.close(parent.window.editPwdLayerIndex);
+					} else {
+						layer.msg(response.message, { icon: 5, shift:6, time: 1200, offset: '0px' });
+					}
+				});
+	    	return false;
+		});
+	});
+</script>
+</body>
+</html>

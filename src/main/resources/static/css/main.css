@@ -68,6 +68,11 @@
 	float: right;
 }
 
+.header .right a {
+	min-width: 53px;
+	text-align: right;
+}
+
 .header .layui-nav .layui-nav-item {
 	line-height: 45px;
 }
@@ -126,4 +131,9 @@
 
 .footer .copyright {
 	margin-left: 10px;
+}
+
+.editormdax .editormd-html-preview {
+	width: 90%;
+	margin: 0 auto;
 }

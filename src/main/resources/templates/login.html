@@ -2,19 +2,26 @@
 <html lang="zh-CN">
 <head>
 	<meta charset="UTF-8">
-	<title>在线画图</title>
+	<title>隐私保护通话</title>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<meta http-equiv="Cache-Control" content="no-siteapp" />
 	<link rel="shortcut icon" href="./static/favicon.ico" type="image/x-icon" />
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/layui/css/modules/layer/default/layer.css}" rel="stylesheet" />
+	<script th:src="@{/webjars/layui/layui.js}"></script>
 	<link rel="stylesheet" href="./static/css/login.css">
 </head>
 <body class="login-bg">
 	<div class="login">
-		<div class="message">在线画图-登录</div>
+		<div class="message">
+			<span th:if="${!#lists.contains(#ActiveProfiles,'prod')}" style="color: black;font-size: 24px;font-weight: bold;">测试-</span>
+			隐私保护通话
+		</div>
 		<div id="darkbannerwrap"></div>
-		<form method="post" class="layui-form" th:action="@{/auth}">
+		<form id="form" method="post" class="layui-form" th:action="@{/auth}">
 			<input name="username" 
 				placeholder="用户名" 
 				type="text" 
@@ -31,15 +38,107 @@
 				autocomplete="new-password"
 				/>
 			<hr class="hr15">
-			<input class="loginin" 
+			<input placeholder="验证码" 
+				name="captcha" 
+				type="text" 
+				class="codeInput loginInput captcha" 
+				autocomplete="off" 
+				/>
+            <img th:src="@{/captcha}" 
+            	alt="验证码" 
+            	class="codeImg captcha" 
+            	title="单击图片刷新！" 
+                onclick="this.src=this.src.split('?')[0]+'?'+new Date().getTime();" 
+                />
+			<hr class="hr15">
+			<input id="dologin" 
+				class="loginin" 
 				value="登录" 
-				lay-submit 
-				lay-filter="login" 
 				style="width: 100%;" 
 				type="submit" 
 				/>
 			<hr class="hr20">
+			<div class="remind">
+	      		<div class="browser">
+	            	<img src="./static/images/remind.png" /> 
+	          		<span>推荐使用谷歌浏览器</span>
+	        	</div>
+	           	<div class="register">
+	           		<a href="javascript:void(0);" onclick="register();">注册账号</a>
+	           	</div>
+       		</div>
 		</form>
 	</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<input id="errMsg" type="hidden" th:value="${session.SPRING_SECURITY_LAST_EXCEPTION?.message}">
+<script type="text/javascript">$(function(){ var errMsg = $("#errMsg").val(); if(errMsg) { alertMsg(errMsg); } });</script>
+
+<div id="ie-warn">
+    <p>
+    	您正在使用低版本浏览器，建议您使用<a href="https://www.google.cn/chrome" target="_blank">谷歌浏览器</a>
+		或使用<a href="http://se.360.cn/" target="_blank">360安全浏览器</a>的极速模式浏览
+    </p>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<span class="text-danger"><i class="fa fa-warning"></i> <span id="alertMsg">用户名或密码错误，请重试！</span></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	// 禁止嵌入
+	if(self != top) top.location.href = self.location.href;
+	
+	// 禁用IE
+	if(!!window.ActiveXObject || "ActiveXObject" in window) {
+		$("#ie-warn").show();
+		$(".login-box").hide();
+	}
+	
+	// 回车键
+	document.onkeydown = function(event){
+		if (event.keyCode == "13") document.getElementById("dologin").click();
+	}
+	
+	// 提示消息
+	function alertMsg(message) {
+		$("#alertMsg").html(message);
+        $("#myModal").modal();
+	}
+	
+	// 登录
+	$("#dologin").click(function(e) {
+		e.preventDefault();
+		var form = document.getElementById("form");
+		if(!form.username.value) {
+			alertMsg("用户名错误");
+		} else if(!form.password.value) {
+			alertMsg("密码错误");
+		} else if(!form.captcha.value) {
+			alertMsg("验证码错误");
+		} else {
+			document.getElementById("form").submit();
+		}
+	});
+	
+	// 注册账号
+	function register() {
+		window.editPwdLayerIndex = layer.open({
+			type: 2, 
+			title: '注册账号',
+			offset: '200px',
+			area: ['500px', '300px'],
+			skin: "layui-layer-rim",
+			content: ['[(@{/register})]', 'no']
+		});
+	}
+</script>
 </body>
 </html>
