@@ -21,6 +21,15 @@
 	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<!-- Js-base64 -->
 	<script th:src="@{/webjars/js-base64/base64.min.js}"></script>
+	<!-- 全局设置 -->
+    <script type="text/javascript">
+    	window.CTX = window.ctx = "[(@{/})]".substr(0, "[(@{/})]".length - 1);
+    	$(document).ajaxSend(function(event, jqxhr, settings) { 
+    		jqxhr.setRequestHeader("[(${_csrf.headerName})]", "[(${_csrf.token})]");
+    	});
+    </script>
+	<!-- 主体框架Js -->
+	<script th:src="@{/static/js/main.js}"></script>
 </head>
 <body>
 	<div layout:fragment="content"></div>
