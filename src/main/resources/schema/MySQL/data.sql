@@ -8,7 +8,7 @@ INSERT INTO users (
 	mobile, 
 	email, 
 	role,
-	enabled
+	disabled
 ) VALUES (
 	'04AB1FE543D74862A1B35676C7BBE61B', 
 	'renlm', 
@@ -17,7 +17,7 @@ INSERT INTO users (
 	'17338158607',
 	'renlm@21cn.com',
 	'admin',
-	1
+	0
 );
 
 -- 图形设计

@@ -11,7 +11,7 @@ CREATE TABLE users (
     role						VARCHAR(64),
     created_at            		TIMESTAMP 		NOT NULL DEFAULT NOW(),
     updated_at     				TIMESTAMP,
-    enabled                		BOOLEAN 		NOT NULL DEFAULT TRUE
+    disabled                	BOOLEAN 		NOT NULL DEFAULT FALSE
 )WITH(OIDS=FALSE);
 COMMENT ON TABLE users 										IS '用户';
 COMMENT ON COLUMN users.id                					IS '主键ID';
@@ -24,7 +24,7 @@ COMMENT ON COLUMN users.email                    			IS '邮箱地址';
 COMMENT ON COLUMN users.role                    			IS '角色（admin，user，self）';
 COMMENT ON COLUMN users.created_at                    		IS '创建时间';
 COMMENT ON COLUMN users.updated_at                    		IS '更新时间';
-COMMENT ON COLUMN users.enabled                       		IS '是否启用（默认启用）';
+COMMENT ON COLUMN users.disabled                       		IS '是否禁用（默认否）';
 
 -- 数据源
 DROP TABLE IF EXISTS ds;

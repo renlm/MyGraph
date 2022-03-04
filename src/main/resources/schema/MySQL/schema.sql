@@ -11,7 +11,7 @@ CREATE TABLE users (
     role						VARCHAR(64)										COMMENT '角色（admin，user，self）',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    enabled TINYINT(1) DEFAULT 1 NOT NULL COMMENT '是否启用（默认启用）'
+    disabled TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否禁用（默认否）'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '用户';
 
 -- 图形设计
