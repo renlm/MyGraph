@@ -69,6 +69,12 @@ public class User implements Serializable {
     private String email;
 
     /**
+     * 角色（admin，user，self）
+     */
+    @TableField("role")
+    private String role;
+
+    /**
      * 创建时间
      */
     @TableField("created_at")
