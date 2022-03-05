@@ -242,6 +242,12 @@
 			<version>1.5.0</version>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
+			<artifactId>particleground-light</artifactId>
+			<version>1.0.6</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
