@@ -14,23 +14,12 @@
 			<ul class="layui-tab-title layui-nav left">
 				<li class="layui-nav-item layui-this">
 					<a href="javascript:void(0);">
+						<i class="layui-icon layui-icon-chart"></i> 控制台
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);">
 						<i class="layui-icon layui-icon-read"></i> 公共图库
-					</a>
-				</li>
-				<li class="layui-nav-item">
-					<a href="javascript:void(0);">
-						<i class="layui-icon layui-icon-chart"></i> 数据源
-					</a>
-				</li>
-				<li class="layui-nav-item">
-					<a href="javascript:void(0);">
-						<i class="layui-icon layui-icon-util"></i> 我的
-					</a>
-				</li>
-				<li class="layui-nav-item hide" id="newTabTitle">
-					<a href="javascript:void(0);">
-						<i class="layui-icon layui-icon-form hide"></i> 
-						<span>选项卡</span>
 					</a>
 				</li>
 			</ul>
@@ -56,20 +45,12 @@
 		<div class="iframer layui-tab-content">
 			<div class="layui-tab-item layui-show">
 				<iframe frameborder="0" scrolling="yes" class="TabIframe"
-					th:src="@{/graph/lib}">
-				</iframe>
-			</div>
-			<div class="layui-tab-item">
-				<iframe frameborder="0" scrolling="yes" class="TabIframe"
 					th:src="@{/ds/list}">
 				</iframe>
 			</div>
 			<div class="layui-tab-item">
-				<iframe frameborder="0" scrolling="yes" class="TabIframe">
-				</iframe>
-			</div>
-			<div class="layui-tab-item" id="newTabItem">
-				<iframe frameborder="0" scrolling="yes" class="TabIframe">
+				<iframe frameborder="0" scrolling="yes" class="TabIframe"
+					th:src="@{/graph/lib}">
 				</iframe>
 			</div>
 		</div>
