@@ -3,7 +3,7 @@
  */
 $(document).ready(function() {
 
-	// MetsiMenu
+	// 左侧菜单
 	$("#side-menu").metisMenu();
 
 	// 打开右侧边栏
@@ -12,7 +12,7 @@ $(document).ready(function() {
 	});
 
 	// 固定菜单栏
-	$(function)  {
+	$(function() {
 		$(".sidebar-collapse").slimScroll({
 			height: "100%",
 			railOpacity: 0.9,
@@ -65,7 +65,7 @@ $(document).ready(function() {
 
 	$(".nav-close").click(NavToggle);
 
-	// ios浏览器兼容性处理
+	// IOS浏览器兼容性处理
 	if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 		$("#content-main").css("overflow-y", "auto");
 	}
