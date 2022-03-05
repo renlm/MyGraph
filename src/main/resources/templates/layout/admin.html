@@ -19,6 +19,10 @@
     		jqxhr.setRequestHeader("[(${_csrf.headerName})]", "[(${_csrf.token})]");
     	});
     </script>
+    <!--[if lt IE 9]>
+    <script th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+    <script th:src="@{/webjars/respond/dest/respond.min.js}"></script>
+    <![endif]-->
 </head>
 <body>
 	<div layout:fragment="content"></div>
