@@ -210,12 +210,12 @@ body.body-small .navbar-top-links li:last-child {
     transition: all 0.5s;
 }
 
-.nav > li.active {
+.nav > li.mm-active {
     border-left: 4px solid #19a9d5;
     background: #131e26;
 }
 
-.nav.nav-second-level > li.active {
+.nav.nav-second-level > li.mm-active {
     border: none;
 }
 
