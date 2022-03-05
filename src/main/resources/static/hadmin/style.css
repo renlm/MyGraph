@@ -1,3 +1,11 @@
+#side-menu {
+	visibility: hidden;
+}
+
+ul.nav.metismenu {
+	visibility: visible!important;
+}
+
 /*
  *
  *   H+ - 后台主题UI框架
@@ -3747,7 +3755,11 @@ nav.page-tabs .page-tabs-content {
 }
 
 #content-main {
-    height: calc(100% - 50px);
+    -webkit-height: calc(100% - 51px);
+    -moz-height: calc(100% - 51px);
+    -o-height: calc(100% - 51px);
+    -ms-height: calc(100% - 51px);
+    height: calc(100% - 51px);
     overflow: hidden;
 }
 
