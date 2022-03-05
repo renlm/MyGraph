@@ -14,12 +14,17 @@
 			<ul class="layui-tab-title layui-nav left">
 				<li class="layui-nav-item layui-this">
 					<a href="javascript:void(0);">
-						<i class="layui-icon layui-icon-chart"></i> 控制台
+						<i class="layui-icon layui-icon-chart"></i> 工作台
 					</a>
 				</li>
 				<li class="layui-nav-item">
 					<a href="javascript:void(0);">
-						<i class="layui-icon layui-icon-read"></i> 公共图库
+						<i class="fa fa-image"></i> 公共图库
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);">
+						<i class="fa fa-file-word-o"></i> 公共文档
 					</a>
 				</li>
 			</ul>
@@ -45,7 +50,12 @@
 		<div class="iframer layui-tab-content">
 			<div class="layui-tab-item layui-show">
 				<iframe frameborder="0" scrolling="yes" class="TabIframe"
-					th:src="@{/console}">
+					th:src="@{/workbench}">
+				</iframe>
+			</div>
+			<div class="layui-tab-item">
+				<iframe frameborder="0" scrolling="yes" class="TabIframe"
+					th:src="@{/graph/lib}">
 				</iframe>
 			</div>
 			<div class="layui-tab-item">

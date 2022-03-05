@@ -24,12 +24,12 @@ public class HomeController {
 	}
 
 	/**
-	 * 控制台
+	 * 工作台
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/console")
-	public String console() {
-		return "console";
+	@RequestMapping("/workbench")
+	public String workbench() {
+		return "workbench";
 	}
 }

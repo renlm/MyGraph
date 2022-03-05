@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
+import cn.renlm.graph.security.MyAuthenticationSuccessHandler;
 import cn.renlm.graph.security.MyDaoAuthenticationProvider;
 import cn.renlm.graph.security.MyWebAuthenticationDetails;
 import cn.renlm.graph.security.UserService;
@@ -68,6 +69,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// 启用csrf
@@ -95,6 +99,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.loginPage(LoginPage)
 					.loginProcessingUrl(LoginProcessingUrl)
 					.authenticationDetailsSource(authenticationDetailsSource())
+					.successHandler(myAuthenticationSuccessHandler)
 				// 注销
 				.and()
 					.logout()
