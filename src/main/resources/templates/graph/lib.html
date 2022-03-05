@@ -63,7 +63,7 @@
 	        <div class="masonry__item"
 	        	v-for="(graph,index) in response.records" 
 				v-bind:data-id="graph.id"
-				@click="openGraphViewer(graph.uuid, graph.name)">
+				@click="openGraphViewer(graph.uuid)">
 				<div class="min-img">
 					<img :alt="graph.text"
 						:title="'创作者：'+graph.creatorNickname"
@@ -101,13 +101,8 @@
 		    	};
 		    },
 		    methods: {
-		    	openGraphViewer(uuid, name) {
-		    		var $NewTabTitle = $(top.document.getElementById("newTabTitle"));
-		    		var $NewTabItem = $(top.document.getElementById("newTabItem"));
-		    		$NewTabTitle.find("a>span").html(name);
-		    		$NewTabTitle.addClass("layui-this").removeClass("hide").siblings().removeClass("layui-this");
-		    		$NewTabItem.find("iframe").attr("src", "[(@{/graph/editor?uuid=})]" + uuid);
-		    		$NewTabItem.addClass("layui-show").siblings().removeClass("layui-show");
+		    	openGraphViewer(uuid) {
+		    		top.window.open("[(@{/graph/viewer?uuid=})]" + uuid);
 		    	},
 		    	searchInputChange() {
 		    		if(this.keywords) {
