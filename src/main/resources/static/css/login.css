@@ -61,12 +61,7 @@ body:after {
 	color: #1E9FFF;
 	font-size: 25px;
 	font-weight: bold;
-}
-
-.logo-title h1 span {
-	color: black;
-	font-size: 24px;
-	font-weight: bold;
+	font-style: italic;
 }
 
 .login-form {
