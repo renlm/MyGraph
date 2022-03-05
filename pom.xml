@@ -133,6 +133,20 @@
 
 		<dependency>
 			<groupId>org.webjars</groupId>
+			<artifactId>html5shiv</artifactId>
+			<version>3.7.3-1</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>respond</artifactId>
+			<version>1.4.2-1</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
 			<artifactId>font-awesome</artifactId>
 			<version>4.7.0</version>
 			<scope>runtime</scope>
@@ -244,9 +258,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.webjars.npm</groupId>
-			<artifactId>particleground-light</artifactId>
-			<version>1.0.6</version>
+			<groupId>org.webjars.bowergithub.barrior</groupId>
+			<artifactId>jparticles</artifactId>
+			<version>2.0.1</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 
