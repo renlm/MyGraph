@@ -14,6 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
 	/**
+	 * 欢迎页
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/welcome")
+	public String welcome() {
+		return "home/welcome";
+	}
+
+	/**
 	 * 控制台
 	 * 
 	 * @return
