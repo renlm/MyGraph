@@ -44,6 +44,11 @@
 .header {
 	width: 100%;
 	height: 45px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
 	background-color: #222;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -103,9 +108,9 @@
 
 .iframer {
 	position: absolute;
-	top: 46px;
+	top: 45px;
 	right: 0;
-	bottom: 42px;
+	bottom: 41px;
 	left: 0px;
 	overflow: hidden;
 	z-index: 1;
@@ -123,8 +128,12 @@
 	position: fixed;
 	bottom: 0px;
 	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
 	background-color: #222;
-	border-top: 1px solid rgba(255, 255, 255, 0.2);
 	line-height: 41px;
 	color: #fff;
 }
