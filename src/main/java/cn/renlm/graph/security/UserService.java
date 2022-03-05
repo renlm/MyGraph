@@ -37,6 +37,9 @@ public class UserService implements UserDetailsService {
 		Users user = iUsersService.getOne(Wrappers.<Users>lambdaQuery().func(wrapper -> {
 			wrapper.eq(Users::getUsername, username);
 		}));
+		if (user == null) {
+			throw new UsernameNotFoundException("Not Found By Username.");
+		}
 		UserDto userDetails = BeanUtil.copyProperties(user, UserDto.class);
 		List<GrantedAuthority> authorities = CollUtil.newArrayList();
 		userDetails.setAuthorities(authorities);
