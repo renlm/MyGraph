@@ -69,7 +69,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">JDBC链接</label>
 							<div class="col-sm-8">
-								<input name="url" type="text" class="form-control" autocomplete="off" />
+								<input name="url" type="text" class="form-control" autocomplete="off" data-vmsg="必填" />
 							</div>
 						</div>
 						<div class="form-group">
@@ -81,13 +81,13 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">访问账号</label>
 							<div class="col-sm-8">
-								<input name="username" type="text" class="form-control" autocomplete="off" />
+								<input name="username" type="text" class="form-control" autocomplete="off" data-vmsg="必填" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">认证密码</label>
 							<div class="col-sm-8">
-								<input name="password" type="password" class="form-control" autocomplete="new-password" />
+								<input name="password" type="password" class="form-control" autocomplete="new-password" data-vmsg="必填" />
 							</div>
 						</div>
 						<div class="form-group m-b-n-sm">
@@ -105,12 +105,17 @@
 			</div>
 		</div>
 	</div>
+	<script th:src="@{/static/js/form.js}"></script>
 	<script type="text/javascript">
 		/**
 		 * 提交数据源表单
 		 */
 		function submitDsForm () {
-			
+			var dsForm = $("#dsForm");
+			// 表单校验
+			if(dsForm.valiform()) {
+								
+			}
 		}
 	</script>
 </body>
