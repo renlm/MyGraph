@@ -37,7 +37,7 @@
 		return isNext;
 	};
 	
-	function FormCheck(e){ this.element = $(e); }
+	FormCheck = function (e) { this.element = $(e); }
 	FormCheck.prototype = { 
 		constructor: FormCheck, 
 		options: { 
