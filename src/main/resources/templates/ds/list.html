@@ -9,7 +9,9 @@
 			<div class="col-sm-3">
 				<div class="ibox">
 					<div class="ibox-content">
-						<a class="btn btn-block btn-primary compose-mail" href="mail_compose.html">新建</a>
+						<button type="button" class="btn btn-block btn-primary compose-mail" data-toggle="modal" data-target="#dsModal">
+                        	新建
+                       	</button>
 						<div class="space-25"></div>
 						<div class="hr-line-dashed"></div>
 						<h5>已支持数据库</h5>
@@ -49,6 +51,61 @@
 			</div>
 			<div class="col-sm-9 animated fadeInRight">
 			
+			</div>
+		</div>
+	</div>
+	<div class="modal inmodal" id="dsModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content animated fadeIn">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">新建</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal m-t" id="commentForm">
+						<div class="form-group">
+							<label class="col-sm-3 control-label">JDBC链接</label>
+							<div class="col-sm-8">
+								<input id="cname" name="name" minlength="2" type="text"
+									class="form-control" required="" aria-required="true">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Schema</label>
+							<div class="col-sm-8">
+								<input id="cemail" type="email" class="form-control"
+									name="email" required="" aria-required="true">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">访问账号</label>
+							<div class="col-sm-8">
+								<input id="cemail" type="email" class="form-control"
+									name="email" required="" aria-required="true">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">认证密码</label>
+							<div class="col-sm-8">
+								<input id="curl" type="url" class="form-control" name="url">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">备注</label>
+							<div class="col-sm-8">
+								<textarea id="ccomment" name="comment" class="form-control"
+									aria-required="true" rows="3"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary">保存</button>
+				</div>
 			</div>
 		</div>
 	</div>
