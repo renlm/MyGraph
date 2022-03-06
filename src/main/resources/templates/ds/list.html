@@ -56,6 +56,7 @@
 	</div>
 	<div class="modal" id="dsModal" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
+			<div th:replace="fragments/spinners::circle"></div>
 			<div class="modal-content animated flipInY">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
@@ -124,11 +125,11 @@
 			var dsForm = $("#dsForm");
 			// 表单校验
 			if(dsForm.valiform()) {
-				var layerIndex = layer.load(2);
+				$("#dsModal").find(".spiner-loading").addClass("show");
    				$.post(ctx + '/ds/ajax/save', 
    					dsForm.formJson(), 
    					function (resJson) {
-   						layer.close(layerIndex);
+   						$("#dsModal").find(".spiner-loading").removeClass("show");
 						if(resJson.statusCode == 200) {
 							$.toastrSuccess("数据源已添加");
 							$("#dsModal").modal("hide");
