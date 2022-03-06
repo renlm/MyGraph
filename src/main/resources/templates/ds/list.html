@@ -124,7 +124,18 @@
 			var dsForm = $("#dsForm");
 			// 表单校验
 			if(dsForm.valiform()) {
-								
+				var layerIndex = layer.load(2);
+   				$.post(ctx + '/ds/ajax/save', 
+   					dsForm.formJson(), 
+   					function (resJson) {
+   						layer.close(layerIndex);
+						if(resJson.statusCode == 200) {
+							$.toastrSuccess("数据源已添加");
+							$("#dsModal").modal("hide");
+			          	} else {
+			          		
+			        	}
+					});				
 			}
 		}
 	</script>
