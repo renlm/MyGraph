@@ -107,6 +107,16 @@
 	</div>
 	<script th:src="@{/static/js/form.js}"></script>
 	<script type="text/javascript">
+		$(function () {
+			/**
+			 * 重置表单
+			 */
+			$("#dsModal").on("show.bs.modal", function () {
+				$("#dsForm").clearform();
+			}).on("hide.bs.modal", function () {
+				$("#dsForm").clearform();
+			});
+		});
 		/**
 		 * 提交数据源表单
 		 */

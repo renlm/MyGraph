@@ -36,6 +36,18 @@
 	    	});
 		return isNext;
 	};
+    
+    $.fn.clearform = function () {
+		$(this).find(".e-check").remove();
+		$(this).find("input,select,textarea")
+			.not("input[type='button']")
+			.not("input[type='hidden']")
+			.not("input[disabled='disabled']")
+			.not("select[disabled='disabled']")
+			.each(function() {
+	    		$(this).val(null);
+	    	});
+	};
 	
 	FormCheck = function (e) { this.element = $(e); }
 	FormCheck.prototype = { 
