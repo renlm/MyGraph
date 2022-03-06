@@ -140,7 +140,7 @@
 							$.toastrSuccess("数据源已添加");
 							$("#dsModal").modal("hide");
 			          	} else {
-			          		
+			          		swal("出错了", "添加数据源失败，请检查配置是否正确.", "error");
 			        	}
 					});		
 			}
