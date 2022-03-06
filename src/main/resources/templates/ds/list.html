@@ -9,8 +9,12 @@
 			<div class="col-sm-3">
 				<div class="ibox">
 					<div class="ibox-content">
-						<button type="button" class="btn btn-block btn-primary compose-mail" data-backdrop="static" data-toggle="modal" data-target="#dsModal">
-                        	新建
+						<button type="button" 
+							class="btn btn-block btn-primary compose-mail" 
+							data-backdrop="static" 
+							data-toggle="modal" 
+							data-target="#dsModal"
+							>新建
                        	</button>
 						<div class="space-25"></div>
 						<div class="hr-line-dashed"></div>
@@ -25,25 +29,6 @@
 								<a href="javascript:void(0);">
 									<i class="fa fa-circle text-primary"></i> PostgreSQL
 								</a>
-							</li>
-						</ul>
-						<div class="hr-line-dashed"></div>
-						<div class="input-group">
-							<input type="text" placeholder="关键字" class="input input-sm form-control" /> 
-							<span class="input-group-btn">
-								<button type="button" class="btn btn-sm btn-white">
-									<i class="fa fa-search"></i> 搜索
-								</button>
-							</span>
-						</div>
-						<ul class="sortable-list connectList agile-list">
-							<li class="warning-element">jdbc:postgresql://renlm.cn:5432/renlm
-								<div class="agile-detail">
-									<a href="#" class="pull-right btn btn-xs btn-info">
-										<i class="fa fa-paste"></i> 编辑
-									</a> 
-									<i class="fa fa-clock-o"></i> 2015.09.01
-								</div>
 							</li>
 						</ul>
 					</div>
@@ -70,31 +55,53 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">JDBC链接</label>
 							<div class="col-sm-8">
-								<input name="url" type="text" class="form-control" autocomplete="off" data-vmsg="必填" />
+								<input name="url" 
+									type="text" 
+									class="form-control" 
+									autocomplete="off" 
+									data-vmsg="必填" 
+									/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">Schema</label>
 							<div class="col-sm-8">
-								<input name="schema" type="text" class="form-control" autocomplete="off" />
+								<input name="schema" 
+									type="text" 
+									class="form-control" 
+									autocomplete="off" 
+									/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">访问账号</label>
 							<div class="col-sm-8">
-								<input name="username" type="text" class="form-control" autocomplete="off" data-vmsg="必填" />
+								<input name="username" 
+									type="text" 
+									class="form-control" 
+									autocomplete="off" 
+									data-vmsg="必填" 
+									/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-3 control-label">认证密码</label>
 							<div class="col-sm-8">
-								<input name="password" type="password" class="form-control" autocomplete="new-password" data-vmsg="必填" />
+								<input name="password" 
+									type="password" 
+									class="form-control" 
+									autocomplete="new-password" 
+									data-vmsg="必填" 
+									/>
 							</div>
 						</div>
 						<div class="form-group m-b-n-sm">
 							<label class="col-sm-3 control-label">备注</label>
 							<div class="col-sm-8">
-								<textarea name="remark" class="form-control" rows="3"></textarea>
+								<textarea name="remark" 
+									class="form-control" 
+									rows="3">
+								</textarea>
 							</div>
 						</div>
 					</form>
@@ -136,7 +143,7 @@
 			          	} else {
 			          		
 			        	}
-					});				
+					});		
 			}
 		}
 	</script>
