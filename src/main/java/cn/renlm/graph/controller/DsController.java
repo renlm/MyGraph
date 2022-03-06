@@ -8,10 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.DsDto;
 import cn.renlm.graph.dto.UserDto;
+import cn.renlm.graph.entity.Ds;
 import cn.renlm.graph.service.IDsService;
 
 /**
@@ -35,6 +38,32 @@ public class DsController {
 	@RequestMapping("/list")
 	public String list() {
 		return "ds/list";
+	}
+
+	/**
+	 * 列表数据
+	 * 
+	 * @param authentication
+	 * @param form
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/list")
+	public Result ajaxList(Authentication authentication, DsDto form) {
+		try {
+			UserDto user = (UserDto) authentication.getPrincipal();
+			List<Ds> list = iDsService.list(Wrappers.<Ds>lambdaQuery().func(wrapper -> {
+				wrapper.like(StrUtil.isNotBlank(form.getKeywords()), Ds::getUrl, form.getKeywords());
+				wrapper.eq(Ds::getCreatorUserId, user.getUserId());
+				wrapper.eq(Ds::getDeleted, false);
+				wrapper.orderByDesc(Ds::getUpdatedAt);
+				wrapper.orderByDesc(Ds::getId);
+			}));
+			return Result.success(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("服务器出错了");
+		}
 	}
 
 	/**
