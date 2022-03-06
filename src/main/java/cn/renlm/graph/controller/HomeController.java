@@ -32,4 +32,14 @@ public class HomeController {
 	public String workbench() {
 		return "workbench";
 	}
+
+	/**
+	 * 更新记录
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/timeline")
+	public String timeline() {
+		return "timeline";
+	}
 }
