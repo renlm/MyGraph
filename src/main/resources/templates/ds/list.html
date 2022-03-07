@@ -2,6 +2,8 @@
 <html lang="zh-CN" layout:decorate="~{layout/hadmin}">
 <head>
 	<title>更新记录</title>
+	<!-- Bootstrap -->
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 </head>
 <body layout:fragment="content" class="gray-bg">
 	<div class="wrapper wrapper-content">
@@ -37,9 +39,15 @@
                   		<h5>数据源</h5>
 					</div>
                		<div class="ibox-content">
-                   		<p>
-                           表格
-                  		</p>
+                   		<table data-toggle="table" th:data-url="@{/ds/ajax/list}" data-height="250" data-mobile-responsive="true">
+                       		<thead>
+                           		<tr>
+                                 	<th data-field="url">JDBC链接</th>
+                               		<th data-field="schema">Schema</th>
+                                  	<th data-field="username">账号</th>
+                          		</tr>
+                       		</thead>
+                   		</table>
                		</div>
          		</div>
 			</div>
@@ -132,6 +140,10 @@
 			</div>
 		</div>
 	</div>
+	<!-- Bootstrap table -->
+    <script th:src="@{/webjars/bootstrap-table/bootstrap-table.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap-table/extensions/mobile/bootstrap-table-mobile.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
 	<script type="text/javascript">
 		$(function () {
 			/**
