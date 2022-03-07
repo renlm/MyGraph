@@ -1,7 +1,10 @@
 package cn.renlm.graph.service;
 
-import cn.renlm.graph.entity.ErField;
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import cn.renlm.graph.entity.ErField;
 
 /**
  * <p>
@@ -12,5 +15,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-03-04
  */
 public interface IErFieldService extends IService<ErField> {
+
+	/**
+	 * 获取ER模型字段列表
+	 * 
+	 * @param erUuid
+	 * @return
+	 */
+	List<ErField> findListByErUuid(String erUuid);
 
 }
