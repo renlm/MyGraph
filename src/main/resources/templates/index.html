@@ -7,7 +7,7 @@
 	<!-- 禁用IE -->
 	<div th:replace="fragments/ie-warn :: info"></div>
 	<!-- 页面主体 -->
-	<div class="container layui-tab">
+	<div class="container layui-tab" lay-filter="TabIframe">
 		<!-- 头部开始 -->
 		<div class="header">
 			<div class="logo">
@@ -32,7 +32,9 @@
 			</ul>
 			<ul class="layui-nav right">
 				<li class="layui-nav-item">
-					<a href="javascript:void(0);" sec:authentication="principal.username"></a>
+					<a href="javascript:void(0);"
+						sec:authentication="principal.username">
+					</a>
 					<dl class="layui-nav-child">
 						<dd>
 							<a onclick="$.editPwd();">修改密码</a>
@@ -51,19 +53,13 @@
 		<!-- 中部开始 -->
 		<div class="iframer layui-tab-content">
 			<div class="layui-tab-item layui-show">
-				<iframe frameborder="0" scrolling="yes" class="TabIframe" seamless="seamless"
-					th:src="@{/workbench}">
-				</iframe>
+				<iframe frameborder="0" scrolling="yes" th:src="@{/workbench}"></iframe>
 			</div>
 			<div class="layui-tab-item">
-				<iframe frameborder="0" scrolling="yes" class="TabIframe" seamless="seamless"
-					th:src="@{/graph/lib}">
-				</iframe>
+				<iframe frameborder="0" scrolling="yes" th:src="@{/graph/lib}"></iframe>
 			</div>
 			<div class="layui-tab-item">
-				<iframe frameborder="0" scrolling="yes" class="TabIframe" seamless="seamless"
-					th:src="@{/static/editor.md/index.html}">
-				</iframe>
+				<iframe frameborder="0" scrolling="yes" th:src="@{/static/editor.md/index.html}"></iframe>
 			</div>
 		</div>
 		<!-- 中部结束 -->
@@ -73,5 +69,13 @@
 		</div>
 		<!-- 底部结束 -->
 	</div>
+	<script type="text/javascript">
+		/**
+		 * 监听Tab切换
+		 */
+		layui.element.on("tab(TabIframe)", function (data) {
+			
+		});
+	</script>
 </body>
 </html>
