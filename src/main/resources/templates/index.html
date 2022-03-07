@@ -14,12 +14,12 @@
 			<ul class="layui-tab-title layui-nav left">
 				<li class="layui-nav-item layui-this">
 					<a href="javascript:void(0);">
-						<i class="fa fa-image"></i> 公共图库
+						<i class="layui-icon layui-icon-chart"></i> 工作台
 					</a>
 				</li>
 				<li class="layui-nav-item">
 					<a href="javascript:void(0);">
-						<i class="layui-icon layui-icon-chart"></i> 工作台
+						<i class="fa fa-image"></i> 公共图库
 					</a>
 				</li>
 			</ul>
@@ -45,12 +45,12 @@
 		<div class="iframer layui-tab-content">
 			<div class="layui-tab-item layui-show">
 				<iframe frameborder="0" scrolling="yes" class="TabIframe"
-					th:src="@{/graph/lib}">
+					th:src="@{/workbench}">
 				</iframe>
 			</div>
 			<div class="layui-tab-item">
 				<iframe frameborder="0" scrolling="yes" class="TabIframe"
-					th:src="@{/workbench}">
+					th:src="@{/graph/lib}">
 				</iframe>
 			</div>
 		</div>
