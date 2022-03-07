@@ -36,10 +36,12 @@ CREATE TABLE graph(
     connectable					TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示连接点（默认是）',
     guides_enabled				TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示参考线（默认是）',
     xml       					LONGTEXT									COMMENT 'XML文本',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
     creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
     remark VARCHAR(255) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '图形设计';

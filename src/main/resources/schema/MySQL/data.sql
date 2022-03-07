@@ -27,11 +27,15 @@ INSERT INTO graph (
 	name, 
 	category_code,
 	category_name,
-	is_public
+	is_public,
+	creator_user_id,
+	creator_nickname
 ) VALUES (
 	'198124BBCF284A40BB24CA315A7B8E36', 
 	'演示DEMO',
 	'ER',
 	'ER模型',
-	1
+	1,
+	'04AB1FE543D74862A1B35676C7BBE61B',
+	'任黎明'
 );

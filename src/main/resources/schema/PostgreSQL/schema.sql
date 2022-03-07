@@ -189,7 +189,11 @@ CREATE TABLE graph (
     guides_enabled				BOOLEAN 		NOT NULL DEFAULT TRUE,
     xml       					TEXT,
     created_at            		TIMESTAMP 		NOT NULL DEFAULT NOW(),
+    creator_user_id             VARCHAR(32)		NOT NULL,
+    creator_nickname           	VARCHAR(255),
     updated_at     				TIMESTAMP,
+    updator_user_id             VARCHAR(32),
+    updator_nickname           	VARCHAR(255),
     deleted                		BOOLEAN 		NOT NULL DEFAULT FALSE,
     remark               		VARCHAR(255)
 )WITH(OIDS=FALSE);
@@ -213,7 +217,11 @@ COMMENT ON COLUMN graph.connection_arrows_enabled			IS '显示连接箭头（默
 COMMENT ON COLUMN graph.connectable							IS '显示连接点（默认是）';
 COMMENT ON COLUMN graph.guides_enabled						IS '显示参考线（默认是）';
 COMMENT ON COLUMN graph.xml       							IS 'XML文本';
-COMMENT ON COLUMN graph.created_at                  		IS '创建时间';
-COMMENT ON COLUMN graph.updated_at               			IS '更新时间';
+COMMENT ON COLUMN graph.created_at                    		IS '创建时间';
+COMMENT ON COLUMN graph.creator_user_id               		IS '创建人（用户ID）';
+COMMENT ON COLUMN graph.creator_nickname             		IS '创建人（昵称）';
+COMMENT ON COLUMN graph.updated_at                    		IS '更新时间';
+COMMENT ON COLUMN graph.updator_user_id                		IS '更新人（用户ID）';
+COMMENT ON COLUMN graph.updator_nickname               		IS '更新人（昵称）';
 COMMENT ON COLUMN graph.deleted                    			IS '是否删除（默认否）';
 COMMENT ON COLUMN graph.remark                      		IS '备注';

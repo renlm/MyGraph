@@ -84,8 +84,8 @@ public class ERModelParser {
 		graph.setCategoryName(GraphCategory.ER.value());
 		GraphDto.fillDefault(graph);
 		graph.setCreatedAt(new Date());
-		// graph.setCreatorUserId(user.getUserId());
-		// graph.setCreatorNickname(user.getNickname());
+		graph.setCreatorUserId(user.getUserId());
+		graph.setCreatorNickname(user.getNickname());
 		graph.setUpdatedAt(graph.getCreatedAt());
 		graph.setDeleted(false);
 		iGraphService.save(graph);

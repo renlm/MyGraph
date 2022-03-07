@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.GraphDto;
+import cn.renlm.graph.dto.UserDto;
 import cn.renlm.graph.entity.Graph;
 import cn.renlm.graph.service.IGraphService;
 
@@ -92,13 +94,14 @@ public class GraphController {
 	/**
 	 * 保存
 	 * 
-	 * @param request
+	 * @param authentication
 	 * @param form
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/saveEditor")
-	public Result saveEditor(HttpServletRequest request, GraphDto form) {
+	public Result saveEditor(Authentication authentication, GraphDto form) {
+		UserDto user = (UserDto) authentication.getPrincipal();
 		try {
 			Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, form.getUuid()));
 			graph.setZoom(ObjectUtil.defaultIfNull(form.getZoom(), new BigDecimal(1)));
@@ -114,6 +117,8 @@ public class GraphController {
 			graph.setGuidesEnabled(ObjectUtil.defaultIfNull(form.getGuidesEnabled(), true));
 			graph.setXml(Base64.decodeStr(form.getXml()));
 			graph.setUpdatedAt(new Date());
+			graph.setUpdatorUserId(user.getUserId());
+			graph.setUpdatorNickname(user.getNickname());
 			iGraphService.updateById(graph);
 			return Result.success();
 		} catch (Exception e) {
