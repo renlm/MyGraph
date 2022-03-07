@@ -2,6 +2,8 @@
 
 @import "scrollbar.css";
 
+@import "ie-warn.css";
+
 [v-cloak] {
 	display: none;
 }

@@ -14,14 +14,20 @@
 	<link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet" />
 	<link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet" />
 	<link rel="stylesheet" th:href="@{static/css/login.css}" />
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<!--[if lt IE 9]>
     <script th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
     <script th:src="@{/webjars/respond/dest/respond.min.js}"></script>
     <![endif]-->
 </head>
 <body>
+	<!-- 禁用IE -->
+	<div th:replace="fragments/ie-warn :: info"></div>
+	<!-- 页面主体 -->
 	<div class="layui-container">
+		<!-- 粒子特效背景 -->
 		<div class="particle"></div>
+		<!-- 登录框 -->
 		<div class="admin-login-background">
 			<div class="layui-form login-form">
 				<form id="form" method="post" class="layui-form" th:action="@{/dologin}">
@@ -86,12 +92,6 @@
 		</div>
 	</div>
 	<input id="errMsg" type="hidden" th:value="${session.SPRING_SECURITY_LAST_EXCEPTION?.message}" />
-	<div id="ie-warn">
-	    <p>
-	    	您正在使用低版本浏览器，建议您使用<a href="https://www.google.cn/chrome" target="_blank">谷歌浏览器</a>
-			或使用<a href="http://se.360.cn/" target="_blank">360安全浏览器</a>的极速模式浏览
-	    </p>
-	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
@@ -101,7 +101,6 @@
 			</div>
 		</div>
 	</div>
-	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 	<script th:src="@{/webjars/layui/layui.js}"></script>
 	<script th:src="@{/webjars/JParticles/jparticles.all.js}"></script>
@@ -123,12 +122,6 @@
 		
 		// 禁止嵌入
 		if(self != top) top.location.href = self.location.href;
-		
-		// 禁用IE
-		if(!!window.ActiveXObject || "ActiveXObject" in window) {
-			$("#ie-warn").show();
-			$(".login-box").hide();
-		}
 		
 		// 回车键
 		document.onkeydown = function(event){

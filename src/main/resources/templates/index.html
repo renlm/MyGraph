@@ -4,6 +4,8 @@
 	<title>在线画图</title>
 </head>
 <body layout:fragment="content">
+	<!-- 禁用IE -->
+	<div th:replace="fragments/ie-warn :: info"></div>
 	<!-- 页面主体 -->
 	<div class="container layui-tab">
 		<!-- 头部开始 -->
