@@ -32,7 +32,7 @@ public class CaptchaController {
 	@SneakyThrows
 	@RequestMapping
 	public void image(HttpServletRequest request, HttpServletResponse response) {
-		LineCaptcha captcha = CaptchaUtil.createLineCaptcha(108, 38, 3, 60);
+		LineCaptcha captcha = CaptchaUtil.createLineCaptcha(108, 38, 3, 36);
 		request.getSession().setAttribute(ConstVal.CAPTCHA_SESSION_KEY, captcha.getCode());
 		@Cleanup
 		ServletOutputStream out = response.getOutputStream();
