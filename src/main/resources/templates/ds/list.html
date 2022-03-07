@@ -2,8 +2,6 @@
 <html lang="zh-CN" layout:decorate="~{layout/hadmin}">
 <head>
 	<title>数据源</title>
-	<!-- Bootstrap table -->
-	<link th:href="@{/webjars/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet" />
 </head>
 <body layout:fragment="content" class="gray-bg">
 	<div class="wrapper wrapper-content">
@@ -39,14 +37,7 @@
                   		<h5>数据源</h5>
 					</div>
                		<div class="ibox-content">
-                   		<table data-toggle="table" th:data-url="@{/ds/ajax/list}">
-                       		<thead>
-                           		<tr>
-                                 	<th data-field="url">JDBC链接</th>
-                               		<th data-field="schema">Schema</th>
-                          		</tr>
-                       		</thead>
-                   		</table>
+                   		<table id="dsTable"></table>
                		</div>
          		</div>
 			</div>
@@ -56,7 +47,7 @@
                 		<h5>数据库表</h5>
 					</div>
                  	<div class="ibox-content">
-                 		表格
+                 		<table id="erTable"></table>
                  	</div>
               	</div>
 			</div>
@@ -139,10 +130,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- Bootstrap table -->
-    <script th:src="@{/webjars/bootstrap-table/bootstrap-table.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap-table/extensions/mobile/bootstrap-table-mobile.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap-table/locale/bootstrap-table-zh-CN.min.js}"></script>
 	<script type="text/javascript">
 		$(function () {
 			/**
@@ -153,6 +140,51 @@
 			}).on("hide.bs.modal", function () {
 				$("#dsForm").clearform();
 			});
+			/**
+			 * 初始化表格-数据源
+			 */
+			layui.table.render({
+				elem: "#dsTable",
+				url: "[(@{/ds/ajax/list})]",
+				page: false,
+				parseData: function (res) {
+					return {
+						code: 0,
+						msg: null,
+						data: res,
+						count: res.length
+					};
+				},
+				cols: [ [
+						{ field: "url", title: "JDBC链接" },
+						{ field: "schema", title: "Schema" }
+					] ]
+				});
+			/**
+			 * 初始化表格-数据库表
+			 */
+			layui.table.render({
+				elem: "#erTable",
+				url: "[(@{/er/ajax/page})]",
+				page: true,
+				request: {
+					pageName: "current",
+				 	limitName: "size"
+				},
+				parseData: function (res) {
+					return {
+						code: 0,
+						msg: null,
+						data: res.records,
+						count: res.total
+					};
+				},
+				cols: [ [
+						{ field: "uuid", type: "checkbox", width: 80 },
+						{ field: "tableName", title: "表名" },
+						{ field: "comment", title: "注释" }
+					] ]
+				});
 		});
 		/**
 		 * 提交数据源表单
