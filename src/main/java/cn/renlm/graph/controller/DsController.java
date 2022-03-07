@@ -49,21 +49,15 @@ public class DsController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/list")
-	public Result ajaxList(Authentication authentication, DsDto form) {
-		try {
-			UserDto user = (UserDto) authentication.getPrincipal();
-			List<Ds> list = iDsService.list(Wrappers.<Ds>lambdaQuery().func(wrapper -> {
-				wrapper.like(StrUtil.isNotBlank(form.getKeywords()), Ds::getUrl, form.getKeywords());
-				wrapper.eq(Ds::getCreatorUserId, user.getUserId());
-				wrapper.eq(Ds::getDeleted, false);
-				wrapper.orderByDesc(Ds::getUpdatedAt);
-				wrapper.orderByDesc(Ds::getId);
-			}));
-			return Result.success(list);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Result.error("服务器出错了");
-		}
+	public List<Ds> ajaxList(Authentication authentication, DsDto form) {
+		UserDto user = (UserDto) authentication.getPrincipal();
+		return iDsService.list(Wrappers.<Ds>lambdaQuery().func(wrapper -> {
+			wrapper.like(StrUtil.isNotBlank(form.getKeywords()), Ds::getUrl, form.getKeywords());
+			wrapper.eq(Ds::getCreatorUserId, user.getUserId());
+			wrapper.eq(Ds::getDeleted, false);
+			wrapper.orderByDesc(Ds::getUpdatedAt);
+			wrapper.orderByDesc(Ds::getId);
+		}));
 	}
 
 	/**
