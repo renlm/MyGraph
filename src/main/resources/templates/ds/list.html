@@ -33,11 +33,11 @@
 					</div>
 				</div>
 				<div class="white-bg no-padding animated fadeInUp">
-               		<table id="dsTable"></table>
+               		<table id="dsTable" lay-filter="dsTable"></table>
          		</div>
 			</div>
 			<div class="col-sm-8 white-bg no-padding animated fadeInRight">
-				<table id="erTable"></table>
+				<table id="erTable" lay-filter="erTable"></table>
 			</div>
 		</div>
 	</div>
@@ -125,7 +125,7 @@
 	</script>
 	<script type="text/html" id="erToolbar">
   		<div class="layui-btn-container">
-        	<button class="layui-btn layui-btn-sm" lay-event="add"> 生成ER图 </button>
+        	<button class="layui-btn layui-btn-sm" lay-event="createGraph"> 生成ER图 </button>
      	</div>
 	</script>
 	<script type="text/javascript">
@@ -169,6 +169,15 @@
 						$(dsTableId).next().addClass("no-margins");
 					}
 				});
+			// 监听事件-数据源
+			layui.table.on("toolbar(dsTable)", function (obj) {
+					var checkStatus = layui.table.checkStatus(obj.config.id);
+					switch (obj.event) {
+				  		case "delete":
+				       		layer.msg("删除");
+				     	break;
+					};
+				});
 			/**
 			 * 初始化表格-数据库表
 			 */
@@ -199,6 +208,15 @@
 					done: function (res, curr, count) {
 						$(erTableId).next().addClass("no-margins");
 					}
+				});
+			// 监听事件-数据库表
+			layui.table.on("toolbar(erTable)", function (obj) {
+					var checkStatus = layui.table.checkStatus(obj.config.id);
+					switch (obj.event) {
+				  		case "createGraph":
+				       		layer.msg("生成ER图");
+				     	break;
+					};
 				});
 		});
 		/**
