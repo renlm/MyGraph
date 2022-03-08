@@ -32,24 +32,12 @@
 						</ul>
 					</div>
 				</div>
-				<div class="ibox float-e-margins animated fadeInUp">
-               		<div class="ibox-title">
-                  		<h5>数据源</h5>
-					</div>
-               		<div class="ibox-content">
-                   		<table id="dsTable"></table>
-               		</div>
+				<div class="white-bg no-padding animated fadeInUp">
+               		<table id="dsTable"></table>
          		</div>
 			</div>
-			<div class="col-sm-8 animated fadeInRight">
-				<div class="ibox ">
-              		<div class="ibox-title">
-                		<h5>数据库表</h5>
-					</div>
-                 	<div class="ibox-content">
-                 		<table id="erTable"></table>
-                 	</div>
-              	</div>
+			<div class="col-sm-8 white-bg no-padding animated fadeInRight">
+				<table id="erTable"></table>
 			</div>
 		</div>
 	</div>
@@ -130,7 +118,21 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/html" id="dsToolbar">
+  		<div class="layui-btn-container">
+        	<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="delete"> 删除 </button>
+     	</div>
+	</script>
+	<script type="text/html" id="erToolbar">
+  		<div class="layui-btn-container">
+        	<button class="layui-btn layui-btn-sm" lay-event="add"> 生成ER图 </button>
+     	</div>
+	</script>
 	<script type="text/javascript">
+		var dsTableId = "#dsTable";
+		var dsTable = null;
+		var erTableId = "#erTable";
+		var erTable = null;
 		$(function () {
 			/**
 			 * 重置表单
@@ -143,47 +145,58 @@
 			/**
 			 * 初始化表格-数据源
 			 */
-			layui.table.render({
-				elem: "#dsTable",
-				url: "[(@{/ds/ajax/list})]",
-				page: false,
-				parseData: function (res) {
-					return {
-						code: 0,
-						msg: null,
-						data: res,
-						count: res.length
-					};
-				},
-				cols: [ [
-						{ field: "url", title: "JDBC链接" },
-						{ field: "schema", title: "Schema" }
-					] ]
+			 dsTable = layui.table.render({
+					elem: dsTableId,
+					toolbar: "#dsToolbar",
+					defaultToolbar: [ "filter", "print" ],
+					url: "[(@{/ds/ajax/list})]",
+					page: true,
+					parseData: function (res) {
+						return {
+							code: 0,
+							msg: null,
+							data: res,
+							count: res.length
+						};
+					},
+					cols: [ [
+							{ field: "uuid", type: "checkbox", width: 80 },
+							{ field: "url", title: "JDBC链接" },
+							{ field: "schema", title: "Schema" }
+						] ],
+					done: function (res, curr, count) {
+						$(dsTableId).next().addClass("no-margins");
+					}
 				});
 			/**
 			 * 初始化表格-数据库表
 			 */
-			layui.table.render({
-				elem: "#erTable",
-				url: "[(@{/er/ajax/page})]",
-				page: true,
-				request: {
-					pageName: "current",
-				 	limitName: "size"
-				},
-				parseData: function (res) {
-					return {
-						code: 0,
-						msg: null,
-						data: res.records,
-						count: res.total
-					};
-				},
-				cols: [ [
-						{ field: "uuid", type: "checkbox", width: 80 },
-						{ field: "tableName", title: "表名" },
-						{ field: "comment", title: "注释" }
-					] ]
+			 erTable = layui.table.render({
+					elem: erTableId,
+					toolbar: "#erToolbar",
+					defaultToolbar: [ "filter", "print" ],
+					url: "[(@{/er/ajax/page})]",
+					page: true,
+					request: {
+						pageName: "current",
+					 	limitName: "size"
+					},
+					parseData: function (res) {
+						return {
+							code: 0,
+							msg: null,
+							data: res.records,
+							count: res.total
+						};
+					},
+					cols: [ [
+							{ field: "uuid", type: "checkbox", width: 80 },
+							{ field: "tableName", title: "表名" },
+							{ field: "comment", title: "注释" }
+						] ],
+					done: function (res, curr, count) {
+						$(erTableId).next().addClass("no-margins");
+					}
 				});
 		});
 		/**
@@ -199,6 +212,8 @@
    					function (resJson) {
    						$("#dsModal").find(".spiner-loading").removeClass("show");
 						if(resJson.statusCode == 200) {
+							dsTable.reload({});
+							erTable.reload({});
 							$.toastrSuccess("数据源已添加");
 							$("#dsModal").modal("hide");
 			          	} else {
