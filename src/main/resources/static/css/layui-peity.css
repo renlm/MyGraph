@@ -2,17 +2,3 @@
 	font-weight: bold !important;
 	color: #009688 !important;
 }
-
-.layui-table-view .layui-table-body table tbody tr:hover,
-	.layui-table-view .layui-table-body table tbody tr.layui-table-click {
-	background-color: #c2e0dd !important;
-}
-
-.layui-table-view .layui-table-body table tbody tr td div {
-	color: black !important;
-}
-
-.layui-table-view .layui-table-body table tbody tr td div.layui-table-cell
-	{
-	height: 31px !important;
-}

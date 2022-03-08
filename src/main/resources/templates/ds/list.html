@@ -162,7 +162,8 @@
 					cols: [ [
 							{ field: "uuid", type: "checkbox", width: 80 },
 							{ field: "url", title: "JDBC链接" },
-							{ field: "schema", title: "Schema" }
+							{ field: "schema", title: "Schema", width: 90 },
+							{ field: "updatedAt", title: "更新时间", width: 145, align: "right", templet: function (res) { return layui.util.toDateString(res.updatedAt, "yyyy-MM-dd HH:mm"); } }
 						] ],
 					done: function (res, curr, count) {
 						$(dsTableId).next().addClass("no-margins");
@@ -192,7 +193,8 @@
 					cols: [ [
 							{ field: "uuid", type: "checkbox", width: 80 },
 							{ field: "tableName", title: "表名" },
-							{ field: "comment", title: "注释" }
+							{ field: "comment", title: "注释" },
+							{ field: "updatedAt", title: "更新时间", width: 145, align: "right", templet: function (res) { return layui.util.toDateString(res.updatedAt, "yyyy-MM-dd HH:mm"); } }
 						] ],
 					done: function (res, curr, count) {
 						$(erTableId).next().addClass("no-margins");
