@@ -214,7 +214,36 @@
 					var checkStatus = layui.table.checkStatus(obj.config.id);
 					switch (obj.event) {
 				  		case "createGraph":
-				       		layer.msg("生成ER图");
+				  			if(checkStatus.data.length === 0) {
+				  				layer.msg("请勾选要生成ER图的表", { icon: 5, shift:6, time: 1200, offset: "200px" });
+				  				return;
+				  			}
+				  			var uuids = "";
+				  			checkStatus.data.forEach(function (item,index) {
+	           					if(index == 0) {
+	           						uuids = item.uuid;
+	           					} else {
+	           						uuids += "," + item.uuid;
+	           					}
+	           				});
+		          			layer.prompt({
+									title: "新建ER设计图",
+									offset: "200px",
+									formType: 0, 
+									value: null,
+									skin: "layui-layer-rim layui-layer-prompt"
+								}, function (value, index, elem) {
+			           				$.post("[(@{/er/ajax/createGraph})]", 
+			           						{ name: value, uuids: uuids }, 
+			           						function (resJson) {
+					      						if(resJson.statusCode == 200) {
+				           							layer.close(index);
+					      							$.toastrSuccess(value + "，ER图已添加");
+									          	} else {
+									          		swal("出错了", resJson.message ? resJson.message : "系统异常", "error");
+									        	}
+			    							});
+										});
 				     	break;
 					};
 				});
@@ -237,7 +266,7 @@
 							$.toastrSuccess("数据源已添加");
 							$("#dsModal").modal("hide");
 			          	} else {
-			          		swal("出错了", "添加数据源失败，请检查配置是否正确.", "error");
+			          		swal("出错了", resJson.message ? resJson.message : "系统异常", "error");
 			        	}
 					});		
 			}
