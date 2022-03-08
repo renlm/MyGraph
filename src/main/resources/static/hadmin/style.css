@@ -1,3 +1,7 @@
+@charset "utf-8";
+
+@import "../css/layui-peity.css";
+
 input.form-control::placeholder {
 	font-size: 12px;
     color: #aaa;
