@@ -36,8 +36,28 @@
                		<table id="dsTable" lay-filter="dsTable"></table>
          		</div>
 			</div>
-			<div class="col-sm-8 white-bg no-padding animated fadeInRight">
-				<table id="erTable" lay-filter="erTable"></table>
+			<div class="col-sm-8 animated fadeInRight">
+				<div class="ibox">
+					<div class="ibox-title">
+                        <h5>数据库表</h5>
+                    </div>
+					<div class="ibox-content">
+						<div class="row m-b-sm m-t-sm">
+		                    <div class="col-md-1">
+		                        <button type="button" id="loading-example-btn" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> 刷新</button>
+		                    </div>
+		                    <div class="col-md-11">
+		                        <div class="input-group">
+		                            <input type="text" placeholder="请输入项目名称" class="input-sm form-control" /> 
+		                            <span class="input-group-btn">
+		                                <button type="button" class="btn btn-sm btn-primary"> 搜索</button> 
+		                      		</span>
+		                        </div>
+		                    </div>
+		            	</div>
+						<table id="erTable" lay-filter="erTable"></table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -161,8 +181,10 @@
 					},
 					cols: [ [
 							{ field: "uuid", type: "checkbox", width: 80 },
-							{ field: "url", title: "JDBC链接" },
-							{ field: "schema", title: "Schema", width: 90 },
+							{ field: "url", title: "JDBC链接", minWidth: 250 },
+							{ field: "schema", title: "Schema", hide: true, minWidth: 100 },
+							{ field: "username", title: "账号", hide: true, minWidth: 80 },
+							{ field: "remark", title: "备注", hide: true, minWidth: 120 },
 							{ field: "updatedAt", title: "更新时间", width: 145, align: "right", templet: function (res) { return layui.util.toDateString(res.updatedAt, "yyyy-MM-dd HH:mm"); } }
 						] ],
 					done: function (res, curr, count) {
@@ -174,7 +196,29 @@
 					var checkStatus = layui.table.checkStatus(obj.config.id);
 					switch (obj.event) {
 				  		case "delete":
-				       		layer.msg("删除");
+				  			if(checkStatus.data.length === 0) {
+				  				layer.msg("请勾选要删除的数据源", { icon: 5, shift:6, time: 1200, offset: [ "300px", "150px" ] });
+				  				return;
+				  			}
+				  			var uuids = "";
+				  			checkStatus.data.forEach(function (item,index) {
+	           					if(index == 0) {
+	           						uuids = item.uuid;
+	           					} else {
+	           						uuids += "," + item.uuid;
+	           					}
+	           				});
+				  			$.post("[(@{/ds/ajax/del})]", 
+	           						{ uuids: uuids }, 
+	           						function (resJson) {
+			      						if(resJson.statusCode == 200) {
+			      							dsTable.reload({});
+			    							erTable.reload({});
+			      							$.toastrSuccess("数据源已删除");
+							          	} else {
+							          		swal("出错了", resJson.message ? resJson.message : "系统异常", "error");
+							        	}
+	    							});
 				     	break;
 					};
 				});
