@@ -247,7 +247,7 @@
 					},
 					cols: [ [
 							{ field: "uuid", type: "checkbox", width: 80 },
-							{ field: "tableName", title: "表名" },
+							{ field: "tableName", title: "表名", templet: function (res) { return '<a href="javascript:void(0);" onclick="lookTableFields(\'' + res.uuid + '\');">' + res.tableName + '</a>'; }  },
 							{ field: "comment", title: "注释" },
 							{ field: "updatedAt", title: "更新时间", width: 145, align: "right", templet: function (res) { return layui.util.toDateString(res.updatedAt, "yyyy-MM-dd HH:mm"); } }
 						] ],
@@ -340,6 +340,12 @@
 					keywords: $("#keywords").val()
 				}
 			});
+		}
+		/**
+		 * 查看数据库表字段
+		 */
+		function lookTableFields (erUuid) {
+			console.log(erUuid);
 		}
 	</script>
 </body>
