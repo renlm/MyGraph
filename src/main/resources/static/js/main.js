@@ -4,6 +4,20 @@
 (function($) {
 	$.extend({
 		/***
+		 * 简单按钮加载效果
+		 */
+		simpleLoad: function (btn, state) {
+            if (state) {
+                btn.children().addClass("fa-spin");
+                btn.contents().last().replaceWith(" Loading");
+            } else {
+                setTimeout(function () {
+                    btn.children().removeClass("fa-spin");
+                    btn.contents().last().replaceWith(" 刷新");
+                }, 300);
+            }
+        },
+		/***
 		 * Toastr通知（成功）
 		 */
 		toastrSuccess: function (message) {
