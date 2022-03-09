@@ -322,14 +322,24 @@
 		 */
 		function refreshErTable (e) {
 			$.simpleLoad($(e), true);
-			erTable.reload({});
-			$.simpleLoad($(e), false);
+			erTable.reload({
+				done: function (res, curr, count) {
+					$.simpleLoad($(e), false);
+				}
+			});
 		}
 		/**
 		 * 搜索数据库表
 		 */
 		function searchErTable (e) {
-			erTable.reload({});
+			erTable.reload({
+				page: { 
+					curr: 1 
+				},
+				where: {
+					keywords: $("#keywords").val()
+				}
+			});
 		}
 	</script>
 </body>
