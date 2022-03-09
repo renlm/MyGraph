@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Result;
@@ -44,20 +44,15 @@ public class DsController {
 	 * 列表数据
 	 * 
 	 * @param authentication
+	 * @param page
 	 * @param form
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/list")
-	public List<Ds> ajaxList(Authentication authentication, DsDto form) {
+	public Page<Ds> ajaxList(Authentication authentication, Page<Ds> page, DsDto form) {
 		UserDto user = (UserDto) authentication.getPrincipal();
-		return iDsService.list(Wrappers.<Ds>lambdaQuery().func(wrapper -> {
-			wrapper.like(StrUtil.isNotBlank(form.getKeywords()), Ds::getUrl, form.getKeywords());
-			wrapper.eq(Ds::getCreatorUserId, user.getUserId());
-			wrapper.eq(Ds::getDeleted, false);
-			wrapper.orderByDesc(Ds::getUpdatedAt);
-			wrapper.orderByDesc(Ds::getId);
-		}));
+		return iDsService.findPage(page, user, form);
 	}
 
 	/**

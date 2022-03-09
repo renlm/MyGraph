@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.codec.Base64;
@@ -51,6 +52,24 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 
 	@Autowired
 	private IErFieldService iErFieldService;
+
+	@Override
+	public Page<Ds> findPage(Page<Ds> page, UserDto user, DsDto form) {
+		return this.page(page, Wrappers.<Ds>lambdaQuery().func(wrapper -> {
+			wrapper.eq(Ds::getCreatorUserId, user.getUserId());
+			wrapper.eq(Ds::getDeleted, false);
+			wrapper.orderByDesc(Ds::getUpdatedAt);
+			wrapper.orderByDesc(Ds::getId);
+			if (StrUtil.isNotBlank(form.getKeywords())) {
+				wrapper.and(item -> {
+					item.or().like(Ds::getUrl, form.getKeywords());
+					item.or().like(Ds::getSchema, form.getKeywords());
+					item.or().like(Ds::getUsername, form.getKeywords());
+					item.or().like(Ds::getRemark, form.getKeywords());
+				});
+			}
+		}));
+	}
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)

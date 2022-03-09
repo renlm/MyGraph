@@ -1,5 +1,6 @@
 package cn.renlm.graph.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.renlm.graph.common.Result;
@@ -16,6 +17,16 @@ import cn.renlm.graph.entity.Ds;
  * @since 2022-03-04
  */
 public interface IDsService extends IService<Ds> {
+
+	/**
+	 * 分页列表
+	 * 
+	 * @param page
+	 * @param user
+	 * @param form
+	 * @return
+	 */
+	Page<Ds> findPage(Page<Ds> page, UserDto user, DsDto form);
 
 	/**
 	 * 初始化数据源
