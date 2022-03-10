@@ -168,13 +168,6 @@
 
 		<dependency>
 			<groupId>org.webjars</groupId>
-			<artifactId>jqgrid</artifactId>
-			<version>4.7.0</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>3.4.1</version>
 			<scope>runtime</scope>
@@ -198,20 +191,6 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>jQuery-contextMenu</artifactId>
 			<version>1.6.5</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>jquery-blockui</artifactId>
-			<version>2.70-1</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>jquery-fullscreen</artifactId>
-			<version>1.1.4</version>
 			<scope>runtime</scope>
 		</dependency>
 
