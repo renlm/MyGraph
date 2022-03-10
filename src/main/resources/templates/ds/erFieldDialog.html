@@ -2,74 +2,30 @@
 <html lang="zh-CN" layout:decorate="~{layout/hadmin}">
 <head>
 	<title>字段列表</title>
+	<!-- Bootstrap-table -->
+	<link th:href="@{/webjars/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet" />
 </head>
 <body layout:fragment="content">
-	<div class="jqGrid_wrapper">
-		<table id="erFieldTable"></table>
-		<div id="pagerList"></div>
+	<div class="p-xs">
+		<table data-toggle="table" th:data-url="|@{/}erField/ajax/list?erUuid=${erUuid}|">
+	    	<thead>
+	            <tr>
+	                <th data-field="name">列名</th>
+	                <th data-field="comment">注释</th>
+	                <th data-field="typeName">类型</th>
+	                <th data-field="size">精度</th>
+	                <th data-field="digit">标度</th>
+	                <th data-field="isNullable">是否可为空</th>
+	                <th data-field="autoIncrement">是否自增</th>
+	                <th data-field="columnDef">字段默认值</th>
+	                <th data-field="isPk">主键</th>
+	                <th data-field="isFk">外键</th>
+	            </tr>
+	        </thead>
+		</table>
 	</div>
-	<script type="text/javascript">
-		$(function () {
-			$.jgrid.defaults.styleUI = 'Bootstrap';
-			$("#erFieldTable").jqGrid({
-				url: "[(@{/erField/ajax/list})]",
-                datatype: "json",
-                postData: {
-                	erUuid: "[(${erUuid})]"
-                },
-                autowidth: true,
-                shrinkToFit: true,
-                rowNum: 14,
-                rowList: [10, 20, 30],
-                colNames: ['列名', '注释', '类型', '精度', '标度', '是否可为空', '是否自增', '字段默认值', '主键', '外键'],
-                colModel: [
-                    {
-                        name: 'name',
-                        index: 'name'
-                    },
-                    {
-                        name: 'comment',
-                        index: 'comment'
-                    },
-                    {
-                        name: 'typeName',
-                        index: 'typeName'
-                    },
-                    {
-                        name: 'size',
-                        index: 'size'
-                    },
-                    {
-                        name: 'digit',
-                        index: 'digit'
-                    },
-                    {
-                        name: 'isNullable',
-                        index: 'isNullable'
-                    },
-                    {
-                        name: 'autoIncrement',
-                        index: 'autoIncrement'
-                    },
-                    {
-                        name: 'columnDef',
-                        index: 'columnDef'
-                    },
-                    {
-                        name: 'isPk',
-                        index: 'isPk'
-                    },
-                    {
-                        name: 'isFk',
-                        index: 'isFk'
-                    }
-                ],
-                pager: "#pagerList",
-                viewrecords: true,
-                caption: "jqGrid 示例1",
-                hidegrid: false
-            });
-		});
-	</script>
+	<!-- Bootstrap-table -->
+	<script th:src="@{/webjars/bootstrap-table/bootstrap-table.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap-table/locale/bootstrap-table-zh-CN.js}"></script>
 </body>
 </html>
