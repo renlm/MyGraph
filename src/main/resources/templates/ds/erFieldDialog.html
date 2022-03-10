@@ -4,41 +4,71 @@
 	<title>字段列表</title>
 </head>
 <body layout:fragment="content">
-	<table id="erFieldTable" class="layui-hide"></table>
+	<div class="jqGrid_wrapper">
+		<table id="erFieldTable"></table>
+		<div id="pagerList"></div>
+	</div>
 	<script type="text/javascript">
 		$(function () {
-			var erFieldTableId = "#erFieldTable";
-			layui.table.render({
-				elem: erFieldTableId,
+			$.jgrid.defaults.styleUI = 'Bootstrap';
+			$("#erFieldTable").jqGrid({
 				url: "[(@{/erField/ajax/list})]",
-				page: false,
-				where: {
-					erUuid: "[(${erUuid})]"
-				},
-				parseData: function (res) {
-					return {
-						code: 0,
-						msg: null,
-						data: res,
-						count: res.length
-					};
-				},
-				cols: [ [
-						{ field: "name", title: "列名", minWidth: 160 },
-						{ field: "comment", title: "注释", minWidth: 200 },
-						{ field: "typeName", title: "类型" },
-						{ field: "size", title: "精度", align: "right" },
-						{ field: "digit", title: "标度", align: "right" },
-						{ field: "isNullable", title: "是否可为空", align: "center", templet: function (res) { return res.isNullable ? "是" : "否"; } },
-						{ field: "autoIncrement", title: "是否自增", align: "center", templet: function (res) { return res.autoIncrement ? "是" : "否"; } },
-						{ field: "columnDef", title: "字段默认值" },
-						{ field: "isPk", title: "主键", align: "center", templet: function (res) { return res.isPk ? "是" : "否"; } },
-						{ field: "isFk", title: "外键", align: "center", templet: function (res) { return res.isFk ? "是" : "否"; } }
-					] ],
-				done: function (res, curr, count) {
-					$(erFieldTableId).next().addClass("no-margins").addClass("no-borders");
-				}
-			});
+                datatype: "json",
+                postData: {
+                	erUuid: "[(${erUuid})]"
+                },
+                autowidth: true,
+                shrinkToFit: true,
+                rowNum: 14,
+                rowList: [10, 20, 30],
+                colNames: ['列名', '注释', '类型', '精度', '标度', '是否可为空', '是否自增', '字段默认值', '主键', '外键'],
+                colModel: [
+                    {
+                        name: 'name',
+                        index: 'name'
+                    },
+                    {
+                        name: 'comment',
+                        index: 'comment'
+                    },
+                    {
+                        name: 'typeName',
+                        index: 'typeName'
+                    },
+                    {
+                        name: 'size',
+                        index: 'size'
+                    },
+                    {
+                        name: 'digit',
+                        index: 'digit'
+                    },
+                    {
+                        name: 'isNullable',
+                        index: 'isNullable'
+                    },
+                    {
+                        name: 'autoIncrement',
+                        index: 'autoIncrement'
+                    },
+                    {
+                        name: 'columnDef',
+                        index: 'columnDef'
+                    },
+                    {
+                        name: 'isPk',
+                        index: 'isPk'
+                    },
+                    {
+                        name: 'isFk',
+                        index: 'isFk'
+                    }
+                ],
+                pager: "#pagerList",
+                viewrecords: true,
+                caption: "jqGrid 示例1",
+                hidegrid: false
+            });
 		});
 	</script>
 </body>
