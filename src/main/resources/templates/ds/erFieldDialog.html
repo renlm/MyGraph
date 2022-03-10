@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN" layout:decorate="~{layout/hadmin}">
+<head>
+	<title>字段列表</title>
+</head>
+<body layout:fragment="content">
+	<table id="erFieldTable" class="layui-hide"></table>
+	<script type="text/javascript">
+		$(function () {
+			var erFieldTableId = "#erFieldTable";
+			layui.table.render({
+				elem: erFieldTableId,
+				url: "[(@{/erField/ajax/list})]",
+				page: false,
+				where: {
+					erUuid: "[(${erUuid})]"
+				},
+				parseData: function (res) {
+					return {
+						code: 0,
+						msg: null,
+						data: res,
+						count: res.length
+					};
+				},
+				cols: [ [
+						{ field: "name", title: "列名", minWidth: 160 },
+						{ field: "comment", title: "注释", minWidth: 200 },
+						{ field: "typeName", title: "类型" },
+						{ field: "size", title: "精度" },
+						{ field: "digit", title: "标度" },
+						{ field: "isNullable", title: "是否可为空" },
+						{ field: "autoIncrement", title: "是否自增" },
+						{ field: "columnDef", title: "字段默认值" },
+						{ field: "isPk", title: "主键" },
+						{ field: "isFk", title: "外键" }
+					] ],
+				done: function (res, curr, count) {
+					$(erFieldTableId).next().addClass("no-margins").addClass("no-borders");
+				}
+			});
+		});
+	</script>
+</body>
+</html>

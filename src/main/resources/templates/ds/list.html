@@ -33,7 +33,7 @@
 					</div>
 				</div>
 				<div class="white-bg no-padding animated fadeInUp">
-               		<table id="dsTable" lay-filter="dsTable"></table>
+               		<table id="dsTable" class="layui-hide" lay-filter="dsTable"></table>
          		</div>
 			</div>
 			<div class="col-sm-8 animated fadeInRight">
@@ -57,7 +57,7 @@
 		                        </div>
 		                    </div>
 		            	</div>
-						<table id="erTable" lay-filter="erTable"></table>
+						<table id="erTable" class="layui-hide" lay-filter="erTable"></table>
 					</div>
 				</div>
 			</div>
@@ -348,11 +348,11 @@
 			window.erFieldLayerIndex = layer.open({
 				type: 2, 
 				title: tableName,
-				offset: '200px',
-				area: ['750px', '450px'],
-				skin: "layui-layer-rim",
-				content: [ctx + '/erField/dialog', 'no']
+				maxmin: true,
+				area: [ "850px", "450px" ],
+				content: [ctx + "/erField/dialog?erUuid=" + erUuid, "no"]
 			});
+			layer.full(window.erFieldLayerIndex);
 		}
 	</script>
 </body>
