@@ -1,0 +1,32 @@
+{
+  "name": "jqGrid",
+  "title": "Guriddo jqGrid",
+  "description": "jqGrid is an Ajax-enabled JavaScript control that provides solutions for representing and manipulating tabular data on the web.",
+  "version": "5.7.0",
+  "author": {
+    "name": "Tony Tomov",
+    "url": "http://www.guriddo.net",
+    "email": "tony@trirand.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonytomov/jqGrid.git"
+  },
+  "homepage": "http://www.guriddo.net",
+  "licenses": [
+    {
+      "type": "Creative Commons Attribution-Non-Commercial 3.0 License",
+      "url": "http://guriddo.net/?page_id=103334"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "^1.3.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-jshint": "^3.0.0",
+    "grunt-contrib-requirejs": ">0.4.4",
+    "grunt-contrib-uglify": "^5.0.0"
+  },
+  "dependencies": {
+    "grunt-cli": "^1.3.2"
+  }
+}
