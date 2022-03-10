@@ -7,19 +7,21 @@
 </head>
 <body layout:fragment="content">
 	<div class="p-xs">
-		<table data-toggle="table" th:data-url="|@{/}erField/ajax/list?erUuid=${erUuid}|">
+		<table data-toggle="table" 
+			th:data-url="|@{/}erField/ajax/list?erUuid=${erUuid}|"
+			>
 	    	<thead>
 	            <tr>
 	                <th data-field="name">列名</th>
 	                <th data-field="comment">注释</th>
 	                <th data-field="typeName">类型</th>
-	                <th data-field="size">精度</th>
-	                <th data-field="digit">标度</th>
-	                <th data-field="isNullable">是否可为空</th>
-	                <th data-field="autoIncrement">是否自增</th>
+	                <th data-field="size" data-align="right">精度</th>
+	                <th data-field="digit" data-align="right">标度</th>
+	                <th data-field="isNullable" data-align="center" data-formatter="$.yesNoFormatter">是否可为空</th>
+	                <th data-field="autoIncrement" data-align="center" data-formatter="$.yesNoFormatter">是否自增</th>
 	                <th data-field="columnDef">字段默认值</th>
-	                <th data-field="isPk">主键</th>
-	                <th data-field="isFk">外键</th>
+	                <th data-field="isPk" data-align="center" data-formatter="$.yesNoFormatter">主键</th>
+	                <th data-field="isFk" data-align="center" data-formatter="$.yesNoFormatter">外键</th>
 	            </tr>
 	        </thead>
 		</table>

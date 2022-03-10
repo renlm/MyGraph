@@ -50,6 +50,26 @@
 				skin: "layui-layer-rim",
 				content: [ctx + '/editPwd', 'no']
 			});
+		},
+		/**
+		 * 是否状态格式化
+		 */
+		yesNoFormatter: function(value) {
+			var yes = value ? true : false;
+			if(value === null) {
+				return '-';
+			} else if(value === 'false') {
+				yes = false;
+			} else if(value === '0') {
+				yes = false;
+			} else if(value === 0) {
+				yes = false;
+			}
+			if(yes) {
+				return '是';
+			} else {
+				return '否';
+			}
 		}
 	});
 })(jQuery);
