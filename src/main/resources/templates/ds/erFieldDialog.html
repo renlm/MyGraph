@@ -7,7 +7,9 @@
 </head>
 <body layout:fragment="content">
 	<div class="p-xs">
-		<table data-toggle="table" th:data-url="|@{/}erField/ajax/list?erUuid=${erUuid}|">
+		<table id="erFields"
+			data-toggle="table" 
+			th:data-url="|@{/}erField/ajax/list?erUuid=${erUuid}|">
 	    	<thead>
 	            <tr>
 	                <th data-field="name">列名</th>
@@ -27,5 +29,13 @@
 	<!-- Bootstrap-table -->
 	<script th:src="@{/webjars/bootstrap-table/bootstrap-table.min.js}"></script>
 	<script th:src="@{/webjars/bootstrap-table/locale/bootstrap-table-zh-CN.js}"></script>
+	<script type="text/javascript">
+		$(function () {
+			var erFields = $("#erFields");
+			erFields.on("post-body.bs.table", function () {
+				erFields.bootstrapTable("resetView", { height: $(window).height() });
+			});
+		});
+	</script>
 </body>
 </html>
