@@ -168,6 +168,13 @@
 
 		<dependency>
 			<groupId>org.webjars</groupId>
+			<artifactId>jqgrid</artifactId>
+			<version>4.7.0</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>3.4.1</version>
 			<scope>runtime</scope>
