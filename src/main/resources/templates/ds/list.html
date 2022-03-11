@@ -247,7 +247,7 @@
 					},
 					cols: [ [
 							{ field: "uuid", type: "checkbox", width: 80 },
-							{ field: "tableName", title: "表名", templet: function (res) { return '<a href="javascript:void(0);" onclick="lookTableFields(\'' + res.uuid + '\',\'' + res.tableName + '\');">' + res.tableName + '</a>'; }  },
+							{ field: "tableName", title: "表名", templet: function (res) { return '<a href="javascript:void(0);" onclick="lookTableFields(\'' + res.uuid + '\',\'' + res.tableName + '\',\'' + res.comment + '\');">' + res.tableName + '</a>'; }  },
 							{ field: "comment", title: "注释" },
 							{ field: "updatedAt", title: "更新时间", width: 145, align: "right", templet: function (res) { return layui.util.toDateString(res.updatedAt, "yyyy-MM-dd HH:mm"); } }
 						] ],
@@ -344,10 +344,10 @@
 		/**
 		 * 查看数据库表字段
 		 */
-		function lookTableFields (erUuid, tableName) {
+		function lookTableFields (erUuid, tableName, comment) {
 			layer.open({
 				type: 2, 
-				title: tableName,
+				title: '<span style="font-weight: bold;font-size: 20px;">' + tableName + '</span><span style="padding-left: 10px;font-size: 12px;">' + comment + '</span>',
 				maxmin: true,
 				area: [ "100%", "100%" ],
 				content: [ctx + "/erField/dialog?erUuid=" + erUuid, "no"]
