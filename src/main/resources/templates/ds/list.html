@@ -345,14 +345,13 @@
 		 * 查看数据库表字段
 		 */
 		function lookTableFields (erUuid, tableName) {
-			window.erFieldLayerIndex = layer.open({
+			layer.open({
 				type: 2, 
 				title: tableName,
 				maxmin: true,
-				area: [ "95%", "95%" ],
+				area: [ "100%", "100%" ],
 				content: [ctx + "/erField/dialog?erUuid=" + erUuid, "no"]
 			});
-			layer.full(window.erFieldLayerIndex);
 		}
 	</script>
 </body>
