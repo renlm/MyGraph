@@ -52,6 +52,13 @@
 			});
 		},
 		/**
+		 * 序号格式化
+		 */
+		seqFormatter: function(value, row, index) {
+			if(value) { } else if(row) { }
+			return index;
+		},
+		/**
 		 * 是否状态格式化
 		 */
 		yesNoFormatter: function(value) {
