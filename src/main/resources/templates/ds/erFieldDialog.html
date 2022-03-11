@@ -34,6 +34,17 @@
 			var erFields = $("#erFields");
 			erFields.on("post-body.bs.table", function () {
 				erFields.bootstrapTable("resetView", { height: $(window).height() * 0.97 });
+				$(".bootstrap-table .fixed-table-body table.full-width.no-borders>thead").each(function (i, e) {
+					$(e).find("th").each(function (j, th) {
+						
+					});
+				});
+			}).on("post-header.bs.table", function (name, args) {
+				$(".bootstrap-table .fixed-table-header table.full-width.no-borders>thead").each(function (i, e) {
+					$(e).find("th").each(function (j, th) {
+						
+					});
+				});
 			});
 		});
 	</script>
