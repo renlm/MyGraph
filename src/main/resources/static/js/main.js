@@ -56,7 +56,7 @@
 		 */
 		seqFormatter: function(value, row, index) {
 			if(value) { } else if(row) { }
-			return index;
+			return index + 1;
 		},
 		/**
 		 * 是否状态格式化
