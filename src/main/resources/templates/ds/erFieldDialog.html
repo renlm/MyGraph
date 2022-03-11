@@ -32,17 +32,21 @@
 	<script type="text/javascript">
 		$(function () {
 			var erFields = $("#erFields");
+			erFields.bootstrapTable("resetView", { height: $(window).height() * 0.97 });
 			erFields.on("post-body.bs.table", function () {
-				erFields.bootstrapTable("resetView", { height: $(window).height() * 0.97 });
-				$(".bootstrap-table .fixed-table-body table.full-width.no-borders>thead").each(function (i, e) {
-					$(e).find("th").each(function (j, th) {
-						
-					});
-				});
-			}).on("post-header.bs.table", function (name, args) {
-				$(".bootstrap-table .fixed-table-header table.full-width.no-borders>thead").each(function (i, e) {
-					$(e).find("th").each(function (j, th) {
-						
+				$(".bootstrap-table .fixed-table-body table.full-width.no-borders>tbody").each(function (i, e) {
+					var trs = $(e).find("tr");
+					trs.each(function (j, tr) {
+						if(j === trs.length - 1) {
+							var tds = $(tr).find("td");
+							tds.each(function (k, td) {
+								if(k < tds.length - 1) {
+									var tdWidth = $(td).width();
+									$(e).parents(".fixed-table-container:eq(0)").find(".fixed-table-header>table.full-width.no-borders>thead>tr>th").eq(k).width(tdWidth);
+									$(e).parents(".fixed-table-container:eq(0)").find(".fixed-table-body>table.full-width.no-borders>thead>tr>th").eq(k).width(tdWidth);
+								}
+							});
+						}
 					});
 				});
 			});
