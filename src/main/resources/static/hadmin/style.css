@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+/* BOOTSTRAP TABLES */
+
+.bootstrap-table .fixed-table-header table.full-width.no-borders {
+	border-top: 1px solid #EBEBEB ! important;
+}
+
 input.form-control::placeholder {
 	font-size: 12px;
     color: #aaa;
