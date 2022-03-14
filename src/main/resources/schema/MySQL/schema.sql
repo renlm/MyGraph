@@ -14,6 +14,85 @@ CREATE TABLE users (
     disabled TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否禁用（默认否）'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '用户';
 
+-- 数据源
+DROP TABLE IF EXISTS ds;
+CREATE TABLE ds (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
+    url							VARCHAR(500)					NOT NULL		COMMENT 'JDBC链接',
+    schema       				VARCHAR(255)									COMMENT '模式',
+    username					VARCHAR(255)					NOT NULL		COMMENT '账号',
+    password					VARCHAR(255)					NOT NULL		COMMENT '密码',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '数据源';
+
+-- ER模型
+DROP TABLE IF EXISTS er;
+CREATE TABLE er (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
+    table_name       			VARCHAR(255)					NOT NULL		COMMENT '表名',
+    comment       				VARCHAR(500)									COMMENT '注释',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'ER模型';
+
+-- 数据源-ER模型关系
+DROP TABLE IF EXISTS ds_er_rel;
+CREATE TABLE ds_er_rel (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    ds_id						BIGINT							NOT NULL		COMMENT '数据源表主键ID',
+    er_id						BIGINT							NOT NULL		COMMENT 'ER模型表主键ID',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '数据源-ER模型关系';
+
+-- ER模型-字段
+DROP TABLE IF EXISTS er_field;
+CREATE TABLE er_field (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    er_id						BIGINT							NOT NULL		COMMENT 'ER模型表主键ID',
+    uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
+    name       					VARCHAR(255)					NOT NULL		COMMENT '列名',
+    comment       				VARCHAR(500)									COMMENT '注释',
+    type       					INT								NOT NULL		COMMENT '类型，java.sql.Types',
+    type_name      				VARCHAR(255)					NOT NULL		COMMENT '类型名称',
+    size       					INT												COMMENT '精度',
+    digit       				INT												COMMENT '标度',
+    is_nullable                	TINYINT(1)										COMMENT '是否可为空',
+    auto_increment              TINYINT(1)										COMMENT '是否自增',
+    column_def              	VARCHAR(255)									COMMENT '字段默认值',
+    is_pk                		TINYINT(1) 		DEFAULT 0		NOT NULL		COMMENT '是否为主键（默认否）',
+    is_fk                		TINYINT(1) 		DEFAULT 0		NOT NULL		COMMENT '是否为外键（默认否）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'ER模型-字段';
+
 -- 图形设计
 DROP TABLE IF EXISTS graph;
 CREATE TABLE graph(
