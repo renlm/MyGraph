@@ -3,7 +3,7 @@ server:
     
 logging:
   level:
-    root: trace
+    root: info
     cn.renlm.graph: debug
   file:
     name: /opt/log/my-graph.log
