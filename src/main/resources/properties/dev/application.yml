@@ -5,12 +5,12 @@ server:
     
 logging:
   level:
-    root: info
+    root: trace
     cn.renlm.graph: debug
   file:
     name: /opt/log/my-graph.log
-    max-size: 512MB
-    max-history: 30
+    max-size: 10MB
+    max-history: 7
     
 mybatis-plus:
   configuration:
