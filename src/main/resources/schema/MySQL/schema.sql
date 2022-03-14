@@ -20,7 +20,7 @@ CREATE TABLE ds (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
     uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
     url							VARCHAR(500)					NOT NULL		COMMENT 'JDBC链接',
-    schema       				VARCHAR(255)									COMMENT '模式',
+    `schema`       				VARCHAR(255)									COMMENT '模式',
     username					VARCHAR(255)					NOT NULL		COMMENT '账号',
     password					VARCHAR(255)					NOT NULL		COMMENT '密码',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
