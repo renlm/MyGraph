@@ -62,15 +62,14 @@ CREATE TABLE ds_er_rel (
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
     updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
-    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
-    remark VARCHAR(255) COMMENT '备注'
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '数据源-ER模型关系';
 
 -- ER模型-字段
 DROP TABLE IF EXISTS er_field;
 CREATE TABLE er_field (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
-    er_id						BIGINT							NOT NULL		COMMENT 'ER模型表主键ID',
+    er_id						BIGINT							NOT NULL		COMMENT 'ER模型ID',
     uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
     name       					VARCHAR(255)					NOT NULL		COMMENT '列名',
     comment       				VARCHAR(500)									COMMENT '注释',
