@@ -2,6 +2,8 @@
 <html lang="zh-CN" layout:decorate="~{layout/hadmin}">
 <head>
 	<title>数据源</title>
+	<!-- Bootstrap-table -->
+	<link th:href="@{/webjars/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet" />
 </head>
 <body layout:fragment="content" class="gray-bg">
 	<div class="wrapper wrapper-content">
@@ -150,6 +152,9 @@
         	<button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="createGraph"> 生成ER图 </button>
      	</div>
 	</script>
+	<!-- Bootstrap-table -->
+	<script th:src="@{/webjars/bootstrap-table/bootstrap-table.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap-table/locale/bootstrap-table-zh-CN.js}"></script>
 	<script type="text/javascript">
 		var dsTableId = "#dsTable";
 		var dsTable = null;
