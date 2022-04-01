@@ -8,7 +8,7 @@ import lombok.Getter;
  * @author Renlm
  *
  */
-public enum Role {
+public enum Roles {
 
 	admin("管理员"), user("用户"), self("自主注册");
 
@@ -17,7 +17,7 @@ public enum Role {
 	@Getter
 	private String text;
 
-	private Role(String text) {
+	private Roles(String text) {
 		this.text = text;
 	}
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -16,6 +17,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
+import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.Profiles;
+import cn.renlm.graph.common.Roles;
 import cn.renlm.graph.security.MyAuthenticationSuccessHandler;
 import cn.renlm.graph.security.MyDaoAuthenticationProvider;
 import cn.renlm.graph.security.MyWebAuthenticationDetails;
@@ -62,9 +66,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * 静态资源
 	 */
 	public static final String[] STATIC_PATHS = { 
-			"/static/**", 
+			"/static/favicon.ico",
+			"/static/{path:^((?!editor.md).)*$}/**", 
 			"/webjars/**" 
 		};
+	
+	@Autowired
+	private Environment environment;
 	
 	@Autowired
 	private UserService userService;
@@ -74,6 +82,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		// 在代理服务器后面运行时启用 Https
+		if(StrUtil.containsAny(Profiles.prod.name(), environment.getActiveProfiles())) {
+			http.requiresChannel().anyRequest().requiresSecure();
+		}
 		// 启用csrf
 		http.csrf()
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
@@ -85,6 +97,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// 白名单
 				.antMatchers(WHITE_LIST)
 					.permitAll()
+				// 访问控制
+				.antMatchers("/static/editor.md/**")
+					.hasAnyRole(Roles.admin.name(), Roles.user.name())
 				// 登录访问限制
 				.anyRequest()
 					.authenticated()
