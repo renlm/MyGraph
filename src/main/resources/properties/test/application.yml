@@ -13,7 +13,6 @@ logging:
 mybatis-plus:
   configuration:
     localCacheScope: STATEMENT
-    cacheEnabled: true
   global-config:
     db-config:
       update-strategy: IGNORED
