@@ -17,6 +17,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.GraphDto;
@@ -71,7 +72,7 @@ public class GraphController {
 	@RequestMapping("/editor")
 	public String editor(ModelMap model, String uuid) {
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
-		graph.setXml(Base64.encodeUrlSafe(graph.getXml()));
+		graph.setXml(StrUtil.isBlank(graph.getXml()) ? null : Base64.encodeUrlSafe(graph.getXml()));
 		model.put("graphJson", JSONUtil.toJsonStr(graph));
 		return "graph/editor";
 	}
@@ -86,7 +87,7 @@ public class GraphController {
 	@RequestMapping("/viewer")
 	public String viewer(ModelMap model, String uuid) {
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
-		graph.setXml(Base64.encodeUrlSafe(graph.getXml()));
+		graph.setXml(StrUtil.isBlank(graph.getXml()) ? null : Base64.encodeUrlSafe(graph.getXml()));
 		model.put("graphJson", JSONUtil.toJsonStr(graph));
 		return "graph/viewer";
 	}
