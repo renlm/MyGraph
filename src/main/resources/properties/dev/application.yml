@@ -40,9 +40,6 @@ spring:
           url: jdbc:mysql://renlm.cn:3306/graph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
           username: graph
           password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
-          boolean:
-            true: 1
-            false: 0
           init:
             schema: classpath:schema/MySQL/schema.sql
             data: classpath:schema/MySQL/data.sql
