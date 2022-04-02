@@ -38,6 +38,9 @@ spring:
           url: jdbc:postgresql://renlm.cn:5432/renlm
           username: renlm
           password: K86erp7IMYust^tn50jlsdi^_fyw4bnmdf4K
+          boolean:
+            true: true
+            false: false
           init:
             schema: classpath:schema/PostgreSQL/schema.sql
             data: classpath:schema/PostgreSQL/data.sql
