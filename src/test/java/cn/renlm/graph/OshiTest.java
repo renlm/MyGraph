@@ -1,5 +1,7 @@
 package cn.renlm.graph;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import cn.hutool.system.JavaInfo;
@@ -9,6 +11,8 @@ import cn.hutool.system.oshi.CpuInfo;
 import cn.hutool.system.oshi.OshiUtil;
 import lombok.extern.slf4j.Slf4j;
 import oshi.hardware.GlobalMemory;
+import oshi.hardware.HWDiskStore;
+import oshi.hardware.HWPartition;
 import oshi.util.FormatUtil;
 
 /**
@@ -48,6 +52,21 @@ public class OshiTest {
 		GlobalMemory globalMemory = OshiUtil.getMemory();
 		log.info("系统内存：{}", FormatUtil.formatBytes(globalMemory.getTotal()));
 		log.info("已使用系统内存：{}", FormatUtil.formatBytes(globalMemory.getAvailable()));
+	}
+
+	/**
+	 * 获取磁盘相关信息
+	 */
+	@Test
+	public void diskStores() {
+		List<HWDiskStore> diskStores = OshiUtil.getDiskStores();
+		for (HWDiskStore diskStore : diskStores) {
+			List<HWPartition> partitions = diskStore.getPartitions();
+			for (HWPartition partition : partitions) {
+				log.info("磁盘：{}", partition.getMountPoint());
+				log.info("容量：{}", FormatUtil.formatBytes(partition.getSize()));
+			}
+		}
 	}
 
 	/**
