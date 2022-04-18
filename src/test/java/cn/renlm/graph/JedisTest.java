@@ -27,7 +27,7 @@ public class JedisTest {
 
 	@Test
 	public void setex() {
-		String reply = jedis.setex(key, 10L, IdUtil.getSnowflakeNextIdStr());
+		String reply = jedis.setex(key, 5L, IdUtil.getSnowflakeNextIdStr());
 		log.info("保存数据：{}", reply);
 		AtomicInteger i = new AtomicInteger();
 		CronUtil.schedule("*/1 * * * * ?", new Task() {
@@ -38,6 +38,6 @@ public class JedisTest {
 		});
 		CronUtil.setMatchSecond(true);
 		CronUtil.start();
-		ThreadUtil.safeSleep(10000);
+		ThreadUtil.safeSleep(6000);
 	}
 }
