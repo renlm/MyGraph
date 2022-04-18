@@ -1,9 +1,10 @@
 package cn.renlm.graph;
 
-import java.util.List;
+import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.system.JavaInfo;
 import cn.hutool.system.OsInfo;
 import cn.hutool.system.SystemUtil;
@@ -11,8 +12,6 @@ import cn.hutool.system.oshi.CpuInfo;
 import cn.hutool.system.oshi.OshiUtil;
 import lombok.extern.slf4j.Slf4j;
 import oshi.hardware.GlobalMemory;
-import oshi.hardware.HWDiskStore;
-import oshi.hardware.HWPartition;
 import oshi.util.FormatUtil;
 
 /**
@@ -59,13 +58,12 @@ public class OshiTest {
 	 */
 	@Test
 	public void diskStores() {
-		List<HWDiskStore> diskStores = OshiUtil.getDiskStores();
-		for (HWDiskStore diskStore : diskStores) {
-			List<HWPartition> partitions = diskStore.getPartitions();
-			for (HWPartition partition : partitions) {
-				log.info("磁盘：{}", partition.getMountPoint());
-				log.info("容量：{}", FormatUtil.formatBytes(partition.getSize()));
-			}
+		File[] disks = File.listRoots();
+		for (File file : disks) {
+			String path = FileUtil.normalize(file.getPath());
+			String totalSpace = FormatUtil.formatBytes(file.getTotalSpace());
+			String usedSpace = FormatUtil.formatBytes(file.getTotalSpace() - file.getFreeSpace());
+			log.info("磁盘：{}，容量：{}，已使用：{}", path, totalSpace, usedSpace);
 		}
 	}
 
