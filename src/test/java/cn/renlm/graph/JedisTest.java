@@ -54,10 +54,8 @@ public class JedisTest {
 		Long expTime = DateUtil.current() + validityMillis;
 		Long reply10 = jedis.zadd(key, expTime, IdUtil.getSnowflakeNextIdStr());
 		log.info("添加或更新当前uid：{}", reply10);
-		Long reply11 = jedis.zadd(key, expTime, IdUtil.getSnowflakeNextIdStr());
-		log.info("添加或更新当前uid：{}", reply11);
-		Long reply2 = jedis.zremrangeByScore(key, 0, DateUtil.current());
-		log.info("删除小于等于当前时间的记录：{}", reply2);
+		Long reply20 = jedis.zremrangeByScore(key, 0, DateUtil.current());
+		log.info("删除小于等于当前时间的记录：{}", reply20);
 		log.info("当前在线人数：{}", jedis.zcard(key));
 	}
 }
