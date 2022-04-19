@@ -24,14 +24,14 @@ public class JedisTest {
 
 	private String key = this.getClass().getName();
 
-	private RedisDS redisDS = RedisDS.create();
+	private RedisDS pool = RedisDS.create();
 
 	/**
 	 * 为指定的 key 设置值及其过期时间。如果 key 已经存在，SETEX 命令将会替换旧的值
 	 */
 	@Test
 	public void setex() {
-		try (Jedis jedis = redisDS.getJedis()) {
+		try (Jedis jedis = pool.getJedis()) {
 			String reply = jedis.setex(key, 5L, IdUtil.getSnowflakeNextIdStr());
 			log.info("保存数据：{}", reply);
 			AtomicInteger i = new AtomicInteger();
@@ -52,7 +52,7 @@ public class JedisTest {
 	 */
 	@Test
 	public void zadd() {
-		try (Jedis jedis = redisDS.getJedis()) {
+		try (Jedis jedis = pool.getJedis()) {
 			Long validityMillis = 30 * 1000L;
 			Long expTime = DateUtil.current() + validityMillis;
 			String snowflakeIdStr = IdUtil.getSnowflakeNextIdStr();
