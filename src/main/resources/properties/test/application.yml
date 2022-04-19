@@ -29,6 +29,21 @@ spring:
   jackson: 
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
+  redis:
+    host: renlm.cn
+    port: 6379
+    timeout: 6000
+    password: Rscl@GR12t2Kcs.d^_^Yhm8K7^_^0rr8df170l@G
+    database: 1
+  rabbitmq:
+    virtual-host: /renlm
+    host: renlm.cn
+    port: 5672
+    username: renlm
+    password: MR1tMQdf1Q@7^_^02Kit8Rabb2K8bbiG70l@cs^_^YhmRa
+    listener:
+      direct:
+        missing-queues-fatal: false
   datasource:
     dynamic:
       primary: master
@@ -38,6 +53,7 @@ spring:
           url: jdbc:postgresql://renlm.cn:5432/renlm
           username: renlm
           password: K86erp7IMYust^tn50jlsdi^_fyw4bnmdf4K
+          driver-class-name: org.postgresql.Driver
           init:
             schema: classpath:schema/PostgreSQL/schema.sql
             data: classpath:schema/PostgreSQL/data.sql

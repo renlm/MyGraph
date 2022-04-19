@@ -33,6 +33,21 @@ spring:
   jackson: 
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
+  redis:
+    host: redis
+    port: 6379
+    timeout: 6000
+    password: Rscl@GR12t2Kcs.d^_^Yhm8K7^_^0rr8df170l@G
+    database: 2
+  rabbitmq:
+    virtual-host: /crawler
+    host: rabbitmq
+    port: 5672
+    username: renlm
+    password: MR1tMQdf1Q@7^_^02Kit8Rabb2K8bbiG70l@cs^_^YhmRa
+    listener:
+      direct:
+        missing-queues-fatal: false
   datasource:
     dynamic:
       primary: master
@@ -42,3 +57,4 @@ spring:
           url: jdbc:mysql://renlm.cn:3306/graph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
           username: graph
           password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
+          driver-class-name: com.mysql.cj.jdbc.Driver
