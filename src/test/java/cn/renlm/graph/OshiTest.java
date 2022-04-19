@@ -1,6 +1,7 @@
 package cn.renlm.graph;
 
 import java.io.File;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,13 @@ import cn.hutool.system.SystemUtil;
 import cn.hutool.system.oshi.CpuInfo;
 import cn.hutool.system.oshi.OshiUtil;
 import lombok.extern.slf4j.Slf4j;
+import oshi.SystemInfo;
 import oshi.hardware.GlobalMemory;
+import oshi.hardware.HWDiskStore;
+import oshi.hardware.HWPartition;
+import oshi.software.os.FileSystem;
+import oshi.software.os.OSFileStore;
+import oshi.software.os.OperatingSystem;
 import oshi.util.FormatUtil;
 
 /**
@@ -57,13 +64,47 @@ public class OshiTest {
 	 * 获取磁盘相关信息
 	 */
 	@Test
-	public void diskStores() {
+	public void listRoots() {
 		File[] disks = File.listRoots();
 		for (File file : disks) {
 			String path = FileUtil.normalize(file.getPath());
-			String totalSpace = FormatUtil.formatBytes(file.getTotalSpace());
-			String usedSpace = FormatUtil.formatBytes(file.getTotalSpace() - file.getFreeSpace());
-			log.info("磁盘：{}，容量：{}，已使用：{}", path, totalSpace, usedSpace);
+			long totalSpace = file.getTotalSpace();
+			long freeSpace = file.getFreeSpace();
+			String totalSpaceFormat = FormatUtil.formatBytes(totalSpace);
+			String usedSpaceFormat = FormatUtil.formatBytes(totalSpace - freeSpace);
+			log.info("磁盘：{}，容量：{}，已使用：{}", path, totalSpaceFormat, usedSpaceFormat);
+		}
+	}
+
+	/**
+	 * 获取磁盘相关信息
+	 */
+	@Test
+	public void diskStores() {
+		List<HWDiskStore> diskStores = OshiUtil.getDiskStores();
+		for (HWDiskStore diskStore : diskStores) {
+			log.info("磁盘：{}", diskStore);
+			for (HWPartition partition : diskStore.getPartitions()) {
+				System.out.println(partition);
+			}
+		}
+	}
+
+	/**
+	 * 获取磁盘相关信息
+	 */
+	@Test
+	public void fileSystem() {
+		SystemInfo systemInfo = new SystemInfo();
+		OperatingSystem operatingSystem = systemInfo.getOperatingSystem();
+		FileSystem fileSystem = operatingSystem.getFileSystem();
+		List<OSFileStore> fsArray = fileSystem.getFileStores();
+		for (OSFileStore fs : fsArray) {
+			long totalSpace = fs.getTotalSpace();
+			long freeSpace = fs.getFreeSpace();
+			String totalSpaceFormat = FormatUtil.formatBytes(totalSpace);
+			String usedSpaceFormat = FormatUtil.formatBytes(totalSpace - freeSpace);
+			log.info("磁盘：{}，容量：{}，已使用：{}", fs.getMount(), totalSpaceFormat, usedSpaceFormat);
 		}
 	}
 
@@ -80,7 +121,7 @@ public class OshiTest {
 	 * JvmInfo
 	 */
 	@Test
-	public void JvmInfo() {
+	public void jvmInfo() {
 		log.info("Jvm 内存总量：{}", FormatUtil.formatBytes(SystemUtil.getTotalMemory()));
 		log.info("Jvm 已使用内存：{}", FormatUtil.formatBytes(SystemUtil.getTotalMemory() - SystemUtil.getFreeMemory()));
 	}
