@@ -2,7 +2,7 @@ package cn.renlm.graph.controller.api;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,7 +26,7 @@ public class UserApiController {
 	 * @return
 	 */
 	@ResponseBody
-	@PostMapping("/getInfo")
+	@GetMapping("/getInfo")
 	public Result<UserDto> getInfo(Authentication authentication) {
 		UserDto user = (UserDto) authentication.getPrincipal();
 		return Result.success(user);
