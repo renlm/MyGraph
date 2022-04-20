@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import com.rabbitmq.client.Channel;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.util.AmqpUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -52,7 +53,8 @@ public class DeadLetterQueueConfig {
 	@RabbitListener(bindings = {
 			@QueueBinding(value = @Queue(value = queue, durable = Exchange.TRUE), exchange = @Exchange(value = exchange, type = ExchangeTypes.DIRECT), key = routingKey) })
 	public void receiveMessage(Message message, Channel channel) {
-		log.info("当前时间：{}，收到死信队列消息：{}", DateUtil.formatDateTime(new Date()), message);
+		String body = StrUtil.str(message.getBody(), message.getMessageProperties().getContentEncoding());
+		log.info("当前时间：{}，收到死信队列消息：{}", DateUtil.formatDateTime(new Date()), body);
 	}
 
 	/**
