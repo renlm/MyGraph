@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 @Configuration
-public class DeadLetterConfig {
+public class DeadLetterQueueConfig {
 
 	private static final String key = "DeadLetter";
 
@@ -50,7 +50,7 @@ public class DeadLetterConfig {
 	 * @param channel
 	 */
 	@RabbitListener(bindings = {
-			@QueueBinding(value = @Queue(value = DeadLetterConfig.queue, durable = Exchange.TRUE), exchange = @Exchange(value = DeadLetterConfig.exchange, type = ExchangeTypes.DIRECT), key = DeadLetterConfig.routingKey) })
+			@QueueBinding(value = @Queue(value = queue, durable = Exchange.TRUE), exchange = @Exchange(value = exchange, type = ExchangeTypes.DIRECT), key = routingKey) })
 	public void receiveMessage(Message message, Channel channel) {
 		log.info("当前时间：{}，收到死信队列消息：{}", DateUtil.formatDateTime(new Date()), message);
 	}
