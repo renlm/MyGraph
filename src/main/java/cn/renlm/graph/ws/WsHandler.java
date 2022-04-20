@@ -1,4 +1,4 @@
-package cn.renlm.graph.websocket;
+package cn.renlm.graph.ws;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;

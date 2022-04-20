@@ -1,4 +1,4 @@
-package cn.renlm.graph.websocket;
+package cn.renlm.graph.ws;
 
 import java.util.Map;
 
