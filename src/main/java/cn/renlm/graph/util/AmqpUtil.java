@@ -47,6 +47,32 @@ public class AmqpUtil {
 	/**
 	 * 创建延时任务
 	 * 
+	 * @param delayTaskClass 任务执行类
+	 * @param paramJson      任务参数（Json格式）
+	 * @param delayTtl       延时ttl时长（毫秒数）
+	 */
+	public static final void createDelayTask(Class<DelayTask> delayTaskClass, String paramJson, int delayTtl) {
+		Assert.notNull(delayTaskClass, "延时任务delayTaskClass不能为空");
+		Assert.isTrue(JSONUtil.isTypeJSON(paramJson), "任务参数paramJson必须为Json格式");
+		Date time = new Date();
+		long day = DateUtil.between(time, DateUtil.offsetMillisecond(time, AmqpUtil.maxDelayTtl), DateUnit.DAY);
+		Assert.isFalse(delayTtl > AmqpUtil.maxDelayTtl, "延时任务最大时长（" + day + "天）");
+		DelayTaskParam param = new DelayTaskParam();
+		param.setType(0);
+		param.setTime(time);
+		param.setDelayTaskClass(delayTaskClass.getName());
+		param.setParamJson(paramJson);
+		AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
+		amqpTemplate.convertAndSend(TtlQueueConfig.exchange, TtlQueueConfig.routingKey, JSONUtil.toJsonStr(param),
+				message -> {
+					message.getMessageProperties().setExpiration(String.valueOf(delayTtl));
+					return message;
+				});
+	}
+
+	/**
+	 * 创建延时任务
+	 * 
 	 * @param exchange   任务交换机名称
 	 * @param routingKey 任务路由名称
 	 * @param paramJson  任务参数（Json格式）
@@ -60,6 +86,7 @@ public class AmqpUtil {
 		long day = DateUtil.between(time, DateUtil.offsetMillisecond(time, AmqpUtil.maxDelayTtl), DateUnit.DAY);
 		Assert.isFalse(delayTtl > AmqpUtil.maxDelayTtl, "延时任务最大时长（" + day + "天）");
 		DelayTaskParam param = new DelayTaskParam();
+		param.setType(1);
 		param.setTime(time);
 		param.setExchange(exchange);
 		param.setRoutingKey(routingKey);
@@ -73,6 +100,22 @@ public class AmqpUtil {
 	}
 
 	/**
+	 * 延时任务（执行类接口）
+	 */
+	public static interface DelayTask {
+
+		public static final String method = "execute";
+
+		/**
+		 * 执行
+		 * 
+		 * @param paramJson 任务参数（Json格式）
+		 */
+		void execute(String paramJson);
+
+	}
+
+	/**
 	 * 延时任务参数
 	 */
 	@Data
@@ -82,17 +125,27 @@ public class AmqpUtil {
 		private static final long serialVersionUID = 1L;
 
 		/**
+		 * 类型，0：本地任务（反射执行方法），1：队列任务
+		 */
+		private int type;
+
+		/**
 		 * 添加时间
 		 */
 		private Date time;
 
 		/**
-		 * 交换机名称
+		 * 本地任务-任务执行类
+		 */
+		private String delayTaskClass;
+
+		/**
+		 * 队列任务-交换机名称
 		 */
 		private String exchange;
 
 		/**
-		 * 路由名称
+		 * 队列任务-路由名称
 		 */
 		private String routingKey;
 

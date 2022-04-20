@@ -23,9 +23,13 @@ import org.springframework.stereotype.Component;
 import com.rabbitmq.client.Channel;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ClassUtil;
+import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.util.AmqpUtil;
+import cn.renlm.graph.util.AmqpUtil.DelayTask;
 import cn.renlm.graph.util.AmqpUtil.DelayTaskParam;
 import lombok.extern.slf4j.Slf4j;
 
@@ -65,23 +69,40 @@ public class DeadLetterQueueConfig {
 		log.info("=== 死信队列，接收时间：{}\r\n=== 消息内容：{}", receiveTime, body);
 		if (JSONUtil.isTypeJSONObject(body)) {
 			DelayTaskParam param = JSONUtil.toBean(body, DelayTaskParam.class);
-			if (StrUtil.isNotBlank(param.getExchange())) {
-				String time = DateUtil.formatDateTime(param.getTime());
-				log.info("=== 延时任务，接收时间：{}\r\n=== 添加时间：{}\r\n=== 交换机名称：{}\r\n=== 路由名称：{}\r\n=== 任务参数：{}",
-						// 接收时间
-						receiveTime,
-						// 添加时间
-						time,
-						// 交换机名称
-						param.getExchange(),
-						// 路由名称
-						param.getRoutingKey(),
-						// 任务参数
-						JSONUtil.toJsonPrettyStr(param.getParamJson()));
-				// 触发任务执行队列
-				amqpTemplate.convertAndSend(param.getExchange(), param.getRoutingKey(), param.getParamJson());
-			} else {
-				log.error("=== 死信队列，接收时间：{}\r\n=== 无效任务：{}", receiveTime, JSONUtil.toJsonPrettyStr(param));
+			// 本地任务（反射执行方法）
+			if (NumberUtil.equals(0, param.getType())) {
+				if (StrUtil.isNotBlank(param.getDelayTaskClass())) {
+					Class<DelayTask> delayTaskClass = ClassUtil.loadClass(param.getDelayTaskClass());
+					if (delayTaskClass == null) {
+						log.error("=== 死信队列，接收时间：{}\r\n=== 无效任务：{}", receiveTime, JSONUtil.toJsonPrettyStr(param));
+					} else {
+						DelayTask delayTask = ReflectUtil.newInstance(delayTaskClass);
+						ReflectUtil.invoke(delayTask, DelayTask.method, param.getParamJson());
+					}
+				} else {
+					log.error("=== 死信队列，接收时间：{}\r\n=== 无效任务：{}", receiveTime, JSONUtil.toJsonPrettyStr(param));
+				}
+			}
+			// 队列任务
+			else if (NumberUtil.equals(1, param.getType())) {
+				if (StrUtil.isNotBlank(param.getExchange())) {
+					String time = DateUtil.formatDateTime(param.getTime());
+					log.info("=== 延时任务，接收时间：{}\r\n=== 添加时间：{}\r\n=== 交换机名称：{}\r\n=== 路由名称：{}\r\n=== 任务参数：{}",
+							// 接收时间
+							receiveTime,
+							// 添加时间
+							time,
+							// 交换机名称
+							param.getExchange(),
+							// 路由名称
+							param.getRoutingKey(),
+							// 任务参数
+							JSONUtil.toJsonPrettyStr(param.getParamJson()));
+					// 触发任务执行队列
+					amqpTemplate.convertAndSend(param.getExchange(), param.getRoutingKey(), param.getParamJson());
+				} else {
+					log.error("=== 死信队列，接收时间：{}\r\n=== 无效任务：{}", receiveTime, JSONUtil.toJsonPrettyStr(param));
+				}
 			}
 		} else {
 			log.error("=== 死信队列，接收时间：{}\r\n=== 无效任务：{}", receiveTime, body);
