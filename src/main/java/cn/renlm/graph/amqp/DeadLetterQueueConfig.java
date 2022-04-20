@@ -1,6 +1,5 @@
 package cn.renlm.graph.amqp;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.amqp.core.AmqpTemplate;
@@ -23,14 +22,11 @@ import org.springframework.stereotype.Component;
 
 import com.rabbitmq.client.Channel;
 
-import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.util.AmqpUtil;
-import lombok.Data;
-import lombok.experimental.Accessors;
+import cn.renlm.graph.util.AmqpUtil.DelayTaskParam;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -68,75 +64,28 @@ public class DeadLetterQueueConfig {
 		String body = StrUtil.str(message.getBody(), message.getMessageProperties().getContentEncoding());
 		log.info("=== 死信队列，接收时间：{}，消息内容：\r\n{}", receiveTime, body);
 		if (JSONUtil.isTypeJSONObject(body)) {
-			DeadLetterQueueParam param = JSONUtil.toBean(body, DeadLetterQueueParam.class);
-			if (StrUtil.isNotBlank(param.exchange)) {
+			DelayTaskParam param = JSONUtil.toBean(body, DelayTaskParam.class);
+			if (StrUtil.isNotBlank(param.getExchange())) {
 				String time = DateUtil.formatDateTime(param.getTime());
-				log.info("=== 延时任务，接收时间：{}，添加时间：{}，交换机名称：{}，路由名称：{}，任务参数：\r\n{}", receiveTime, time, param.exchange,
-						param.routingKey, JSONUtil.toJsonPrettyStr(param.paramJson));
-				amqpTemplate.convertAndSend(param.exchange, param.routingKey, param.paramJson);
+				log.info("=== 延时任务，接收时间：{}，添加时间：{}，交换机名称：{}，路由名称：{}，任务参数：\r\n{}",
+						// 接收时间
+						receiveTime,
+						// 添加时间
+						time,
+						// 交换机名称
+						param.getExchange(),
+						// 路由名称
+						param.getRoutingKey(),
+						// 任务参数
+						JSONUtil.toJsonPrettyStr(param.getParamJson()));
+				// 触发任务执行队列
+				amqpTemplate.convertAndSend(param.getExchange(), param.getRoutingKey(), param.getParamJson());
 			} else {
 				log.error("=== 死信队列，接收时间：{}，无效任务：\r\n{}", receiveTime, JSONUtil.toJsonPrettyStr(param));
 			}
 		} else {
 			log.error("=== 死信队列，接收时间：{}，无效任务：\r\n{}", receiveTime, body);
 		}
-	}
-
-	/**
-	 * 创建延时任务
-	 * 
-	 * @param exchange   任务交换机名称
-	 * @param routingKey 任务路由名称
-	 * @param paramJson  任务参数（Json格式）
-	 * @param delayTtl   延时ttl时长（毫秒数）
-	 */
-	public void createDelayTask(String exchange, String routingKey, String paramJson, int delayTtl) {
-		Assert.notBlank(exchange, "延时任务exchange不能为空");
-		Assert.isTrue(JSONUtil.isTypeJSON(paramJson), "任务参数paramJson必须为Json格式");
-		Date time = new Date();
-		long day = DateUtil.between(time, DateUtil.offsetMillisecond(time, AmqpUtil.maxDelayTtl), DateUnit.DAY);
-		Assert.isFalse(delayTtl > AmqpUtil.maxDelayTtl, "延时任务最大时长（" + day + "天）");
-		DeadLetterQueueParam param = new DeadLetterQueueParam();
-		param.setTime(time);
-		param.setExchange(exchange);
-		param.setRoutingKey(routingKey);
-		param.setParamJson(paramJson);
-		amqpTemplate.convertAndSend(TtlQueueConfig.exchange, TtlQueueConfig.routingKey, JSONUtil.toJsonStr(param),
-				message -> {
-					message.getMessageProperties().setExpiration(String.valueOf(delayTtl));
-					return message;
-				});
-	}
-
-	/**
-	 * 延时任务参数
-	 */
-	@Data
-	@Accessors(chain = true)
-	public static final class DeadLetterQueueParam implements Serializable {
-
-		private static final long serialVersionUID = 1L;
-
-		/**
-		 * 添加时间
-		 */
-		private Date time;
-
-		/**
-		 * 交换机名称
-		 */
-		private String exchange;
-
-		/**
-		 * 路由名称
-		 */
-		private String routingKey;
-
-		/**
-		 * 任务参数（Json格式）
-		 */
-		private String paramJson;
-
 	}
 
 	/**
