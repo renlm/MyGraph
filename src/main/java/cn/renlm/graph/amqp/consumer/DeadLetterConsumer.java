@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.amqp.RabbitProperties.Cache.Channe
 import org.springframework.stereotype.Component;
 
 import cn.hutool.core.date.DateUtil;
+import cn.renlm.graph.amqp.DeadLetterConfig;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -25,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DeadLetterConsumer {
 
 	@RabbitListener(bindings = {
-			@QueueBinding(value = @Queue(value = "#{deadLetterBinding.destination}", durable = Exchange.TRUE), exchange = @Exchange(value = "#{deadLetterBinding.exchange}", type = ExchangeTypes.DIRECT), key = "#{deadLetterBinding.routingKey}") })
+			@QueueBinding(value = @Queue(value = DeadLetterConfig.queue, durable = Exchange.TRUE), exchange = @Exchange(value = DeadLetterConfig.exchange, type = ExchangeTypes.DIRECT), key = DeadLetterConfig.routingKey) })
 	public void receiveMessage(Message message, Channel channel) {
 		log.info("当前时间：{}，收到死信队列消息：{}", DateUtil.formatTime(new Date()), message);
 	}

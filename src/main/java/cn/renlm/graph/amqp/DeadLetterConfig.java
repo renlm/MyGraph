@@ -22,11 +22,11 @@ public class DeadLetterConfig {
 
 	private static final String key = "DeadLetter";
 
-	public static final String exchange = AmqpUtil.exchangeName(key);
+	public static final String exchange = key + AmqpUtil.Exchange;
 
-	public static final String queue = AmqpUtil.queueName(key);
+	public static final String queue = key + AmqpUtil.Queue;
 
-	public static final String routingKey = AmqpUtil.routingKeyName(key);
+	public static final String routingKey = queue + AmqpUtil.RoutingKey;
 
 	/**
 	 * 声明交换机
