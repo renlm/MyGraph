@@ -81,7 +81,7 @@ public class DeadLetterQueueConfig {
 								// 接收时间
 								receiveTime,
 								// 任务类型
-								param.getType(),
+								"本地任务（反射执行方法）",
 								// 创建时间
 								time,
 								// 任务执行类
@@ -104,7 +104,7 @@ public class DeadLetterQueueConfig {
 							// 接收时间
 							receiveTime,
 							// 任务类型
-							param.getType(),
+							"队列任务",
 							// 创建时间
 							time,
 							// 交换机名称
