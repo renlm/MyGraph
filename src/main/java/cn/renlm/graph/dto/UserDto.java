@@ -1,6 +1,7 @@
 package cn.renlm.graph.dto;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +24,8 @@ public class UserDto extends Users implements org.springframework.security.core.
 	private static final long serialVersionUID = 1L;
 
 	private String token;
+
+	private Date expiryDate;
 
 	private List<GrantedAuthority> authorities;
 
