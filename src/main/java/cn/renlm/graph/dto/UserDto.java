@@ -22,6 +22,8 @@ public class UserDto extends Users implements org.springframework.security.core.
 
 	private static final long serialVersionUID = 1L;
 
+	private String token;
+
 	private List<GrantedAuthority> authorities;
 
 	@Override

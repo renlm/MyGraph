@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.session.MapSession;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -20,6 +19,7 @@ import org.springframework.web.servlet.resource.WebJarsResourceResolver;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.ConstVal;
 
 /**
  * WebMvc配置
@@ -27,7 +27,7 @@ import cn.hutool.core.util.StrUtil;
  * @author Renlm
  */
 @Configuration
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = MapSession.DEFAULT_MAX_INACTIVE_INTERVAL_SECONDS)
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = ConstVal.MAX_INACTIVE_INTERVAL_SECONDS)
 public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Autowired

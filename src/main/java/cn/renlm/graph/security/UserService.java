@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Roles;
 import cn.renlm.graph.dto.UserDto;
@@ -42,6 +43,7 @@ public class UserService implements UserDetailsService {
 		}
 		UserDto userDetails = BeanUtil.copyProperties(user, UserDto.class);
 		List<GrantedAuthority> authorities = CollUtil.newArrayList();
+		userDetails.setToken(IdUtil.simpleUUID().toUpperCase());
 		userDetails.setAuthorities(authorities);
 		if (StrUtil.isNotBlank(user.getRole())) {
 			GrantedAuthority authority = new SimpleGrantedAuthority(Roles.HAS_ROLE_PREFIX + user.getRole());

@@ -1,5 +1,7 @@
 package cn.renlm.graph.common;
 
+import org.springframework.session.MapSession;
+
 import lombok.experimental.UtilityClass;
 
 /**
@@ -10,6 +12,11 @@ import lombok.experimental.UtilityClass;
  */
 @UtilityClass
 public class ConstVal {
+
+	/**
+	 * 会话存储时长（秒），30分钟
+	 */
+	public static final int MAX_INACTIVE_INTERVAL_SECONDS = MapSession.DEFAULT_MAX_INACTIVE_INTERVAL_SECONDS;
 
 	/**
 	 * 验证码-会话存储键
