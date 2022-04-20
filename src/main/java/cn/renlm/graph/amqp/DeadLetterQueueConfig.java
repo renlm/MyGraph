@@ -23,7 +23,9 @@ import org.springframework.stereotype.Component;
 
 import com.rabbitmq.client.Channel;
 
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.util.AmqpUtil;
@@ -78,6 +80,31 @@ public class DeadLetterQueueConfig {
 		} else {
 			log.error("=== 死信队列，接收时间：{}，无效任务：\r\n{}", receiveTime, body);
 		}
+	}
+
+	/**
+	 * 创建延时任务
+	 * 
+	 * @param exchange   任务交换机名称
+	 * @param routingKey 任务路由名称
+	 * @param params     任务参数
+	 * @param delayTtl   延时ttl时长（毫秒数）
+	 */
+	public void createDelayTask(String exchange, String routingKey, String params, int delayTtl) {
+		Assert.notBlank(exchange, "延时任务exchange不能为空");
+		Date time = new Date();
+		long day = DateUtil.between(time, DateUtil.offsetMillisecond(time, AmqpUtil.maxDelayTtl), DateUnit.DAY);
+		Assert.isFalse(delayTtl > AmqpUtil.maxDelayTtl, "延时任务最大时长（" + day + "天）");
+		DeadLetterQueueParam param = new DeadLetterQueueParam();
+		param.setTime(time);
+		param.setExchange(exchange);
+		param.setRoutingKey(routingKey);
+		param.setMessage(params);
+		amqpTemplate.convertAndSend(TtlQueueConfig.exchange, TtlQueueConfig.routingKey, JSONUtil.toJsonStr(param),
+				message -> {
+					message.getMessageProperties().setDelay(delayTtl);
+					return message;
+				});
 	}
 
 	/**

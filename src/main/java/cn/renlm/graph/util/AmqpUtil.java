@@ -13,6 +13,11 @@ import lombok.experimental.UtilityClass;
 public class AmqpUtil {
 
 	/**
+	 * 延时任务最大时长（7天）
+	 */
+	public static final int maxDelayTtl = 1000 * 60 * 60 * 24 * 7;
+
+	/**
 	 * 交换机名称后缀
 	 */
 	public static final String Exchange = "Exchange";
@@ -34,7 +39,7 @@ public class AmqpUtil {
 	 * @return
 	 */
 	public static final String exchangeName(String key) {
-		Assert.notBlank(key);
+		Assert.notBlank(key, "key不能为空");
 		return key + Exchange;
 	}
 
@@ -45,7 +50,7 @@ public class AmqpUtil {
 	 * @return
 	 */
 	public static final String queueName(String key) {
-		Assert.notBlank(key);
+		Assert.notBlank(key, "key不能为空");
 		return key + Queue;
 	}
 
@@ -56,7 +61,7 @@ public class AmqpUtil {
 	 * @return
 	 */
 	public static final String routingKeyName(String key) {
-		Assert.notBlank(key);
+		Assert.notBlank(key, "key不能为空");
 		return queueName(key) + RoutingKey;
 	}
 }
