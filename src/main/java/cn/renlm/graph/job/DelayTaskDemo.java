@@ -1,7 +1,7 @@
 package cn.renlm.graph.job;
 
 import cn.hutool.json.JSONUtil;
-import cn.renlm.graph.util.AmqpUtil.DelayTask;
+import cn.renlm.graph.amqp.AmqpUtil.DelayTask;
 import lombok.extern.slf4j.Slf4j;
 
 /**

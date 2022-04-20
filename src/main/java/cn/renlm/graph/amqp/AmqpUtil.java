@@ -1,4 +1,4 @@
-package cn.renlm.graph.util;
+package cn.renlm.graph.amqp;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,7 +10,6 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
-import cn.renlm.graph.amqp.TtlQueueConfig;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import lombok.experimental.UtilityClass;

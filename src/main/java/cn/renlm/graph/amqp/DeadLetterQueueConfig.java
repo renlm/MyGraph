@@ -28,9 +28,8 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
-import cn.renlm.graph.util.AmqpUtil;
-import cn.renlm.graph.util.AmqpUtil.DelayTask;
-import cn.renlm.graph.util.AmqpUtil.DelayTaskParam;
+import cn.renlm.graph.amqp.AmqpUtil.DelayTask;
+import cn.renlm.graph.amqp.AmqpUtil.DelayTaskParam;
 import lombok.extern.slf4j.Slf4j;
 
 /**
