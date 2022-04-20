@@ -27,7 +27,7 @@ public class GraphApplication {
 	@Bean
 	public TaskScheduler taskScheduler() {
 		ThreadPoolTaskScheduler scheduling = new ThreadPoolTaskScheduler();
-		scheduling.setPoolSize(255);
+		scheduling.setPoolSize(128);
 		scheduling.initialize();
 		return scheduling;
 	}
