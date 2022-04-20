@@ -30,10 +30,10 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		super.setAlwaysUseDefaultTargetUrl(true);
-		super.onAuthenticationSuccess(request, response, authentication);
 		UserDto user = (UserDto) authentication.getPrincipal();
 		long timeout = DateUtil.between(new Date(), user.getExpiryDate(), DateUnit.SECOND);
 		ServletUtil.addCookie(response, WsUtil.TokenKey, user.getToken(), Convert.toInt(timeout));
+		super.setAlwaysUseDefaultTargetUrl(true);
+		super.onAuthenticationSuccess(request, response, authentication);
 	}
 }
