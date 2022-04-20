@@ -69,12 +69,14 @@ public class DeadLetterQueueConfig {
 			DeadLetterQueueParam param = JSONUtil.toBean(body, DeadLetterQueueParam.class);
 			if (StrUtil.isNotBlank(param.exchange)) {
 				String time = DateUtil.formatDateTime(param.getTime());
-				log.info("=== 延时任务，接收时间：{}，添加时间：time，交换机名称：{}，路由名称：{}，参数：{}", receiveTime, time, param.exchange,
+				log.info("=== 延时任务，接收时间：{}，添加时间：{}，交换机名称：{}，路由名称：{}，参数：{}", receiveTime, time, param.exchange,
 						param.routingKey, param.message);
 				amqpTemplate.convertAndSend(param.exchange, param.routingKey, param.message);
 			} else {
 				log.error("=== 死信队列，接收时间：{}，无效任务：\r\n{}", receiveTime, JSONUtil.toJsonPrettyStr(param));
 			}
+		} else {
+			log.error("=== 死信队列，接收时间：{}，无效任务：\r\n{}", receiveTime, body);
 		}
 	}
 
