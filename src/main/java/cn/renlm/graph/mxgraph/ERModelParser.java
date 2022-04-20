@@ -81,7 +81,7 @@ public class ERModelParser {
 		graph.setXml(this.convertMxGraphModelToXml(mxGraphModel));
 		graph.setName(name);
 		graph.setCategoryCode(GraphCategory.ER.name());
-		graph.setCategoryName(GraphCategory.ER.value());
+		graph.setCategoryName(GraphCategory.ER.getText());
 		GraphDto.fillDefault(graph);
 		graph.setCreatedAt(new Date());
 		graph.setCreatorUserId(user.getUserId());
