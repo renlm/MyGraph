@@ -72,6 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * 静态资源
 	 */
 	public static final String[] STATIC_PATHS = { 
+			"/favicon.ico",
 			"/static/favicon.ico",
 			"/static/{path:^((?!editor.md).)*$}/**", 
 			"/webjars/**" 
