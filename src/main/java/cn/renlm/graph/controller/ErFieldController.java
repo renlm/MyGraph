@@ -78,7 +78,7 @@ public class ErFieldController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/update")
-	public Result ajaxUpdate(Authentication authentication, String uuid, String name, String comment, Integer type,
+	public Result<?> ajaxUpdate(Authentication authentication, String uuid, String name, String comment, Integer type,
 			Integer size, Integer digit, Boolean isNullable, Boolean autoIncrement, String columnDef, Boolean isPk,
 			Boolean isFk, String remark) {
 		try {

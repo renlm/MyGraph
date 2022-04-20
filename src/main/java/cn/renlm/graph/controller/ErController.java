@@ -61,7 +61,7 @@ public class ErController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/update")
-	public Result ajaxUpdate(Authentication authentication, ErDto form) {
+	public Result<?> ajaxUpdate(Authentication authentication, ErDto form) {
 		try {
 			UserDto user = (UserDto) authentication.getPrincipal();
 			Er entity = iErService.getOne(Wrappers.<Er>lambdaQuery().eq(Er::getUuid, form.getUuid()));
@@ -86,7 +86,7 @@ public class ErController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/createGraph")
-	public Result createGraph(Authentication authentication, String name, String uuids) {
+	public Result<?> createGraph(Authentication authentication, String name, String uuids) {
 		try {
 			UserDto user = (UserDto) authentication.getPrincipal();
 			List<String> uuidList = StrUtil.splitTrim(uuids, StrUtil.COMMA);

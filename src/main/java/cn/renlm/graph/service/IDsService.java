@@ -35,7 +35,7 @@ public interface IDsService extends IService<Ds> {
 	 * @param ds
 	 * @return
 	 */
-	Result init(UserDto user, DsDto ds);
+	Result<String> init(UserDto user, DsDto ds);
 
 	/**
 	 * 根据Uuid删除数据源

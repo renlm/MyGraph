@@ -101,7 +101,7 @@ public class GraphController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/saveEditor")
-	public Result saveEditor(Authentication authentication, GraphDto form) {
+	public Result<?> saveEditor(Authentication authentication, GraphDto form) {
 		UserDto user = (UserDto) authentication.getPrincipal();
 		try {
 			Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, form.getUuid()));

@@ -73,7 +73,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public Result init(UserDto user, DsDto ds) {
+	public Result<String> init(UserDto user, DsDto ds) {
 		List<Table> tables = MyDbUtil.getTableMetas(ds.getUrl(), ds.getSchema(), ds.getUsername(), ds.getPassword(),
 				TableType.TABLE);
 		// 保存数据源

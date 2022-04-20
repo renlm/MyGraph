@@ -65,7 +65,7 @@ public class LoginController {
 	 */
 	@ResponseBody
 	@PostMapping("/doRegister")
-	public Result doRegister(UserDto form, String confirmpwd) {
+	public Result<?> doRegister(UserDto form, String confirmpwd) {
 		try {
 			Users user = iUsersService.getOne(Wrappers.<Users>lambdaQuery().func(wrapper -> {
 				wrapper.eq(Users::getUsername, form.getUsername());
@@ -113,7 +113,7 @@ public class LoginController {
 	 */
 	@ResponseBody
 	@PostMapping("/doEditPwd")
-	public Result doEditPwd(Authentication authentication, String password, String confirmpwd) {
+	public Result<?> doEditPwd(Authentication authentication, String password, String confirmpwd) {
 		UserDto user = (UserDto) authentication.getPrincipal();
 		try {
 			if (!StrUtil.equals(password, confirmpwd)) {

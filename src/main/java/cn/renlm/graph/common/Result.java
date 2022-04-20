@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 @Data
 @AllArgsConstructor
 @Accessors(chain = true)
-public class Result implements Serializable {
+public class Result<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,26 +24,28 @@ public class Result implements Serializable {
 
 	private String message;
 
-	private Object data;
+	private T data;
 
-	public static Result of(HttpStatus status) {
-		return new Result(status.value(), status.getReasonPhrase(), null);
+	public static <R> Result<R> of(HttpStatus status) {
+		return new Result<R>(status.value(), status.getReasonPhrase(), null);
 	}
 
-	public static Result success() {
+	public static <R> Result<R> success() {
 		return Result.of(HttpStatus.OK);
 	}
 
-	public static Result success(Object data) {
-		return success().setData(data);
+	public static <R> Result<R> success(R data) {
+		Result<R> result = success();
+		return result.setData(data);
 	}
 
-	public static Result error() {
+	public static <R> Result<R> error() {
 		return Result.of(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	public static Result error(String message) {
-		return Result.of(HttpStatus.INTERNAL_SERVER_ERROR).setMessage(message);
+	public static <R> Result<R> error(String message) {
+		Result<R> result = Result.of(HttpStatus.INTERNAL_SERVER_ERROR);
+		return result.setMessage(message);
 	}
 
 	public boolean isSuccess() {

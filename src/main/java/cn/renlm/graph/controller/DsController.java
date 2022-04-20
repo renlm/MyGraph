@@ -64,7 +64,7 @@ public class DsController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	public Result ajaxSave(Authentication authentication, DsDto ds) {
+	public Result<String> ajaxSave(Authentication authentication, DsDto ds) {
 		try {
 			UserDto user = (UserDto) authentication.getPrincipal();
 			return iDsService.init(user, ds);
@@ -83,7 +83,7 @@ public class DsController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/del")
-	public Result ajaxDel(Authentication authentication, String uuids) {
+	public Result<?> ajaxDel(Authentication authentication, String uuids) {
 		try {
 			UserDto user = (UserDto) authentication.getPrincipal();
 			List<String> uuidList = StrUtil.splitTrim(uuids, StrUtil.COMMA);
