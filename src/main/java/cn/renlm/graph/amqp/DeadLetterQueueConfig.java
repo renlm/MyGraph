@@ -71,9 +71,9 @@ public class DeadLetterQueueConfig {
 			DeadLetterQueueParam param = JSONUtil.toBean(body, DeadLetterQueueParam.class);
 			if (StrUtil.isNotBlank(param.exchange)) {
 				String time = DateUtil.formatDateTime(param.getTime());
-				log.info("=== 延时任务，接收时间：{}，添加时间：{}，交换机名称：{}，路由名称：{}，参数：{}", receiveTime, time, param.exchange,
-						param.routingKey, param.message);
-				amqpTemplate.convertAndSend(param.exchange, param.routingKey, param.message);
+				log.info("=== 延时任务，接收时间：{}，添加时间：{}，交换机名称：{}，路由名称：{}，任务参数：\r\n{}", receiveTime, time, param.exchange,
+						param.routingKey, JSONUtil.toJsonPrettyStr(param.paramJson));
+				amqpTemplate.convertAndSend(param.exchange, param.routingKey, param.paramJson);
 			} else {
 				log.error("=== 死信队列，接收时间：{}，无效任务：\r\n{}", receiveTime, JSONUtil.toJsonPrettyStr(param));
 			}
@@ -87,11 +87,12 @@ public class DeadLetterQueueConfig {
 	 * 
 	 * @param exchange   任务交换机名称
 	 * @param routingKey 任务路由名称
-	 * @param params     任务参数
+	 * @param paramJson  任务参数（Json格式）
 	 * @param delayTtl   延时ttl时长（毫秒数）
 	 */
-	public void createDelayTask(String exchange, String routingKey, String params, int delayTtl) {
+	public void createDelayTask(String exchange, String routingKey, String paramJson, int delayTtl) {
 		Assert.notBlank(exchange, "延时任务exchange不能为空");
+		Assert.isTrue(JSONUtil.isTypeJSON(paramJson), "任务参数paramJson必须为Json格式");
 		Date time = new Date();
 		long day = DateUtil.between(time, DateUtil.offsetMillisecond(time, AmqpUtil.maxDelayTtl), DateUnit.DAY);
 		Assert.isFalse(delayTtl > AmqpUtil.maxDelayTtl, "延时任务最大时长（" + day + "天）");
@@ -99,10 +100,10 @@ public class DeadLetterQueueConfig {
 		param.setTime(time);
 		param.setExchange(exchange);
 		param.setRoutingKey(routingKey);
-		param.setMessage(params);
+		param.setParamJson(paramJson);
 		amqpTemplate.convertAndSend(TtlQueueConfig.exchange, TtlQueueConfig.routingKey, JSONUtil.toJsonStr(param),
 				message -> {
-					message.getMessageProperties().setDelay(delayTtl);
+					message.getMessageProperties().setExpiration(String.valueOf(delayTtl));
 					return message;
 				});
 	}
@@ -132,9 +133,9 @@ public class DeadLetterQueueConfig {
 		private String routingKey;
 
 		/**
-		 * 参数
+		 * 任务参数（Json格式）
 		 */
-		private String message;
+		private String paramJson;
 
 	}
 
