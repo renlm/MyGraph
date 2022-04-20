@@ -9,7 +9,7 @@ import org.springframework.amqp.core.QueueBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import cn.renlm.graph.common.AmqpSuffix;
+import cn.renlm.graph.util.AmqpUtil;
 
 /**
  * 死信队列
@@ -20,13 +20,13 @@ import cn.renlm.graph.common.AmqpSuffix;
 @Configuration
 public class DeadLetterConfig {
 
-	private static final String key = DeadLetterConfig.class.getSimpleName();
+	private static final String key = "DeadLetter";
 
-	public static final String exchange = AmqpSuffix.exchangeName(key);
+	public static final String exchange = AmqpUtil.exchangeName(key);
 
-	public static final String queue = AmqpSuffix.queueName(key);
+	public static final String queue = AmqpUtil.queueName(key);
 
-	public static final String routingKey = AmqpSuffix.routingKeyName(key);
+	public static final String routingKey = AmqpUtil.routingKeyName(key);
 
 	/**
 	 * 声明交换机

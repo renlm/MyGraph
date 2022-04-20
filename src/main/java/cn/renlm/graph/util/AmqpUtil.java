@@ -1,16 +1,31 @@
-package cn.renlm.graph.common;
+package cn.renlm.graph.util;
 
 import cn.hutool.core.lang.Assert;
+import lombok.experimental.UtilityClass;
 
 /**
- * 消息队列后缀
+ * 消息队列
  * 
  * @author Renlm
  *
  */
-public enum AmqpSuffix {
+@UtilityClass
+public class AmqpUtil {
 
-	Exchange, Queue, RoutingKey;
+	/**
+	 * 交换机名称后缀
+	 */
+	public static final String Exchange = "Exchange";
+
+	/**
+	 * 队列名称后缀
+	 */
+	public static final String Queue = "Queue";
+
+	/**
+	 * 路由名称后缀
+	 */
+	public static final String RoutingKey = "RoutingKey";
 
 	/**
 	 * 拼接交换机名称
