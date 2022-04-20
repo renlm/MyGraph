@@ -1,6 +1,11 @@
 server:
   port: 80
     
+my:
+  config:
+    wsHost: ws://localhost
+    wsAllowedOrigins: http://localhost
+    
 logging:
   level:
     root: info

@@ -5,6 +5,12 @@ server:
       remote-ip-header: "x-forwarded-for"
       protocol-header: "x-forwarded-proto"
     
+my:
+  config:
+    wsHost: ws://graph.renlm.cn
+    wssHost: wss://graph.renlm.cn:443
+    wsAllowedOrigins: http://graph.renlm.cn,https://graph.renlm.cn
+    
 logging:
   level:
     root: info
