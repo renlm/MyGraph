@@ -17,6 +17,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class Result implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	private int statusCode;
