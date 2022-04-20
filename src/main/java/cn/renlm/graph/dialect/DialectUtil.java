@@ -12,6 +12,8 @@ import org.thymeleaf.dialect.AbstractDialect;
 import org.thymeleaf.dialect.IExpressionObjectDialect;
 import org.thymeleaf.expression.IExpressionObjectFactory;
 
+import cn.renlm.graph.util.MyConfigProperties;
+
 /**
  * 工具集
  * 
@@ -23,8 +25,9 @@ public class DialectUtil extends AbstractDialect implements IExpressionObjectDia
 
 	private final Map<String, Object> map = Collections.synchronizedMap(new HashMap<>());
 
-	protected DialectUtil(Environment environment) {
+	protected DialectUtil(MyConfigProperties myConfigProperties, Environment environment) {
 		super(DialectUtil.class.getSimpleName());
+		map.put("MyConfig", myConfigProperties);
 		map.put("ActiveProfiles", environment.getActiveProfiles());
 	}
 
