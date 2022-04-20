@@ -54,6 +54,7 @@ public class AmqpUtil {
 	 */
 	public static final void createDelayTask(String exchange, String routingKey, String paramJson, int delayTtl) {
 		Assert.notBlank(exchange, "延时任务exchange不能为空");
+		Assert.notBlank(routingKey, "延时任务routingKey不能为空");
 		Assert.isTrue(JSONUtil.isTypeJSON(paramJson), "任务参数paramJson必须为Json格式");
 		Date time = new Date();
 		long day = DateUtil.between(time, DateUtil.offsetMillisecond(time, AmqpUtil.maxDelayTtl), DateUnit.DAY);

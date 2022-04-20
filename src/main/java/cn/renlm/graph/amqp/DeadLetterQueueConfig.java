@@ -62,12 +62,12 @@ public class DeadLetterQueueConfig {
 	public void receiveMessage(Message message, Channel channel) {
 		String receiveTime = DateUtil.formatDateTime(new Date());
 		String body = StrUtil.str(message.getBody(), message.getMessageProperties().getContentEncoding());
-		log.info("=== 死信队列，接收时间：{}，消息内容：\r\n{}", receiveTime, body);
+		log.info("=== 死信队列，接收时间：{}\r\n=== 消息内容：{}", receiveTime, body);
 		if (JSONUtil.isTypeJSONObject(body)) {
 			DelayTaskParam param = JSONUtil.toBean(body, DelayTaskParam.class);
 			if (StrUtil.isNotBlank(param.getExchange())) {
 				String time = DateUtil.formatDateTime(param.getTime());
-				log.info("=== 延时任务，接收时间：{}，添加时间：{}，交换机名称：{}，路由名称：{}，任务参数：\r\n{}",
+				log.info("=== 延时任务，接收时间：{}\r\n=== 添加时间：{}\r\n=== 交换机名称：{}\r\n=== 路由名称：{}\r\n=== 任务参数：{}",
 						// 接收时间
 						receiveTime,
 						// 添加时间
@@ -81,10 +81,10 @@ public class DeadLetterQueueConfig {
 				// 触发任务执行队列
 				amqpTemplate.convertAndSend(param.getExchange(), param.getRoutingKey(), param.getParamJson());
 			} else {
-				log.error("=== 死信队列，接收时间：{}，无效任务：\r\n{}", receiveTime, JSONUtil.toJsonPrettyStr(param));
+				log.error("=== 死信队列，接收时间：{}\r\n=== 无效任务：{}", receiveTime, JSONUtil.toJsonPrettyStr(param));
 			}
 		} else {
-			log.error("=== 死信队列，接收时间：{}，无效任务：\r\n{}", receiveTime, body);
+			log.error("=== 死信队列，接收时间：{}\r\n=== 无效任务：{}", receiveTime, body);
 		}
 	}
 
