@@ -49,8 +49,8 @@ public class TtlConfig {
 				.deadLetterExchange(DeadLetterConfig.exchange)
 				// 死信路由
 				.deadLetterRoutingKey(DeadLetterConfig.routingKey)
-				// 消息过期时间
-				.ttl(1000 * 10)
+				// 消息过期时间（如果同时配置了队列的TTL和消息的TTL，那么较小的那个值将会被使用）
+				.ttl(1000 * 60 * 60 * 24)
 				// 构建队列
 				.build();
 	}
