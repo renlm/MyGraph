@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.Resource;
 
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,9 @@ public class UserApiController {
 	@ResponseBody
 	@GetMapping("/getInfo")
 	public Result<UserDto> getInfo(Authentication authentication) {
+		if (authentication == null) {
+			return Result.of(HttpStatus.UNAUTHORIZED);
+		}
 		UserDto user = (UserDto) authentication.getPrincipal();
 		user.setPassword(null);
 		redisTemplate.opsForValue().set(user.getToken(), user, ConstVal.MAX_INACTIVE_INTERVAL_SECONDS,
