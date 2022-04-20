@@ -47,12 +47,12 @@ public class AmqpUtil {
 	/**
 	 * 创建延时任务
 	 * 
-	 * @param delayTaskClass 任务执行类
-	 * @param paramJson      任务参数（Json格式）
-	 * @param delayTtl       延时ttl时长（毫秒数）
+	 * @param taskClass 任务执行类
+	 * @param paramJson 任务参数（Json格式）
+	 * @param delayTtl  延时ttl时长（毫秒数）
 	 */
-	public static final void createDelayTask(Class<DelayTask> delayTaskClass, String paramJson, int delayTtl) {
-		Assert.notNull(delayTaskClass, "延时任务delayTaskClass不能为空");
+	public static final void createDelayTask(Class<? extends DelayTask> taskClass, String paramJson, int delayTtl) {
+		Assert.notNull(taskClass, "延时任务taskClass不能为空");
 		Assert.isTrue(JSONUtil.isTypeJSON(paramJson), "任务参数paramJson必须为Json格式");
 		Date time = new Date();
 		long day = DateUtil.between(time, DateUtil.offsetMillisecond(time, AmqpUtil.maxDelayTtl), DateUnit.DAY);
@@ -60,7 +60,7 @@ public class AmqpUtil {
 		DelayTaskParam param = new DelayTaskParam();
 		param.setType(0);
 		param.setTime(time);
-		param.setDelayTaskClass(delayTaskClass.getName());
+		param.setDelayTaskClass(taskClass.getName());
 		param.setParamJson(paramJson);
 		AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
 		amqpTemplate.convertAndSend(TtlQueueConfig.exchange, TtlQueueConfig.routingKey, JSONUtil.toJsonStr(param),

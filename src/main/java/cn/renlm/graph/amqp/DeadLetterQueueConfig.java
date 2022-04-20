@@ -77,7 +77,7 @@ public class DeadLetterQueueConfig {
 					if (delayTaskClass == null) {
 						log.error("=== 死信队列，接收时间：{}\r\n=== 无效任务：{}", receiveTime, JSONUtil.toJsonPrettyStr(param));
 					} else {
-						log.info("=== 延时任务，接收时间：{}\r\n=== 任务类型：{}\\r\\n=== 创建时间：{}\r\n=== 任务执行类：{}\r\n=== 任务参数：{}",
+						log.info("=== 延时任务，接收时间：{}\r\n=== 任务类型：{}\r\n=== 创建时间：{}\r\n=== 任务执行类：{}\r\n=== 任务参数：{}",
 								// 接收时间
 								receiveTime,
 								// 任务类型
@@ -100,7 +100,7 @@ public class DeadLetterQueueConfig {
 			else if (NumberUtil.equals(1, param.getType())) {
 				if (StrUtil.isNotBlank(param.getExchange())) {
 					log.info(
-							"=== 延时任务，接收时间：{}\r\n=== 任务类型：{}\\r\\n=== 创建时间：{}\r\n=== 交换机名称：{}\r\n=== 路由名称：{}\r\n=== 任务参数：{}",
+							"=== 延时任务，接收时间：{}\r\n=== 任务类型：{}\r\n=== 创建时间：{}\r\n=== 交换机名称：{}\r\n=== 路由名称：{}\r\n=== 任务参数：{}",
 							// 接收时间
 							receiveTime,
 							// 任务类型
