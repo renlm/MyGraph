@@ -51,12 +51,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public static final String LoginProcessingUrl = "/dologin";
 
 	/**
+	 * 开放接口匹配路径
+	 */
+	public static final String APIAntMatcher = "/api/**";
+
+	/**
 	 * 白名单
 	 */
 	public static final String[] WHITE_LIST = {  
 			"/captcha",
 			"/register",
 			"/doRegister",
+			APIAntMatcher,
 			LoginPage, 
 			logoutUrl, 
 			LoginProcessingUrl 
@@ -88,6 +94,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		}
 		// 启用csrf
 		http.csrf()
+			.ignoringAntMatchers(APIAntMatcher)
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		// 资源访问控制
 		http.authorizeRequests()
