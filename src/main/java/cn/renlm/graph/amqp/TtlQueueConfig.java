@@ -19,6 +19,7 @@ import cn.renlm.graph.util.AmqpUtil;
  */
 @Configuration
 public class TtlQueueConfig {
+
 	private static final String key = "Ttl";
 
 	public static final String exchange = key + AmqpUtil.Exchange;
