@@ -1,59 +1,31 @@
 package cn.renlm.graph.amqp;
 
-import java.util.Date;
-
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.ExchangeBuilder;
-import org.springframework.amqp.core.ExchangeTypes;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.QueueBuilder;
-import org.springframework.amqp.rabbit.annotation.Exchange;
-import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
-import com.rabbitmq.client.Channel;
-
-import cn.hutool.core.date.DateUtil;
 import cn.renlm.graph.util.AmqpUtil;
-import lombok.extern.slf4j.Slf4j;
 
 /**
- * 死信队列
+ * 延时队列
  * 
  * @author Renlm
  *
  */
-@Slf4j
-@Component
 @Configuration
-public class DeadLetterConfig {
-
-	private static final String key = "DeadLetter";
+public class TtlConfig {
+	private static final String key = "Ttl";
 
 	public static final String exchange = key + AmqpUtil.Exchange;
 
 	public static final String queue = key + AmqpUtil.Queue;
 
 	public static final String routingKey = queue + AmqpUtil.RoutingKey;
-
-	/**
-	 * 监听队列
-	 * 
-	 * @param message
-	 * @param channel
-	 */
-	@RabbitListener(bindings = {
-			@QueueBinding(value = @Queue(value = DeadLetterConfig.queue, durable = Exchange.TRUE), exchange = @Exchange(value = DeadLetterConfig.exchange, type = ExchangeTypes.DIRECT), key = DeadLetterConfig.routingKey) })
-	public void receiveMessage(Message message, Channel channel) {
-		log.info("当前时间：{}，收到死信队列消息：{}", DateUtil.formatDateTime(new Date()), message);
-	}
 
 	/**
 	 * 声明交换机
@@ -72,7 +44,15 @@ public class DeadLetterConfig {
 	 */
 	@Bean(name = queue)
 	public org.springframework.amqp.core.Queue queue() {
-		return QueueBuilder.durable(queue).build();
+		return QueueBuilder.durable(queue)
+				// 死信交换机
+				.deadLetterExchange(DeadLetterConfig.exchange)
+				// 死信路由
+				.deadLetterRoutingKey(DeadLetterConfig.routingKey)
+				// 消息过期时间
+				.ttl(1000 * 10)
+				// 构建队列
+				.build();
 	}
 
 	/**
