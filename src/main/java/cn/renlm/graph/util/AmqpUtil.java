@@ -104,10 +104,13 @@ public class AmqpUtil {
 	 */
 	public static interface DelayTask {
 
+		/**
+		 * 方法名
+		 */
 		public static final String method = "execute";
 
 		/**
-		 * 执行
+		 * 执行任务
 		 * 
 		 * @param paramJson 任务参数（Json格式）
 		 */
