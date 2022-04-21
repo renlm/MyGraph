@@ -2,8 +2,10 @@ package cn.renlm.graph.oshi;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -45,7 +47,7 @@ public class OshiInfoUtil {
 	/**
 	 * 缓存时长（毫秒）
 	 */
-	public static final long validityMillis = 1000 * 60 * 60 * 12;
+	public static final int validityMillis = 1000 * 60 * 60 * 1;
 
 	/**
 	 * 获取服务器列表
@@ -53,18 +55,27 @@ public class OshiInfoUtil {
 	 * @param ip
 	 * @return
 	 */
-	public static final Map<String, OshiInfo> machines() {
-		return null;
-	}
+	public static final Map<String, Set<OshiInfo>> servers() {
+		// 查询区间
+		Date now = new Date();
+		double min = DateUtil.offsetMillisecond(now, -validityMillis).getTime();
+		double max = now.getTime();
 
-	/**
-	 * 获取监控数据
-	 * 
-	 * @param ip
-	 * @return
-	 */
-	public static final List<OshiInfo> get(String ip) {
-		return null;
+		// 缓存服务器列表
+		Map<String, Set<OshiInfo>> map = new LinkedHashMap<>();
+		RedisTemplate<String, String> redisTemplateIp = getRedisTemplate();
+		ZSetOperations<String, String> zopsIp = redisTemplateIp.opsForZSet();
+		Set<String> ips = zopsIp.rangeByScore(key, min, max);
+
+		// 缓存监控数据
+		RedisTemplate<String, OshiInfo> redisTemplateOshi = getRedisTemplate();
+		ZSetOperations<String, OshiInfo> zopsOshi = redisTemplateOshi.opsForZSet();
+		for (String ip : ips) {
+			String oshiKey = getOshiKey(ip);
+			Set<OshiInfo> infos = zopsOshi.rangeByScore(oshiKey, min, max);
+			map.put(ip, infos);
+		}
+		return map;
 	}
 
 	/**
@@ -128,12 +139,34 @@ public class OshiInfoUtil {
 				BigDecimal.ROUND_HALF_UP));
 		info.setJavaVersion(javaVersion);
 
-		// 缓存数据
-		RedisTemplate<String, OshiInfo> redisTemplate = getRedisTemplate();
-		ZSetOperations<String, OshiInfo> zops = redisTemplate.opsForZSet();
+		// 过期时间
 		Long expTime = DateUtil.current() + validityMillis;
-		zops.add(key, info, expTime);
+
+		// 缓存服务器列表
+		RedisTemplate<String, String> redisTemplateIp = getRedisTemplate();
+		ZSetOperations<String, String> zopsIp = redisTemplateIp.opsForZSet();
+		zopsIp.add(key, info.getIp(), expTime);
+
+		// 缓存监控数据
+		RedisTemplate<String, OshiInfo> redisTemplateOshi = getRedisTemplate();
+		ZSetOperations<String, OshiInfo> zopsOshi = redisTemplateOshi.opsForZSet();
+		String oshiKey = getOshiKey(info.getIp());
+		double min = 0;
+		double max = DateUtil.offsetMillisecond(new Date(), -validityMillis).getTime();
+		zopsOshi.removeRangeByScore(oshiKey, min, max);
+		zopsOshi.add(oshiKey, info, expTime);
+
 		return info;
+	}
+
+	/**
+	 * 缓存监控数据键
+	 * 
+	 * @param ip
+	 * @return
+	 */
+	private static final String getOshiKey(String ip) {
+		return key + StrUtil.AT + ip;
 	}
 
 	/**

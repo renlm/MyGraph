@@ -1,7 +1,7 @@
 package cn.renlm.graph.controller;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -43,20 +43,8 @@ public class OshiController {
 	 * @return
 	 */
 	@ResponseBody
-	@GetMapping("/machines")
-	public Map<String, OshiInfo> machines() {
-		return OshiInfoUtil.machines();
-	}
-
-	/**
-	 * 监控数据
-	 * 
-	 * @param ip
-	 * @return
-	 */
-	@ResponseBody
-	@GetMapping("/list")
-	public List<OshiInfo> list(String ip) {
-		return OshiInfoUtil.get(ip);
+	@GetMapping("/servers")
+	public Map<String, Set<OshiInfo>> servers() {
+		return OshiInfoUtil.servers();
 	}
 }
