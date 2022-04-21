@@ -22,9 +22,9 @@ public class OshiHandler {
 	/**
 	 * 采集信息并广播
 	 */
-	@Scheduled(cron = "*/5 * * * * ?")
+	@Scheduled(cron = OshiInfoUtil.cron)
 	public void getAndTopic() {
-		OshiInfo oshiInfo = OshiInfoUtil.get();
+		OshiInfo oshiInfo = OshiInfoUtil.collect();
 		amqpTemplate.convertAndSend(WsTopicQueueConfig.exchange, WsTopicQueueConfig.routingKey, oshiInfo);
 	}
 }

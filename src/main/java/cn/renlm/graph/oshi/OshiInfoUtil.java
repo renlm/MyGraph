@@ -4,7 +4,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
+
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.system.JavaInfo;
 import cn.hutool.system.OsInfo;
 import cn.hutool.system.SystemUtil;
@@ -25,12 +31,16 @@ import oshi.software.os.OperatingSystem;
 @UtilityClass
 public class OshiInfoUtil {
 
+	private static final String key = OshiInfoUtil.class.getName();
+	public static final String cron = "*/60 * * * * ?";
+	public static final long validityMillis = 1000 * 60 * 5;
+
 	/**
 	 * 采集服务器信息
 	 * 
 	 * @return
 	 */
-	public static final OshiInfo get() {
+	public static final OshiInfo collect() {
 		OshiInfo info = new OshiInfo();
 
 		// Cpu信息
@@ -65,6 +75,7 @@ public class OshiInfoUtil {
 			freeSpace += fs.getFreeSpace();
 		}
 
+		// 封装数据
 		info.setIp(SystemUtil.getHostInfo().getAddress());
 		info.setTime(new Date());
 		info.setUid(IdUtil.getSnowflakeNextId());
@@ -84,6 +95,23 @@ public class OshiInfoUtil {
 		info.setJvmMemoryUsedRate(new BigDecimal(100.0 - (freeMemoryByte * 100.0 / jvmTotalMemoryByte)).setScale(2,
 				BigDecimal.ROUND_HALF_UP));
 		info.setJavaVersion(javaVersion);
+
+		// 缓存数据
+		RedisTemplate<String, OshiInfo> redisTemplate = getRedisTemplate();
+		ZSetOperations<String, OshiInfo> zops = redisTemplate.opsForZSet();
+		Long expTime = DateUtil.current() + validityMillis;
+		zops.add(key, info, expTime);
 		return info;
+	}
+
+	/**
+	 * 获取Redis操作工具
+	 * 
+	 * @param <K>
+	 * @param <V>
+	 * @return
+	 */
+	private static final <K, V> RedisTemplate<K, V> getRedisTemplate() {
+		return SpringUtil.getBean(StrUtil.lowerFirst(RedisTemplate.class.getSimpleName()));
 	}
 }
