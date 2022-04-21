@@ -72,7 +72,7 @@ public class OshiInfoUtil {
 		ZSetOperations<String, OshiInfo> zopsOshi = redisTemplateOshi.opsForZSet();
 		for (String ip : ips) {
 			String oshiKey = getOshiKey(ip);
-			Set<OshiInfo> infos = zopsOshi.rangeByScore(oshiKey, min, max, 0, 1);
+			Set<OshiInfo> infos = zopsOshi.reverseRangeByScore(oshiKey, min, max, 0, 1);
 			if (CollUtil.isNotEmpty(infos)) {
 				map.put(ip, CollUtil.getFirst(infos));
 			}
