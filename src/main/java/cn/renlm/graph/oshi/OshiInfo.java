@@ -6,6 +6,7 @@ import java.util.Date;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import oshi.util.FormatUtil;
 
 /**
  * 服务器信息
@@ -50,9 +51,23 @@ public class OshiInfo implements Serializable {
 	private Long memory;
 
 	/**
+	 * 系统内存（格式化字符）
+	 */
+	public String getMemoryStr() {
+		return FormatUtil.formatBytes(getMemory());
+	}
+
+	/**
 	 * 已使用系统内存（字节）
 	 */
 	private Long memoryUsed;
+
+	/**
+	 * 已使用系统内存（格式化字符）
+	 */
+	public String getMemoryUsedStr() {
+		return FormatUtil.formatBytes(getMemoryUsed());
+	}
 
 	/**
 	 * 系统内存使用率（%）
@@ -65,9 +80,23 @@ public class OshiInfo implements Serializable {
 	private Long disk;
 
 	/**
+	 * 磁盘（格式化字符）
+	 */
+	public String getDiskStr() {
+		return FormatUtil.formatBytes(getDisk());
+	}
+
+	/**
 	 * 已使用磁盘（字节）
 	 */
 	private Long diskUsed;
+
+	/**
+	 * 已使用磁盘（格式化字符）
+	 */
+	public String getDiskUsedStr() {
+		return FormatUtil.formatBytes(getDiskUsed());
+	}
 
 	/**
 	 * 磁盘使用率（%）
@@ -90,9 +119,23 @@ public class OshiInfo implements Serializable {
 	private Long jvmMemory;
 
 	/**
+	 * jvm 内存总量（格式化字符）
+	 */
+	public String getJvmMemoryStr() {
+		return FormatUtil.formatBytes(getJvmMemory());
+	}
+
+	/**
 	 * jvm 已使用内存（字节）
 	 */
 	private Long jvmMemoryUsed;
+
+	/**
+	 * jvm 已使用内存（格式化字符）
+	 */
+	public String getJvmMemoryUsedStr() {
+		return FormatUtil.formatBytes(getJvmMemoryUsed());
+	}
 
 	/**
 	 * jvm 内存使用率（%）

@@ -12,7 +12,7 @@
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
 	                    <i class="fa fa-server"></i> 
-	               		<span>服务器信息，机器ip：{{item.machine}}，磁盘：{{item.diskStr}}，已使用磁盘：{{item.diskUsedStr}}，磁盘使用率：{{item.diskUsedRate}} %</span>
+	               		<span>服务器信息，机器ip：{{item.ip}}，磁盘：{{item.diskStr}}，已使用磁盘：{{item.diskUsedStr}}，磁盘使用率：{{item.diskUsedRate}} %</span>
 	                </div>
 	                <div class="panel-body" style="border-width: 0px;">
 	                	<div class="topjui-row">
@@ -157,9 +157,9 @@
    	                .then(function(json){
    	                	var tempMachineMap = {};
    	                	$.each(json, function(key, item) {
-   	                		tempMachineMap[key] = item[0];
+   	                		tempMachineMap[key] = item;
    	                		if(!that.serverMap[key]) {
-   	                			that.$set(that.serverMap, key, tempMachineMap[key]);
+   	                			that.$set(that.serverMap, key, item);
    	                			WS.send(item.machine);
    	                		}
    	                	});
