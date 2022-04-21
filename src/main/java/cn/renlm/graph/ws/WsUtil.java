@@ -132,9 +132,19 @@ public class WsUtil {
 		if (StrUtil.isBlank(token) || timestamp == null) {
 			return null;
 		}
-		RedisTemplate<String, UserDto> redisTemplate = SpringUtil
-				.getBean(new TypeReference<RedisTemplate<String, UserDto>>() {
-				});
+		RedisTemplate<String, UserDto> redisTemplate = getRedisTemplate();
 		return redisTemplate.opsForValue().get(token);
+	}
+
+	/**
+	 * 获取Redis操作工具
+	 * 
+	 * @param <K>
+	 * @param <V>
+	 * @return
+	 */
+	private static final <K, V> RedisTemplate<K, V> getRedisTemplate() {
+		return SpringUtil.getBean(new TypeReference<RedisTemplate<K, V>>() {
+		});
 	}
 }
