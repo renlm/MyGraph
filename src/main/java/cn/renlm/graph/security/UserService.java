@@ -60,7 +60,7 @@ public class UserService implements UserDetailsService {
 			authorities.add(authority);
 		}
 		int timeout = ConstVal.MAX_INACTIVE_INTERVAL_SECONDS;
-		userDetails.setExpiryDate(DateUtil.offsetSecond(new Date(), timeout));
+		userDetails.setExpiryTime(DateUtil.offsetSecond(new Date(), timeout));
 		redisTemplate.opsForValue().set(userDetails.getToken(), userDetails, timeout, TimeUnit.SECONDS);
 		return userDetails;
 	}

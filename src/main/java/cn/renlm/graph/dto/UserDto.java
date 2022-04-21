@@ -25,7 +25,7 @@ public class UserDto extends Users implements org.springframework.security.core.
 
 	private String token;
 
-	private Date expiryDate;
+	private Date expiryTime;
 
 	private List<GrantedAuthority> authorities;
 

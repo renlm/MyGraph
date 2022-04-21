@@ -31,7 +31,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		UserDto user = (UserDto) authentication.getPrincipal();
-		long timeout = DateUtil.between(new Date(), user.getExpiryDate(), DateUnit.SECOND);
+		long timeout = DateUtil.between(new Date(), user.getExpiryTime(), DateUnit.SECOND);
 		ServletUtil.addCookie(response, WsUtil.TokenKey, user.getToken(), Convert.toInt(timeout));
 		super.setAlwaysUseDefaultTargetUrl(true);
 		super.onAuthenticationSuccess(request, response, authentication);
