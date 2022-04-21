@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.TypeReference;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -26,6 +28,12 @@ import lombok.experimental.UtilityClass;
  */
 @UtilityClass
 public class WsUtil {
+
+	/**
+	 * 在线状态
+	 */
+	public static final String OnlineStatusKey = WsUtil.class.getName();
+	public static final long OnlineStatusValidityMillis = 1000 * 10;
 
 	/**
 	 * 传递参数Key
@@ -61,6 +69,11 @@ public class WsUtil {
 	public static final WebSocketSession addSession(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
 		UserDto user = getUserInfo(session);
+		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
+		Long expTime = DateUtil.current() + OnlineStatusValidityMillis;
+		zops.add(OnlineStatusKey, user.getUserId(), expTime);
+		zops.add(wsKey, user.getUserId(), expTime);
 		WS_USER_REL.put(wsKey, user);
 		return WS_SESSION_POOL.put(wsKey, session);
 	}
@@ -73,6 +86,11 @@ public class WsUtil {
 	 */
 	public static final WebSocketSession removeSession(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
+		UserDto user = getUserInfo(session);
+		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
+		zops.remove(OnlineStatusKey, user.getUserId());
+		zops.remove(wsKey, user.getUserId());
 		WS_USER_REL.remove(wsKey);
 		return WS_SESSION_POOL.remove(wsKey);
 	}
