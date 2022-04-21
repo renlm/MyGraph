@@ -28,11 +28,24 @@
     <script th:src="@{/webjars/echarts/echarts.min.js}"></script>
     <script type="text/javascript">
     	$(function() {
+    		var OSHI_UID = [];
+    		var OSHI_POOL = [];
     		var protocol = document.location.protocol;
     		var timestamp = new Date().getTime();
     		var webSocketHost = protocol.indexOf("https") > -1?"[(${#MyConfig.wssHost})]":"[(${#MyConfig.wsHost})]";
     		var token = Base64.encodeURI("[(${session.SPRING_SECURITY_CONTEXT.authentication.principal.token})]@" + timestamp);
     		var WS = new ReconnectingWebSocket(webSocketHost + "[(@{/ws/})]" + token);
+    		
+    		// 扩展数组方法
+    		Array.prototype.contains = function(obj) {
+    			var i = this.length;
+    			while (i--) {
+    				if (this[i] === obj) {
+    			   		return true;
+    				}
+    			}
+    			return false;
+    		}
     		
     		// 打开连接
     		WS.onopen = function (evt) {
@@ -40,13 +53,24 @@
     		}
 
     		// 接收消息
-    		WS.onmessage = function (evt) { 
+    		WS.onmessage = function (evt) {
     			var message = JSON.parse(evt.data);
     			// 服务器信息
     			if(message.type == "oshi") {
     				$.each(message.data, function (key, data) {
-    					console.log(key, data);
+    					if(data instanceof Array) {
+    						$.each(data, function (i, item) {
+    							if(!OSHI_UID.contains(item.uid)) { OSHI_UID.push(item.uid); OSHI_POOL.push(item); }
+            					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
+            					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
+    			   			});
+    					} else {
+    						if(!OSHI_UID.contains(data.uid)) { OSHI_UID.push(data.uid); OSHI_POOL.push(data); }
+        					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
+        					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
+    					}
     				});
+    				console.log(OSHI_POOL);
     			}
     		}
 

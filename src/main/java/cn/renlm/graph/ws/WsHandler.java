@@ -41,12 +41,9 @@ public class WsHandler extends TextWebSocketHandler {
 				for (Map.Entry<String, OshiInfo> entry : servers.entrySet()) {
 					String ip = entry.getKey();
 					Set<OshiInfo> infos = OshiInfoUtil.get(ip);
-					for (OshiInfo info : infos) {
-						final String messageJson = JSONUtil
-								.toJsonStr(WsMessage.build(WsType.oshi, MapUtil.of(ip, info)));
-						final TextMessage textMessage = new TextMessage(messageJson);
-						session.sendMessage(textMessage);
-					}
+					final String messageJson = JSONUtil.toJsonStr(WsMessage.build(WsType.oshi, MapUtil.of(ip, infos)));
+					final TextMessage textMessage = new TextMessage(messageJson);
+					session.sendMessage(textMessage);
 				}
 			}
 			// 即时通讯
