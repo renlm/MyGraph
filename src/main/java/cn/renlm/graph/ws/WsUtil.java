@@ -37,7 +37,7 @@ public class WsUtil {
 	/**
 	 * 会话池
 	 */
-	private static final ConcurrentHashMap<String, String> WS_USER_REL = new ConcurrentHashMap<>();
+	private static final ConcurrentHashMap<String, UserDto> WS_USER_REL = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, WebSocketSession> WS_SESSION_POOL = new ConcurrentHashMap<>();
 
 	/**
@@ -48,8 +48,8 @@ public class WsUtil {
 	 * @return
 	 */
 	public static final boolean validHandshake(String token, Long timestamp) {
-		UserDto user = getUserInfo(token);
-		return ObjectUtil.isNotEmpty(user);
+		UserDto user = getUserInfo(token, timestamp);
+		return ObjectUtil.isNotEmpty(user) && StrUtil.isNotBlank(user.getUserId());
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class WsUtil {
 	public static final WebSocketSession addSession(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
 		UserDto user = getUserInfo(session);
-		WS_USER_REL.put(wsKey, user.getUserId());
+		WS_USER_REL.put(wsKey, user);
 		return WS_SESSION_POOL.put(wsKey, session);
 	}
 
@@ -105,7 +105,7 @@ public class WsUtil {
 	 */
 	private static final UserDto getUserInfo(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
-		if (StrUtil.isBlank(wsKey)) {
+		if (StrUtil.isBlank(wsKey) || !Base64.isBase64(wsKey)) {
 			return null;
 		}
 		String decodeStr = Base64.decodeStr(wsKey);
@@ -117,16 +117,21 @@ public class WsUtil {
 			return null;
 		}
 		String token = decodes[0];
-		return getUserInfo(token);
+		Long timestamp = Convert.toLong(decodes[1]);
+		return getUserInfo(token, timestamp);
 	}
 
 	/**
 	 * 获取用户信息
 	 * 
 	 * @param token
+	 * @param timestamp
 	 * @return
 	 */
-	private static final UserDto getUserInfo(String token) {
+	private static final UserDto getUserInfo(String token, Long timestamp) {
+		if (StrUtil.isBlank(token) || timestamp == null) {
+			return null;
+		}
 		RedisTemplate<String, UserDto> redisTemplate = SpringUtil
 				.getBean(new TypeReference<RedisTemplate<String, UserDto>>() {
 				});

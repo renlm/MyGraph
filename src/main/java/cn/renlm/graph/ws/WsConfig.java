@@ -50,16 +50,23 @@ public class WsConfig implements WebSocketConfigurer {
 						log.info("[ WebSocket ] 握手beforeHandshake：{}", path);
 						// WsKey规则，Base64.encodeURI('token@timestamp')
 						String wsKey = StrUtil.subAfter(path, StrUtil.SLASH, true);
-						String[] decodes = Base64.decodeStr(wsKey).split(StrUtil.AT);
-						if (ArrayUtil.isNotEmpty(decodes) && ArrayUtil.length(decodes) == 2) {
-							String token = decodes[0];
-							Long timestamp = Convert.toLong(decodes[1]);
-							attributes.put(WsUtil.WsKey, wsKey);
-							attributes.put(WsUtil.TokenKey, token);
-							attributes.put(WsUtil.TimestampKey, timestamp);
-							return WsUtil.validHandshake(token, timestamp);
+						if (StrUtil.isBlank(wsKey) || !Base64.isBase64(wsKey)) {
+							return false;
 						}
-						return false;
+						String decodeStr = Base64.decodeStr(wsKey);
+						if (StrUtil.isBlank(decodeStr)) {
+							return false;
+						}
+						String[] decodes = decodeStr.split(StrUtil.AT);
+						if (ArrayUtil.isEmpty(decodes) || ArrayUtil.length(decodes) != 2) {
+							return false;
+						}
+						String token = decodes[0];
+						Long timestamp = Convert.toLong(decodes[1]);
+						attributes.put(WsUtil.WsKey, wsKey);
+						attributes.put(WsUtil.TokenKey, token);
+						attributes.put(WsUtil.TimestampKey, timestamp);
+						return WsUtil.validHandshake(token, timestamp);
 					}
 
 					@Override
