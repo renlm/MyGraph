@@ -52,7 +52,6 @@ public class OshiInfoUtil {
 	/**
 	 * 获取服务器列表
 	 * 
-	 * @param ip
 	 * @return
 	 */
 	public static final Map<String, Set<OshiInfo>> servers() {
