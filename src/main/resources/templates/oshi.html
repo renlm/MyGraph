@@ -30,8 +30,35 @@
     <script th:src="@{/static/popo/popo.min.js}"></script>
     <script th:src="@{/static/popo/leaflet/leaflet.js}"></script>
     <script th:src="@{/static/popo/leaflet/leaflet-tilelayer-wmts.js}"></script>
+    <script th:src="@{/webjars/reconnecting-websocket/reconnecting-websocket.js}"></script>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/js-base64/base64.min.js}"></script>
     <script th:src="@{/webjars/echarts/echarts.min.js}"></script>
+    <script type="text/javascript">
+    	$(function() {
+    		var protocol = document.location.protocol;
+    		var timestamp = new Date().getTime();
+    		var webSocketHost = protocol.indexOf("https") > -1?"[(${#MyConfig.wssHost})]":"[(${#MyConfig.wsHost})]";
+    		var token = Base64.encodeURI("[(${session.SPRING_SECURITY_CONTEXT.authentication.principal.token})]@" + timestamp);
+    		var WS = new ReconnectingWebSocket(webSocketHost + "[(@{/ws/})]" + token);
+    		
+    		// 打开连接
+    		WS.onopen = function (evt) {
+    			
+    		}
+
+    		// 接收消息
+    		WS.onmessage = function (evt) { 
+    			var message = JSON.parse(evt.data);
+    			console.log(message);
+    		}
+
+    		// 连接关闭
+    		WS.onclose = function (evt) { 
+    			
+    		}
+    	});
+    </script>
     <script type="text/javascript">
 
         /**
