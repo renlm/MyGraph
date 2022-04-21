@@ -1,0 +1,104 @@
+html,
+body,
+#container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #111111;
+    background-image: linear-gradient(to bottom, #030340, #111111);
+}
+
+#container {
+    font-family: arial, 'Microsoft Yahei';
+    /* padding: 5px 10px; */
+    box-sizing: border-box;
+}
+
+.leaflet-container {
+    background: transparent;
+}
+
+.popo-panel {
+    border: 1px solid #09488a;
+    box-shadow: 0 0 25px 2px #073069 inset;
+    border-top: 1px solid #49a9ee;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 66, .6), rgba(0, 0, 0, .8));
+}
+
+.badge {
+    background: url('../popo/images/badge.svg') 0.5em center no-repeat;
+    background-size: auto 50%;
+    color: orange;
+    text-align: left;
+    text-indent: 2.2em;
+}
+
+@-webkit-keyframes masked-animation {
+    0% {
+        background-position: 0 0
+    }
+    to {
+        background-position: -100% 0
+    }
+}
+
+@keyframes masked-animation {
+    0% {
+        background-position: 0 0
+    }
+    to {
+        background-position: -100% 0
+    }
+}
+
+.se-title .popo-head {
+    font-size: 2em;
+    color: #49a9ee;
+    text-align: center;
+    text-indent: 0;
+    background-image: -webkit-linear-gradient(left, #cddc39, #ff9800 25%, #cddc39 50%, #ff9800 75%, #cddc39)!important;
+    -webkit-text-fill-color: transparent!important;
+    -webkit-background-clip: text!important;
+    background-clip: text!important;
+    -webkit-background-size: 200% 100%!important;
+    background-size: 200% 100%!important;
+    -webkit-animation: masked-animation 1s infinite linear!important;
+    animation: masked-animation 1s infinite linear!important;
+}
+
+.screen-1440 .badge {
+    font-size: 1.15em;
+}
+
+.screen-1440 .se-title .popo-head {
+    font-size: 1.6em;
+}
+
+.mobiletitle .popo-head {
+    font-size: 1.5em;
+    white-space: nowrap;
+}
+
+.mobiletitle .badge {
+    font-size: 1.2em;
+}
+
+.mobiletitle .summary {
+    color: #49A9EE;
+    padding: 0 15px;
+    line-height: 150%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.summary::first-letter {
+    margin: 5px 0 0 5px;
+    float: left;
+    font-size: 2em;
+    display: block;
+    text-transform: capitalize;
+}
