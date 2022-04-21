@@ -1,11 +1,10 @@
 package cn.renlm.graph.oshi;
 
-import java.io.File;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.system.HostInfo;
 import cn.hutool.system.JavaInfo;
 import cn.hutool.system.OsInfo;
 import cn.hutool.system.SystemUtil;
@@ -13,6 +12,9 @@ import cn.hutool.system.oshi.CpuInfo;
 import cn.hutool.system.oshi.OshiUtil;
 import lombok.experimental.UtilityClass;
 import oshi.hardware.GlobalMemory;
+import oshi.software.os.FileSystem;
+import oshi.software.os.OSFileStore;
+import oshi.software.os.OperatingSystem;
 
 /**
  * Oshi 工具
@@ -55,13 +57,15 @@ public class OshiInfoUtil {
 		// 磁盘信息
 		long disk = 0L;
 		long freeSpace = 0L;
-		File[] disks = File.listRoots();
-		for (File file : disks) {
-			disk += file.getTotalSpace();
-			freeSpace += file.getFreeSpace();
+		OperatingSystem operatingSystem = OshiUtil.getOs();
+		FileSystem fileSystem = operatingSystem.getFileSystem();
+		List<OSFileStore> fsArray = fileSystem.getFileStores();
+		for (OSFileStore fs : fsArray) {
+			disk += fs.getTotalSpace();
+			freeSpace += fs.getFreeSpace();
 		}
 
-		info.setIp(new HostInfo().getAddress());
+		info.setIp(SystemUtil.getHostInfo().getAddress());
 		info.setTime(new Date());
 		info.setUid(IdUtil.getSnowflakeNextId());
 		info.setCpuCores(cpuCores);
