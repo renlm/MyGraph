@@ -51,10 +51,21 @@
                 
                 if (option) {
                     option.onload = function (popo) { 
-                    	
+                    	popo.getAlias().forEach(function (alias) {
+                    		var target = popo.center(alias.name);
+                            if (target) {
+                            	console.log(alias, target);
+                                // echarts.init(target).setOption(data);
+                            }
+                        });
                     };
                     option.update = function (popo) { 
-                    	
+                    	popo.each(function (elements) {
+                            if (elements.center) {
+                                var chart = echarts.getInstanceByDom(elements.center);
+                                chart && chart.resize();
+                            }
+                        });
                     };
                     bigscreen = P.init(P.Util.merge(option, base)).addTo("container");
                 }
@@ -109,7 +120,6 @@
         					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
     					}
     				});
-    				console.log(OSHI_POOL);
     			}
     		}
 
