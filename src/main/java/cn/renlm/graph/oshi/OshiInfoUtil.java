@@ -57,8 +57,8 @@ public class OshiInfoUtil {
 	public static final Map<String, Set<OshiInfo>> servers() {
 		// 查询区间
 		Date now = new Date();
-		long min = DateUtil.offsetMillisecond(now, -validityMillis).getTime();
-		long max = now.getTime();
+		long min = now.getTime();
+		long max = DateUtil.offsetMillisecond(now, validityMillis).getTime();
 
 		// 缓存服务器列表
 		Map<String, Set<OshiInfo>> map = new LinkedHashMap<>();
@@ -139,7 +139,7 @@ public class OshiInfoUtil {
 		info.setJavaVersion(javaVersion);
 
 		// 过期时间
-		Long expTime = DateUtil.current() + validityMillis;
+		Long expTime = info.getTime().getTime() + validityMillis;
 
 		// 缓存服务器列表
 		RedisTemplate<String, String> redisTemplateIp = getRedisTemplate();
@@ -151,7 +151,7 @@ public class OshiInfoUtil {
 		ZSetOperations<String, OshiInfo> zopsOshi = redisTemplateOshi.opsForZSet();
 		String oshiKey = getOshiKey(info.getIp());
 		long min = 0;
-		long max = DateUtil.offsetMillisecond(new Date(), -validityMillis).getTime();
+		long max = DateUtil.offsetMillisecond(info.getTime(), -validityMillis).getTime();
 		zopsOshi.removeRangeByScore(oshiKey, min, max);
 		zopsOshi.add(oshiKey, info, expTime);
 
