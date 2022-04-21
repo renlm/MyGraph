@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
-import org.springframework.web.socket.TextMessage;
 
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.oshi.OshiInfo;
+import cn.renlm.graph.ws.WsMessage;
+import cn.renlm.graph.ws.WsMessage.WsType;
 import cn.renlm.graph.ws.WsUtil;
 
 /**
@@ -42,8 +42,7 @@ public class WsTopicQueueConfig {
 	 */
 	@RabbitListener(queues = "#{" + queue + ".name}")
 	public void receive(OshiInfo info) {
-		String message = JSONUtil.toJsonStr(MapUtil.of(info.getIp(), info));
-		WsUtil.topic(new TextMessage(message));
+		WsUtil.topic(WsMessage.build(WsType.oshi, MapUtil.of(info.getIp(), info)));
 	}
 
 	/**

@@ -7,6 +7,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.json.JSONUtil;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -71,10 +73,15 @@ public class WsUtil {
 	 * 
 	 * @param message
 	 */
-	public static final void topic(TextMessage message) {
+	public static final void topic(WsMessage<?> message) {
+		if (ObjectUtil.isEmpty(message)) {
+			return;
+		}
+		final String messageJson = JSONUtil.toJsonStr(message);
+		final TextMessage textMessage = new TextMessage(messageJson);
 		WS_SESSION_POOL.forEach((key, value) -> {
 			try {
-				value.sendMessage(message);
+				value.sendMessage(textMessage);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
