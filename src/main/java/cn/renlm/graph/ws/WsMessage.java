@@ -31,7 +31,7 @@ public class WsMessage<T> implements Serializable {
 	/**
 	 * 消息内容
 	 */
-	private T message;
+	private T data;
 
 	/**
 	 * 消息类型
@@ -73,7 +73,7 @@ public class WsMessage<T> implements Serializable {
 		WsMessage<W> wsMessage = new WsMessage<W>();
 		wsMessage.setType(type);
 		wsMessage.setUserId(userId);
-		wsMessage.setMessage(message);
+		wsMessage.setData(message);
 		return wsMessage;
 	}
 }

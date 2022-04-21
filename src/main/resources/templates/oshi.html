@@ -7,7 +7,7 @@
 </head>
 <body layout:fragment="content">
     <div id="vue-app" class="container-fluid" style="margin-top: 20px;" v-cloak>
-    	<div class="row" v-for="(item, key, index) in serverMap" v-bind:data-machine="item.machine">
+    	<div class="row" v-for="(item, key, index) in serverMap" v-bind:data-ip="item.ip">
     		<div class="col-md-12">
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
@@ -42,13 +42,13 @@
 	                    </div>
 	                    <div class="topjui-row">
 					    	<div class="layui-col-lg4 layui-col-sm4 topjui-col-xs12">
-					    		<div v-bind:id="'cpu-' + item.machine" style="height: 300px;"></div>
+					    		<div v-bind:id="'cpu-' + item.ip" style="height: 300px;"></div>
 					    	</div>
 					    	<div class="layui-col-lg4 layui-col-sm4 topjui-col-xs12">
-					    		<div v-bind:id="'memory-' + item.machine" style="height: 300px;"></div>
+					    		<div v-bind:id="'memory-' + item.ip" style="height: 300px;"></div>
 					    	</div>
 					    	<div class="layui-col-lg4 layui-col-sm4 topjui-col-xs12">
-					    		<div v-bind:id="'jvm-' + item.machine" style="height: 300px;"></div>
+					    		<div v-bind:id="'jvm-' + item.ip" style="height: 300px;"></div>
 					    	</div>
 						</div>
 	                </div>
@@ -160,7 +160,7 @@
    	                		tempMachineMap[key] = item;
    	                		if(!that.serverMap[key]) {
    	                			that.$set(that.serverMap, key, item);
-   	                			WS.send(item.machine);
+   	                			WS.send(item.ip);
    	                		}
    	                	});
    	                	$.each(that.serverMap, function(key, item) {
@@ -193,14 +193,14 @@
    			
    			$.each(message, function (i, item) {
    				if(!cpuId || !memId || !jvmId) {
-   					cpuId = "cpu-" + item.machine;
-   					memId = "memory-" + item.machine;
-   					jvmId = "jvm-" + item.machine;
+   					cpuId = "cpu-" + item.ip;
+   					memId = "memory-" + item.ip;
+   					jvmId = "jvm-" + item.ip;
    				}
    				
-   				cpuUsedRateData.push({ name: item.createdAt, value: [ item.createdAt, item.cpuUsedRate ] });
-   				memUsedRateData.push({ name: item.createdAt, value: [ item.createdAt, item.memoryUsedRate ] });
-   				jvmUsedRateData.push({ name: item.createdAt, value: [ item.createdAt, item.jvmMemoryUsedRate ] });
+   				cpuUsedRateData.push({ name: item.time, value: [ item.time, item.cpuUsedRate ] });
+   				memUsedRateData.push({ name: item.time, value: [ item.time, item.memoryUsedRate ] });
+   				jvmUsedRateData.push({ name: item.time, value: [ item.time, item.jvmMemoryUsedRate ] });
    			});
    			
    			cpuUsedRateData.reverse();
@@ -211,28 +211,27 @@
    			createRateEcharts(memId, "系统内存使用率", memUsedRateData);
    			createRateEcharts(jvmId, "Jvm内存使用率", jvmUsedRateData);
    		} else {
-   			$.each(message, function (key, item) {
-   				var _cpuId = "cpu-" + item.machine;
-   				var _memId = "memory-" + item.machine;
-   				var _jvmId = "jvm-" + item.machine;
-   				
-   				if(OshiChart.echarts[_cpuId] && OshiChart.echarts[_memId] && OshiChart.echarts[_jvmId]) {
-   					
-   					VM.$set(VM.serverMap, key, item);
-   					
-   					if(OshiChart.option[_cpuId].series[0].data.length > 12*15) { OshiChart.option[_cpuId].series[0].data.shift(); }
-   					OshiChart.option[_cpuId].series[0].data.push({ name: item.createdAt, value: [ item.createdAt, item.cpuUsedRate ] });
-   					OshiChart.echarts[_cpuId].setOption(OshiChart.option[_cpuId]);
-   					
-   					if(OshiChart.option[_memId].series[0].data.length > 12*15) { OshiChart.option[_memId].series[0].data.shift(); }
-   					OshiChart.option[_memId].series[0].data.push({ name: item.createdAt, value: [ item.createdAt, item.memoryUsedRate ] });
-   					OshiChart.echarts[_memId].setOption(OshiChart.option[_memId]);
-   					
-   					if(OshiChart.option[_jvmId].series[0].data.length > 12*15) { OshiChart.option[_jvmId].series[0].data.shift(); }
-   					OshiChart.option[_jvmId].series[0].data.push({ name: item.createdAt, value: [ item.createdAt, item.jvmMemoryUsedRate ] });
-   					OshiChart.echarts[_jvmId].setOption(OshiChart.option[_jvmId]);
-   				}
-   			});
+   			var item = message.data;
+   			var _cpuId = "cpu-" + item.ip;
+			var _memId = "memory-" + item.ip;
+			var _jvmId = "jvm-" + item.ip;
+			
+			if(OshiChart.echarts[_cpuId] && OshiChart.echarts[_memId] && OshiChart.echarts[_jvmId]) {
+				
+				VM.$set(VM.serverMap, key, item);
+				
+				if(OshiChart.option[_cpuId].series[0].data.length > 12*15) { OshiChart.option[_cpuId].series[0].data.shift(); }
+				OshiChart.option[_cpuId].series[0].data.push({ name: item.time, value: [ item.time, item.cpuUsedRate ] });
+				OshiChart.echarts[_cpuId].setOption(OshiChart.option[_cpuId]);
+				
+				if(OshiChart.option[_memId].series[0].data.length > 12*15) { OshiChart.option[_memId].series[0].data.shift(); }
+				OshiChart.option[_memId].series[0].data.push({ name: item.time, value: [ item.time, item.memoryUsedRate ] });
+				OshiChart.echarts[_memId].setOption(OshiChart.option[_memId]);
+				
+				if(OshiChart.option[_jvmId].series[0].data.length > 12*15) { OshiChart.option[_jvmId].series[0].data.shift(); }
+				OshiChart.option[_jvmId].series[0].data.push({ name: item.time, value: [ item.time, item.jvmMemoryUsedRate ] });
+				OshiChart.echarts[_jvmId].setOption(OshiChart.option[_jvmId]);
+			}
    		}
    	}
    	
