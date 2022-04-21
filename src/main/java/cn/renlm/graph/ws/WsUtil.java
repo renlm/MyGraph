@@ -12,7 +12,6 @@ import org.springframework.web.socket.WebSocketSession;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.lang.TypeReference;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -126,12 +125,12 @@ public class WsUtil {
 	 */
 	public static final void userOnlineStatusHeartbeat() {
 		log.info("=== 在线状态心跳监测，连接数：" + WS_USER_REL.size());
+		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 		for (Map.Entry<String, UserDto> entry : WS_USER_REL.entrySet()) {
 			String wsKey = entry.getKey();
 			UserDto user = entry.getValue();
 			String userId = user.getUserId();
-			RedisTemplate<String, String> redisTemplate = getRedisTemplate();
-			ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 			Long expTime = DateUtil.current() + OnlineStatusValidityMillis;
 			zops.add(OnlineStatusKey, userId, expTime);
 			zops.add(userId, wsKey, expTime);
@@ -185,7 +184,6 @@ public class WsUtil {
 	 * @return
 	 */
 	private static final <K, V> RedisTemplate<K, V> getRedisTemplate() {
-		return SpringUtil.getBean(new TypeReference<RedisTemplate<K, V>>() {
-		});
+		return SpringUtil.getBean(StrUtil.lowerFirst(RedisTemplate.class.getSimpleName()));
 	}
 }
