@@ -3,10 +3,9 @@
 <head>
     <title>服务器</title>
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
-    <link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet"/>
 </head>
 <body layout:fragment="content">
-    <div id="vue-app" class="container-fluid" style="margin-top: 20px;" v-cloak>
+    <div id="vue-app" class="container-fluid" style="padding-top: 20px;" v-cloak>
     	<div class="row" v-for="(item, key, index) in serverMap" v-bind:data-ip="item.ip">
     		<div class="col-md-12">
 	            <div class="panel panel-default">
@@ -59,8 +58,6 @@
 <script th:src="@{/webjars/reconnecting-websocket/reconnecting-websocket.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/webjars/echarts/echarts.min.js}"></script>
-<script th:src="@{/webjars/layui/layui.js}"></script>
-<script th:src="@{/webjars/vue/vue.min.js}"></script>
 <script type="application/javascript">
 	OshiChart = { echarts: { }, option: { } };
 	var protocol = document.location.protocol;
@@ -141,7 +138,6 @@
    		VM = new Vue({
    		    el: "#vue-app",
    		    data: { 
-   		    	timer: null,
    		    	serverMap: { }
    		    },
    		    created() { 
@@ -172,10 +168,10 @@
    	            }
    	        },
    	      	mounted() {
-   	            this.timer = setInterval(this.findMachines, 8000);
+   	            
    	     	},
    	     	beforeDestroy() {
-   	            clearInterval(this.timer);
+   	           
    	   		}
    	    });
    	}
@@ -211,33 +207,33 @@
    			createRateEcharts(memId, "系统内存使用率", memUsedRateData);
    			createRateEcharts(jvmId, "Jvm内存使用率", jvmUsedRateData);
    		} else {
-   			var item = message.data;
-   			var _cpuId = "cpu-" + item.ip;
-			var _memId = "memory-" + item.ip;
-			var _jvmId = "jvm-" + item.ip;
-			
-			if(OshiChart.echarts[_cpuId] && OshiChart.echarts[_memId] && OshiChart.echarts[_jvmId]) {
-				
-				VM.$set(VM.serverMap, key, item);
-				
-				if(OshiChart.option[_cpuId].series[0].data.length > 12*15) { OshiChart.option[_cpuId].series[0].data.shift(); }
-				OshiChart.option[_cpuId].series[0].data.push({ name: item.time, value: [ item.time, item.cpuUsedRate ] });
-				OshiChart.echarts[_cpuId].setOption(OshiChart.option[_cpuId]);
-				
-				if(OshiChart.option[_memId].series[0].data.length > 12*15) { OshiChart.option[_memId].series[0].data.shift(); }
-				OshiChart.option[_memId].series[0].data.push({ name: item.time, value: [ item.time, item.memoryUsedRate ] });
-				OshiChart.echarts[_memId].setOption(OshiChart.option[_memId]);
-				
-				if(OshiChart.option[_jvmId].series[0].data.length > 12*15) { OshiChart.option[_jvmId].series[0].data.shift(); }
-				OshiChart.option[_jvmId].series[0].data.push({ name: item.time, value: [ item.time, item.jvmMemoryUsedRate ] });
-				OshiChart.echarts[_jvmId].setOption(OshiChart.option[_jvmId]);
-			}
+   			$.each(message.data, function (key, item) {
+   				console.log(key, item)
+   				var _cpuId = "cpu-" + item.ip;
+   				var _memId = "memory-" + item.ip;
+   				var _jvmId = "jvm-" + item.ip;
+   				
+   				if(OshiChart.echarts[_cpuId] && OshiChart.echarts[_memId] && OshiChart.echarts[_jvmId]) {
+   					
+   					VM.$set(VM.serverMap, key, item);
+   					
+   					if(OshiChart.option[_cpuId].series[0].data.length > 12*15) { OshiChart.option[_cpuId].series[0].data.shift(); }
+   					OshiChart.option[_cpuId].series[0].data.push({ name: item.time, value: [ item.time, item.cpuUsedRate ] });
+   					OshiChart.echarts[_cpuId].setOption(OshiChart.option[_cpuId]);
+   					
+   					if(OshiChart.option[_memId].series[0].data.length > 12*15) { OshiChart.option[_memId].series[0].data.shift(); }
+   					OshiChart.option[_memId].series[0].data.push({ name: item.time, value: [ item.time, item.memoryUsedRate ] });
+   					OshiChart.echarts[_memId].setOption(OshiChart.option[_memId]);
+   					
+   					if(OshiChart.option[_jvmId].series[0].data.length > 12*15) { OshiChart.option[_jvmId].series[0].data.shift(); }
+   					OshiChart.option[_jvmId].series[0].data.push({ name: item.time, value: [ item.time, item.jvmMemoryUsedRate ] });
+   					OshiChart.echarts[_jvmId].setOption(OshiChart.option[_jvmId]);
+   				}
+   			});
    		}
    	}
    	
    	WS.onclose = function (evt) { console.log("WebSocket closed"); }
-
-
 </script>
 </body>
 </html>
