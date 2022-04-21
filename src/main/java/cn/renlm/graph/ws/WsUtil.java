@@ -33,7 +33,8 @@ public class WsUtil {
 	 * 在线状态
 	 */
 	public static final String OnlineStatusKey = WsUtil.class.getName();
-	public static final long OnlineStatusValidityMillis = 1000 * 10;
+	public static final String OnlineStatusCron = "*/5 * * * * ?";
+	public static final long OnlineStatusValidityMillis = 1000 * 7;
 
 	/**
 	 * 传递参数Key

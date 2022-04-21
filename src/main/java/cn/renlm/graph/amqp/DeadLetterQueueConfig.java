@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import com.rabbitmq.client.Channel;
 
@@ -39,7 +38,6 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
-@Component
 @Configuration
 public class DeadLetterQueueConfig {
 

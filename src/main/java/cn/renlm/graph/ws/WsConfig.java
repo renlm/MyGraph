@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -36,6 +37,14 @@ public class WsConfig implements WebSocketConfigurer {
 
 	@Autowired
 	private WsHandler wsHandler;
+
+	/**
+	 * 在线状态心跳监测
+	 */
+	@Scheduled(cron = WsUtil.OnlineStatusCron)
+	public void heartbeat() {
+
+	}
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {

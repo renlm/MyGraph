@@ -9,7 +9,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
 import cn.hutool.core.map.MapUtil;
 import cn.renlm.graph.oshi.OshiInfo;
@@ -23,7 +22,6 @@ import cn.renlm.graph.ws.WsUtil;
  * @author Renlm
  *
  */
-@Component
 @Configuration
 public class WsTopicQueueConfig {
 
