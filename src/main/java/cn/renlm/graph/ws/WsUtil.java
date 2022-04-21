@@ -1,7 +1,9 @@
 package cn.renlm.graph.ws;
 
+import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import cn.hutool.core.convert.Convert;
@@ -62,5 +64,20 @@ public class WsUtil {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
 		WS_USER_REL.remove(wsKey);
 		return WS_SESSION_POOL.remove(wsKey);
+	}
+
+	/**
+	 * 广播消息
+	 * 
+	 * @param message
+	 */
+	public static final void topic(TextMessage message) {
+		WS_SESSION_POOL.forEach((key, value) -> {
+			try {
+				value.sendMessage(message);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 }

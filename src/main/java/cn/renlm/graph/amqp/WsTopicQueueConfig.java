@@ -5,10 +5,17 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.ExchangeBuilder;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.TextMessage;
+
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.json.JSONUtil;
+import cn.renlm.graph.oshi.OshiInfo;
+import cn.renlm.graph.ws.WsUtil;
 
 /**
  * WebSocket广播队列
@@ -27,6 +34,17 @@ public class WsTopicQueueConfig {
 	public static final String queue = key + AmqpUtil.Queue;
 
 	public static final String routingKey = queue + AmqpUtil.RoutingKey;
+
+	/**
+	 * 监听广播队列
+	 * 
+	 * @param info
+	 */
+	@RabbitListener(queues = "#{" + queue + ".name}")
+	public void receive(OshiInfo info) {
+		String message = JSONUtil.toJsonStr(MapUtil.of(info.getIp(), info));
+		WsUtil.topic(new TextMessage(message));
+	}
 
 	/**
 	 * 声明交换机
