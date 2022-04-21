@@ -1,6 +1,5 @@
 html,
-body,
-#container {
+body, #container {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -14,7 +13,6 @@ body {
 
 #container {
     font-family: arial, 'Microsoft Yahei';
-    /* padding: 5px 10px; */
     box-sizing: border-box;
 }
 
@@ -30,7 +28,6 @@ body {
 }
 
 .badge {
-    background: url('../popo/images/badge.svg') 0.5em center no-repeat;
     background-size: auto 50%;
     color: orange;
     text-align: left;
