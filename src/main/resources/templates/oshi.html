@@ -66,8 +66,8 @@
 	var protocol = document.location.protocol;
 	var timestamp = new Date().getTime();
 	var webSocketHost = protocol.indexOf("https") > -1?"[(${#MyConfig.wssHost})]":"[(${#MyConfig.wsHost})]";
-	var token = Base64.encodeURI("sessionId@[(${#httpServletRequest.session.id})]@" + timestamp);
-	WS = new ReconnectingWebSocket(webSocketHost + "[(@{/ws/oshi/})]" + token);
+	var token = Base64.encodeURI("[(${session.SPRING_SECURITY_CONTEXT.authentication.principal.token})]@" + timestamp);
+	WS = new ReconnectingWebSocket(webSocketHost + "[(@{/ws/})]" + token);
 	
    	function createRateEcharts (id, title, data) {
    		OshiChart.echarts[id] = echarts.init(document.getElementById(id));
@@ -150,16 +150,16 @@
    		    methods: {
    	            findMachines: function() {
    	                var that = this;
-   	                fetch("[(@{/oshi/machines})]")
+   	                fetch("[(@{/oshi/servers})]")
    	                .then(function(response) {
    	                    return response.json();
    	                })
    	                .then(function(json){
    	                	var tempMachineMap = {};
    	                	$.each(json, function(key, item) {
-   	                		tempMachineMap[key] = item;
+   	                		tempMachineMap[key] = item[0];
    	                		if(!that.serverMap[key]) {
-   	                			that.$set(that.serverMap, key, item);
+   	                			that.$set(that.serverMap, key, tempMachineMap[key]);
    	                			WS.send(item.machine);
    	                		}
    	                	});
