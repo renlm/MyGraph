@@ -196,6 +196,7 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>reconnecting-websocket</artifactId>
 			<version>1.0.0</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -272,6 +273,7 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>echarts</artifactId>
 			<version>5.1.2</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
