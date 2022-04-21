@@ -10,6 +10,7 @@ import java.util.Set;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
@@ -54,14 +55,14 @@ public class OshiInfoUtil {
 	 * 
 	 * @return
 	 */
-	public static final Map<String, Set<OshiInfo>> servers() {
+	public static final Map<String, OshiInfo> servers() {
 		// 查询区间
 		Date now = new Date();
 		long min = now.getTime();
 		long max = DateUtil.offsetMillisecond(now, validityMillis).getTime();
 
 		// 缓存服务器列表
-		Map<String, Set<OshiInfo>> map = new LinkedHashMap<>();
+		Map<String, OshiInfo> map = new LinkedHashMap<>();
 		RedisTemplate<String, String> redisTemplateIp = getRedisTemplate();
 		ZSetOperations<String, String> zopsIp = redisTemplateIp.opsForZSet();
 		Set<String> ips = zopsIp.rangeByScore(key, min, max);
@@ -71,10 +72,32 @@ public class OshiInfoUtil {
 		ZSetOperations<String, OshiInfo> zopsOshi = redisTemplateOshi.opsForZSet();
 		for (String ip : ips) {
 			String oshiKey = getOshiKey(ip);
-			Set<OshiInfo> infos = zopsOshi.rangeByScore(oshiKey, min, max);
-			map.put(ip, infos);
+			Set<OshiInfo> infos = zopsOshi.rangeByScore(oshiKey, min, max, 0, 1);
+			if (CollUtil.isNotEmpty(infos)) {
+				map.put(ip, CollUtil.getFirst(infos));
+			}
 		}
 		return map;
+	}
+
+	/**
+	 * 获取监控数据
+	 * 
+	 * @param ip
+	 * @return
+	 */
+	public static final Set<OshiInfo> get(String ip) {
+		// 查询区间
+		Date now = new Date();
+		long min = now.getTime();
+		long max = DateUtil.offsetMillisecond(now, validityMillis).getTime();
+
+		// 缓存监控数据
+		RedisTemplate<String, OshiInfo> redisTemplate = getRedisTemplate();
+		ZSetOperations<String, OshiInfo> zops = redisTemplate.opsForZSet();
+		String oshiKey = getOshiKey(ip);
+		Set<OshiInfo> infos = zops.rangeByScore(oshiKey, min, max);
+		return infos;
 	}
 
 	/**

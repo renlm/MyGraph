@@ -44,7 +44,19 @@ public class OshiController {
 	 */
 	@ResponseBody
 	@GetMapping("/servers")
-	public Map<String, Set<OshiInfo>> servers() {
+	public Map<String, OshiInfo> servers() {
 		return OshiInfoUtil.servers();
+	}
+
+	/**
+	 * 监控数据
+	 * 
+	 * @param ip
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/list")
+	public Set<OshiInfo> list(String ip) {
+		return OshiInfoUtil.get(ip);
 	}
 }
