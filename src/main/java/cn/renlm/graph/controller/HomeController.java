@@ -34,6 +34,16 @@ public class HomeController {
 	}
 
 	/**
+	 * 数据可视化
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/bigscreen")
+	public String bigscreen() {
+		return "bigscreen";
+	}
+
+	/**
 	 * 更新记录
 	 * 
 	 * @return
