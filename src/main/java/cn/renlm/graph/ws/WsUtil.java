@@ -1,6 +1,7 @@
 package cn.renlm.graph.ws;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.data.redis.core.RedisTemplate;
@@ -19,6 +20,7 @@ import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.dto.UserDto;
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * WebSocket 工具
@@ -26,6 +28,7 @@ import lombok.experimental.UtilityClass;
  * @author Renlm
  *
  */
+@Slf4j
 @UtilityClass
 public class WsUtil {
 
@@ -33,8 +36,8 @@ public class WsUtil {
 	 * 在线状态
 	 */
 	public static final String OnlineStatusKey = WsUtil.class.getName();
-	public static final String OnlineStatusCron = "*/5 * * * * ?";
-	public static final long OnlineStatusValidityMillis = 1000 * 7;
+	public static final String OnlineStatusCron = "*/60 * * * * ?";
+	public static final long OnlineStatusValidityMillis = 1000 * 60 * 5;
 
 	/**
 	 * 传递参数Key
@@ -116,6 +119,23 @@ public class WsUtil {
 				e.printStackTrace();
 			}
 		});
+	}
+
+	/**
+	 * 在线状态心跳监测
+	 */
+	public static final void userOnlineStatusHeartbeat() {
+		log.info("=== 在线状态心跳监测，连接数：" + WS_USER_REL.size());
+		for (Map.Entry<String, UserDto> entry : WS_USER_REL.entrySet()) {
+			String wsKey = entry.getKey();
+			UserDto user = entry.getValue();
+			String userId = user.getUserId();
+			RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+			ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
+			Long expTime = DateUtil.current() + OnlineStatusValidityMillis;
+			zops.add(OnlineStatusKey, userId, expTime);
+			zops.add(userId, wsKey, expTime);
+		}
 	}
 
 	/**

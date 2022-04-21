@@ -43,7 +43,7 @@ public class WsConfig implements WebSocketConfigurer {
 	 */
 	@Scheduled(cron = WsUtil.OnlineStatusCron)
 	public void heartbeat() {
-
+		WsUtil.userOnlineStatusHeartbeat();
 	}
 
 	@Override
