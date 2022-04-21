@@ -3,6 +3,7 @@ package cn.renlm.graph.oshi;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -31,9 +32,40 @@ import oshi.software.os.OperatingSystem;
 @UtilityClass
 public class OshiInfoUtil {
 
+	/**
+	 * 缓存键
+	 */
 	private static final String key = OshiInfoUtil.class.getName();
-	public static final String cron = "*/60 * * * * ?";
-	public static final long validityMillis = 1000 * 60 * 5;
+
+	/**
+	 * 采集频率
+	 */
+	public static final String cron = "*/5 * * * * ?";
+
+	/**
+	 * 缓存时长（毫秒）
+	 */
+	public static final long validityMillis = 1000 * 60 * 60 * 12;
+
+	/**
+	 * 获取服务器列表
+	 * 
+	 * @param ip
+	 * @return
+	 */
+	public static final Map<String, OshiInfo> machines() {
+		return null;
+	}
+
+	/**
+	 * 获取监控数据
+	 * 
+	 * @param ip
+	 * @return
+	 */
+	public static final List<OshiInfo> get(String ip) {
+		return null;
+	}
 
 	/**
 	 * 采集服务器信息

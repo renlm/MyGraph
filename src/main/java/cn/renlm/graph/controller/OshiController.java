@@ -1,5 +1,6 @@
 package cn.renlm.graph.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.renlm.graph.oshi.OshiInfo;
+import cn.renlm.graph.oshi.OshiInfoUtil;
 
 /**
  * 服务器信息
@@ -43,6 +45,18 @@ public class OshiController {
 	@ResponseBody
 	@GetMapping("/machines")
 	public Map<String, OshiInfo> machines() {
-		return null;
+		return OshiInfoUtil.machines();
+	}
+
+	/**
+	 * 监控数据
+	 * 
+	 * @param ip
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/list")
+	public List<OshiInfo> list(String ip) {
+		return OshiInfoUtil.get(ip);
 	}
 }
