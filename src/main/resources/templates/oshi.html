@@ -36,23 +36,27 @@
     		
     		// 打开连接
     		WS.onopen = function (evt) {
-    			
+    			WS.send(JSON.stringify({type: "oshi"}));
     		}
 
     		// 接收消息
     		WS.onmessage = function (evt) { 
     			var message = JSON.parse(evt.data);
-    			console.log(message);
+    			// 服务器信息
+    			if(message.type == "oshi") {
+    				$.each(message.data, function (key, data) {
+    					console.log(key, data);
+    				});
+    			}
     		}
 
     		// 连接关闭
-    		WS.onclose = function (evt) { 
-    			
+    		WS.onclose = function (evt) {
+    			console.log("WebSocket closed");
     		}
     	});
     </script>
     <script type="text/javascript">
-
         /**
          *  PoPo Data Visualization for multi screen.
          *  This example defines the mobile phone screen, ordinary notebook screen, PC screen, large screen screen data of four kinds of mode, you can try in different modes of viewing this example, if there is no suitable screen, in the following code prompt to view large screen effect in common screen
