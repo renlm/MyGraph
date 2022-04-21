@@ -112,10 +112,12 @@ public class WsUtil {
 		final String messageJson = JSONUtil.toJsonStr(message);
 		final TextMessage textMessage = new TextMessage(messageJson);
 		WS_SESSION_POOL.forEach((key, value) -> {
-			try {
-				value.sendMessage(textMessage);
-			} catch (IOException e) {
-				e.printStackTrace();
+			if (value.isOpen()) {
+				try {
+					value.sendMessage(textMessage);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -132,8 +134,11 @@ public class WsUtil {
 			UserDto user = entry.getValue();
 			String userId = user.getUserId();
 			Long expTime = DateUtil.current() + OnlineStatusValidityMillis;
-			zops.add(OnlineStatusKey, userId, expTime);
-			zops.add(userId, wsKey, expTime);
+			WebSocketSession session = WS_SESSION_POOL.get(wsKey);
+			if (ObjectUtil.isNotEmpty(session) && session.isOpen()) {
+				zops.add(OnlineStatusKey, userId, expTime);
+				zops.add(userId, wsKey, expTime);
+			}
 		}
 	}
 
