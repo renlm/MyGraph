@@ -21,6 +21,11 @@
 				</li>
 				<li class="layui-nav-item">
 					<a href="javascript:void(0);">
+						<i class="fa fa-image"></i> 服务器
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);">
 						<i class="fa fa-image"></i> 公共图库
 					</a>
 				</li>
@@ -56,6 +61,9 @@
 				<iframe frameborder="0" scrolling="yes" th:src="@{/workbench}"></iframe>
 			</div>
 			<div class="layui-tab-item layui-show">
+				<iframe frameborder="0" scrolling="yes" th:src="@{/oshi}"></iframe>
+			</div>
+			<div class="layui-tab-item layui-show">
 				<iframe frameborder="0" scrolling="yes" th:src="@{/graph/lib}"></iframe>
 			</div>
 			<div class="layui-tab-item layui-show">
@@ -69,13 +77,5 @@
 		</div>
 		<!-- 底部结束 -->
 	</div>
-	<script type="text/javascript">
-		/**
-		 * 监听Tab切换
-		 */
-		layui.element.on("tab(TabIframe)", function (data) {
-			
-		});
-	</script>
 </body>
 </html>
