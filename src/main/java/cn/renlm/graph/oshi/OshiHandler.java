@@ -20,7 +20,7 @@ public class OshiHandler {
 	private AmqpTemplate amqpTemplate;
 
 	/**
-	 * 采集服务器信息并广播
+	 * 采集信息并广播
 	 */
 	@Scheduled(cron = "*/5 * * * * ?")
 	public void getAndTopic() {
