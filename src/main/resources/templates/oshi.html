@@ -7,7 +7,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
-    <link rel="stylesheet" th:href="@{/static/popo/leaflet/leaflet.css}" />
     <link rel="stylesheet" th:href="@{/static/css/oshi.css}" />
 </head>
 <body>
@@ -21,15 +20,8 @@
         <div data-popo="chart6" title="服务节点数"></div>
         <div data-popo="chart7" title="Java虚拟机"></div>
         <div data-popo="chart8" title="Chart H"></div>
-        <div data-popo="mobile_note">
-            <div class="summary" data-popo-target="center">
-                实时监控
-            </div>
-        </div>
     </div>
     <script th:src="@{/static/popo/popo.min.js}"></script>
-    <script th:src="@{/static/popo/leaflet/leaflet.js}"></script>
-    <script th:src="@{/static/popo/leaflet/leaflet-tilelayer-wmts.js}"></script>
     <script th:src="@{/webjars/reconnecting-websocket/reconnecting-websocket.js}"></script>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/js-base64/base64.min.js}"></script>
@@ -168,10 +160,6 @@
                             }
                         });
                     }
-                    // Initialize map.
-                    if (alias.type === 'map') {
-                        // initMap(popo.center(alias.name))
-                    }
                     // Setting summary panel vertical middle.
                     if (alias.type === 'summary') {
                         var panel = popo.center(alias.name);
@@ -190,39 +178,6 @@
                     }
                 });
 
-            }
-
-            /**
-             * Initialize map by dom
-             * @param {HtmlElement} dom popo dom
-             */
-            function initMap(dom) {
-                if (!dom) return;
-                var map = L.map(dom, {
-                    center: [33.42041015, 105.62255],
-                    zoom: 5,
-                    crs: L.CRS.EPSG4326,
-                    attributionControl: false,
-                    zoomControl: false
-                });
-
-
-                map.addLayer(new L.TileLayer.WMTS('http://t0.tianditu.com/img_c/wmts', {
-                    tileSize: 256,
-                    layer: 'img',
-                    style: "default",
-                    tilematrixSet: "c",
-                    format: "tile",
-                    opacity: 1
-                }));
-
-                map.addLayer(new L.TileLayer.WMTS('http://t0.tianditu.com/eia_c/wmts', {
-                    tileSize: 256,
-                    layer: 'eia',
-                    style: "default",
-                    tilematrixSet: "c",
-                    format: "tile",
-                }));
             }
 
             $.getJSON('[(@{/static/popo/data/popo.json})]', function (result) {
