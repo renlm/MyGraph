@@ -7,7 +7,7 @@
 		 * 字节大小格式化
 		 */
 		formatBytes: function (value) {
-			if(value === 1) {
+			if(value === 0 || value === 1) {
 				return value + " byte";
 			} else if(value) {
 				if(value >= 1024*1024*1024*1024) {
