@@ -146,7 +146,75 @@
 	    	 * Cpu
 	    	 */
 	    	function renderCpu (name) {
-	    		renderChart(name, {});
+	    		renderChart(name, {
+		    		tooltip: {
+			    		padding: 10,
+			    		backgroundColor: '#222',
+			    		borderColor: '#777',
+			    		borderWidth: 1
+			 		},
+			    	parallelAxis: [
+			    		{ dim: 0, name: '核心数', nameLocation: 'start' },
+			    		{ dim: 1, name: '使用率' },
+			    		{ 
+			    			dim: 2, 
+			    			name: '服务器', 
+			    			type: 'category',
+			    			data: (function () {
+				    			var category = [];
+				    			$.each(OSHI_IP, function (ip, oshiInfo) {
+				    				  category.push(ip);
+				    			});
+				    			return category;
+			    		 	})()
+			    		}
+			    	],
+			    	parallel: {
+			    		left: '10%',
+			    		right: '30%',
+			    		parallelAxisDefault: {
+				    		type: 'value',
+				    		name: '服务器',
+				    		nameLocation: 'end',
+				    		nameGap: 20,
+				    		nameTextStyle: {
+				    			color: '#fff',
+				    			fontSize: 12
+				    		},
+				    		axisLine: {
+				    			lineStyle: {
+				    				color: '#aaa'
+				    		 	}
+				    		},
+				    		axisTick: {
+				    			lineStyle: {
+				    		 		color: '#777'
+				    			}
+				    		},
+				    		splitLine: {
+				    			show: false
+				    		},
+				    		axisLabel: {
+				    			color: '#fff'
+				    		}
+			   			}
+					},
+			   		series: (function () {
+			    		var series = [];
+			    		$.each(OSHI_IP, function (ip, oshiInfo) {
+			    			series.push({
+				  	    		name: ip,
+				  	    		type: 'parallel',
+				  	    		lineStyle: {
+				  	  	    		width: 1,
+				  		    		opacity: 0.5
+				  		    	},
+				  	    		data: [oshiInfo.cpuCores, oshiInfo.cpuUsedRate, oshiInfo.ip]
+				  	    	});
+			    		});
+			    		return series;
+		    		})()
+				});
 	    	}
 	    	
 	    	/**
