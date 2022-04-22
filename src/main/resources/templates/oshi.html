@@ -154,6 +154,21 @@
 	    	 * 平行坐标系（使用率）
 	    	 */
 	    	function renderParallelUsedRate (name, field, parallelAxis0) {
+	    		parallelAxis0.max = function (value) {
+					var max = value.max;
+					$.each(OSHI_IP, function (ip, oshi) {
+		    			if(field === 'cpu') {
+		    				max = Math.max(max, oshi.cpuCores);
+    					} else if(field === 'memory') {
+    						max = Math.max(max, oshi.memory);
+    					} else if(field === 'disk') {
+    						max = Math.max(max, oshi.disk);
+    					} else if(field === 'jvmMemory') {
+    						max = Math.max(max, oshi.jvmMemory);
+    					}
+		    		});
+				    return max;
+				};
 	    		parallelAxis0.axisLabel = {
 	    				formatter: function (value, index) {
 	    					if(field === 'cpu') {
@@ -240,7 +255,7 @@
 				    		},
 				    		data: (function () {
 					    		var category = [];
-					    		$.each(OSHI_IP, function (ip, oshiInfo) {
+					    		$.each(OSHI_IP, function (ip, oshi) {
 					    			category.push(ip);
 					    		});
 					    		return category;
