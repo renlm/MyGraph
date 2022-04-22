@@ -182,15 +182,12 @@
 	    		   		}
 	    		  	},
 	    			parallelAxis: [
-	    				{ dim: 0, name: '核心数' },
-				    	{ dim: 1, name: '使用率' },
+	    				{ dim: 0, name: '核心数', interval: 4, max: 16 },
+				    	{ dim: 1, name: '使用率', max: 100 },
 				    	{ 
 				    		dim: 2, 
 				    		name: '服务器', 
 				    		type: 'category',
-	    		            axisLabel: {
-	    		            	rotate: -75
-	    		         	},
 				    		data: (function () {
 					    		var category = [];
 					    		$.each(OSHI_IP, function (ip, oshiInfo) {
