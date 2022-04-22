@@ -146,7 +146,7 @@
 	    		// 磁盘
 	    		renderParallelUsedRate('chart3', 'disk', { dim: 0, name: '大小' });
 	    		// Jvm
-	    		renderParallelUsedRate('chart7', 'jvm', { dim: 0, name: '内存' });
+	    		renderParallelUsedRate('chart7', 'jvmMemory', { dim: 0, name: '内存' });
 	    	}
 	    	
 	    	/**
@@ -161,7 +161,15 @@
 	    		        	var htmlStr = params.value[2] + '<br/>';
 		    		        	htmlStr += '<div>';
 		    		        	htmlStr +=     '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#f2637b;"></span>';
-					          	htmlStr +=     parallelAxis0.name + '：' + params.value[0];
+		    		        	if(field === 'cpu') {
+		    		        		htmlStr +=     parallelAxis0.name + '：' + params.value[0];
+		    					} else if(field === 'memory') {
+		    						htmlStr +=     parallelAxis0.name + '：' + OSHI_IP[params.value[2]].memoryUsedStr;
+		    					} else if(field === 'disk') {
+		    						htmlStr +=     parallelAxis0.name + '：' + OSHI_IP[params.value[2]].diskUsedStr;
+		    					} else if(field === 'jvmMemory') {
+		    						htmlStr +=     parallelAxis0.name + '：' + OSHI_IP[params.value[2]].jvmMemoryUsedStr;
+		    					}
 					          	htmlStr += '</div>';
 	                			htmlStr += '<div>';
 					          	htmlStr +=	   '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#fbd444;"></span>';
@@ -220,13 +228,41 @@
     		    					type: 'dashed',
     		    					opacity: 1
     		    				},
-    		    				data: [
-    		    					[
-    		    						oshi.cpuCores, 
-    		    						oshi.cpuUsedRate, 
-    		    						oshi.ip
-    				  	   			]
-    		    				]
+    		    				data: (function () {
+    		    					if(field === 'cpu') {
+    		    						return [
+    	    		    					[
+    	    		    						oshi.cpuCores, 
+    	    		    						oshi.cpuUsedRate, 
+    	    		    						oshi.ip
+    	    				  	   			]
+    	    		    				];
+    		    					} else if(field === 'memory') {
+    		    						return [
+    	    		    					[
+    	    		    						oshi.memory, 
+    	    		    						oshi.memoryUsedRate, 
+    	    		    						oshi.ip
+    	    				  	   			]
+    	    		    				];
+    		    					} else if(field === 'disk') {
+    		    						return [
+    	    		    					[
+    	    		    						oshi.diskUsed, 
+    	    		    						oshi.diskUsedRate, 
+    	    		    						oshi.ip
+    	    				  	   			]
+    	    		    				];
+    		    					} else if(field === 'jvmMemory') {
+    		    						return [
+    	    		    					[
+    	    		    						oshi.jvmMemory, 
+    	    		    						oshi.jvmMemoryUsedRate, 
+    	    		    						oshi.ip
+    	    				  	   			]
+    	    		    				];
+    		    					}
+    		    				})()
     		    			});
     					});
     					return series;
