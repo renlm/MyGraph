@@ -112,6 +112,7 @@
 	    			var message = JSON.parse(evt.data);
 	    			// 服务器信息
 	    			if(message.type == "oshi") {
+	    				// 记录监控数据
 	    				$.each(message.data, function (key, data) {
 	    					if(data instanceof Array) {
 	    						$.each(data, function (i, item) {
@@ -123,6 +124,13 @@
 	    						if(!OSHI_UID.contains(data.uid)) { OSHI_UID.push(data.uid); OSHI_POOL.push(data); OSHI_IP[data.ip]=data; }
 	        					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
 	        					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
+	    					}
+	    				});
+	    				// 删除下线服务器
+	    				var ips = Object.keys(OSHI_IP);
+	    				$.each(ips, function (i, ip) {
+	    					if(!message.data[ip]) {
+	    						delete OSHI_IP[ip];
 	    					}
 	    				});
 	    				// 创建图形（服务器信息）
