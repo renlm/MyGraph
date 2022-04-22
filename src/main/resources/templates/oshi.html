@@ -28,6 +28,7 @@
     <script th:src="@{/webjars/echarts/echarts.min.js}"></script>
     <script type="text/javascript">
     	$(function() { 
+    		var OSHI_IP = [];
     		var OSHI_UID = [];
     		var OSHI_POOL = [];
     		var POPO_TARGET = {};
@@ -113,12 +114,12 @@
 	    				$.each(message.data, function (key, data) {
 	    					if(data instanceof Array) {
 	    						$.each(data, function (i, item) {
-	    							if(!OSHI_UID.contains(item.uid)) { OSHI_UID.push(item.uid); OSHI_POOL.push(item); }
+	    							if(!OSHI_UID.contains(item.uid)) { OSHI_UID.push(item.uid); OSHI_POOL.push(item); OSHI_IP[item.ip]=item; }
 	            					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
 	            					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
 	    			   			});
 	    					} else {
-	    						if(!OSHI_UID.contains(data.uid)) { OSHI_UID.push(data.uid); OSHI_POOL.push(data); }
+	    						if(!OSHI_UID.contains(data.uid)) { OSHI_UID.push(data.uid); OSHI_POOL.push(data); OSHI_IP[data.ip]=data; }
 	        					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
 	        					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
 	    					}
