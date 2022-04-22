@@ -188,6 +188,12 @@
 				    		dim: 2, 
 				    		name: '服务器', 
 				    		type: 'category',
+				    		axisLabel: {
+				    			formatter: function (value, index) {
+				    				var arr = value.split('.');
+				    			    return arr[arr.length - 2] + '.' + arr[arr.length - 1];
+				    			}
+				    		},
 				    		data: (function () {
 					    		var category = [];
 					    		$.each(OSHI_IP, function (ip, oshiInfo) {
