@@ -28,6 +28,7 @@
     <script th:src="@{/webjars/echarts/echarts.min.js}"></script>
     <script type="text/javascript">
     	$(function() { 
+    		var OSHI_UID = [];
     		var OSHI_POOL = [];
     		var POPO_TARGET = {};
     		initPopo();
@@ -82,7 +83,6 @@
 	    	 * 初始化 WebSocket
 	    	 */
 	    	function initWs() {
-	    		var OSHI_UID = [];
 	    		var protocol = document.location.protocol;
 	    		var timestamp = new Date().getTime();
 	    		var webSocketHost = protocol.indexOf("https") > -1?"[(${#MyConfig.wssHost})]":"[(${#MyConfig.wsHost})]";
