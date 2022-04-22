@@ -9,7 +9,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import cn.hutool.core.map.MapUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.oshi.OshiInfo;
 import cn.renlm.graph.oshi.OshiInfoUtil;
@@ -37,14 +36,10 @@ public class WsHandler extends TextWebSocketHandler {
 			WsType type = wsMessage.getType();
 			// 服务器信息
 			if (WsType.oshi.equals(type)) {
-				Map<String, OshiInfo> servers = OshiInfoUtil.servers();
-				for (Map.Entry<String, OshiInfo> entry : servers.entrySet()) {
-					String ip = entry.getKey();
-					Set<OshiInfo> infos = OshiInfoUtil.get(ip);
-					final String messageJson = JSONUtil.toJsonStr(WsMessage.build(WsType.oshi, MapUtil.of(ip, infos)));
-					final TextMessage textMessage = new TextMessage(messageJson);
-					session.sendMessage(textMessage);
-				}
+				Map<String, Set<OshiInfo>> data = OshiInfoUtil.get();
+				final String messageJson = JSONUtil.toJsonStr(WsMessage.build(WsType.oshi, data));
+				final TextMessage textMessage = new TextMessage(messageJson);
+				session.sendMessage(textMessage);
 			}
 			// 即时通讯
 			else if (WsType.im.equals(type)) {

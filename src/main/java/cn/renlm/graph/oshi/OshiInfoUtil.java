@@ -83,6 +83,24 @@ public class OshiInfoUtil {
 	/**
 	 * 获取监控数据
 	 * 
+	 * @return
+	 */
+	public static final Map<String, Set<OshiInfo>> get() {
+		Map<String, Set<OshiInfo>> map = new LinkedHashMap<>();
+		Map<String, OshiInfo> servers = servers();
+		for (Map.Entry<String, OshiInfo> entry : servers.entrySet()) {
+			String ip = entry.getKey();
+			Set<OshiInfo> infos = OshiInfoUtil.get(ip);
+			if (CollUtil.isNotEmpty(infos)) {
+				map.put(ip, infos);
+			}
+		}
+		return map;
+	}
+
+	/**
+	 * 获取监控数据
+	 * 
 	 * @param ip
 	 * @return
 	 */
