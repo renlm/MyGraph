@@ -41,9 +41,14 @@ public class OshiInfoUtil {
 	private static final String key = OshiInfoUtil.class.getName();
 
 	/**
-	 * 采集频率
+	 * 采集频率（秒）
 	 */
-	public static final String cron = "*/5 * * * * ?";
+	public static final int cronSecond = 5;
+
+	/**
+	 * 采集频率（定时表达式）
+	 */
+	public static final String cron = "*/" + cronSecond + " * * * * ?";
 
 	/**
 	 * 缓存时长（毫秒）
@@ -59,7 +64,7 @@ public class OshiInfoUtil {
 		// 查询区间
 		Date now = new Date();
 		long min = now.getTime();
-		long max = DateUtil.offsetMillisecond(now, validityMillis).getTime();
+		long max = DateUtil.offsetMillisecond(now, 1000 * cronSecond + 300).getTime();
 
 		// 缓存服务器列表
 		Map<String, OshiInfo> map = new LinkedHashMap<>();
