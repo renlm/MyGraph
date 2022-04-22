@@ -136,63 +136,93 @@
 	    	}
 	    	
 	    	/**
-	    	 * 创建图形（服务器信息）
+	    	 * 服务器信息
 	    	 */
 	    	function createOshiCharts() {
-	    		// 服务节点数
-	    		renderChart6();
+	    		// Cpu
+	    		renderCpu('chart1');
 	    	}
 	    	
 	    	/**
-	    	 * 服务节点数
+	    	 * Cpu
 	    	 */
-	    	function renderChart6 () {
-	    		var target = POPO_TARGET['chart6'].target;
-	    		var myChart = echarts.init(target, 'dark', {
-		    			width: $(target).width(),
-		    			height: $(target).height()
-	    			});
-	    		myChart.setOption({
-	    			color: [
-	    				'#4992ff', 
-	    				'#7cffb2', 
-	    				'#fddd60', 
-	    				'#ff6e76', 
-	    				'#58d9f9', 
-	    				'#05c091', 
-	    				'#ff8a45', 
-	    				'#8d48e3', 
-	    				'#dd79ff' 
-	    			],
-	    			legend: {
-	    				show: false
-	    			},
-	    			toolbox: {
-	    				show: false
-	    			},
-	    			series: [
+	    	function renderCpu (name) {
+	    		const labelRight = {
+	    				  position: 'right'
+	    				};
+	    		renderChart(name, {
+	    				  tooltip: {
+	    				    trigger: 'axis',
+	    				    axisPointer: {
+	    				      type: 'shadow'
+	    				    }
+	    				  },
+	    				  grid: {
+	    				    top: 80,
+	    				    bottom: 30
+	    				  },
+	    				  xAxis: {
+	    				    type: 'value',
+	    				    position: 'top',
+	    				    splitLine: {
+	    				      lineStyle: {
+	    				        type: 'dashed'
+	    				      }
+	    				    }
+	    				  },
+	    				  yAxis: {
+	    				    type: 'category',
+	    				    axisLine: { show: false },
+	    				    axisLabel: { show: false },
+	    				    axisTick: { show: false },
+	    				    splitLine: { show: false },
+	    				    data: [
+	    				      'six',
+	    				      'five',
+	    				      'four',
+	    				      'three',
+	    				      'two',
+	    				      'one'
+	    				    ]
+	    				  },
+	    				  series: [
+	    				    {
+	    				      name: 'Cost',
+	    				      type: 'bar',
+	    				      stack: 'Total',
+	    				      label: {
+	    				        show: true,
+	    				        formatter: '{b}'
+	    				      },
+	    				      data: [
+	    				        { value: -0.07, label: labelRight },
+	    				        { value: -0.09, label: labelRight },
+	    				        0.2,
+	    				        0.44,
+	    				        { value: -0.23, label: labelRight },
+	    				        0.08,
+	    				        { value: -0.17, label: labelRight },
+	    				        0.47,
+	    				        { value: -0.36, label: labelRight },
+	    				        0.18
+	    				      ]
+	    				    }
+	    				  ]
+	    				});
+	    	}
+	    	
+	    	/**
+	    	 * 创建图形
+	    	 */
+	    	function renderChart (name, option) {
+	    		var target = POPO_TARGET[name].target;
+	    		var myChart = echarts.init(target, 
+	    				'dark', 
 	    				{
-	    					name: '服务节点数',
-	    				 	type: 'pie',
-	    					radius: ['25%', '75%'],
-	    					center: ['50%', '50%'],
-	    					roseType: 'area',
-	    					itemStyle: {
-	    						borderRadius: 8
-	    					},
-	    					data: [
-	    						{ value: 40, name: 'rose 1' },
-	    				        { value: 38, name: 'rose 2' },
-	    				        { value: 32, name: 'rose 3' },
-	    				        { value: 30, name: 'rose 4' },
-	    				        { value: 28, name: 'rose 5' },
-	    				        { value: 26, name: 'rose 6' },
-	    				        { value: 22, name: 'rose 7' },
-	    				        { value: 18, name: 'rose 8' }
-	    					]
-	    				}
-	    			]
-	    		});
+			    			width: $(target).width(),
+			    			height: $(target).height()
+	    				});
+	    		myChart.setOption(option);
 	    		// 自适应
 	    		var originFn = window.onresize;
 	       		window.onresize = function () { 
