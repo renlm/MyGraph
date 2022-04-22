@@ -160,17 +160,32 @@
 	    				formatter: function (params) {
 	    		        	var htmlStr = params.value[2] + '<br/>';
 		    		        	htmlStr += '<div>';
-		    		        	htmlStr +=     '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#f2637b;"></span>';
 		    		        	if(field === 'cpu') {
-		    		        		htmlStr +=     parallelAxis0.name + '：' + params.value[0];
+		    		        		htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#f2637b;"></span>';
+			    		        	htmlStr +=     parallelAxis0.name + '：' + params.value[0];
+			    		        	htmlStr += '</div>';
 		    					} else if(field === 'memory') {
-		    						htmlStr +=     parallelAxis0.name + '：' + OSHI_IP[params.value[2]].memoryUsedStr;
+		    						htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#f2637b;"></span>';
+			    		        	htmlStr +=     parallelAxis0.name + '：' + OSHI_IP[params.value[2]].memoryStr;
+			    		        	htmlStr += '</div>';
+			    		        	htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#3eb177;"></span>';
+			    		        	htmlStr +=     '已使用：' + OSHI_IP[params.value[2]].memoryUsedStr;
+			    		        	htmlStr += '</div>';
 		    					} else if(field === 'disk') {
-		    						htmlStr +=     parallelAxis0.name + '：' + OSHI_IP[params.value[2]].diskUsedStr;
+		    						htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#f2637b;"></span>';
+			    		        	htmlStr +=     parallelAxis0.name + '：' + OSHI_IP[params.value[2]].diskStr;
+			    		        	htmlStr += '</div>';
+			    		        	htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#3eb177;"></span>';
+			    		        	htmlStr +=     '已使用：' + OSHI_IP[params.value[2]].diskUsedStr;
+			    		        	htmlStr += '</div>';
 		    					} else if(field === 'jvmMemory') {
-		    						htmlStr +=     parallelAxis0.name + '：' + OSHI_IP[params.value[2]].jvmMemoryUsedStr;
+		    						htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#f2637b;"></span>';
+			    		        	htmlStr +=     parallelAxis0.name + '：' + OSHI_IP[params.value[2]].jvmMemoryStr;
+			    		        	htmlStr += '</div>';
+			    		        	htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#3eb177;"></span>';
+			    		        	htmlStr +=     '已使用：' + OSHI_IP[params.value[2]].jvmMemoryUsedStr;
+			    		        	htmlStr += '</div>';
 		    					}
-					          	htmlStr += '</div>';
 	                			htmlStr += '<div>';
 					          	htmlStr +=	   '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#fbd444;"></span>';
 					          	htmlStr +=     '使用率：' + params.value[1] + ' %';
