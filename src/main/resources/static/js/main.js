@@ -3,6 +3,28 @@
  */
 (function($) {
 	$.extend({
+		/**
+		 * 字节大小格式化
+		 */
+		formatBytes: function (value) {
+			if(value === 1) {
+				return value + " byte";
+			} else if(value) {
+				if(value >= 1024*1024*1024*1024) {
+					return (Math.floor(value/1024/1024/1024/1024 * 100)/100) + " TiB"; 
+				} else if(value >= 1024*1024*1024) {
+					return (Math.floor(value/1024/1024/1024 * 100)/100) + " GiB"; 
+				} else if(value >= 1024*1024) {
+					return (Math.floor(value/1024/1024 * 100)/100) + " MiB"; 
+				} else if(value >= 1024) {
+					return (Math.floor(value/1024 * 100)/100) + " KiB"; 
+				} else {
+					return value + " bytes";
+				}
+			} else {
+				return null;
+			}
+		},
 		/***
 		 * 简单按钮加载效果
 		 */

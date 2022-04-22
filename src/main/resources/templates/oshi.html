@@ -25,6 +25,7 @@
     <script th:src="@{/webjars/reconnecting-websocket/reconnecting-websocket.js}"></script>
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/js-base64/base64.min.js}"></script>
+    <script th:src="@{/static/js/main.js}"></script>
     <script th:src="@{/webjars/echarts/echarts.min.js}"></script>
     <script type="text/javascript">
     	$(function() { 
@@ -153,6 +154,19 @@
 	    	 * 平行坐标系（使用率）
 	    	 */
 	    	function renderParallelUsedRate (name, field, parallelAxis0) {
+	    		parallelAxis0.axisLabel = {
+	    				formatter: function (value, index) {
+	    					if(field === 'cpu') {
+	    						return value;
+	    					} else if(field === 'memory') {
+	    						return $.formatBytes(value);
+	    					} else if(field === 'disk') {
+	    						return $.formatBytes(value);
+	    					} else if(field === 'jvmMemory') {
+	    						return $.formatBytes(value);
+	    					}
+		    			}	
+	    			};
 	    		renderChart(name, {
 	    			tooltip: {
 	    				trigger: 'item',
