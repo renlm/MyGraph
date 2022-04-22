@@ -25,6 +25,7 @@ import oshi.hardware.GlobalMemory;
 import oshi.software.os.FileSystem;
 import oshi.software.os.OSFileStore;
 import oshi.software.os.OperatingSystem;
+import oshi.util.FormatUtil;
 
 /**
  * Oshi 工具
@@ -170,16 +171,22 @@ public class OshiInfoUtil {
 		info.setCpuCores(cpuCores);
 		info.setCpuUsedRate(new BigDecimal(cpuUsedRate).setScale(2, BigDecimal.ROUND_HALF_UP));
 		info.setMemory(totalByte);
+		info.setMemoryStr(FormatUtil.formatBytes(info.getMemory()));
 		info.setMemoryUsed(totalByte - acaliableByte);
+		info.setMemoryUsedStr(FormatUtil.formatBytes(info.getMemoryUsed()));
 		info.setMemoryUsedRate(
 				new BigDecimal(100.0 - (acaliableByte * 100.0 / totalByte)).setScale(2, BigDecimal.ROUND_HALF_UP));
 		info.setDisk(disk);
+		info.setDiskStr(FormatUtil.formatBytes(info.getDisk()));
 		info.setDiskUsed(disk - freeSpace);
+		info.setDiskUsedStr(FormatUtil.formatBytes(info.getDiskUsed()));
 		info.setDiskUsedRate(new BigDecimal(100.0 - (freeSpace * 100.0 / disk)).setScale(2, BigDecimal.ROUND_HALF_UP));
 		info.setOsName(osName);
 		info.setOsArch(osArch);
 		info.setJvmMemory(jvmTotalMemoryByte);
+		info.setJvmMemoryStr(FormatUtil.formatBytes(info.getJvmMemory()));
 		info.setJvmMemoryUsed(jvmTotalMemoryByte - freeMemoryByte);
+		info.setJvmMemoryUsedStr(FormatUtil.formatBytes(info.getJvmMemoryUsed()));
 		info.setJvmMemoryUsedRate(new BigDecimal(100.0 - (freeMemoryByte * 100.0 / jvmTotalMemoryByte)).setScale(2,
 				BigDecimal.ROUND_HALF_UP));
 		info.setJavaVersion(javaVersion);
