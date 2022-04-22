@@ -25,20 +25,20 @@ import cn.renlm.graph.ws.WsUtil;
 @Configuration
 public class WsTopicQueueConfig {
 
-	private static final String key = "WsTopic";
+	private static final String KEY = "WsTopic";
 
-	public static final String exchange = key + AmqpUtil.Exchange;
+	public static final String EXCHANGE = KEY + AmqpUtil.Exchange;
 
-	public static final String queue = key + AmqpUtil.Queue;
+	public static final String QUEUE = KEY + AmqpUtil.Queue;
 
-	public static final String routingKey = queue + AmqpUtil.RoutingKey;
+	public static final String ROUTINGKEY = QUEUE + AmqpUtil.RoutingKey;
 
 	/**
 	 * 监听广播队列
 	 * 
 	 * @param info
 	 */
-	@RabbitListener(queues = "#{" + queue + ".name}")
+	@RabbitListener(queues = "#{" + QUEUE + ".name}")
 	public void receive(OshiInfo info) {
 		WsUtil.topic(WsMessage.build(WsType.oshi, OshiInfoUtil.servers()));
 	}
@@ -48,9 +48,9 @@ public class WsTopicQueueConfig {
 	 * 
 	 * @return
 	 */
-	@Bean(name = exchange)
+	@Bean(name = EXCHANGE)
 	public DirectExchange exchange() {
-		return ExchangeBuilder.directExchange(exchange).durable(true).build();
+		return ExchangeBuilder.directExchange(EXCHANGE).durable(true).build();
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class WsTopicQueueConfig {
 	 * 
 	 * @return
 	 */
-	@Bean(name = queue)
+	@Bean(name = QUEUE)
 	public org.springframework.amqp.core.Queue queue() {
 		return new AnonymousQueue();
 	}
@@ -70,9 +70,9 @@ public class WsTopicQueueConfig {
 	 * @param queue
 	 * @return
 	 */
-	@Bean(name = routingKey)
-	public Binding binding(@Qualifier(exchange) DirectExchange exchange,
-			@Qualifier(queue) org.springframework.amqp.core.Queue queue) {
-		return BindingBuilder.bind(queue).to(exchange).with(routingKey);
+	@Bean(name = ROUTINGKEY)
+	public Binding binding(@Qualifier(EXCHANGE) DirectExchange exchange,
+			@Qualifier(QUEUE) org.springframework.amqp.core.Queue queue) {
+		return BindingBuilder.bind(queue).to(exchange).with(ROUTINGKEY);
 	}
 }

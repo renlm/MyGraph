@@ -62,7 +62,7 @@ public class AmqpUtil {
 		param.setDelayTaskClass(taskClass.getName());
 		param.setParamJson(paramJson);
 		AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
-		amqpTemplate.convertAndSend(TtlQueueConfig.exchange, TtlQueueConfig.routingKey, JSONUtil.toJsonStr(param),
+		amqpTemplate.convertAndSend(TtlQueueConfig.EXCHANGE, TtlQueueConfig.ROUTINGKEY, JSONUtil.toJsonStr(param),
 				message -> {
 					message.getMessageProperties().setExpiration(String.valueOf(delayTtl));
 					return message;
@@ -91,7 +91,7 @@ public class AmqpUtil {
 		param.setRoutingKey(routingKey);
 		param.setParamJson(paramJson);
 		AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
-		amqpTemplate.convertAndSend(TtlQueueConfig.exchange, TtlQueueConfig.routingKey, JSONUtil.toJsonStr(param),
+		amqpTemplate.convertAndSend(TtlQueueConfig.EXCHANGE, TtlQueueConfig.ROUTINGKEY, JSONUtil.toJsonStr(param),
 				message -> {
 					message.getMessageProperties().setExpiration(String.valueOf(delayTtl));
 					return message;

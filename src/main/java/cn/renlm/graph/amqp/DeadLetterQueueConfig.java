@@ -41,13 +41,13 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 public class DeadLetterQueueConfig {
 
-	private static final String key = "DeadLetter";
+	private static final String KEY = "DeadLetter";
 
-	public static final String exchange = key + AmqpUtil.Exchange;
+	public static final String EXCHANGE = KEY + AmqpUtil.Exchange;
 
-	public static final String queue = key + AmqpUtil.Queue;
+	public static final String QUEUE = KEY + AmqpUtil.Queue;
 
-	public static final String routingKey = queue + AmqpUtil.RoutingKey;
+	public static final String ROUTINGKEY = QUEUE + AmqpUtil.RoutingKey;
 
 	@Autowired
 	private AmqpTemplate amqpTemplate;
@@ -59,7 +59,7 @@ public class DeadLetterQueueConfig {
 	 * @param channel
 	 */
 	@RabbitListener(bindings = {
-			@QueueBinding(value = @Queue(value = queue, durable = Exchange.TRUE), exchange = @Exchange(value = exchange, type = ExchangeTypes.DIRECT), key = routingKey) })
+			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
 	public void receiveMessage(Message message, Channel channel) {
 		String receiveTime = DateUtil.formatDateTime(new Date());
 		String body = StrUtil.str(message.getBody(), message.getMessageProperties().getContentEncoding());
@@ -126,9 +126,9 @@ public class DeadLetterQueueConfig {
 	 * 
 	 * @return
 	 */
-	@Bean(name = exchange)
+	@Bean(name = EXCHANGE)
 	public DirectExchange exchange() {
-		return ExchangeBuilder.directExchange(exchange).durable(true).build();
+		return ExchangeBuilder.directExchange(EXCHANGE).durable(true).build();
 	}
 
 	/**
@@ -136,9 +136,9 @@ public class DeadLetterQueueConfig {
 	 * 
 	 * @return
 	 */
-	@Bean(name = queue)
+	@Bean(name = QUEUE)
 	public org.springframework.amqp.core.Queue queue() {
-		return QueueBuilder.durable(queue).build();
+		return QueueBuilder.durable(QUEUE).build();
 	}
 
 	/**
@@ -148,9 +148,9 @@ public class DeadLetterQueueConfig {
 	 * @param queue
 	 * @return
 	 */
-	@Bean(name = routingKey)
-	public Binding binding(@Qualifier(exchange) DirectExchange exchange,
-			@Qualifier(queue) org.springframework.amqp.core.Queue queue) {
-		return BindingBuilder.bind(queue).to(exchange).with(routingKey);
+	@Bean(name = ROUTINGKEY)
+	public Binding binding(@Qualifier(EXCHANGE) DirectExchange exchange,
+			@Qualifier(QUEUE) org.springframework.amqp.core.Queue queue) {
+		return BindingBuilder.bind(queue).to(exchange).with(ROUTINGKEY);
 	}
 }

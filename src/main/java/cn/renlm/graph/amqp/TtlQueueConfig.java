@@ -18,22 +18,22 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TtlQueueConfig {
 
-	private static final String key = "Ttl";
+	private static final String KEY = "Ttl";
 
-	public static final String exchange = key + AmqpUtil.Exchange;
+	public static final String EXCHANGE = KEY + AmqpUtil.Exchange;
 
-	public static final String queue = key + AmqpUtil.Queue;
+	public static final String QUEUE = KEY + AmqpUtil.Queue;
 
-	public static final String routingKey = queue + AmqpUtil.RoutingKey;
+	public static final String ROUTINGKEY = QUEUE + AmqpUtil.RoutingKey;
 
 	/**
 	 * 声明交换机
 	 * 
 	 * @return
 	 */
-	@Bean(name = exchange)
+	@Bean(name = EXCHANGE)
 	public DirectExchange exchange() {
-		return ExchangeBuilder.directExchange(exchange).durable(true).build();
+		return ExchangeBuilder.directExchange(EXCHANGE).durable(true).build();
 	}
 
 	/**
@@ -41,13 +41,13 @@ public class TtlQueueConfig {
 	 * 
 	 * @return
 	 */
-	@Bean(name = queue)
+	@Bean(name = QUEUE)
 	public org.springframework.amqp.core.Queue queue() {
-		return QueueBuilder.durable(queue)
+		return QueueBuilder.durable(QUEUE)
 				// 死信交换机
-				.deadLetterExchange(DeadLetterQueueConfig.exchange)
+				.deadLetterExchange(DeadLetterQueueConfig.EXCHANGE)
 				// 死信路由
-				.deadLetterRoutingKey(DeadLetterQueueConfig.routingKey)
+				.deadLetterRoutingKey(DeadLetterQueueConfig.ROUTINGKEY)
 				// 消息过期时间（如果同时配置了队列的TTL和消息的TTL，那么较小的那个值将会被使用）
 				.ttl(AmqpUtil.maxDelayTtl)
 				// 构建队列
@@ -61,9 +61,9 @@ public class TtlQueueConfig {
 	 * @param queue
 	 * @return
 	 */
-	@Bean(name = routingKey)
-	public Binding binding(@Qualifier(exchange) DirectExchange exchange,
-			@Qualifier(queue) org.springframework.amqp.core.Queue queue) {
-		return BindingBuilder.bind(queue).to(exchange).with(routingKey);
+	@Bean(name = ROUTINGKEY)
+	public Binding binding(@Qualifier(EXCHANGE) DirectExchange exchange,
+			@Qualifier(QUEUE) org.springframework.amqp.core.Queue queue) {
+		return BindingBuilder.bind(queue).to(exchange).with(ROUTINGKEY);
 	}
 }
