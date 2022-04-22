@@ -147,6 +147,22 @@
 	    	 */
 	    	function renderCpu (name) {
 	    		renderChart(name, {
+	    			tooltip: {
+	    				trigger: 'item',
+	    				confine: true,
+	    				formatter: function (params) {
+	    		        	var htmlStr = params.value[2] + '<br/>';
+		    		        	htmlStr += '<div>';
+		    		        	htmlStr +=     '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#f2637b;"></span>';
+					          	htmlStr +=     '核心数：' + params.value[0];
+					          	htmlStr += '</div>';
+	                			htmlStr += '<div>';
+					          	htmlStr +=	   '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#fbd444;"></span>';
+					          	htmlStr +=     '使用率：' + params.value[1] + ' %';
+					          	htmlStr += '</div>';
+	                		return htmlStr;
+	    		        }
+	    			},
 	    			parallel: {
 	    		        left: '10%',
 	    		        right: '30%',
@@ -173,7 +189,7 @@
 				    		name: '服务器', 
 				    		type: 'category',
 	    		            axisLabel: {
-	    		            	rotate: -35
+	    		            	rotate: -45
 	    		         	},
 				    		data: (function () {
 					    		var category = [];
@@ -187,7 +203,6 @@
 	    			series: {
 	    				type: 'parallel',
 	    				lineStyle: {
-	    					color: '#fff',
 	    					width: 2,
 	    					type: 'dashed',
 	    					opacity: 1
