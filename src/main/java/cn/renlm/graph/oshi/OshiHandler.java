@@ -25,6 +25,6 @@ public class OshiHandler {
 	@Scheduled(cron = OshiInfoUtil.cron)
 	public void getAndTopic() {
 		OshiInfo oshiInfo = OshiInfoUtil.collect();
-		amqpTemplate.convertAndSend(WsTopicQueueConfig.exchange, WsTopicQueueConfig.routingKey, oshiInfo);
+		amqpTemplate.convertAndSend(WsTopicQueueConfig.EXCHANGE, WsTopicQueueConfig.ROUTINGKEY, oshiInfo);
 	}
 }
