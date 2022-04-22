@@ -64,15 +64,15 @@ public class OshiInfoUtil {
 		// 查询区间
 		Date now = new Date();
 		long min = now.getTime();
-		long max = DateUtil.offsetMillisecond(now, 1000 * cronSecond + 300).getTime();
 
 		// 缓存服务器列表
 		Map<String, OshiInfo> map = new LinkedHashMap<>();
 		RedisTemplate<String, String> redisTemplateIp = getRedisTemplate();
 		ZSetOperations<String, String> zopsIp = redisTemplateIp.opsForZSet();
-		Set<String> ips = zopsIp.rangeByScore(key, min, max);
+		Set<String> ips = zopsIp.rangeByScore(key, min, getIpExpTime(now));
 
 		// 缓存监控数据
+		long max = DateUtil.offsetMillisecond(now, validityMillis).getTime();
 		RedisTemplate<String, OshiInfo> redisTemplateOshi = getRedisTemplate();
 		ZSetOperations<String, OshiInfo> zopsOshi = redisTemplateOshi.opsForZSet();
 		for (String ip : ips) {
@@ -184,15 +184,13 @@ public class OshiInfoUtil {
 				BigDecimal.ROUND_HALF_UP));
 		info.setJavaVersion(javaVersion);
 
-		// 过期时间
-		Long expTime = info.getTime().getTime() + validityMillis;
-
 		// 缓存服务器列表
 		RedisTemplate<String, String> redisTemplateIp = getRedisTemplate();
 		ZSetOperations<String, String> zopsIp = redisTemplateIp.opsForZSet();
-		zopsIp.add(key, info.getIp(), expTime);
+		zopsIp.add(key, info.getIp(), getIpExpTime(info.getTime()));
 
 		// 缓存监控数据
+		Long expTime = info.getTime().getTime() + validityMillis;
 		RedisTemplate<String, OshiInfo> redisTemplateOshi = getRedisTemplate();
 		ZSetOperations<String, OshiInfo> zopsOshi = redisTemplateOshi.opsForZSet();
 		String oshiKey = getOshiKey(info.getIp());
@@ -202,6 +200,16 @@ public class OshiInfoUtil {
 		zopsOshi.add(oshiKey, info, expTime);
 
 		return info;
+	}
+
+	/**
+	 * 获取服务器过期时间
+	 * 
+	 * @param time
+	 * @return
+	 */
+	private static final long getIpExpTime(Date time) {
+		return DateUtil.offsetMillisecond(time, 1000 * cronSecond + cronSecond / 2).getTime();
 	}
 
 	/**
