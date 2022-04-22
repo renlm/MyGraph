@@ -1,6 +1,7 @@
 package cn.renlm.graph.ws;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -10,6 +11,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ArrayUtil;
@@ -111,15 +113,18 @@ public class WsUtil {
 		}
 		final String messageJson = JSONUtil.toJsonStr(message);
 		final TextMessage textMessage = new TextMessage(messageJson);
-		WS_SESSION_POOL.forEach((key, value) -> {
-			if (value.isOpen()) {
+		final List<String> wsKeys = CollUtil.newArrayList(WS_SESSION_POOL.keys());
+		for (String wsKey : wsKeys) {
+			WebSocketSession session = WS_SESSION_POOL.get(wsKey);
+			if (ObjectUtil.isNotEmpty(session)) {
 				try {
-					value.sendMessage(textMessage);
+					session.sendMessage(textMessage);
 				} catch (IOException e) {
 					e.printStackTrace();
+					removeSession(session);
 				}
 			}
-		});
+		}
 	}
 
 	/**
@@ -135,7 +140,7 @@ public class WsUtil {
 			String userId = user.getUserId();
 			Long expTime = DateUtil.current() + OnlineStatusValidityMillis;
 			WebSocketSession session = WS_SESSION_POOL.get(wsKey);
-			if (ObjectUtil.isNotEmpty(session) && session.isOpen()) {
+			if (ObjectUtil.isNotEmpty(session)) {
 				zops.add(OnlineStatusKey, userId, expTime);
 				zops.add(userId, wsKey, expTime);
 			}
