@@ -93,11 +93,13 @@ public class WsUtil {
 	public static final WebSocketSession removeSession(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
 		UserDto user = getUserInfo(session);
-		String userId = user.getUserId();
-		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
-		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
-		zops.remove(OnlineStatusKey, userId);
-		zops.remove(userId, wsKey);
+		if (ObjectUtil.isNotEmpty(user)) {
+			String userId = user.getUserId();
+			RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+			ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
+			zops.remove(OnlineStatusKey, userId);
+			zops.remove(userId, wsKey);
+		}
 		WS_USER_REL.remove(wsKey);
 		return WS_SESSION_POOL.remove(wsKey);
 	}
