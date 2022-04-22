@@ -138,7 +138,69 @@
 	    	 * 创建图形（服务器信息）
 	    	 */
 	    	function createOshiCharts() {
-	    		console.log(POPO_TARGET);
+	    		// 服务节点数
+	    		renderChart6();
+	    	}
+	    	
+	    	/**
+	    	 * 服务节点数
+	    	 */
+	    	function renderChart6 () {
+	    		var target = POPO_TARGET['chart6'].target;
+	    		var myChart = echarts.init(target, 'dark', {
+		    			width: $(target).width(),
+		    			height: $(target).height()
+	    			});
+	    		myChart.setOption({
+	    			color: [
+	    				'#4992ff', 
+	    				'#7cffb2', 
+	    				'#fddd60', 
+	    				'#ff6e76', 
+	    				'#58d9f9', 
+	    				'#05c091', 
+	    				'#ff8a45', 
+	    				'#8d48e3', 
+	    				'#dd79ff' 
+	    			],
+	    			legend: {
+	    				show: false
+	    			},
+	    			toolbox: {
+	    				show: false
+	    			},
+	    			series: [
+	    				{
+	    					name: '服务节点数',
+	    				 	type: 'pie',
+	    					radius: ['25%', '75%'],
+	    					center: ['50%', '50%'],
+	    					roseType: 'area',
+	    					itemStyle: {
+	    						borderRadius: 8
+	    					},
+	    					data: [
+	    						{ value: 40, name: 'rose 1' },
+	    				        { value: 38, name: 'rose 2' },
+	    				        { value: 32, name: 'rose 3' },
+	    				        { value: 30, name: 'rose 4' },
+	    				        { value: 28, name: 'rose 5' },
+	    				        { value: 26, name: 'rose 6' },
+	    				        { value: 22, name: 'rose 7' },
+	    				        { value: 18, name: 'rose 8' }
+	    					]
+	    				}
+	    			]
+	    		});
+	    		// 自适应
+	    		var originFn = window.onresize;
+	       		window.onresize = function () { 
+	       			originFn && originFn();
+	       			myChart.resize({ 
+	       				width: $(target).width(),
+		    			height: $(target).height()
+	    			});
+	       		}
 	    	}
   		});
     </script>
