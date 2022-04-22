@@ -165,7 +165,7 @@
 	    			},
 	    			parallel: {
 	    		        left: '10%',
-	    		        right: '30%',
+	    		        right: '20%',
 	    		        bottom: '10%',
 	    		        top: '20%',
 	    		        parallelAxisDefault: {
@@ -189,7 +189,7 @@
 				    		name: '服务器', 
 				    		type: 'category',
 	    		            axisLabel: {
-	    		            	rotate: -45
+	    		            	rotate: -75
 	    		         	},
 				    		data: (function () {
 					    		var category = [];
@@ -200,25 +200,27 @@
 				    		})()
 				   		}
 	    			],
-	    			series: {
-	    				type: 'parallel',
-	    				lineStyle: {
-	    					width: 2,
-	    					type: 'dashed',
-	    					opacity: 1
-	    				},
-	    				data: (function () {
-	    					var data = [];
-	    			  		$.each(OSHI_IP, function (ip, oshiInfo) {
-	    			    		data.push([
-    				  	    		oshiInfo.cpuCores, 
-    				  	    		oshiInfo.cpuUsedRate, 
-    				  	    		oshiInfo.ip
-    				  	   		]);
-	    			    	});
-	    			    	return data;
-	    		    	})()
-	    			}
+	    			series: (function () {
+    					var series = [];
+    					$.each(OSHI_IP, function (ip, oshi) {
+    						series.push({
+    		    				type: 'parallel',
+    		    				lineStyle: {
+    		    					width: 2,
+    		    					type: 'dashed',
+    		    					opacity: 1
+    		    				},
+    		    				data: [
+    		    					[
+    		    						oshi.cpuCores, 
+    		    						oshi.cpuUsedRate, 
+    		    						oshi.ip
+    				  	   			]
+    		    				]
+    		    			});
+    					});
+    					return series;
+    		    	})()
 	    		});
 	    	}
 	    	
