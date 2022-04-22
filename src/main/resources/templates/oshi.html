@@ -17,7 +17,7 @@
         <div data-popo="chart3" title="磁盘"></div>
         <div data-popo="chart4" title="Chart D"></div>
         <div data-popo="chart5" title="在线人数"></div>
-        <div data-popo="chart6" title="服务节点数"></div>
+        <div data-popo="chart6" title="今日登录"></div>
         <div data-popo="chart7" title="Java虚拟机"></div>
         <div data-popo="chart8" title="Chart H"></div>
     </div>
@@ -139,13 +139,20 @@
 	    	 * 服务器信息
 	    	 */
 	    	function createOshiCharts() {
-	    		renderCpu('chart1');
+	    		// Cpu
+	    		renderParallelUsedRate('chart1', 'cpu', { dim: 0, name: '核心数' });
+	    		// 内存
+	    		renderParallelUsedRate('chart2', 'memory', { dim: 0, name: '总量' });
+	    		// 磁盘
+	    		renderParallelUsedRate('chart3', 'disk', { dim: 0, name: '大小' });
+	    		// Jvm
+	    		renderParallelUsedRate('chart7', 'jvm', { dim: 0, name: '内存' });
 	    	}
 	    	
 	    	/**
-	    	 * Cpu
+	    	 * 平行坐标系（使用率）
 	    	 */
-	    	function renderCpu (name) {
+	    	function renderParallelUsedRate (name, field, parallelAxis0) {
 	    		renderChart(name, {
 	    			tooltip: {
 	    				trigger: 'item',
@@ -154,7 +161,7 @@
 	    		        	var htmlStr = params.value[2] + '<br/>';
 		    		        	htmlStr += '<div>';
 		    		        	htmlStr +=     '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#f2637b;"></span>';
-					          	htmlStr +=     '核心数：' + params.value[0];
+					          	htmlStr +=     parallelAxis0.name + '：' + params.value[0];
 					          	htmlStr += '</div>';
 	                			htmlStr += '<div>';
 					          	htmlStr +=	   '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#fbd444;"></span>';
@@ -182,7 +189,7 @@
 	    		   		}
 	    		  	},
 	    			parallelAxis: [
-	    				{ dim: 0, name: '核心数', interval: 4, max: 16 },
+	    				parallelAxis0,
 				    	{ dim: 1, name: '使用率', max: 100 },
 				    	{ 
 				    		dim: 2, 
