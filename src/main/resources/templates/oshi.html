@@ -464,6 +464,9 @@
 	    	 * 创建图形
 	    	 */
 	    	function renderChart (name, option) {
+	    		if(!POPO_TARGET[name]) {
+	    			return;
+	    		}
 	    		var target = POPO_TARGET[name].target;
 	    		if(!target || !option) {
 	    			return;
