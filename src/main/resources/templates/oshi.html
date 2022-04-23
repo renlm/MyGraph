@@ -147,8 +147,12 @@
 	    				// 创建图形（服务器信息）
 	    				createOshiCharts();
 	    			}
-	    			// 在线人数
+	    			// 上线
 	    			else if (message.type == "online") {
+	    				OnlineUserNumber = message.data
+	    			}
+	    			// 离线
+	    			else if (message.type == "offline") {
 	    				OnlineUserNumber = message.data
 	    			}
 	    		}
