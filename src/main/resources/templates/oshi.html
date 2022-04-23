@@ -397,6 +397,9 @@
 	    	 */
 	    	function renderChart (name, option) {
 	    		var target = POPO_TARGET[name].target;
+	    		if(!target || !option) {
+	    			return;
+	    		}
 	    		var myChart = echarts.init(target, 
 	    				'dark', 
 	    				{
@@ -404,6 +407,7 @@
 			    			width: $(target).width(),
 			    			height: $(target).height()
 	    				});
+	    		option.backgroundColor = 'transparent';
 	    		myChart.setOption(option, true);
 	    		// 自适应
 	    		var originFn = window.onresize;
