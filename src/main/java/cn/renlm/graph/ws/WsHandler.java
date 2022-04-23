@@ -41,6 +41,10 @@ public class WsHandler extends TextWebSocketHandler {
 				final TextMessage textMessage = new TextMessage(messageJson);
 				session.sendMessage(textMessage);
 			}
+			// 系统状态
+			else if (WsType.status.equals(type)) {
+
+			}
 			// 即时通讯
 			else if (WsType.im.equals(type)) {
 
