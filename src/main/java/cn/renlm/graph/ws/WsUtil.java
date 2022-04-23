@@ -173,12 +173,26 @@ public class WsUtil {
 	 * 
 	 * @return
 	 */
-	public static final Long getOnlineUserNumber() {
+	public static final long getOnlineUserNumber() {
 		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 		Long min = DateUtil.current();
 		Long max = min + OnlineStatusValidityMillis;
-		return zops.count(OnlineStatusKey, min, max);
+		return ObjectUtil.defaultIfNull(zops.count(OnlineStatusKey, min, max), 0L);
+	}
+
+	/**
+	 * 获取用户连接数
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public static final long getUserConnections(String userId) {
+		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
+		Long min = DateUtil.current();
+		Long max = min + OnlineStatusValidityMillis;
+		return ObjectUtil.defaultIfNull(zops.count(userId, min, max), 0L);
 	}
 
 	/**

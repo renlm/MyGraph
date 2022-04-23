@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import cn.hutool.core.convert.Convert;
 import cn.renlm.graph.ws.WsMessage;
 import cn.renlm.graph.ws.WsMessage.WsType;
 import cn.renlm.graph.ws.WsUtil;
@@ -43,7 +44,9 @@ public class WsTopicQueueConfig {
 		WsType type = message.getType();
 		// 上线 | 离线
 		if (WsType.online.equals(type) || WsType.offline.equals(type)) {
-			log.info("=== {}行为，{}", type.getText(), message.getData());
+			String userId = Convert.toStr(message.getData());
+			long userConnections = WsUtil.getUserConnections(userId);
+			log.info("=== {}，{}行为，当前连接数：{}", userId, type.getText(), userConnections);
 			message.setData(WsUtil.getOnlineUserNumber());
 			WsUtil.topic(message);
 		}
