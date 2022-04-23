@@ -16,12 +16,12 @@
 			<ul class="layui-tab-title layui-nav left">
 				<li class="layui-nav-item layui-this">
 					<a href="javascript:void(0);">
-						<i class="fa fa-server"></i> 服务器
+						<i class="layui-icon layui-icon-chart"></i> 工作台
 					</a>
 				</li>
 				<li class="layui-nav-item">
 					<a href="javascript:void(0);">
-						<i class="layui-icon layui-icon-chart"></i> 工作台
+						<i class="fa fa-server"></i> 服务器
 					</a>
 				</li>
 				<li class="layui-nav-item">
@@ -58,10 +58,10 @@
 		<!-- 中部开始 -->
 		<div class="iframer layui-tab-content">
 			<div class="layui-tab-item layui-show">
-				<iframe frameborder="0" scrolling="yes" th:src="@{/oshi}"></iframe>
+				<iframe frameborder="0" scrolling="yes" th:src="@{/workbench}"></iframe>
 			</div>
 			<div class="layui-tab-item layui-show">
-				<iframe frameborder="0" scrolling="yes" th:src="@{/workbench}"></iframe>
+				<iframe frameborder="0" scrolling="yes" th:src="@{/oshi}"></iframe>
 			</div>
 			<div class="layui-tab-item layui-show">
 				<iframe frameborder="0" scrolling="yes" th:src="@{/graph/lib}"></iframe>
