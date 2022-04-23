@@ -155,7 +155,7 @@ public class WsUtil {
 	 * 在线状态心跳监测
 	 */
 	public static final void userOnlineStatusHeartbeat() {
-		log.info("=== 在线状态心跳监测，连接数：" + WS_USER_REL.size());
+		log.debug("=== 在线状态心跳监测，本服务器连接数：" + WS_USER_REL.size());
 		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 		for (Map.Entry<String, UserDto> entry : WS_USER_REL.entrySet()) {
