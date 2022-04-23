@@ -3,6 +3,7 @@ package cn.renlm.graph.oshi;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import cn.hutool.core.thread.ThreadUtil;
 import cn.renlm.graph.ws.WsMessage;
 import cn.renlm.graph.ws.WsMessage.WsType;
 import cn.renlm.graph.ws.WsUtil;
@@ -22,6 +23,7 @@ public class OshiHandler {
 	@Scheduled(cron = OshiInfoUtil.cron)
 	public void getAndTopic() {
 		OshiInfoUtil.collect();
+		ThreadUtil.safeSleep(OshiInfoUtil.cronSecond * 1000 / 4);
 		WsUtil.topic(WsMessage.build(WsType.oshi, OshiInfoUtil.servers()));
 	}
 }
