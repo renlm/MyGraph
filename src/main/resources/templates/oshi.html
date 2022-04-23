@@ -17,7 +17,7 @@
         <div data-popo="chart3" title="磁盘"></div>
         <div data-popo="chart4" title="Chart D"></div>
         <div data-popo="chart5" title="在线人数"></div>
-        <div data-popo="chart6" title="今日登录"></div>
+        <div data-popo="chart6" title="系统资源"></div>
         <div data-popo="chart7" title="Java虚拟机"></div>
         <div data-popo="chart8" title="Chart H"></div>
     </div>
@@ -156,6 +156,76 @@
 	    		renderParallelUsedRate('chart3', 'disk', { dim: 0, name: '大小' });
 	    		// Jvm
 	    		renderParallelUsedRate('chart7', 'jvmMemory', { dim: 0, name: '内存' });
+	    		// 雷达图（系统资源）
+	    		renderRadarResourceUtilization('chart6');
+	    	}
+	    	
+	    	/**
+	    	 * 雷达图（系统资源）
+	    	 */
+	    	function renderRadarResourceUtilization (name) {
+	    		renderChart(name, {
+	    			tooltip: {
+	    				trigger: 'item',
+	    				formatter: function (params) {
+	    		        	var htmlStr = params.name + '<br/>';
+	                			htmlStr += '<div>';
+	                			htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#f2637b;"></span>';
+					          	htmlStr +=     'Cpu：' + params.data.value[0] + ' %';
+					          	htmlStr += '</div>';
+	                			htmlStr += '<div>';
+	                			htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#3eb177;"></span>';
+					          	htmlStr +=     '内存：' + params.data.value[1] + ' %';
+					          	htmlStr += '</div>';
+	                			htmlStr += '<div>';
+	                			htmlStr +=	   '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#fbd444;"></span>';
+					          	htmlStr +=     '磁盘：' + params.data.value[2] + ' %';
+					          	htmlStr += '</div>';
+	                		return htmlStr;
+	    		        }
+	    			},
+	    			radar: {
+	    				center: ['50%', '65%'],
+	    				radius: '85%',
+	    				indicator: [
+	    					{ text: 'Cpu', max: 100 },
+	    					{ text: '内存', max: 100 },
+	    					{ text: '磁盘', max: 100 }
+	    				]
+	    			},
+	    			series: (function () {
+	    				var series = [];
+	    				$.each(OSHI_IP, function (ip, oshi) {
+	    					series.push({
+	    				   		type: 'radar',
+	    				        symbol: 'none',
+	    				        lineStyle: {
+	    				      		width: 2
+	    				        },
+	    				        emphasis: {
+	    				       		areaStyle: {
+	    				            	color: 'rgba(0,250,0,0.3)'
+	    				          	}
+	    				        },
+	    				        data: [
+	    				      		{
+	    				            	value: [
+	    				            		oshi.cpuUsedRate,
+	    				            		oshi.memoryUsedRate,
+	    				            		oshi.diskUsedRate
+	    				            	],
+	    				            	name: ip,
+	    				            	symbolSize: 12,
+	    				                lineStyle: {
+	    				               		type: 'dashed'
+	    				                }
+	    				       		}
+	    				      	]
+	    					});
+	    				});
+	    				return series;
+	    			})()
+	    		});
 	    	}
 	    	
 	    	/**
