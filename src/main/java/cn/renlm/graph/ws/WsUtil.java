@@ -150,6 +150,19 @@ public class WsUtil {
 	}
 
 	/**
+	 * 获取当前在线用户数
+	 * 
+	 * @return
+	 */
+	public static final Long getOnlineUserNumber() {
+		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
+		Long min = DateUtil.current();
+		Long max = min + OnlineStatusValidityMillis;
+		return zops.count(OnlineStatusKey, min, max);
+	}
+
+	/**
 	 * 获取用户信息
 	 * 
 	 * @param session

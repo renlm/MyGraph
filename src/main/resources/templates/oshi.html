@@ -114,6 +114,7 @@
 	    		
 	    		// 打开连接
 	    		WS.onopen = function (evt) {
+	    			WS.send(JSON.stringify({type: "online"}));
 	    			WS.send(JSON.stringify({type: "oshi"}));
 	    		}
 	
@@ -145,6 +146,10 @@
 	    				});
 	    				// 创建图形（服务器信息）
 	    				createOshiCharts();
+	    			}
+	    			// 在线人数
+	    			else if (message.type == "online") {
+	    				ONLINE = message.data
 	    			}
 	    		}
 	

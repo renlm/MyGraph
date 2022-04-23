@@ -41,13 +41,12 @@ public class WsHandler extends TextWebSocketHandler {
 				final TextMessage textMessage = new TextMessage(messageJson);
 				session.sendMessage(textMessage);
 			}
-			// 系统状态
-			else if (WsType.status.equals(type)) {
-
-			}
-			// 即时通讯
-			else if (WsType.im.equals(type)) {
-
+			// 在线人数
+			else if (WsType.online.equals(type)) {
+				Long online = WsUtil.getOnlineUserNumber();
+				final String messageJson = JSONUtil.toJsonStr(WsMessage.build(WsType.online, online));
+				final TextMessage textMessage = new TextMessage(messageJson);
+				session.sendMessage(textMessage);
 			}
 		}
 	}
