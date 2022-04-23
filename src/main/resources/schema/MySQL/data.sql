@@ -18,6 +18,15 @@ INSERT INTO users (
 	'renlm@21cn.com',
 	'admin',
 	0
+), (
+	'04AB1FE543D74862A1B35676C7BBE61C', 
+	'linghc', 
+	'$2a$10$QxpfaI/kShOiZ50JQf2tTO5rK6I9tW2ig0AScKfmWB//M3CdtdAjq',
+	'令狐冲',
+	'17338158607',
+	'renlm@21cn.com',
+	'admin',
+	0
 );
 
 -- 图形设计
