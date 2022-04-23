@@ -41,7 +41,7 @@ public class WsHandler extends TextWebSocketHandler {
 				final TextMessage textMessage = new TextMessage(messageJson);
 				session.sendMessage(textMessage);
 			}
-			// 在线人数
+			// 上线
 			else if (WsType.online.equals(type)) {
 				Long online = WsUtil.getOnlineUserNumber();
 				final String messageJson = JSONUtil.toJsonStr(WsMessage.build(WsType.online, online));

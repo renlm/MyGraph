@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.web.socket.TextMessage;
@@ -19,7 +20,9 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
+import cn.renlm.graph.amqp.WsTopicQueueConfig;
 import cn.renlm.graph.dto.UserDto;
+import cn.renlm.graph.ws.WsMessage.WsType;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -75,11 +78,19 @@ public class WsUtil {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
 		UserDto user = getUserInfo(session);
 		String userId = user.getUserId();
+
+		// 维护在线状态
 		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 		Long expTime = DateUtil.current() + OnlineStatusValidityMillis;
 		zops.add(OnlineStatusKey, userId, expTime);
 		zops.add(userId, wsKey, expTime);
+
+		// 广播上线状态
+		AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
+		WsMessage<String> wsMessage = WsMessage.build(WsType.online, userId);
+		amqpTemplate.convertAndSend(WsTopicQueueConfig.EXCHANGE, WsTopicQueueConfig.ROUTINGKEY, wsMessage);
+
 		WS_USER_REL.put(wsKey, user);
 		return WS_SESSION_POOL.put(wsKey, session);
 	}
@@ -93,13 +104,21 @@ public class WsUtil {
 	public static final WebSocketSession removeSession(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
 		UserDto user = getUserInfo(session);
+
+		// 维护在线状态
 		if (ObjectUtil.isNotEmpty(user)) {
 			String userId = user.getUserId();
 			RedisTemplate<String, String> redisTemplate = getRedisTemplate();
 			ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 			zops.remove(OnlineStatusKey, userId);
 			zops.remove(userId, wsKey);
+
+			// 广播下线状态
+			AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
+			WsMessage<String> wsMessage = WsMessage.build(WsType.offline, userId);
+			amqpTemplate.convertAndSend(WsTopicQueueConfig.EXCHANGE, WsTopicQueueConfig.ROUTINGKEY, wsMessage);
 		}
+
 		WS_USER_REL.remove(wsKey);
 		return WS_SESSION_POOL.remove(wsKey);
 	}

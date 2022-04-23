@@ -38,7 +38,7 @@ public class WsMessage<T> implements Serializable {
 	 */
 	public enum WsType {
 
-		oshi("服务器信息"), online("在线人数");
+		oshi("服务器信息"), online("上线"), offline("离线");
 
 		@Getter
 		private String text;

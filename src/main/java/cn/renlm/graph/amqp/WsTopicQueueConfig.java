@@ -5,13 +5,15 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.ExchangeBuilder;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.rabbitmq.client.Channel;
+import cn.renlm.graph.ws.WsMessage;
+import cn.renlm.graph.ws.WsMessage.WsType;
+import cn.renlm.graph.ws.WsUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * WebSocket 广播队列
@@ -19,6 +21,7 @@ import com.rabbitmq.client.Channel;
  * @author Renlm
  *
  */
+@Slf4j
 @Configuration
 public class WsTopicQueueConfig {
 
@@ -34,11 +37,16 @@ public class WsTopicQueueConfig {
 	 * 监听广播队列
 	 * 
 	 * @param message
-	 * @param channel
 	 */
 	@RabbitListener(queues = "#{" + QUEUE + ".name}")
-	public void receiveMessage(Message message, Channel channel) {
-
+	public void receiveMessage(WsMessage<Object> message) {
+		WsType type = message.getType();
+		// 上线 | 离线
+		if (WsType.online.equals(type) || WsType.offline.equals(type)) {
+			log.info("=== {}行为，{}", type.getText(), message.getData());
+			message.setData(WsUtil.getOnlineUserNumber());
+			WsUtil.topic(message);
+		}
 	}
 
 	/**

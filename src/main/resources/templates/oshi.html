@@ -29,7 +29,7 @@
     <script th:src="@{/webjars/echarts/echarts.min.js}"></script>
     <script type="text/javascript">
     	$(function() { 
-    		var ONLINE = 0;
+    		var OnlineUserNumber = 0;
     		var OSHI_IP = {};
     		var OSHI_UID = [];
     		var OSHI_POOL = [];
@@ -149,7 +149,7 @@
 	    			}
 	    			// 在线人数
 	    			else if (message.type == "online") {
-	    				ONLINE = message.data
+	    				OnlineUserNumber = message.data
 	    			}
 	    		}
 	
@@ -202,7 +202,7 @@
 	    				        fontSize: 32
 	    				 	},
 	    				 	data: [
-	    				  		{ value: ONLINE, name: '在线人数' }
+	    				  		{ value: OnlineUserNumber, name: '在线人数' }
 	    					]
 	    				}
 	    			]
