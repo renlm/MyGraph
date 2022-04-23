@@ -46,7 +46,7 @@ public class WsTopicQueueConfig {
 		if (WsType.online.equals(type) || WsType.offline.equals(type)) {
 			String userId = Convert.toStr(message.getData());
 			long userConnections = WsUtil.getUserConnections(userId);
-			log.info("=== {}，{}行为，该用户当前连接数：{}", userId, type.getText(), userConnections);
+			log.info("=== {}，{}行为，该用户当前连接数：{}", userId, type, userConnections);
 			message.setData(WsUtil.getOnlineUserNumber());
 			WsUtil.topic(message);
 		}
