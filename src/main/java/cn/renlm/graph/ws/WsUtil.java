@@ -110,10 +110,13 @@ public class WsUtil {
 			String userId = user.getUserId();
 			RedisTemplate<String, String> redisTemplate = getRedisTemplate();
 			ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
-			zops.remove(OnlineStatusKey, userId);
 			zops.remove(userId, wsKey);
+			long userConnections = WsUtil.getUserConnections(userId);
+			if (userConnections == 0) {
+				zops.remove(OnlineStatusKey, userId);
+			}
 
-			// 广播下线状态
+			// 广播离线状态
 			AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
 			WsMessage<String> wsMessage = WsMessage.build(WsType.offline, userId);
 			amqpTemplate.convertAndSend(WsTopicQueueConfig.EXCHANGE, WsTopicQueueConfig.ROUTINGKEY, wsMessage);
