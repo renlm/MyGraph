@@ -165,6 +165,13 @@
 	    	 */
 	    	function renderRadarResourceUtilization (name) {
 	    		renderChart(name, {
+	    			title: {
+	    			    text: '服务器（' + Object.keys(OSHI_IP).length + '）',
+	    			    textStyle: {
+	    			    	fontSize: 12
+	    			    },
+	    			    right: 0
+	    			},
 	    			tooltip: {
 	    				trigger: 'item',
 	    				formatter: function (params) {
