@@ -53,8 +53,12 @@
 	
 	                if (P.Browser.mobile) {
 	                    option = mobile;
+	                } else if (width <= 1440) {
+	                	option = screen_1440;
+	                } else if (width >= 3840 && height >= 1000) {
+	                	option = screen_bigger;
 	                } else {
-	                    option = width <= 1440 ? screen_1440 : (width >= 3840 && height >= 1000 ? screen_bigger : screen_1920);
+	                    option = screen_1920;
 	                }
 	                
 	                if (option) {
