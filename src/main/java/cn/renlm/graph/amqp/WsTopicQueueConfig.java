@@ -5,19 +5,16 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.ExchangeBuilder;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import cn.renlm.graph.oshi.OshiInfo;
-import cn.renlm.graph.oshi.OshiInfoUtil;
-import cn.renlm.graph.ws.WsMessage;
-import cn.renlm.graph.ws.WsMessage.WsType;
-import cn.renlm.graph.ws.WsUtil;
+import com.rabbitmq.client.Channel;
 
 /**
- * WebSocket广播队列
+ * WebSocket 广播队列
  * 
  * @author Renlm
  *
@@ -36,11 +33,12 @@ public class WsTopicQueueConfig {
 	/**
 	 * 监听广播队列
 	 * 
-	 * @param info
+	 * @param message
+	 * @param channel
 	 */
 	@RabbitListener(queues = "#{" + QUEUE + ".name}")
-	public void receive(OshiInfo info) {
-		WsUtil.topic(WsMessage.build(WsType.oshi, OshiInfoUtil.servers()));
+	public void receiveMessage(Message message, Channel channel) {
+
 	}
 
 	/**

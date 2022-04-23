@@ -44,7 +44,7 @@ public class OshiInfoUtil {
 	/**
 	 * 采集频率（秒）
 	 */
-	public static final int cronSecond = 5;
+	public static final int cronSecond = 10;
 
 	/**
 	 * 采集频率（定时表达式）
@@ -54,7 +54,7 @@ public class OshiInfoUtil {
 	/**
 	 * 缓存时长（毫秒）
 	 */
-	public static final int validityMillis = 1000 * 60 * 60 * 1;
+	public static final int validityMillis = 1000 * 60 * 30;
 
 	/**
 	 * 获取服务器列表
