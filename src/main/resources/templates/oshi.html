@@ -29,6 +29,7 @@
     <script th:src="@{/webjars/echarts/echarts.min.js}"></script>
     <script type="text/javascript">
     	$(function() { 
+    		var ONLINE = 0;
     		var OSHI_IP = {};
     		var OSHI_UID = [];
     		var OSHI_POOL = [];
@@ -165,8 +166,42 @@
 	    		renderParallelUsedRate('chart3', 'disk', { dim: 0, name: '大小' });
 	    		// Jvm
 	    		renderParallelUsedRate('chart7', 'jvmMemory', { dim: 0, name: '内存' });
+	    		// 饼图（在线人数）
+	    		renderPieOnline('chart5');
 	    		// 雷达图（系统资源）
 	    		renderRadarResourceUtilization('chart6');
+	    	}
+	    	
+	    	/**
+	    	 * 饼图（在线人数）
+	    	 */
+	    	function renderPieOnline (name) {
+	    		renderChart(name, {
+	    			series: [
+	    				{
+	    					name: '在线人数',
+	    					type: 'pie',
+	    					radius: ['80%', '80%'],
+	    					center: ['50%', '50%'],
+	    					roseType: 'area',
+	    					itemStyle: {
+	    						borderRadius: 8
+	    					},
+	    					label: {
+	    				    	show: true,
+	    				        position: 'center',
+	    				        formatter: '{c}',
+	    				        color: '#fff',
+	    				        fontStyle: 'oblique',
+	    				        fontWeight: 'bolder',
+	    				        fontSize: 32
+	    				 	},
+	    				 	data: [
+	    				  		{ value: ONLINE, name: '在线人数' }
+	    					]
+	    				}
+	    			]
+	    		});
 	    	}
 	    	
 	    	/**
