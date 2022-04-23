@@ -18,7 +18,7 @@
         <div data-popo="chart4" title="Chart D"></div>
         <div data-popo="chart5" title="在线人数"></div>
         <div data-popo="chart6" title="系统资源"></div>
-        <div data-popo="chart7" title="Java虚拟机"></div>
+        <div data-popo="chart7" title="Jvm"></div>
         <div data-popo="chart8" title="Chart H"></div>
     </div>
     <script th:src="@{/static/popo/popo.min.js}"></script>
@@ -59,6 +59,11 @@
 	                	option = screen_bigger;
 	                } else {
 	                    option = screen_1920;
+	                    option.layout = [
+		                        [ 4, [ 4, 4, 4 ] ],
+		                        [ 16, [ 1, 7, 4 ] ],
+		                        [ 4, [ 3, 5, 4 ] ]
+	                    	];
 	                }
 	                
 	                if (option) {
@@ -192,16 +197,20 @@
 	                			htmlStr +=	   '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#fbd444;"></span>';
 					          	htmlStr +=     '磁盘：' + params.data.value[2] + ' %';
 					          	htmlStr += '</div>';
+	                			htmlStr +=	   '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#73c0de;"></span>';
+					          	htmlStr +=     'Jvm：' + params.data.value[3] + ' %';
+					          	htmlStr += '</div>';
 	                		return htmlStr;
 	    		        }
 	    			},
 	    			radar: {
-	    				center: ['50%', '65%'],
-	    				radius: '85%',
+	    				center: ['50%', '50%'],
+	    				radius: '60%',
 	    				indicator: [
 	    					{ text: 'Cpu', max: 100 },
 	    					{ text: '内存', max: 100 },
-	    					{ text: '磁盘', max: 100 }
+	    					{ text: '磁盘', max: 100 },
+	    					{ text: 'Jvm', max: 100 }
 	    				]
 	    			},
 	    			series: (function () {
@@ -223,7 +232,8 @@
 	    				            	value: [
 	    				            		oshi.cpuUsedRate,
 	    				            		oshi.memoryUsedRate,
-	    				            		oshi.diskUsedRate
+	    				            		oshi.diskUsedRate,
+	    				            		oshi.jvmMemoryUsedRate
 	    				            	],
 	    				            	name: ip,
 	    				            	symbolSize: 12,
