@@ -200,7 +200,7 @@
 	    			grid: {
 	    				bottom: 80,
 	    				left: 80,
-	    				right: 40
+	    				right: Object.keys(OSHI_IP).length > 1 ? 80 : 40
 	    			},
 	    			tooltip: {
 	    				trigger: 'axis',
@@ -251,7 +251,33 @@
 	    			},
 	    			yAxis: [
 	    				{
+	    				 	alignTicks: true,
 	    					type: 'value',
+	    					min: 0,
+	    					max: function (value) {
+	    					    return Math.max(value.max, 100);
+	    					},
+	        		        splitLine: {
+	        		            show: false
+	        		        },
+	    					axisLine: { 
+	    						show: true
+	    					},
+	        		        axisTick: {
+	        		        	show: true
+	        		        },
+	        		        axisLabel: {
+	        		        	show: true,  
+	                          	interval: 'auto',  
+	                          	formatter: '{value} %',
+	                          	color: '#fff'
+	        		        }
+	    				},
+	    				{
+	    					show: Object.keys(OSHI_IP).length > 1,
+	    				 	alignTicks: true,
+	    				 	type: 'value',
+	    				 	inverse: true,
 	    					min: 0,
 	    					max: function (value) {
 	    					    return Math.max(value.max, 100);
@@ -275,10 +301,13 @@
 	    			],
 	    			series: (function () {
 	    				var series = [];
+	    				var index = 0;
 	    				$.each(OSHI_IP, function (ip, oshi) {
+	    					index++;
 	    					series.push({
 		    					name: ip,
 		    				  	type: 'line',
+		    				  	yAxisIndex: 1 - index % 2,
 		    				  	symbol: 'none',
 		    				  	areaStyle: {},
 		    					lineStyle: {
