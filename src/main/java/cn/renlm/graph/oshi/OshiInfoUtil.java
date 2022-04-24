@@ -49,7 +49,7 @@ public class OshiInfoUtil {
 	/**
 	 * 采集频率（定时表达式）
 	 */
-	public static final String cron = "0/" + cronSecond + " * * * * ?";
+	public static final String cron = "*/" + cronSecond + " * * * * ?";
 
 	/**
 	 * 缓存时长（毫秒）
@@ -131,7 +131,6 @@ public class OshiInfoUtil {
 	 */
 	public static final OshiInfo collect() {
 		OshiInfo info = new OshiInfo();
-		info.setTime(new Date());
 
 		// Cpu信息
 		CpuInfo cpuInfo = OshiUtil.getCpuInfo();
@@ -167,6 +166,7 @@ public class OshiInfoUtil {
 
 		// 封装数据
 		info.setIp(SystemUtil.getHostInfo().getAddress());
+		info.setTime(new Date());
 		info.setUid(IdUtil.getSnowflakeNextId());
 		info.setCpuCores(cpuCores);
 		info.setCpuUsedRate(new BigDecimal(cpuUsedRate).setScale(2, BigDecimal.ROUND_HALF_UP));
