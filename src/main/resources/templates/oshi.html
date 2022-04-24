@@ -230,31 +230,11 @@
 	    					end: 100
 	    				}
 	    			],
-	    			xAxis: (function () {
-	    				var xAxis = [];
-	    				$.each(OSHI_IP, function (ip, oshi) {
-	    					if(xAxis.length === 0) {
-		    					xAxis.push({
-			    					type: 'category',
-			    					boundaryGap: false,
-			    				 	axisLine: { onZero: false },
-			    				 	data: (function () {
-			    				 		var data = [];
-			    				 		$.each(OSHI_POOL, function (i, item) {
-			    				 			if(item.ip == ip) {
-			    				 				var format = layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss");
-			    				 				data.push(format);
-			    				 			}
-			    				 		});
-			    				 		return data.map(function (str) {
-				    				   		return str.replace(' ', '\n');
-				    				 	});
-			    				 	})()
-			    				});
-	    					}
-	    				});
-	    				return xAxis;
-	    			})(),
+	    			xAxis: {
+	    				type: 'time',
+	    				boundaryGap: false,
+    				 	axisLine: { onZero: false }
+	    			},
 	    			yAxis: [
 	    				{
 	    					name: 'Cpu',
@@ -294,7 +274,13 @@
 		    				 		var seriesData = [];
 		    				 		$.each(OSHI_POOL, function (i, item) {
 		    				 			if(item.ip === ip) {
-		    				 				seriesData.push(item.cpuUsedRate);
+		    				 				seriesData.push({
+		    				 					name: item.time.toString(),
+		    				 				 	value: [
+		    				 				    	layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss"),
+		    				 				     	item.cpuUsedRate
+		    				 				  	]
+	    				 					});
 		    				 			}
 		    				 		});
 		    				 		return seriesData;
@@ -316,7 +302,13 @@
 		    				 		var seriesData = [];
 		    				 		$.each(OSHI_POOL, function (i, item) {
 		    				 			if(item.ip === ip) {
-		    				 				seriesData.push(item.memoryUsedRate);
+		    				 				seriesData.push({
+			    				 					name: item.time.toString(),
+			    				 				 	value: [
+			    				 				    	layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss"),
+			    				 				     	item.memoryUsedRate
+			    				 				  	]
+		    				 					});
 		    				 			}
 		    				 		});
 		    				 		return seriesData;
