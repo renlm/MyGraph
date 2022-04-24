@@ -15,7 +15,7 @@
         <div data-popo="chart1" title="Cpu"></div>
         <div data-popo="chart2" title="内存"></div>
         <div data-popo="chart3" title="磁盘"></div>
-        <div data-popo="chart4" title="动态使用率"></div>
+        <div data-popo="chart4" title="Cpu使用率"></div>
         <div data-popo="chart5" title="在线人数"></div>
         <div data-popo="chart6" title="系统资源"></div>
         <div data-popo="chart7" title="Jvm"></div>
@@ -179,7 +179,7 @@
 	    		renderParallelUsedRate('chart3', 'disk', { dim: 0, name: '大小' });
 	    		// Jvm
 	    		renderParallelUsedRate('chart7', 'jvmMemory', { dim: 0, name: '内存' });
-	    		// 动态使用率
+	    		// Cpu使用率
 	    		renderCpuDynamicUsedRate('chart4');
 	    		// 饼图（在线人数）
 	    		renderPieOnline('chart5');
@@ -188,19 +188,19 @@
 	    	}
 	    	
 	    	/**
-	    	 * 动态使用率
+	    	 * Cpu使用率
 	    	 */
 	    	function renderCpuDynamicUsedRate (name) {
 	    		renderChart(name, {
 	    			title: {
-	    				text: '动态使用率',
+	    				text: 'Cpu使用率',
 	    				left: 'center',
-	    				top: 'top'
+	    				top: 20
 	    			},
 	    			grid: {
 	    				bottom: 80,
-	    				left: 50,
-	    				right: 50
+	    				left: 80,
+	    				right: 40
 	    			},
 	    			tooltip: {
 	    				trigger: 'axis',
@@ -213,53 +213,57 @@
 	    				}
 	    			},
 	    			legend: {
+	    				top: 20,
+	    				left: 10,
+	    				textStyle: {
+	    					color: '#fff'
+	    				},
 	    				data: (function () {
 				    		var legend = [];
 				    		$.each(OSHI_IP, function (ip, oshi) {
 				    			legend.push(ip);
 				    		});
 				    		return legend;
-			    		})(),
-	    				left: 10
+			    		})()
 	    			},
 	    			dataZoom: [
 	    				{
 	    					show: true,
 	    					realtime: true,
-	    				 	start: 75,
+	    				 	start: 0,
 	    					end: 100
 	    				},
 	    				{
 	    					type: 'inside',
 	    					realtime: true,
-	    					start: 75,
+	    					start: 0,
 	    					end: 100
 	    				}
 	    			],
 	    			xAxis: {
 	    				type: 'time',
 	    				boundaryGap: false,
-    					axisLine: { onZero: false }
+    					axisLine: { onZero: false },
+        		        axisLabel: {
+        		        	color: '#fff'
+        		        }
 	    			},
 	    			yAxis: [
 	    				{
-	    					name: 'Cpu',
 	    					type: 'value',
 	    					min: 0,
 	    					max: function (value) {
 	    					    return Math.max(value.max, 100);
-	    					}
-	    				},
-	    				{
-	    					name: '内存',
-	    					nameLocation: 'start',
-	    				 	alignTicks: true,
-	    				 	type: 'value',
-	    				 	inverse: true,
-	    					min: 0,
-	    					max: function (value) {
-	    					    return Math.max(value.max, 100);
-	    					}
+	    					},
+	        		        splitLine: {
+	        		            show: false
+	        		        },
+	        		        axisLabel: {
+	        		        	show: true,  
+	                          	interval: 'auto',  
+	                          	formatter: '{value} %',
+	                          	color: '#fff'
+	        		        }
 	    				}
 	    			],
 	    			series: (function () {
@@ -287,34 +291,6 @@
 		    				 				     	item.cpuUsedRate
 		    				 				  	]
 	    				 					});
-		    				 			}
-		    				 		});
-		    				 		return seriesData;
-		    				 	})()
-		    				});
-	    					series.push({
-		    					name: ip,
-		    				   	type: 'line',
-		    				 	yAxisIndex: 1,
-		    				 	symbol: 'none',
-		    				  	areaStyle: {},
-		    				  	lineStyle: {
-		    				   		width: 1
-		    				  	},
-		    				   	emphasis: {
-		    				   		focus: 'series'
-		    				 	},
-		    				  	data: (function () {
-		    				 		var seriesData = [];
-		    				 		$.each(OSHI_POOL, function (i, item) {
-		    				 			if(item.ip === ip) {
-		    				 				seriesData.push({
-			    				 					name: item.time.toString(),
-			    				 				 	value: [
-			    				 				    	layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss"),
-			    				 				     	item.memoryUsedRate
-			    				 				  	]
-		    				 					});
 		    				 			}
 		    				 		});
 		    				 		return seriesData;
