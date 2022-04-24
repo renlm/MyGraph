@@ -230,25 +230,31 @@
 	    					end: 100
 	    				}
 	    			],
-	    			xAxis: [
-	    				{
-	    					type: 'category',
-	    					boundaryGap: false,
-	    				 	axisLine: { onZero: false },
-	    				 	data: (function () {
-	    				 		var xAxis = [];
-	    				 		$.each(OSHI_POOL, function (i, item) {
-	    				 			var format = layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss");
-	    				 			if(!xAxis.contains(format)) {
-	    				 				xAxis.push(format);
-	    				 			}
-	    				 		});
-	    				 		return xAxis.map(function (str) {
-		    				   		return str.replace(' ', '\n');
-		    				 	});
-	    				 	})()
-	    				}
-	    			],
+	    			xAxis: (function () {
+	    				var xAxis = [];
+	    				$.each(OSHI_IP, function (ip, oshi) {
+	    					if(xAxis.length === 0) {
+		    					xAxis.push({
+			    					type: 'category',
+			    					boundaryGap: false,
+			    				 	axisLine: { onZero: false },
+			    				 	data: (function () {
+			    				 		var data = [];
+			    				 		$.each(OSHI_POOL, function (i, item) {
+			    				 			if(item.ip == ip) {
+			    				 				var format = layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss");
+			    				 				data.push(format);
+			    				 			}
+			    				 		});
+			    				 		return data.map(function (str) {
+				    				   		return str.replace(' ', '\n');
+				    				 	});
+			    				 	})()
+			    				});
+	    					}
+	    				});
+	    				return xAxis;
+	    			})(),
 	    			yAxis: [
 	    				{
 	    					name: 'Cpu',
