@@ -213,7 +213,13 @@
 	    				}
 	    			},
 	    			legend: {
-	    				data: ['Cpu', '内存'],
+	    				data: (function () {
+				    		var category = [];
+				    		$.each(OSHI_IP, function (ip, oshi) {
+				    			category.push(ip);
+				    		});
+				    		return category;
+			    		})(),
 	    				left: 10
 	    			},
 	    			dataZoom: [
@@ -260,7 +266,7 @@
 	    				var series = [];
 	    				$.each(OSHI_IP, function (ip, oshi) {
 	    					series.push({
-		    					name: 'Cpu',
+		    					name: ip,
 		    				  	type: 'line',
 		    				  	symbol: 'none',
 		    				  	areaStyle: {},
@@ -287,7 +293,7 @@
 		    				 	})()
 		    				});
 	    					series.push({
-		    					name: '内存',
+		    					name: ip,
 		    				   	type: 'line',
 		    				 	yAxisIndex: 1,
 		    				 	symbol: 'none',
