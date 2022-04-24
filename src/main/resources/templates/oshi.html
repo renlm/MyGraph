@@ -19,7 +19,7 @@
         <div data-popo="chart5" title="在线人数"></div>
         <div data-popo="chart6" title="系统资源"></div>
         <div data-popo="chart7" title="Jvm"></div>
-        <div data-popo="chart8" title="Chart H"></div>
+        <div data-popo="chart8" title="Cpu动态使用率"></div>
     </div>
     <script th:src="@{/static/popo/popo.min.js}"></script>
     <script th:src="@{/webjars/reconnecting-websocket/reconnecting-websocket.js}"></script>
@@ -175,10 +175,19 @@
 	    		renderParallelUsedRate('chart3', 'disk', { dim: 0, name: '大小' });
 	    		// Jvm
 	    		renderParallelUsedRate('chart7', 'jvmMemory', { dim: 0, name: '内存' });
+	    		// Cpu动态使用率
+	    		renderCpuDynamicUsedRate('chart8');
 	    		// 饼图（在线人数）
 	    		renderPieOnline('chart5');
 	    		// 雷达图（系统资源）
 	    		renderRadarResourceUtilization('chart6');
+	    	}
+	    	
+	    	/**
+	    	 * Cpu动态使用率
+	    	 */
+	    	function renderCpuDynamicUsedRate (name) {
+	    		renderChart(name, null);
 	    	}
 	    	
 	    	/**
