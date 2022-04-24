@@ -216,7 +216,7 @@ public class OshiInfoUtil {
 	 * @return
 	 */
 	private static final long getIpExpTime(Date time) {
-		return DateUtil.offsetMillisecond(time, 1000 * cronSecond + cronSecond / 2).getTime();
+		return DateUtil.offsetMillisecond(time, 1000 * cronSecond * 2).getTime();
 	}
 
 	/**
