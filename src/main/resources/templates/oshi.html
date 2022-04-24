@@ -237,8 +237,8 @@
 	    				 	axisLine: { onZero: false },
 	    				 	data: (function () {
 	    				 		var xAxis = [];
-	    				 		$.each(OSHI_POOL, function (i, oshi) {
-	    				 			var format = layui.util.toDateString(oshi.time, "yyyy-MM-dd HH:mm:ss");
+	    				 		$.each(OSHI_POOL, function (i, item) {
+	    				 			var format = layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss");
 	    				 			if(!xAxis.contains(format)) {
 	    				 				xAxis.push(format);
 	    				 			}
@@ -286,9 +286,9 @@
 		    					},
 		    					data: (function () {
 		    				 		var seriesData = [];
-		    				 		$.each(OSHI_POOL, function (i, oshi) {
-		    				 			if(oshi.ip === ip) {
-		    				 				seriesData.push(oshi.cpuUsedRate);
+		    				 		$.each(OSHI_POOL, function (i, item) {
+		    				 			if(item.ip === ip) {
+		    				 				seriesData.push(item.cpuUsedRate);
 		    				 			}
 		    				 		});
 		    				 		return seriesData;
@@ -308,9 +308,9 @@
 		    				 	},
 		    				  	data: (function () {
 		    				 		var seriesData = [];
-		    				 		$.each(OSHI_POOL, function (i, oshi) {
-		    				 			if(oshi.ip === ip) {
-		    				 				seriesData.push(oshi.memoryUsedRate);
+		    				 		$.each(OSHI_POOL, function (i, item) {
+		    				 			if(item.ip === ip) {
+		    				 				seriesData.push(item.memoryUsedRate);
 		    				 			}
 		    				 		});
 		    				 		return seriesData;
