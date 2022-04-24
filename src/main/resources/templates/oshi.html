@@ -242,8 +242,9 @@
 	    			],
 	    			xAxis: {
 	    				type: 'time',
-	    				boundaryGap: false,
-    					axisLine: { onZero: false },
+	    		        splitLine: {
+	    		            show: false
+	    		        },
         		        axisLabel: {
         		        	color: '#fff'
         		        }
@@ -257,6 +258,12 @@
 	    					},
 	        		        splitLine: {
 	        		            show: false
+	        		        },
+	    					axisLine: { 
+	    						show: true
+	    					},
+	        		        axisTick: {
+	        		        	show: true
 	        		        },
 	        		        axisLabel: {
 	        		        	show: true,  
