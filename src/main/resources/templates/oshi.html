@@ -251,14 +251,22 @@
 	    			yAxis: [
 	    				{
 	    					name: 'Cpu',
-	    					type: 'value'
+	    					type: 'value',
+	    					min: 0,
+	    					max: function (value) {
+	    					    return Math.max(value.max, 100);
+	    					}
 	    				},
 	    				{
 	    					name: '内存',
 	    					nameLocation: 'start',
 	    				 	alignTicks: true,
 	    				 	type: 'value',
-	    				 	inverse: true
+	    				 	inverse: true,
+	    					min: 0,
+	    					max: function (value) {
+	    					    return Math.max(value.max, 100);
+	    					}
 	    				}
 	    			],
 	    			series: (function () {
