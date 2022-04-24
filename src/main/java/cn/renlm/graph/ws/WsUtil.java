@@ -40,7 +40,7 @@ public class WsUtil {
 	 * 在线状态
 	 */
 	public static final String OnlineStatusKey = WsUtil.class.getName();
-	public static final String OnlineStatusCron = "*/60 * * * * ?";
+	public static final String OnlineStatusCron = "0/60 * * * * ?";
 	public static final long OnlineStatusValidityMillis = 1000 * 60 * 5;
 
 	/**
