@@ -529,7 +529,13 @@
 	    		  	},
 	    			parallelAxis: [
 	    				parallelAxis0,
-				    	{ dim: 1, name: '使用率', max: 100 },
+				    	{ 
+	    					dim: 1, 
+	    					name: '使用率',
+	    					max: function (value) {
+	    					    return Math.max(value.max, 100);
+	    					} 
+	    				},
 				    	{ 
 				    		dim: 2, 
 				    		name: '服务器', 
