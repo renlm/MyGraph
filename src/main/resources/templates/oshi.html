@@ -35,6 +35,7 @@
     		var OSHI_UID = [];
     		var OSHI_POOL = [];
     		var POPO_TARGET = {};
+    		var COLORS = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'];
     		initPopo();
     		/**
         	 * 扩展数组方法
@@ -618,6 +619,7 @@
 			    			width: $(target).width(),
 			    			height: $(target).height()
 	    				});
+	    		option.color = COLORS;
 	    		option.backgroundColor = 'transparent';
 	    		myChart.setOption(option, true);
 	    		// 自适应
