@@ -25,5 +25,6 @@ public class OshiHandler {
 		OshiInfoUtil.collect();
 		ThreadUtil.safeSleep(OshiInfoUtil.cronSecond * 1000 / 4);
 		WsUtil.topic(WsMessage.build(WsType.oshi, OshiInfoUtil.servers()));
+		WsUtil.topic(WsMessage.build(WsType.online, WsUtil.getOnlineUserNumber()));
 	}
 }
