@@ -22,7 +22,7 @@
         <div data-popo="chinamap" title="占位特效"></div>
     </div>
     <div style="display: none;">
-    	<input id="onlineUserNumber" th:value="onlineUserNumber" />
+    	<input id="onlineUserNumber" th:value="${onlineUserNumber}" />
 	    <div id="servers" th:text="${servers}"></div>
 	    <div id="oshiInfos" th:text="${oshiInfos}"></div>
     </div>
@@ -37,6 +37,19 @@
     
     <script type="text/javascript">
 		var initWebglShadersOcean = null;
+
+		/**
+    	 * 扩展数组方法
+    	 */
+		Array.prototype.contains = function(obj) {
+			var i = this.length;
+			while (i--) {
+				if (this[i] === obj) {
+			   		return true;
+				}
+			}
+			return false;
+		}
     </script>
     
     <script type="importmap">
@@ -236,30 +249,46 @@
     
     <script type="text/javascript">
     	$(function() { 
-    		var OnlineUserNumber = 0;
+    		var onlineUserNumber = 0;
     		var OSHI_IP = {};
     		var OSHI_UID = [];
     		var OSHI_POOL = [];
     		var POPO_TARGET = {};
     		var COLORS = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'];
+    		
+    		initData();
+            initWs();
     		initPopo();
+    		
     		/**
-        	 * 扩展数组方法
+        	 * 初始化数据
         	 */
-    		Array.prototype.contains = function(obj) {
-    			var i = this.length;
-    			while (i--) {
-    				if (this[i] === obj) {
-    			   		return true;
-    				}
-    			}
-    			return false;
+    		function initData () {
+    			onlineUserNumber = parseInt($('#onlineUserNumber').val());
+    			var servers = JSON.parse($('#servers').html());
+    			var oshiInfos = JSON.parse($('#oshiInfos').html());
+    			var dataArr = [ servers, oshiInfos ];
+    			$.each(dataArr, function (index, dataItem) {
+    				$.each(dataItem, function (key, data) {
+    					if(data instanceof Array) {
+    						$.each(data, function (i, item) {
+    							if(!OSHI_UID.contains(item.uid)) { OSHI_UID.push(item.uid); OSHI_POOL.push(item); OSHI_IP[item.ip]=item; }
+            					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
+            					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
+    			   			});
+    					} else {
+    						if(!OSHI_UID.contains(data.uid)) { OSHI_UID.push(data.uid); OSHI_POOL.push(data); OSHI_IP[data.ip]=data; }
+        					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
+        					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
+    					}
+    				});
+    			});
     		}
     		
     		/**
         	 * 初始化布局
         	 */
-	    	function initPopo() {
+	    	function initPopo () {
 	    		$.getJSON("[(@{/static/popo/data/popo.json})]", function (result) {
 	                if (!result) {
 	                	return;
@@ -289,7 +318,7 @@
 	                }
 	                
 	                if (option) {
-	                    option.onload = function (popo) { 
+	                    option.onload = function (popo) {
 	                    	popo.getAlias().forEach(function (alias) {
 	                    		var target = popo.center(alias.name);
 	                            if (target) {
@@ -298,8 +327,8 @@
 	                        });
 	        	    		// 占位特效
 	        	    		initWebglShadersOcean(POPO_TARGET['chinamap'].target);
-	    	                // 初始化 WebSocket
-	    	                initWs();
+		    				// 创建图形（服务器信息）
+		    				createOshiCharts();
 	                    };
 	                    option.update = function (popo) { 
 	                    	popo.each(function (elements) {
@@ -325,10 +354,10 @@
 	    		var WS = new ReconnectingWebSocket(webSocketHost + "[(@{/ws/})]" + token);
 	    		
 	    		// 打开连接
-	    		WS.onopen = function (evt) {
-	    			WS.send(JSON.stringify({type: "online"}));
-	    			WS.send(JSON.stringify({type: "oshi"}));
-	    		}
+	    		WS.onopen = function (evt) { }
+	
+	    		// 连接关闭
+	    		WS.onclose = function (evt) { }
 	
 	    		// 接收消息
 	    		WS.onmessage = function (evt) {
@@ -356,22 +385,17 @@
 	    						delete OSHI_IP[ip];
 	    					}
 	    				});
-	    				// 创建图形（服务器信息）
+	    				// 更新图形（服务器信息）
 	    				createOshiCharts();
 	    			}
 	    			// 上线
 	    			else if (message.type == "online") {
-	    				OnlineUserNumber = message.data
+	    				onlineUserNumber = message.data
 	    			}
 	    			// 离线
 	    			else if (message.type == "offline") {
-	    				OnlineUserNumber = message.data
+	    				onlineUserNumber = message.data
 	    			}
-	    		}
-	
-	    		// 连接关闭
-	    		WS.onclose = function (evt) {
-	    			console.log("WebSocket closed");
 	    		}
 	    	}
 	    	
@@ -571,7 +595,7 @@
 	    				        fontSize: 32
 	    				 	},
 	    				 	data: [
-	    				  		{ value: OnlineUserNumber, name: '在线人数' }
+	    				  		{ value: onlineUserNumber, name: '在线人数' }
 	    					]
 	    				}
 	    			]
