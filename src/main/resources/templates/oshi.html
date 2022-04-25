@@ -257,8 +257,8 @@
     		var COLORS = ['#5470c6', '#91cc75', '#fac858', '#ee6666', '#73c0de', '#3ba272', '#fc8452', '#9a60b4', '#ea7ccc'];
     		
     		initData();
-            initWs();
     		initPopo();
+            initWs();
     		
     		/**
         	 * 初始化数据
@@ -328,7 +328,7 @@
 	        	    		// 占位特效
 	        	    		initWebglShadersOcean(POPO_TARGET['chinamap'].target);
 		    				// 创建图形（服务器信息）
-		    				createOshiCharts();
+		    				renderOshiCharts();
 	                    };
 	                    option.update = function (popo) { 
 	                    	popo.each(function (elements) {
@@ -346,7 +346,7 @@
 	    	/**
 	    	 * 初始化 WebSocket
 	    	 */
-	    	function initWs() {
+	    	function initWs () {
 	    		var protocol = document.location.protocol;
 	    		var timestamp = new Date().getTime();
 	    		var webSocketHost = protocol.indexOf("https") > -1?"[(${#MyConfig.wssHost})]":"[(${#MyConfig.wsHost})]";
@@ -386,7 +386,7 @@
 	    					}
 	    				});
 	    				// 更新图形（服务器信息）
-	    				createOshiCharts();
+	    				renderOshiCharts();
 	    			}
 	    			// 上线
 	    			else if (message.type == "online") {
@@ -402,7 +402,7 @@
 	    	/**
 	    	 * 服务器信息
 	    	 */
-	    	function createOshiCharts() {
+	    	function renderOshiCharts () {
 	    		// Cpu
 	    		renderParallelUsedRate('chart1', 'cpu', { dim: 0, name: '核心数' });
 	    		// 内存
