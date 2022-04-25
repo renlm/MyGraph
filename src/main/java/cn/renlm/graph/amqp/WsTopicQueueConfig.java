@@ -5,6 +5,10 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.ExchangeBuilder;
+import org.springframework.amqp.core.ExchangeTypes;
+import org.springframework.amqp.rabbit.annotation.Exchange;
+import org.springframework.amqp.rabbit.annotation.Queue;
+import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -39,7 +43,8 @@ public class WsTopicQueueConfig {
 	 * 
 	 * @param message
 	 */
-	@RabbitListener(queues = "#{" + QUEUE + ".name}")
+	@RabbitListener(bindings = { @QueueBinding(value = @Queue(value = "#{" + QUEUE
+			+ ".name}", durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
 	public void receiveMessage(WsMessage<Object> message) {
 		WsType type = message.getType();
 		// 上线 | 离线
