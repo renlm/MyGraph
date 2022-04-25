@@ -35,7 +35,7 @@
     <script async th:src="@{/webjars/es-module-shims/dist/es-module-shims.js}"></script>
     
     <script type="text/javascript">
-		var initWebglShadersOcean = null;
+		var INIT_WEBGL = null;
 
 		/**
     	 * 扩展数组方法
@@ -74,7 +74,7 @@
 		let camera, scene, renderer;
 		let controls, water, sun, mesh;
 
-		initWebglShadersOcean = function (target) {
+		INIT_WEBGL = function (target) {
 
 			if(container || !target) {
 				return;
@@ -249,7 +249,7 @@
     <script type="text/javascript">
     	$(function() { 
     		var CLOSED_NUM = 0;
-    		var ONLINE_USER_NUM = 0;
+    		var USER_NUM = 0;
     		var OSHI_IP = {};
     		var OSHI_UID = [];
     		var OSHI_POOL = [];
@@ -264,7 +264,7 @@
         	 * 初始化数据
         	 */
     		function initData () {
-    			ONLINE_USER_NUM = parseInt($('#onlineUserNumber').val());
+    			USER_NUM = parseInt($('#onlineUserNumber').val());
     			var oshiInfos = JSON.parse($('#oshiInfos').html());
     			$.each(oshiInfos, function (key, data) {
 					if(data instanceof Array) {
@@ -322,7 +322,7 @@
 	                            }
 	                        });
 	        	    		// 占位特效
-	        	    		initWebglShadersOcean(POPO_TARGET['chinamap'].target);
+	        	    		INIT_WEBGL(POPO_TARGET['chinamap'].target);
 		    				// 创建图形（服务器信息）
 		    				renderOshiCharts();
 	                    };
@@ -352,7 +352,7 @@
 	    		// 打开连接
 	    		WS.onopen = function (evt) { 
 	    			if(CLOSED_NUM > 0) {
-	    				ONLINE_USER_NUM = 0;
+	    				USER_NUM = 0;
 	    	    		OSHI_IP = {};
 	    	    		OSHI_UID = [];
 	    	    		OSHI_POOL = [];
@@ -397,11 +397,11 @@
 	    			}
 	    			// 上线
 	    			else if (message.type == "online") {
-	    				ONLINE_USER_NUM = message.data
+	    				USER_NUM = message.data
 	    			}
 	    			// 离线
 	    			else if (message.type == "offline") {
-	    				ONLINE_USER_NUM = message.data
+	    				USER_NUM = message.data
 	    			}
 	    		}
 	    	}
@@ -602,7 +602,7 @@
 	    				        fontSize: 32
 	    				 	},
 	    				 	data: [
-	    				  		{ value: ONLINE_USER_NUM, name: '在线人数' }
+	    				  		{ value: USER_NUM, name: '在线人数' }
 	    					]
 	    				}
 	    			]
