@@ -44,7 +44,7 @@ public class OshiInfoUtil {
 	/**
 	 * 采集频率（秒）
 	 */
-	public static final int cronSecond = 10;
+	public static final int cronSecond = 5;
 
 	/**
 	 * 采集频率（定时表达式）
