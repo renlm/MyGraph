@@ -38,10 +38,8 @@ public class OshiController {
 	@GetMapping
 	public String home(ModelMap model) {
 		long onlineUserNumber = WsUtil.getOnlineUserNumber();
-		Map<String, OshiInfo> servers = OshiInfoUtil.servers();
 		Map<String, Set<OshiInfo>> oshiInfos = OshiInfoUtil.get();
 		model.put("onlineUserNumber", onlineUserNumber);
-		model.put("servers", JSONUtil.toJsonStr(servers));
 		model.put("oshiInfos", JSONUtil.toJsonStr(oshiInfos));
 		return "oshi";
 	}

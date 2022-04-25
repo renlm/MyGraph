@@ -23,7 +23,6 @@
     </div>
     <div style="display: none;">
     	<input id="onlineUserNumber" th:value="${onlineUserNumber}" />
-	    <div id="servers" th:text="${servers}"></div>
 	    <div id="oshiInfos" th:text="${oshiInfos}"></div>
     </div>
     <script th:src="@{/static/popo/popo.min.js}"></script>
@@ -265,24 +264,20 @@
         	 */
     		function initData () {
     			onlineUserNumber = parseInt($('#onlineUserNumber').val());
-    			var servers = JSON.parse($('#servers').html());
     			var oshiInfos = JSON.parse($('#oshiInfos').html());
-    			var dataArr = [ servers, oshiInfos ];
-    			$.each(dataArr, function (index, dataItem) {
-    				$.each(dataItem, function (key, data) {
-    					if(data instanceof Array) {
-    						$.each(data, function (i, item) {
-    							if(!OSHI_UID.contains(item.uid)) { OSHI_UID.push(item.uid); OSHI_POOL.push(item); OSHI_IP[item.ip]=item; }
-            					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
-            					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
-    			   			});
-    					} else {
-    						if(!OSHI_UID.contains(data.uid)) { OSHI_UID.push(data.uid); OSHI_POOL.push(data); OSHI_IP[data.ip]=data; }
+    			$.each(oshiInfos, function (key, data) {
+					if(data instanceof Array) {
+						$.each(data, function (i, item) {
+							if(!OSHI_UID.contains(item.uid)) { OSHI_UID.push(item.uid); OSHI_POOL.push(item); OSHI_IP[item.ip]=item; }
         					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
         					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
-    					}
-    				});
-    			});
+			   			});
+					} else {
+						if(!OSHI_UID.contains(data.uid)) { OSHI_UID.push(data.uid); OSHI_POOL.push(data); OSHI_IP[data.ip]=data; }
+    					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
+    					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
+					}
+				});
     		}
     		
     		/**
