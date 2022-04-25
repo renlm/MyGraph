@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class DelayTaskDemo implements DelayTask {
 
 	@Override
-	public void execute(String paramJson) {
-		log.info("延时任务（演示）：" + JSONUtil.toJsonPrettyStr(paramJson));
+	public void execute(Object data) {
+		log.info("延时任务（演示）：" + JSONUtil.toJsonPrettyStr(data));
 	}
 }
