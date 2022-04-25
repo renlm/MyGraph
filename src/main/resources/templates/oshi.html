@@ -19,7 +19,7 @@
         <div data-popo="chart5" title="在线人数"></div>
         <div data-popo="chart6" title="系统资源"></div>
         <div data-popo="chart7" title="Jvm"></div>
-        <div data-popo="chart8" title="中国地图"></div>
+        <div data-popo="chinamap" title="占位特效"></div>
     </div>
     <script th:src="@{/static/popo/popo.min.js}"></script>
     <script th:src="@{/webjars/reconnecting-websocket/reconnecting-websocket.js}"></script>
@@ -29,6 +29,10 @@
     <script th:src="@{/static/js/main.js}"></script>
     <script th:src="@{/webjars/echarts/echarts.min.js}"></script>
     <script async th:src="@{/webjars/es-module-shims/dist/es-module-shims.js}"></script>
+    
+    <script type="text/javascript">
+		var initWebglShadersOcean = null;
+    </script>
     
     <script type="importmap">
 		{
@@ -53,12 +57,19 @@
 		let camera, scene, renderer;
 		let controls, water, sun, mesh;
 
-		init();
-		animate();
+		initWebglShadersOcean = function (target) {
 
-		function init() {
+			if(container || !target) {
+				return;
+			}
 
-			container = document.getElementById( 'container' );
+			init(target);
+			animate();
+		}
+
+		function init(target) {
+
+			container = target;
 
 			//
 
@@ -280,6 +291,8 @@
 	                            	POPO_TARGET[alias.name] = { alias: alias, target: target };
 	                            }
 	                        });
+	        	    		// 占位特效
+	        	    		initWebglShadersOcean(POPO_TARGET['chinamap'].target);
 	    	                // 初始化 WebSocket
 	    	                initWs();
 	                    };
