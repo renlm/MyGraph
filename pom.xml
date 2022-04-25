@@ -152,6 +152,12 @@
 
 		<dependency>
 			<groupId>org.xwiki.contrib</groupId>
+			<artifactId>mxgraph-core</artifactId>
+			<version>4.2.2_14.4.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.xwiki.contrib</groupId>
 			<artifactId>mxgraph-editor</artifactId>
 			<version>4.2.2_14.4.3</version>
 			<scope>runtime</scope>
