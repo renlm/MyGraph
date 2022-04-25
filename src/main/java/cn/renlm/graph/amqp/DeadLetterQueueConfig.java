@@ -52,7 +52,7 @@ public class DeadLetterQueueConfig {
 	/**
 	 * 监听队列
 	 * 
-	 * @param delayTask
+	 * @param taskParam
 	 */
 	@RabbitListener(bindings = {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
