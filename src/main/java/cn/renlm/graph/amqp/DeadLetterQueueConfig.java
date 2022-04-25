@@ -58,7 +58,7 @@ public class DeadLetterQueueConfig {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
 	public void receiveMessage(DelayTaskParam<Object> taskParam) {
 		String receiveTime = DateUtil.formatDateTime(new Date());
-		log.info("=== 死信队列，接收时间：{}\r\n=== 消息内容：{}", receiveTime, JSONUtil.toJsonStr(taskParam));
+		log.debug("=== 死信队列，接收时间：{}\r\n=== 消息内容：{}", receiveTime, JSONUtil.toJsonStr(taskParam));
 		String time = DateUtil.formatDateTime(taskParam.getTime());
 		// 本地任务（反射执行方法）
 		if (NumberUtil.equals(0, taskParam.getType())) {
@@ -67,7 +67,7 @@ public class DeadLetterQueueConfig {
 				if (delayTaskClass == null) {
 					log.error("=== 死信队列，接收时间：{}\r\n=== 无效任务：{}", receiveTime, JSONUtil.toJsonPrettyStr(taskParam));
 				} else {
-					log.info("=== 延时任务，接收时间：{}\r\n=== 任务类型：{}\r\n=== 创建时间：{}\r\n=== 任务执行类：{}\r\n=== 任务数据：{}",
+					log.debug("=== 延时任务，接收时间：{}\r\n=== 任务类型：{}\r\n=== 创建时间：{}\r\n=== 任务执行类：{}\r\n=== 任务数据：{}",
 							// 接收时间
 							receiveTime,
 							// 任务类型
@@ -89,7 +89,8 @@ public class DeadLetterQueueConfig {
 		// 队列任务
 		else if (NumberUtil.equals(1, taskParam.getType())) {
 			if (StrUtil.isNotBlank(taskParam.getExchange())) {
-				log.info("=== 延时任务，接收时间：{}\r\n=== 任务类型：{}\r\n=== 创建时间：{}\r\n=== 交换机名称：{}\r\n=== 路由名称：{}\r\n=== 任务数据：{}",
+				log.debug(
+						"=== 延时任务，接收时间：{}\r\n=== 任务类型：{}\r\n=== 创建时间：{}\r\n=== 交换机名称：{}\r\n=== 路由名称：{}\r\n=== 任务数据：{}",
 						// 接收时间
 						receiveTime,
 						// 任务类型
