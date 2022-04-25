@@ -7,12 +7,14 @@ import javax.annotation.Resource;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.oshi.OshiInfo;
 import cn.renlm.graph.oshi.OshiInfoUtil;
+import cn.renlm.graph.ws.WsUtil;
 
 /**
  * 服务器信息
@@ -30,33 +32,17 @@ public class OshiController {
 	/**
 	 * 监控页面
 	 * 
+	 * @param model
 	 * @return
 	 */
 	@GetMapping
-	public String home() {
+	public String home(ModelMap model) {
+		long onlineUserNumber = WsUtil.getOnlineUserNumber();
+		Map<String, OshiInfo> servers = OshiInfoUtil.servers();
+		Map<String, Set<OshiInfo>> oshiInfos = OshiInfoUtil.get();
+		model.put("onlineUserNumber", onlineUserNumber);
+		model.put("servers", JSONUtil.toJsonStr(servers));
+		model.put("oshiInfos", JSONUtil.toJsonStr(oshiInfos));
 		return "oshi";
-	}
-
-	/**
-	 * 服务器列表
-	 * 
-	 * @return
-	 */
-	@ResponseBody
-	@GetMapping("/servers")
-	public Map<String, OshiInfo> servers() {
-		return OshiInfoUtil.servers();
-	}
-
-	/**
-	 * 监控数据
-	 * 
-	 * @param ip
-	 * @return
-	 */
-	@ResponseBody
-	@GetMapping("/list")
-	public Set<OshiInfo> list(String ip) {
-		return OshiInfoUtil.get(ip);
 	}
 }
