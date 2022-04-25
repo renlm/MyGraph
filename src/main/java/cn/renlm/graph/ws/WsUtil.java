@@ -1,11 +1,13 @@
 package cn.renlm.graph.ws;
 
+import static cn.renlm.graph.amqp.WsTopicQueueConfig.EXCHANGE;
+import static cn.renlm.graph.amqp.WsTopicQueueConfig.ROUTINGKEY;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.web.socket.TextMessage;
@@ -20,7 +22,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
-import cn.renlm.graph.amqp.WsTopicQueueConfig;
+import cn.renlm.graph.amqp.AmqpUtil;
 import cn.renlm.graph.dto.UserDto;
 import cn.renlm.graph.ws.WsMessage.WsType;
 import lombok.experimental.UtilityClass;
@@ -39,6 +41,7 @@ public class WsUtil {
 	/**
 	 * 在线状态
 	 */
+	public static final int StatusDelayTtl = 500;
 	public static final String OnlineStatusKey = WsUtil.class.getName();
 	public static final String OnlineStatusCron = "0/60 * * * * ?";
 	public static final long OnlineStatusValidityMillis = 1000 * 60 * 5;
@@ -87,9 +90,8 @@ public class WsUtil {
 		zops.add(userId, wsKey, expTime);
 
 		// 广播上线状态
-		AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
 		WsMessage<String> wsMessage = WsMessage.build(WsType.online, userId);
-		amqpTemplate.convertAndSend(WsTopicQueueConfig.EXCHANGE, WsTopicQueueConfig.ROUTINGKEY, wsMessage);
+		AmqpUtil.createDelayTask(EXCHANGE, ROUTINGKEY, wsMessage, StatusDelayTtl);
 
 		WS_USER_REL.put(wsKey, user);
 		return WS_SESSION_POOL.put(wsKey, session);
@@ -117,9 +119,8 @@ public class WsUtil {
 			}
 
 			// 广播离线状态
-			AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
 			WsMessage<String> wsMessage = WsMessage.build(WsType.offline, userId);
-			amqpTemplate.convertAndSend(WsTopicQueueConfig.EXCHANGE, WsTopicQueueConfig.ROUTINGKEY, wsMessage);
+			AmqpUtil.createDelayTask(EXCHANGE, ROUTINGKEY, wsMessage, StatusDelayTtl);
 		}
 
 		WS_USER_REL.remove(wsKey);
