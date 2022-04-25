@@ -75,7 +75,7 @@
 
 			renderer = new THREE.WebGLRenderer();
 			renderer.setPixelRatio( window.devicePixelRatio );
-			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setSize( $(container).innerWidth(), $(container).innerHeight() );
 			renderer.toneMapping = THREE.ACESFilmicToneMapping;
 			container.appendChild( renderer.domElement );
 
@@ -83,7 +83,7 @@
 
 			scene = new THREE.Scene();
 
-			camera = new THREE.PerspectiveCamera( 55, window.innerWidth / window.innerHeight, 1, 20000 );
+			camera = new THREE.PerspectiveCamera( 55, $(container).innerWidth() / $(container).innerHeight(), 1, 20000 );
 			camera.position.set( 30, 30, 100 );
 
 			//
@@ -198,10 +198,10 @@
 
 		function onWindowResize() {
 
-			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.aspect = $(container).innerWidth() / $(container).innerHeight();
 			camera.updateProjectionMatrix();
 
-			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setSize( $(container).innerWidth(), $(container).innerHeight() );
 
 		}
 
