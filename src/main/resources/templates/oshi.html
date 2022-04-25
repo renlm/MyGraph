@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="container">
-        <div data-popo="caption" title="大屏监控" class="se-title"></div>
+        <div data-popo="caption" title="大屏数据展示" class="se-title"></div>
         <div data-popo="chart1" title="Cpu"></div>
         <div data-popo="chart2" title="内存"></div>
         <div data-popo="chart3" title="磁盘"></div>
@@ -248,7 +248,8 @@
     
     <script type="text/javascript">
     	$(function() { 
-    		var onlineUserNumber = 0;
+    		var CLOSED_NUM = 0;
+    		var ONLINE_USER_NUM = 0;
     		var OSHI_IP = {};
     		var OSHI_UID = [];
     		var OSHI_POOL = [];
@@ -263,7 +264,7 @@
         	 * 初始化数据
         	 */
     		function initData () {
-    			onlineUserNumber = parseInt($('#onlineUserNumber').val());
+    			ONLINE_USER_NUM = parseInt($('#onlineUserNumber').val());
     			var oshiInfos = JSON.parse($('#oshiInfos').html());
     			$.each(oshiInfos, function (key, data) {
 					if(data instanceof Array) {
@@ -349,10 +350,21 @@
 	    		var WS = new ReconnectingWebSocket(webSocketHost + "[(@{/ws/})]" + token);
 	    		
 	    		// 打开连接
-	    		WS.onopen = function (evt) { }
+	    		WS.onopen = function (evt) { 
+	    			if(CLOSED_NUM > 0) {
+	    				ONLINE_USER_NUM = 0;
+	    	    		OSHI_IP = {};
+	    	    		OSHI_UID = [];
+	    	    		OSHI_POOL = [];
+	    	    		WS.send(JSON.stringify({type: "online"}));
+		    			WS.send(JSON.stringify({type: "oshi"}));
+	    			}
+	    		}
 	
 	    		// 连接关闭
-	    		WS.onclose = function (evt) { }
+	    		WS.onclose = function (evt) {
+	    			CLOSED_NUM++;
+	    		}
 	
 	    		// 接收消息
 	    		WS.onmessage = function (evt) {
@@ -385,11 +397,11 @@
 	    			}
 	    			// 上线
 	    			else if (message.type == "online") {
-	    				onlineUserNumber = message.data
+	    				ONLINE_USER_NUM = message.data
 	    			}
 	    			// 离线
 	    			else if (message.type == "offline") {
-	    				onlineUserNumber = message.data
+	    				ONLINE_USER_NUM = message.data
 	    			}
 	    		}
 	    	}
@@ -590,7 +602,7 @@
 	    				        fontSize: 32
 	    				 	},
 	    				 	data: [
-	    				  		{ value: onlineUserNumber, name: '在线人数' }
+	    				  		{ value: ONLINE_USER_NUM, name: '在线人数' }
 	    					]
 	    				}
 	    			]
