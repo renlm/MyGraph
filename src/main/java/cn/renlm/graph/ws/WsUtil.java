@@ -41,10 +41,11 @@ public class WsUtil {
 	/**
 	 * 在线状态
 	 */
-	public static final int StatusDelayTtl = 500;
-	public static final String OnlineStatusKey = WsUtil.class.getName();
-	public static final String OnlineStatusCron = "0/60 * * * * ?";
-	public static final long OnlineStatusValidityMillis = 1000 * 60 * 5;
+	public static final String key = WsUtil.class.getName();
+	public static final int cronSecond = 5;
+	public static final String cron = "0/" + cronSecond + " * * * * ?";
+	public static final long validityMillis = 1000 * cronSecond * 2;
+	public static final int delayTtl = 500;
 
 	/**
 	 * 传递参数Key
@@ -85,13 +86,13 @@ public class WsUtil {
 		// 维护在线状态
 		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
-		Long expTime = DateUtil.current() + OnlineStatusValidityMillis;
-		zops.add(OnlineStatusKey, userId, expTime);
+		Long expTime = DateUtil.current() + validityMillis;
+		zops.add(key, userId, expTime);
 		zops.add(userId, wsKey, expTime);
 
 		// 广播上线状态
 		WsMessage<String> wsMessage = WsMessage.build(WsType.online, userId);
-		AmqpUtil.createDelayTask(EXCHANGE, ROUTINGKEY, wsMessage, StatusDelayTtl);
+		AmqpUtil.createDelayTask(EXCHANGE, ROUTINGKEY, wsMessage, delayTtl);
 
 		WS_USER_REL.put(wsKey, user);
 		return WS_SESSION_POOL.put(wsKey, session);
@@ -115,12 +116,12 @@ public class WsUtil {
 			zops.remove(userId, wsKey);
 			long userConnections = WsUtil.getUserConnections(userId);
 			if (userConnections == 0) {
-				zops.remove(OnlineStatusKey, userId);
+				zops.remove(key, userId);
 			}
 
 			// 广播离线状态
 			WsMessage<String> wsMessage = WsMessage.build(WsType.offline, userId);
-			AmqpUtil.createDelayTask(EXCHANGE, ROUTINGKEY, wsMessage, StatusDelayTtl);
+			AmqpUtil.createDelayTask(EXCHANGE, ROUTINGKEY, wsMessage, delayTtl);
 		}
 
 		WS_USER_REL.remove(wsKey);
@@ -163,10 +164,10 @@ public class WsUtil {
 			String wsKey = entry.getKey();
 			UserDto user = entry.getValue();
 			String userId = user.getUserId();
-			Long expTime = DateUtil.current() + OnlineStatusValidityMillis;
+			Long expTime = DateUtil.current() + validityMillis;
 			WebSocketSession session = WS_SESSION_POOL.get(wsKey);
 			if (ObjectUtil.isNotEmpty(session)) {
-				zops.add(OnlineStatusKey, userId, expTime);
+				zops.add(key, userId, expTime);
 				zops.add(userId, wsKey, expTime);
 			}
 		}
@@ -181,8 +182,8 @@ public class WsUtil {
 		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 		Long min = DateUtil.current();
-		Long max = min + OnlineStatusValidityMillis;
-		return ObjectUtil.defaultIfNull(zops.count(OnlineStatusKey, min, max), 0L);
+		Long max = min + validityMillis;
+		return ObjectUtil.defaultIfNull(zops.count(key, min, max), 0L);
 	}
 
 	/**
@@ -195,7 +196,7 @@ public class WsUtil {
 		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 		Long min = DateUtil.current();
-		Long max = min + OnlineStatusValidityMillis;
+		Long max = min + validityMillis;
 		return ObjectUtil.defaultIfNull(zops.count(userId, min, max), 0L);
 	}
 

@@ -41,7 +41,7 @@ public class WsConfig implements WebSocketConfigurer {
 	/**
 	 * 在线状态心跳监测
 	 */
-	@Scheduled(cron = WsUtil.OnlineStatusCron)
+	@Scheduled(cron = WsUtil.cron)
 	public void heartbeat() {
 		WsUtil.userOnlineStatusHeartbeat();
 	}
