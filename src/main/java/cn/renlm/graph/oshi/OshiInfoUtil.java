@@ -54,7 +54,7 @@ public class OshiInfoUtil {
 	/**
 	 * 缓存时长（毫秒）
 	 */
-	public static final int validityMillis = 1000 * 60 * 30;
+	public static final int validityMillis = 1000 * cronSecond * 12 * 30;
 
 	/**
 	 * 获取服务器列表

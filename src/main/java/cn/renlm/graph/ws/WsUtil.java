@@ -42,7 +42,7 @@ public class WsUtil {
 	 * 在线状态
 	 */
 	public static final String key = WsUtil.class.getName();
-	public static final int cronSecond = 5;
+	public static final int cronSecond = 60;
 	public static final String cron = "0/" + cronSecond + " * * * * ?";
 	public static final long validityMillis = 1000 * cronSecond * 2;
 	public static final int delayTtl = 500;
