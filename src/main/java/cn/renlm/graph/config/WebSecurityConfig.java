@@ -16,6 +16,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.session.FindByIndexNameSessionRepository;
+import org.springframework.session.Session;
+import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Profiles;
@@ -83,6 +86,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private FindByIndexNameSessionRepository<? extends Session> sessionRepository;
 
 	@Autowired
 	private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
@@ -97,6 +103,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf()
 			.ignoringAntMatchers(APIAntMatcher)
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+		// 会话
+		http.sessionManagement()
+			.invalidSessionUrl(LoginPage)
+			.maximumSessions(1)
+			.expiredUrl(LoginPage)
+			.sessionRegistry(sessionRegistry());
 		// 资源访问控制
 		http.authorizeRequests()
 				// 放行所有OPTIONS请求
@@ -132,6 +144,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers(STATIC_PATHS);
+	}
+	
+	/**
+	 * 控制会话并发的会话注册表
+	 * 
+	 * @return
+	 */
+	@Bean
+	public SpringSessionBackedSessionRegistry<? extends Session> sessionRegistry() {
+		return new SpringSessionBackedSessionRegistry<>(sessionRepository);
 	}
 	
 	/**
