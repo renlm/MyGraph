@@ -346,7 +346,7 @@
 	    		var protocol = document.location.protocol;
 	    		var timestamp = new Date().getTime();
 	    		var webSocketHost = protocol.indexOf("https") > -1?"[(${#MyConfig.wssHost})]":"[(${#MyConfig.wsHost})]";
-	    		var token = Base64.encodeURI("[(${session.SPRING_SECURITY_CONTEXT.authentication.principal.token})]@" + timestamp);
+	    		var token = Base64.encodeURI("[(${#session.id})]@" + timestamp);
 	    		var WS = new ReconnectingWebSocket(webSocketHost + "[(@{/ws/})]" + token);
 	    		
 	    		// 打开连接

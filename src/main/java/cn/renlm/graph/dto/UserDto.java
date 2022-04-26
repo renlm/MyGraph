@@ -1,7 +1,6 @@
 package cn.renlm.graph.dto;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -22,10 +21,6 @@ import lombok.EqualsAndHashCode;
 public class UserDto extends Users implements org.springframework.security.core.userdetails.UserDetails {
 
 	private static final long serialVersionUID = 1L;
-
-	private String token;
-
-	private Date expiryTime;
 
 	private List<GrantedAuthority> authorities;
 

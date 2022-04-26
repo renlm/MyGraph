@@ -10,6 +10,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.session.Session;
+import org.springframework.session.data.redis.RedisIndexedSessionRepository;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
@@ -235,8 +240,22 @@ public class WsUtil {
 		if (StrUtil.isBlank(token) || timestamp == null) {
 			return null;
 		}
-		RedisTemplate<String, UserDto> redisTemplate = getRedisTemplate();
-		return redisTemplate.opsForValue().get(token);
+		RedisIndexedSessionRepository sessionRepository = SpringUtil.getBean(RedisIndexedSessionRepository.class);
+		Session session = sessionRepository.findById(token);
+		if (session == null || session.isExpired()) {
+			return null;
+		}
+		SecurityContext securityContext = session
+				.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
+		if (securityContext == null) {
+			return null;
+		}
+		Authentication authentication = securityContext.getAuthentication();
+		if (authentication == null) {
+			return null;
+		}
+		UserDto user = (UserDto) authentication.getPrincipal();
+		return user;
 	}
 
 	/**
