@@ -56,7 +56,7 @@ public class WsConfig implements WebSocketConfigurer {
 					public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response,
 							WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
 						String path = request.getURI().getPath();
-						log.info("[ WebSocket ] 握手beforeHandshake：{}", path);
+						log.debug("[ WebSocket ] 握手beforeHandshake：{}", path);
 						// WsKey规则，Base64.encodeURI('token@timestamp')
 						String wsKey = StrUtil.subAfter(path, StrUtil.SLASH, true);
 						if (StrUtil.isBlank(wsKey) || !Base64.isBase64(wsKey)) {
@@ -82,7 +82,7 @@ public class WsConfig implements WebSocketConfigurer {
 					public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response,
 							WebSocketHandler wsHandler, Exception exception) {
 						String path = request.getURI().getPath();
-						log.info("[ WebSocket ] 握手afterHandshake：{}", path);
+						log.debug("[ WebSocket ] 握手afterHandshake：{}", path);
 						if (ObjectUtil.isNotNull(exception)) {
 							exception.printStackTrace();
 						}
