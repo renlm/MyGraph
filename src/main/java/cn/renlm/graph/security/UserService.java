@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
@@ -53,7 +54,7 @@ public class UserService implements UserDetailsService {
 		}
 		UserDto userDetails = BeanUtil.copyProperties(user, UserDto.class);
 		List<GrantedAuthority> authorities = CollUtil.newArrayList();
-		userDetails.setToken(IdUtil.simpleUUID().toUpperCase());
+		userDetails.setToken(Base64.encodeUrlSafe(IdUtil.simpleUUID().toUpperCase()));
 		userDetails.setAuthorities(authorities);
 		if (StrUtil.isNotBlank(user.getRole())) {
 			GrantedAuthority authority = new SimpleGrantedAuthority(Roles.HAS_ROLE_PREFIX + user.getRole());
