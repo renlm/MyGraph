@@ -8,6 +8,7 @@
     <!-- TopJUI框架样式 -->
     <link type="text/css" th:href="@{/static/TopJUI-free/topjui/themes/default/topjui.core.min.css}" rel="stylesheet">
     <link type="text/css" th:href="@{/static/TopJUI-free/topjui/themes/default/topjui.smartness-blue.css}" rel="stylesheet" id="dynamicTheme"/>
+    <link type="text/css" th:href="@{/static/TopJUI-free/topjui/themes/default/sidemenu_style.css}" rel="stylesheet" id="dynamicTheme"/>
     <style>
         .nav-bar .nav-left{
             width: 230px;
@@ -323,29 +324,6 @@
 	    </div>
 	</div>
 	<script type="text/javascript">
-	//过滤菜单数据
-	function getMenuTree(sourceData, children) {
-	    let arr = []
-	    if (sourceData) {
-	        sourceData.forEach((e, index) => {
-	            children.forEach((c, index) => {
-	                if (e.id == c.pid) {
-	                    e.key = e.id
-	                    c.children = c.state === 'closed' ? [] : ''
-	                    if (e.children) e.children.push(c)
-	                }
-	            })
-	            if (e.children) { // 子级有数据的时候 循环添加数据
-	                getMenuTree(e.children, children)
-	            }
-	        })
-	        arr = sourceData
-	    }
-	    return arr
-	}
-	
-
-
 	/**
 	 * 当菜单选中时
 	 * @param item
@@ -377,25 +355,24 @@
 
 	}
 	
-	$.get(
-            '[(@{/static/TopJUI-free/menu_1325.json})]', {"levelId": "2"}, // 获取第一层目录
-            function (data) {
-                let subData = []
-                let child = []
-                data.forEach(e => {
-                    if (e.levelId === 2) {
-                        e.children = e.state === 'closed' ? [] : ''
-                        subData.push(e)
-                    } else {
-                        child.push(e)
-                    }
-                })
-                menuData = getMenuTree(subData, child)
-                $('#RightAccordion').sidemenu({ data:menuData,onSelect:menuOnSelect,selected:1,width:'100%' });
-                $('#RightAccordion  .accordion').iAccordion('select',0)     //默然展开第一个菜单
-                $('#west').iPanel({onResize:onResize})     //菜单拖拽拉伸是调整大小
-            }, "json"
-        );
+	//菜单拖拽拉伸是调整大小
+	function onResize(){
+	    $('#RightAccordion').sidemenu('resize')
+	}
+	
+	$(function () {
+
+		
+		$.get(
+	            '[(@{/static/TopJUI-free/menu_1325.json})]', {"levelId": "2"}, // 获取第一层目录
+	            function (data) {
+	                var menuData = MyUI.getMenuTree(data);
+	                $('#RightAccordion').sidemenu({ data:menuData,onSelect:menuOnSelect,selected:1,width:'100%' });
+	                $('#RightAccordion  .accordion').accordion('select',0)     //默然展开第一个菜单
+	                $('#west').panel({onResize:onResize})     //菜单拖拽拉伸是调整大小
+	            }, "json"
+	        );
+	});
 	</script>
 </body>
 </html>
