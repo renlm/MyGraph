@@ -173,8 +173,12 @@
 	    $('#RightAccordion').sidemenu('resize')
 	}
 
-	var isFullScreen = false;
 	var App = function () {
+		var isFullScreen = function () {
+			return document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+		};
+		
+		// 进入全屏
 	    var setFullScreen = function () {
 	        var docEle = document.documentElement;
 	        if (docEle.requestFullscreen) {
@@ -217,12 +221,10 @@
 
 	        },
 	        handleFullScreen: function () {
-	            if (isFullScreen) {
+	            if (isFullScreen()) {
 	                exitFullScreen();
-	                isFullScreen = false;
 	            } else {
 	                setFullScreen();
-	                isFullScreen = true;
 	            }
 	        }
 	    };
