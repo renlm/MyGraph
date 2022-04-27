@@ -107,7 +107,7 @@
 #moreMenu {
 	position: fixed;
 	display: none;
-	transform: translateX(-19.5px);
+	transform: translateX(0px);
 }
 
 #moreMenu:hover {
