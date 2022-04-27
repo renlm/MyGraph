@@ -1,3 +1,7 @@
+@charset "utf-8";
+
+@import "sidemenu.css";
+
 .nav-bar .nav-left {
 	width: 230px;
 	float: left;
