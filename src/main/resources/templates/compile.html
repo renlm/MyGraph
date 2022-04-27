@@ -100,11 +100,15 @@
 		<div data-options="region:'west',
 				split:true,
 				border:false,
+				bodyCls:'border_right',
 				width:'50%'">
 			<div id="editorPanel" class="easyui-panel"
 				data-options="iconCls:'fa fa-file-code-o',
 					title:' 代 码 ',
 					fit:true,
+					border:false,
+					headerCls:'border_top_left_none',
+					bodyCls:'border_left_none',
 					footer:'#editorPanelToolbar'">
 				<textarea id="code" name="code" class="form-control" style="height: 100%;"></textarea>
 			</div>
@@ -119,7 +123,8 @@
 					class="easyui-panel"
 					data-options="iconCls:'fa fa-eye',
 						title:' 预 览 ',
-						fit:true">
+						fit:true,
+						headerCls:'border_top_right_none'">
 					<iframe id="preview" frameborder="0"></iframe>
 				</div>
 			</div>
