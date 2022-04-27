@@ -72,32 +72,32 @@
 	                </a>
 	          		<div style="overflow: hidden;position: relative;text-align: left;">
 	             		<ul class="nav-group">
-	                    	<li id="1325" title="TopJUI静态演示" class="topmenu selected">
+	                    	<li id="workbench" title="工作台" class="topmenu selected">
 	                      		<a class="l-btn-text bannerMenu" href="javascript:void(0);">
-	                                <p><lable class="fa fa-tree" style="color: #F7B824;"></lable></p>
-	                                <p><span style="white-space:nowrap;">静态演示</span></p>
+	                                <p><lable class="fa fa-map"></lable></p>
+	                                <p><span style="white-space:nowrap;">工作台</span></p>
 	                       		</a>
 	                        </li>
-	                        <li id="60" title="TopJUI开发文档" class="topmenu">
-	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
-	                                <p><lable class="fa fa-book" style="color: #FF5722;"></lable></p>
-	                                <p><span style="white-space:nowrap;">开发文档</span></p>
+	                        <li id="server" title="服务器" class="topmenu">
+	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);" th:onclick="|addParentTab({href:'@{/oshi}',title:'服务器'});|">
+	                                <p><lable class="fa fa-server" style="color: #FF5722;"></lable></p>
+	                                <p><span style="white-space:nowrap;">服务器</span></p>
 	                            </a>
 	                        </li>
-	                        <li id="9003" class="topmenu lastMenu" data-type="lastMenu">
+	                        <li id="moreFunc" class="topmenu lastMenu" data-type="lastMenu">
 	                            <a class="l-btn-text bannerMenu moreBox" target="_blank">
 	                                <p><lable class="fa fa-th"></lable></p>
 	                                <p><span style="white-space:nowrap;">更多功能</span></p>
 	                            </a>
 	                            <div id="moreMenu">
 	                           		<ul style="padding: 0;">
-	                               		<li id="90031" class="topmenu">
-	                                   		<div class="l-btn-text bannerMenu" onclick="addParentTab({href:'http://www.topjui.com/compile',title:'在线编译'});">
-	                                       		<p><lable class="fa fa-code" style="color: rebeccapurple;"></lable></p>
-	                                            <p><span style="white-space:nowrap;">在线调试</span></p>
+	                               		<li id="moreMenu1" class="topmenu">
+	                                   		<div class="l-btn-text bannerMenu" th:onclick="|addParentTab({href:'@{/static/editor.md/index.html}',title:'帮助'});|">
+	                                       		<p><lable class="fa fa-comments-o"></lable></p>
+	                                            <p><span style="white-space:nowrap;">帮助</span></p>
 	                                        </div>
 	                                    </li>
-	                                    <li id="90032" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
+	                                    <li id="moreMenu2" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
 	                                        <div class="l-btn-text bannerMenu">
 	                                            <p><lable class="fa fa-link"></lable></p>
 	                                            <p><span style="white-space:nowrap;">EasyUI中文站</span></p>
