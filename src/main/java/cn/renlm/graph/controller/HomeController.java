@@ -22,24 +22,4 @@ public class HomeController {
 	public String welcome() {
 		return "home/welcome";
 	}
-
-	/**
-	 * 工作台
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/workbench")
-	public String workbench() {
-		return "workbench";
-	}
-
-	/**
-	 * 更新记录
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/timeline")
-	public String timeline() {
-		return "timeline";
-	}
 }
