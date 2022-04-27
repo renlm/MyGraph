@@ -1,5 +1,0 @@
-{
-  "statusCode": 200,
-  "referer": "/",
-  "message": "恭喜你，操作成功！当statusCode为200时，返回成功提示信息。"
-}
