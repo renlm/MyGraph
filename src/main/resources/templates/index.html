@@ -19,17 +19,17 @@
 						<i class="layui-icon layui-icon-chart"></i> 工作台
 					</a>
 				</li>
-				<li class="layui-nav-item">
+				<li class="layui-nav-item" sec:authorize="hasRole('admin')">
 					<a href="javascript:void(0);">
 						<i class="fa fa-server"></i> 服务器
 					</a>
 				</li>
-				<li class="layui-nav-item">
+				<li class="layui-nav-item" sec:authorize="hasAnyRole('admin','user')">
 					<a href="javascript:void(0);">
 						<i class="fa fa-image"></i> 公共图库
 					</a>
 				</li>
-				<li class="layui-nav-item">
+				<li class="layui-nav-item" sec:authorize="hasAnyRole('admin','user')">
 					<a href="javascript:void(0);">
 						<i class="fa fa-file-word-o"></i> 帮助
 					</a>
@@ -60,13 +60,13 @@
 			<div class="layui-tab-item layui-show">
 				<iframe frameborder="0" scrolling="yes" th:src="@{/workbench}"></iframe>
 			</div>
-			<div class="layui-tab-item layui-show">
+			<div class="layui-tab-item layui-show" sec:authorize="hasRole('admin')">
 				<iframe frameborder="0" scrolling="yes" th:src="@{/oshi}"></iframe>
 			</div>
-			<div class="layui-tab-item layui-show">
+			<div class="layui-tab-item layui-show" sec:authorize="hasAnyRole('admin','user')">
 				<iframe frameborder="0" scrolling="yes" th:src="@{/graph/lib}"></iframe>
 			</div>
-			<div class="layui-tab-item layui-show">
+			<div class="layui-tab-item layui-show" sec:authorize="hasAnyRole('admin','user')">
 				<iframe frameborder="0" scrolling="yes" th:src="@{/static/editor.md/index.html}"></iframe>
 			</div>
 		</div>
