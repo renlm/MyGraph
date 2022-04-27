@@ -22,4 +22,14 @@ public class HomeController {
 	public String welcome() {
 		return "home/welcome";
 	}
+
+	/**
+	 * 在线调试
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/compile")
+	public String compile() {
+		return "compile";
+	}
 }

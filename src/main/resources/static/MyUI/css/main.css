@@ -111,9 +111,10 @@
 }
 
 #moreMenu {
+	width: 136.77px;
 	position: fixed;
 	display: none;
-	transform: translateX(0px);
+	transform: translateX(-19.5px);
 }
 
 #moreMenu:hover {

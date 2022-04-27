@@ -97,7 +97,13 @@
 	                            </a>
 	                            <div id="moreMenu">
 	                           		<ul style="padding: 0;">
-	                                    <li id="moreMenu1" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
+	                                    <li id="moreMenu1" class="topmenu">
+	                                   		<div class="l-btn-text bannerMenu" th:onclick="|addParentTab({href:'@{/compile}',title:'在线调试'});|">
+	                                       		<p><lable class="fa fa-comments-o"></lable></p>
+	                                            <p><span style="white-space:nowrap;">在线调试</span></p>
+	                                        </div>
+	                                    </li>
+	                                    <li id="moreMenu2" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
 	                                        <div class="l-btn-text bannerMenu">
 	                                            <p><lable class="fa fa-link"></lable></p>
 	                                            <p><span style="white-space:nowrap;">EasyUI中文站</span></p>
