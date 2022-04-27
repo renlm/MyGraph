@@ -50,7 +50,7 @@ input[type="checkbox"]:hover::before {
     justify-content: center;
 }
 
-/*topjui-checkbox 样式*/
+/*myui-checkbox 样式*/
 .checkbox, .radiobutton {
     border: .5px solid #d9d9d9;
     cursor: pointer;
@@ -350,19 +350,19 @@ input[type="checkbox"]:hover::before {
 }
 
 /*按钮样式*/
-.topjui-btn-blue {
+.myui-btn-blue {
     background: #1890FF;
 }
 
-.topjui-btn-red {
+.myui-btn-red {
     background: #FF4D4F;
 }
 
-.topjui-btn-purple {
+.myui-btn-purple {
     background: #B602B6;
 }
 
-.topjui-btn-black {
+.myui-btn-black {
     background: #000C17;
 }
 
@@ -426,7 +426,7 @@ input[type="checkbox"]:hover::before {
     text-indent: 6px !important;
 }
 
-.topjui-input-block {
+.myui-input-block {
     min-height: 32px;
     display: flex;
     align-items: center;
@@ -457,7 +457,7 @@ input[type="checkbox"]:hover::before {
     box-shadow: 0 0 0 2px rgba(24, 144, 255, .2);
 }
 
-.topjui-form-label {
+.myui-form-label {
     padding: 0;
     line-height: 32px;
 }
@@ -572,7 +572,7 @@ input[type="checkbox"]:hover::before {
 }
 
 /*字体*/
-#ie6-warning, .calendar table td, .calendar table th, .calendar-title span, .combobox-item, .datagrid-cell, .datagrid-cell-group, .datagrid-cell-rownumber, .datagrid-header .datagrid-cell span, .datagrid-header-rownumber, .datebox-button a, .editTable .divider span, .editTable .label, .menu-text, .panel-title, .progressbar-text, .textbox, .textbox .textbox-text, .textbox-label.textbox-label-after, .topjui-form-label, .tree-title, fieldset legend, table td {
+#ie6-warning, .calendar table td, .calendar table th, .calendar-title span, .combobox-item, .datagrid-cell, .datagrid-cell-group, .datagrid-cell-rownumber, .datagrid-header .datagrid-cell span, .datagrid-header-rownumber, .datebox-button a, .editTable .divider span, .editTable .label, .menu-text, .panel-title, .progressbar-text, .textbox, .textbox .textbox-text, .textbox-label.textbox-label-after, .myui-form-label, .tree-title, fieldset legend, table td {
     font-size: 14px !important;
 }
 
