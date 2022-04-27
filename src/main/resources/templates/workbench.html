@@ -319,5 +319,80 @@
 	        <span style="float:right;padding-right:5px;width:30%;text-align: right;">版本：1.0.1</span>
 	    </div>
 	</div>
+	<script type="text/javascript">
+	//过滤菜单数据
+	function getMenuTree(sourceData, children) {
+	    let arr = []
+	    if (sourceData) {
+	        sourceData.forEach((e, index) => {
+	            children.forEach((c, index) => {
+	                if (e.id == c.pid) {
+	                    e.key = e.id
+	                    c.children = c.state === 'closed' ? [] : ''
+	                    if (e.children) e.children.push(c)
+	                }
+	            })
+	            if (e.children) { // 子级有数据的时候 循环添加数据
+	                getMenuTree(e.children, children)
+	            }
+	        })
+	        arr = sourceData
+	    }
+	    return arr
+	}
+	
+
+
+	/**
+	 * 当菜单选中时
+	 * @param item
+	 */
+	function menuOnSelect(item) {
+	    // 判断是否已经打开tab
+	    var tabsArr = $("#index_tabs").tabs('tabs');
+	    for (var i = 0; i < tabsArr.length; i++) {
+	        var tab = tabsArr[i];
+	        var options = $(tab).panel("options");
+	        if (item.id && options.id && item.id == options.id) {
+	            $("#index_tabs").tabs("select", i);// 选中
+	            // $.refreshTab(tab, "");// 刷新
+	            return;
+	        }
+	    }
+	    // 不存在则添加菜单
+	    if(item.url){
+	        $("#index_tabs").tabs("add", {
+	            title: item.text,
+	            id: item.id,
+	            isNewTab: true,
+	            bodyCls: 'spacing-0', // 去除间隔
+	            iconCls: item.iconCls,
+	            closable: true,
+	            content: '<iframe scrolling="auto" frameborder="0"  src="' + item.url + '" style="width:100%;height:100%;"></iframe>',
+	        })
+	    }
+
+	}
+	
+	$.get(
+            '[(@{/static/TopJUI-free/menu_1325.json})]', {"levelId": "2"}, // 获取第一层目录
+            function (data) {
+                let subData = []
+                let child = []
+                data.forEach(e => {
+                    if (e.levelId === 2) {
+                        e.children = e.state === 'closed' ? [] : ''
+                        subData.push(e)
+                    } else {
+                        child.push(e)
+                    }
+                })
+                menuData = getMenuTree(subData, child)
+                $('#RightAccordion').sidemenu({ data:menuData,onSelect:menuOnSelect,selected:1,width:'100%' });
+                $('#RightAccordion  .accordion').iAccordion('select',0)     //默然展开第一个菜单
+                $('#west').iPanel({onResize:onResize})     //菜单拖拽拉伸是调整大小
+            }, "json"
+        );
+	</script>
 </body>
 </html>
