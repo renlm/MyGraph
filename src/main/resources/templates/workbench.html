@@ -8,162 +8,123 @@
     <link type="text/css" th:href="@{/static/TopJUI-free/topjui/themes/default/sidemenu_style.css}" rel="stylesheet" id="dynamicTheme"/>
 </head>
 <body layout:fragment="content" class="panel-noscroll">
-	<div class="easyui-layout" data-options="id:'index_layout',fit:true">
-	    <div id="north" class="banner" data-options="region:'north',border:false,split:false"
-	         style="height: 50px; padding:0;margin:0; overflow: hidden;">
-	        <div class="nav-bar">
-	            <div class="nav-left webname">
-	                <img class="admin-nav-logo" th:src="@{/static/TopJUI-free/topjui/logo.png}"  alt="系统图标"><span class="systemname" style="margin-left: 8px">TopJUI前端框架</span>
+	<div class="easyui-layout" data-options="fit:true">
+		<div id="north" 
+			class="banner"
+	  		style="height: 50px; padding:0;margin:0; overflow: hidden;"
+			data-options="region:'north',border:false,split:false">
+			<div class="nav-bar">
+	        	<div class="nav-left webname">
+	                <img class="admin-nav-logo" th:src="@{/static/TopJUI-free/topjui/logo.png}" alt="系统图标" />
+	                <span class="systemname" style="margin-left: 8px">在线画图</span>
 	            </div>
-	            <div class="menu-collapse">
-	                    <span class="collapseMenu " style="text-align: center;cursor: pointer;font-size: 18px;">
-	                        <span id="menuCollapseIcon" class="fa fa-outdent"></span>
-	                    </span>
+	         	<div class="menu-collapse">
+	            	<span class="collapseMenu" style="text-align: center;cursor: pointer;font-size: 18px;">
+	              		<span id="menuCollapseIcon" class="fa fa-outdent"></span>
+	          		</span>
 	            </div>
-	            <div class="nav-right">
+	         	<div class="nav-right">
 	                <span style="padding-right: 8px; height: 50px; line-height: 50px;">
-	                        <a href="javascript:void(0)" class="easyui-linkbutton"
-	                           data-options="iconCls:'fa fa-user',plain:true"
-	                           style="color:#fff;">TopJUI前端框架</a>|
-	                        <a href="javascript:void(0)" id="mb3" class="easyui-menubutton"
-	                           data-options="menu:'#mm3',iconCls:'fa fa-cog',hasDownArrow:true" style="color:#fff;">设置</a>
-	                        <div id="mm3" style="width:74px;" class="easyui-menubutton">
-	                            <div data-options="iconCls:'fa fa-info-circle'" onclick="javascript:modifyPwd(0)">个人信息</div>
-	                            <div class="menu-sep"></div>
-	                            <div data-options="iconCls:'fa fa-key'" onclick="javascript:modifyPwd(0)">修改密码</div>
-	                        </div>|
-	                        <a href="javascript:void(0)" onclick="logout()" class="easyui-menubutton"
-	                           data-options="iconCls:'fa fa-sign-out',hasDownArrow:false" style="color:#fff;">注销</a>
-	                    </span>
-	            </div>
-	            <div class="nav-center">
-	                <a class="nav-btn nav-left-btn topmenu hide" href="#" style="float: left;"><i class="fa fa-angle-double-left"
-	                                                                                          aria-hidden="true"></i></a>
-	                <a class="nav-btn nav-right-btn topmenu hide" href="#" style="float: right;"><i class="fa fa-angle-double-right"
-	                                                                                           aria-hidden="true"></i></a>
-	                <div style="overflow: hidden;position: relative;text-align: left">
-	                    <ul class="nav-group">
-	                        <li id="1325" title="TopJUI静态演示" class="topmenu selected">
-	                            <a class="l-btn-text bannerMenu" href="javascript:void(0)">
-	                                <p>
-	                                    <lable class="fa fa-tree" style="color: #F7B824;"></lable>
-	                                </p>
+	                	<a href="javascript:void(0);" 
+	                		class="easyui-linkbutton"
+	                     	style="color:#fff;"
+	                     	data-options="iconCls:'fa fa-user',plain:true">
+	                     	<span id="user-nickname" sec:authentication="principal.nickname"></span>
+	                 	</a>|
+	                  	<a href="javascript:void(0);"
+	                  		class="easyui-menubutton"
+	                  		style="color:#fff;"
+	                    	data-options="menu:'#mm',iconCls:'fa fa-cog',hasDownArrow:true">设置
+	                   	</a>
+	                	<div id="mm" style="width:74px;">
+	                  		<div data-options="iconCls:'fa fa-info-circle'" onclick="javascript:modifyPwd(0);">个人信息</div>
+	                       	<div class="menu-sep"></div>
+	                     	<div data-options="iconCls:'fa fa-key'" onclick="javascript:modifyPwd(0);">修改密码</div>
+	                	</div>|
+	                   	<form class="easyui-menubutton"
+	                   		style="color: #fff;cursor: pointer;"
+	                   		data-options="iconCls:'fa fa-sign-out',hasDownArrow:false"
+							th:action="@{/logout}" method="post" onclick="this.submit();">
+							<button type="submit" style="border: none;background-color: transparent;color: #fff;cursor: pointer;">注销</button>
+						</form>
+	           		</span>
+	        	</div>
+				<div class="nav-center">
+	          		<a class="nav-btn nav-left-btn topmenu hide" href="#" style="float: left;">
+	          			<i class="fa fa-angle-double-left" aria-hidden="true"></i>
+	          		</a>
+	                <a class="nav-btn nav-right-btn topmenu hide" href="#" style="float: right;">
+	                	<i class="fa fa-angle-double-right" aria-hidden="true"></i>
+	                </a>
+	          		<div style="overflow: hidden;position: relative;text-align: left;">
+	             		<ul class="nav-group">
+	                    	<li id="1325" title="TopJUI静态演示" class="topmenu selected">
+	                      		<a class="l-btn-text bannerMenu" href="javascript:void(0);">
+	                                <p><lable class="fa fa-tree" style="color: #F7B824;"></lable></p>
 	                                <p><span style="white-space:nowrap;">静态演示</span></p>
-	                            </a>
+	                       		</a>
 	                        </li>
 	                        <li id="60" title="TopJUI开发文档" class="topmenu">
-	                            <a class="l-btn-text bannerMenu" href="javascript:void(0)">
-	                                <p>
-	                                    <lable class="fa fa-book" style="color: #FF5722;"></lable>
-	                                </p>
+	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
+	                                <p><lable class="fa fa-book" style="color: #FF5722;"></lable></p>
 	                                <p><span style="white-space:nowrap;">开发文档</span></p>
 	                            </a>
 	                        </li>
-	                        <li id="9000" class="topmenu">
-	                            <a class="l-btn-text bannerMenu" href="https://www.misboot.com/demo.html?from=topjui_demo" target="_blank">
-	                                <p>
-	                                    <lable class="fa fa-leaf" style="color: #cc0000;"></lable>
-	                                </p>
-	                                <p><span style="white-space:nowrap;">动态演示</span></p>
-	                            </a>
-	                        </li>
-	                        <li id="9001" class="topmenu" data-type='lastMenuSub' data-url="https://www.topjui.com">
-	                            <a class="l-btn-text bannerMenu">
-	                                <p>
-	                                    <lable class="fa fa-home" style="color: #5FB878;"></lable>
-	                                </p>
-	                                <p><span style="white-space:nowrap;">官方网站</span></p>
-	                            </a>
-	                        </li>
-	                        <li id="9002" class="topmenu">
-	                            <a class="l-btn-text bannerMenu" href="http://ask.topjui.com" target="_blank" >
-	                                <p>
-	                                    <lable class="fa fa-wechat"></lable>
-	                                </p>
-	                                <p><span style="white-space:nowrap;">交流社区</span></p>
-	                            </a>
-	                        </li>
-	
-	                        <li id="9003" class="topmenu lastMenu" data-type='lastMenu'>
-	                            <a class="l-btn-text bannerMenu moreBox" target="_blank" >
-	                                <p>
-	                                    <lable class="fa fa-th"></lable>
-	                                </p>
+	                        <li id="9003" class="topmenu lastMenu" data-type="lastMenu">
+	                            <a class="l-btn-text bannerMenu moreBox" target="_blank">
+	                                <p><lable class="fa fa-th"></lable></p>
 	                                <p><span style="white-space:nowrap;">更多功能</span></p>
 	                            </a>
-	                            <div id='moreMenu'>
-	                                <ul style="padding: 0">
-	                                    <li id="90031" class="topmenu">
-	<!--                                        <a class="l-btn-text bannerMenu" href="javascript:addParentTab({href:'http://www.topjui.com/compile',title:'在线编译'})" >-->
-	                                        <div class="l-btn-text bannerMenu" onclick="addParentTab({href:'http://www.topjui.com/compile',title:'在线编译'})">
-	                                            <p>
-	                                                <lable class="fa fa-code" style="color: rebeccapurple"></lable>
-	                                            </p>
+	                            <div id="moreMenu">
+	                           		<ul style="padding: 0;">
+	                               		<li id="90031" class="topmenu">
+	                                   		<div class="l-btn-text bannerMenu" onclick="addParentTab({href:'http://www.topjui.com/compile',title:'在线编译'});">
+	                                       		<p><lable class="fa fa-code" style="color: rebeccapurple;"></lable></p>
 	                                            <p><span style="white-space:nowrap;">在线调试</span></p>
 	                                        </div>
 	                                    </li>
-	                                    <li id="90032" class="topmenu" data-type='lastMenuSub' data-url="http://www.jeasyui.cn/?from=demo">
+	                                    <li id="90032" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
 	                                        <div class="l-btn-text bannerMenu">
-	                                            <p>
-	                                                <lable class="fa fa-link"></lable>
-	                                            </p>
+	                                            <p><lable class="fa fa-link"></lable></p>
 	                                            <p><span style="white-space:nowrap;">EasyUI中文站</span></p>
 	                                        </div>
 	                                    </li>
-	                                    <li id="90033" class="topmenu" data-type='lastMenuSub' data-url="https://demo.misboot.com/system/login">
-	                                        <a class="l-btn-text bannerMenu">
-	                                            <p>
-	                                                <lable class="fa fa-television"></lable>
-	                                            </p>
-	                                            <p><span style="white-space:nowrap;">TopJUI版动态演示</span></p>
-	                                        </a>
-	                                    </li>
-	                                    <li id="90034" class="topmenu" data-type='lastMenuSub' data-url="https://vue.misboot.com">
-	                                        <a class="l-btn-text bannerMenu">
-	                                            <p>
-	                                                <lable class="fa fa-television"></lable>
-	                                            </p>
-	                                            <p><span style="white-space:nowrap;">Vue版动态演示</span></p>
-	                                        </a>
-	                                    </li>
-	                                </ul>
-	                            </div>
-	                        </li>
-	                    </ul>
-	                </div>
-	            </div>
-	        </div>
+	                            	</ul>
+	                          	</div>
+	                      	</li>
+	                 	</ul>
+	             	</div>
+	        	</div>
+	    	</div>
+		</div>
+		
+	    <div id="west"
+	    	data-options="region:'west',split:true,width:260,border:false,headerCls:'border_right',bodyCls:'border_right'">
+	     	<div id="RightAccordion"></div>
 	    </div>
 	
-	    <div id="west"  data-options="region:'west',split:true,width:260,border:false,headerCls:'border_right',bodyCls:'border_right'" title="" iconCls="fa fa-dashboard">
-	        <div id="RightAccordion"></div>
-	        <!-- <div id="menuTab" data-toggle="topjui-tabs" data-options="fit:true,border:false">
-	            <div title="导航菜单" data-options="iconCls:'fa fa-sitemap'" style="padding:0;">
-	                <div id="RightAccordion" class="topjui-accordion"></div>
-	            </div>
-	            <div title="常用链接" data-options="iconCls:'fa fa-star',closable:true">
-	                <ul id="channgyongLink"></ul>
-	            </div>
-	        </div> -->
+	    <div id="center"
+	    	style="overflow:hidden;"
+	    	data-options="region:'center',border:false">
+	        <div id="index_tabs" style="width: 100%;height: 100%;">
+	       		<div title="系统首页" iconCls="fa fa-home" 
+	       			data-options="border:true,
+	       				iframe:true,
+	            		content:'<iframe src=\'./html/portal/index.html\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'">
+	       		</div>
+	    	</div>
 	    </div>
 	
-	    <div id="center" data-options="region:'center',border:false" style="overflow:hidden;">
-	        <div id="index_tabs" style="width:100%;height:100%">
-	            <div title="系统首页" iconCls="fa fa-home" data-options="border:true,iframe:true,
-	            content:'<iframe src=\'./html/portal/index.html\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'"></div>
-	        </div>
-	    </div>
-	
-	    <div data-options="region:'south',border:true"
-	         style="text-align:center;height:30px;line-height:30px;border-bottom:0;overflow:hidden;">
-	        <span style="float:left;padding-left:5px;width:30%;text-align: left;">当前用户：TopJUI前端框架</span>
-	        <span style="padding-right:5px;width:40%">
-	            版权所有 © 2014
-	            <a href="http://www.zuoyo.com" target="_blank">湖南佐佑时代科技有限公司</a>
-	            <a href="http://www.beian.miit.gov.cn/" target="_blank">湘ICP备18018053号</a>
+	    <div id="south" 
+	    	style="text-align: center;height: 30px;line-height: 30px;border-bottom: 0;overflow: hidden;"
+	    	data-options="region:'south',border:true">
+	     	<span style="float: left;padding-left: 5px;width: 30%;text-align: left;">当前用户：<span id="user-username" sec:authentication="principal.username"></span></span>
+	       	<span style="padding-right: 5px;width: 40%">
+	            版权所有 © 2022 Renlm 
+	            <a href="https://beian.miit.gov.cn" target="_blank" style="text-decoration: underline;color: black;">京ICP备2021000671号</a>
 	        </span>
-	        <span style="float:right;padding-right:5px;width:30%;text-align: right;">版本：1.0.1</span>
-	    </div>
+	   		<span style="float: right;padding-right: 5px;width: 30%;text-align: right;">版本：1.0.1</span>
+		</div>
 	</div>
 	<script type="text/javascript">
 	/**

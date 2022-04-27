@@ -15,7 +15,7 @@
 
 	<groupId>cn.renlm.graph</groupId>
 	<artifactId>my-graph</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.1</version>
 	<name>MyGraph</name>
 	<description>在线画图</description>
 	<url>https://github.com/renlm/MyGraph</url>
