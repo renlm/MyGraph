@@ -8,6 +8,18 @@
     <link type="text/css" th:href="@{/static/TopJUI-free/topjui/themes/default/sidemenu_style.css}" rel="stylesheet" id="dynamicTheme"/>
 </head>
 <body layout:fragment="content" class="panel-noscroll">
+	<div id="mm" class="submenubutton" style="width: 140px;">
+	    <div id="mm-tabclose" name="6" iconCls="fa fa-refresh">刷新</div>
+	    <div class="menu-sep"></div>
+	    <div id="Div1" name="1" iconCls="fa fa-close">关闭</div>
+	    <div id="mm-tabcloseother" name="3">关闭其他</div>
+	    <div id="mm-tabcloseall" name="2">关闭全部</div>
+	    <div class="menu-sep"></div>
+	    <div id="mm-tabcloseright" name="4">关闭右侧标签</div>
+	    <div id="mm-tabcloseleft" name="5">关闭左侧标签</div>
+	    <div class="menu-sep"></div>
+	    <div id="mm-newwindow" name="7">新窗口中打开</div>
+	</div>
 	<div id="index_layout" class="easyui-layout" data-options="fit:true">
 		<div id="north" 
 			class="banner"
@@ -34,9 +46,9 @@
 	                  	<a href="javascript:void(0);"
 	                  		class="easyui-menubutton"
 	                  		style="color:#fff;"
-	                    	data-options="menu:'#mm',iconCls:'fa fa-cog',hasDownArrow:true">设置
+	                    	data-options="menu:'#mmSetting',iconCls:'fa fa-cog',hasDownArrow:true">设置
 	                   	</a>
-	                	<div id="mm" style="width:74px;">
+	                	<div id="mmSetting" style="width:74px;">
 	                  		<div data-options="iconCls:'fa fa-info-circle'" onclick="javascript:modifyPwd(0);">个人信息</div>
 	                       	<div class="menu-sep"></div>
 	                     	<div data-options="iconCls:'fa fa-key'" onclick="javascript:modifyPwd(0);">修改密码</div>
@@ -168,8 +180,20 @@
 	            '[(@{/static/TopJUI-free/menu_1325.json})]', {"levelId": "2"}, // 获取第一层目录
 	            function (data) {
 	                var menuData = MyUI.getMenuTree(data);
-	                $('#RightAccordion').sidemenu({ data:menuData,onSelect:menuOnSelect,selected:1,width:'100%' });
-	                $('#RightAccordion  .accordion').accordion('select',0)     //默然展开第一个菜单
+	                $("#RightAccordion").sidemenu({
+	                    width:255,
+	                    data:menuData,
+	                    fit: true,
+	                    multiple:false,
+	                    border: false,
+	                    onSelect:menuOnSelect
+	                });
+	                // 初始化accordion
+	                $("#RightAccordion .accordion").accordion({
+	                    fit: true,
+	                    multiple:false,
+	                    border: false
+	                });
 	                $('#west').panel({onResize:onResize})     //菜单拖拽拉伸是调整大小
 	            }, "json"
 	        );
@@ -197,6 +221,56 @@
 	        $(".banner .nav-bar .webname").css("width", opts.collapsed ? 55 : 255);
 	        $(".nav-bar .nav-center").css("marginLeft", opts.collapsed ? 0 : 255);
 	        hideNavBtn();
+	    });
+		
+		// 首页tabs选项卡
+	    var index_tabs = $('#index_tabs').tabs({
+	        fit: true,
+	        tools: [{
+	            iconCls: 'fa fa-home',
+	            handler: function () {
+	                $('#index_tabs').tabs('select', 0);
+	            }
+	        }, {
+	            iconCls: 'fa fa-refresh',
+	            handler: function () {
+	                var refresh_tab = $('#index_tabs').tabs('getSelected');
+	                var refresh_iframe = refresh_tab.find('iframe')[0];
+	                refresh_iframe.contentWindow.location.href = refresh_iframe.src;
+	            }
+	        }, {
+	            iconCls: 'fa fa-close',
+	            handler: function () {
+	                var index = $('#index_tabs').tabs('getTabIndex', $('#index_tabs').tabs('getSelected'));
+	                var tab = $('#index_tabs').tabs('getTab', index);
+	                if (tab.panel('options').closable) {
+	                    $('#index_tabs').tabs('close', index);
+	                }
+	            }
+	        }, {
+	            iconCls: 'fa fa-arrows-alt',
+	            handler: function () {
+	                App().handleFullScreen();
+	            }
+	        }],
+	        onSelect:tabOnSelect,
+	        //监听右键事件，创建右键菜单
+	        onContextMenu: function (e, title, index) {
+	            e.preventDefault();
+	            if (index >= 0) {
+	                $('#mm').menu('show', {
+	                    left: e.pageX,
+	                    top: e.pageY
+	                }).data("tabTitle", title);
+	            }
+	        }
+	    });
+
+	    //tab右键菜单
+	    $("#mm").menu({
+	        onClick: function (item) {
+	            tabMenuOprate(this, item.name);
+	        }
 	    });
 	});
 	
@@ -239,6 +313,69 @@
                 return false;
             }
         })
+    }
+    
+    // Tab菜单操作
+    function tabMenuOprate(menu, type) {
+        var allTabs = $('#index_tabs').tabs('tabs');
+        var allTabtitle = [];
+        $.each(allTabs, function (i, n) {
+            var opt = $(n).panel('options');
+            if (opt.closable)
+                allTabtitle.push(opt.title);
+        });
+        var curTabTitle = $(menu).data("tabTitle");
+        var curTabIndex = $('#index_tabs').tabs("getTabIndex", $('#index_tabs').tabs("getTab", curTabTitle));
+        switch (type) {
+            case "1"://关闭当前
+                if (curTabIndex > 0) {
+                    $('#index_tabs').tabs("close", curTabTitle);
+                    return false;
+                    break;
+                } else {
+                    $.iMessager.show({
+                        title: '操作提示',
+                        msg: '首页不允许关闭！'
+                    });
+                    break;
+                }
+            case "2"://全部关闭
+                for (var i = 0; i < allTabtitle.length; i++) {
+                    $('#index_tabs').tabs('close', allTabtitle[i]);
+                }
+                break;
+            case "3"://除此之外全部关闭
+                for (var i = 0; i < allTabtitle.length; i++) {
+                    if (curTabTitle != allTabtitle[i])
+                        $('#index_tabs').tabs('close', allTabtitle[i]);
+                }
+                $('#index_tabs').tabs('scrollBy', 10);
+                $('#index_tabs').tabs('select', curTabTitle);
+                break;
+            case "4"://当前侧面右边
+                for (var i = curTabIndex; i < allTabtitle.length; i++) {
+                    $('#index_tabs').tabs('close', allTabtitle[i]);
+                }
+                $('#index_tabs').tabs('select', curTabTitle);
+                break;
+            case "5": //当前侧面左边
+                for (var i = 0; i < curTabIndex - 1; i++) {
+                    $('#index_tabs').tabs('close', allTabtitle[i]);
+                }
+                $('#index_tabs').tabs('select', curTabTitle);
+                break;
+            case "6": //刷新
+                var currentTab = $('#index_tabs').tabs('getSelected');
+                var currentIframe = currentTab.find('iframe')[0];
+                currentIframe.contentWindow.location.href = currentIframe.src;
+                break;
+            case "7": //在新窗口打开
+                var refresh_tab = $('#index_tabs').tabs('getSelected');
+                var refresh_iframe = refresh_tab.find('iframe')[0];
+                window.open(refresh_iframe.src);
+                break;
+        }
+
     }
 	</script>
 </body>
