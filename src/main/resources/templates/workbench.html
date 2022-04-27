@@ -5,17 +5,52 @@
 </head>
 <body layout:fragment="content">
 	<div class="easyui-layout" style="width: 100%;height: 100%;">
-		<div region="west" split="true" title="Navigator" style="width:230px;">
-			<p style="padding:5px;margin:0;">Select language:</p>
-			<ul>
-				<li><a href="javascript:void(0)" onclick="showcontent('java')">Java</a></li>
-				<li><a href="javascript:void(0)" onclick="showcontent('cshape')">C#</a></li>
-				<li><a href="javascript:void(0)" onclick="showcontent('vb')">VB</a></li>
-				<li><a href="javascript:void(0)" onclick="showcontent('erlang')">Erlang</a></li>
-			</ul>
+		<div region="west" split="true" style="width:230px;">
+			<div style="margin:20px 0;">
+				<a href="javascript:;" class="easyui-linkbutton" onclick="toggle()">Toggle</a>
+			</div>
+			<div id="sm" class="easyui-sidemenu" data-options="data:data"></div>
 		</div>
 		<div id="content" region="center" style="padding:5px;">
 		</div>
 	</div>
+	<script type="text/javascript">
+		var data = [{
+	        text: 'Item1',
+	        iconCls: 'icon-sum',
+	        state: 'open',
+	        children: [{
+	            text: 'Option1'
+	        },{
+	            text: 'Option2'
+	        },{
+	            text: 'Option3',
+	            children: [{
+	                text: 'Option31'
+	            },{
+	                text: 'Option32'
+	            }]
+	        }]
+	    },{
+	        text: 'Item2',
+	        iconCls: 'icon-more',
+	        children: [{
+	            text: 'Option4'
+	        },{
+	            text: 'Option5'
+	        },{
+	            text: 'Option6'
+	        }]
+	    }];
+ 
+		function toggle(){
+			var opts = $('#sm').sidemenu('options');
+			$('#sm').sidemenu(opts.collapsed ? 'expand' : 'collapse');
+			opts = $('#sm').sidemenu('options');
+			$('#sm').sidemenu('resize', {
+				width: opts.collapsed ? 60 : 200
+			})
+		}
+	</script>
 </body>
 </html>
