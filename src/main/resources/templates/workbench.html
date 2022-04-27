@@ -8,7 +8,7 @@
     <link type="text/css" th:href="@{/static/TopJUI-free/topjui/themes/default/sidemenu_style.css}" rel="stylesheet" id="dynamicTheme"/>
 </head>
 <body layout:fragment="content" class="panel-noscroll">
-	<div class="easyui-layout" data-options="fit:true">
+	<div id="index_layout" class="easyui-layout" data-options="fit:true">
 		<div id="north" 
 			class="banner"
 	  		style="height: 50px; padding:0;margin:0; overflow: hidden;"
@@ -173,7 +173,73 @@
 	                $('#west').panel({onResize:onResize})     //菜单拖拽拉伸是调整大小
 	            }, "json"
 	        );
+		
+		$(".collapseMenu").on("click", function () {
+	        var opts = $('#RightAccordion').sidemenu('options');
+	        //改变面板布局
+	        $('#index_layout').layout('panel','west').panel('resize', { width: opts.collapsed ? 260 : 60 })
+	        $('#index_layout').layout();
+
+	        // 改变slidemenu样式
+	        $("#RightAccordion").sidemenu(opts.collapsed ? "expand" : "collapse")
+	        $('#RightAccordion').sidemenu('resize', { width: opts.collapsed ? 60 : 260 })
+
+	        /*改变图标样式*/
+	        $("#menuCollapseIcon").addClass(opts.collapsed ? "fa-indent" : "fa-outdent")
+	        $("#menuCollapseIcon").removeClass(opts.collapsed ? "fa-outdent" : "fa-indent")
+
+	        // 选中菜单
+	        if (!opts.collapsed) {
+	            tabOnSelect();
+	        }
+	        // 改变菜单查询框
+	        $(".systemname").css("display", opts.collapsed ? 'none' : 'inline-block');
+	        $(".banner .nav-bar .webname").css("width", opts.collapsed ? 55 : 255);
+	        $(".nav-bar .nav-center").css("marginLeft", opts.collapsed ? 0 : 255);
+	        hideNavBtn();
+	    });
 	});
+	
+    function hideNavBtn() {
+        var contentWidth,areaWidth;
+        var $navContentBox = $(".nav-group");
+        //1.得到滚动内容的总长度 contentWidth；
+        contentWidth = parseInt($navContentBox.width());
+
+        //2.得到滚动区域的总长度 areaWidth;
+        areaWidth = parseInt( $navContentBox.parent().width());
+
+        if(contentWidth < areaWidth){
+            $(".nav-btn").addClass('hide');
+            $navContentBox.css('left',0)
+        }else{
+            $(".nav-btn").removeClass('hide')
+        }
+    }
+
+    /**
+     * tab选中时，选中menu菜单
+     * @param title
+     * @param index
+     */
+    function tabOnSelect(title, index) {
+        var tabOpts = $('#index_tabs').tabs('getSelected').panel("options");
+        var tabId = tabOpts.id, panels = $("#RightAccordion .accordion").accordion('panels');
+        if(tabOpts.isNewTab || !tabId){
+            tabOpts.isNewTab = !tabOpts.isNewTab;
+            return;
+        }
+        $.each(panels, function (index, item) {
+            var $tree = item.find('.tree');
+            var node = $tree.tree('find', {id: tabId});
+            if (node) {
+                $("#RightAccordion .accordion").accordion('select', index) // 选中面板
+                $tree.tree('expandTo', node.target).tree('select', node.target);// 选中tree选项
+                $tree.tree('scrollTo', node.target);// 选中tree选项
+                return false;
+            }
+        })
+    }
 	</script>
 </body>
 </html>
