@@ -331,7 +331,123 @@
 	            tabMenuOprate(this, item.name);
 	        }
 	    });
+	    
+	    $(".nav-group").on("click",'li',function(e){
+	        if($(this).data("type") === "lastMenu"){
+	            return false
+	        }
+	        if ($(this).data("type") === "lastMenuSub") {
+	            window.open($(this).data("url"));
+	        }
+	        //添加选择样式
+	        $(".nav-group .selected").removeClass("selected");
+	        $(this).addClass("selected");
+
+	        let target = this
+	        if($(this).data("type") === "lastMenuSub"){
+	            $(".lastMenu").addClass("selected");
+	            target = ".lastMenu"
+	        }
+	        navsScrollTo("first", target);
+
+	        // 刷新左侧导航菜单
+	        // 刷新左侧导航菜单
+	        var id = $(this).attr('id');
+	        var title = $(this).attr('title');
+	        if (id && title) {
+	            generateMenu(id, title);
+	        }
+	    });
+	    var changing = false; //是否正在滚动中
+	    function navsScrollTo(step,target){
+	        if(changing){
+	            return
+	        }else{
+	            changing = !changing;
+	            setTimeout(function () {
+	                changing = !changing;
+	            },400);
+	        }
+
+	        var contentWidth,itemWidth,areaWidth,currentLeft,times,$navContentBox;
+	        $navContentBox = $(".nav-group"); // 拿到导航项的盒子
+	        //1.得到滚动内容的总长度 contentWidth；
+	        contentWidth = parseInt($navContentBox.width());
+
+	        //2.得到滚动元素的宽度 itemWidth；
+	        // itemWidth = 102;
+	         itemWidth = $(".nav-center ul li").width()+2;
+
+	        //3.得到当前currentLeft值
+	        currentLeft = parseInt($navContentBox.position().left);
+
+	        //4.得到滚动区域的总长度 areaWidth;
+	        areaWidth = parseInt( $navContentBox.parent().width());
+
+	        //5.按钮是否生效  并左右滚动
+	        if(step == 'next'){ // 滚动到下一页
+	            if( areaWidth + Math.abs(currentLeft) < contentWidth){ // 不需要向右移动
+	                // 5.1 移动多少个
+	                times = Math.floor(areaWidth / itemWidth);
+	                $navContentBox.css('left',currentLeft - itemWidth * times)
+	            }
+	        }else if(step == 'previous'){
+	            // 滚动到上一页
+	            if (currentLeft != 0){
+	                if(Math.abs(currentLeft) <= areaWidth){
+	                    $navContentBox.css('left',0)
+	                }else{
+	                    times = Math.floor(areaWidth / itemWidth);
+	                    $navContentBox.css('left',-(Math.abs(currentLeft) - itemWidth * times))
+	                }
+	            }
+	        }else if(step == 'first'){//将点击的元素滚动到第一个
+	            liLeft = $(target).position().left;
+	            //获取点击项距离浏览器右侧的距离
+	            var liRight  =  $(".nav-bar").width() - $(target).offset().left - itemWidth - $('.nav-right').width();
+	            if(liRight < itemWidth && areaWidth + Math.abs(currentLeft) < contentWidth){
+	                $navContentBox.css('left',-liLeft)
+	            }
+	        }
+	    }
 	});
+	
+	// 生成左侧导航菜单
+	function generateMenu(menuId, systemName) {
+	    if (menuId < 8000) {
+	        $(".panel-header .panel-title:first").html(systemName);
+	        var allPanel = $("#RightAccordion .accordion").accordion('panels');
+	        var size = allPanel.length;
+	        if (size > 0) {
+	            for (i = 0; i < size; i++) {
+	                var index = $("#RightAccordion .accordion").accordion('getPanelIndex', allPanel[i]);
+	                $("#RightAccordion .accordion").accordion('remove', 0);
+	            }
+	        }
+
+	        $.get(
+		            '[(@{/static/TopJUI-free/menu_1325.json})]', {"levelId": "2"}, // 获取第一层目录
+		            function (data) {
+		                var menuData = MyUI.getMenuTree(data);
+		                $("#RightAccordion").sidemenu({
+		                    width:255,
+		                    data:menuData,
+		                    fit: true,
+		                    multiple:false,
+		                    border: false,
+		                    onSelect:menuOnSelect
+		                });
+		                // 初始化accordion
+		                $("#RightAccordion .accordion").accordion({
+		                    fit: true,
+		                    multiple:false,
+		                    border: false
+		                });
+		                $('#west').panel({onResize:onResize})     //菜单拖拽拉伸是调整大小
+		            }, "json"
+		        );
+	    }
+	}
 	
     function hideNavBtn() {
         var contentWidth,areaWidth;
