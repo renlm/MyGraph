@@ -145,6 +145,10 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+	// 首页加载完后，取消加载中状态
+	$(window).on("load", function () {
+	    $("#loading").fadeOut();
+	});
 	MyUI.init({ctx:ctx});
 	/**
 	 * 当菜单选中时
