@@ -1,0 +1,780 @@
+[
+  {
+    "id": 1350,
+    "pid": 1325,
+    "text": "综合演示",
+    "state": "closed",
+    "iconCls": "fa fa-heartbeat",
+    "url": "",
+    "levelId": 2
+  },
+  {
+    "id": 1365,
+    "pid": 1325,
+    "text": "基础组件",
+    "state": "closed",
+    "iconCls": "fa fa-server",
+    "url": "",
+    "levelId": 2
+  },
+  {
+    "id": 1369,
+    "pid": 1325,
+    "text": "页面布局",
+    "state": "closed",
+    "iconCls": "fa fa-window-maximize",
+    "url": "",
+    "levelId": 2
+  },
+  {
+    "id": 1329,
+    "pid": 1325,
+    "text": "菜单按钮",
+    "state": "closed",
+    "iconCls": "fa fa-list",
+    "url": "",
+    "levelId": 2
+  },
+  {
+    "id": 1327,
+    "pid": 1325,
+    "text": "表单组件",
+    "state": "closed",
+    "iconCls": "fa fa-bank",
+    "url": "",
+    "levelId": 2
+  },
+  {
+    "id": 1328,
+    "pid": 1325,
+    "text": "表格和树",
+    "state": "closed",
+    "iconCls": "fa fa-table",
+    "url": "",
+    "levelId": 2
+  },
+  {
+    "id": 1330,
+    "pid": 1325,
+    "text": "图形报表",
+    "state": "closed",
+    "iconCls": "fa fa-bar-chart",
+    "url": "",
+    "levelId": 2
+  },
+  {
+    "id": 1331,
+    "pid": 1325,
+    "text": "扩展组件",
+    "state": "closed",
+    "iconCls": "fa fa-map",
+    "url": "",
+    "levelId": 2
+  },
+  {
+    "id": 13501,
+    "pid": 1350,
+    "state": "closed",
+    "iconCls": "fa fa-sitemap",
+    "text": "基础表单演示",
+    "url": ""
+  },
+  {
+    "id": 13502,
+    "pid": 1350,
+    "state": "closed",
+    "iconCls": "fa fa-folder",
+    "text": "基础表格操作演示",
+    "url": ""
+  },
+  {
+    "id": 13503,
+    "pid": 1350,
+    "state": "closed",
+    "iconCls": "fa fa-folder",
+    "text": "多表格加载效率演示",
+    "url": ""
+  },
+  {
+    "id": 13504,
+    "pid": 1350,
+    "state": "closed",
+    "iconCls": "fa fa-folder",
+    "text": "基础布局演示",
+    "url": ""
+  },
+  {
+    "id": 13651,
+    "pid": 1365,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "解析器",
+    "url":"./html/base/parser.html"
+  },
+  {
+    "id": 13652,
+    "pid": 1365,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "拖动",
+    "url": "./html/base/draggable.html"
+  },
+  {
+    "id": 13653,
+    "pid": 1365,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "放置",
+    "url": "./html/base/droppable.html"
+  },
+  {
+    "id": 13654,
+    "pid": 1365,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "调整大小",
+    "url": "./html/base/resizable.html"
+  },
+  {
+    "id": 13655,
+    "pid": 1365,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "分页",
+    "url": "./html/base/pagination.html"
+  },
+  {
+    "id": 13656,
+    "pid": 1365,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "搜索框",
+    "url": "./html/base/searchBox.html"
+  },
+  {
+    "id": 13657,
+    "pid": 1365,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "进度条",
+    "url": "./html/base/progressBar.html"
+  },
+  {
+    "id": 13658,
+    "pid": 1365,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "提示框",
+    "url": "./html/base/tooltip.html"
+  },
+  {
+    "id": 13691,
+    "pid": 1369,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "面板",
+    "url": "./html/layout/panel.html"
+  },
+  {
+    "id": 13692,
+    "pid": 1369,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "选项卡",
+    "url": "./html/layout/tabs.html"
+  },
+  {
+    "id": 13693,
+    "pid": 1369,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "手风琴",
+    "url": "./html/layout/accordion.html"
+  },
+  {
+    "id": 13694,
+    "pid": 1369,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "布局",
+    "url": "./html/layout/layout.html"
+  },
+  {
+    "id": 132901,
+    "pid": 1329,
+    "state": "closed",
+    "iconCls": "fa fa-folder",
+    "text": "菜单按钮",
+    "url": ""
+  },
+  {
+    "id": 13292,
+    "pid": 1329,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "菜单",
+    "url": "./html/menu/menu.html"
+  },
+  {
+    "id": 13293,
+    "pid": 1329,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "侧滑菜单",
+    "url": "./html/menu/sidemenu.html"
+  },
+  {
+    "id": 13294,
+    "pid": 1329,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "按钮",
+    "url": "./html/menu/linkButton.html"
+  },
+  {
+    "id": 13295,
+    "pid": 1329,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "分割按钮",
+    "url": "./html/menu/splitButton.html"
+  },
+  {
+    "id": 13296,
+    "pid": 1329,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "开关按钮",
+    "url": "./html/menu/switchbutton.html"
+  },
+  {
+    "id": 203,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "文本框",
+    "url": "./html/form/textbox.html"
+  },
+  {
+    "id": 204,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "密码框",
+    "url": "./html/form/passwordbox.html"
+  },
+  {
+    "id": 254,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "掩码输入框",
+    "url": "./html/form/maskedbox.html"
+  },
+  {
+    "id": 206,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "下拉列表框",
+    "url": "./html/form/combobox.html"
+  },
+  {
+    "id": 207,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "树形下拉框",
+    "url": "./html/form/combotree.html"
+  },
+  {
+    "id": 208,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "数据表格下拉框",
+    "url": "./html/form/combogrid.html"
+  },
+  {
+    "id": 209,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "树形表格下拉框",
+    "url": "./html/form/combotreegrid.html"
+  },
+  {
+    "id": 210,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "标签框",
+    "url": "./html/form/tagbox.html"
+  },
+  {
+    "id": 211,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "数值输入框",
+    "url": "./html/form/numberbox.html"
+  },
+  {
+    "id": 212,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "日期输入框",
+    "url": "./html/form/datebox.html"
+  },
+  {
+    "id": 213,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "日期时间输入框",
+    "url": "./html/form/datetimebox.html"
+  },
+  {
+    "id": 214,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "日期时间微调框",
+    "url": "./html/form/datetimespinner.html"
+  },
+  {
+    "id": 215,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "日历",
+    "url": "./html/form/calendar.html"
+  },
+  {
+    "id": 216,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "微调",
+    "url": "./html/form/spinner.html"
+  },
+  {
+    "id": 217,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "数字微调",
+    "url": "./html/form/numberspinner.html"
+  },
+  {
+    "id": 218,
+    "pid": 215,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "时间微调",
+    "url": "./html/form/timespinner.html"
+  },
+  {
+    "id": 219,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "滑动条",
+    "url": "./html/form/slider.html"
+  },
+  {
+    "id": 220,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "文件框",
+    "url": "./html/form/filebox.html"
+  },
+  {
+    "id": 2041,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "复选框",
+    "url": "./html/form/checkbox.html"
+  },
+  {
+    "id": 2031,
+    "pid": 1327,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "单选框",
+    "url": "./html/form/radiobutton.html"
+  },
+  {
+    "id": 13281,
+    "pid": 1328,
+    "text": "数据表格",
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "url": "html/grid/datagrid.html"
+  },
+  {
+    "id": 13282,
+    "pid": 1328,
+    "text": "数据列表",
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "url": "html/grid/datalist.html"
+  },
+  {
+    "id": 13283,
+    "pid": 1328,
+    "text": "属性表格",
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "url": "html/grid/propertygrid.html"
+  },
+  {
+    "id": 13284,
+    "pid": 1328,
+    "text": "树组件",
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "url": "html/grid/tree.html"
+  },
+  {
+    "id": 13285,
+    "pid": 1328,
+    "text": "zTree组件",
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "url": "html/grid/zTree.html"
+  },
+  {
+    "id": 13286,
+    "pid": 1328,
+    "text": "树形表格",
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "url": "html/grid/treegrid.html"
+  },
+  {
+    "id": 13287,
+    "pid": 1328,
+    "text": "可编辑表格",
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "url": "html/grid/edatagrid.html"
+  },
+  {
+    "id": 13301,
+    "pid": 1330,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "折线图",
+    "url": "./html/echarts/line.html"
+  },
+  {
+    "id": 13302,
+    "pid": 1330,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "柱状图",
+    "url": "./html/echarts/bar.html"
+  },
+  {
+    "id": 13303,
+    "pid": 1330,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "饼图",
+    "url": "./html/echarts/pie.html"
+  },
+  {
+    "id": 13304,
+    "pid": 1330,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "雷达图",
+    "url": "./html/echarts/radar.html"
+  },
+  {
+    "id": 13311,
+    "pid": 1331,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "时间轴",
+    "url": "./html/extend/timeaxis.html"
+  },
+  {
+    "id": 13312,
+    "pid": 1331,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "自动完成",
+    "url": "./html/extend/autocomplete_index.html"
+  },
+  {
+    "id": 13313,
+    "pid": 1331,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "富文本编辑器",
+    "url": "./html/extend/editor_index.html"
+  },
+  {
+    "id": 13314,
+    "pid": 1331,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "单文件上传框",
+    "url": "./html/extend/upload.html"
+  },
+  {
+    "id": 13315,
+    "pid": 1331,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "文件批量上传",
+    "url": "./html/extend/uploader_index.html"
+  },
+  {
+    "id": 13316,
+    "pid": 1331,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "图标选择器",
+    "url": "./html/extend/iconpicker.html"
+  },
+  {
+    "id": 135021,
+    "pid": 13502,
+    "state": "open",
+    "iconCls": "fa fa-sitemap",
+    "text": "数据表格 - 标签实现",
+    "url": "./html/complex/datagrid.html?type=abc"
+  },
+  {
+    "id": 135022,
+    "pid": 13502,
+    "state": "open",
+    "iconCls": "fa fa-users",
+    "text": "数据表格 - API实现",
+    "url": "./html/complex/datagrid-api.html"
+  },
+  {
+    "id": 135023,
+    "pid": 13502,
+    "state": "open",
+    "iconCls": "fa fa-book",
+    "text": "数据表格 - 页脚",
+    "url": "./html/complex/datagrid-footer.html"
+  },
+  {
+    "id": 135024,
+    "pid": 13502,
+    "state": "open",
+    "iconCls": "fa fa-book",
+    "text": "数据表格 - 多表头",
+    "url": "./html/complex/datagrid-report.html"
+  },
+  {
+    "id": 135025,
+    "pid": 13502,
+    "state": "open",
+    "iconCls": "fa fa-book",
+    "text": "数据表格 - 单元格编辑",
+    "url": "./html/complex/datagrid_cell_edit.html"
+  },
+  {
+    "id": 135026,
+    "pid": 13502,
+    "state": "open",
+    "iconCls": "fa fa-cube",
+    "text": "树形表格 - 工具栏",
+    "url": "./html/complex/treegrid.html"
+  },
+  {
+    "id": 135027,
+    "pid": 13502,
+    "state": "open",
+    "iconCls": "fa fa-table",
+    "text": "可编辑表格 - 工具栏",
+    "url": "./html/complex/edatagrid.html"
+  },
+  {
+    "id": 135028,
+    "pid": 13502,
+    "state": "open",
+    "iconCls": "fa fa-bullhorn",
+    "text": "Tab表格+表单",
+    "url": "./html/complex/panel.html"
+  },
+  {
+    "id": 135031,
+    "pid": 13503,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "左右两列布局1",
+    "url": "./html/layout/layout_wc1.html"
+  },
+  {
+    "id": 135032,
+    "pid": 13503,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "左右两列布局2",
+    "url": "./html/layout/layout_wc2.html"
+  },
+  {
+    "id": 135033,
+    "pid": 13503,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "左右两列布局3",
+    "url": "./html/layout/layout_wcs.html"
+  },
+  {
+    "id": 135034,
+    "pid": 13503,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "左右两列布局4",
+    "url": "./html/layout/layout_cse.html"
+  },
+  {
+    "id": 135035,
+    "pid": 13503,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "上下两行布局1",
+    "url": "./html/layout/layout_nc1.html"
+  },
+  {
+    "id": 135036,
+    "pid": 13503,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "上下两行布局2",
+    "url": "./html/layout/layout_nc2.html"
+  },
+  {
+    "id": 135037,
+    "pid": 13503,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "左中右三列布局1",
+    "url": "./html/layout/layout_wce1.html"
+  },
+  {
+    "id": 135038,
+    "pid": 13503,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "左中右三列布局2",
+    "url": "./html/layout/layout_wce2.html"
+  },
+  {
+    "id": 135041,
+    "pid": 13504,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "动态面板",
+    "url": "./html/layout/panel_refresh.html"
+  },
+  {
+    "id": 1329011,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "打开弹出窗口",
+    "url": "./html/menu/openDialog_index.html"
+  },
+  {
+    "id": 1329012,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "执行Ajax请求",
+    "url": "./html/menu/doAjax_index.html"
+  },
+  {
+    "id": 1329013,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "快捷数据过滤",
+    "url": "./html/menu/filter_index.html"
+  },
+  {
+    "id": 1329014,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "高级组合查询",
+    "url": "./html/menu/search_index.html"
+  },
+  {
+    "id": 1329015,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "Excel数据导入",
+    "url": "./html/menu/import_index.html"
+  },
+  {
+    "id": 1329016,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "Excel数据导出",
+    "url": "./html/menu/export_index.html"
+  },
+  {
+    "id": 1329017,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "打开标签窗口",
+    "url": "./html/menu/openTab_index.html"
+  },
+  {
+    "id": 1329018,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "打开新窗口",
+    "url": "./html/menu/openWindow_index.html"
+  },
+  {
+    "id": 1329019,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "执行普通请求",
+    "url": "./html/menu/request_index.html"
+  },
+  {
+    "id": 13290110,
+    "pid": 132901,
+    "state": "open",
+    "iconCls": "fa fa-file-text-o",
+    "text": "执行自定义方法",
+    "url": "./html/menu/executeFunction_index.html"
+  },
+
+
+  {
+    "id": 1356,
+    "pid": 13501,
+    "state": "open",
+    "iconCls": "fa fa-table",
+    "text": "Dialog表单",
+    "url": "./html/complex/dialog.html"
+  },
+  {
+    "id": 13561,
+    "pid": 13501,
+    "state": "open",
+    "iconCls": "fa fa-bullhorn",
+    "text": "Panel表单",
+    "url": "./html/complex/panel_add.html"
+  }
+]

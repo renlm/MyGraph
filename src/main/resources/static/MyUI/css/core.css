@@ -27,7 +27,7 @@
 }
 
 .panel-title {
-    background: url('../images/blank.gif') no-repeat
+    background: url('../themes/default/images/blank.gif') no-repeat
 }
 
 .panel-header-noborder {
@@ -343,11 +343,11 @@
 }
 
 .accordion-collapse {
-    background: url('../images/accordion_arrows.png') no-repeat 0 0
+    background: url('../themes/default/images/accordion_arrows.png') no-repeat 0 0
 }
 
 .accordion-expand {
-    background: url('../images/accordion_arrows.png') no-repeat -16px 0
+    background: url('../themes/default/images/accordion_arrows.png') no-repeat -16px 0
 }
 
 .accordion {
@@ -1133,7 +1133,7 @@
     left: 0;
     top: 0;
     z-index: 10;
-    background: url('../images/blank.gif') no-repeat
+    background: url('../themes/default/images/blank.gif') no-repeat
 }
 
 .l-btn-disabled .filebox-label {
@@ -1805,15 +1805,15 @@
 }
 
 .tabs-scroller-left {
-    background: #f3f3f3 url('../images/tabs_icons.png') no-repeat 1px center
+    background: #f3f3f3 url('../themes/default/images/tabs_icons.png') no-repeat 1px center
 }
 
 .tabs-scroller-right {
-    background: #f3f3f3 url('../images/tabs_icons.png') no-repeat -15px center
+    background: #f3f3f3 url('../themes/default/images/tabs_icons.png') no-repeat -15px center
 }
 
 .tabs li a.tabs-close {
-    background: url('../images/tabs_icons.png') no-repeat -34px center
+    background: url('../themes/default/images/tabs_icons.png') no-repeat -34px center
 }
 
 .tabs li .tabs-inner:hover {
@@ -3176,7 +3176,7 @@
 }
 
 .menu-rightarrow {
-    background: url('../images/menu_arrows.png') no-repeat -32px center
+    background: url('../themes/default/images/menu_arrows.png') no-repeat -32px center
 }
 
 .menu-line {
@@ -3310,7 +3310,7 @@
 }
 
 .m-btn-downarrow,.s-btn-downarrow {
-    background: url('../images/menu_arrows.png') no-repeat 0 center
+    background: url('../themes/default/images/menu_arrows.png') no-repeat 0 center
 }
 
 .m-btn-plain-active,.s-btn-plain-active {
@@ -3860,14 +3860,14 @@
     position: absolute;
     top: 50%;
     margin-top: -8px;
-    background: url('../images/accordion_arrows.png') no-repeat 0 0;
+    background: url('../themes/default/images/accordion_arrows.png') no-repeat 0 0;
     width: 16px;
     height: 16px;
     right: 5px
 }
 
 .sidemenu .tree-node-nonleaf-collapsed::after {
-    background: url('../images/accordion_arrows.png') no-repeat -16px 0
+    background: url('../themes/default/images/accordion_arrows.png') no-repeat -16px 0
 }
 
 .sidemenu-collapsed .panel-icon {
@@ -5275,7 +5275,7 @@ table td {
     margin-left: -41.5px;
     width: 83px;
     height: 83px;
-    background: url("../images/loading-img.png") no-repeat center center
+    background: url("../themes/default/images/loading-img.png") no-repeat center center
 }
 
 .loading-round {
@@ -5284,13 +5284,13 @@ table td {
     left: 2px;
     width: 81px;
     height: 81px;
-    background: url("../images/loading-bg.png") no-repeat center center
+    background: url("../themes/default/images/loading-bg.png") no-repeat center center
 }
 
 .loading-dot {
     width: 83px;
     height: 83px;
-    background: url("../images/loading-dot.png") no-repeat center center
+    background: url("../themes/default/images/loading-dot.png") no-repeat center center
 }
 
 .loading-dot,.loading-round {
