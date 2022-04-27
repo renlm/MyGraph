@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-@import "core.css";
+@import "themes/default/core.css";
 
-@import "sidemenu.css";
+@import "themes/default/sidemenu.css";
 
 .nav-bar .nav-left {
 	width: 230px;

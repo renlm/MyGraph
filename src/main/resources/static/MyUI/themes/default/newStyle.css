@@ -261,6 +261,10 @@ input[type="checkbox"]:hover::before {
     background: white !important;
 }
 
+.search-box{
+    /*padding: 6px 0 3px;*/
+}
+
 /*.datagrid-toolbar*/
 .l-btn {
     height: 32px !important;
@@ -270,6 +274,10 @@ input[type="checkbox"]:hover::before {
 
 .datagrid-toolbar .l-btn .l-btn-text {
     line-height: 30px !important;
+}
+
+.datagrid-toolbar{
+    /*border: none;*/
 }
 
 /*表格鼠标事件样式*/
@@ -655,3 +663,6 @@ input[type="checkbox"]:hover::before {
 .tooltip-right .accordion{
     width: 220px !important;
 }
+
+
+

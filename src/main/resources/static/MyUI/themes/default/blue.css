@@ -54,6 +54,7 @@
 .tabs li.tabs-selected a.tabs-inner{border-bottom-color: #3c8dbc;color: #3c8dbc;}
 .tabs li a.tabs-inner:hover{color: #367FA9;}
 .banner{width: 100%;height: 54px;background: #3c8dbc;color: #fff;}
+.banner .l-btn-text{/* margin:0px; */}
 .banner .webname{background:#000C17;width: 255px; font-weight:bold; font-size: 20px;line-height: 25px; text-align:center;  }
 
 .panel-icon, .panel-tool {margin-top:-6px;}
