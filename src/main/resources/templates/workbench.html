@@ -106,12 +106,10 @@
 	    <div id="center"
 	    	style="overflow:hidden;"
 	    	data-options="region:'center',border:false">
-	        <div id="index_tabs" style="width: 100%;height: 100%;">
-	       		<div title="系统首页" iconCls="fa fa-home" 
-	       			data-options="border:true,
-	       				iframe:true,
-	            		content:'<iframe src=\'./html/portal/index.html\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'">
-	       		</div>
+	        <div id="index_tabs" class="easyui-tabs" style="width: 100%;height: 100%;">
+	        	<div title="系统首页" style="padding: 10px;">
+					<iframe th:src="@{welcome}" scrolling="auto" frameborder="0" style="width: 100%;height: 100%;"></iframe>
+				</div>
 	    	</div>
 	    </div>
 	
