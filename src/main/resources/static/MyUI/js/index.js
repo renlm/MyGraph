@@ -4,7 +4,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.P = global.P || {})));
+	(factory((global.MyUI = global.MyUI || {})));
 }(this, (function (exports) { 'use strict';
 
 var version = "1.0.1";
