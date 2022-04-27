@@ -74,7 +74,7 @@
 	             		<ul class="nav-group">
 	                    	<li id="workbench" title="工作台" class="topmenu selected">
 	                      		<a class="l-btn-text bannerMenu" href="javascript:void(0);">
-	                                <p><lable class="fa fa-map"></lable></p>
+	                                <p><lable class="fa fa-windows"></lable></p>
 	                                <p><span style="white-space:nowrap;">工作台</span></p>
 	                       		</a>
 	                        </li>
@@ -84,6 +84,12 @@
 	                                <p><span style="white-space:nowrap;">服务器</span></p>
 	                            </a>
 	                        </li>
+	                        <li id="help" title="帮助中心" class="topmenu">
+	                            <a class="l-btn-text bannerMenu" th:href="|javascript:addParentTab({href:'@{/static/editor.md/index.html}',title:'帮助中心'});|">
+	                                <p><lable class="fa fa-comments-o"></lable></p>
+	                                <p><span style="white-space:nowrap;">帮助中心</span></p>
+	                            </a>
+	                        </li>
 	                        <li id="moreFunc" class="topmenu lastMenu" data-type="lastMenu">
 	                            <a class="l-btn-text bannerMenu moreBox" target="_blank">
 	                                <p><lable class="fa fa-th"></lable></p>
@@ -91,13 +97,7 @@
 	                            </a>
 	                            <div id="moreMenu">
 	                           		<ul style="padding: 0;">
-	                               		<li id="moreMenu1" class="topmenu">
-	                                   		<div class="l-btn-text bannerMenu" th:onclick="|addParentTab({href:'@{/static/editor.md/index.html}',title:'帮助'});|">
-	                                       		<p><lable class="fa fa-comments-o"></lable></p>
-	                                            <p><span style="white-space:nowrap;">帮助</span></p>
-	                                        </div>
-	                                    </li>
-	                                    <li id="moreMenu2" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
+	                                    <li id="moreMenu1" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
 	                                        <div class="l-btn-text bannerMenu">
 	                                            <p><lable class="fa fa-link"></lable></p>
 	                                            <p><span style="white-space:nowrap;">EasyUI中文站</span></p>
