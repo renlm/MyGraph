@@ -196,7 +196,7 @@
 	            //IE11
 	            docEle.msRequestFullscreen();
 	        } else {
-	            $.iMessager.alert('温馨提示', '该浏览器不支持全屏', 'messager-warning');
+	            $.messager.alert('温馨提示', '该浏览器不支持全屏', 'messager-warning');
 	        }
 	    };
 
@@ -392,7 +392,7 @@
                     return false;
                     break;
                 } else {
-                    $.iMessager.show({
+                    $.messager.show({
                         title: '操作提示',
                         msg: '首页不允许关闭！'
                     });
