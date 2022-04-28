@@ -11,9 +11,10 @@ var version = '1.0.1';
 var ctx = '';
 var menuApi = null;
 var loadingId = 'loading';
-var indexLayoutId = 'index_layout';
-var rightAccordionId = 'RightAccordion';
-var indexTabsId = 'index_tabs';
+var mmId = 'mm';
+var indexLayoutId = 'indexLayout';
+var rightAccordionId = 'rightAccordion';
+var indexTabsId = 'indexTabs';
 
 /**
  * 全屏操作
@@ -110,29 +111,12 @@ function initIndexTabs () {
                 FullScreen().handleFullScreen();
             }
         }],
-        onSelect: function () {
-	    	var tabOpts = $('#' + indexTabsId).tabs('getSelected').panel('options');
-	        var tabId = tabOpts.id, panels = $('#' + rightAccordionId).find('.accordion').accordion('panels');
-	        if(tabOpts.isNewTab || !tabId){
-	            tabOpts.isNewTab = !tabOpts.isNewTab;
-	            return;
-	        }
-	        $.each(panels, function (index, item) {
-	            var $tree = item.find('.tree');
-	            var node = $tree.tree('find', {id: tabId});
-	            if (node) {
-	                $('#' + rightAccordionId).find('.accordion').accordion('select', index) // 选中面板
-	                $tree.tree('expandTo', node.target).tree('select', node.target); // 选中tree选项
-	                $tree.tree('scrollTo', node.target); // 选中tree选项
-	                return false;
-	            }
-	        });
-	    },
+        onSelect: tabOnSelect,
         // 监听右键事件，创建右键菜单
         onContextMenu: function (e, title, index) {
             e.preventDefault();
             if (index >= 0) {
-                $('#mm').menu('show', {
+                $('#' + mmId).menu('show', {
                     left: e.pageX,
                     top: e.pageY
                 }).data('tabTitle', title);
@@ -141,7 +125,7 @@ function initIndexTabs () {
 	});
 	
 	// tab右键菜单
-    $('#mm').menu({
+    $('#' + mmId).menu({
         onClick: function (item) {
             tabMenuOprate(this, item.name);
         }
@@ -225,6 +209,24 @@ function initIndexTabs () {
             }
         }
     }
+}
+function tabOnSelect () {
+	var tabOpts = $('#' + indexTabsId).tabs('getSelected').panel('options');
+    var tabId = tabOpts.id, panels = $('#' + rightAccordionId).find('.accordion').accordion('panels');
+    if(tabOpts.isNewTab || !tabId){
+        tabOpts.isNewTab = !tabOpts.isNewTab;
+        return;
+    }
+    $.each(panels, function (index, item) {
+        var $tree = item.find('.tree');
+        var node = $tree.tree('find', {id: tabId});
+        if (node) {
+            $('#' + rightAccordionId).find('.accordion').accordion('select', index) // 选中面板
+            $tree.tree('expandTo', node.target).tree('select', node.target); // 选中tree选项
+            $tree.tree('scrollTo', node.target); // 选中tree选项
+            return false;
+        }
+    });
 }
 
 /** 
@@ -441,6 +443,7 @@ function init (option) {
 	ctx = option.ctx ? option.ctx : ctx;
 	menuApi = option.menuApi ? option.menuApi : menuApi;
 	loadingId = option.loadingId ? option.loadingId : loadingId;
+	mmId = option.mmId ? option.mmId : mmId;
 	indexLayoutId = option.indexLayoutId ? option.indexLayoutId : indexLayoutId;
 	rightAccordionId = option.rightAccordionId ? option.rightAccordionId : rightAccordionId;
 	indexTabsId = option.indexTabsId ? option.indexTabsId : indexTabsId;
