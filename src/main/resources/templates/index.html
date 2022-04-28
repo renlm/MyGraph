@@ -79,13 +79,13 @@
 	                       		</a>
 	                        </li>
 	                        <li id="server" title="服务器" class="topmenu">
-	                            <a class="l-btn-text bannerMenu" th:href="|javascript:addParentTab({href:'@{/oshi}',title:'服务器'});|">
+	                            <a class="l-btn-text bannerMenu" th:href="|javascript:MyUI.addParentTab({href:'@{/oshi}',title:'服务器'});|">
 	                                <p><lable class="fa fa-server" style="color: #FF5722;"></lable></p>
 	                                <p><span style="white-space:nowrap;">服务器</span></p>
 	                            </a>
 	                        </li>
 	                        <li id="help" title="帮助中心" class="topmenu">
-	                            <a class="l-btn-text bannerMenu" th:href="|javascript:addParentTab({href:'@{/static/editor.md/index.html}',title:'帮助中心'});|">
+	                            <a class="l-btn-text bannerMenu" th:href="|javascript:MyUI.addParentTab({href:'@{/static/editor.md/index.html}',title:'帮助中心'});|">
 	                                <p><lable class="fa fa-comments-o"></lable></p>
 	                                <p><span style="white-space:nowrap;">帮助中心</span></p>
 	                            </a>
@@ -98,7 +98,7 @@
 	                            <div id="moreMenu">
 	                           		<ul style="padding: 0;">
 	                                    <li id="moreMenu1" class="topmenu">
-	                                   		<div class="l-btn-text bannerMenu" th:onclick="|addParentTab({href:'@{/compile}',title:'在线调试'});|">
+	                                   		<div class="l-btn-text bannerMenu" th:onclick="|MyUI.addParentTab({href:'@{/compile}',title:'在线调试'});|">
 	                                       		<p><lable class="fa fa-comments-o"></lable></p>
 	                                            <p><span style="white-space:nowrap;">在线调试</span></p>
 	                                        </div>
@@ -151,7 +151,7 @@
 	$(window).on("load", function () {
 	    $("#loading").fadeOut();
 	});
-	MyUI.init({ctx:ctx});
+	MyUI.init({ctx: ctx, indexTabsId: 'index_tabs'});
 	/**
 	 * 当菜单选中时
 	 * @param item
@@ -507,27 +507,6 @@
                 break;
         }
 
-    }
-    
-    function addParentTab(options) {
-        var src, title;
-        src = options.href;
-        title = options.title;
-
-        var tabs = $('#index_tabs');
-        if (tabs.tabs('exists',title)) {
-            tabs.tabs('select', title);
-        } else {
-            var iframe = '<iframe src="' + src + '" frameborder="0" style="border:0;width:100%;height:100%;"></iframe>';
-            tabs.tabs("add", {
-                title: title,
-                content: iframe,
-                iframe: true,//加上后才能刷新
-                closable: true,
-                iconCls: 'fa fa-th',
-                border: true
-            });
-        }
     }
 	</script>
 </body>

@@ -7,8 +7,9 @@
 	(factory((global.MyUI = global.MyUI || {})));
 }(this, (function (exports) { 'use strict';
 
-var version = "1.0.1";
-var ctx = null;
+var version = '1.0.1';
+var ctx = '';
+var indexTabsId = 'index_tabs';
 
 /**
  * 全屏操作
@@ -51,10 +52,10 @@ var FullScreen = function () {
             exitMethod.call(document);
         }
 		// for Internet Explorer
-        else if (typeof window.ActiveXObject !== "undefined") {
-            var wscript = new ActiveXObject("WScript.Shell");
+        else if (typeof window.ActiveXObject !== 'undefined') {
+            var wscript = new ActiveXObject('WScript.Shell');
             if (wscript !== null) {
-                wscript.SendKeys("{F11}");
+                wscript.SendKeys('{F11}');
             }
         }
     };
@@ -72,7 +73,33 @@ var FullScreen = function () {
 };
 
 /**
- * 生成菜单树
+ * 添加首页选项卡（从Iframe内容外层添加）
+ */
+function addParentTab(options) {
+    var src, title, iconCls;
+    src = options.href;
+    title = options.title;
+    iconCls = options.iconCls;
+
+    var tabs = $('#' + indexTabsId);
+    if (tabs.tabs('exists', title)) {
+        tabs.tabs('select', title);
+    } else {
+        var iframe = '<iframe src="' + src + '" frameborder="0" style="border:0;width:100%;height:100%;"></iframe>';
+        tabs.tabs('add', {
+            title: title,
+            content: iframe,
+			// 加上后才能刷新
+            iframe: true, 
+            closable: true,
+            iconCls: iconCls ? iconCls: 'fa fa-th',
+            border: true
+        });
+    }
+}
+
+/**
+ * 生成菜单树（数据）
  */
 function getMenuTree (data) {
 	let subData = []
@@ -116,7 +143,7 @@ function modifyPwd () {
 		title: '修改密码',
 		offset: '200px',
 		area: ['500px', '250px'],
-		skin: "layui-layer-rim",
+		skin: 'layui-layer-rim',
 		content: [ctx + '/editPwd', 'no']
 	});
 }
@@ -125,11 +152,13 @@ function modifyPwd () {
  * 初始化
  */
 function init (option) {
-	ctx = option.ctx;
+	ctx = option.ctx ? option.ctx : ctx;
+	indexTabsId = option.indexTabsId ? option.indexTabsId : indexTabsId;
 }
 
 exports.version = version;
 exports.FullScreen = FullScreen();
+exports.addParentTab = addParentTab;
 exports.getMenuTree = getMenuTree;
 exports.modifyPwd = modifyPwd;
 exports.init = init;
