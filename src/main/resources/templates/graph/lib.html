@@ -63,7 +63,7 @@
 	        <div class="masonry__item"
 	        	v-for="(graph,index) in response.records" 
 				v-bind:data-id="graph.id"
-				@click="openGraphViewer(graph.uuid)">
+				@click="$.openGraphEditor(graph.uuid,graph.name)">
 				<div class="min-img">
 					<img :alt="graph.text"
 						:title="'创作者：'+graph.creatorNickname"
@@ -151,9 +151,6 @@
 	    	 	},
 	    	 	pageData (res) {
 	    	  		this.response = res;
-	    		},
-	    		openMxgraphEditor (uuid, title) {
-	    			openMxgraphEditor(uuid, title);
 	    		}
 		    },
 		    watch: {
