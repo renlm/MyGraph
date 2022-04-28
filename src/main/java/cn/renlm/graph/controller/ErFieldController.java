@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,19 +30,6 @@ public class ErFieldController {
 
 	@Autowired
 	private IErFieldService iErFieldService;
-
-	/**
-	 * 字段列表展示
-	 * 
-	 * @param model
-	 * @param erUuid
-	 * @return
-	 */
-	@RequestMapping("/dialog")
-	public String dialog(ModelMap model, String erUuid) {
-		model.put("erUuid", erUuid);
-		return "ds/erFieldDialog";
-	}
 
 	/**
 	 * 获取ER模型字段列表

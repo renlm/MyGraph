@@ -32,7 +32,7 @@
 		"state": "open",
 		"iconCls": "fa fa-etsy",
 		"text": "源列表",
-		"url": "./html/base/parser.html",
+		"url": "/ds/list",
 		"level": 3
 	}
 ]

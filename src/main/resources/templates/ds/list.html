@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN" layout:decorate="~{layout/decorate}">
+<head>
+    <title>数据源</title>
+</head>
+<body layout:fragment="content">
+    <div class="easyui-layout"
+    	data-options="fit:true">
+    	<!-- 数据源 -->
+        <div data-options="region:'west',
+        		split:true,
+        		width:'40%',
+        		border:false,
+        		headerCls:'border_right',
+        		bodyCls:'border_right'
+        	">
+       		
+        </div>
+        <div data-options="region:'center',
+        		split:true,
+        		border:true,
+                bodyCls:'border_top_none'
+        	">
+          	<div class="easyui-layout"
+          		data-options="fit:true">
+          		<!-- 数据库表 -->
+                <div data-options="region:'north',
+                		height:'60%',
+                		fit:false,
+                		split:true,
+                		border:false,
+                		bodyCls:'border_bottom'
+                	">
+                  	
+                </div>
+                <div data-options="region:'center',
+                		split:true,
+                		border:false,
+                		bodyCls:'border_right',
+                		height:'40%'
+                	">
+                   	<div class="easyui-tabs"
+                    	data-options="id:'southTabs',
+                        	fit:true,
+                            border:false
+                        ">
+                        <div title="字段信息" 
+		               		data-options="id:'tabErField',
+		                 		iconCls:'fa fa-th'
+		                 	">
+		               		
+		         		</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
