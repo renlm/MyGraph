@@ -24,7 +24,7 @@
 	    <div id="mm-newwindow" name="7">新窗口中打开</div>
 	</div>
 	
-	<div id="index_layout" class="easyui-layout" data-options="fit:true">
+	<div id="indexLayout" class="easyui-layout" data-options="fit:true">
 		<div id="north" 
 			class="banner"
 	  		style="height: 50px; padding:0;margin:0; overflow: hidden;"
@@ -122,13 +122,13 @@
 		
 	    <div id="west"
 	    	data-options="region:'west',split:true,width:260,border:false,headerCls:'border_right',bodyCls:'border_right'">
-	     	<div id="RightAccordion"></div>
+	     	<div id="rightAccordion"></div>
 	    </div>
 	
 	    <div id="center"
 	    	style="overflow:hidden;"
 	    	data-options="region:'center',border:false">
-	        <div id="index_tabs" class="easyui-tabs" style="width: 100%;height: 100%;">
+	        <div id="indexTabs" class="easyui-tabs" style="width: 100%;height: 100%;">
 	        	<div title="系统首页" 
 	        		style="padding: 10px;" 
 	        		data-options="iconCls:'fa fa-home'">
@@ -152,7 +152,10 @@
 		MyUI.init({
 			ctx: ctx, 
 			menuApi: '/static/MyUI/menu.json', 
-			indexTabsId: 'index_tabs'
+			loadingId: 'loading',
+			indexLayoutId: 'indexLayout',
+			rightAccordionId: 'rightAccordion',
+			indexTabsId: 'indexTabs'
 		});
 	</script>
 </body>

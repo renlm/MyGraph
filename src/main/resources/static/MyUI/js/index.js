@@ -10,6 +10,9 @@
 var version = '1.0.1';
 var ctx = '';
 var menuApi = null;
+var loadingId = 'loading';
+var indexLayoutId = 'index_layout';
+var rightAccordionId = 'RightAccordion';
 var indexTabsId = 'index_tabs';
 
 /**
@@ -109,7 +112,7 @@ function initIndexTabs () {
         }],
         onSelect: function () {
 	    	var tabOpts = $('#' + indexTabsId).tabs('getSelected').panel('options');
-	        var tabId = tabOpts.id, panels = $('#RightAccordion .accordion').accordion('panels');
+	        var tabId = tabOpts.id, panels = $('#' + rightAccordionId).find('.accordion').accordion('panels');
 	        if(tabOpts.isNewTab || !tabId){
 	            tabOpts.isNewTab = !tabOpts.isNewTab;
 	            return;
@@ -118,7 +121,7 @@ function initIndexTabs () {
 	            var $tree = item.find('.tree');
 	            var node = $tree.tree('find', {id: tabId});
 	            if (node) {
-	                $('#RightAccordion .accordion').accordion('select', index) // 选中面板
+	                $('#' + rightAccordionId).find('.accordion').accordion('select', index) // 选中面板
 	                $tree.tree('expandTo', node.target).tree('select', node.target); // 选中tree选项
 	                $tree.tree('scrollTo', node.target); // 选中tree选项
 	                return false;
@@ -296,14 +299,14 @@ function tabMenuOprate (menu, type) {
  */
 function generateMenu(menuId, systemName) {
 	$('.panel-header .panel-title:first').html(systemName);
-	var panelE = $('#RightAccordion .accordion');
+	var panelE = $('#' + rightAccordionId).find('.accordion');
 	if(panelE && panelE.length && panelE.length > 0) {
 	    var allPanel = panelE.accordion('panels');
 	    var size = allPanel.length;
 	    if (size > 0) {
 	        for (var i = 0; i < size; i++) {
-	            $('#RightAccordion .accordion').accordion('getPanelIndex', allPanel[i]);
-	            $('#RightAccordion .accordion').accordion('remove', 0);
+	            $('#' + rightAccordionId).find('.accordion').accordion('getPanelIndex', allPanel[i]);
+	            $('#' + rightAccordionId).find('.accordion').accordion('remove', 0);
 	        }
 	    }
 	}
@@ -311,7 +314,7 @@ function generateMenu(menuId, systemName) {
 		{ 'menuId': menuId },
         function (data) {
         	var menuData = getMenuTree(data);
-            $('#RightAccordion').sidemenu({
+            $('#' + rightAccordionId).sidemenu({
                 width: 255,
                 data: menuData,
                 fit: true,
@@ -343,14 +346,14 @@ function generateMenu(menuId, systemName) {
 				}
             });
             // 初始化accordion
-            $('#RightAccordion .accordion').accordion({
+            $('#' + rightAccordionId).find('.accordion').accordion({
                 fit: true,
                 multiple: false,
                 border: false
             });
 			// 菜单拖拽拉伸是调整大小
             $('#west').panel({ onResize: function () {
-			    $('#RightAccordion').sidemenu('resize');
+			    $('#' + rightAccordionId).sidemenu('resize');
 			}});
         }, 'json');
 }
@@ -437,26 +440,29 @@ function modifyPwd () {
 function init (option) {
 	ctx = option.ctx ? option.ctx : ctx;
 	menuApi = option.menuApi ? option.menuApi : menuApi;
+	loadingId = option.loadingId ? option.loadingId : loadingId;
+	indexLayoutId = option.indexLayoutId ? option.indexLayoutId : indexLayoutId;
+	rightAccordionId = option.rightAccordionId ? option.rightAccordionId : rightAccordionId;
 	indexTabsId = option.indexTabsId ? option.indexTabsId : indexTabsId;
 	
 	// 首页加载完后，取消加载中状态
 	$(window).on('load', function () {
-	    $('#loading').fadeOut();
+	    $('#' + loadingId).fadeOut();
 	});
 	
 	$(function () {
 		generateMenu();
 		
 		$('.collapseMenu').on('click', function () {
-	        var opts = $('#RightAccordion').sidemenu('options');
+	        var opts = $('#' + rightAccordionId).sidemenu('options');
 
 	        // 改变面板布局
-	        $('#index_layout').layout('panel','west').panel('resize', { width: opts.collapsed ? 260 : 60 })
-	        $('#index_layout').layout();
+	        $('#' + indexLayoutId).layout('panel','west').panel('resize', { width: opts.collapsed ? 260 : 60 })
+	        $('#' + indexLayoutId).layout();
 
 	        // 改变slidemenu样式
-	        $('#RightAccordion').sidemenu(opts.collapsed ? 'expand' : 'collapse')
-	        $('#RightAccordion').sidemenu('resize', { width: opts.collapsed ? 60 : 260 })
+	        $('#' + rightAccordionId).sidemenu(opts.collapsed ? 'expand' : 'collapse')
+	        $('#' + rightAccordionId).sidemenu('resize', { width: opts.collapsed ? 60 : 260 })
 
 	        // 改变图标样式
 	        $('#menuCollapseIcon').addClass(opts.collapsed ? 'fa-indent' : 'fa-outdent')
