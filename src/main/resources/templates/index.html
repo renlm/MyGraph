@@ -80,14 +80,18 @@
 	                                <p><span style="white-space: nowrap;">工作台</span></p>
 	                       		</a>
 	                        </li>
-	                        <li id="server" title="服务器" class="topmenu">
-	                            <a class="l-btn-text bannerMenu" th:href="|javascript:MyUI.addParentTab({href:'@{/oshi}',title:'服务器'});|">
+	                        <li id="server" title="服务器" class="topmenu" 
+	                        	data-type="lastMenu"
+	                        	th:onclick="|MyUI.addParentTab({href:'@{/oshi}',title:'服务器',iconCls:'fa fa-server'});|">
+	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
 	                                <p><lable class="fa fa-server" style="color: #FF5722;"></lable></p>
 	                                <p><span style="white-space: nowrap;">服务器</span></p>
 	                            </a>
 	                        </li>
-	                        <li id="help" title="帮助中心" class="topmenu">
-	                            <a class="l-btn-text bannerMenu" th:href="|javascript:MyUI.addParentTab({href:'@{/static/editor.md/index.html}',title:'帮助中心'});|">
+	                        <li id="help" title="帮助中心" class="topmenu" 
+	                        	data-type="lastMenu"
+	                        	th:onclick="|MyUI.addParentTab({href:'@{/static/editor.md/index.html}',title:'帮助中心',iconCls:'fa fa-comments-o'});|">
+	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
 	                                <p><lable class="fa fa-comments-o"></lable></p>
 	                                <p><span style="white-space: nowrap;">帮助中心</span></p>
 	                            </a>
@@ -99,9 +103,9 @@
 	                            </a>
 	                            <div id="moreMenu">
 	                           		<ul style="padding: 0;">
-	                                    <li id="moreMenu1" class="topmenu">
-	                                   		<div class="l-btn-text bannerMenu" th:onclick="|MyUI.addParentTab({href:'@{/compile}',title:'在线调试'});|">
-	                                       		<p><lable class="fa fa-comments-o"></lable></p>
+	                                    <li id="moreMenu1" class="topmenu" th:onclick="|MyUI.addParentTab({href:'@{/compile}',title:'在线调试',iconCls:'fa fa-code'});|">
+	                                   		<div class="l-btn-text bannerMenu">
+	                                       		<p><lable class="fa fa-code" style="color: rebeccapurple;"></lable></p>
 	                                            <p><span style="white-space: nowrap;">在线调试</span></p>
 	                                        </div>
 	                                    </li>
