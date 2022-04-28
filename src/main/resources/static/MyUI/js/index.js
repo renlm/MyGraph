@@ -11,6 +11,67 @@ var version = "1.0.1";
 var ctx = null;
 
 /**
+ * 全屏操作
+ */
+var FullScreen = function () {
+	var isFullScreen = function () {
+		return document.fullscreenElement || 
+			document.mozFullScreenElement || 
+			document.webkitFullscreenElement;
+	};
+	
+	// 进入全屏
+    var setFullScreen = function () {
+        var docEle = document.documentElement;
+        if (docEle.requestFullscreen) {
+            // W3C
+            docEle.requestFullscreen();
+        } else if (docEle.mozRequestFullScreen) {
+            // FireFox
+            docEle.mozRequestFullScreen();
+        } else if (docEle.webkitRequestFullScreen) {
+            // Chrome等
+            docEle.webkitRequestFullScreen();
+        } else if (docEle.msRequestFullscreen) {
+            // IE11
+            docEle.msRequestFullscreen();
+        } else {
+            $.messager.alert('温馨提示', '该浏览器不支持全屏', 'messager-warning');
+        }
+    };
+
+    // 退出全屏 判断浏览器种类
+    var exitFullScreen = function () {
+        // 判断各种浏览器，找到正确的方法
+        var exitMethod = document.exitFullscreen || // W3C
+            document.mozCancelFullScreen || // Chrome等
+            document.webkitExitFullscreen || // FireFox
+            document.msExitFullscreen; // IE11
+        if (exitMethod) {
+            exitMethod.call(document);
+        }
+		// for Internet Explorer
+        else if (typeof window.ActiveXObject !== "undefined") {
+            var wscript = new ActiveXObject("WScript.Shell");
+            if (wscript !== null) {
+                wscript.SendKeys("{F11}");
+            }
+        }
+    };
+
+    return {
+		// 全屏切换
+        handleFullScreen: function () {
+            if (isFullScreen()) {
+                exitFullScreen();
+            } else {
+                setFullScreen();
+            }
+        }
+    };
+};
+
+/**
  * 生成菜单树
  */
 function getMenuTree (data) {
@@ -68,6 +129,7 @@ function init (option) {
 }
 
 exports.version = version;
+exports.FullScreen = FullScreen();
 exports.getMenuTree = getMenuTree;
 exports.modifyPwd = modifyPwd;
 exports.init = init;
