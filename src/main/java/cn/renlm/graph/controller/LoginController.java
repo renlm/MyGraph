@@ -98,9 +98,9 @@ public class LoginController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/editPwd")
-	public String editPwd() {
-		return "editPwd";
+	@RequestMapping("/modifyPwd")
+	public String modifyPwd() {
+		return "modifyPwd";
 	}
 
 	/**
@@ -112,8 +112,8 @@ public class LoginController {
 	 * @return
 	 */
 	@ResponseBody
-	@PostMapping("/doEditPwd")
-	public Result<?> doEditPwd(Authentication authentication, String password, String confirmpwd) {
+	@PostMapping("/doModifyPwd")
+	public Result<?> doModifyPwd(Authentication authentication, String password, String confirmpwd) {
 		UserDto user = (UserDto) authentication.getPrincipal();
 		try {
 			if (!StrUtil.equals(password, confirmpwd)) {

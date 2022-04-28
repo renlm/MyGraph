@@ -436,7 +436,7 @@ function modifyPwd () {
 		offset: '200px',
 		area: ['500px', '250px'],
 		skin: 'layui-layer-rim',
-		content: [ctx + '/editPwd', 'no']
+		content: [ctx + '/modifyPwd', 'no']
 	});
 }
 

@@ -2,8 +2,6 @@
 <html lang="zh-CN" layout:decorate="~{layout/default}">
 <head>
 	<title>修改密码</title>
-	<!-- Layui -->
-	<link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet" />
 </head>
 <body layout:fragment="content">
 	<div class="layui-container" style="padding-top: 20px;">
@@ -54,7 +52,7 @@
 				return;
 			}
 			
-			$.post(ctx + "/doEditPwd", 
+			$.post(ctx + "/doModifyPwd", 
 				{ password: data.field.password, confirmpwd: data.field.confirmpwd }, 
 				function(response) {
 					if(response.statusCode === 200) {
