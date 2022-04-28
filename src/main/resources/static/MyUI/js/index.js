@@ -143,6 +143,10 @@ function initIndexTabs () {
         $('.nav-group .selected').removeClass('selected');
         $(this).addClass('selected');
 
+        if ($(this).data('type') === 'lastMenuTab') {
+            return;
+        }
+
         let target = this;
         if($(this).data('type') === 'lastMenuSub'){
             $('.lastMenu').addClass('selected');
