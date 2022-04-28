@@ -373,10 +373,7 @@ function addIndexTab(options) {
         $('#' + indexTabsId).tabs('add', {
             id: id,
             title: title,
-            isNewTab: true,
-            bodyCls: 'spacing-0',
             iconCls: iconCls ? iconCls: 'fa fa-th',
-            iframe: true, 
             closable: true,
             content: '<iframe scrolling="auto" frameborder="0"  src="' + src + '" style="width:100%;height:100%;"></iframe>',
         });
