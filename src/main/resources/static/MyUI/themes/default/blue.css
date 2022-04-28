@@ -1,26 +1,40 @@
 /*easyui mian*/
 @import "newStyle.css";
 
-#mm.menu, 
-#mmSetting.menu {
+.index #mm.menu, 
+.index #mmSetting.menu {
 	background-color: #f3f3f3!important;
     border-color: #d3d3d3!important;
     color: #444!important;
 }
 
-#mm.menu .menu-active, 
-#mmSetting.menu .menu-active {
+.index #mm.menu .menu-active, 
+.index #mmSetting.menu .menu-active {
     border-color: #FAFAFA;
     border-radius: 4px;
 }
 
-#mm.menu .menu-item,
-#mm.menu .menu-text,
-#mmSetting.menu .menu-item,
-#mmSetting.menu .menu-text {
+.index #mm.menu .menu-item,
+.index #mm.menu .menu-text,
+.index #mmSetting.menu .menu-item,
+.index #mmSetting.menu .menu-text {
     height: 25px!important;
     line-height: 25px!important;
     font-size: 12px!important;
+}
+
+.index .window {
+    border-width: 3px 1px 1px 1px!important;
+    box-shadow: 1px 1px 50px rgb(0 0 0 / 30%)!important;
+}
+
+.index .panel-header {
+    height: 37px!important;
+}
+
+.index .window .window-header .panel-title {
+   font-weight: 700!important;
+   font-size: 12px !important;
 }
 
 #west {border:solid 1px;border-top-width: 0;background:#000C17}
