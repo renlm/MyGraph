@@ -8,6 +8,25 @@ html {
 	background-color: white;
 }
 
+.graph-iconfont {
+	font: normal normal normal 14px/1 FontAwesome;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke-width: .2px;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.iconfont-xiala:before {
+	content: "\f107";
+}
+
+.iconfont-xiangshang:before {
+	content: "\f106";
+}
+
+.iconfont-search:before {
+	content: "\f002";
+}
+
 .navi.navi-black {
 	background: #fff;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
