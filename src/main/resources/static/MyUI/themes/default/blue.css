@@ -34,7 +34,11 @@
 
 .index .window .window-header .panel-title {
    font-weight: 700!important;
-   font-size: 12px !important;
+   font-size: 12px!important;
+}
+
+#west .panel-icon, .panel-tool {
+    margin-top: -6px!important;
 }
 
 #west {border:solid 1px;border-top-width: 0;background:#000C17}

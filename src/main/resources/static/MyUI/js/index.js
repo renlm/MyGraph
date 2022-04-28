@@ -397,7 +397,7 @@ function getMenuTree (data) {
 	let subData = []
     let child = []
     data.forEach(e => {
-        if (e.levelId === 2) {
+        if (e.level === 2) {
             e.children = e.state === 'closed' ? [] : ''
             subData.push(e)
         } else {
