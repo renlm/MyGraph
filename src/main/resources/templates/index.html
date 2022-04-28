@@ -85,7 +85,7 @@
 	                        </li>
 	                        <li id="server" title="服务器" class="topmenu" 
 	                        	data-type="lastMenuTab"
-	                        	th:onclick="|MyUI.addParentTab({href:'@{/oshi}',title:'服务器',iconCls:'fa fa-server'});|">
+	                        	th:onclick="|MyUI.addIndexTab({href:'@{/oshi}',title:'服务器',iconCls:'fa fa-server'});|">
 	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
 	                                <p><lable class="fa fa-server" style="color: #FF5722;"></lable></p>
 	                                <p><span style="white-space: nowrap;">服务器</span></p>
@@ -93,7 +93,7 @@
 	                        </li>
 	                        <li id="graphlib" title="公共图库" class="topmenu" 
 	                        	data-type="lastMenuTab"
-	                        	th:onclick="|MyUI.addParentTab({href:'@{/graph/lib}',title:'公共图库',iconCls:'fa fa-audio-description'});|">
+	                        	th:onclick="|MyUI.addIndexTab({href:'@{/graph/lib}',title:'公共图库',iconCls:'fa fa-audio-description'});|">
 	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
 	                                <p><lable class="fa fa-audio-description"></lable></p>
 	                                <p><span style="white-space: nowrap;">公共图库</span></p>
@@ -101,7 +101,7 @@
 	                        </li>
 	                        <li id="help" title="帮助中心" class="topmenu" 
 	                        	data-type="lastMenuTab"
-	                        	th:onclick="|MyUI.addParentTab({href:'@{/static/editor.md/index.html}',title:'帮助中心',iconCls:'fa fa-comments-o'});|">
+	                        	th:onclick="|MyUI.addIndexTab({href:'@{/static/editor.md/index.html}',title:'帮助中心',iconCls:'fa fa-comments-o'});|">
 	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
 	                                <p><lable class="fa fa-comments-o"></lable></p>
 	                                <p><span style="white-space: nowrap;">帮助中心</span></p>
@@ -114,7 +114,7 @@
 	                            </a>
 	                            <div id="moreMenu">
 	                           		<ul style="padding: 0;">
-	                                    <li id="moreMenu1" class="topmenu" th:onclick="|MyUI.addParentTab({href:'@{/compile}',title:'在线调试',iconCls:'fa fa-code'});|">
+	                                    <li id="moreMenu1" class="topmenu" th:onclick="|MyUI.addIndexTab({href:'@{/compile}',title:'在线调试',iconCls:'fa fa-code'});|">
 	                                   		<div class="l-btn-text bannerMenu">
 	                                       		<p><lable class="fa fa-code" style="color: rebeccapurple;"></lable></p>
 	                                            <p><span style="white-space: nowrap;">在线调试</span></p>

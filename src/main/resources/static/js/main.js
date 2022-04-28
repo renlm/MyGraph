@@ -21,7 +21,7 @@
 				top.window.open(ctx + '/graph/viewer?uuid=' + uuid);
 			} else {
 				try {
-					top.MyUI.addParentTab({
+					top.MyUI.addIndexTab({
 						id : "GraphViewer-" + uuid,
 						title : title,
 						href : ctx + '/graph/viewer?uuid=' + uuid,
@@ -44,7 +44,7 @@
 				top.window.open(ctx + '/graph/editor?uuid=' + uuid);
 			} else {
 				try {
-					top.MyUI.addParentTab({
+					top.MyUI.addIndexTab({
 						id : "GraphEditor-" + uuid,
 						title : title,
 						href : ctx + '/graph/editor?uuid=' + uuid,

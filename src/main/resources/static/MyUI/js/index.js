@@ -327,28 +327,7 @@ function generateMenu(menuId, systemName) {
                 multiple: false,
                 border: false,
                 onSelect: function (item) {
-				    // 判断是否已经打开tab
-				    var tabsArr = $('#' + indexTabsId).tabs('tabs');
-				    for (var i = 0; i < tabsArr.length; i++) {
-				        var tab = tabsArr[i];
-				        var options = $(tab).panel('options');
-				        if (item.id && options.id && item.id == options.id) {
-				            $('#' + indexTabsId).tabs('select', i); // 选中
-				            return;
-				        }
-				    }
-				    // 不存在则添加菜单
-				    if(item.url){
-				        $('#' + indexTabsId).tabs('add', {
-				            title: item.text,
-				            id: item.id,
-				            isNewTab: true,
-				            bodyCls: 'spacing-0', // 去除间隔
-				            iconCls: item.iconCls,
-				            closable: true,
-				            content: '<iframe scrolling="auto" frameborder="0"  src="' + item.url + '" style="width:100%;height:100%;"></iframe>',
-				        });
-				    }
+					addIndexTab({id: item.id, title: item.text, href: item.url, iconCls: item.iconCls});
 				}
             });
             // 初始化accordion
@@ -367,25 +346,39 @@ function generateMenu(menuId, systemName) {
 /**
  * 添加首页选项卡（从Iframe内容外层添加）
  */
-function addParentTab(options) {
-    var src, title, iconCls;
+function addIndexTab(options) {
+	var id, src, title, iconCls;
+    id = options.id;
     src = options.href;
     title = options.title;
     iconCls = options.iconCls;
 
-    var tabs = $('#' + indexTabsId);
-    if (tabs.tabs('exists', title)) {
-        tabs.tabs('select', title);
-    } else {
-        var iframe = '<iframe src="' + src + '" frameborder="0" style="border:0;width:100%;height:100%;"></iframe>';
-        tabs.tabs('add', {
+	if(!id) {
+		id = 'Base64-' + Base64.encodeURI(src);
+	}
+
+	// 判断tab
+    var tabsArr = $('#' + indexTabsId).tabs('tabs');
+    for (var i = 0; i < tabsArr.length; i++) {
+        var tab = tabsArr[i];
+        var options = $(tab).panel('options');
+        if (id && options.id && id == options.id) {
+            $('#' + indexTabsId).tabs('select', i); // 选中
+            return;
+        }
+    }
+
+    // 添加tab
+    if(src) {
+        $('#' + indexTabsId).tabs('add', {
+            id: id,
             title: title,
-            content: iframe,
-			// 加上后才能刷新
+            isNewTab: true,
+            bodyCls: 'spacing-0',
+            iconCls: iconCls ? iconCls: 'fa fa-th',
             iframe: true, 
             closable: true,
-            iconCls: iconCls ? iconCls: 'fa fa-th',
-            border: true
+            content: '<iframe scrolling="auto" frameborder="0"  src="' + src + '" style="width:100%;height:100%;"></iframe>',
         });
     }
 }
@@ -510,7 +503,7 @@ function init (option) {
 }
 
 exports.version = version;
-exports.addParentTab = addParentTab;
+exports.addIndexTab = addIndexTab;
 exports.modifyPwd = modifyPwd;
 exports.init = init;
 
