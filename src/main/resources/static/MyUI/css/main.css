@@ -2,8 +2,6 @@
 
 @import "../themes/default/core.css";
 
-@import "../themes/default/sidemenu.css";
-
 .nav-bar .nav-left {
 	width: 230px;
 	float: left;
