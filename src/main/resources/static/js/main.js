@@ -25,19 +25,6 @@
 				return null;
 			}
 		},
-		/***
-		 * 修改密码
-		 */
-		editPwd: function() {
-			window.editPwdLayerIndex = layer.open({
-				type: 2, 
-				title: '修改密码',
-				offset: '200px',
-				area: ['500px', '250px'],
-				skin: "layui-layer-rim",
-				content: [ctx + '/editPwd', 'no']
-			});
-		},
 		/**
 		 * 序号格式化
 		 */
