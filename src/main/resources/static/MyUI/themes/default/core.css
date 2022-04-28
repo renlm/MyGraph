@@ -4942,7 +4942,7 @@ blockquote,body,button,code,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,l
     padding: 5px 4px
 }
 
-#index_tabs .tabs-panels>.panel>.panel-body {
+#indexTabs .tabs-panels>.panel>.panel-body {
     overflow: hidden
 }
 

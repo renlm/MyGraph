@@ -81,5 +81,5 @@
 #moreMenu li{border-top: 1px #367fa9 solid;}
 
 /*侧滑菜单样式*/
-#RightAccordion .tree-collapsed, #RightAccordion .tree-expanded{ width: 0 !important;}
+#rightAccordion .tree-collapsed, #rightAccordion .tree-expanded{ width: 0 !important;}
 .sidemenu .tree-collapsed, .sidemenu .tree-expanded{width: 0;background: none;border: none;}

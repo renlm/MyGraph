@@ -306,7 +306,7 @@ input[type="checkbox"]:hover::before {
 
 /*左侧菜单样式*/
 
-#RightAccordion {
+#rightAccordion {
     user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -544,7 +544,7 @@ input[type="checkbox"]:hover::before {
 
 /*还原菜单栏下拉伸缩图标样式（树形表格之类的伸缩图标样式更改会影响菜单栏的样式）*/
 
-#RightAccordion .tree-collapsed, #RightAccordion .tree-expanded {
+#rightAccordion .tree-collapsed, #rightAccordion .tree-expanded {
     border: 0;
     border-radius: 0;
     margin-left: 0 !important;
@@ -553,11 +553,11 @@ input[type="checkbox"]:hover::before {
     height: 18px;
 }
 
-#RightAccordion .tree-collapsed:hover, #RightAccordion .tree-expanded:hover {
+#rightAccordion .tree-collapsed:hover, #rightAccordion .tree-expanded:hover {
     border: 0;
 }
 
-#RightAccordion .tree-collapsed:after, #RightAccordion .tree-expanded:after {
+#rightAccordion .tree-collapsed:after, #rightAccordion .tree-expanded:after {
     content: "";
     padding: 0;
 }
