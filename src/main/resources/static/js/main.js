@@ -10,6 +10,29 @@
 			return '<a href=\'javascript:void(0);\' style=\'text-decoration:underline;color:blue;\' data-value="' + value + '" data-index="' + index + '" onclick="$.openGraphEditor(\'' + row.uuid + '\', \'' + row.name + '\')">' + row.name + '</a>';
 		},
 		/**
+		 * 打开图形预览
+		 * @param params uuid 唯一标识
+		 * @param params title 标题
+		 * @param params openNew 是否打开新网页（默认否）
+		 * @param params iconCls 导航栏图标
+		 */
+		openGraphViewer: function (uuid, title, openNew, iconCls) {
+			if(openNew) {
+				top.window.open(ctx + '/graph/viewer?uuid=' + uuid);
+			} else {
+				try {
+					top.MyUI.addParentTab({
+						id : "GraphViewer-" + uuid,
+						title : title,
+						href : ctx + '/graph/viewer?uuid=' + uuid,
+						iconCls : iconCls ? iconCls : 'fa fa-cubes'
+					});
+				} catch(e) {
+					top.window.open(ctx + '/graph/viewer?uuid=' + uuid);
+				}
+			}
+		},
+		/**
 		 * 打开图形编辑器
 		 * @param params uuid 唯一标识
 		 * @param params title 标题

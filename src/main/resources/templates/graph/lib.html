@@ -63,7 +63,7 @@
 	        <div class="masonry__item"
 	        	v-for="(graph,index) in response.records" 
 				v-bind:data-id="graph.id"
-				@click="$.openGraphEditor(graph.uuid,graph.name)">
+				@click="$.openGraphViewer(graph.uuid,graph.name)">
 				<div class="min-img">
 					<img :alt="graph.text"
 						:title="'创作者：'+graph.creatorNickname"
