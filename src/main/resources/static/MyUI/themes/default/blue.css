@@ -1,5 +1,28 @@
 /*easyui mian*/
 @import "newStyle.css";
+
+#mm.menu, 
+#mmSetting.menu {
+	background-color: #f3f3f3!important;
+    border-color: #d3d3d3!important;
+    color: #444!important;
+}
+
+#mm.menu .menu-active, 
+#mmSetting.menu .menu-active {
+    border-color: #FAFAFA;
+    border-radius: 4px;
+}
+
+#mm.menu .menu-item,
+#mm.menu .menu-text,
+#mmSetting.menu .menu-item,
+#mmSetting.menu .menu-text {
+    height: 25px!important;
+    line-height: 25px!important;
+    font-size: 12px!important;
+}
+
 #west {border:solid 1px;border-top-width: 0;background:#000C17}
 #west .layout-panel-west .panel-header{ width:220px; line-height:25px; padding-left:5px;color:#777;background:#367FA9;border-color: #367FA9;filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#367FA9,endColorstr=#367FA9,GradientType=0)}
 #west .layout-panel-west .panel-header .panel-title{padding-left:20px;color:#b8c7ce}
