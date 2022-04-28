@@ -23,7 +23,7 @@
 		"state": "open",
 		"iconCls": "fa fa-user-plus",
 		"text": "我的作品",
-		"url": "./html/base/parser.html",
+		"url": "/graph/mine",
 		"level": 3
 	},
 	{

@@ -39,6 +39,16 @@ public class GraphController {
 	private IGraphService iGraphService;
 
 	/**
+	 * 我的作品
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/mine")
+	public String mine() {
+		return "graph/mine";
+	}
+
+	/**
 	 * 公共图库（页面）
 	 * 
 	 * @return
