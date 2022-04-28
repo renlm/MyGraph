@@ -2,7 +2,7 @@
 <html lang="zh-CN" layout:decorate="~{layout/default}">
 <head>
 	<title>公共图库</title>
-	<link th:href="@{/static/css/graph/lib.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/graphlib.css}" rel="stylesheet" />
 	<script th:src="@{/webjars/masonry/dist/masonry.pkgd.min.js}"></script>
 	<script th:src="@{/webjars/imagesloaded/imagesloaded.pkgd.min.js}"></script>
 </head>
@@ -55,7 +55,7 @@
 			</div>
 		</div>
 		<div class="nothing" v-show="response.total==0">
-			<img th:src="@{/static/css/graph/img/none.png}" />
+			<img th:src="@{/static/images/none.png}" />
 		</div>
 		<div class="masonry" v-show="response.total>0">
 	        <div class="masonry__gutter"></div>
@@ -96,7 +96,7 @@
 		    		seekIcon: "iconfont-xiala",
 		    		seekSelected: { code: null, name: "全部分类" },
 		    		category: { UML: "UML", FLOW: "流程图", ER: "ER模型", GENERAL: "一般设计", OTHER: "其它" },
-	    			defaultImgSrc: "[(@{/static/css/graph/img/holder.png})]",
+	    			defaultImgSrc: "[(@{/static/images/holder.png})]",
 			    	response: { current: 1, pages: 1, records: [], size: 8, total: 0 }
 		    	};
 		    },
