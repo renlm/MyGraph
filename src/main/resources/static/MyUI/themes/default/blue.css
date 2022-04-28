@@ -1,4 +1,8 @@
 /*easyui mian*/
+.index #west .tree-title {
+	color: #fff!important;
+}
+
 .index #mm.menu, 
 .index #mmSetting.menu {
 	background-color: #f3f3f3!important;
