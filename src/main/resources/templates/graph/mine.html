@@ -4,13 +4,16 @@
     <title>我的作品</title>
 </head>
 <body layout:fragment="content">
-	<table class="easyui-datagrid" 
-		data-options="pagination:true,
-         	fitColumns:true,
-         	pageSize:5,
-          	pageList:[5,10,20,40,80],
+	<table id="dataGrid" class="easyui-datagrid" 
+		data-options="border:false,
+			fit:true,
+			fitColumns:true,
 			method:'get',
-			url:ctx+'/graph/ajax/minePage'
+			url:ctx+'/graph/ajax/minePage',
+			pagination:true,
+			pagePosition:'bottom',
+         	pageSize:5,
+          	pageList:[5,10,20,40,80]
 			">
 		<thead>
 			<tr>
