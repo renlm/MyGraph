@@ -3,7 +3,16 @@
 <head>
     <title>我的作品</title>
 </head>
-<body>
-
+<body layout:fragment="content">
+	<table class="easyui-datagrid" 
+		data-options="method:'get',
+			url:ctx+'/graph/ajax/minePage'
+			">
+		<thead>
+			<tr>
+				<th data-options="field:'uuid',width:80">uuid</th>
+			</tr>
+		</thead>
+	</table>
 </body>
 </html>

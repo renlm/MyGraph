@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -19,6 +18,7 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
+import cn.renlm.graph.common.Datagrid;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.GraphDto;
 import cn.renlm.graph.dto.UserDto;
@@ -59,16 +59,32 @@ public class GraphController {
 	}
 
 	/**
+	 * 我的作品（分页）
+	 * 
+	 * @param authentication
+	 * @param page
+	 * @param form
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/minePage")
+	public Datagrid<Graph> minePage(Authentication authentication, Page<Graph> page, GraphDto form) {
+		UserDto user = (UserDto) authentication.getPrincipal();
+		form.setCreatorUserId(user.getUserId());
+		Page<Graph> data = iGraphService.findPage(page, form);
+		return Datagrid.of(data);
+	}
+
+	/**
 	 * 公共图库（分页）
 	 * 
-	 * @param request
 	 * @param page
 	 * @param form
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/page")
-	public Page<Graph> publicPage(HttpServletRequest request, Page<Graph> page, GraphDto form) {
+	public Page<Graph> publicPage(Page<Graph> page, GraphDto form) {
 		return iGraphService.findPage(page, form);
 	}
 

@@ -28,7 +28,14 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 		page.setOptimizeCountSql(false);
 		return this.page(page, Wrappers.<Graph>lambdaQuery().func(wrapper -> {
 			wrapper.select(Graph.class, field -> !StrUtil.equals(field.getColumn(), "xml"));
-			wrapper.eq(Graph::getIsPublic, true);
+			// 我的作品
+			if (StrUtil.isNotBlank(form.getCreatorUserId())) {
+				wrapper.eq(Graph::getCreatorUserId, form.getCreatorUserId());
+			}
+			// 公共图库
+			else {
+				wrapper.eq(Graph::getIsPublic, true);
+			}
 			wrapper.eq(Graph::getDeleted, false);
 			wrapper.orderByDesc(Graph::getUpdatedAt);
 			wrapper.orderByDesc(Graph::getId);
