@@ -28,14 +28,14 @@
 		/**
 		 * 序号格式化
 		 */
-		seqFormatter: function(value, row, index) {
+		seqFormatter: function (value, row, index) {
 			if(value) { } else if(row) { }
 			return index + 1;
 		},
 		/**
 		 * 是否状态格式化
 		 */
-		yesNoFormatter: function(value) {
+		yesNoFormatter: function (value) {
 			var yes = value ? true : false;
 			if(value === null) {
 				return '-';
@@ -51,6 +51,15 @@
 			} else {
 				return '否';
 			}
+		},
+		/**
+		 * 更新日期格式化
+		 */
+		updatedAtFormatter: function (value) {
+			if(!value) {
+				return null;
+			}
+			return layui.util.toDateString(value, "yyyy/MM/dd HH:mm:ss");
 		}
 	});
 })(jQuery);

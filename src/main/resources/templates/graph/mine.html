@@ -5,12 +5,22 @@
 </head>
 <body layout:fragment="content">
 	<table class="easyui-datagrid" 
-		data-options="method:'get',
+		data-options="pagination:true,
+         	fitColumns:true,
+         	pageSize:5,
+          	pageList:[5,10,20,40,80],
+			method:'get',
 			url:ctx+'/graph/ajax/minePage'
 			">
 		<thead>
 			<tr>
-				<th data-options="field:'uuid',width:80">uuid</th>
+				<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+             	<th data-options="field:'cover',title:'封面',width:250,align:'center'"></th>
+              	<th data-options="field:'name',title:'名称',width:250"></th>
+             	<th data-options="field:'categoryName',title:'分类',width:100"></th>
+          		<th data-options="field:'isPublic',title:'是否公开',width:100,align:'center',formatter:$.yesNoFormatter"></th>
+            	<th data-options="field:'updatedAt',title:'更新时间',width:153,align:'right',formatter:$.updatedAtFormatter"></th>
+           		<th data-options="field:'remark',title:'备注',width:100"></th>
 			</tr>
 		</thead>
 	</table>
