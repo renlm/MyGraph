@@ -27,7 +27,7 @@
 	<div id="indexLayout" class="easyui-layout" data-options="fit:true">
 		<div id="north" 
 			class="banner"
-	  		style="height: 50px; padding:0;margin:0; overflow: hidden;"
+	  		style="height: 50px;padding: 0;margin: 0;overflow: hidden;"
 			data-options="region:'north',border:false,split:false">
 			<div class="nav-bar">
 	        	<div class="nav-left webname">
@@ -40,7 +40,7 @@
 	          		</span>
 	            </div>
 	         	<div class="nav-right">
-	                <span style="padding-right: 8px; height: 50px; line-height: 50px;">
+	                <span style="padding-right: 8px;height: 50px;line-height: 50px;">
 	                	<a href="javascript:void(0);" 
 	                		class="easyui-linkbutton"
 	                     	style="color:#fff;"
@@ -77,38 +77,38 @@
 	                    	<li id="workbench" title="工作台" class="topmenu selected">
 	                      		<a class="l-btn-text bannerMenu" href="javascript:void(0);">
 	                                <p><lable class="fa fa-windows"></lable></p>
-	                                <p><span style="white-space:nowrap;">工作台</span></p>
+	                                <p><span style="white-space: nowrap;">工作台</span></p>
 	                       		</a>
 	                        </li>
 	                        <li id="server" title="服务器" class="topmenu">
 	                            <a class="l-btn-text bannerMenu" th:href="|javascript:MyUI.addParentTab({href:'@{/oshi}',title:'服务器'});|">
 	                                <p><lable class="fa fa-server" style="color: #FF5722;"></lable></p>
-	                                <p><span style="white-space:nowrap;">服务器</span></p>
+	                                <p><span style="white-space: nowrap;">服务器</span></p>
 	                            </a>
 	                        </li>
 	                        <li id="help" title="帮助中心" class="topmenu">
 	                            <a class="l-btn-text bannerMenu" th:href="|javascript:MyUI.addParentTab({href:'@{/static/editor.md/index.html}',title:'帮助中心'});|">
 	                                <p><lable class="fa fa-comments-o"></lable></p>
-	                                <p><span style="white-space:nowrap;">帮助中心</span></p>
+	                                <p><span style="white-space: nowrap;">帮助中心</span></p>
 	                            </a>
 	                        </li>
 	                        <li id="moreFunc" class="topmenu lastMenu" data-type="lastMenu">
 	                            <a class="l-btn-text bannerMenu moreBox" target="_blank">
 	                                <p><lable class="fa fa-th"></lable></p>
-	                                <p><span style="white-space:nowrap;">更多功能</span></p>
+	                                <p><span style="white-space: nowrap;">更多功能</span></p>
 	                            </a>
 	                            <div id="moreMenu">
 	                           		<ul style="padding: 0;">
 	                                    <li id="moreMenu1" class="topmenu">
 	                                   		<div class="l-btn-text bannerMenu" th:onclick="|MyUI.addParentTab({href:'@{/compile}',title:'在线调试'});|">
 	                                       		<p><lable class="fa fa-comments-o"></lable></p>
-	                                            <p><span style="white-space:nowrap;">在线调试</span></p>
+	                                            <p><span style="white-space: nowrap;">在线调试</span></p>
 	                                        </div>
 	                                    </li>
 	                                    <li id="moreMenu2" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
 	                                        <div class="l-btn-text bannerMenu">
 	                                            <p><lable class="fa fa-link"></lable></p>
-	                                            <p><span style="white-space:nowrap;">EasyUI中文站</span></p>
+	                                            <p><span style="white-space: nowrap;">EasyUI中文站</span></p>
 	                                        </div>
 	                                    </li>
 	                            	</ul>
