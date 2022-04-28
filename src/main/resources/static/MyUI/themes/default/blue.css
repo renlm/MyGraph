@@ -1,42 +1,50 @@
 /*easyui mian*/
-.index #west .tree-title {
+.myui #west .tree-title {
 	color: #fff!important;
 }
 
-.index #mm.menu, 
-.index #mmSetting.menu {
+.myui #mm.menu, 
+.myui #mmSetting.menu {
 	background-color: #f3f3f3!important;
     border-color: #d3d3d3!important;
     color: #444!important;
 }
 
-.index #mm.menu .menu-active, 
-.index #mmSetting.menu .menu-active {
+.myui #mm.menu .menu-active, 
+.myui #mmSetting.menu .menu-active {
     border-color: #FAFAFA;
     border-radius: 4px;
 }
 
-.index #mm.menu .menu-item,
-.index #mm.menu .menu-text,
-.index #mmSetting.menu .menu-item,
-.index #mmSetting.menu .menu-text {
+.myui #mm.menu .menu-item,
+.myui #mm.menu .menu-text,
+.myui #mmSetting.menu .menu-item,
+.myui #mmSetting.menu .menu-text {
     height: 25px!important;
     line-height: 25px!important;
     font-size: 12px!important;
 }
 
-.index .window {
+.myui .window {
     border-width: 3px 1px 1px 1px!important;
     box-shadow: 1px 1px 50px rgb(0 0 0 / 30%)!important;
 }
 
-.index .panel-header {
+.myui .panel-header {
     height: 37px!important;
 }
 
-.index .window .window-header .panel-title {
+.myui .window .window-header .panel-title {
    font-weight: 700!important;
    font-size: 12px!important;
+}
+
+.myui .datagrid-pager .l-btn-icon, .tabs-icon {
+    margin-top: -7px!important;
+}
+
+.myui .l-btn-focus {
+	outline: none!important;
 }
 
 #west .panel-icon, .panel-tool {
