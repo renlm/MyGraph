@@ -18,16 +18,16 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.GraphCategory;
-import cn.renlm.graph.modular.ds.dto.ErDto;
-import cn.renlm.graph.modular.ds.entity.ErField;
+import cn.renlm.graph.modular.er.dto.ErDto;
+import cn.renlm.graph.modular.er.entity.ErField;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
 import cn.renlm.graph.modular.graph.service.IGraphService;
-import cn.renlm.graph.modular.sys.dto.UserDto;
 import cn.renlm.graph.mxgraph.model.MxCell;
 import cn.renlm.graph.mxgraph.model.MxGeometry;
 import cn.renlm.graph.mxgraph.model.MxGraphModel;
 import cn.renlm.graph.mxgraph.model.Root;
+import cn.renlm.graph.security.User;
 
 /**
  * ER图形解析器
@@ -74,7 +74,7 @@ public class ERModelParser {
 	 * @param ers
 	 * @return
 	 */
-	public Graph create(UserDto user, String name, List<ErDto> ers) {
+	public Graph create(User user, String name, List<ErDto> ers) {
 		Graph graph = new Graph();
 		graph.setUuid(IdUtil.simpleUUID().toUpperCase());
 		MxGraphModel mxGraphModel = this.initMxGraphModel(graph, ers);

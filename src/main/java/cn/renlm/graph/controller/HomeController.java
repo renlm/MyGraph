@@ -1,10 +1,8 @@
 package cn.renlm.graph.controller;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,13 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.hutool.json.JSONUtil;
-import cn.renlm.graph.common.Resource;
-import cn.renlm.graph.modular.sys.dto.ResourceDto;
-import cn.renlm.graph.modular.sys.entity.SysResource;
-import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.oshi.OshiInfo;
 import cn.renlm.graph.oshi.OshiInfoUtil;
-import cn.renlm.graph.security.User;
 import cn.renlm.graph.ws.WsUtil;
 
 /**
@@ -31,9 +24,6 @@ import cn.renlm.graph.ws.WsUtil;
 @RequestMapping
 public class HomeController {
 
-	@Autowired
-	private ISysResourceService iSysResourceService;
-
 	/**
 	 * 主页
 	 * 
@@ -43,12 +33,8 @@ public class HomeController {
 	 */
 	@GetMapping("/")
 	public String index(Authentication authentication, ModelMap model) {
-		User user = (User) authentication.getPrincipal();
-		List<SysResource> homePages = iSysResourceService.findHomePagesByUserId(user.getUserId());
-		List<ResourceDto> modules = iSysResourceService.findChildsByUserId(user.getUserId(), null, Resource.Type.menu,
-				Resource.Type.urlNewWindows, Resource.Type.urlInsidePage, Resource.Type.more);
-		model.put("homePages", homePages);
-		model.put("modules", modules);
+		model.put("homePages", null);
+		model.put("modules", null);
 		return "index";
 	}
 

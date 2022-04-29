@@ -1,9 +1,7 @@
 package cn.renlm.graph.modular.sys.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-
-import cn.renlm.graph.modular.sys.dto.RoleResourceDto;
 import cn.renlm.graph.modular.sys.entity.SysRoleResource;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -11,16 +9,8 @@ import cn.renlm.graph.modular.sys.entity.SysRoleResource;
  * </p>
  *
  * @author Renlm
- * @since 2020-09-17
+ * @since 2022-04-29
  */
 public interface ISysRoleResourceService extends IService<SysRoleResource> {
-
-	/**
-	 * 根据主键ID获取详细信息
-	 * 
-	 * @param id
-	 * @return
-	 */
-	RoleResourceDto findDetailById(Long id);
 
 }

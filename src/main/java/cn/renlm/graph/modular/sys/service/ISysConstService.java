@@ -1,8 +1,7 @@
 package cn.renlm.graph.modular.sys.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
-
 import cn.renlm.graph.modular.sys.entity.SysConst;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -10,16 +9,8 @@ import cn.renlm.graph.modular.sys.entity.SysConst;
  * </p>
  *
  * @author Renlm
- * @since 2020-11-11
+ * @since 2022-04-29
  */
 public interface ISysConstService extends IService<SysConst> {
-
-	/**
-	 * 根据编码获取系统常量值
-	 * 
-	 * @param code
-	 * @return
-	 */
-	String val(String code);
 
 }

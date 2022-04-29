@@ -16,11 +16,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Result;
-import cn.renlm.graph.modular.ds.dto.ErDto;
-import cn.renlm.graph.modular.ds.entity.Er;
-import cn.renlm.graph.modular.ds.service.IErService;
-import cn.renlm.graph.modular.sys.dto.UserDto;
+import cn.renlm.graph.modular.er.dto.ErDto;
+import cn.renlm.graph.modular.er.entity.Er;
+import cn.renlm.graph.modular.er.service.IErService;
 import cn.renlm.graph.mxgraph.ERModelParser;
+import cn.renlm.graph.security.User;
 
 /**
  * ER模型
@@ -63,7 +63,7 @@ public class ErController {
 	@RequestMapping("/ajax/update")
 	public Result<?> ajaxUpdate(Authentication authentication, ErDto form) {
 		try {
-			UserDto user = (UserDto) authentication.getPrincipal();
+			User user = (User) authentication.getPrincipal();
 			Er entity = iErService.getOne(Wrappers.<Er>lambdaQuery().eq(Er::getUuid, form.getUuid()));
 			entity.setUpdatedAt(new Date());
 			entity.setUpdatorUserId(user.getUserId());
@@ -88,7 +88,7 @@ public class ErController {
 	@RequestMapping("/ajax/createGraph")
 	public Result<?> createGraph(Authentication authentication, String name, String uuids) {
 		try {
-			UserDto user = (UserDto) authentication.getPrincipal();
+			User user = (User) authentication.getPrincipal();
 			List<String> uuidList = StrUtil.splitTrim(uuids, StrUtil.COMMA);
 			List<ErDto> ers = iErService.findListWithFields(uuidList);
 			eRModelParser.create(user, name, ers);

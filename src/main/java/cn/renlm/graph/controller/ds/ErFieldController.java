@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.renlm.graph.common.Result;
-import cn.renlm.graph.modular.ds.entity.ErField;
-import cn.renlm.graph.modular.ds.service.IErFieldService;
-import cn.renlm.graph.modular.sys.dto.UserDto;
+import cn.renlm.graph.modular.er.entity.ErField;
+import cn.renlm.graph.modular.er.service.IErFieldService;
+import cn.renlm.graph.security.User;
 
 /**
  * ER模型-字段
@@ -68,7 +68,7 @@ public class ErFieldController {
 			Integer size, Integer digit, Boolean isNullable, Boolean autoIncrement, String columnDef, Boolean isPk,
 			Boolean isFk, String remark) {
 		try {
-			UserDto user = (UserDto) authentication.getPrincipal();
+			User user = (User) authentication.getPrincipal();
 			ErField entity = iErFieldService.getOne(Wrappers.<ErField>lambdaQuery().eq(ErField::getUuid, uuid));
 			entity.setName(name);
 			entity.setComment(comment);

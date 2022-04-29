@@ -23,7 +23,7 @@ import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
 import cn.renlm.graph.modular.graph.service.IGraphService;
-import cn.renlm.graph.modular.sys.dto.UserDto;
+import cn.renlm.graph.security.User;
 
 /**
  * 图形设计
@@ -69,7 +69,7 @@ public class GraphController {
 	@ResponseBody
 	@RequestMapping("/ajax/minePage")
 	public Datagrid<Graph> minePage(Authentication authentication, Page<Graph> page, GraphDto form) {
-		UserDto user = (UserDto) authentication.getPrincipal();
+		User user = (User) authentication.getPrincipal();
 		form.setCreatorUserId(user.getUserId());
 		Page<Graph> data = iGraphService.findPage(page, form);
 		return Datagrid.of(data);
@@ -128,7 +128,7 @@ public class GraphController {
 	@ResponseBody
 	@RequestMapping("/ajax/saveEditor")
 	public Result<?> saveEditor(Authentication authentication, GraphDto form) {
-		UserDto user = (UserDto) authentication.getPrincipal();
+		User user = (User) authentication.getPrincipal();
 		try {
 			Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, form.getUuid()));
 			graph.setZoom(ObjectUtil.defaultIfNull(form.getZoom(), new BigDecimal(1)));

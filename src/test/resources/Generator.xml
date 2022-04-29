@@ -22,7 +22,7 @@
 		<table author="Renlm" name="sys_file" idType="ASSIGN_ID" entity="true" />
 	</module>
 
-	<module name="ds" package="cn.renlm.graph.modular">
+	<module name="er" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="ds" entity="true" />
 		<table author="Renlm" name="er" entity="true" />
 		<table author="Renlm" name="er_field" entity="true" />
