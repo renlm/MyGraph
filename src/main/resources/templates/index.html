@@ -77,58 +77,59 @@
 	                </a>
 	          		<div style="overflow: hidden;position: relative;text-align: left;">
 	             		<ul class="nav-group">
-	                    	<li id="workbench" title="工作台" class="topmenu selected">
-	                      		<a class="l-btn-text bannerMenu" href="javascript:void(0);">
-	                                <p><lable class="fa fa-windows"></lable></p>
-	                                <p><span style="white-space: nowrap;">工作台</span></p>
-	                       		</a>
-	                        </li>
-	                        <li id="server" title="服务器" class="topmenu" 
-	                        	data-type="lastMenuTab"
-	                        	th:onclick="|MyUI.addIndexTab({href:'@{/oshi}',title:'服务器',iconCls:'fa fa-server'});|">
-	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
-	                                <p><lable class="fa fa-server" style="color: #FF5722;"></lable></p>
-	                                <p><span style="white-space: nowrap;">服务器</span></p>
-	                            </a>
-	                        </li>
-	                        <li id="graphlib" title="公共图库" class="topmenu" 
-	                        	data-type="lastMenuTab"
-	                        	th:onclick="|MyUI.addIndexTab({href:'@{/graph/lib}',title:'公共图库',iconCls:'fa fa-audio-description'});|">
-	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
-	                                <p><lable class="fa fa-audio-description"></lable></p>
-	                                <p><span style="white-space: nowrap;">公共图库</span></p>
-	                            </a>
-	                        </li>
-	                        <li id="help" title="帮助中心" class="topmenu" 
-	                        	data-type="lastMenuTab"
-	                        	th:onclick="|MyUI.addIndexTab({href:'@{/static/editor.md/index.html}',title:'帮助中心',iconCls:'fa fa-comments-o'});|">
-	                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
-	                                <p><lable class="fa fa-comments-o"></lable></p>
-	                                <p><span style="white-space: nowrap;">帮助中心</span></p>
-	                            </a>
-	                        </li>
-	                        <li id="moreFunc" class="topmenu lastMenu" data-type="lastMenu">
-	                            <a class="l-btn-text bannerMenu moreBox" target="_blank">
-	                                <p><lable class="fa fa-th"></lable></p>
-	                                <p><span style="white-space: nowrap;">更多功能</span></p>
-	                            </a>
-	                            <div id="moreMenu">
-	                           		<ul style="padding: 0;">
-	                                    <li id="moreMenu1" class="topmenu" th:onclick="|MyUI.addIndexTab({href:'@{/compile}',title:'在线调试',iconCls:'fa fa-code'});|">
-	                                   		<div class="l-btn-text bannerMenu">
-	                                       		<p><lable class="fa fa-code" style="color: rebeccapurple;"></lable></p>
-	                                            <p><span style="white-space: nowrap;">在线调试</span></p>
-	                                        </div>
-	                                    </li>
-	                                    <li id="moreMenu2" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
-	                                        <div class="l-btn-text bannerMenu">
-	                                            <p><lable class="fa fa-link"></lable></p>
-	                                            <p><span style="white-space: nowrap;">EasyUI中文站</span></p>
-	                                        </div>
-	                                    </li>
-	                            	</ul>
-	                          	</div>
-	                      	</li>
+	             			<th:block th:each="r1,iterStat1 : ${#authentication.principal.resources}">
+	             				<li th:if="${r1.resourceTypeCode == 'menu' and r1.level == 1}" 
+	             					th:id="${r1.resourceId}"
+	             					th:title="${r1.text}" 
+	             					th:class="|topmenu${iterStat1.index == 0?' selected':''}|">
+		                      		<a class="l-btn-text bannerMenu" href="javascript:void(0);">
+		                                <p th:if="${#strings.isEmpty(r1.iconClsColour)}"><lable th:class="${r1.iconCls}"></lable></p>
+		                                <p th:if="${!#strings.isEmpty(r1.iconClsColour)}"><lable th:class="${r1.iconCls}" th:style="|color: ${r1.iconClsColour};|"></lable></p>
+		                                <p th:if="${#strings.isEmpty(r1.textColour)}"><span th:text="${r1.text}" style="white-space: nowrap;"></span></p>
+		                                <p th:if="${!#strings.isEmpty(r1.textColour)}"><span th:text="${r1.text}" th:style="|color: ${r1.textColour};white-space: nowrap;|"></span></p>
+		                       		</a>
+		                        </li>
+		                        <li th:if="${r1.resourceTypeCode == 'urlInsidePage' and r1.level == 1}"
+	             					th:id="${r1.resourceId}"
+	             					th:title="${r1.text}"
+	             					th:class="|topmenu${iterStat1.index == 0?' selected':''}|"
+		                        	data-type="lastMenuTab"
+		                        	th:data-href="${r1.url}"
+		                        	th:data-icon-cls="${r1.iconCls}"
+		                        	th:onclick="|MyUI.addIndexTab({href:this.getAttribute('data-href'),title:this.getAttribute('title'),iconCls:this.getAttribute('data-icon-cls')});|">
+		                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
+		                                <p th:if="${#strings.isEmpty(r1.iconClsColour)}"><lable th:class="${r1.iconCls}"></lable></p>
+		                                <p th:if="${!#strings.isEmpty(r1.iconClsColour)}"><lable th:class="${r1.iconCls}" th:style="|color: ${r1.iconClsColour};|"></lable></p>
+		                                <p th:if="${#strings.isEmpty(r1.textColour)}"><span th:text="${r1.text}" style="white-space: nowrap;"></span></p>
+		                                <p th:if="${!#strings.isEmpty(r1.textColour)}"><span th:text="${r1.text}" th:style="|color: ${r1.textColour};white-space: nowrap;|"></span></p>
+		                       		</a>
+		                        </li>
+		                        <li th:if="${r1.resourceTypeCode == 'more' and r1.level == 1}"
+	             					th:id="${r1.resourceId}" 
+	             					th:class="|topmenu${iterStat1.index == 0?' selected':''}|"
+	             					class="topmenu lastMenu" data-type="lastMenu">
+		                            <a class="l-btn-text bannerMenu moreBox" target="_blank">
+		                                <p><lable class="fa fa-th"></lable></p>
+		                                <p><span style="white-space: nowrap;">更多功能</span></p>
+		                            </a>
+		                            <div id="moreMenu">
+		                           		<ul style="padding: 0;">
+		                                    <li id="moreMenu1" class="topmenu" th:onclick="|MyUI.addIndexTab({href:'@{/compile}',title:'在线调试',iconCls:'fa fa-code'});|">
+		                                   		<div class="l-btn-text bannerMenu">
+		                                       		<p><lable class="fa fa-code" style="color: rebeccapurple;"></lable></p>
+		                                            <p><span style="white-space: nowrap;">在线调试</span></p>
+		                                        </div>
+		                                    </li>
+		                                    <li id="moreMenu2" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
+		                                        <div class="l-btn-text bannerMenu">
+		                                            <p><lable class="fa fa-link"></lable></p>
+		                                            <p><span style="white-space: nowrap;">EasyUI中文站</span></p>
+		                                        </div>
+		                                    </li>
+		                            	</ul>
+		                          	</div>
+		                      	</li>
+	             			</th:block>
 	                 	</ul>
 	             	</div>
 	        	</div>
