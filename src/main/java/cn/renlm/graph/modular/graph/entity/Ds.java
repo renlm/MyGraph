@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.sys.entity;
+package cn.renlm.graph.modular.graph.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 角色
+ * 数据源
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("sys_role")
-public class SysRole implements Serializable {
+@TableName("ds")
+public class Ds implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,52 +33,34 @@ public class SysRole implements Serializable {
     private Long id;
 
     /**
-     * 角色ID
+     * UUID
      */
-    @TableField("role_id")
-    private String roleId;
+    @TableField("uuid")
+    private String uuid;
 
     /**
-     * 代码
+     * JDBC链接
      */
-    @TableField("code")
-    private String code;
+    @TableField("url")
+    private String url;
 
     /**
-     * 名称
+     * 模式
      */
-    @TableField("text")
-    private String text;
+    @TableField("schema")
+    private String schema;
 
     /**
-     * 图标
+     * 账号
      */
-    @TableField("icon_cls")
-    private String iconCls;
+    @TableField("username")
+    private String username;
 
     /**
-     * 层级
+     * 密码
      */
-    @TableField("level")
-    private Integer level;
-
-    /**
-     * 排序
-     */
-    @TableField("sort")
-    private Integer sort;
-
-    /**
-     * 展开状态，open：无子角色、closed：有子角色
-     */
-    @TableField("state")
-    private String state;
-
-    /**
-     * 父级id
-     */
-    @TableField("pid")
-    private Long pid;
+    @TableField("password")
+    private String password;
 
     /**
      * 创建时间
@@ -87,16 +69,34 @@ public class SysRole implements Serializable {
     private Date createdAt;
 
     /**
+     * 创建人（用户ID）
+     */
+    @TableField("creator_user_id")
+    private String creatorUserId;
+
+    /**
+     * 创建人（昵称）
+     */
+    @TableField("creator_nickname")
+    private String creatorNickname;
+
+    /**
      * 更新时间
      */
     @TableField("updated_at")
     private Date updatedAt;
 
     /**
-     * 是否禁用（默认否）
+     * 更新人（用户ID）
      */
-    @TableField("disabled")
-    private Boolean disabled;
+    @TableField("updator_user_id")
+    private String updatorUserId;
+
+    /**
+     * 更新人（昵称）
+     */
+    @TableField("updator_nickname")
+    private String updatorNickname;
 
     /**
      * 是否删除（默认否）

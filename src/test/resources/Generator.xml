@@ -3,11 +3,26 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="https://www.renlm.cn/schemas/MyGenerator.xsd">
 
-	<url>jdbc:postgresql://renlm.cn:5432/renlm</url>
-	<username>renlm</username>
-	<password>K86erp7IMYust^tn50jlsdi^_fyw4bnmdf4K</password>
+	<url>jdbc:mysql://renlm.cn:3306/graph</url>
+	<username>graph</username>
+	<password>Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504</password>
+	
+	<module name="sys" package="cn.renlm.graph.modular">
+		<table author="Renlm" name="sys_org" entity="true" />
+		<table author="Renlm" name="sys_user" entity="true" />
+		<table author="Renlm" name="sys_user_org" entity="true" />
+		<table author="Renlm" name="sys_user_post" entity="true" />
+		<table author="Renlm" name="sys_user_role" entity="true" />
+		<table author="Renlm" name="sys_role" entity="true" />
+		<table author="Renlm" name="sys_role_resource" entity="true" />
+		<table author="Renlm" name="sys_resource" entity="true" />
+		
+		<table author="Renlm" name="sys_const" idType="ASSIGN_ID" entity="true" />
+		<table author="Renlm" name="sys_dict" idType="ASSIGN_ID" entity="true" />
+		<table author="Renlm" name="sys_file" idType="ASSIGN_ID" entity="true" />
+	</module>
 
-	<module name="graph" package="cn.renlm">
+	<module name="graph" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="users" entity="true" />
 		<table author="Renlm" name="ds" entity="true" />
 		<table author="Renlm" name="er" entity="true" />

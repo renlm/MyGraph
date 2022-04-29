@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.sys.entity;
+package cn.renlm.graph.modular.graph.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 角色
+ * 用户
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("sys_role")
-public class SysRole implements Serializable {
+@TableName("users")
+public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,52 +33,46 @@ public class SysRole implements Serializable {
     private Long id;
 
     /**
-     * 角色ID
+     * 用户ID
      */
-    @TableField("role_id")
-    private String roleId;
+    @TableField("user_id")
+    private String userId;
 
     /**
-     * 代码
+     * 登录账号
      */
-    @TableField("code")
-    private String code;
+    @TableField("username")
+    private String username;
 
     /**
-     * 名称
+     * 密码
      */
-    @TableField("text")
-    private String text;
+    @TableField("password")
+    private String password;
 
     /**
-     * 图标
+     * 昵称
      */
-    @TableField("icon_cls")
-    private String iconCls;
+    @TableField("nickname")
+    private String nickname;
 
     /**
-     * 层级
+     * 手机号码
      */
-    @TableField("level")
-    private Integer level;
+    @TableField("mobile")
+    private String mobile;
 
     /**
-     * 排序
+     * 邮箱地址
      */
-    @TableField("sort")
-    private Integer sort;
+    @TableField("email")
+    private String email;
 
     /**
-     * 展开状态，open：无子角色、closed：有子角色
+     * 角色（admin，user，self）
      */
-    @TableField("state")
-    private String state;
-
-    /**
-     * 父级id
-     */
-    @TableField("pid")
-    private Long pid;
+    @TableField("role")
+    private String role;
 
     /**
      * 创建时间
@@ -97,18 +91,6 @@ public class SysRole implements Serializable {
      */
     @TableField("disabled")
     private Boolean disabled;
-
-    /**
-     * 是否删除（默认否）
-     */
-    @TableField("deleted")
-    private Boolean deleted;
-
-    /**
-     * 备注
-     */
-    @TableField("remark")
-    private String remark;
 
 
 }
