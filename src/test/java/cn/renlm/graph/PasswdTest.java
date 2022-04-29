@@ -3,6 +3,8 @@ package cn.renlm.graph;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import cn.hutool.core.util.IdUtil;
+
 /**
  * 密码
  * 
@@ -15,5 +17,10 @@ public class PasswdTest {
 	public void test() {
 		String encodePasswd = new BCryptPasswordEncoder().encode("Aac^123654.");
 		System.out.println(encodePasswd);
+	}
+
+	@Test
+	public void uuid() {
+		System.out.println(IdUtil.simpleUUID().toUpperCase());
 	}
 }

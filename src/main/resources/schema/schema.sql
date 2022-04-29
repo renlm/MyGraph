@@ -92,7 +92,7 @@ CREATE TABLE sys_user_org(
 DROP TABLE IF EXISTS sys_resource;
 CREATE TABLE sys_resource(
 	id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
-    resource_id     			CHAR(19)		UNIQUE			NOT NULL		COMMENT '资源ID',
+    resource_id     			CHAR(32)		UNIQUE			NOT NULL		COMMENT '资源ID',
     code     					VARCHAR(20)   	UNIQUE			NOT NULL 		COMMENT '代码',
     text     					VARCHAR(255)   					NOT NULL 		COMMENT '名称',
     resource_type_code			VARCHAR(20)             		NOT NULL 		COMMENT '资源类型（编码）',
