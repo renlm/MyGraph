@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-	<title>工作台</title>
+	<title th:text="${#ConstUtil.getValue('cfgSystemName')}"></title>
 	<!-- MyUI -->
 	<link rel="stylesheet" type="text/css" th:href="@{/static/MyUI/themes/default/sidemenu.css}" />
 	<link rel="stylesheet" type="text/css" th:href="@{/static/MyUI/themes/default/newStyle.css}" />
