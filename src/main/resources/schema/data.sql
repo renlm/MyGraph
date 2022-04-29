@@ -20,19 +20,19 @@ VALUES (10,  	'F536D20F2ED04A5A9BA07EB4EFF1ABB4',	'PLATFORM',				'平台管理',
 -- 组织机构
 DELETE FROM sys_org;
 INSERT INTO sys_org
-	   (id,		org_id, 				code, 						text, 				org_type_code,	leader_user_id, 					icon_cls, 	level, sort, state, 	pid)
-VALUES (1,		'1482645888395915264',	'FIRE',						'火星科技股份有限公司',	'1',		  	null,								null,	    1,     1,    'closed',  null),
-	   (10,		'1482646087877128192',	'FIRE-HRMC',				'人力资源管理中心',		'2',		  	'AE82571C404544218D373B294EB87E80',	null,	    2,     1,    'closed',  1),
-	   (1001,	'1482646131992809472',	'FIRE-HRMC-ZZFZ',			'组织发展部',			'2',		  	null,								null,	    3,     1,    'open',  	10),
-	   (20,		'1482646180038557696',	'FIRE-PRDMC',				'产品研发管理中心',		'2',		  	null,								null,	    2,     2,    'closed',  1),
-	   (2001,	'1482646241363484672',	'FIRE-PRDMC-YF',			'研发管理部',			'2',		  	null,			  					null,	    3,     1,    'closed',  20),
-	   (200101,	'1482646291644694528',	'FIRE-PRDMC-YF-QD',			'前端技术组',			'2',		  	null,			  					null,	    4,     1,    'open',  	2001),
-	   (200102,	'1482646346506194944',	'FIRE-PRDMC-YF-JAVA',		'Java技术组',			'2',		  	null,								null,	    4,     2,    'open',  	2001),
-	   (2002,	'1482646395470491648',	'FIRE-PRDMC-CP',			'产品管理部',			'2',		  	null,			  					null,	    3,     2,    'open',  	20),
-	   (2003,	'1482646456061419520',	'FIRE-PRDMC-PUB',			'公共组',				'2',		  	null,			  					null,	    3,     3,    'open',  	20),
-	   (30,		'1482646544687063040',	'FIRE-PTC',					'平台技术中心',			'2',		  	'ABFEE20BA6AC4783A683C7117763951E',	null,	    2,     3,    'closed',  1),
-	   (3001,	'1482646593714368512',	'FIRE-PTC-JCFW',			'基础服务部',			'2',		  	null,			  					null,	    3,     1,    'open',  	30),
-	   (3002,	'1482646672986632192',	'FIRE-PTC-YWJS',			'运维技术部',			'2',		  	null,			  					null,	    3,     2,    'open',  	30)
+	   (id,		org_id, 							code, 						text, 				org_type_code,	leader_user_id, 					icon_cls, 	level, sort, state, 	pid)
+VALUES (1,		'B89E08CA5C0D4C26AAEE66AD7DD05F32',	'FIRE',						'火星科技股份有限公司',	'1',		  	null,								null,	    1,     1,    'closed',  null),
+	   (10,		'166E7AC4D0EA4DF0BDFC3494A94C0E00',	'FIRE-HRMC',				'人力资源管理中心',		'2',		  	'AE82571C404544218D373B294EB87E80',	null,	    2,     1,    'closed',  1),
+	   (1001,	'538C7D2A27C2409DB79EF1FDD55ED4FA',	'FIRE-HRMC-ZZFZ',			'组织发展部',			'2',		  	null,								null,	    3,     1,    'open',  	10),
+	   (20,		'F8D36B22B9ED4F91AF8137AE8598E72B',	'FIRE-PRDMC',				'产品研发管理中心',		'2',		  	null,								null,	    2,     2,    'closed',  1),
+	   (2001,	'397F48F5EC364453933170EF4389F3F2',	'FIRE-PRDMC-YF',			'研发管理部',			'2',		  	null,			  					null,	    3,     1,    'closed',  20),
+	   (200101,	'0439F0A26FA040F0B69C744C6141FA60',	'FIRE-PRDMC-YF-QD',			'前端技术组',			'2',		  	null,			  					null,	    4,     1,    'open',  	2001),
+	   (200102,	'34605729040D4D4CA86B2E766DA3F888',	'FIRE-PRDMC-YF-JAVA',		'Java技术组',			'2',		  	null,								null,	    4,     2,    'open',  	2001),
+	   (2002,	'1BB92E1E12B944708FFCC9DE543A4F14',	'FIRE-PRDMC-CP',			'产品管理部',			'2',		  	null,			  					null,	    3,     2,    'open',  	20),
+	   (2003,	'F6E7E097264C4740AB5BF008777C601E',	'FIRE-PRDMC-PUB',			'公共组',				'2',		  	null,			  					null,	    3,     3,    'open',  	20),
+	   (30,		'E9037686D3B34F1FB7498F58A245110E',	'FIRE-PTC',					'平台技术中心',			'2',		  	'ABFEE20BA6AC4783A683C7117763951E',	null,	    2,     3,    'closed',  1),
+	   (3001,	'093A05A3597D453B808B16C1438EF9CE',	'FIRE-PTC-JCFW',			'基础服务部',			'2',		  	null,			  					null,	    3,     1,    'open',  	30),
+	   (3002,	'D09AC370D0424A26BF0DE2C97CAB9AD5',	'FIRE-PTC-YWJS',			'运维技术部',			'2',		  	null,			  					null,	    3,     2,    'open',  	30)
 ;
 
 -- 用户角色关系
@@ -131,11 +131,11 @@ WHERE code IN ('HOME', 'WELCOME', '10', '1001', '100101', '1002', '100201', '40'
 -- 系统常量
 DELETE FROM sys_const;
 INSERT INTO sys_const
-	   (const_id,				code, 								name, 				val, 					sort, 	remark)
-VALUES ('1482659697030336512',	'cfgSystemName',					'系统名称',			'Crawler 管理后台',		1,		'系统名称'),
-	   ('1482659753204768768',	'cfgSystemVersion',					'系统版本',			'v1.0.1',				2,		'系统当前上线版本'),
-	   ('1482659801116307456',	'cfgSystemVersionPublishDate',		'发布日期',			'2021-01-11',			3,		'系统当前上线版本的发布日期'),
-	   ('1482659848067252224',	'cfgSiteBeian',						'网站备案号',			'京ICP备2021000671号',	4,		'网站上显示的备案号')
+	   (const_id,							code, 								name, 				val, 					sort, 	remark)
+VALUES ('BA8A2BE8EFE24768942B7BA468CD3440',	'cfgSystemName',					'系统名称',			'MyGraph 在线画图',		1,		'系统名称'),
+	   ('1E358EC8EB6F4C9391EF59AC99326ABB',	'cfgSystemVersion',					'系统版本',			'v1.0.1',				2,		'系统当前上线版本'),
+	   ('1199F98DB51143B7B4825ADB91759E56',	'cfgSystemVersionPublishDate',		'发布日期',			'2022-04-29',			3,		'系统当前上线版本的发布日期'),
+	   ('828E0187483F4F768571C1A749DD63EF',	'cfgSiteBeian',						'网站备案号',			'京ICP备2021000671号',	4,		'网站上显示的备案号')
 ;
 
 -- 图形设计
