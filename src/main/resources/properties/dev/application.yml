@@ -63,7 +63,29 @@ spring:
           password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
           driver-class-name: com.mysql.cj.jdbc.Driver
           init:
-            schema: classpath:schema/MySQL/schema.sql
-            data: classpath:schema/MySQL/data.sql
+            schema: classpath:schema/schema.sql
+            data: classpath:schema/data.sql
             continue-on-error: false
             separator: ";"
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            misfireThreshold: 60000
+            clusterCheckinInterval: 5000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
