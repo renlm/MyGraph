@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,14 +18,13 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.crawler.Result;
-import cn.renlm.crawler.consts.ResourceType;
-import cn.renlm.crawler.security.DynamicFilterInvocationSecurityMetadataSource;
-import cn.renlm.crawler.sys.dto.ResourceDto;
-import cn.renlm.crawler.sys.dto.User;
-import cn.renlm.crawler.sys.entity.SysResource;
-import cn.renlm.crawler.sys.service.ISysResourceService;
-import cn.renlm.crawler.utils.SpringSecurityUtil;
+import cn.renlm.graph.common.Resource;
+import cn.renlm.graph.common.Result;
+import cn.renlm.graph.modular.sys.dto.ResourceDto;
+import cn.renlm.graph.modular.sys.dto.User;
+import cn.renlm.graph.modular.sys.entity.SysResource;
+import cn.renlm.graph.modular.sys.service.ISysResourceService;
+import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
 
 /**
  * 资源
@@ -58,10 +58,10 @@ public class SysResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("/listMenuByPid")
-	public List<ResourceDto> listMenuByPid(HttpServletRequest request, Long pid) {
-		User user = SpringSecurityUtil.getPrincipal(request, User.class);
-		return iSysResourceService.findChildsByUserId(user.getUserId(), pid, ResourceType.menu,
-				ResourceType.urlNewWindows, ResourceType.urlInsidePage);
+	public List<ResourceDto> listMenuByPid(Authentication authentication, Long pid) {
+		User user = (User) authentication.getPrincipal();
+		return iSysResourceService.findChildsByUserId(user.getUserId(), pid, Resource.Type.menu,
+				Resource.Type.urlNewWindows, Resource.Type.urlInsidePage);
 	}
 
 	/**
@@ -73,8 +73,8 @@ public class SysResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("/listCommonMenuByText")
-	public List<ResourceDto> listCommonMenuByText(HttpServletRequest request, String text) {
-		User user = SpringSecurityUtil.getPrincipal(request, User.class);
+	public List<ResourceDto> listCommonMenuByText(Authentication authentication, String text) {
+		User user = (User) authentication.getPrincipal();
 		return iSysResourceService.findCommonMenusByUserId(user.getUserId(), text);
 	}
 
@@ -151,7 +151,7 @@ public class SysResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	public Result ajaxSave(HttpServletRequest request, SysResource sysResource) {
+	public Result<String> ajaxSave(HttpServletRequest request, SysResource sysResource) {
 		try {
 			SysResource exists = iSysResourceService
 					.getOne(Wrappers.<SysResource>lambdaQuery().eq(SysResource::getCode, sysResource.getCode()));
@@ -203,7 +203,7 @@ public class SysResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/del")
-	public Result ajaxDel(HttpServletRequest request, String resourceId) {
+	public Result<Integer> ajaxDel(HttpServletRequest request, String resourceId) {
 		try {
 			int cnt = iSysResourceService.delCascadeByResourceId(resourceId);
 			return Result.success(cnt);

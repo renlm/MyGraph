@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -21,15 +22,15 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.crawler.Result;
-import cn.renlm.crawler.security.UserService;
-import cn.renlm.crawler.sys.dto.User;
-import cn.renlm.crawler.sys.dto.UserDto;
-import cn.renlm.crawler.sys.entity.SysUser;
-import cn.renlm.crawler.sys.service.ISysUserOrgService;
-import cn.renlm.crawler.sys.service.ISysUserRoleService;
-import cn.renlm.crawler.sys.service.ISysUserService;
-import cn.renlm.crawler.utils.SpringSecurityUtil;
+import cn.renlm.graph.common.ConstVal;
+import cn.renlm.graph.common.Result;
+import cn.renlm.graph.modular.sys.dto.User;
+import cn.renlm.graph.modular.sys.dto.UserDto;
+import cn.renlm.graph.modular.sys.entity.SysUser;
+import cn.renlm.graph.modular.sys.service.ISysUserOrgService;
+import cn.renlm.graph.modular.sys.service.ISysUserRoleService;
+import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.security.UserService;
 
 /**
  * 用户
@@ -112,13 +113,13 @@ public class SysUserController {
 	/**
 	 * 根据当前登录用户信息
 	 * 
-	 * @param request
+	 * @param authentication
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/getSelfDetail")
-	public UserDto getSelfDetail(HttpServletRequest request) {
-		User user = SpringSecurityUtil.getPrincipal(request, User.class);
+	public UserDto getSelfDetail(Authentication authentication) {
+		User user = (User) authentication.getPrincipal();
 		return iSysUserService.findByUserId(user.getUserId());
 	}
 
@@ -144,11 +145,11 @@ public class SysUserController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	public Result ajaxSave(HttpServletRequest request, UserDto sysUser) {
+	public Result<String> ajaxSave(HttpServletRequest request, UserDto sysUser) {
 		try {
 			// 校验账号（格式）
-			if (!ReUtil.isMatch(SpringSecurityUtil.username_reg, sysUser.getUsername())) {
-				return Result.error(SpringSecurityUtil.username_msg);
+			if (!ReUtil.isMatch(ConstVal.username_reg, sysUser.getUsername())) {
+				return Result.error(ConstVal.username_msg);
 			}
 			SysUser exists = iSysUserService
 					.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername, sysUser.getUsername()));
@@ -158,8 +159,8 @@ public class SysUserController {
 					return Result.error("登录账号已存在");
 				}
 				// 校验密码（格式）
-				if (!ReUtil.isMatch(SpringSecurityUtil.password_reg, sysUser.getPassword())) {
-					return Result.error(SpringSecurityUtil.password_msg);
+				if (!ReUtil.isMatch(ConstVal.password_reg, sysUser.getPassword())) {
+					return Result.error(ConstVal.password_msg);
 				}
 				sysUser.setUserId(IdUtil.simpleUUID().toUpperCase());
 				sysUser.setPassword(new BCryptPasswordEncoder().encode(sysUser.getPassword()));
@@ -193,18 +194,18 @@ public class SysUserController {
 	/**
 	 * 修改个人信息
 	 * 
-	 * @param request
+	 * @param authentication
 	 * @param sysUser
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/saveSelfInfo")
-	public Result saveSelfInfo(HttpServletRequest request, UserDto sysUser) {
-		User user = SpringSecurityUtil.getPrincipal(request, User.class);
+	public Result<SysUser> saveSelfInfo(Authentication authentication, UserDto sysUser) {
+		User user = (User) authentication.getPrincipal();
 		try {
 			// 校验账号（格式）
-			if (!ReUtil.isMatch(SpringSecurityUtil.username_reg, sysUser.getUsername())) {
-				return Result.error(SpringSecurityUtil.username_msg);
+			if (!ReUtil.isMatch(ConstVal.username_reg, sysUser.getUsername())) {
+				return Result.error(ConstVal.username_msg);
 			}
 			SysUser exists = iSysUserService
 					.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername, sysUser.getUsername()));
@@ -223,7 +224,7 @@ public class SysUserController {
 			sysUser.setCreatedAt(entity.getCreatedAt());
 			sysUser.setUpdatedAt(new Date());
 			iSysUserService.saveOrUpdate(sysUser);
-			userService.refreshAuthentication(request, sysUser.getUsername());
+			userService.refreshAuthentication();
 			return Result.success(sysUser.setPassword(null));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -240,15 +241,15 @@ public class SysUserController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/modifyPwd")
-	public Result modifyPwd(HttpServletRequest request, UserDto sysUser) {
-		User user = SpringSecurityUtil.getPrincipal(request, User.class);
+	public Result<String> modifyPwd(Authentication authentication, UserDto sysUser) {
+		User user = (User) authentication.getPrincipal();
 		try {
 			if (!StrUtil.equals(sysUser.getNewPassword(), sysUser.getConfirmPassword())) {
 				return Result.error("两次输入的密码不一致");
 			}
 			// 校验密码（格式）
-			if (!ReUtil.isMatch(SpringSecurityUtil.password_reg, sysUser.getNewPassword())) {
-				return Result.error(SpringSecurityUtil.password_msg);
+			if (!ReUtil.isMatch(ConstVal.password_reg, sysUser.getNewPassword())) {
+				return Result.error(ConstVal.password_msg);
 			}
 			SysUser entity = iSysUserService.getById(user.getId());
 			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -274,7 +275,7 @@ public class SysUserController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/resetPassword")
-	public Result resetPassword(HttpServletRequest request, String userIds) {
+	public Result<?> resetPassword(HttpServletRequest request, String userIds) {
 		try {
 			if (StrUtil.isBlank(userIds)) {
 				return Result.error("未选中用户");

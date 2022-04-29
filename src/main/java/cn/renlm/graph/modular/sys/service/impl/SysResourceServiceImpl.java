@@ -88,14 +88,14 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 	}
 
 	@Override
-	public List<ResourceDto> findChildsByUserId(String userId, Long pid, Resource... types) {
+	public List<ResourceDto> findChildsByUserId(String userId, Long pid, Resource.Type... types) {
 		List<SysRole> roles = iSysRoleService.findListByUserId(userId);
 		List<Long> sysRoleIds = roles.stream().map(SysRole::getId).collect(Collectors.toList());
 		if (CollUtil.isEmpty(sysRoleIds)) {
 			return CollUtil.newArrayList();
 		}
 		List<String> resourceTypeCodes = CollUtil.newArrayList();
-		for (Resource type : types) {
+		for (Resource.Type type : types) {
 			resourceTypeCodes.add(type.name());
 		}
 		List<ResourceDto> resources = this.findListBySysRoleIds(sysRoleIds, wrapper -> {

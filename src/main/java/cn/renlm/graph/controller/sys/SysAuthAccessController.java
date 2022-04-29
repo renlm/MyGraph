@@ -13,11 +13,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.crawler.Result;
-import cn.renlm.crawler.sys.dto.ResourceDto;
-import cn.renlm.crawler.sys.dto.UserDto;
-import cn.renlm.crawler.sys.entity.SysUser;
-import cn.renlm.crawler.sys.service.SysAuthAccessService;
+import cn.renlm.graph.common.Result;
+import cn.renlm.graph.modular.sys.dto.ResourceDto;
+import cn.renlm.graph.modular.sys.dto.UserDto;
+import cn.renlm.graph.modular.sys.entity.SysUser;
+import cn.renlm.graph.modular.sys.service.SysAuthAccessService;
 
 /**
  * 角色授权
@@ -68,7 +68,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@RequestMapping("/grant")
-	public Result grant(HttpServletRequest request, String roleId, String resourceIds) {
+	public Result<List<ResourceDto>> grant(HttpServletRequest request, String roleId, String resourceIds) {
 		try {
 			List<ResourceDto> list = sysAuthAccessService.grant(roleId, StrUtil.splitTrim(resourceIds, StrUtil.COMMA));
 			return Result.success(list);
@@ -88,7 +88,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ungrant")
-	public Result ungrant(HttpServletRequest request, String roleId, String resourceIds) {
+	public Result<List<ResourceDto>> ungrant(HttpServletRequest request, String roleId, String resourceIds) {
 		try {
 			List<ResourceDto> list = sysAuthAccessService.ungrant(roleId,
 					StrUtil.splitTrim(resourceIds, StrUtil.COMMA));
@@ -123,7 +123,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@RequestMapping("/addRoleMember")
-	public Result addRoleMember(HttpServletRequest request, String roleId, String userIds) {
+	public Result<?> addRoleMember(HttpServletRequest request, String roleId, String userIds) {
 		try {
 			roleId = CollUtil.getFirst(CollUtil.distinct(StrUtil.splitTrim(roleId, StrUtil.COMMA)));
 			sysAuthAccessService.addRoleMember(roleId, StrUtil.splitTrim(userIds, StrUtil.COMMA));
@@ -144,7 +144,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@RequestMapping("/removeRoleMember")
-	public Result removeRoleMember(HttpServletRequest request, String roleId, String userIds) {
+	public Result<?> removeRoleMember(HttpServletRequest request, String roleId, String userIds) {
 		try {
 			roleId = CollUtil.getFirst(CollUtil.distinct(StrUtil.splitTrim(roleId, StrUtil.COMMA)));
 			sysAuthAccessService.removeRoleMember(roleId, StrUtil.splitTrim(userIds, StrUtil.COMMA));

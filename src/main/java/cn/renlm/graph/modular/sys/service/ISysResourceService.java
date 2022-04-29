@@ -36,7 +36,7 @@ public interface ISysResourceService extends IService<SysResource> {
 	 * @param types
 	 * @return
 	 */
-	List<ResourceDto> findChildsByUserId(String userId, Long pid, Resource... types);
+	List<ResourceDto> findChildsByUserId(String userId, Long pid, Resource.Type... types);
 
 	/**
 	 * 根据指定用户ID获取常用菜单

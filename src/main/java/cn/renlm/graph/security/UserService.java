@@ -4,13 +4,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -48,16 +47,15 @@ public class UserService implements UserDetailsService {
 	}
 
 	/**
-	 * 刷新登录用户信息（当前）
-	 * 
-	 * @param request
-	 * @param username
+	 * 刷新当前登录用户信息
 	 */
-	public void refreshAuthentication(HttpServletRequest request, String username) {
-		User principal = iSysUserService.loadUserByUsername(username);
-		Authentication authentication = new UsernamePasswordAuthenticationToken(principal, principal.getPassword(),
-				principal.getAuthorities());
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+	public void refreshAuthentication() {
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+		Authentication authentication = securityContext.getAuthentication();
+		User user = (User) authentication.getPrincipal();
+		User principal = iSysUserService.loadUserByUsername(user.getUsername());
+		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(principal,
+				principal.getPassword(), principal.getAuthorities()));
 	}
 
 	/**

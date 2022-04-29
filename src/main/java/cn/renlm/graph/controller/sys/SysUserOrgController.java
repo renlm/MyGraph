@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import cn.renlm.crawler.Result;
-import cn.renlm.crawler.sys.dto.UserOrgDto;
-import cn.renlm.crawler.sys.entity.SysUserOrg;
-import cn.renlm.crawler.sys.service.ISysUserOrgService;
+import cn.renlm.graph.common.Result;
+import cn.renlm.graph.modular.sys.dto.UserOrgDto;
+import cn.renlm.graph.modular.sys.entity.SysUserOrg;
+import cn.renlm.graph.modular.sys.service.ISysUserOrgService;
 
 /**
  * 用户组织机构关系
@@ -53,7 +53,7 @@ public class SysUserOrgController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/update")
-	public Result ajaxUpdate(HttpServletRequest request, Long id, String positionCode, String positionName) {
+	public Result<String> ajaxUpdate(HttpServletRequest request, Long id, String positionCode, String positionName) {
 		try {
 			SysUserOrg entity = iSysUserOrgService.getById(id);
 			entity.setPositionCode(positionCode);

@@ -43,6 +43,22 @@ public class AmqpUtil {
 	public static final String RoutingKey = "RoutingKey";
 
 	/**
+	 * 添加队列
+	 * 
+	 * @param <T>
+	 * @param exchange
+	 * @param routingKey
+	 * @param data
+	 */
+	public static final <T> void createQueue(String exchange, String routingKey, T data) {
+		Assert.notBlank(exchange, "exchange不能为空");
+		Assert.notBlank(routingKey, "routingKey不能为空");
+		Assert.notNull(data, "data不能为空");
+		AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
+		amqpTemplate.convertAndSend(exchange, routingKey, data);
+	}
+
+	/**
 	 * 创建延时任务
 	 * 
 	 * @param taskClass 任务执行类

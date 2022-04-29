@@ -17,11 +17,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.crawler.Result;
-import cn.renlm.crawler.sys.dto.OrgChartDto;
-import cn.renlm.crawler.sys.dto.OrgDto;
-import cn.renlm.crawler.sys.entity.SysOrg;
-import cn.renlm.crawler.sys.service.ISysOrgService;
+import cn.renlm.graph.common.Result;
+import cn.renlm.graph.modular.sys.dto.OrgChartDto;
+import cn.renlm.graph.modular.sys.dto.OrgDto;
+import cn.renlm.graph.modular.sys.entity.SysOrg;
+import cn.renlm.graph.modular.sys.service.ISysOrgService;
 
 /**
  * 组织机构
@@ -141,7 +141,7 @@ public class SysOrgController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	public Result ajaxSave(HttpServletRequest request, SysOrg sysOrg) {
+	public Result<?> ajaxSave(HttpServletRequest request, SysOrg sysOrg) {
 		try {
 			SysOrg exists = iSysOrgService.getOne(Wrappers.<SysOrg>lambdaQuery().eq(SysOrg::getCode, sysOrg.getCode()));
 			if (StrUtil.isBlank(sysOrg.getOrgId())) {
@@ -191,7 +191,7 @@ public class SysOrgController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/del")
-	public Result ajaxDel(HttpServletRequest request, String orgId) {
+	public Result<Integer> ajaxDel(HttpServletRequest request, String orgId) {
 		try {
 			int cnt = iSysOrgService.delCascadeByOrgId(orgId);
 			return Result.success(cnt);

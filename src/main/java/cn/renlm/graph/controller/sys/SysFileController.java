@@ -1,8 +1,5 @@
 package cn.renlm.graph.controller.sys;
 
-import static cn.renlm.crawler.config.AmqpConfig.ExcelDataExportTaskAmqp.excelDataExportTaskDirectExchange;
-import static cn.renlm.crawler.config.AmqpConfig.ExcelDataExportTaskAmqp.excelDataExportTaskRoutingKey;
-
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Date;
@@ -11,8 +8,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +23,14 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.crawler.Result;
-import cn.renlm.crawler.consts.FileStorage;
-import cn.renlm.crawler.consts.Role;
-import cn.renlm.crawler.sys.dto.User;
-import cn.renlm.crawler.sys.entity.SysFile;
-import cn.renlm.crawler.sys.service.ISysFileService;
-import cn.renlm.crawler.utils.SpringSecurityUtil;
+import cn.renlm.graph.amqp.AmqpUtil;
+import cn.renlm.graph.amqp.ExcelExportQueueConfig;
+import cn.renlm.graph.common.FileStorage;
+import cn.renlm.graph.common.Result;
+import cn.renlm.graph.common.Role;
+import cn.renlm.graph.modular.sys.dto.User;
+import cn.renlm.graph.modular.sys.entity.SysFile;
+import cn.renlm.graph.modular.sys.service.ISysFileService;
 
 /**
  * 文件
@@ -43,9 +41,6 @@ import cn.renlm.crawler.utils.SpringSecurityUtil;
 @Controller
 @RequestMapping("/sys/file")
 public class SysFileController {
-
-	@Autowired
-	private AmqpTemplate amqpTemplate;
 
 	@Autowired
 	private ISysFileService iSysFileService;
@@ -64,14 +59,16 @@ public class SysFileController {
 	 * 文件列表（超级管理员能查看所有用户数据）
 	 * 
 	 * @param request
+	 * @param authentication
 	 * @param page
 	 * @param sysFile
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/page")
-	public Page<SysFile> page(HttpServletRequest request, Page<SysFile> page, SysFile sysFile) {
-		User user = SpringSecurityUtil.getPrincipal(request, User.class);
+	public Page<SysFile> page(HttpServletRequest request, Authentication authentication, Page<SysFile> page,
+			SysFile sysFile) {
+		User user = (User) authentication.getPrincipal();
 		return iSysFileService.page(page, Wrappers.<SysFile>lambdaQuery().func(wrapper -> {
 			wrapper.select(SysFile.class, field -> !field.getPropertyType().isArray());
 			wrapper.eq(SysFile::getDeleted, false);
@@ -95,21 +92,21 @@ public class SysFileController {
 	/**
 	 * 文件上传
 	 * 
-	 * @param request
+	 * @param authentication
 	 * @param file
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/upload")
-	public Result page(HttpServletRequest request, MultipartFile file) {
-		User user = SpringSecurityUtil.getPrincipal(request, User.class);
+	public Result<?> page(Authentication authentication, MultipartFile file) {
+		User user = (User) authentication.getPrincipal();
 		try {
 			SysFile sysFile = iSysFileService.upload(FileStorage.dbPub, file.getOriginalFilename(), file.getBytes(),
 					entity -> {
 						entity.setCreatorUserId(user.getUserId());
 						entity.setCreatorNickname(user.getNickname());
 					});
-			return Result.success().setFilePath(sysFile.getFileId()).setMessage("上传成功");
+			return Result.success(sysFile.getFileId()).setMessage("上传成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("服务器出错了");
@@ -147,8 +144,8 @@ public class SysFileController {
 	 */
 	@ResponseBody
 	@RequestMapping("/createExcelDataExportTask")
-	public Result createExcelDataExportTask(HttpServletRequest request, SysFile sysFile) {
-		User user = SpringSecurityUtil.getPrincipal(request, User.class);
+	public Result<?> createExcelDataExportTask(Authentication authentication, SysFile sysFile) {
+		User user = (User) authentication.getPrincipal();
 		String originalFilename = sysFile.getOriginalFilename();
 		if (StrUtil.isBlank(originalFilename)) {
 			return Result.error().setMessage("文件名不能为空");
@@ -166,7 +163,7 @@ public class SysFileController {
 			sysFile.setCreatedAt(new Date());
 			sysFile.setDeleted(false);
 			iSysFileService.save(sysFile);
-			amqpTemplate.convertAndSend(excelDataExportTaskDirectExchange, excelDataExportTaskRoutingKey,
+			AmqpUtil.createQueue(ExcelExportQueueConfig.EXCHANGE, ExcelExportQueueConfig.ROUTINGKEY,
 					sysFile.getFileId());
 			return Result.success().setMessage("任务已添加，请在 [ 文件管理->文件列表 ] 查看");
 		} catch (Exception e) {

@@ -29,6 +29,16 @@ public class ConstVal {
 	public static final String CAPTCHA_PARAM_NAME = "captcha";
 
 	/**
+	 * 用户名验证提示
+	 */
+	public final static String username_msg = "账号限定3~20个字符，只能包含字母、数字、下划线或横线";
+
+	/**
+	 * 用户名验证正则
+	 */
+	public final static String username_reg = "^[A-Z-a-z_\\d]{3,20}$";
+
+	/**
 	 * 密码验证提示
 	 */
 	public static final String password_msg = "密码限定6~20个字符，大小写字母、数字及特殊字符至少各一个";

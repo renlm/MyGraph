@@ -17,10 +17,10 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.crawler.Result;
-import cn.renlm.crawler.sys.dto.RoleDto;
-import cn.renlm.crawler.sys.entity.SysRole;
-import cn.renlm.crawler.sys.service.ISysRoleService;
+import cn.renlm.graph.common.Result;
+import cn.renlm.graph.modular.sys.dto.RoleDto;
+import cn.renlm.graph.modular.sys.entity.SysRole;
+import cn.renlm.graph.modular.sys.service.ISysRoleService;
 
 /**
  * 角色
@@ -130,7 +130,7 @@ public class SysRoleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	public Result ajaxSave(HttpServletRequest request, SysRole sysRole) {
+	public Result<String> ajaxSave(HttpServletRequest request, SysRole sysRole) {
 		try {
 			SysRole exists = iSysRoleService
 					.getOne(Wrappers.<SysRole>lambdaQuery().eq(SysRole::getCode, sysRole.getCode()));

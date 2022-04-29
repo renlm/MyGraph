@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import cn.renlm.crawler.Result;
-import cn.renlm.crawler.consts.CacheKey;
-import cn.renlm.crawler.sys.entity.SysConst;
-import cn.renlm.crawler.sys.service.ISysConstService;
+import cn.renlm.graph.common.CacheKey;
+import cn.renlm.graph.common.Result;
+import cn.renlm.graph.modular.sys.entity.SysConst;
+import cn.renlm.graph.modular.sys.service.ISysConstService;
 
 /**
  * 系统常量
@@ -70,7 +70,7 @@ public class SysConstController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	public Result ajaxSave(String constId, String val, Integer sort, String remark) {
+	public Result<?> ajaxSave(String constId, String val, Integer sort, String remark) {
 		try {
 			SysConst entity = iSysConstService.getById(constId);
 			entity.setVal(val);

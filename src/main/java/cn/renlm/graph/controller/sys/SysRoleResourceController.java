@@ -10,10 +10,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.renlm.crawler.Result;
-import cn.renlm.crawler.sys.dto.RoleResourceDto;
-import cn.renlm.crawler.sys.entity.SysRoleResource;
-import cn.renlm.crawler.sys.service.ISysRoleResourceService;
+import cn.renlm.graph.common.Result;
+import cn.renlm.graph.modular.sys.dto.RoleResourceDto;
+import cn.renlm.graph.modular.sys.entity.SysRoleResource;
+import cn.renlm.graph.modular.sys.service.ISysRoleResourceService;
 
 /**
  * 角色资源关系
@@ -61,7 +61,7 @@ public class SysRoleResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/update")
-	public Result ajaxUpdate(HttpServletRequest request, SysRoleResource sysRoleResource) {
+	public Result<String> ajaxUpdate(HttpServletRequest request, SysRoleResource sysRoleResource) {
 		try {
 			SysRoleResource entity = iSysRoleResourceService.getById(sysRoleResource.getId());
 			entity.setAlias(sysRoleResource.getAlias());

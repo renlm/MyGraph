@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,14 +24,11 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
-import cn.renlm.crawler.Result;
-import cn.renlm.crawler.consts.Province;
-import cn.renlm.crawler.sys.dto.DictDto;
-import cn.renlm.crawler.sys.dto.DictZoneFillbackDto;
-import cn.renlm.crawler.sys.dto.User;
-import cn.renlm.crawler.sys.entity.SysDict;
-import cn.renlm.crawler.sys.service.ISysDictService;
-import cn.renlm.crawler.utils.SpringSecurityUtil;
+import cn.renlm.graph.common.Result;
+import cn.renlm.graph.modular.sys.dto.DictDto;
+import cn.renlm.graph.modular.sys.dto.User;
+import cn.renlm.graph.modular.sys.entity.SysDict;
+import cn.renlm.graph.modular.sys.service.ISysDictService;
 
 /**
  * 数据字典
@@ -81,9 +79,9 @@ public class SysDictController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/imp")
-	public Result imp(HttpServletRequest request, String fileId) {
+	public Result<List<String>> imp(Authentication authentication, String fileId) {
 		try {
-			User user = SpringSecurityUtil.getPrincipal(request, User.class);
+			User user = (User) authentication.getPrincipal();
 			return iSysDictService.importConfigFromFile(user, fileId);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -141,46 +139,6 @@ public class SysDictController {
 			});
 		}
 		return list;
-	}
-
-	/**
-	 * 区域字典填充
-	 * 
-	 * @param request
-	 * @param uuid
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping("/ajax/getZoneFillbackData")
-	public DictZoneFillbackDto getZoneFillbackData(HttpServletRequest request, String uuid) {
-		DictZoneFillbackDto dto = new DictZoneFillbackDto();
-		DictDto node = iSysDictService.getDetailByUuid(uuid);
-		List<SysDict> fathers = iSysDictService.findFathers(node.getId());
-		CollUtil.reverse(fathers);
-		for (SysDict item : fathers) {
-			if (NumberUtil.equals(item.getLevel(), 2)) {
-				dto.setCountryCode(item.getCode());
-				dto.setCountryName(item.getText());
-			} else if (NumberUtil.equals(item.getLevel(), 3)) {
-				dto.setProvinceCode(item.getCode());
-				dto.setProvinceName(item.getText());
-			} else if (NumberUtil.equals(item.getLevel(), 4)) {
-				if (StrUtil.equalsAny(dto.getProvinceCode(), Province._110000.value(), Province._120000.value(),
-						Province._310000.value(), Province._500000.value())) {
-					dto.setCityCode(dto.getProvinceCode());
-					dto.setCityName(dto.getProvinceName());
-					dto.setDistrictCode(item.getCode());
-					dto.setDistrictName(item.getText());
-				} else {
-					dto.setCityCode(item.getCode());
-					dto.setCityName(item.getText());
-				}
-			} else if (NumberUtil.equals(item.getLevel(), 5)) {
-				dto.setDistrictCode(item.getCode());
-				dto.setDistrictName(item.getText());
-			}
-		}
-		return dto;
 	}
 
 	/**
@@ -269,7 +227,7 @@ public class SysDictController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	public Result ajaxSave(HttpServletRequest request, SysDict sysDict) {
+	public Result<String> ajaxSave(HttpServletRequest request, SysDict sysDict) {
 		try {
 			if (StrUtil.isBlank(sysDict.getUuid())) {
 				sysDict.setUuid(IdUtil.simpleUUID().toUpperCase());
