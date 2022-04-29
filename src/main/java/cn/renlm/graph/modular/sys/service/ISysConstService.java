@@ -13,4 +13,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISysConstService extends IService<SysConst> {
 
+	/**
+	 * 根据编码获取系统常量值
+	 * 
+	 * @param code
+	 * @return
+	 */
+	String getValue(String code);
+
 }

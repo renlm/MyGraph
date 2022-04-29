@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
@@ -65,14 +66,14 @@ public class User extends SysUser implements org.springframework.security.core.u
 			return false;
 		}).collect(Collectors.toList());
 		return TreeUtil.build(list, parentId, (object, treeNode) -> {
+			BeanUtil.copyProperties(object, treeNode);
 			treeNode.setId(object.getId());
 			treeNode.setName(object.getText());
 			treeNode.setWeight(object.getSort());
 			treeNode.setParentId(object.getPid());
-			treeNode.putExtra("data", object);
 		});
 	}
-	
+
 	/**
 	 * 获取资源树
 	 * 
@@ -93,11 +94,11 @@ public class User extends SysUser implements org.springframework.security.core.u
 			return false;
 		}).collect(Collectors.toList());
 		return TreeUtil.build(list, null, (object, treeNode) -> {
+			BeanUtil.copyProperties(object, treeNode);
 			treeNode.setId(object.getId());
 			treeNode.setName(object.getText());
 			treeNode.setWeight(object.getSort());
 			treeNode.setParentId(object.getPid());
-			treeNode.putExtra("data", object);
 		});
 	}
 
