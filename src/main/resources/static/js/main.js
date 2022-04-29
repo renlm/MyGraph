@@ -24,7 +24,7 @@
 					top.MyUI.addIndexTab({
 						id : "GraphViewer-" + uuid,
 						title : title,
-						href : ctx + '/graph/viewer?uuid=' + uuid,
+						href : '/graph/viewer?uuid=' + uuid,
 						iconCls : iconCls ? iconCls : 'fa fa-cubes'
 					});
 				} catch(e) {
@@ -47,7 +47,7 @@
 					top.MyUI.addIndexTab({
 						id : "GraphEditor-" + uuid,
 						title : title,
-						href : ctx + '/graph/editor?uuid=' + uuid,
+						href : '/graph/editor?uuid=' + uuid,
 						iconCls : iconCls ? iconCls : 'fa fa-cubes'
 					});
 				} catch(e) {

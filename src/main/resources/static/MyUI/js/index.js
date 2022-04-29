@@ -349,7 +349,7 @@ function generateMenu(menuId, systemName) {
 function addIndexTab(options) {
 	var id, src, title, iconCls;
     id = options.id;
-    src = options.href;
+    src = ctx + options.href;
     title = options.title;
     iconCls = options.iconCls;
 
