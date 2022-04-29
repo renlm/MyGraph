@@ -18,14 +18,14 @@ public class MyWebAuthenticationDetails extends WebAuthenticationDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Getter
-	private final String sessionCaptcha;
+	private final String kaptcha;
 
 	@Getter
 	private final String captcha;
 
 	public MyWebAuthenticationDetails(HttpServletRequest request) {
 		super(request);
-		this.sessionCaptcha = (String) request.getSession().getAttribute(ConstVal.CAPTCHA_SESSION_KEY);
+		this.kaptcha = (String) request.getSession().getAttribute(ConstVal.CAPTCHA_SESSION_KEY);
 		this.captcha = request.getParameter(ConstVal.CAPTCHA_PARAM_NAME);
 	}
 }

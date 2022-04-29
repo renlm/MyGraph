@@ -37,7 +37,7 @@ public class MyDaoAuthenticationProvider extends DaoAuthenticationProvider {
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		MyWebAuthenticationDetails details = (MyWebAuthenticationDetails) authentication.getDetails();
-		final String kaptcha = details.getSessionCaptcha();
+		final String kaptcha = details.getKaptcha();
 		final String captcha = details.getCaptcha();
 		if (StrUtil.isBlank(kaptcha) || StrUtil.isBlank(captcha)
 				|| !kaptcha.toLowerCase().equals(captcha.toLowerCase()))
