@@ -330,9 +330,9 @@ function generateMenu(menuId, systemName) {
 	    }
 	}
     $.get(ctx + menuApi,
-		{ 'menuId': menuId },
+		{ 'uuid': menuId },
         function (data) {
-        	var menuData = getMenuTree(data);
+			var menuData = data;
             $('#' + rightAccordionId).sidemenu({
                 width: 255,
                 data: menuData,
@@ -461,8 +461,6 @@ function init (option) {
 	});
 	
 	$(function () {
-		generateMenu();
-		
 		$('.collapseMenu').on('click', function () {
 	        var opts = $('#' + rightAccordionId).sidemenu('options');
 
@@ -492,6 +490,9 @@ function init (option) {
 		
 		// 首页tabs选项卡
 	    initIndexTabs();
+
+		// 主页打开初始化时显示第一个系统的菜单
+    	$('.nav-group li.selected').eq('0').trigger('click');
 	});
 	
     function hideNavBtn() {
@@ -513,6 +514,7 @@ function init (option) {
 }
 
 exports.version = version;
+exports.getMenuTree = getMenuTree;
 exports.addIndexTab = addIndexTab;
 exports.modifyPwd = modifyPwd;
 exports.init = init;
