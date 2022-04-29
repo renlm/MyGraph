@@ -345,7 +345,7 @@
 	    	function initWs () {
 	    		var protocol = document.location.protocol;
 	    		var timestamp = new Date().getTime();
-	    		var webSocketHost = protocol.indexOf("https") > -1?"[(${#MyConfig.wssHost})]":"[(${#MyConfig.wsHost})]";
+	    		var webSocketHost = protocol.indexOf("https") > -1?"[(${#ConfigUtil.wssHost})]":"[(${#ConfigUtil.wsHost})]";
 	    		var token = Base64.encodeURI("[(${#session.id})]@" + timestamp);
 	    		var WS = new ReconnectingWebSocket(webSocketHost + "[(@{/ws/})]" + token);
 	    		
