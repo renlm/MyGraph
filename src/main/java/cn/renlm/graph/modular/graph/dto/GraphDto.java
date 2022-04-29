@@ -1,8 +1,8 @@
-package cn.renlm.graph.dto;
+package cn.renlm.graph.modular.graph.dto;
 
 import java.math.BigDecimal;
 
-import cn.renlm.graph.entity.Graph;
+import cn.renlm.graph.modular.graph.entity.Graph;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

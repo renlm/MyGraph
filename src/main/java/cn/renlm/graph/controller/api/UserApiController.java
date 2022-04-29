@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.renlm.graph.common.Result;
-import cn.renlm.graph.dto.UserDto;
+import cn.renlm.graph.modular.sys.dto.User;
 
 /**
  * 用户信息接口
@@ -28,11 +28,11 @@ public class UserApiController {
 	 */
 	@ResponseBody
 	@GetMapping("/getInfo")
-	public Result<UserDto> getInfo(Authentication authentication) {
+	public Result<User> getInfo(Authentication authentication) {
 		if (authentication == null) {
 			return Result.of(HttpStatus.UNAUTHORIZED);
 		}
-		UserDto user = (UserDto) authentication.getPrincipal();
+		User user = (User) authentication.getPrincipal();
 		user.setPassword(null);
 		return Result.success(user);
 	}

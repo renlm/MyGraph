@@ -28,7 +28,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
-import cn.renlm.graph.dto.UserDto;
+import cn.renlm.graph.modular.sys.dto.User;
 import cn.renlm.graph.ws.WsMessage.WsType;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +62,7 @@ public class WsUtil {
 	/**
 	 * 会话池
 	 */
-	private static final ConcurrentHashMap<String, UserDto> WS_USER_REL = new ConcurrentHashMap<>();
+	private static final ConcurrentHashMap<String, User> WS_USER_REL = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, WebSocketSession> WS_SESSION_POOL = new ConcurrentHashMap<>();
 
 	/**
@@ -73,7 +73,7 @@ public class WsUtil {
 	 * @return
 	 */
 	public static final boolean validHandshake(String token, Long timestamp) {
-		UserDto user = getUserInfo(token, timestamp);
+		User user = getUserInfo(token, timestamp);
 		return ObjectUtil.isNotEmpty(user) && StrUtil.isNotBlank(user.getUserId());
 	}
 
@@ -85,7 +85,7 @@ public class WsUtil {
 	 */
 	public static final WebSocketSession addSession(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
-		UserDto user = getUserInfo(session);
+		User user = getUserInfo(session);
 		String userId = user.getUserId();
 
 		// 维护在线状态
@@ -111,7 +111,7 @@ public class WsUtil {
 	 */
 	public static final WebSocketSession removeSession(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
-		UserDto user = getUserInfo(session);
+		User user = getUserInfo(session);
 
 		// 维护在线状态
 		if (ObjectUtil.isNotEmpty(user)) {
@@ -165,9 +165,9 @@ public class WsUtil {
 		log.debug("=== 在线状态心跳监测，当前机器连接数：" + WS_USER_REL.size());
 		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
-		for (Map.Entry<String, UserDto> entry : WS_USER_REL.entrySet()) {
+		for (Map.Entry<String, User> entry : WS_USER_REL.entrySet()) {
 			String wsKey = entry.getKey();
-			UserDto user = entry.getValue();
+			User user = entry.getValue();
 			String userId = user.getUserId();
 			Long expTime = DateUtil.current() + validityMillis;
 			WebSocketSession session = WS_SESSION_POOL.get(wsKey);
@@ -211,7 +211,7 @@ public class WsUtil {
 	 * @param session
 	 * @return
 	 */
-	private static final UserDto getUserInfo(WebSocketSession session) {
+	private static final User getUserInfo(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
 		if (StrUtil.isBlank(wsKey) || !Base64.isBase64(wsKey)) {
 			return null;
@@ -236,7 +236,7 @@ public class WsUtil {
 	 * @param timestamp
 	 * @return
 	 */
-	private static final UserDto getUserInfo(String token, Long timestamp) {
+	private static final User getUserInfo(String token, Long timestamp) {
 		if (StrUtil.isBlank(token) || timestamp == null) {
 			return null;
 		}
@@ -254,7 +254,7 @@ public class WsUtil {
 		if (authentication == null) {
 			return null;
 		}
-		UserDto user = (UserDto) authentication.getPrincipal();
+		User user = (User) authentication.getPrincipal();
 		return user;
 	}
 

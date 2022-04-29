@@ -18,10 +18,9 @@ import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.common.Result;
-import cn.renlm.graph.common.Role;
-import cn.renlm.graph.dto.UserDto;
-import cn.renlm.graph.entity.Users;
-import cn.renlm.graph.service.IUsersService;
+import cn.renlm.graph.modular.sys.dto.User;
+import cn.renlm.graph.modular.sys.entity.SysUser;
+import cn.renlm.graph.modular.sys.service.ISysUserService;
 
 /**
  * 登录
@@ -34,7 +33,7 @@ import cn.renlm.graph.service.IUsersService;
 public class LoginController {
 
 	@Autowired
-	private IUsersService iUsersService;
+	private ISysUserService iSysUserService;
 
 	/**
 	 * 登录页
@@ -65,10 +64,10 @@ public class LoginController {
 	 */
 	@ResponseBody
 	@PostMapping("/doRegister")
-	public Result<?> doRegister(UserDto form, String confirmpwd) {
+	public Result<?> doRegister(User form, String confirmpwd) {
 		try {
-			Users user = iUsersService.getOne(Wrappers.<Users>lambdaQuery().func(wrapper -> {
-				wrapper.eq(Users::getUsername, form.getUsername());
+			SysUser user = iSysUserService.getOne(Wrappers.<SysUser>lambdaQuery().func(wrapper -> {
+				wrapper.eq(SysUser::getUsername, form.getUsername());
 			}));
 			if (user != null) {
 				return Result.error("账号已存在");
@@ -82,10 +81,9 @@ public class LoginController {
 			form.setUserId(IdUtil.simpleUUID().toUpperCase());
 			form.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
 			form.setNickname(ObjectUtil.defaultIfBlank(form.getNickname(), form.getUsername()));
-			form.setRole(Role.SELF.name());
 			form.setCreatedAt(new Date());
-			form.setDisabled(false);
-			iUsersService.save(form);
+			form.setEnabled(true);
+			iSysUserService.save(form);
 			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -114,7 +112,7 @@ public class LoginController {
 	@ResponseBody
 	@PostMapping("/doModifyPwd")
 	public Result<?> doModifyPwd(Authentication authentication, String password, String confirmpwd) {
-		UserDto user = (UserDto) authentication.getPrincipal();
+		User user = (User) authentication.getPrincipal();
 		try {
 			if (!StrUtil.equals(password, confirmpwd)) {
 				return Result.error("两次输入的密码不一致");
@@ -122,10 +120,10 @@ public class LoginController {
 			if (!ReUtil.isMatch(ConstVal.password_reg, password)) {
 				return Result.error(ConstVal.password_msg);
 			}
-			iUsersService.update(Wrappers.<Users>lambdaUpdate().func(wrapper -> {
-				wrapper.set(Users::getPassword, new BCryptPasswordEncoder().encode(password));
-				wrapper.set(Users::getUpdatedAt, new Date());
-				wrapper.eq(Users::getId, user.getId());
+			iSysUserService.update(Wrappers.<SysUser>lambdaUpdate().func(wrapper -> {
+				wrapper.set(SysUser::getPassword, new BCryptPasswordEncoder().encode(password));
+				wrapper.set(SysUser::getUpdatedAt, new Date());
+				wrapper.eq(SysUser::getId, user.getId());
 			}));
 			return Result.success();
 		} catch (Exception e) {

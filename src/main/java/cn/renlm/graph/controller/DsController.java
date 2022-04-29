@@ -12,10 +12,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Result;
-import cn.renlm.graph.dto.DsDto;
-import cn.renlm.graph.dto.UserDto;
-import cn.renlm.graph.entity.Ds;
-import cn.renlm.graph.service.IDsService;
+import cn.renlm.graph.modular.ds.dto.DsDto;
+import cn.renlm.graph.modular.ds.entity.Ds;
+import cn.renlm.graph.modular.ds.service.IDsService;
+import cn.renlm.graph.modular.sys.dto.User;
 
 /**
  * 数据源
@@ -51,7 +51,7 @@ public class DsController {
 	@ResponseBody
 	@RequestMapping("/ajax/list")
 	public Page<Ds> ajaxList(Authentication authentication, Page<Ds> page, DsDto form) {
-		UserDto user = (UserDto) authentication.getPrincipal();
+		User user = (User) authentication.getPrincipal();
 		return iDsService.findPage(page, user, form);
 	}
 
@@ -66,7 +66,7 @@ public class DsController {
 	@RequestMapping("/ajax/save")
 	public Result<String> ajaxSave(Authentication authentication, DsDto ds) {
 		try {
-			UserDto user = (UserDto) authentication.getPrincipal();
+			User user = (User) authentication.getPrincipal();
 			return iDsService.init(user, ds);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,7 +85,7 @@ public class DsController {
 	@RequestMapping("/ajax/del")
 	public Result<?> ajaxDel(Authentication authentication, String uuids) {
 		try {
-			UserDto user = (UserDto) authentication.getPrincipal();
+			User user = (User) authentication.getPrincipal();
 			List<String> uuidList = StrUtil.splitTrim(uuids, StrUtil.COMMA);
 			uuidList.forEach(uuid -> {
 				iDsService.delByUuid(user, uuid);

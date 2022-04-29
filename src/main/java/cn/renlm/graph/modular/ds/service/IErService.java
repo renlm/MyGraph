@@ -1,7 +1,12 @@
 package cn.renlm.graph.modular.ds.service;
 
-import cn.renlm.graph.modular.ds.entity.Er;
+import java.util.List;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import cn.renlm.graph.modular.ds.dto.ErDto;
+import cn.renlm.graph.modular.ds.entity.Er;
 
 /**
  * <p>
@@ -13,4 +18,21 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IErService extends IService<Er> {
 
+	/**
+	 * 分页列表
+	 * 
+	 * @param page
+	 * @param form
+	 * @return
+	 */
+	Page<ErDto> findPage(Page<Er> page, ErDto form);
+
+	/**
+	 * 获取包含字段的表信息
+	 * 
+	 * @param uuids
+	 * @return
+	 */
+	List<ErDto> findListWithFields(List<String> uuids);
+	
 }

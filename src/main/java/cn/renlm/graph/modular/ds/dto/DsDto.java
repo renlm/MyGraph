@@ -1,15 +1,12 @@
-package cn.renlm.graph.dto;
+package cn.renlm.graph.modular.ds.dto;
 
-import java.util.List;
-
-import cn.renlm.graph.entity.Er;
-import cn.renlm.graph.entity.ErField;
+import cn.renlm.graph.modular.ds.entity.Ds;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * ER模型
+ * 数据源
  * 
  * @author Renlm
  *
@@ -17,16 +14,10 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
-public class ErDto extends Er {
+public class DsDto extends Ds {
 
 	private static final long serialVersionUID = 1L;
 
-	private Boolean includeFields;
-
-	private String dsUuid;
-
 	private String keywords;
-
-	private List<ErField> fields;
 
 }
