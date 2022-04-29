@@ -10,6 +10,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Resource;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.entity.SysRole;
@@ -85,7 +86,11 @@ public class User extends SysUser implements org.springframework.security.core.u
 		if (CollUtil.isEmpty(this.getResources())) {
 			return CollUtil.newArrayList();
 		}
+		SysResource parent = new SysResource();
 		List<SysResource> list = this.getResources().stream().filter(r -> {
+			if (StrUtil.equals(parentUuid, r.getResourceId())) {
+				BeanUtil.copyProperties(r, parent);
+			}
 			for (Resource.Type type : types) {
 				if (type.name().equals(r.getResourceTypeCode())) {
 					return true;
@@ -93,7 +98,10 @@ public class User extends SysUser implements org.springframework.security.core.u
 			}
 			return false;
 		}).collect(Collectors.toList());
-		return TreeUtil.build(list, null, (object, treeNode) -> {
+		if (parent.getId() == null) {
+			return CollUtil.newArrayList();
+		}
+		return TreeUtil.build(list, parent.getId(), (object, treeNode) -> {
 			BeanUtil.copyProperties(object, treeNode);
 			treeNode.setId(object.getId());
 			treeNode.setName(object.getText());
