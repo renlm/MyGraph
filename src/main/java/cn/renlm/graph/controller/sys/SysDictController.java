@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
-import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.crypto.asymmetric.KeyType;
-import cn.hutool.crypto.asymmetric.RSA;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.sys.dto.DictDto;
 import cn.renlm.graph.modular.sys.entity.SysDict;
@@ -40,9 +36,6 @@ import cn.renlm.graph.security.User;
 @RequestMapping("/sys/dict")
 public class SysDictController {
 
-	@Resource
-	private RSA crawlRSA;
-
 	@Autowired
 	private ISysDictService iSysDictService;
 
@@ -54,9 +47,7 @@ public class SysDictController {
 	 */
 	@RequestMapping
 	public String dict(ModelMap model) {
-		String actuator = crawlRSA.encryptBase64("cn.renlm.crawler.sys.service.ISysDictService.exportDataToFile",
-				KeyType.PrivateKey);
-		model.put("actuator", Base64.encodeUrlSafe(actuator));
+		model.put("actuator", null);
 		return "sys/dict";
 	}
 
