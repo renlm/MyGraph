@@ -2,12 +2,14 @@ package cn.renlm.graph.dto;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
+import cn.renlm.graph.common.Resource;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysUser;
@@ -47,13 +49,22 @@ public class User extends SysUser implements org.springframework.security.core.u
 	 * 获取资源树
 	 * 
 	 * @param parentId
+	 * @param types
 	 * @return
 	 */
-	public List<Tree<Long>> getResourceTree(Long parentId) {
+	public List<Tree<Long>> getResourceTree(Long parentId, Resource.Type... types) {
 		if (CollUtil.isEmpty(this.getResources())) {
 			return CollUtil.newArrayList();
 		}
-		return TreeUtil.build(resources, null, (object, treeNode) -> {
+		List<SysResource> list = this.getResources().stream().filter(r -> {
+			for (Resource.Type type : types) {
+				if (type.name().equals(r.getResourceTypeCode())) {
+					return true;
+				}
+			}
+			return false;
+		}).collect(Collectors.toList());
+		return TreeUtil.build(list, null, (object, treeNode) -> {
 			treeNode.setId(object.getId());
 			treeNode.setName(object.getText());
 			treeNode.setWeight(object.getSort());
