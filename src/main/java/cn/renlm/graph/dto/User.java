@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeUtil;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysUser;
@@ -39,6 +42,25 @@ public class User extends SysUser implements org.springframework.security.core.u
 	 * 权限列表
 	 */
 	private List<GrantedAuthority> authorities;
+
+	/**
+	 * 获取资源树
+	 * 
+	 * @param parentId
+	 * @return
+	 */
+	public List<Tree<Long>> getResourceTree(Long parentId) {
+		if (CollUtil.isEmpty(this.getResources())) {
+			return CollUtil.newArrayList();
+		}
+		return TreeUtil.build(resources, null, (object, treeNode) -> {
+			treeNode.setId(object.getId());
+			treeNode.setName(object.getText());
+			treeNode.setWeight(object.getSort());
+			treeNode.setParentId(object.getPid());
+			treeNode.putExtra("data", object);
+		});
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

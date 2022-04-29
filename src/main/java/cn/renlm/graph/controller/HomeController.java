@@ -1,6 +1,5 @@
 package cn.renlm.graph.controller;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,11 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cn.hutool.core.lang.tree.Tree;
-import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.dto.User;
-import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.oshi.OshiInfo;
 import cn.renlm.graph.oshi.OshiInfoUtil;
 import cn.renlm.graph.ws.WsUtil;
@@ -39,15 +35,7 @@ public class HomeController {
 	@GetMapping
 	public String index(Authentication authentication, ModelMap model) {
 		User user = (User) authentication.getPrincipal();
-		List<SysResource> resources = user.getResources();
-		List<Tree<Long>> navGroup = TreeUtil.build(resources, null, (object, treeNode) -> {
-			treeNode.setId(object.getId());
-			treeNode.setName(object.getText());
-			treeNode.setWeight(object.getSort());
-			treeNode.setParentId(object.getPid());
-			treeNode.putExtra("data", object);
-		});
-		model.put("navGroup", navGroup);
+		model.put("navGroup", user.getResourceTree(null));
 		return "index";
 	}
 
