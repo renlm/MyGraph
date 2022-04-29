@@ -48,14 +48,17 @@ public class UserService implements UserDetailsService {
 
 	/**
 	 * 刷新当前登录用户信息
+	 * 
+	 * @return
 	 */
-	public void refreshAuthentication() {
+	public User refreshAuthentication() {
 		SecurityContext securityContext = SecurityContextHolder.getContext();
 		Authentication authentication = securityContext.getAuthentication();
 		User user = (User) authentication.getPrincipal();
 		User principal = iSysUserService.loadUserByUsername(user.getUsername());
 		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(principal,
 				principal.getPassword(), principal.getAuthorities()));
+		return user;
 	}
 
 	/**

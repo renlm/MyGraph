@@ -78,7 +78,7 @@ VALUES (-1, 			'86D6BA0E2C764A6C8D6C6EB57898C4CC',	'HOME', 		'主页', 			'permi
 	  ,(40, 			'FEA19FB294134CC19C74786577F21CBB',	'40', 			'公共图库', 		'urlInsidePage', 	'/graph/lib', 												'fa fa-audio-description', 	null, 				null, 			1, 		4, 		'open',		0,			0,					null,		null)
 	  ,(50, 			'302F142FBA694822A32A9B38171DB851',	'50', 			'帮助中心', 		'urlInsidePage', 	'/static/editor.md/index.html', 							'fa fa-comments-o', 		null, 				null, 			1, 		5, 		'open',		0,			0,					null,		null)
 	  ,(60, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'60', 			'更多功能', 		'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		6, 		'closed',	0,			0,					null,		null)
-	  ,(6001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'6001', 		'在线调试', 		'urlInsidePage', 	'/compile', 												'fa fa-code', 				null, 				null, 			2, 		1, 		'open',		0,			0,					60,			null)
+	  ,(6001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'6001', 		'在线调试', 		'urlInsidePage', 	'/compile', 												'fa fa-code', 				'rebeccapurple', 	null, 			2, 		1, 		'open',		0,			0,					60,			null)
 	  ,(6002, 			'466FA46CA81B44A0B286294B6149007F',	'6002', 		'EasyUI中文站', 	'urlNewWindows', 	'http://www.jeasyui.cn/?from=demo', 						'fa fa-link', 				null, 				null, 			2, 		2, 		'open',		0,			0,					60,			null)
 ;
 

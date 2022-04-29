@@ -3,7 +3,7 @@ package cn.renlm.graph.controller;
 import java.util.Map;
 import java.util.Set;
 
-import org.springframework.security.core.Authentication;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +14,7 @@ import cn.renlm.graph.common.Resource;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.oshi.OshiInfo;
 import cn.renlm.graph.oshi.OshiInfoUtil;
+import cn.renlm.graph.security.UserService;
 import cn.renlm.graph.ws.WsUtil;
 
 /**
@@ -26,16 +27,18 @@ import cn.renlm.graph.ws.WsUtil;
 @RequestMapping
 public class HomeController {
 
+	@Autowired
+	private UserService userService;
+
 	/**
 	 * 主页
 	 * 
-	 * @param authentication
 	 * @param model
 	 * @return
 	 */
 	@GetMapping
-	public String index(Authentication authentication, ModelMap model) {
-		User user = (User) authentication.getPrincipal();
+	public String index(ModelMap model) {
+		User user = userService.refreshAuthentication();
 		model.put("navGroup", user.getResourceTree(null, Resource.Type.menu, Resource.Type.urlInsidePage,
 				Resource.Type.urlNewWindows, Resource.Type.more));
 		return "index";
