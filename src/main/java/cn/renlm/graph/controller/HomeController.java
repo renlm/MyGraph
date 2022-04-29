@@ -3,7 +3,6 @@ package cn.renlm.graph.controller;
 import java.util.Map;
 import java.util.Set;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,20 +22,6 @@ import cn.renlm.graph.ws.WsUtil;
 @Controller
 @RequestMapping
 public class HomeController {
-
-	/**
-	 * 主页
-	 * 
-	 * @param authentication
-	 * @param model
-	 * @return
-	 */
-	@GetMapping("/")
-	public String index(Authentication authentication, ModelMap model) {
-		model.put("homePages", null);
-		model.put("modules", null);
-		return "index";
-	}
 
 	/**
 	 * 在线调试

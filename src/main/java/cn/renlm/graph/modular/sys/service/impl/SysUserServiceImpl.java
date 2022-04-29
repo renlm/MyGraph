@@ -60,6 +60,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 				authorities.add(new SimpleGrantedAuthority(it.getCode()));
 			});
 		}
+		user.setRoles(roles);
+		user.setResources(resources);
 		return user.setAuthorities(authorities);
 	}
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import cn.renlm.graph.modular.sys.entity.SysResource;
+import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,6 +25,19 @@ public class User extends SysUser implements org.springframework.security.core.u
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 角色列表
+	 */
+	private List<SysRole> roles;
+
+	/**
+	 * 资源列表
+	 */
+	private List<SysResource> resources;
+
+	/**
+	 * 权限列表
+	 */
 	private List<GrantedAuthority> authorities;
 
 	@Override
