@@ -9,11 +9,12 @@ VALUES (1,		'ABFEE20BA6AC4783A683C7117763951E',	'令狐冲', 	'S-linghc',		'$2a$
 -- 角色
 DELETE FROM sys_role;
 INSERT INTO sys_role 
-	   (id,		role_id, 				code, 					text, 		level,	sort, 	state, 		pid)
-VALUES (10,  	'1482644947575877632',	'PLATFORM',				'平台管理', 	1, 		1, 		'closed', 	null),
-	   (1001,  	'1482645001363611648',	'SUPER', 				'超级管理员', 	2, 		1, 		'open', 	10),
-	   (20,  	'1488419148647747584',	'CRAWLER',				'网络爬虫', 	1, 		2, 		'closed', 	null),
-	   (2001,  	'1488419200896110592',	'CRAWLER-M', 			'爬虫管理员', 	2, 		1, 		'open', 	20)
+	   (id,		role_id, 							code, 					text, 		level,	sort, 	state, 		pid)
+VALUES (10,  	'F536D20F2ED04A5A9BA07EB4EFF1ABB4',	'PLATFORM',				'平台管理', 	1, 		1, 		'closed', 	null),
+	   (1001,  	'286DCAA350354F1796D2B579D7D056E3',	'SUPER', 				'超级管理员', 	2, 		1, 		'open', 	10),
+	   (20,  	'B8BA2320FBD945448B7192C461D209EF',	'COMMON',				'通用权限', 	1, 		2, 		'closed', 	null),
+	   (2001,  	'D82CB5F509EE42578065B35699266FA3',	'GENERAL', 				'普通用户', 	2, 		1, 		'open', 	20),
+	   (2002,  	'A50FEAE499214D1EB2CAC5074DC878DE',	'SELF', 				'自主注册', 	2, 		2, 		'open', 	20)
 ;
 
 -- 组织机构
@@ -104,9 +105,27 @@ INSERT INTO sys_role_resource(
 	sort, -- sort	
 	commonly, -- commonly
 	default_home_page, -- default_home_page
-	CASE WHEN code = '10' then 1 else 0 end -- hide
+	false -- hide
 FROM sys_resource
-WHERE code IN ('HOME', 'WELCOME', '10', '1003', '100301', '20', '2001', '200101', '2002', '200201', '200202', '200203', '200204', '200205', '200206')
+WHERE code IN ('HOME', 'WELCOME', '10', '1001', '100101', '1002', '100201', '40', '50', '60', '6001', '6002')
+;
+INSERT INTO sys_role_resource(
+	sys_role_id,
+	sys_resource_id,	
+	alias,	
+	sort,	
+	commonly,	
+	default_home_page,	
+	hide
+) SELECT 2002, -- sys_role_id	
+	id,	-- sys_resource_id				
+	null, -- alias	
+	sort, -- sort	
+	commonly, -- commonly
+	default_home_page, -- default_home_page
+	false -- hide
+FROM sys_resource
+WHERE code IN ('HOME', 'WELCOME', '10', '1001', '100101', '1002', '100201', '40', '50', '60', '6001', '6002')
 ;
 
 -- 系统常量

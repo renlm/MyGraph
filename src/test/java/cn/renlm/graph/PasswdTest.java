@@ -22,5 +22,9 @@ public class PasswdTest {
 	@Test
 	public void uuid() {
 		System.out.println(IdUtil.simpleUUID().toUpperCase());
+		System.out.println(IdUtil.simpleUUID().toUpperCase());
+		System.out.println(IdUtil.simpleUUID().toUpperCase());
+		System.out.println(IdUtil.simpleUUID().toUpperCase());
+		System.out.println(IdUtil.simpleUUID().toUpperCase());
 	}
 }

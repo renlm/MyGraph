@@ -30,6 +30,11 @@ public class Result<T> implements Serializable {
 		return new Result<R>(status.value(), status.getReasonPhrase(), null);
 	}
 
+	public static <R> Result<R> of(HttpStatus status, String message) {
+		Result<R> result = Result.of(status);
+		return result.setMessage(message);
+	}
+
 	public static <R> Result<R> success() {
 		return Result.of(HttpStatus.OK);
 	}
@@ -44,13 +49,7 @@ public class Result<T> implements Serializable {
 	}
 
 	public static <R> Result<R> error(String message) {
-		Result<R> result = Result.of(HttpStatus.INTERNAL_SERVER_ERROR);
-		return result.setMessage(message);
-	}
-
-	public static <R> Result<R> error(HttpStatus status,String message) {
-		Result<R> result = Result.of(status);
-		return result.setMessage(message);
+		return Result.of(HttpStatus.INTERNAL_SERVER_ERROR, message);
 	}
 
 	public boolean isSuccess() {
