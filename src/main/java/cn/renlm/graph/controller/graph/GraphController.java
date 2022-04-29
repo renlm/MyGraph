@@ -1,4 +1,4 @@
-package cn.renlm.graph.controller;
+package cn.renlm.graph.controller.graph;
 
 import java.math.BigDecimal;
 import java.util.Date;

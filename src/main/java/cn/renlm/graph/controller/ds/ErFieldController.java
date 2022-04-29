@@ -1,4 +1,4 @@
-package cn.renlm.graph.controller;
+package cn.renlm.graph.controller.ds;
 
 import java.util.Date;
 import java.util.List;
