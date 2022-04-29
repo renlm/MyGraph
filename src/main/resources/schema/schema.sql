@@ -28,7 +28,7 @@ CREATE TABLE sys_user(
 DROP TABLE IF EXISTS sys_role;
 CREATE TABLE sys_role(
 	id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
-    role_id     				CHAR(19)		UNIQUE			NOT NULL		COMMENT '角色ID',
+    role_id     				CHAR(32)		UNIQUE			NOT NULL		COMMENT '角色ID',
     code     					VARCHAR(20)   	UNIQUE			NOT NULL 		COMMENT '代码',
     text     					VARCHAR(255)   					NOT NULL 		COMMENT '名称',
     icon_cls           			VARCHAR(255)     								COMMENT '图标',
@@ -47,7 +47,7 @@ CREATE TABLE sys_role(
 DROP TABLE IF EXISTS sys_org;
 CREATE TABLE sys_org(
 	id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
-    org_id     					CHAR(19)		UNIQUE			NOT NULL		COMMENT '组织机构ID',
+    org_id     					CHAR(32)		UNIQUE			NOT NULL		COMMENT '组织机构ID',
     code     					VARCHAR(20)   	UNIQUE			NOT NULL 		COMMENT '代码',
     text     					VARCHAR(255)   					NOT NULL 		COMMENT '名称',
     org_type_code				VARCHAR(20)             		NOT NULL 		COMMENT '机构类型（编码）',
@@ -132,7 +132,7 @@ CREATE TABLE sys_role_resource(
 -- 系统常量
 DROP TABLE IF EXISTS sys_const;
 CREATE TABLE sys_const(
-    const_id            		CHAR(19)      	PRIMARY KEY 					COMMENT '常量ID',
+    const_id            		CHAR(32)      	PRIMARY KEY 					COMMENT '常量ID',
     code     					VARCHAR(128)   	UNIQUE			NOT NULL 		COMMENT '代码',
     name     					VARCHAR(255)   					NOT NULL 		COMMENT '名称',
     val     					VARCHAR(255)   					NOT NULL 		COMMENT '值',
