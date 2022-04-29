@@ -16,7 +16,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.er.entity.ErField;
 import cn.renlm.graph.modular.er.service.IErFieldService;
-import cn.renlm.graph.security.User;
+import cn.renlm.graph.dto.User;
 
 /**
  * ER模型-字段

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.renlm.graph.common.Result;
-import cn.renlm.graph.security.User;
+import cn.renlm.graph.dto.User;
 
 /**
  * 用户信息接口

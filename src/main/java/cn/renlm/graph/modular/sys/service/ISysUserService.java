@@ -3,7 +3,7 @@ package cn.renlm.graph.modular.sys.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.renlm.graph.modular.sys.entity.SysUser;
-import cn.renlm.graph.security.User;
+import cn.renlm.graph.dto.User;
 
 /**
  * <p>

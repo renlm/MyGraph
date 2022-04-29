@@ -1,4 +1,4 @@
-package cn.renlm.graph.security;
+package cn.renlm.graph.dto;
 
 import java.util.Collection;
 import java.util.List;

@@ -15,7 +15,7 @@ import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.er.dto.DsDto;
 import cn.renlm.graph.modular.er.entity.Ds;
 import cn.renlm.graph.modular.er.service.IDsService;
-import cn.renlm.graph.security.User;
+import cn.renlm.graph.dto.User;
 
 /**
  * 数据源

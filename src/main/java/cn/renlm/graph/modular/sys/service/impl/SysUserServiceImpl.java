@@ -19,7 +19,7 @@ import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.mapper.SysUserMapper;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
-import cn.renlm.graph.security.User;
+import cn.renlm.graph.dto.User;
 
 /**
  * <p>

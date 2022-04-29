@@ -20,7 +20,7 @@ import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
-import cn.renlm.graph.security.User;
+import cn.renlm.graph.dto.User;
 
 /**
  * 登录

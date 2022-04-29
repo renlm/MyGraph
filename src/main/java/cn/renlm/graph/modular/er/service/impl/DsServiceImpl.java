@@ -30,7 +30,7 @@ import cn.renlm.graph.modular.er.service.IDsErRelService;
 import cn.renlm.graph.modular.er.service.IDsService;
 import cn.renlm.graph.modular.er.service.IErFieldService;
 import cn.renlm.graph.modular.er.service.IErService;
-import cn.renlm.graph.security.User;
+import cn.renlm.graph.dto.User;
 import cn.renlm.plugins.MyUtil.MyDbUtil;
 
 /**
