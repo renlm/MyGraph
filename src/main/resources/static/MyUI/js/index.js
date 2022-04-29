@@ -136,7 +136,18 @@ function initIndexTabs () {
             return false;
         }
         if ($(this).data('type') === 'urlNewWindows') {
-            window.open($(this).data('url'));
+			var dataUrl = $(this).data('url');
+			if (dataUrl) {
+				if (dataUrl.indexOf('http') >= 0) {
+					window.open(dataUrl);
+				} else if (dataUrl.indexOf('//') >= 0) {
+					window.open(dataUrl);
+				} else if (dataUrl.indexOf('/') >= 0) {
+					window.open(ctx + dataUrl);
+				} else {
+					window.open(dataUrl);
+				}
+			}
         }
 
         // 添加选择样式
