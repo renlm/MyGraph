@@ -45,6 +45,7 @@ public class HomeController {
 			treeNode.setName(object.getText());
 			treeNode.setWeight(object.getSort());
 			treeNode.setParentId(object.getPid());
+			treeNode.putExtra("data", object);
 		});
 		model.put("navGroup", navGroup);
 		return "index";
