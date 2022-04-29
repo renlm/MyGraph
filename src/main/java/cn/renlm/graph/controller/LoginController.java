@@ -18,7 +18,7 @@ import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.common.Result;
-import cn.renlm.graph.common.Roles;
+import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.UserDto;
 import cn.renlm.graph.entity.Users;
 import cn.renlm.graph.service.IUsersService;
@@ -82,7 +82,7 @@ public class LoginController {
 			form.setUserId(IdUtil.simpleUUID().toUpperCase());
 			form.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
 			form.setNickname(ObjectUtil.defaultIfBlank(form.getNickname(), form.getUsername()));
-			form.setRole(Roles.self.name());
+			form.setRole(Role.SELF.name());
 			form.setCreatedAt(new Date());
 			form.setDisabled(false);
 			iUsersService.save(form);

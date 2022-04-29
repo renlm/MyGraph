@@ -22,7 +22,6 @@ import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Profiles;
-import cn.renlm.graph.common.Roles;
 import cn.renlm.graph.security.MyAuthenticationSuccessHandler;
 import cn.renlm.graph.security.MyDaoAuthenticationProvider;
 import cn.renlm.graph.security.MyWebAuthenticationDetails;
@@ -76,8 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	public static final String[] STATIC_PATHS = { 
 			"/favicon.ico",
-			"/static/favicon.ico",
-			"/static/{path:^((?!editor.md).)*$}/**", 
+			"/static/**",
 			"/webjars/**" 
 		};
 	
@@ -117,9 +115,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// 白名单
 				.antMatchers(WHITE_LIST)
 					.permitAll()
-				// 访问控制
-				.antMatchers("/static/editor.md/**")
-					.hasAnyRole(Roles.admin.name(), Roles.user.name())
 				// 登录访问限制
 				.anyRequest()
 					.authenticated()

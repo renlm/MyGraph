@@ -3,21 +3,21 @@ package cn.renlm.graph.common;
 import lombok.Getter;
 
 /**
- * 角色
+ * 关键角色
  * 
  * @author Renlm
  *
  */
-public enum Roles {
+public enum Role {
 
-	admin("管理员"), user("用户"), self("自主注册");
+	PLATFORM("平台管理"), SUPER("超级管理员"), SELF("自主注册");
 
 	public static final String HAS_ROLE_PREFIX = "ROLE_";
 
 	@Getter
-	private String text;
+	private final String text;
 
-	private Roles(String text) {
+	private Role(String text) {
 		this.text = text;
 	}
 }
