@@ -34,7 +34,7 @@ public interface ISysDictService extends IService<SysDict> {
 	 * @param fileId
 	 * @return
 	 */
-	Result importConfigFromFile(User user, String fileId);
+	Result<List<String>> importConfigFromFile(User user, String fileId);
 
 	/**
 	 * 获取由上而下的父子集

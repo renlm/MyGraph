@@ -91,7 +91,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public Result importConfigFromFile(User user, String fileId) {
+	public Result<List<String>> importConfigFromFile(User user, String fileId) {
 		SysFile sysFile = iSysFileService.getById(fileId);
 		List<String> errors = CollUtil.newArrayList();
 		List<SysDict> list = CollUtil.newArrayList();
@@ -117,10 +117,12 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 					}
 				});
 		if (rows == 0) {
-			return Result.error().setData(CollUtil.newArrayList("未读到表头，模板不符合要求！"));
+			Result<List<String>> error = Result.error();
+			return error.setData(CollUtil.newArrayList("未读到表头，模板不符合要求！"));
 		}
 		if (CollUtil.isNotEmpty(errors)) {
-			return Result.error().setData(errors);
+			Result<List<String>> error = Result.error();
+			return error.setData(errors);
 		}
 		this.remove(Wrappers.<SysDict>lambdaQuery().isNotNull(SysDict::getId));
 		this.saveBatch(list);

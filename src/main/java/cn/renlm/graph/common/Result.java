@@ -48,6 +48,11 @@ public class Result<T> implements Serializable {
 		return result.setMessage(message);
 	}
 
+	public static <R> Result<R> error(HttpStatus status,String message) {
+		Result<R> result = Result.of(status);
+		return result.setMessage(message);
+	}
+
 	public boolean isSuccess() {
 		return this.statusCode == HttpStatus.OK.value();
 	}
