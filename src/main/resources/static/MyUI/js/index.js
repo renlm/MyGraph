@@ -132,10 +132,10 @@ function initIndexTabs () {
     });
     
     $('.nav-group').on('click', 'li', function() {
-        if($(this).data('type') === 'lastMenu') {
+        if($(this).data('type') === 'more') {
             return false;
         }
-        if ($(this).data('type') === 'lastMenuSub') {
+        if ($(this).data('type') === 'urlNewWindows') {
             window.open($(this).data('url'));
         }
 
@@ -143,15 +143,17 @@ function initIndexTabs () {
         $('.nav-group .selected').removeClass('selected');
         $(this).addClass('selected');
 
-        if ($(this).data('type') === 'lastMenuTab') {
-            return;
-        }
-
         let target = this;
-        if($(this).data('type') === 'lastMenuSub'){
+        if($(this).data('sub-type') === 'moreSub') {
             $('.lastMenu').addClass('selected');
             target = '.lastMenu';
         }
+
+        if ($(this).data('type') === 'urlNewWindows' || 
+			$(this).data('type') === 'urlInsidePage') {
+            return;
+        }
+
         navsScrollTo('first', target);
 
         // 刷新左侧导航菜单

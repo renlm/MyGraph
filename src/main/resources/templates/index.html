@@ -128,18 +128,51 @@
 		                            </a>
 		                            <div id="moreMenu">
 		                           		<ul style="padding: 0;">
-		                                    <li id="moreMenu1" class="topmenu" th:onclick="|MyUI.addIndexTab({href:'@{/compile}',title:'在线调试',iconCls:'fa fa-code'});|">
-		                                   		<div class="l-btn-text bannerMenu">
-		                                       		<p><lable class="fa fa-code" style="color: rebeccapurple;"></lable></p>
-		                                            <p><span style="white-space: nowrap;">在线调试</span></p>
-		                                        </div>
-		                                    </li>
-		                                    <li id="moreMenu2" class="topmenu" data-type="lastMenuSub" data-url="http://www.jeasyui.cn/?from=demo">
-		                                        <div class="l-btn-text bannerMenu">
-		                                            <p><lable class="fa fa-link"></lable></p>
-		                                            <p><span style="white-space: nowrap;">EasyUI中文站</span></p>
-		                                        </div>
-		                                    </li>
+		                           			<th:block th:each="r2,iterStat2 : ${r1.children}">
+			                           			<li th:if="${r2.data.resourceTypeCode == 'menu'}" 
+					             					th:id="${r2.data.resourceId}"
+					             					th:title="${r2.data.text}" 
+					             					th:class="|topmenu${iterStat2.index == 0?' selected':''}|"
+					             					th:data-type="${r2.data.resourceTypeCode}"
+						                        	data-sub-type="moreSub">
+						                      		<a class="l-btn-text bannerMenu" href="javascript:void(0);">
+						                                <p th:if="${#strings.isEmpty(r2.data.iconClsColour)}"><lable th:class="${r2.data.iconCls}"></lable></p>
+						                                <p th:if="${!#strings.isEmpty(r2.data.iconClsColour)}"><lable th:class="${r2.data.iconCls}" th:style="|color: ${r2.data.iconClsColour};|"></lable></p>
+						                                <p th:if="${#strings.isEmpty(r2.data.textColour)}"><span th:text="${r2.data.text}" style="white-space: nowrap;"></span></p>
+						                                <p th:if="${!#strings.isEmpty(r2.data.textColour)}"><span th:text="${r2.data.text}" th:style="|color: ${r2.data.textColour};white-space: nowrap;|"></span></p>
+						                       		</a>
+						                        </li>
+						                        <li th:if="${r2.data.resourceTypeCode == 'urlNewWindows'}"
+					             					th:id="${r2.data.resourceId}"
+					             					th:title="${r2.data.text}"
+					             					th:class="|topmenu${iterStat2.index == 0?' selected':''}|"
+						                        	th:data-type="${r2.data.resourceTypeCode}"
+						                        	data-sub-type="moreSub"
+						                        	th:data-url="${r2.data.url}">
+						                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
+						                                <p th:if="${#strings.isEmpty(r2.data.iconClsColour)}"><lable th:class="${r2.data.iconCls}"></lable></p>
+						                                <p th:if="${!#strings.isEmpty(r2.data.iconClsColour)}"><lable th:class="${r2.data.iconCls}" th:style="|color: ${r2.data.iconClsColour};|"></lable></p>
+						                                <p th:if="${#strings.isEmpty(r2.data.textColour)}"><span th:text="${r2.data.text}" style="white-space: nowrap;"></span></p>
+						                                <p th:if="${!#strings.isEmpty(r2.data.textColour)}"><span th:text="${r2.data.text}" th:style="|color: ${r2.data.textColour};white-space: nowrap;|"></span></p>
+						                       		</a>
+						                        </li>
+						                        <li th:if="${r2.data.resourceTypeCode == 'urlInsidePage'}"
+					             					th:id="${r2.data.resourceId}"
+					             					th:title="${r2.data.text}"
+						                        	th:data-href="${r2.data.url}"
+						                        	th:data-icon-cls="${r2.data.iconCls}"
+					             					th:class="|topmenu${iterStat2.index == 0?' selected':''}|"
+						                        	th:data-type="${r2.data.resourceTypeCode}"
+						                        	data-sub-type="moreSub"
+						                        	th:onclick="|MyUI.addIndexTab({href:this.getAttribute('data-href'),title:this.getAttribute('title'),iconCls:this.getAttribute('data-icon-cls')});|">
+						                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
+						                                <p th:if="${#strings.isEmpty(r2.data.iconClsColour)}"><lable th:class="${r2.data.iconCls}"></lable></p>
+						                                <p th:if="${!#strings.isEmpty(r2.data.iconClsColour)}"><lable th:class="${r2.data.iconCls}" th:style="|color: ${r2.data.iconClsColour};|"></lable></p>
+						                                <p th:if="${#strings.isEmpty(r2.data.textColour)}"><span th:text="${r2.data.text}" style="white-space: nowrap;"></span></p>
+						                                <p th:if="${!#strings.isEmpty(r2.data.textColour)}"><span th:text="${r2.data.text}" th:style="|color: ${r2.data.textColour};white-space: nowrap;|"></span></p>
+						                       		</a>
+						                        </li>
+						                   	</th:block>
 		                            	</ul>
 		                          	</div>
 		                      	</li>
