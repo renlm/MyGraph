@@ -90,6 +90,19 @@
 		                                <p th:if="${!#strings.isEmpty(r1.data.textColour)}"><span th:text="${r1.data.text}" th:style="|color: ${r1.data.textColour};white-space: nowrap;|"></span></p>
 		                       		</a>
 		                        </li>
+		                        <li th:if="${r1.data.resourceTypeCode == 'urlNewWindows'}"
+	             					th:id="${r1.data.resourceId}"
+	             					th:title="${r1.data.text}"
+	             					th:class="|topmenu${iterStat1.index == 0?' selected':''}${iterStat1.index == iterStat1.size - 1?' lastMenu':''}|"
+		                        	th:data-type="${r1.data.resourceTypeCode}"
+		                        	th:data-url="${r1.data.url}">
+		                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
+		                                <p th:if="${#strings.isEmpty(r1.data.iconClsColour)}"><lable th:class="${r1.data.iconCls}"></lable></p>
+		                                <p th:if="${!#strings.isEmpty(r1.data.iconClsColour)}"><lable th:class="${r1.data.iconCls}" th:style="|color: ${r1.data.iconClsColour};|"></lable></p>
+		                                <p th:if="${#strings.isEmpty(r1.data.textColour)}"><span th:text="${r1.data.text}" style="white-space: nowrap;"></span></p>
+		                                <p th:if="${!#strings.isEmpty(r1.data.textColour)}"><span th:text="${r1.data.text}" th:style="|color: ${r1.data.textColour};white-space: nowrap;|"></span></p>
+		                       		</a>
+		                        </li>
 		                        <li th:if="${r1.data.resourceTypeCode == 'urlInsidePage'}"
 	             					th:id="${r1.data.resourceId}"
 	             					th:title="${r1.data.text}"
