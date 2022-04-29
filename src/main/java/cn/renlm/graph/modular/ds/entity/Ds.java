@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.graph.entity;
+package cn.renlm.graph.modular.ds.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * ER模型
+ * 数据源
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("er")
-public class Er implements Serializable {
+@TableName("ds")
+public class Ds implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,16 +39,28 @@ public class Er implements Serializable {
     private String uuid;
 
     /**
-     * 表名
+     * JDBC链接
      */
-    @TableField("table_name")
-    private String tableName;
+    @TableField("url")
+    private String url;
 
     /**
-     * 注释
+     * 模式
      */
-    @TableField("comment")
-    private String comment;
+    @TableField("schema")
+    private String schema;
+
+    /**
+     * 账号
+     */
+    @TableField("username")
+    private String username;
+
+    /**
+     * 密码
+     */
+    @TableField("password")
+    private String password;
 
     /**
      * 创建时间

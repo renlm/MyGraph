@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.graph.entity;
+package cn.renlm.graph.modular.ds.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 数据源-ER模型关系
+ * ER模型
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("ds_er_rel")
-public class DsErRel implements Serializable {
+@TableName("er")
+public class Er implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,16 +33,22 @@ public class DsErRel implements Serializable {
     private Long id;
 
     /**
-     * 数据源表主键ID
+     * UUID
      */
-    @TableField("ds_id")
-    private Long dsId;
+    @TableField("uuid")
+    private String uuid;
 
     /**
-     * ER模型表主键ID
+     * 表名
      */
-    @TableField("er_id")
-    private Long erId;
+    @TableField("table_name")
+    private String tableName;
+
+    /**
+     * 注释
+     */
+    @TableField("comment")
+    private String comment;
 
     /**
      * 创建时间
@@ -85,6 +91,12 @@ public class DsErRel implements Serializable {
      */
     @TableField("deleted")
     private Boolean deleted;
+
+    /**
+     * 备注
+     */
+    @TableField("remark")
+    private String remark;
 
 
 }

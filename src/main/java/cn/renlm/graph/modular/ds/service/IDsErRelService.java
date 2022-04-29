@@ -1,6 +1,6 @@
-package cn.renlm.graph.modular.graph.service;
+package cn.renlm.graph.modular.ds.service;
 
-import cn.renlm.graph.modular.graph.entity.DsErRel;
+import cn.renlm.graph.modular.ds.entity.DsErRel;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

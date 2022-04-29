@@ -1,6 +1,6 @@
-package cn.renlm.graph.modular.graph.mapper;
+package cn.renlm.graph.modular.ds.mapper;
 
-import cn.renlm.graph.modular.graph.entity.Ds;
+import cn.renlm.graph.modular.ds.entity.Ds;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

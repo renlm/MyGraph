@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.graph.entity;
+package cn.renlm.graph.modular.ds.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

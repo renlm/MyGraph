@@ -1,12 +1,12 @@
-package cn.renlm.graph.modular.graph.service.impl;
+package cn.renlm.graph.modular.ds.service.impl;
 
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import cn.renlm.graph.modular.graph.entity.Ds;
-import cn.renlm.graph.modular.graph.mapper.DsMapper;
-import cn.renlm.graph.modular.graph.service.IDsService;
+import cn.renlm.graph.modular.ds.entity.Ds;
+import cn.renlm.graph.modular.ds.mapper.DsMapper;
+import cn.renlm.graph.modular.ds.service.IDsService;
 
 /**
  * <p>
