@@ -18,9 +18,9 @@ import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.common.Result;
-import cn.renlm.graph.modular.sys.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.security.User;
 
 /**
  * 登录

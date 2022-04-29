@@ -26,9 +26,9 @@ import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.sys.dto.DictDto;
-import cn.renlm.graph.modular.sys.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysDict;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
+import cn.renlm.graph.security.User;
 
 /**
  * 数据字典

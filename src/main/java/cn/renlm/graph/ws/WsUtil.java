@@ -28,7 +28,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
-import cn.renlm.graph.modular.sys.dto.User;
+import cn.renlm.graph.security.User;
 import cn.renlm.graph.ws.WsMessage.WsType;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;

@@ -26,12 +26,12 @@ import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.sys.dto.DictDto;
-import cn.renlm.graph.modular.sys.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysDict;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.mapper.SysDictMapper;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
+import cn.renlm.graph.security.User;
 import cn.renlm.plugins.MyExcelUtil;
 import cn.renlm.plugins.MyExcel.handler.DataWriterHandler;
 

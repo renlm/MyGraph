@@ -21,10 +21,10 @@ import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Resource;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.sys.dto.ResourceDto;
-import cn.renlm.graph.modular.sys.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
+import cn.renlm.graph.security.User;
 
 /**
  * 资源

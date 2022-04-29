@@ -19,7 +19,6 @@ import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.modular.sys.dto.OrgChartDto;
 import cn.renlm.graph.modular.sys.dto.ResourceDto;
-import cn.renlm.graph.modular.sys.dto.User;
 import cn.renlm.graph.modular.sys.dto.UserDto;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
 import cn.renlm.graph.modular.sys.entity.SysRole;
@@ -29,6 +28,7 @@ import cn.renlm.graph.modular.sys.service.ISysOrgService;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.security.User;
 
 /**
  * <p>

@@ -28,9 +28,9 @@ import cn.renlm.graph.amqp.ExcelExportQueueConfig;
 import cn.renlm.graph.common.FileStorage;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.common.Role;
-import cn.renlm.graph.modular.sys.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
+import cn.renlm.graph.security.User;
 
 /**
  * 文件
