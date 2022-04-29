@@ -1,7 +1,10 @@
 package cn.renlm.graph.modular.sys.service;
 
-import cn.renlm.graph.modular.sys.entity.SysRole;
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import cn.renlm.graph.modular.sys.entity.SysRole;
 
 /**
  * <p>
@@ -12,5 +15,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-04-29
  */
 public interface ISysRoleService extends IService<SysRole> {
+
+	/**
+	 * 获取用户角色列表
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	List<SysRole> findList(String userId);
 
 }
