@@ -105,7 +105,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 			wrapper.set(ErField::getUpdatorNickname, user.getNickname());
 			wrapper.eq(ErField::getDeleted, false);
 			wrapper.inSql(ErField::getId, StrUtil.indexedFormat(
-					"select ef.id from ds_er_rel der, er e, er_field ef where der.deleted = false and e.deleted = false and ef.deleted = false and der.er_id = e.id and e.id = ef.er_id and der.ds_id = {0}",
+					"select ef.id from ds_er_rel der, er e, er_field ef where der.deleted = 0 and e.deleted = 0 and ef.deleted = 0 and der.er_id = e.id and e.id = ef.er_id and der.ds_id = {0}",
 					ds.getId()));
 		}));
 		iErService.update(Wrappers.<Er>lambdaUpdate().func(wrapper -> {
@@ -115,7 +115,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 			wrapper.set(Er::getUpdatorNickname, user.getNickname());
 			wrapper.eq(Er::getDeleted, false);
 			wrapper.inSql(Er::getId, StrUtil.indexedFormat(
-					"select e.id from ds_er_rel der, er e where der.deleted = false and e.deleted = false and der.er_id = e.id and der.ds_id = {0}",
+					"select e.id from ds_er_rel der, er e where der.deleted = 0 and e.deleted = 0 and der.er_id = e.id and der.ds_id = {0}",
 					ds.getId()));
 		}));
 		iDsErRelService.update(Wrappers.<DsErRel>lambdaUpdate().func(wrapper -> {
@@ -193,7 +193,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 			wrapper.set(ErField::getUpdatorNickname, user.getNickname());
 			wrapper.eq(ErField::getDeleted, false);
 			wrapper.inSql(ErField::getId, StrUtil.indexedFormat(
-					"select ef.id from ds_er_rel der, er e, er_field ef where der.deleted = false and e.deleted = false and ef.deleted = false and der.er_id = e.id and e.id = ef.er_id and der.ds_id = {0}",
+					"select ef.id from ds_er_rel der, er e, er_field ef where der.deleted = 0 and e.deleted = 0 and ef.deleted = 0 and der.er_id = e.id and e.id = ef.er_id and der.ds_id = {0}",
 					ds.getId()));
 		}));
 		// 删除ER模型
@@ -204,7 +204,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 			wrapper.set(Er::getUpdatorNickname, user.getNickname());
 			wrapper.eq(Er::getDeleted, false);
 			wrapper.inSql(Er::getId, StrUtil.indexedFormat(
-					"select e.id from ds_er_rel der, er e where der.deleted = false and e.deleted = false and der.er_id = e.id and der.ds_id = {0}",
+					"select e.id from ds_er_rel der, er e where der.deleted = 0 and e.deleted = 0 and der.er_id = e.id and der.ds_id = {0}",
 					ds.getId()));
 		}));
 		// 删除数据源-ER模型关系

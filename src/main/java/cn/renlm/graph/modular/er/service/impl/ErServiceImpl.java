@@ -45,7 +45,7 @@ public class ErServiceImpl extends ServiceImpl<ErMapper, Er> implements IErServi
 			wrapper.orderByDesc(Er::getId);
 			if (StrUtil.isNotBlank(form.getDsUuid())) {
 				wrapper.inSql(Er::getId, StrUtil.indexedFormat(
-						"select e.id from ds d, ds_er_rel der, er e where d.deleted = false and der.deleted = false and e.deleted = false and d.id = der.ds_id and der.er_id = e.id and d.uuid = ''{0}''",
+						"select e.id from ds d, ds_er_rel der, er e where d.deleted = 0 and der.deleted = 0 and e.deleted = 0 and d.id = der.ds_id and der.er_id = e.id and d.uuid = ''{0}''",
 						form.getDsUuid()));
 			}
 			if (StrUtil.isNotBlank(form.getKeywords())) {

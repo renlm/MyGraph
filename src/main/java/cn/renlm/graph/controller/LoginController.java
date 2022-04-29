@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,9 +19,9 @@ import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.common.Result;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
-import cn.renlm.graph.dto.User;
 
 /**
  * 登录
@@ -40,7 +41,7 @@ public class LoginController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/login")
+	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
@@ -50,7 +51,7 @@ public class LoginController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/register")
+	@GetMapping("/register")
 	public String register() {
 		return "register";
 	}
@@ -96,7 +97,7 @@ public class LoginController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/modifyPwd")
+	@GetMapping("/modifyPwd")
 	public String modifyPwd() {
 		return "modifyPwd";
 	}

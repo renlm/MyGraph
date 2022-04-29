@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -12,10 +14,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Result;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.DsDto;
 import cn.renlm.graph.modular.er.entity.Ds;
 import cn.renlm.graph.modular.er.service.IDsService;
-import cn.renlm.graph.dto.User;
 
 /**
  * 数据源
@@ -35,7 +37,7 @@ public class DsController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	public String list() {
 		return "ds/list";
 	}
@@ -49,7 +51,7 @@ public class DsController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/list")
+	@GetMapping("/ajax/list")
 	public Page<Ds> ajaxList(Authentication authentication, Page<Ds> page, DsDto form) {
 		User user = (User) authentication.getPrincipal();
 		return iDsService.findPage(page, user, form);
@@ -63,7 +65,7 @@ public class DsController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/save")
+	@PostMapping("/ajax/save")
 	public Result<String> ajaxSave(Authentication authentication, DsDto ds) {
 		try {
 			User user = (User) authentication.getPrincipal();
@@ -82,7 +84,7 @@ public class DsController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/del")
+	@PostMapping("/ajax/del")
 	public Result<?> ajaxDel(Authentication authentication, String uuids) {
 		try {
 			User user = (User) authentication.getPrincipal();

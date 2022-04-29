@@ -8,15 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.renlm.graph.common.Result;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.entity.ErField;
 import cn.renlm.graph.modular.er.service.IErFieldService;
-import cn.renlm.graph.dto.User;
 
 /**
  * ER模型-字段
@@ -39,7 +41,7 @@ public class ErFieldController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/list")
+	@GetMapping("/ajax/list")
 	public List<ErField> list(HttpServletRequest request, String erUuid) {
 		return iErFieldService.findListByErUuid(erUuid);
 	}
@@ -63,7 +65,7 @@ public class ErFieldController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/update")
+	@PostMapping("/ajax/update")
 	public Result<?> ajaxUpdate(Authentication authentication, String uuid, String name, String comment, Integer type,
 			Integer size, Integer digit, Boolean isNullable, Boolean autoIncrement, String columnDef, Boolean isPk,
 			Boolean isFk, String remark) {

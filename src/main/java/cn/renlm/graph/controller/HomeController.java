@@ -38,8 +38,9 @@ public class HomeController {
 	 */
 	@GetMapping
 	public String index(ModelMap model) {
+		Long parentId = null;
 		User user = userService.refreshAuthentication();
-		model.put("navGroup", user.getResourceTree(null, Resource.Type.menu, Resource.Type.urlInsidePage,
+		model.put("navGroup", user.getResourceTree(parentId, Resource.Type.menu, Resource.Type.urlInsidePage,
 				Resource.Type.urlNewWindows, Resource.Type.more));
 		return "index";
 	}

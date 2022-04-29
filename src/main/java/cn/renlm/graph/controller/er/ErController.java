@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,11 +18,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Result;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErDto;
 import cn.renlm.graph.modular.er.entity.Er;
 import cn.renlm.graph.modular.er.service.IErService;
 import cn.renlm.graph.mxgraph.ERModelParser;
-import cn.renlm.graph.dto.User;
 
 /**
  * ER模型
@@ -47,7 +49,7 @@ public class ErController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/page")
+	@GetMapping("/ajax/page")
 	public Page<ErDto> page(HttpServletRequest request, Page<Er> page, ErDto form) {
 		return iErService.findPage(page, form);
 	}
@@ -60,7 +62,7 @@ public class ErController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/update")
+	@PostMapping("/ajax/update")
 	public Result<?> ajaxUpdate(Authentication authentication, ErDto form) {
 		try {
 			User user = (User) authentication.getPrincipal();
@@ -85,7 +87,7 @@ public class ErController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/createGraph")
+	@PostMapping("/ajax/createGraph")
 	public Result<?> createGraph(Authentication authentication, String name, String uuids) {
 		try {
 			User user = (User) authentication.getPrincipal();

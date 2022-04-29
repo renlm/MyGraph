@@ -64,6 +64,34 @@ public class User extends SysUser implements org.springframework.security.core.u
 			}
 			return false;
 		}).collect(Collectors.toList());
+		return TreeUtil.build(list, parentId, (object, treeNode) -> {
+			treeNode.setId(object.getId());
+			treeNode.setName(object.getText());
+			treeNode.setWeight(object.getSort());
+			treeNode.setParentId(object.getPid());
+			treeNode.putExtra("data", object);
+		});
+	}
+	
+	/**
+	 * 获取资源树
+	 * 
+	 * @param parentUuid
+	 * @param types
+	 * @return
+	 */
+	public List<Tree<Long>> getResourceTree(String parentUuid, Resource.Type... types) {
+		if (CollUtil.isEmpty(this.getResources())) {
+			return CollUtil.newArrayList();
+		}
+		List<SysResource> list = this.getResources().stream().filter(r -> {
+			for (Resource.Type type : types) {
+				if (type.name().equals(r.getResourceTypeCode())) {
+					return true;
+				}
+			}
+			return false;
+		}).collect(Collectors.toList());
 		return TreeUtil.build(list, null, (object, treeNode) -> {
 			treeNode.setId(object.getId());
 			treeNode.setName(object.getText());

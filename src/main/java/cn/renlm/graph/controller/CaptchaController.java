@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.hutool.captcha.CaptchaUtil;
@@ -33,8 +34,8 @@ public class CaptchaController {
 	 * @param request
 	 * @param response
 	 */
+	@GetMapping
 	@SneakyThrows
-	@RequestMapping
 	public void image(HttpServletRequest request, HttpServletResponse response) {
 		int codeCount = 3;
 		String code = RandomUtil.randomNumbers(codeCount);

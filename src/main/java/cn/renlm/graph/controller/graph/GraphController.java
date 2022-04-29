@@ -8,6 +8,8 @@ import javax.annotation.Resource;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,10 +22,10 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.Datagrid;
 import cn.renlm.graph.common.Result;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
 import cn.renlm.graph.modular.graph.service.IGraphService;
-import cn.renlm.graph.dto.User;
 
 /**
  * 图形设计
@@ -43,7 +45,7 @@ public class GraphController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/mine")
+	@GetMapping("/mine")
 	public String mine() {
 		return "graph/mine";
 	}
@@ -53,7 +55,7 @@ public class GraphController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/lib")
+	@GetMapping("/lib")
 	public String list() {
 		return "graph/lib";
 	}
@@ -67,7 +69,7 @@ public class GraphController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/minePage")
+	@GetMapping("/ajax/minePage")
 	public Datagrid<Graph> minePage(Authentication authentication, Page<Graph> page, GraphDto form) {
 		User user = (User) authentication.getPrincipal();
 		form.setCreatorUserId(user.getUserId());
@@ -83,7 +85,7 @@ public class GraphController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/page")
+	@GetMapping("/ajax/page")
 	public Page<Graph> publicPage(Page<Graph> page, GraphDto form) {
 		return iGraphService.findPage(page, form);
 	}
@@ -95,7 +97,7 @@ public class GraphController {
 	 * @param uuid
 	 * @return
 	 */
-	@RequestMapping("/editor")
+	@GetMapping("/editor")
 	public String editor(ModelMap model, String uuid) {
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
 		graph.setXml(StrUtil.isBlank(graph.getXml()) ? null : Base64.encodeUrlSafe(graph.getXml()));
@@ -110,7 +112,7 @@ public class GraphController {
 	 * @param uuid
 	 * @return
 	 */
-	@RequestMapping("/viewer")
+	@GetMapping("/viewer")
 	public String viewer(ModelMap model, String uuid) {
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
 		graph.setXml(StrUtil.isBlank(graph.getXml()) ? null : Base64.encodeUrlSafe(graph.getXml()));
@@ -126,7 +128,7 @@ public class GraphController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/saveEditor")
+	@PostMapping("/ajax/saveEditor")
 	public Result<?> saveEditor(Authentication authentication, GraphDto form) {
 		User user = (User) authentication.getPrincipal();
 		try {
