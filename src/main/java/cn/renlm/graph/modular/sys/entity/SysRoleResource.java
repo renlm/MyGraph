@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-04-29
+ * @since 2022-04-30
  */
 @Getter
 @Setter
@@ -57,22 +57,10 @@ public class SysRoleResource implements Serializable {
     private Integer sort;
 
     /**
-     * 是否常用菜单
-     */
-    @TableField("commonly")
-    private Boolean commonly;
-
-    /**
      * 是否为默认主页
      */
     @TableField("default_home_page")
     private Boolean defaultHomePage;
-
-    /**
-     * 是否隐藏
-     */
-    @TableField("hide")
-    private Boolean hide;
 
     /**
      * 创建时间

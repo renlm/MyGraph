@@ -103,7 +103,6 @@ CREATE TABLE sys_resource(
     level      					INT             				NOT NULL 		COMMENT '层级',
     sort            			INT             								COMMENT '排序',
     state						VARCHAR(20)						NOT NULL		COMMENT '展开状态，open：无子菜单、closed：有子菜单',
-    commonly					TINYINT(1) 		DEFAULT 0						COMMENT '是否常用菜单（默认否）',
     default_home_page			TINYINT(1) 		DEFAULT 0						COMMENT '是否为默认主页（默认否）',
     pid           				BIGINT      									COMMENT '父级ID',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
@@ -121,9 +120,7 @@ CREATE TABLE sys_role_resource(
     sys_resource_id       		BIGINT      					NOT NULL 		COMMENT '资源表（主键ID）',
     alias     					VARCHAR(255)   					                COMMENT '别名',
     sort            			INT             								COMMENT '排序',
-    commonly					TINYINT(1) 										COMMENT '是否常用菜单',
     default_home_page			TINYINT(1) 										COMMENT '是否为默认主页',
-    hide						TINYINT(1) 										COMMENT '是否隐藏',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）'

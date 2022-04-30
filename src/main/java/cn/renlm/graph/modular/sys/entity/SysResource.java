@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-04-29
+ * @since 2022-04-30
  */
 @Getter
 @Setter
@@ -97,12 +97,6 @@ public class SysResource implements Serializable {
      */
     @TableField("state")
     private String state;
-
-    /**
-     * 是否常用菜单（默认否）
-     */
-    @TableField("commonly")
-    private Boolean commonly;
 
     /**
      * 是否为默认主页（默认否）

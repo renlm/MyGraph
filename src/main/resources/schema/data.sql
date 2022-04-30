@@ -54,32 +54,32 @@ VALUES (1,				30, 		'高级软件开发工程师'),
 -- 资源
 DELETE FROM sys_resource;
 INSERT INTO sys_resource 
-	   (id,				resource_id, 						code, 			text, 			resource_type_code, url, 														icon_cls, 					icon_cls_colour, 	text_colour, 	level, 	sort,	state,		commonly,	default_home_page,	pid,		remark)
-VALUES (-1, 			'86D6BA0E2C764A6C8D6C6EB57898C4CC',	'HOME', 		'主页', 			'permission', 		null, 														'fa fa-institution', 		null, 				null, 			1, 		0, 		'closed',	0,			0,					null,		null)
-	  ,(-10, 			'D81EE8F226A2463C99837F0B20CC3765',	'WELCOME', 		'欢迎页', 		'permission', 		'/home/welcome', 											'fa fa-home', 				null, 				null, 			2, 		1, 		'open',		0,			1,					-1,			null)
-	  ,(-20, 			'5D745593F7BC493590F30E1DDCA21F9C',	'OSHI', 		'服务器监控', 		'permission', 		'/home/oshi', 												'fa fa-database', 			null, 				null, 			2, 		2, 		'open',		0,			0,					-1,			null)
-	  ,(10, 			'FF784D818217460DB745C5013EE0C2B5',	'10', 			'工作台', 		'menu', 			null, 														'fa fa-windows', 			null, 				null, 			1, 		1, 		'closed',	0,			0,					null,		null)
-	  ,(1001, 			'BFD547E1E8B241EF8B19E94B997FBBB6',	'1001', 		'图形设计', 		'menu', 			null, 														'fa fa-xing', 				null, 				null, 			2, 		1, 		'closed',	0,			0,					10,			null)
-	  ,(100101, 		'1A2288C7B39D43D7B27CD7BD71A9EF44',	'100101', 		'我的作品', 		'menu', 			'/graph/mine', 												'fa fa-user-plus', 			null, 				null, 			3, 		1, 		'open',		0,			0,					1001,		null)
-	  ,(1002, 			'89192E321F734C3DAA3093A4CF160872',	'1002', 		'数据源', 		'menu', 			null, 														'fa fa-soccer-ball-o', 		null, 				null, 			2, 		2, 		'closed',	0,			0,					10,			null)
-	  ,(100201, 		'B7D338D9D1144D8E92A23F1D4B78E348',	'100201', 		'源列表', 		'menu', 			'/ds/list', 												'fa fa-etsy', 				null, 				null, 			3, 		1, 		'open',		0,			0,					1002,		null)
-	  ,(20, 			'35BD72793CF14E37947D9D0629B242BF',	'20', 			'系统管理', 		'menu', 			null, 														'fa fa-cog', 				null, 				null, 			1, 		2, 		'closed',	0,			0,					null,		null)
-	  ,(2001, 			'F41159ACD09B4DD3B04D0E6EEAE6E875',	'2001', 		'权限管理', 		'menu', 			null, 														'fa fa-cube', 				null, 				null, 			2, 		1, 		'closed',	0,			0,					20,			null)
-	  ,(200101, 		'1A22415278094E2D802A73382B60CDA7',	'200101', 		'用户管理', 		'menu', 			null, 														'fa fa-user', 				null, 				null, 			3, 		1, 		'open',		0,			0,					2001,		null)
-	  ,(200102, 		'27687B485B80460A80F077E964163D25',	'200102', 		'组织机构', 		'menu', 			null, 														'fa fa-sitemap', 			null, 				null, 			3, 		2, 		'open',		0,			0,					2001,		null)
-	  ,(200103, 		'D182D4DA30F44B9A92CC57AC4A2A5918',	'200103', 		'角色管理', 		'menu', 			null, 														'fa fa-user-circle', 		null, 				null, 			3, 		3, 		'open',		0,			0,					2001,		null)
-	  ,(200104, 		'E39F1F1E3D2245B98C349DBD791CDA1F',	'200104', 		'资源列表', 		'menu', 			null, 														'fa fa-life-ring', 			null, 				null, 			3, 		4, 		'open',		0,			0,					2001,		null)
-	  ,(2002, 			'7D59CAD9CA0C4D69905612E2C801E87E',	'2002', 		'数据字典', 		'menu', 			null, 														'fa fa-cogs', 				null, 				null, 			2, 		2, 		'closed',	0,			0,					20,			null)
-	  ,(200201, 		'32DDAEA4491E4D03BE12A531FDA6D8A9',	'200201', 		'系统常量', 		'menu', 			null, 														'fa fa-calendar', 			null, 				null, 			3, 		1, 		'open',		0,			0,					2002,		null)
-	  ,(200202, 		'17A93E79D780487284BF886B99A05E2F',	'200202', 		'字典列表', 		'menu', 			null, 														'fa fa-book', 				null, 				null, 			3, 		2, 		'open',		0,			0,					2002,		null)
-	  ,(2003, 			'BC5AC4EA07304BB59960E110767EE4C2',	'2003', 		'定时任务', 		'menu', 			null, 														'fa fa-tasks', 				null, 				null, 			2, 		3, 		'closed',	0,			0,					20,			null)
-	  ,(200301, 		'D957245380414774BF7882933536DA86',	'200301', 		'任务管理', 		'menu', 			null, 														'fa fa-deaf', 				null, 				null, 			3, 		1, 		'open',		0,			0,					2003,		null)
-	  ,(30, 			'3165637A889443629EB021505A4CAC52',	'30', 			'服务器', 		'urlInsidePage', 	'/home/oshi',												'fa fa-server', 			'#FF5722', 			null, 			1, 		3, 		'open',		0,			0,					null,		null)
-	  ,(40, 			'FEA19FB294134CC19C74786577F21CBB',	'40', 			'公共图库', 		'urlInsidePage', 	'/graph/lib', 												'fa fa-audio-description', 	null, 				null, 			1, 		4, 		'open',		0,			0,					null,		null)
-	  ,(50, 			'302F142FBA694822A32A9B38171DB851',	'50', 			'帮助中心', 		'urlInsidePage', 	'/static/editor.md/index.html', 							'fa fa-comments-o', 		null, 				null, 			1, 		5, 		'open',		0,			0,					null,		null)
-	  ,(60, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'60', 			'更多功能', 		'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		6, 		'closed',	0,			0,					null,		null)
-	  ,(6001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'6001', 		'在线调试', 		'urlInsidePage', 	'/compile', 												'fa fa-code', 				'rebeccapurple', 	null, 			2, 		1, 		'open',		0,			0,					60,			null)
-	  ,(6002, 			'466FA46CA81B44A0B286294B6149007F',	'6002', 		'EasyUI中文站', 	'urlNewWindows', 	'http://www.jeasyui.cn/?from=demo', 						'fa fa-link', 				null, 				null, 			2, 		2, 		'open',		0,			0,					60,			null)
+	   (id,				resource_id, 						code, 			text, 			resource_type_code, url, 														icon_cls, 					icon_cls_colour, 	text_colour, 	level, 	sort,	state,		default_home_page,	pid,		remark)
+VALUES (-1, 			'86D6BA0E2C764A6C8D6C6EB57898C4CC',	'HOME', 		'主页', 			'permission', 		null, 														'fa fa-institution', 		null, 				null, 			1, 		0, 		'closed',	0,					null,		null)
+	  ,(-10, 			'D81EE8F226A2463C99837F0B20CC3765',	'WELCOME', 		'欢迎页', 		'permission', 		'/home/welcome', 											'fa fa-home', 				null, 				null, 			2, 		1, 		'open',		1,					-1,			null)
+	  ,(-20, 			'5D745593F7BC493590F30E1DDCA21F9C',	'OSHI', 		'服务器监控', 		'permission', 		'/home/oshi', 												'fa fa-database', 			null, 				null, 			2, 		2, 		'open',		0,					-1,			null)
+	  ,(10, 			'FF784D818217460DB745C5013EE0C2B5',	'10', 			'工作台', 		'menu', 			null, 														'fa fa-windows', 			null, 				null, 			1, 		1, 		'closed',	0,					null,		null)
+	  ,(1001, 			'BFD547E1E8B241EF8B19E94B997FBBB6',	'1001', 		'图形设计', 		'menu', 			null, 														'fa fa-xing', 				null, 				null, 			2, 		1, 		'closed',	0,					10,			null)
+	  ,(100101, 		'1A2288C7B39D43D7B27CD7BD71A9EF44',	'100101', 		'我的作品', 		'menu', 			'/graph/mine', 												'fa fa-user-plus', 			null, 				null, 			3, 		1, 		'open',		0,					1001,		null)
+	  ,(1002, 			'89192E321F734C3DAA3093A4CF160872',	'1002', 		'数据源', 		'menu', 			null, 														'fa fa-soccer-ball-o', 		null, 				null, 			2, 		2, 		'closed',	0,					10,			null)
+	  ,(100201, 		'B7D338D9D1144D8E92A23F1D4B78E348',	'100201', 		'源列表', 		'menu', 			'/ds/list', 												'fa fa-etsy', 				null, 				null, 			3, 		1, 		'open',		0,					1002,		null)
+	  ,(20, 			'35BD72793CF14E37947D9D0629B242BF',	'20', 			'系统管理', 		'menu', 			null, 														'fa fa-cog', 				null, 				null, 			1, 		2, 		'closed',	0,					null,		null)
+	  ,(2001, 			'F41159ACD09B4DD3B04D0E6EEAE6E875',	'2001', 		'权限管理', 		'menu', 			null, 														'fa fa-cube', 				null, 				null, 			2, 		1, 		'closed',	0,					20,			null)
+	  ,(200101, 		'1A22415278094E2D802A73382B60CDA7',	'200101', 		'用户管理', 		'menu', 			null, 														'fa fa-user', 				null, 				null, 			3, 		1, 		'open',		0,					2001,		null)
+	  ,(200102, 		'27687B485B80460A80F077E964163D25',	'200102', 		'组织机构', 		'menu', 			null, 														'fa fa-sitemap', 			null, 				null, 			3, 		2, 		'open',		0,					2001,		null)
+	  ,(200103, 		'D182D4DA30F44B9A92CC57AC4A2A5918',	'200103', 		'角色管理', 		'menu', 			null, 														'fa fa-user-circle', 		null, 				null, 			3, 		3, 		'open',		0,					2001,		null)
+	  ,(200104, 		'E39F1F1E3D2245B98C349DBD791CDA1F',	'200104', 		'资源列表', 		'menu', 			null, 														'fa fa-life-ring', 			null, 				null, 			3, 		4, 		'open',		0,					2001,		null)
+	  ,(2002, 			'7D59CAD9CA0C4D69905612E2C801E87E',	'2002', 		'数据字典', 		'menu', 			null, 														'fa fa-cogs', 				null, 				null, 			2, 		2, 		'closed',	0,					20,			null)
+	  ,(200201, 		'32DDAEA4491E4D03BE12A531FDA6D8A9',	'200201', 		'系统常量', 		'menu', 			null, 														'fa fa-calendar', 			null, 				null, 			3, 		1, 		'open',		0,					2002,		null)
+	  ,(200202, 		'17A93E79D780487284BF886B99A05E2F',	'200202', 		'字典列表', 		'menu', 			null, 														'fa fa-book', 				null, 				null, 			3, 		2, 		'open',		0,					2002,		null)
+	  ,(2003, 			'BC5AC4EA07304BB59960E110767EE4C2',	'2003', 		'定时任务', 		'menu', 			null, 														'fa fa-tasks', 				null, 				null, 			2, 		3, 		'closed',	0,					20,			null)
+	  ,(200301, 		'D957245380414774BF7882933536DA86',	'200301', 		'任务管理', 		'menu', 			null, 														'fa fa-deaf', 				null, 				null, 			3, 		1, 		'open',		0,					2003,		null)
+	  ,(30, 			'3165637A889443629EB021505A4CAC52',	'30', 			'服务器', 		'urlInsidePage', 	'/home/oshi',												'fa fa-server', 			'#FF5722', 			null, 			1, 		3, 		'open',		0,					null,		null)
+	  ,(40, 			'FEA19FB294134CC19C74786577F21CBB',	'40', 			'公共图库', 		'urlInsidePage', 	'/graph/lib', 												'fa fa-audio-description', 	null, 				null, 			1, 		4, 		'open',		0,					null,		null)
+	  ,(50, 			'302F142FBA694822A32A9B38171DB851',	'50', 			'帮助中心', 		'urlInsidePage', 	'/static/editor.md/index.html', 							'fa fa-comments-o', 		null, 				null, 			1, 		5, 		'open',		0,					null,		null)
+	  ,(60, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'60', 			'更多功能', 		'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		6, 		'closed',	0,					null,		null)
+	  ,(6001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'6001', 		'在线调试', 		'urlInsidePage', 	'/compile', 												'fa fa-code', 				'rebeccapurple', 	null, 			2, 		1, 		'open',		0,					60,			null)
+	  ,(6002, 			'466FA46CA81B44A0B286294B6149007F',	'6002', 		'EasyUI中文站', 	'urlNewWindows', 	'http://www.jeasyui.cn/?from=demo', 						'fa fa-link', 				null, 				null, 			2, 		2, 		'open',		0,					60,			null)
 ;
 
 -- 角色资源关系
@@ -89,16 +89,12 @@ INSERT INTO sys_role_resource(
 	sys_resource_id,	
 	alias,	
 	sort,	
-	commonly,	
-	default_home_page,	
-	hide
+	default_home_page
 ) SELECT 1001, -- sys_role_id		
 	id,	-- sys_resource_id				
 	CASE WHEN code = 'OSHI' then '服务器' else null end, -- alias
 	sort, -- sort
-	commonly, -- commonly
-	CASE WHEN code = 'OSHI' then 1 else 0 end, -- default_home_page
-	false -- hide
+	CASE WHEN code = 'OSHI' then 1 else 0 end -- default_home_page
 FROM sys_resource
 ;
 INSERT INTO sys_role_resource(
@@ -106,16 +102,12 @@ INSERT INTO sys_role_resource(
 	sys_resource_id,	
 	alias,	
 	sort,	
-	commonly,	
-	default_home_page,	
-	hide
+	default_home_page
 ) SELECT 2001, -- sys_role_id	
 	id,	-- sys_resource_id				
 	null, -- alias	
 	sort, -- sort	
-	commonly, -- commonly
-	default_home_page, -- default_home_page
-	false -- hide
+	default_home_page -- default_home_page
 FROM sys_resource
 WHERE code IN ('HOME', 'WELCOME', '10', '1001', '100101', '1002', '100201', '40', '50', '60', '6001', '6002')
 ;
@@ -124,16 +116,12 @@ INSERT INTO sys_role_resource(
 	sys_resource_id,	
 	alias,	
 	sort,	
-	commonly,	
-	default_home_page,	
-	hide
+	default_home_page
 ) SELECT 2002, -- sys_role_id	
 	id,	-- sys_resource_id				
 	null, -- alias	
 	sort, -- sort	
-	commonly, -- commonly
-	default_home_page, -- default_home_page
-	false -- hide
+	default_home_page -- default_home_page
 FROM sys_resource
 WHERE code IN ('HOME', 'WELCOME', '10', '1001', '100101', '1002', '100201', '40', '50', '60', '6001', '6002')
 ;
