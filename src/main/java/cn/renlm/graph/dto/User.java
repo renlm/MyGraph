@@ -57,9 +57,10 @@ public class User extends SysUser implements org.springframework.security.core.u
 		if (CollUtil.isEmpty(this.getResources())) {
 			return CollUtil.newArrayList();
 		}
-		Resource.Type[] types = { Resource.Type.menu, Resource.Type.urlInsidePage, Resource.Type.urlNewWindows };
+		Resource.Type[] types = { Resource.Type.menu, Resource.Type.urlInsidePage, Resource.Type.urlNewWindows,
+				Resource.Type.permission };
 		List<SysResource> list = this.getResources().stream().filter(r -> BooleanUtil.isTrue(r.getDefaultHomePage()))
-				.filter(r -> {
+				.filter(r -> StrUtil.isNotBlank(r.getUrl())).filter(r -> {
 					for (Resource.Type type : types) {
 						if (type.name().equals(r.getResourceTypeCode())) {
 							return true;
@@ -71,16 +72,16 @@ public class User extends SysUser implements org.springframework.security.core.u
 	}
 
 	/**
-	 * 获取资源树
+	 * 获取首页模块导航树
 	 * 
-	 * @param parentId
-	 * @param types
 	 * @return
 	 */
-	public List<Tree<Long>> getResourceTree(Long parentId, Resource.Type... types) {
+	public List<Tree<Long>> getNavGroup() {
 		if (CollUtil.isEmpty(this.getResources())) {
 			return CollUtil.newArrayList();
 		}
+		Resource.Type[] types = { Resource.Type.menu, Resource.Type.urlInsidePage, Resource.Type.urlNewWindows,
+				Resource.Type.more };
 		List<SysResource> list = this.getResources().stream().filter(r -> {
 			for (Resource.Type type : types) {
 				if (type.name().equals(r.getResourceTypeCode())) {
@@ -89,7 +90,7 @@ public class User extends SysUser implements org.springframework.security.core.u
 			}
 			return false;
 		}).collect(Collectors.toList());
-		return TreeUtil.build(list, parentId, (object, treeNode) -> {
+		return TreeUtil.build(list, null, (object, treeNode) -> {
 			BeanUtil.copyProperties(object, treeNode);
 			treeNode.setId(object.getId());
 			treeNode.setName(object.getText());
@@ -99,17 +100,17 @@ public class User extends SysUser implements org.springframework.security.core.u
 	}
 
 	/**
-	 * 获取资源树
+	 * 获取菜单树
 	 * 
 	 * @param parentUuid
-	 * @param types
 	 * @return
 	 */
-	public List<Tree<Long>> getResourceTree(String parentUuid, Resource.Type... types) {
+	public List<Tree<Long>> getMenuTree(String parentUuid) {
 		if (CollUtil.isEmpty(this.getResources()) || StrUtil.isBlank(parentUuid)) {
 			return CollUtil.newArrayList();
 		}
 		SysResource parent = new SysResource();
+		Resource.Type[] types = { Resource.Type.menu, Resource.Type.urlInsidePage, Resource.Type.urlNewWindows };
 		List<SysResource> list = this.getResources().stream().filter(r -> {
 			if (StrUtil.equals(parentUuid, r.getResourceId())) {
 				BeanUtil.copyProperties(r, parent);

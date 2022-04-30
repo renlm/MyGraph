@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.hutool.json.JSONUtil;
-import cn.renlm.graph.common.Resource;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.oshi.OshiInfo;
 import cn.renlm.graph.oshi.OshiInfoUtil;
@@ -38,10 +37,8 @@ public class HomeController {
 	 */
 	@GetMapping
 	public String index(ModelMap model) {
-		Long parentId = null;
 		User user = userService.refreshAuthentication();
-		model.put("navGroup", user.getResourceTree(parentId, Resource.Type.menu, Resource.Type.urlInsidePage,
-				Resource.Type.urlNewWindows, Resource.Type.more));
+		model.put("navGroup", user.getNavGroup());
 		model.put("homePages", user.getHomePages());
 		return "index";
 	}

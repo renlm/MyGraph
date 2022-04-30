@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.hutool.core.lang.tree.Tree;
-import cn.renlm.graph.common.Resource;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.security.UserService;
 
@@ -36,8 +35,7 @@ public class SysResourceController {
 	@GetMapping("/ajax/getMenus")
 	public List<Tree<Long>> getMenus(String uuid) {
 		User user = userService.refreshAuthentication();
-		List<Tree<Long>> tree = user.getResourceTree(uuid, Resource.Type.menu, Resource.Type.urlInsidePage,
-				Resource.Type.urlNewWindows);
+		List<Tree<Long>> tree = user.getMenuTree(uuid);
 		return tree;
 	}
 }

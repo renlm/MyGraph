@@ -10,6 +10,7 @@ import lombok.Getter;
  */
 public enum Resource {
 
+	WELCOME("欢迎页"), 
 	OSHI("服务器监控");
 
 	@Getter
