@@ -192,12 +192,6 @@
 	    	style="overflow:hidden;"
 	    	data-options="region:'center',border:false">
 	        <div id="indexTabs" class="easyui-tabs" style="width: 100%;height: 100%;">
-	        	<div th:data-options="|title:'系统首页',
-	        			iconCls:'fa fa-home',
-	        			closable:false,
-            			content:'<iframe src=\'@{/home/welcome}\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'
-            		|">
-            	</div>
 	        	<th:block th:each="r,iterStat : ${homePages}">
 		        	<div th:data-options="|id:'${r.resourceId}',
 		        			title:'${r.text}',
