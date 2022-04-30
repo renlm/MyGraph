@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<title>[(${#SystemConst.val('cfgSystemName')})]</title>
+	<title th:text="${#ConstUtil.getValue('cfgSystemName')}"></title>
 	<meta charset="UTF-8" />
-	<meta name="renderer" content="webkit" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-	
-	<link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+    <link rel="shortcut icon" th:href="@{/static/favicon.ico}" type="image/x-icon" />
 	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 	<link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet" />
-	<link th:href="@{/static/css/login.css}" rel="stylesheet" />
+	<link th:href="@{/static/css/login/classic.css}" rel="stylesheet" />
 </head>
 <body>
 	<div class="box">
@@ -18,10 +20,10 @@
 		<div class="login-box">
 			<div class="login-title">
 				<div style="float: left; margin-left: 10px;">
-					<img th:src="@{/static/img/logo.png}" style="width: 60px; height: 60px;">
+					<img th:src="@{/static/MyUI/images/avatar.jpg}" style="width: 60px; height: 60px;">
 				</div>
 				<h1 class="text-center">
-					<small><span>[(${#SystemConst.val('cfgSystemName')})]</span></small>
+					<small><span>[(${#ConstUtil.getValue('cfgSystemName')})]</span></small>
 				</h1>
 			</div>
 			<div class="login-content" id="myDiv">
@@ -84,7 +86,7 @@
 		</div>
 	</div>
 	<div class="footer">
-        © 2021 Renlm <a href="https://beian.miit.gov.cn" target="_blank">[(${#SystemConst.val('cfgSiteBeian')})]</a>
+        © 2021 Renlm <a href="https://beian.miit.gov.cn" target="_blank">[(${#ConstUtil.getValue('cfgSiteBeian')})]</a>
     </div>
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>

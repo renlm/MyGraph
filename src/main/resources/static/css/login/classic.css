@@ -1,0 +1,172 @@
+@charset "utf-8";
+
+@import "../scrollbar.css";
+
+@import "../ie-warn.css";
+
+html, body {
+	height: 100%;
+}
+
+body {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.box {
+	background: url("../../images/login-bg.jpg") no-repeat 80% center;
+	background-size: cover;
+	margin: 0 auto;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.login-box {
+	width: 100%;
+	max-width: 550px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+	margin-top: -200px;
+	z-index: 999;
+}
+
+@media screen and (min-width: 500px) {
+	.login-box {
+		left: 75%;
+		margin-left: -275px;
+	}
+}
+
+.form {
+	width: 100%;
+	max-width: 500px;
+	height: 275px;
+	margin: 2px auto 0px auto;
+}
+
+.login-content {
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	height: 300px;
+	width: 100%;
+	max-width: 550px;
+	background-color: rgba(255, 250, 2550, .6);
+	float: left;
+}
+
+.input-group {
+	margin: 15px 0px 0px 0px !important;
+}
+
+.form-control, .input-group {
+	height: 40px;
+}
+
+.form-actions {
+	margin-top: 20px;
+}
+
+.form-group {
+	margin-bottom: 0px !important;
+}
+
+.login-title {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	padding: 20px 10px;
+	background-color: rgba(0, 0, 0, .6);
+}
+
+.login-title h1 {
+	margin-top: 10px !important;
+}
+
+.login-title small {
+	color: #fff;
+	margin-left: -50px;
+}
+
+.link p {
+	line-height: 20px;
+	margin-top: 30px;
+}
+
+.btn-sm {
+	padding: 8px 24px !important;
+	font-size: 16px !important;
+}
+
+.flag {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #fff;
+	font-weight: bold;
+	font: 14px/normal "microsoft yahei", "Times New Roman", "宋体", Times, serif;
+}
+
+.code_box {
+	display: flex;
+	justify-content: space-between;
+}
+
+.tab {
+	display: flex;
+	margin: 0 auto;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.tab-item {
+	width: 33.333%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.on {
+	color: #fff;
+	border-bottom: 2px solid #fff;
+}
+
+.form {
+	display: none;
+}
+
+.active {
+	display: block;
+}
+
+.login_qrcode_content {
+	margin-top: 20px !important;
+}
+
+.bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	z-index: 9;
+}
+
+.footer {
+	width: 100%;
+    bottom: 10px;
+	color: white;
+	z-index: 1000;
+    position: fixed;
+    text-align: center;
+    font: 12px "microsoft yahei", "Times New Roman", 宋体, Times, serif;
+}
+
+.footer a {
+    color: white;
+    text-decoration: underline;
+}
