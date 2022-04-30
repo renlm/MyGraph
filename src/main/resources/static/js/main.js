@@ -25,7 +25,7 @@
 						id : "GraphViewer-" + uuid,
 						title : title,
 						href : '/graph/viewer?uuid=' + uuid,
-						iconCls : iconCls ? iconCls : 'fa fa-cubes'
+						iconCls : iconCls ? iconCls : 'fa fa-eye'
 					});
 				} catch(e) {
 					top.window.open(ctx + '/graph/viewer?uuid=' + uuid);
@@ -48,7 +48,7 @@
 						id : "GraphEditor-" + uuid,
 						title : title,
 						href : '/graph/editor?uuid=' + uuid,
-						iconCls : iconCls ? iconCls : 'fa fa-cubes'
+						iconCls : iconCls ? iconCls : 'fa fa-edit'
 					});
 				} catch(e) {
 					top.window.open(ctx + '/graph/editor?uuid=' + uuid);
