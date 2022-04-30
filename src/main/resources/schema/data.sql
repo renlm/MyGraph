@@ -55,10 +55,7 @@ VALUES (1,				30, 		'高级软件开发工程师'),
 DELETE FROM sys_resource;
 INSERT INTO sys_resource 
 	   (id,				resource_id, 						code, 			text, 			resource_type_code, url, 														icon_cls, 					icon_cls_colour, 	text_colour, 	level, 	sort,	state,		default_home_page,	pid,		remark)
-VALUES (-1, 			'86D6BA0E2C764A6C8D6C6EB57898C4CC',	'HOME', 		'主页', 			'permission', 		null, 														'fa fa-institution', 		null, 				null, 			1, 		0, 		'closed',	0,					null,		null)
-	  ,(-10, 			'D81EE8F226A2463C99837F0B20CC3765',	'WELCOME', 		'欢迎页', 		'permission', 		'/home/welcome', 											'fa fa-home', 				null, 				null, 			2, 		1, 		'open',		1,					-1,			null)
-	  ,(-20, 			'5D745593F7BC493590F30E1DDCA21F9C',	'OSHI', 		'服务器监控', 		'permission', 		'/home/oshi', 												'fa fa-database', 			null, 				null, 			2, 		2, 		'open',		0,					-1,			null)
-	  ,(10, 			'FF784D818217460DB745C5013EE0C2B5',	'10', 			'工作台', 		'menu', 			null, 														'fa fa-windows', 			null, 				null, 			1, 		1, 		'closed',	0,					null,		null)
+VALUES (10, 			'FF784D818217460DB745C5013EE0C2B5',	'10', 			'工作台', 		'menu', 			null, 														'fa fa-windows', 			null, 				null, 			1, 		1, 		'closed',	0,					null,		null)
 	  ,(1001, 			'BFD547E1E8B241EF8B19E94B997FBBB6',	'1001', 		'图形设计', 		'menu', 			null, 														'fa fa-xing', 				null, 				null, 			2, 		1, 		'closed',	0,					10,			null)
 	  ,(100101, 		'1A2288C7B39D43D7B27CD7BD71A9EF44',	'100101', 		'我的作品', 		'menu', 			'/graph/mine', 												'fa fa-user-plus', 			null, 				null, 			3, 		1, 		'open',		0,					1001,		null)
 	  ,(1002, 			'89192E321F734C3DAA3093A4CF160872',	'1002', 		'数据源', 		'menu', 			null, 														'fa fa-soccer-ball-o', 		null, 				null, 			2, 		2, 		'closed',	0,					10,			null)
@@ -74,7 +71,7 @@ VALUES (-1, 			'86D6BA0E2C764A6C8D6C6EB57898C4CC',	'HOME', 		'主页', 			'permi
 	  ,(200202, 		'17A93E79D780487284BF886B99A05E2F',	'200202', 		'字典列表', 		'menu', 			null, 														'fa fa-book', 				null, 				null, 			3, 		2, 		'open',		0,					2002,		null)
 	  ,(2003, 			'BC5AC4EA07304BB59960E110767EE4C2',	'2003', 		'定时任务', 		'menu', 			null, 														'fa fa-tasks', 				null, 				null, 			2, 		3, 		'closed',	0,					20,			null)
 	  ,(200301, 		'D957245380414774BF7882933536DA86',	'200301', 		'任务管理', 		'menu', 			null, 														'fa fa-deaf', 				null, 				null, 			3, 		1, 		'open',		0,					2003,		null)
-	  ,(30, 			'3165637A889443629EB021505A4CAC52',	'30', 			'服务器', 		'urlInsidePage', 	'/home/oshi',												'fa fa-server', 			'#FF5722', 			null, 			1, 		3, 		'open',		0,					null,		null)
+	  ,(30, 			'3165637A889443629EB021505A4CAC52',	'OSHI', 		'服务器', 		'urlInsidePage', 	'/home/oshi',												'fa fa-server', 			'#FF5722', 			null, 			1, 		3, 		'open',		0,					null,		null)
 	  ,(40, 			'FEA19FB294134CC19C74786577F21CBB',	'40', 			'公共图库', 		'urlInsidePage', 	'/graph/lib', 												'fa fa-audio-description', 	null, 				null, 			1, 		4, 		'open',		0,					null,		null)
 	  ,(50, 			'302F142FBA694822A32A9B38171DB851',	'50', 			'帮助中心', 		'urlInsidePage', 	'/static/editor.md/index.html', 							'fa fa-comments-o', 		null, 				null, 			1, 		5, 		'open',		0,					null,		null)
 	  ,(60, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'60', 			'更多功能', 		'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		6, 		'closed',	0,					null,		null)
