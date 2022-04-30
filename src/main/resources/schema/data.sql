@@ -107,7 +107,7 @@ INSERT INTO sys_role_resource(
 	sort, -- sort	
 	default_home_page -- default_home_page
 FROM sys_resource
-WHERE code IN ('WELCOME', '10', '1001', '100101', '1002', '100201', '40', '50', '60', '6001', '6002')
+WHERE code IN ('WELCOME', '10', '1001', '100101', '1002', '100201', '40', '50')
 ;
 INSERT INTO sys_role_resource(
 	sys_role_id,
@@ -121,7 +121,7 @@ INSERT INTO sys_role_resource(
 	sort, -- sort	
 	default_home_page -- default_home_page
 FROM sys_resource
-WHERE code IN ('WELCOME', '10', '1001', '100101', '1002', '100201', '40', '50', '60', '6001', '6002')
+WHERE code IN ('WELCOME', '10', '1001', '100101', '1002', '100201', '40', '50')
 ;
 
 -- 系统常量

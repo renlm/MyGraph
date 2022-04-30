@@ -210,9 +210,11 @@
 	     	<span style="float: left;padding-left: 5px;width: 30%;text-align: left;">当前用户：<span id="user-username" sec:authentication="principal.username"></span></span>
 	       	<span style="padding-right: 5px;width: 40%">
 	            版权所有 © 2022 Renlm 
-	            <a href="https://beian.miit.gov.cn" target="_blank" style="text-decoration: underline;color: black;">京ICP备2021000671号</a>
+	            <a href="https://beian.miit.gov.cn" target="_blank" style="text-decoration: underline;color: black;">[(${#ConstUtil.getValue('cfgSiteBeian')})]</a>
 	        </span>
-	   		<span style="float: right;padding-right: 5px;width: 30%;text-align: right;">版本：1.0.1</span>
+	   		<span style="float: right;padding-right: 5px;width: 30%;text-align: right;">
+	   			[(${#ConstUtil.getValue('cfgSystemVersionPublishDate')})] ~ 版本：<span id="MyVersion">[(${#ConstUtil.getValue('cfgSystemVersion')})]</span>
+	   		</span>
 		</div>
 	</div>
 	<script type="text/javascript">
