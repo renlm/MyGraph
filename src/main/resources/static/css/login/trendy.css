@@ -143,3 +143,18 @@ body:after {
 .remind .register a:hover {
 	text-decoration: underline;
 }
+
+.footer {
+	width: 100%;
+    bottom: 10px;
+	color: white;
+	z-index: 1000;
+    position: fixed;
+    text-align: center;
+    font: 12px "microsoft yahei", "Times New Roman", 宋体, Times, serif;
+}
+
+.footer a {
+    color: white;
+    text-decoration: underline;
+}
