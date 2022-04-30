@@ -10,6 +10,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Resource;
 import cn.renlm.graph.modular.sys.entity.SysResource;
@@ -48,6 +49,28 @@ public class User extends SysUser implements org.springframework.security.core.u
 	private List<GrantedAuthority> authorities;
 
 	/**
+	 * 获取默认主页
+	 * 
+	 * @return
+	 */
+	public List<SysResource> getHomePages() {
+		if (CollUtil.isEmpty(this.getResources())) {
+			return CollUtil.newArrayList();
+		}
+		Resource.Type[] types = { Resource.Type.menu, Resource.Type.urlInsidePage, Resource.Type.urlNewWindows };
+		List<SysResource> list = this.getResources().stream().filter(r -> BooleanUtil.isTrue(r.getDefaultHomePage()))
+				.filter(r -> {
+					for (Resource.Type type : types) {
+						if (type.name().equals(r.getResourceTypeCode())) {
+							return true;
+						}
+					}
+					return false;
+				}).collect(Collectors.toList());
+		return list;
+	}
+
+	/**
 	 * 获取资源树
 	 * 
 	 * @param parentId
@@ -83,7 +106,7 @@ public class User extends SysUser implements org.springframework.security.core.u
 	 * @return
 	 */
 	public List<Tree<Long>> getResourceTree(String parentUuid, Resource.Type... types) {
-		if (CollUtil.isEmpty(this.getResources())) {
+		if (CollUtil.isEmpty(this.getResources()) || StrUtil.isBlank(parentUuid)) {
 			return CollUtil.newArrayList();
 		}
 		SysResource parent = new SysResource();

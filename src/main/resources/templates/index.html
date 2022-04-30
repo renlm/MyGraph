@@ -199,6 +199,16 @@
             			content:'<iframe src=\'@{/home/welcome}\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'
             		|">
             	</div>
+	        	<th:block th:each="r,iterStat : ${homePages}">
+		        	<div th:id="${r.resourceId}"
+		        		th:title="${r.text}" 
+		        		th:data-options="|border:false,
+		        			iframe:true,
+		        			iconCls:'${r.iconCls}',
+	            			content:'<iframe src=\'@{${r.url}}\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'
+	            		|">
+	            	</div>
+            	</th:block>
 	    	</div>
 	    </div>
 	

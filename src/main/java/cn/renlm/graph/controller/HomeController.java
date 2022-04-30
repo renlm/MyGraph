@@ -42,6 +42,7 @@ public class HomeController {
 		User user = userService.refreshAuthentication();
 		model.put("navGroup", user.getResourceTree(parentId, Resource.Type.menu, Resource.Type.urlInsidePage,
 				Resource.Type.urlNewWindows, Resource.Type.more));
+		model.put("homePages", user.getHomePages());
 		return "index";
 	}
 
