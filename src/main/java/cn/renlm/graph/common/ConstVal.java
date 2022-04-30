@@ -2,6 +2,7 @@ package cn.renlm.graph.common;
 
 import org.springframework.session.MapSession;
 
+import lombok.Getter;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -48,4 +49,19 @@ public class ConstVal {
 	 */
 	public static final String password_reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\W)[\\s\\S]{6,20}";
 
+	/**
+	 * 系统常量
+	 */
+	public enum Sys {
+
+		cfgSystemName("系统名称"), cfgSystemVersion("系统版本"), cfgSystemVersionPublishDate("发布日期"), cfgSiteBeian("网站备案号"),
+		cfgEnableRegistration("是否启用注册账号");
+
+		@Getter
+		private final String text;
+
+		private Sys(String text) {
+			this.text = text;
+		}
+	}
 }

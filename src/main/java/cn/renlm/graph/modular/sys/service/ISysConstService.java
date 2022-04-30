@@ -21,4 +21,11 @@ public interface ISysConstService extends IService<SysConst> {
 	 */
 	String getValue(String code);
 
+	/**
+	 * 是否启用账号注册
+	 * 
+	 * @return
+	 */
+	Boolean getCfgEnableRegistration();
+
 }

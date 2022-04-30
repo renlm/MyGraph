@@ -21,6 +21,7 @@ import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysUser;
+import cn.renlm.graph.modular.sys.service.ISysConstService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
 
 /**
@@ -36,6 +37,9 @@ public class LoginController {
 	@Autowired
 	private ISysUserService iSysUserService;
 
+	@Autowired
+	private ISysConstService iSysConstService;
+
 	/**
 	 * 登录页
 	 * 
@@ -43,6 +47,9 @@ public class LoginController {
 	 */
 	@GetMapping("/login")
 	public String login() {
+		if (iSysConstService.getCfgEnableRegistration()) {
+			return "login/trendy";
+		}
 		return "login/classic";
 	}
 

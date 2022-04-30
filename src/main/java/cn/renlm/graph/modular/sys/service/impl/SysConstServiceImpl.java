@@ -9,8 +9,10 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.CacheKey;
+import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.modular.sys.entity.SysConst;
 import cn.renlm.graph.modular.sys.mapper.SysConstMapper;
 import cn.renlm.graph.modular.sys.service.ISysConstService;
@@ -42,5 +44,11 @@ public class SysConstServiceImpl extends ServiceImpl<SysConstMapper, SysConst> i
 		} else {
 			return Convert.toStr(value);
 		}
+	}
+
+	@Override
+	public Boolean getCfgEnableRegistration() {
+		String cfgEnableRegistration = this.getValue(ConstVal.Sys.cfgEnableRegistration.name());
+		return BooleanUtil.toBoolean(cfgEnableRegistration);
 	}
 }
