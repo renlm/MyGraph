@@ -105,7 +105,16 @@
 			}
 		},
 		/**
-		 * 更新日期格式化
+		 * 创建时间格式化
+		 */
+		createdAtFormatter: function (value) {
+			if(!value) {
+				return null;
+			}
+			return layui.util.toDateString(value, "yyyy/MM/dd HH:mm:ss");
+		},
+		/**
+		 * 更新时间格式化
 		 */
 		updatedAtFormatter: function (value) {
 			if(!value) {

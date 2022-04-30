@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN" layout:decorate="~{layout/decorate}">
+<head>
+    <title>系统常量</title>
+</head>
+<body layout:fragment="content" class="myui">
+	<div class="easyui-layout" 
+		data-options="fit:true">
+		<div data-options="region:'center',
+			split:true,
+			border:false">
+            <table id="dataGrid" class="easyui-datagrid" 
+				data-options="border:false,
+					fit:true,
+					fitColumns:true,
+					method:'get',
+					url:'const/ajax/page'
+				">
+                <thead>
+	                <tr>
+	                    <th data-options="field:'name',title:'名称',width:100"></th>
+	                    <th data-options="field:'code',title:'代码',width:100"></th>
+	                    <th data-options="field:'val',title:'值',width:100,editor:{type:'textbox',options:{required:true,height:30}}"></th>
+	                    <th data-options="field:'remark',title:'描述',width:150,editor:{type:'textbox',options:{required:true,height:30}}"></th>
+	                    <th data-options="field:'sort',title:'排序',width:50,editor:{type:'numberspinner',options:{required:true,height:30}}"></th>
+	                    <th data-options="field:'createdAt',title:'创建时间',width:100,formatter:$.createdAtFormatter"></th>
+	                    <th data-options="field:'updatedAt',title:'更新时间',width:100,formatter:$.updatedAtFormatter"></th>
+	                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
