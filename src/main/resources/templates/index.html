@@ -110,7 +110,7 @@
 		                        	th:data-icon-cls="${r1.iconCls}"
 	             					th:class="|topmenu${iterStat1.index == 0?' selected':''}${iterStat1.index == iterStat1.size - 1?' lastMenu':''}|"
 		                        	th:data-type="${r1.resourceTypeCode}"
-		                        	th:onclick="|MyUI.addIndexTab({href:this.getAttribute('data-href'),title:this.getAttribute('title'),iconCls:this.getAttribute('data-icon-cls')});|">
+		                        	th:onclick="|MyUI.addIndexTab({id:this.getAttribute('id'),href:this.getAttribute('data-href'),title:this.getAttribute('title'),iconCls:this.getAttribute('data-icon-cls')});|">
 		                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
 		                                <p th:if="${#strings.isEmpty(r1.iconClsColour)}"><lable th:class="${r1.iconCls}"></lable></p>
 		                                <p th:if="${!#strings.isEmpty(r1.iconClsColour)}"><lable th:class="${r1.iconCls}" th:style="|color: ${r1.iconClsColour};|"></lable></p>
@@ -164,7 +164,7 @@
 					             					th:class="|topmenu${iterStat2.index == 0?' selected':''}|"
 						                        	th:data-type="${r2.resourceTypeCode}"
 						                        	data-sub-type="moreSub"
-						                        	th:onclick="|MyUI.addIndexTab({href:this.getAttribute('data-href'),title:this.getAttribute('title'),iconCls:this.getAttribute('data-icon-cls')});|">
+						                        	th:onclick="|MyUI.addIndexTab({id:this.getAttribute('id'),href:this.getAttribute('data-href'),title:this.getAttribute('title'),iconCls:this.getAttribute('data-icon-cls')});|">
 						                            <a class="l-btn-text bannerMenu" href="javascript:void(0);">
 						                                <p th:if="${#strings.isEmpty(r2.iconClsColour)}"><lable th:class="${r2.iconCls}"></lable></p>
 						                                <p th:if="${!#strings.isEmpty(r2.iconClsColour)}"><lable th:class="${r2.iconCls}" th:style="|color: ${r2.iconClsColour};|"></lable></p>
