@@ -20,7 +20,7 @@
 		<div class="login-box">
 			<div class="login-title">
 				<div style="float: left; margin-left: 10px;">
-					<img th:src="@{/static/MyUI/images/avatar.jpg}" style="width: 60px; height: 60px;">
+					<!-- <img th:src="@{/static/MyUI/images/avatar.jpg}" style="width: 60px; height: 60px;" /> -->
 				</div>
 				<h1 class="text-center">
 					<small><span>[(${#ConstUtil.getValue('cfgSystemName')})]</span></small>
@@ -88,7 +88,7 @@
 	<div class="footer">
         © 2021 Renlm <a href="https://beian.miit.gov.cn" target="_blank">[(${#ConstUtil.getValue('cfgSiteBeian')})]</a>
     </div>
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
 <input id="errMsg" type="hidden" th:value="${session.SPRING_SECURITY_LAST_EXCEPTION?.message}">
