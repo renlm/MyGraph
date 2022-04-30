@@ -22,6 +22,6 @@ public interface ISysRoleService extends IService<SysRole> {
 	 * @param userId
 	 * @return
 	 */
-	List<SysRole> findList(String userId);
+	List<SysRole> findListByUser(String userId);
 
 }

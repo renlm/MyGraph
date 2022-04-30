@@ -22,6 +22,6 @@ public interface ISysResourceService extends IService<SysResource> {
 	 * @param userId
 	 * @return
 	 */
-	List<SysResource> findList(String userId);
+	List<SysResource> findListByUser(String userId);
 
 }

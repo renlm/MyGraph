@@ -24,7 +24,7 @@ import cn.renlm.graph.modular.sys.service.ISysRoleService;
 public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> implements ISysRoleService {
 
 	@Override
-	public List<SysRole> findList(String userId) {
+	public List<SysRole> findListByUser(String userId) {
 		return this.list(Wrappers.<SysRole>lambdaQuery().func(wrapper -> {
 			wrapper.eq(SysRole::getDeleted, false);
 			wrapper.eq(SysRole::getDisabled, false);

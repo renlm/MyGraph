@@ -47,8 +47,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 			throw new UsernameNotFoundException("Not Found By Username.");
 		}
 		User user = BeanUtil.copyProperties(sysUser, User.class);
-		List<SysRole> roles = iSysRoleService.findList(sysUser.getUserId());
-		List<SysResource> resources = iSysResourceService.findList(sysUser.getUserId());
+		List<SysRole> roles = iSysRoleService.findListByUser(sysUser.getUserId());
+		List<SysResource> resources = iSysResourceService.findListByUser(sysUser.getUserId());
 		List<GrantedAuthority> authorities = CollUtil.newArrayList();
 		if (CollUtil.isNotEmpty(roles)) {
 			roles.forEach(it -> {

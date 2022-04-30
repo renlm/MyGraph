@@ -24,7 +24,7 @@ import cn.renlm.graph.modular.sys.service.ISysResourceService;
 public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysResource> implements ISysResourceService {
 
 	@Override
-	public List<SysResource> findList(String userId) {
+	public List<SysResource> findListByUser(String userId) {
 		return this.list(Wrappers.<SysResource>lambdaQuery().func(wrapper -> {
 			wrapper.eq(SysResource::getDeleted, false);
 			wrapper.eq(SysResource::getDisabled, false);
