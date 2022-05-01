@@ -447,13 +447,13 @@ function modifyPersonal () {
             iconCls: 'fa fa-save',
             btnCls: 'myui-btn-blue',
             handler: function () {
-				$.iMessager.progress({'text': '请求中……'});
-		        $personalDialog.iForm('submit', {
+				$.messager.progress({'text': '请求中……'});
+		        $personalDialog.form('submit', {
 		            url: ctx + '/sys/user/ajax/saveSelfInfo',
 		            onSubmit: function () {
-		                var isValid = $(this).iForm('validate');
+		                var isValid = $(this).form('validate');
 		                if (!isValid) {
-		                    $.iMessager.progress('close');
+		                    $.messager.progress('close');
 		                }
 		                return isValid;
 		            },
@@ -462,12 +462,12 @@ function modifyPersonal () {
 		                if (data.statusCode == 200) {
 							$('#user-nickname').html(data.data.nickname);
 							$('#user-username').html(data.data.username);
-		                	$.iMessager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
-							$personalDialog.iDialog('close');
+		                	$.messager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
+							$personalDialog.dialog('close');
 		                } else {
-		                    $.iMessager.show({title: '我的消息', msg: data.message?data.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+		                    $.messager.show({title: '我的消息', msg: data.message?data.message:'服务器出错了', timeout: 5000, showType: 'slide'});
 		                }
-		                $.iMessager.progress('close');
+		                $.messager.progress('close');
 		        	}
 		 		});
 			}
@@ -480,8 +480,8 @@ function modifyPersonal () {
             }
         }],
         onLoad: function () {
-            $.getJSON(ctx + '/api/user/getInfo', function (data) {
-                $personalDialog.form('load', data);
+            $.getJSON(ctx + '/api/user/getInfo', function (result) {
+                $personalDialog.form('load', result.data);
             });
         }
     });
