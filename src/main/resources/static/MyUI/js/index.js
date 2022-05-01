@@ -433,10 +433,10 @@ function recursionMenuTree(sourceData, children) {
  * 修改个人信息
  */
 function modifyPersonal () {
-	var $personalDialog = $('<form id=\'personalDialog\' method=\'get\'></form>');
+	var $personalDialog = $('<form id=\'personalDialog\' method=\'get\' class=\'myui\'></form>');
     $personalDialog.dialog({
         title: '个人信息',
-        width: 600,
+        width: 800,
         height: 400,
         closed: false,
         cache: false,
