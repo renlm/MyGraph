@@ -59,8 +59,7 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(10, 			'FF784D818217460DB745C5013EE0C2B5',	'10', 			'工作台', 		'menu', 			null, 														'fa fa-windows', 			null, 				null, 			1, 		1, 		'closed',	0,					null,		null)
 	  ,(1001, 			'BFD547E1E8B241EF8B19E94B997FBBB6',	'1001', 		'图形设计', 		'menu', 			null, 														'fa fa-xing', 				null, 				null, 			2, 		1, 		'closed',	0,					10,			null)
 	  ,(100101, 		'1A2288C7B39D43D7B27CD7BD71A9EF44',	'100101', 		'我的作品', 		'menu', 			'/graph/mine', 												'fa fa-user-plus', 			null, 				null, 			3, 		1, 		'open',		0,					1001,		null)
-	  ,(1002, 			'89192E321F734C3DAA3093A4CF160872',	'1002', 		'数据源', 		'menu', 			null, 														'fa fa-soccer-ball-o', 		null, 				null, 			2, 		2, 		'closed',	0,					10,			null)
-	  ,(100201, 		'B7D338D9D1144D8E92A23F1D4B78E348',	'100201', 		'源列表', 		'menu', 			'/ds/list', 												'fa fa-etsy', 				null, 				null, 			3, 		1, 		'open',		0,					1002,		null)
+	  ,(100102, 		'B7D338D9D1144D8E92A23F1D4B78E348',	'100102', 		'数据源', 		'menu', 			'/ds/list', 												'fa fa-soccer-ball-o', 		null, 				null, 			3, 		2, 		'open',		0,					1001,		null)
 	  ,(20, 			'35BD72793CF14E37947D9D0629B242BF',	'20', 			'系统管理', 		'menu', 			null, 														'fa fa-cog', 				null, 				null, 			1, 		2, 		'closed',	0,					null,		null)
 	  ,(2001, 			'F41159ACD09B4DD3B04D0E6EEAE6E875',	'2001', 		'权限管理', 		'menu', 			null, 														'fa fa-cube', 				null, 				null, 			2, 		1, 		'closed',	0,					20,			null)
 	  ,(200101, 		'1A22415278094E2D802A73382B60CDA7',	'200101', 		'用户管理', 		'menu', 			null, 														'fa fa-user', 				null, 				null, 			3, 		1, 		'open',		0,					2001,		null)
@@ -74,7 +73,7 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(200301, 		'D957245380414774BF7882933536DA86',	'200301', 		'任务管理', 		'menu', 			null, 														'fa fa-deaf', 				null, 				null, 			3, 		1, 		'open',		0,					2003,		null)
 	  ,(30, 			'3165637A889443629EB021505A4CAC52',	'OSHI', 		'服务器', 		'urlInsidePage', 	'/home/oshi',												'fa fa-server', 			'#FF5722', 			null, 			1, 		3, 		'open',		0,					null,		null)
 	  ,(40, 			'FEA19FB294134CC19C74786577F21CBB',	'40', 			'公共图库', 		'urlInsidePage', 	'/graph/lib', 												'fa fa-audio-description', 	null, 				null, 			1, 		4, 		'open',		0,					null,		null)
-	  ,(50, 			'EB0B50741EAC47E3A275FEBCABFC5AA1',	'50', 			'文件管理', 		'urlInsidePage', 	'/sys/file', 												'fa fa-file-text', 			null, 				null, 			1, 		5, 		'open',		0,					null,		null)
+	  ,(50, 			'EB0B50741EAC47E3A275FEBCABFC5AA1',	'50', 			'文件管理', 		'urlInsidePage', 	'/sys/file', 												'fa fa-clipboard', 			null, 				null, 			1, 		5, 		'open',		0,					null,		null)
 	  ,(60, 			'302F142FBA694822A32A9B38171DB851',	'60', 			'帮助中心', 		'urlInsidePage', 	'/static/editor.md/index.html', 							'fa fa-comments-o', 		null, 				null, 			1, 		6, 		'open',		0,					null,		null)
 	  ,(70, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'70', 			'更多功能', 		'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		7, 		'closed',	0,					null,		null)
 	  ,(7001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'7001', 		'在线调试', 		'urlInsidePage', 	'/compile', 												'fa fa-code', 				'rebeccapurple', 	null, 			2, 		1, 		'open',		0,					70,			null)
@@ -108,7 +107,7 @@ INSERT INTO sys_role_resource(
 	sort, -- sort	
 	default_home_page -- default_home_page
 FROM sys_resource
-WHERE code IN ('WELCOME', '10', '1001', '100101', '1002', '100201', '40', '50', '60')
+WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '40', '50', '60')
 ;
 INSERT INTO sys_role_resource(
 	sys_role_id,
@@ -122,7 +121,7 @@ INSERT INTO sys_role_resource(
 	sort, -- sort	
 	default_home_page -- default_home_page
 FROM sys_resource
-WHERE code IN ('WELCOME', '10', '1001', '100101', '1002', '100201', '40', '50', '60')
+WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '40', '50', '60')
 ;
 
 -- 系统常量
