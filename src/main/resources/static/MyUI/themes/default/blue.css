@@ -25,6 +25,7 @@
     font-size: 12px!important;
 }
 
+/*
 .myui .window {
     border-width: 3px 1px 1px 1px!important;
     box-shadow: 1px 1px 50px rgb(0 0 0 / 30%)!important;
@@ -38,6 +39,7 @@
    font-weight: 700!important;
    font-size: 12px!important;
 }
+*/
 
 .myui .datagrid-pager .l-btn-icon, .tabs-icon {
     margin-top: -7px!important;
