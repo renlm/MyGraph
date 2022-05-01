@@ -14,6 +14,7 @@ import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.security.UserService;
 
 /**
  * 用户
@@ -24,6 +25,9 @@ import cn.renlm.graph.modular.sys.service.ISysUserService;
 @Controller
 @RequestMapping("/sys/user")
 public class SysUserController {
+
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private ISysUserService iSysUserService;
@@ -62,7 +66,8 @@ public class SysUserController {
 			entity.setRemark(form.getRemark());
 			entity.setUpdatedAt(new Date());
 			iSysUserService.updateById(entity);
-			return Result.success(form);
+			User refreshUser = userService.refreshAuthentication();
+			return Result.success(refreshUser);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
