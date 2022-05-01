@@ -430,6 +430,64 @@ function recursionMenuTree(sourceData, children) {
 }
 
 /***
+ * 修改个人信息
+ */
+function modifyPersonal () {
+	var $personalDialog = $('<form id=\'personalDialog\' method=\'get\'></form>');
+    $personalDialog.dialog({
+        title: '个人信息',
+        width: 600,
+        height: 400,
+        closed: false,
+        cache: false,
+        href: ctx + '/sys/user/personalDialog',
+        modal: true,
+        buttons: [{
+            text: '更新',
+            iconCls: 'fa fa-save',
+            btnCls: 'myui-btn-blue',
+            handler: function () {
+				$.iMessager.progress({'text': '请求中……'});
+		        $personalDialog.iForm('submit', {
+		            url: ctx + '/sys/user/ajax/saveSelfInfo',
+		            onSubmit: function () {
+		                var isValid = $(this).iForm('validate');
+		                if (!isValid) {
+		                    $.iMessager.progress('close');
+		                }
+		                return isValid;
+		            },
+		            success: function (res) {
+		                var data = JSON.parse(res);
+		                if (data.statusCode == 200) {
+							$('#user-nickname').html(data.data.nickname);
+							$('#user-username').html(data.data.username);
+		                	$.iMessager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
+							$personalDialog.iDialog('close');
+		                } else {
+		                    $.iMessager.show({title: '我的消息', msg: data.message?data.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+		                }
+		                $.iMessager.progress('close');
+		        	}
+		 		});
+			}
+        }, {
+            text: '关闭',
+            iconCls: 'fa fa-close',
+            btnCls: 'myui-btn-red',
+            handler: function () {
+                $personalDialog.dialog('close');
+            }
+        }],
+        onLoad: function () {
+            $.getJSON(ctx + '/api/user/getInfo', function (data) {
+                $personalDialog.form('load', data);
+            });
+        }
+    });
+}
+
+/***
  * 修改密码
  */
 function modifyPwd () {
@@ -516,6 +574,7 @@ function init (option) {
 exports.version = version;
 exports.getMenuTree = getMenuTree;
 exports.addIndexTab = addIndexTab;
+exports.modifyPersonal = modifyPersonal;
 exports.modifyPwd = modifyPwd;
 exports.init = init;
 
