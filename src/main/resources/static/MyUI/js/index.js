@@ -449,7 +449,7 @@ function modifyPersonal () {
             handler: function () {
 				$.messager.progress({'text': '请求中……'});
 		        $personalDialog.form('submit', {
-		            url: ctx + '/sys/user/ajax/saveSelfInfo',
+		            url: ctx + '/sys/user/doModifyPersonal',
 		            onSubmit: function () {
 		                var isValid = $(this).form('validate');
 		                if (!isValid) {
@@ -457,15 +457,15 @@ function modifyPersonal () {
 		                }
 		                return isValid;
 		            },
-		            success: function (res) {
-		                var data = JSON.parse(res);
-		                if (data.statusCode == 200) {
-							$('#user-nickname').html(data.data.nickname);
-							$('#user-username').html(data.data.username);
-		                	$.messager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
+		            success: function (result) {
+						var resultJson = JSON.parse(result);
+		                if (resultJson.statusCode == 200) {
+							$('#user-nickname').html(resultJson.data.nickname);
+							$('#user-username').html(resultJson.data.username);
+		                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 							$personalDialog.dialog('close');
 		                } else {
-		                    $.messager.show({title: '我的消息', msg: data.message?data.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+		                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
 		                }
 		                $.messager.progress('close');
 		        	}
