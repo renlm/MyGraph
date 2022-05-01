@@ -437,7 +437,7 @@ function modifyPersonal () {
     $personalDialog.dialog({
         title: '个人信息',
         width: 800,
-        height: 400,
+        height: 385,
 		collapsible: true,
 		minimizable: false,
 		maximizable: true,
