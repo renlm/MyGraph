@@ -2,6 +2,8 @@
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
     <title>系统常量</title>
+    <!-- Layui -->
+	<link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet" />
 </head>
 <body layout:fragment="content" class="myui">
 	<div class="easyui-layout" 
@@ -14,10 +16,28 @@
 					fit:true,
 					fitColumns:true,
 					method:'get',
-					url:'const/ajax/page'
+					url:'const/ajax/page',
+					onBeforeEdit:function(index,row){
+						row.editing = true;
+						$(this).datagrid('refreshRow',index);
+					},
+					onAfterEdit:function(index,row){
+						row.editing = false;
+						$(this).datagrid('refreshRow',index);
+					},
+					onCancelEdit:function(index,row){
+						row.editing = false;
+						$(this).datagrid('refreshRow',index);
+					}
 				">
                 <thead>
 	                <tr>
+	                    <th data-options="field:'constId',
+	                    		title:'序号',
+	                    		formatter:function(value,index){
+	                    			return $('#dataGrid').datagrid('getRowIndex',index) + 1;
+	                    		}
+	                    	"></th>
 	                    <th data-options="field:'name',title:'名称',width:100"></th>
 	                    <th data-options="field:'code',title:'代码',width:100"></th>
 	                    <th data-options="field:'val',title:'值',width:100,editor:{type:'textbox',options:{required:true,height:30}}"></th>
@@ -25,10 +45,46 @@
 	                    <th data-options="field:'sort',title:'排序',width:50,editor:{type:'numberspinner',options:{required:true,height:30}}"></th>
 	                    <th data-options="field:'createdAt',title:'创建时间',width:100,formatter:$.createdAtFormatter"></th>
 	                    <th data-options="field:'updatedAt',title:'更新时间',width:100,formatter:$.updatedAtFormatter"></th>
+	                    <th data-options="field:'actions',
+	                    		title:'操作',
+	                    		width:100,
+	                    		formatter:function(value,row,index){
+									if (row.editing) {
+										var s = '<button class=\'layui-btn layui-btn-xs\' onclick=\'saveRow(' + index + ')\'>保存</button> ';
+										var c = '<button class=\'layui-btn layui-btn-xs layui-btn-primary\' onclick=\'cancelRow(' + index + ')\'>取消</button>';
+										return s + c;
+									} else {
+										var e = '<button class=\'layui-btn layui-btn-xs layui-btn-normal\' onclick=\'editRow(' + index + ')\'>编辑</button>';
+										return e;
+									}
+								}
+							"></th>
 	                </tr>
                 </thead>
             </table>
         </div>
     </div>
+    <script type="text/javascript">
+    	/**
+   		 * 编辑行
+   		 */
+		function editRow(index){
+			$('#dataGrid').datagrid('beginEdit', index);
+		}
+    	
+		/**
+   		 * 保存行
+   		 */
+		function saveRow(index){
+			$('#dataGrid').datagrid('endEdit', index);
+		}
+    	
+		/**
+   		 * 取消编辑
+   		 */
+		function cancelRow(index){
+			$('#dataGrid').datagrid('cancelEdit', index);
+		}
+    </script>
 </body>
 </html>
