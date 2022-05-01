@@ -2,53 +2,6 @@
  * 封装一些常用的方法
  */
 (function($) {
-	$.extend($.fn.validatebox.defaults.rules, {
-        equals: {
-            validator: function (b, c) {
-                return b == a(c[0]).val()
-            }, message: "两次输入的内容不一致"
-        }, cellphone: {
-            validator: function (a) {
-                return /^1(3|4|5|7|8|9)\d{9}$/.test(a)
-            }, message: "请输入有效的手机号码"
-        }, telephone: {
-            validator: function (a) {
-                return /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^((\d3)|(\d{3}\-))?(1[345789]\d{9})$)/.test(a)
-            }, message: "请输入有效的电话号码"
-        }, maxLength: {
-            validator: function (a, b) {
-                return a.length < b[0]
-            }, message: "输入内容长度必须小于{0}"
-        }, minLength: {
-            validator: function (a, b) {
-                return a.length > b[0]
-            }, message: "输入内容长度必须大于{0}"
-        }, idCard: {
-            validator: function (a) {
-                return /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/.test(a)
-            }, message: "请输入正确的身份证号"
-        }, postcode: {
-            validator: function (a) {
-                return /^[1-9]\d{5}(?!\d)$/.test(a)
-            }, message: "请输入正确的邮政编码"
-        }, date: {
-            validator: function (a) {
-                return /^[1-2][0-9][0-9][0-9]-[0-1]{0,1}[0-9]-[0-3]{0,1}[0-9]$/.test(a)
-            }, message: "请输入正确的日期"
-        }, alphaDash: {
-            validator: function (a) {
-                return /^[\w-]+$/.test(a)
-            }, message: "输入内容只能是数字、字母、下划线或横线"
-        }, alphaNum: {
-            validator: function (a) {
-                return /^[a-z0-9]+$/i.test(a)
-            }, message: "输入内容只能是数字和字母"
-        }, number: {
-            validator: function (a) {
-                return /^\d+$/.test(a)
-            }, message: "输入内容只能是数字"
-        }
-    });
 	$.extend({
 		/**
 		 * 打开图形
@@ -170,4 +123,59 @@
 			return layui.util.toDateString(value, "yyyy/MM/dd HH:mm:ss");
 		}
 	});
+})(jQuery);
+(function($) {
+	if (!$.fn 
+		|| !$.fn.validatebox 
+		|| !$.fn.validatebox.defaults 
+		|| !$.fn.validatebox.defaults.rules) {
+		return;
+	}
+	$.extend($.fn.validatebox.defaults.rules, {
+        equals: {
+            validator: function (b, c) {
+                return b == a(c[0]).val()
+            }, message: "两次输入的内容不一致"
+        }, cellphone: {
+            validator: function (a) {
+                return /^1(3|4|5|7|8|9)\d{9}$/.test(a)
+            }, message: "请输入有效的手机号码"
+        }, telephone: {
+            validator: function (a) {
+                return /(^(0[0-9]{2,3}\-)?([2-9][0-9]{6,7})+(\-[0-9]{1,4})?$)|(^((\d3)|(\d{3}\-))?(1[345789]\d{9})$)/.test(a)
+            }, message: "请输入有效的电话号码"
+        }, maxLength: {
+            validator: function (a, b) {
+                return a.length < b[0]
+            }, message: "输入内容长度必须小于{0}"
+        }, minLength: {
+            validator: function (a, b) {
+                return a.length > b[0]
+            }, message: "输入内容长度必须大于{0}"
+        }, idCard: {
+            validator: function (a) {
+                return /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/.test(a)
+            }, message: "请输入正确的身份证号"
+        }, postcode: {
+            validator: function (a) {
+                return /^[1-9]\d{5}(?!\d)$/.test(a)
+            }, message: "请输入正确的邮政编码"
+        }, date: {
+            validator: function (a) {
+                return /^[1-2][0-9][0-9][0-9]-[0-1]{0,1}[0-9]-[0-3]{0,1}[0-9]$/.test(a)
+            }, message: "请输入正确的日期"
+        }, alphaDash: {
+            validator: function (a) {
+                return /^[\w-]+$/.test(a)
+            }, message: "输入内容只能是数字、字母、下划线或横线"
+        }, alphaNum: {
+            validator: function (a) {
+                return /^[a-z0-9]+$/i.test(a)
+            }, message: "输入内容只能是数字和字母"
+        }, number: {
+            validator: function (a) {
+                return /^\d+$/.test(a)
+            }, message: "输入内容只能是数字"
+        }
+    });
 })(jQuery);
