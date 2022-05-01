@@ -18,6 +18,11 @@
 					singleSelect:true,
 					method:'get',
 					url:'const/ajax/page',
+					onDblClickRow:function(rowIndex,rowData){
+						if (!rowData.editing) {
+							editRow(rowIndex);
+						}
+					},
 					onBeforeEdit:function(index,row){
 						row.editing = true;
 						$(this).datagrid('refreshRow',index);
@@ -78,7 +83,27 @@
    		 * 保存行
    		 */
 		function saveRow(index){
-			$('#dataGrid').datagrid('endEdit', index);
+			$.messager.progress({'text': '请求中……'});
+			var rowDatas = $('#dataGrid').datagrid('getRows');
+			var rowData = rowDatas[index];
+			var edVal = $('#dataGrid').datagrid('getEditor', { index: index, field: 'val' });
+			var edSort = $('#dataGrid').datagrid('getEditor', { index: index, field: 'sort' });
+			var edRemark = $('#dataGrid').datagrid('getEditor', { index: index, field: 'remark' });
+			var val = $(edVal.target).textbox('getValue');
+			var sort = $(edSort.target).textbox('getValue');
+			var remark = $(edRemark.target).textbox('getValue');
+			$.post(ctx + '/sys/const/ajax/save',
+					{ constId: rowData.constId, val: val, sort: sort, remark: remark },
+					function (data) {
+						if (data.statusCode == 200) {
+		                	$.messager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
+		                	$('#dataGrid').datagrid('endEdit', index);
+		                	$('#dataGrid').datagrid('reload');
+		                } else {
+		                    $.messager.show({title: '我的消息', msg: data.message?data.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+		                }
+		                $.messager.progress('close');
+					});
 		}
     	
 		/**

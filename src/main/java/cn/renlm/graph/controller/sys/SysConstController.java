@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -40,7 +42,7 @@ public class SysConstController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping
+	@GetMapping
 	public String index() {
 		return "sys/const";
 	}
@@ -52,7 +54,7 @@ public class SysConstController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/page")
+	@GetMapping("/ajax/page")
 	public Datagrid<SysConst> page(Page<SysConst> page) {
 		Page<SysConst> data = iSysConstService.page(page, Wrappers.<SysConst>lambdaQuery().func(wrapper -> {
 			wrapper.orderByAsc(SysConst::getSort);
@@ -71,7 +73,7 @@ public class SysConstController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/save")
+	@PostMapping("/ajax/save")
 	public Result<?> ajaxSave(String constId, String val, Integer sort, String remark) {
 		try {
 			SysConst entity = iSysConstService.getById(constId);
