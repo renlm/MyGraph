@@ -59,8 +59,8 @@ public class SysUserController {
 			entity.setBirthday(form.getBirthday());
 			entity.setMobile(form.getMobile());
 			entity.setEmail(form.getEmail());
-			entity.setUpdatedAt(new Date());
 			entity.setRemark(form.getRemark());
+			entity.setUpdatedAt(new Date());
 			iSysUserService.updateById(entity);
 			return Result.success(user);
 		} catch (Exception e) {
