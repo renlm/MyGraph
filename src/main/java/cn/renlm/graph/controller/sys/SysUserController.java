@@ -1,5 +1,8 @@
 package cn.renlm.graph.controller.sys;
 
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysUser;
+import cn.renlm.graph.modular.sys.service.ISysUserService;
 
 /**
  * 用户
@@ -20,6 +24,9 @@ import cn.renlm.graph.modular.sys.entity.SysUser;
 @Controller
 @RequestMapping("/sys/user")
 public class SysUserController {
+
+	@Autowired
+	private ISysUserService iSysUserService;
 
 	/**
 	 * 弹窗（个人信息）
@@ -44,6 +51,17 @@ public class SysUserController {
 	public Result<?> doModifyPersonal(Authentication authentication, SysUser form) {
 		User user = (User) authentication.getPrincipal();
 		try {
+			SysUser entity = iSysUserService.getById(user.getId());
+			entity.setNickname(form.getNickname());
+			entity.setRealname(form.getRealname());
+			entity.setIdCard(form.getIdCard());
+			entity.setSex(form.getSex());
+			entity.setBirthday(form.getBirthday());
+			entity.setMobile(form.getMobile());
+			entity.setEmail(form.getEmail());
+			entity.setUpdatedAt(new Date());
+			entity.setRemark(form.getRemark());
+			iSysUserService.updateById(entity);
 			return Result.success(user);
 		} catch (Exception e) {
 			e.printStackTrace();
