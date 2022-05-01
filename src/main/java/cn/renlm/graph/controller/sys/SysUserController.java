@@ -62,7 +62,7 @@ public class SysUserController {
 			entity.setRemark(form.getRemark());
 			entity.setUpdatedAt(new Date());
 			iSysUserService.updateById(entity);
-			return Result.success(user);
+			return Result.success(form);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
