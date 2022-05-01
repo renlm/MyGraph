@@ -1,5 +1,6 @@
 package cn.renlm.graph.controller;
 
+import java.awt.Color;
 import java.awt.Image;
 
 import javax.servlet.ServletOutputStream;
@@ -54,11 +55,12 @@ public class CaptchaController {
 		int codeCount = 3;
 		String code = RandomUtil.randomNumbers(codeCount);
 		LineCaptcha captcha = CaptchaUtil.createLineCaptcha(width, height, codeCount, 24);
+		captcha.setBackground(new Color(245, 245, 245));
+		captcha.setTextAlpha(0.98F);
 		Image image = captcha.createImage(code);
-		Image gray = ImgUtil.gray(image);
 		request.getSession().setAttribute(ConstVal.CAPTCHA_SESSION_KEY, code);
 		@Cleanup
 		ServletOutputStream out = response.getOutputStream();
-		ImgUtil.write(gray, ImgUtil.IMAGE_TYPE_PNG, out);
+		ImgUtil.write(image, ImgUtil.IMAGE_TYPE_PNG, out);
 	}
 }
