@@ -1,7 +1,5 @@
 package cn.renlm.graph.controller.sys;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -55,17 +53,7 @@ public class SysUserController {
 	public Result<?> doModifyPersonal(Authentication authentication, SysUser form) {
 		User user = (User) authentication.getPrincipal();
 		try {
-			SysUser entity = iSysUserService.getById(user.getId());
-			entity.setNickname(form.getNickname());
-			entity.setRealname(form.getRealname());
-			entity.setIdCard(form.getIdCard());
-			entity.setSex(form.getSex());
-			entity.setBirthday(form.getBirthday());
-			entity.setMobile(form.getMobile());
-			entity.setEmail(form.getEmail());
-			entity.setRemark(form.getRemark());
-			entity.setUpdatedAt(new Date());
-			iSysUserService.updateById(entity);
+			iSysUserService.doModifyPersonal(user.getId(), form);
 			User refreshUser = userService.refreshAuthentication();
 			return Result.success(refreshUser);
 		} catch (Exception e) {

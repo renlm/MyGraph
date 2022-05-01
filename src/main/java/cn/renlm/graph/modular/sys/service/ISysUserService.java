@@ -14,7 +14,7 @@ import cn.renlm.graph.dto.User;
  * @since 2022-04-29
  */
 public interface ISysUserService extends IService<SysUser> {
-	
+
 	/**
 	 * 获取登录用户
 	 * 
@@ -22,5 +22,13 @@ public interface ISysUserService extends IService<SysUser> {
 	 * @return
 	 */
 	User loadUserByUsername(String username);
+
+	/**
+	 * 修改个人信息
+	 * 
+	 * @param id
+	 * @param form
+	 */
+	void doModifyPersonal(Long id, SysUser form);
 
 }

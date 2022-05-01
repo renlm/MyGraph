@@ -1,5 +1,6 @@
 package cn.renlm.graph.modular.sys.service.impl;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -98,5 +100,21 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 		user.setRoles(roles);
 		user.setResources(resources);
 		return user.setAuthorities(authorities);
+	}
+
+	@Override
+	@Transactional
+	public void doModifyPersonal(Long id, SysUser form) {
+		SysUser entity = this.getById(id);
+		entity.setNickname(form.getNickname());
+		entity.setRealname(form.getRealname());
+		entity.setIdCard(form.getIdCard());
+		entity.setSex(form.getSex());
+		entity.setBirthday(form.getBirthday());
+		entity.setMobile(form.getMobile());
+		entity.setEmail(form.getEmail());
+		entity.setRemark(form.getRemark());
+		entity.setUpdatedAt(new Date());
+		this.updateById(entity);
 	}
 }
