@@ -438,6 +438,9 @@ function modifyPersonal () {
         title: '个人信息',
         width: 800,
         height: 400,
+		collapsible: true,
+		minimizable: false,
+		maximizable: true,
         closed: false,
         cache: false,
         href: ctx + '/sys/user/personalDialog',
@@ -445,7 +448,6 @@ function modifyPersonal () {
         buttons: [{
             text: '更新',
             iconCls: 'fa fa-save',
-            btnCls: 'myui-btn-blue',
             handler: function () {
 				$.messager.progress({'text': '请求中……'});
 		        $personalDialog.form('submit', {
@@ -474,12 +476,14 @@ function modifyPersonal () {
         }, {
             text: '关闭',
             iconCls: 'fa fa-close',
-            btnCls: 'myui-btn-red',
             handler: function () {
                 $personalDialog.dialog('close');
             }
         }],
         onLoad: function () {
+			$personalDialog.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
+			$personalDialog.next().find('.fa.fa-save').parent().parent().addClass('myui-btn-blue');
+			$personalDialog.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-red');
             $.getJSON(ctx + '/api/user/getInfo', function (result) {
                 $personalDialog.form('load', result.data);
             });

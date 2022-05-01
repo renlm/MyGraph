@@ -1,4 +1,10 @@
 /*easyui mian*/
+.myui .window-proxy-mask, 
+.myui .window-mask {
+	background-color: rgb(0, 0, 0);
+    opacity: 0.3;
+}
+
 .myui #west .tree-title {
 	color: #fff!important;
 }
