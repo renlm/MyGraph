@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.sys.dto.SysUserDto;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.security.UserService;
 
@@ -29,6 +33,20 @@ public class SysUserController {
 
 	@Autowired
 	private ISysUserService iSysUserService;
+
+	/**
+	 * 用户列表
+	 * 
+	 * @param page
+	 * @param form
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/page")
+	public Datagrid<SysUser> page(Page<SysUser> page, SysUserDto form) {
+		Page<SysUser> data = iSysUserService.findPage(page, form);
+		return Datagrid.of(data);
+	}
 
 	/**
 	 * 弹窗（个人信息）

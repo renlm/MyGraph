@@ -1,9 +1,11 @@
 package cn.renlm.graph.modular.sys.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.sys.dto.SysUserDto;
+import cn.renlm.graph.modular.sys.entity.SysUser;
 
 /**
  * <p>
@@ -14,6 +16,15 @@ import cn.renlm.graph.dto.User;
  * @since 2022-04-29
  */
 public interface ISysUserService extends IService<SysUser> {
+
+	/**
+	 * 分页列表
+	 * 
+	 * @param page
+	 * @param form
+	 * @return
+	 */
+	Page<SysUser> findPage(Page<SysUser> page, SysUserDto form);
 
 	/**
 	 * 获取登录用户

@@ -25,9 +25,9 @@
                	">
                 <thead>
 	                <tr>
-	                	<th data-options="field:'constId',
-	                    		title:'序号',
-	                    		formatter: function(value, row, index) {
+	                	<th data-options="field:'seq',
+	                			title:'序号',
+	                			formatter: function(value, row, index) {
 	                    			var opts = $('#dataGrid').datagrid('options');
 	                    			return opts.pageSize * (opts.pageNumber - 1) + index + 1;
 	                    		}
@@ -82,7 +82,7 @@
 	        <input sec:authorize="hasRole('SUPER')" 
 	        	type="text" name="creatorUserId"
                	class="easyui-combogrid"
-             	data-options="idField:'userId',
+             	data-options="valueField:'userId',
              		textField:'nickname',
              		prompt:'创建人',
              		width:220,
@@ -90,7 +90,10 @@
             		pagination:true,
             		fitColumns:true,
             		pageSize:10,
-                   	url:ctx+'/sys/user/ajax/page',
+            		mode:'remote',
+            		method:'get',
+                   	url:'user/ajax/page',
+                   	onBeforeLoad:$.pageOnBeforeLoad,
                   	columns:[[
                    		{field:'username',title:'账号',width:100},
                    		{field:'nickname',title:'昵称',width:100},

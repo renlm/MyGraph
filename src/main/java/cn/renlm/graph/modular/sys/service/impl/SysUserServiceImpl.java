@@ -13,14 +13,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.sys.dto.SysUserDto;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysRoleResource;
@@ -50,6 +53,24 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
 	@Autowired
 	private ISysRoleResourceService iSysRoleResourceService;
+
+	@Override
+	public Page<SysUser> findPage(Page<SysUser> page, SysUserDto form) {
+		Page<SysUser> data = this.page(page, Wrappers.<SysUser>lambdaQuery().func(wrapper -> {
+			if (StrUtil.isNotBlank(form.getKeywords())) {
+				wrapper.and(it -> {
+					it.or().like(SysUser::getUsername, form.getKeywords());
+					it.or().like(SysUser::getNickname, form.getKeywords());
+					it.or().like(SysUser::getMobile, form.getKeywords());
+				});
+			}
+			wrapper.orderByDesc(SysUser::getCreatedAt);
+		}));
+		data.getRecords().forEach(item -> {
+			item.setPassword(null);
+		});
+		return data;
+	}
 
 	@Override
 	public User loadUserByUsername(String username) {
