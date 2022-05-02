@@ -7,11 +7,12 @@ CREATE TABLE sys_user(
     password                  	VARCHAR(255)    				NOT NULL 		COMMENT '密码',
     nickname                 	VARCHAR(255)    				NOT NULL 		COMMENT '昵称',
     realname                 	VARCHAR(255)    				 				COMMENT '真实姓名',
-    id_card                 	VARCHAR(20)    				 					COMMENT '身份证号',
-    sex                   		VARCHAR(1)    									COMMENT '性别，M：男，F：女',
     birthday                   	DATE    										COMMENT '出生日期',
+    sex                   		VARCHAR(1)    									COMMENT '性别，M：男，F：女',
     mobile                   	VARCHAR(30)    									COMMENT '手机号码',
     email                    	VARCHAR(128)    								COMMENT '邮箱地址',
+    sign                    	VARCHAR(255)    								COMMENT '个性签名',
+    avatar                    	VARCHAR(32)    									COMMENT '头像',
     enabled                  	TINYINT(1)      DEFAULT 1  		NOT NULL  		COMMENT '是否启用（默认启用）',
     account_non_expired         TINYINT(1)      DEFAULT 1  		NOT NULL  		COMMENT '账户未过期（默认未过期）',
     credentials_non_expired		TINYINT(1)		DEFAULT 1  		NOT NULL  		COMMENT '凭证未过期（默认未过期）',
@@ -19,7 +20,6 @@ CREATE TABLE sys_user(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     remark VARCHAR(800) COMMENT '备注',
-    INDEX id_card(id_card),
     INDEX mobile(mobile),
     INDEX email(email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '用户';

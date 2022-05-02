@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-04-30
+ * @since 2022-05-02
  */
 @Getter
 @Setter
@@ -63,22 +63,16 @@ public class SysUser implements Serializable {
     private String realname;
 
     /**
-     * 身份证号
+     * 出生日期
      */
-    @TableField("id_card")
-    private String idCard;
+    @TableField("birthday")
+    private Date birthday;
 
     /**
      * 性别，M：男，F：女
      */
     @TableField("sex")
     private String sex;
-
-    /**
-     * 出生日期
-     */
-    @TableField("birthday")
-    private Date birthday;
 
     /**
      * 手机号码
@@ -91,6 +85,18 @@ public class SysUser implements Serializable {
      */
     @TableField("email")
     private String email;
+
+    /**
+     * 个性签名
+     */
+    @TableField("sign")
+    private String sign;
+
+    /**
+     * 头像
+     */
+    @TableField("avatar")
+    private String avatar;
 
     /**
      * 是否启用（默认启用）
