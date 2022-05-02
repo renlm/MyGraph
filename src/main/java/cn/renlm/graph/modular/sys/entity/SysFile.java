@@ -39,12 +39,6 @@ public class SysFile implements Serializable {
     private String originalFilename;
 
     /**
-     * 存储位置，1：数据库，2：服务器
-     */
-    @TableField("storage")
-    private Integer storage;
-
-    /**
      * 是否公开（默认否）
      */
     @TableField("is_public")
@@ -67,18 +61,6 @@ public class SysFile implements Serializable {
      */
     @TableField("size")
     private Long size;
-
-    /**
-     * 存放路径
-     */
-    @TableField("path")
-    private String path;
-
-    /**
-     * 访问路径
-     */
-    @TableField("uri")
-    private String uri;
 
     /**
      * 执行器

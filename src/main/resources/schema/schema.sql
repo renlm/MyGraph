@@ -167,13 +167,10 @@ DROP TABLE IF EXISTS sys_file;
 CREATE TABLE sys_file(
     file_id            			CHAR(32)      	PRIMARY KEY 					COMMENT '文件ID',
     original_filename       	VARCHAR(255) 									COMMENT '文件名',
-    storage        				INT 			DEFAULT 1		NOT NULL 		COMMENT '存储位置，1：数据库，2：服务器',
     is_public        			TINYINT(1) 		DEFAULT 0 		NOT NULL 		COMMENT '是否公开（默认否）',
     file_type       			VARCHAR(255) 									COMMENT '文件类型',
     file_content       			LONGBLOB 										COMMENT '文件内容',
     size       					BIGINT 											COMMENT '文件大小',
-    path       					VARCHAR(800) 									COMMENT '存放路径',
-    uri       					VARCHAR(800) 									COMMENT '访问路径',
     actuator       				VARCHAR(255) 									COMMENT '执行器',
     param_json       			TEXT 											COMMENT '执行参数（Json格式）',
     status       				INT 			DEFAULT 1						COMMENT '状态，1：正常，2：任务初始化，3：任务执行中，4：任务异常，5：任务已完成',
