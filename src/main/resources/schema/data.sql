@@ -74,10 +74,9 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(200301, 		'D957245380414774BF7882933536DA86',	'200301', 		'任务管理', 		'menu', 			null, 														'fa fa-deaf', 				null, 				null, 			3, 		1, 		'open',		0,					2003,		null)
 	  ,(30, 			'3165637A889443629EB021505A4CAC52',	'OSHI', 		'服务器', 		'urlInsidePage', 	'/home/oshi',												'fa fa-server', 			'#FF5722', 			null, 			1, 		3, 		'open',		0,					null,		null)
 	  ,(40, 			'EB0B50741EAC47E3A275FEBCABFC5AA1',	'40', 			'文件管理', 		'urlInsidePage', 	'/sys/file', 												'fa fa-clipboard', 			null, 				null, 			1, 		4, 		'open',		0,					null,		null)
-	  ,(50, 			'302F142FBA694822A32A9B38171DB851',	'50', 			'帮助中心', 		'urlInsidePage', 	'/im', 														'fa fa-comments-o', 		null, 				null, 			1, 		5, 		'open',		0,					null,		null)
-	  ,(60, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'60', 			'更多功能', 		'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		6, 		'closed',	0,					null,		null)
-	  ,(6001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'6001', 		'在线调试', 		'urlInsidePage', 	'/compile', 												'fa fa-code', 				'rebeccapurple', 	null, 			2, 		1, 		'open',		0,					60,			null)
-	  ,(6002, 			'466FA46CA81B44A0B286294B6149007F',	'6002', 		'EasyUI中文站', 	'urlNewWindows', 	'http://www.jeasyui.cn/?from=demo', 						'fa fa-link', 				null, 				null, 			2, 		2, 		'open',		0,					60,			null)
+	  ,(50, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'50', 			'更多功能', 		'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		5, 		'closed',	0,					null,		null)
+	  ,(5001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'5001', 		'在线调试', 		'urlInsidePage', 	'/compile', 												'fa fa-code', 				'rebeccapurple', 	null, 			2, 		1, 		'open',		0,					50,			null)
+	  ,(5002, 			'466FA46CA81B44A0B286294B6149007F',	'5002', 		'EasyUI中文站', 	'urlNewWindows', 	'http://www.jeasyui.cn/?from=demo', 						'fa fa-link', 				null, 				null, 			2, 		2, 		'open',		0,					50,			null)
 ;
 
 -- 角色资源关系
@@ -107,7 +106,7 @@ INSERT INTO sys_role_resource(
 	sort, -- sort	
 	default_home_page -- default_home_page
 FROM sys_resource
-WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '100103', '40', '50')
+WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '100103', '40')
 ;
 INSERT INTO sys_role_resource(
 	sys_role_id,
@@ -121,7 +120,7 @@ INSERT INTO sys_role_resource(
 	sort, -- sort	
 	default_home_page -- default_home_page
 FROM sys_resource
-WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '100103', '40', '50')
+WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '100103', '40')
 ;
 
 -- 系统常量
