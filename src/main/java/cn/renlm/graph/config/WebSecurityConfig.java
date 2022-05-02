@@ -75,6 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	public static final String[] WHITE_LIST = {  
 			"/captcha",
+			"/kaptcha",
 			"/register",
 			"/doRegister",
 			APIAntMatcher,
