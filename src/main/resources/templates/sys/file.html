@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN" layout:decorate="~{layout/decorate}">
+<head>
+    <title>文件列表</title>
+    <link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet"/>
+	<script th:src="@{/webjars/layui/layui.js}"></script>
+</head>
+<body layout:fragment="content">
+	<div data-toggle="topjui-layout" 
+		data-options="fit:true">
+		<div data-options="region:'center',
+				title:'',
+				iconCls:'icon-reload',
+				split:true,
+				border:false
+			">
+            <table data-toggle="topjui-edatagrid"
+            	data-options="id:'fileDatagrid',
+            		pagination:true,
+           			fitColumns:true,
+           			pageSize:20,
+                   	url:'file/ajax/page',
+                   	onBeforeLoad:pageOnBeforeLoad,
+                 	loadFilter:pageLoadFilter
+               	">
+                <thead>
+	                <tr>
+	                    <th data-options="field:'originalFilename',
+	                    		title:'文件名',
+	                    		width:250,
+		                    	formatter:function(value,row,index){
+		                    		if(row.status != 1 && row.status != 5) {
+		                    			return '<a href=\'javascript:void(0);\' style=\'text-decoration:underline;color:gray;\'>' + value + '</a>';
+		                    		} else {
+		                    			var href = ctx + '/sys/file/download/' + row.fileId + '?inline';
+		                    			return '<a href=\'' + href + '\' style=\'text-decoration:underline;color:blue;\' target=\'_blank\'>' + value + '</a>';
+		                    		}
+			                	}
+			                "></th>
+	                    <th data-options="field:'storage',
+	                    		title:'存储位置',
+	                    		width:120,
+		                    	formatter:function(value,row,index){
+			                   		switch(value) {
+										case 1:
+									   		return '数据库';
+									 	case 2:
+									     	return '服务器';
+									  	default:
+									     	return value;
+									}
+			                	}
+			                "></th>
+	                    <th data-options="field:'status',
+	                    		title:'状态',
+	                    		width:120,
+		                    	formatter:function(value,row,index){
+			                   		switch(value) {
+										case 1:
+									   		return '<span style=\'color:blue;\'>可下载</span>';
+									 	case 2:
+									     	return '任务初始化';
+									 	case 3:
+									     	return '<span style=\'color:green;\'>任务执行中</span>';
+									 	case 4:
+									     	return '<span style=\'color:red;\' title=\''+row.message+'\'>任务异常</span>';
+									 	case 5:
+									 		return '<span style=\'color:blue;\'>任务已完成（可下载）</span>';
+									  	default:
+									     	return value;
+									}
+			                	}
+			                "></th>
+	                    <th data-options="field:'size',title:'大小',width:100,align:'right',formatter:fileSizeFormatter"></th>
+	                    <th data-options="field:'fileType',title:'类型',width:120"></th>
+	                    <th sec:authorize="hasRole('SUPER')" data-options="field:'creatorNickname',title:'创建人',width:100"></th>
+	                    <th data-options="field:'createdAt',title:'创建时间',width:153,align:'right',formatter:createdAtFormatter"></th>
+	                    <th data-options="field:'updatedAt',title:'更新时间',width:153,align:'right',formatter:updatedAtFormatter"></th>
+	                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div id="fileDatagrid-toolbar" class="topjui-toolbar"
+    	data-options="grid:{
+    		id:'fileDatagrid',
+    		type:'datagrid'
+    	}">
+    	<button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="upload-drag">
+			<i class="layui-icon layui-icon-upload"></i>上传文件
+		</button>
+		<form id="queryFileForm" class="search-box">
+	        <input sec:authorize="hasRole('SUPER')" 
+	        	type="text" name="creatorUserId"
+               	data-toggle="topjui-combogrid"
+             	data-options="idField:'userId',
+             		textField:'nickname',
+             		prompt:'创建人',
+             		width:220,
+             		panelWidth:500,
+            		pagination:true,
+            		fitColumns:true,
+            		pageSize:10,
+                   	url:ctx+'/sys/user/ajax/page',
+                   	onBeforeLoad:pageOnBeforeLoad,
+                 	loadFilter:pageLoadFilter,
+                  	columns:[[
+                   		{field:'username',title:'账号',width:100},
+                   		{field:'nickname',title:'昵称',width:100},
+                   		{field:'mobile',title:'手机号码',width:100}
+              		]]
+           		"/>
+	        <input type="text" name="createdAt" 
+	        	data-toggle="topjui-datebox" 
+	        	data-options="prompt:'查询起始时间',
+	        		width:220
+	        	"/>
+	   		<input type="text" name="originalFilename" 
+	   			data-toggle="topjui-textbox"
+	        	data-options="prompt:'文件名',
+	        		width:220
+	        	"/>
+	        <a href="javascript:void(0);" 
+	        	data-toggle="topjui-menubutton"
+	       		data-options="method:'query',
+	           		iconCls:'fa fa-search',
+	           		btnCls:'topjui-btn-blue',
+	           		form:{
+	           			id:'queryFileForm'
+	           		},
+	           		grid:{
+	           			type:'datagrid',
+	           			id:'fileDatagrid'
+	           		}
+	         	">查询
+	    	</a>
+	    	<a href="javascript:void(0);"
+       			data-toggle="topjui-linkbutton"
+       			data-options="iconCls:'fa fa-trash',
+                   	btnCls:'topjui-btn-brown',
+                   	form:{
+                   		id:'queryFileForm',
+                   		method:'clear'
+               		}
+             	">清空
+          	</a>
+		</form> 
+    </div>
+<script type="text/javascript">
+	layui.upload.render({
+    	elem: "#upload-drag",
+    	url: ctx + "/sys/file/upload",
+    	accept: "file", 
+    	size: 30*1024,
+    	before: function(obj){
+    		var layui_process = '<div style="margin: 20px 10px;" class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="uploader">';
+    		layui_process 	 += 	'<div class="layui-progress-bar" lay-percent="0%"><span class="layui-progress-text">0%</span></div>';
+    		layui_process    += '</div>';
+    		window.uploadeindex = layer.open({ type: 1, title: "上传进度", skin: "layui-layer-rim", area: ["420px", "120px"], content: layui_process });
+    		obj.preview(function(index, file, result){ window.filename = file.name; });
+    	},
+    	progress: function(percent) {
+    		layui.element.progress("uploader", percent + "%");
+		},
+    	done: function(res, index, upload) {
+    		setTimeout(function() {
+    			if(res.statusCode == 200) {
+    				layer.close(window.uploadeindex);
+                	$("#fileDatagrid").iDatagrid("load");
+                	$.iMessager.show({title: "我的消息", msg: res.message, timeout: 5000, showType: "slide"});
+                } else {
+                	layer.msg(res.message, { icon: 5, shift:6 });
+                }
+            }, 900);
+        },
+        error: function(index, upload) { 
+        	layer.msg("出错了", { icon: 5, shift:6 });
+        }
+   	});
+</script>
+</body>
+</html>
