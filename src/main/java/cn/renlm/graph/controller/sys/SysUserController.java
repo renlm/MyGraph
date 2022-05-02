@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.response.Result;
 import cn.renlm.graph.security.UserService;
 
 /**

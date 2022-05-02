@@ -16,10 +16,10 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.renlm.graph.common.CacheKey;
-import cn.renlm.graph.common.Datagrid;
-import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.sys.entity.SysConst;
 import cn.renlm.graph.modular.sys.service.ISysConstService;
+import cn.renlm.graph.response.Datagrid;
+import cn.renlm.graph.response.Result;
 
 /**
  * 系统常量

@@ -3,9 +3,9 @@ package cn.renlm.graph.modular.er.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.er.dto.DsDto;
 import cn.renlm.graph.modular.er.entity.Ds;
+import cn.renlm.graph.response.Result;
 import cn.renlm.graph.dto.User;
 
 /**

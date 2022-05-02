@@ -20,12 +20,12 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
-import cn.renlm.graph.common.Datagrid;
-import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
 import cn.renlm.graph.modular.graph.service.IGraphService;
+import cn.renlm.graph.response.Datagrid;
+import cn.renlm.graph.response.Result;
 
 /**
  * 图形设计

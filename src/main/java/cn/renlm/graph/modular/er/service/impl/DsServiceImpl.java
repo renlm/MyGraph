@@ -19,7 +19,6 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.Table;
 import cn.hutool.db.meta.TableType;
-import cn.renlm.graph.common.Result;
 import cn.renlm.graph.modular.er.dto.DsDto;
 import cn.renlm.graph.modular.er.entity.Ds;
 import cn.renlm.graph.modular.er.entity.DsErRel;
@@ -30,6 +29,7 @@ import cn.renlm.graph.modular.er.service.IDsErRelService;
 import cn.renlm.graph.modular.er.service.IDsService;
 import cn.renlm.graph.modular.er.service.IErFieldService;
 import cn.renlm.graph.modular.er.service.IErService;
+import cn.renlm.graph.response.Result;
 import cn.renlm.graph.dto.User;
 import cn.renlm.plugins.MyUtil.MyDbUtil;
 

@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.DsDto;
 import cn.renlm.graph.modular.er.entity.Ds;
 import cn.renlm.graph.modular.er.service.IDsService;
+import cn.renlm.graph.response.Result;
 
 /**
  * 数据源

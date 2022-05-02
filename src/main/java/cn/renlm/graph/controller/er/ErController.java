@@ -17,12 +17,12 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErDto;
 import cn.renlm.graph.modular.er.entity.Er;
 import cn.renlm.graph.modular.er.service.IErService;
 import cn.renlm.graph.mxgraph.ERModelParser;
+import cn.renlm.graph.response.Result;
 
 /**
  * ER模型

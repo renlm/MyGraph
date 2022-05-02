@@ -18,11 +18,11 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.ConstVal;
-import cn.renlm.graph.common.Result;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysConstService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.response.Result;
 
 /**
  * 登录

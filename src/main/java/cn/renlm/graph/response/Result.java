@@ -1,4 +1,4 @@
-package cn.renlm.graph.common;
+package cn.renlm.graph.response;
 
 import java.io.Serializable;
 
