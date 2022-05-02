@@ -56,6 +56,15 @@
 			}
 		},
 		/**
+		 * 表格分页参数处理
+		 */
+		pageOnBeforeLoad: function (param) {
+			param.current = param.page;
+			param.size = param.rows;
+			delete param.page;
+			delete param.rows;
+		},
+		/**
 		 * 字节大小格式化
 		 */
 		formatBytes: function (value) {

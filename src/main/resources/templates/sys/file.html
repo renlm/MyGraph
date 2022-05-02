@@ -16,14 +16,22 @@
 					fit:true,
 					fitColumns:true,
 					singleSelect:true,
+					toolbar:'#toolbar',
 					pagination:true,
 					pageSize:20,
 					method:'get',
 					url:'file/ajax/page',
-					toolbar:'#toolbar'
+                   	onBeforeLoad:$.pageOnBeforeLoad
                	">
                 <thead>
 	                <tr>
+	                	<th data-options="field:'constId',
+	                    		title:'序号',
+	                    		formatter: function(value, row, index) {
+	                    			var opts = $('#dataGrid').datagrid('options');
+	                    			return opts.pageSize * (opts.pageNumber - 1) + index + 1;
+	                    		}
+	                    	"></th>
 	                    <th data-options="field:'originalFilename',
 	                    		title:'文件名',
 	                    		width:250,
