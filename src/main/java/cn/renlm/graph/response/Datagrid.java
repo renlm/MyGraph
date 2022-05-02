@@ -23,12 +23,12 @@ public class Datagrid<T> implements Serializable {
 	/**
 	 * 总数
 	 */
-	protected long total = 0;
+	private long total = 0;
 
 	/**
 	 * 数据集
 	 */
-	protected List<T> rows;
+	private List<T> rows;
 
 	/**
 	 * 转换列表数据
