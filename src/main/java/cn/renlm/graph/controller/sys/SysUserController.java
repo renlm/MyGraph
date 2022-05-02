@@ -42,7 +42,7 @@ public class SysUserController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/page")
+	@GetMapping("/ajax/page")
 	public Datagrid<SysUser> page(Page<SysUser> page, SysUserDto form) {
 		Page<SysUser> data = iSysUserService.findPage(page, form);
 		return Datagrid.of(data);
