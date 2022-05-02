@@ -44,6 +44,8 @@
 		                    		}
 			                	}
 			                "></th>
+	                    <th data-options="field:'size',title:'大小',width:100,align:'right',formatter:$.formatBytes"></th>
+	                    <th data-options="field:'fileType',title:'类型',width:120"></th>
 	                    <th data-options="field:'status',
 	                    		title:'状态',
 	                    		width:120,
@@ -64,8 +66,6 @@
 									}
 			                	}
 			                "></th>
-	                    <th data-options="field:'size',title:'大小',width:100,align:'right',formatter:$.formatBytes"></th>
-	                    <th data-options="field:'fileType',title:'类型',width:120"></th>
 	                    <th sec:authorize="hasRole('SUPER')" data-options="field:'creatorNickname',title:'创建人',width:100"></th>
 	                    <th data-options="field:'createdAt',title:'创建时间',width:153,align:'right',formatter:$.createdAtFormatter"></th>
 	                    <th data-options="field:'updatedAt',title:'更新时间',width:153,align:'right',formatter:$.updatedAtFormatter"></th>
