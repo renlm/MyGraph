@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-    <title>文件列表</title>
+    <title>文件管理</title>
     <link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet"/>
-	<script th:src="@{/webjars/layui/layui.js}"></script>
 </head>
-<body layout:fragment="content">
-	<div data-toggle="topjui-layout" 
+<body layout:fragment="content" class="myui">
+	<div class="easyui-layout" 
 		data-options="fit:true">
 		<div data-options="region:'center',
-				title:'',
-				iconCls:'icon-reload',
 				split:true,
 				border:false
 			">
-            <table data-toggle="topjui-edatagrid"
-            	data-options="id:'fileDatagrid',
-            		pagination:true,
-           			fitColumns:true,
-           			pageSize:20,
-                   	url:'file/ajax/page',
-                   	onBeforeLoad:pageOnBeforeLoad,
-                 	loadFilter:pageLoadFilter
+            <table id="dataGrid" class="easyui-datagrid"
+            	data-options="border:false,
+					fit:true,
+					fitColumns:true,
+					singleSelect:true,
+					pagination:true,
+					pageSize:20,
+					method:'get',
+					url:'file/ajax/page',
+					toolbar:'#toolbar'
                	">
                 <thead>
 	                <tr>
@@ -35,20 +34,6 @@
 		                    			var href = ctx + '/sys/file/download/' + row.fileId + '?inline';
 		                    			return '<a href=\'' + href + '\' style=\'text-decoration:underline;color:blue;\' target=\'_blank\'>' + value + '</a>';
 		                    		}
-			                	}
-			                "></th>
-	                    <th data-options="field:'storage',
-	                    		title:'存储位置',
-	                    		width:120,
-		                    	formatter:function(value,row,index){
-			                   		switch(value) {
-										case 1:
-									   		return '数据库';
-									 	case 2:
-									     	return '服务器';
-									  	default:
-									     	return value;
-									}
 			                	}
 			                "></th>
 	                    <th data-options="field:'status',
@@ -71,28 +56,24 @@
 									}
 			                	}
 			                "></th>
-	                    <th data-options="field:'size',title:'大小',width:100,align:'right',formatter:fileSizeFormatter"></th>
+	                    <th data-options="field:'size',title:'大小',width:100,align:'right',formatter:$.formatBytes"></th>
 	                    <th data-options="field:'fileType',title:'类型',width:120"></th>
 	                    <th sec:authorize="hasRole('SUPER')" data-options="field:'creatorNickname',title:'创建人',width:100"></th>
-	                    <th data-options="field:'createdAt',title:'创建时间',width:153,align:'right',formatter:createdAtFormatter"></th>
-	                    <th data-options="field:'updatedAt',title:'更新时间',width:153,align:'right',formatter:updatedAtFormatter"></th>
+	                    <th data-options="field:'createdAt',title:'创建时间',width:153,align:'right',formatter:$.createdAtFormatter"></th>
+	                    <th data-options="field:'updatedAt',title:'更新时间',width:153,align:'right',formatter:$.updatedAtFormatter"></th>
 	                </tr>
                 </thead>
             </table>
         </div>
     </div>
-    <div id="fileDatagrid-toolbar" class="topjui-toolbar"
-    	data-options="grid:{
-    		id:'fileDatagrid',
-    		type:'datagrid'
-    	}">
+    <div id="toolbar" class="myui-toolbar">
     	<button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="upload-drag">
 			<i class="layui-icon layui-icon-upload"></i>上传文件
 		</button>
-		<form id="queryFileForm" class="search-box">
+		<form id="form" class="search-box">
 	        <input sec:authorize="hasRole('SUPER')" 
 	        	type="text" name="creatorUserId"
-               	data-toggle="topjui-combogrid"
+               	class="easyui-combogrid"
              	data-options="idField:'userId',
              		textField:'nickname',
              		prompt:'创建人',
@@ -102,8 +83,6 @@
             		fitColumns:true,
             		pageSize:10,
                    	url:ctx+'/sys/user/ajax/page',
-                   	onBeforeLoad:pageOnBeforeLoad,
-                 	loadFilter:pageLoadFilter,
                   	columns:[[
                    		{field:'username',title:'账号',width:100},
                    		{field:'nickname',title:'昵称',width:100},
@@ -111,38 +90,24 @@
               		]]
            		"/>
 	        <input type="text" name="createdAt" 
-	        	data-toggle="topjui-datebox" 
+	        	class="easyui-datebox" 
 	        	data-options="prompt:'查询起始时间',
 	        		width:220
 	        	"/>
 	   		<input type="text" name="originalFilename" 
-	   			data-toggle="topjui-textbox"
+	   			class="easyui-textbox"
 	        	data-options="prompt:'文件名',
 	        		width:220
 	        	"/>
 	        <a href="javascript:void(0);" 
-	        	data-toggle="topjui-menubutton"
-	       		data-options="method:'query',
-	           		iconCls:'fa fa-search',
-	           		btnCls:'topjui-btn-blue',
-	           		form:{
-	           			id:'queryFileForm'
-	           		},
-	           		grid:{
-	           			type:'datagrid',
-	           			id:'fileDatagrid'
-	           		}
+	        	class="easyui-linkbutton myui-btn-blue"
+	       		data-options="iconCls:'fa fa-search'
 	         	">查询
 	    	</a>
 	    	<a href="javascript:void(0);"
-       			data-toggle="topjui-linkbutton"
-       			data-options="iconCls:'fa fa-trash',
-                   	btnCls:'topjui-btn-brown',
-                   	form:{
-                   		id:'queryFileForm',
-                   		method:'clear'
-               		}
-             	">清空
+       			class="easyui-linkbutton myui-btn-brown"
+       			data-options="iconCls:'fa fa-trash'
+       			">清空
           	</a>
 		</form> 
     </div>
@@ -166,8 +131,8 @@
     		setTimeout(function() {
     			if(res.statusCode == 200) {
     				layer.close(window.uploadeindex);
-                	$("#fileDatagrid").iDatagrid("load");
-                	$.iMessager.show({title: "我的消息", msg: res.message, timeout: 5000, showType: "slide"});
+                	$("#dataGrid").datagrid("load");
+                	$.messager.show({title: "我的消息", msg: res.message, timeout: 5000, showType: "slide"});
                 } else {
                 	layer.msg(res.message, { icon: 5, shift:6 });
                 }

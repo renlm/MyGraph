@@ -32,6 +32,7 @@ import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
+import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
 
 /**
@@ -68,10 +69,10 @@ public class SysFileController {
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/page")
-	public Page<SysFile> page(HttpServletRequest request, Authentication authentication, Page<SysFile> page,
+	public Datagrid<SysFile> page(HttpServletRequest request, Authentication authentication, Page<SysFile> page,
 			SysFile form) {
 		User user = (User) authentication.getPrincipal();
-		return iSysFileService.page(page, Wrappers.<SysFile>lambdaQuery().func(wrapper -> {
+		Page<SysFile> data = iSysFileService.page(page, Wrappers.<SysFile>lambdaQuery().func(wrapper -> {
 			wrapper.select(SysFile.class, field -> !field.getPropertyType().isArray());
 			wrapper.eq(SysFile::getDeleted, false);
 			if (request.isUserInRole(Role.SUPER.name())) {
@@ -90,6 +91,7 @@ public class SysFileController {
 			wrapper.orderByDesc(SysFile::getCreatedAt);
 			wrapper.orderByDesc(SysFile::getFileId);
 		}));
+		return Datagrid.of(data);
 	}
 
 	/**
