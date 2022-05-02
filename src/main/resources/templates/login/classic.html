@@ -63,7 +63,7 @@
 											<input type="text" name="captcha" class="form-control" placeholder="验证码" style="width: 87.5%">
 										</div>
 										<div style="width: 20%; height: 40px;cursor: pointer;">
-											<img alt="验证码" th:src="@{/captcha}" title="单击图片刷新！" style="border-radius: 2px;"
+											<img alt="验证码" th:src="@{/kaptcha}" title="单击图片刷新！" style="border-radius: 2px;"
                 								onclick="this.src=this.src.split('?')[0]+'?'+new Date().getTime();">
 										</div>
 									</div>

@@ -1,8 +1,9 @@
 package cn.renlm.graph.controller;
 
-import java.awt.Color;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,12 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.code.kaptcha.Producer;
+
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.core.img.ImgUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.renlm.graph.common.ConstVal;
-import cn.renlm.graph.modular.sys.service.ISysConstService;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
 
@@ -28,11 +30,11 @@ import lombok.SneakyThrows;
  *
  */
 @Controller
-@RequestMapping("/captcha")
+@RequestMapping
 public class CaptchaController {
 
 	@Autowired
-	private ISysConstService iSysConstService;
+	private Producer producer;
 
 	/**
 	 * 图片
@@ -40,27 +42,38 @@ public class CaptchaController {
 	 * @param request
 	 * @param response
 	 */
-	@GetMapping
 	@SneakyThrows
-	public void image(HttpServletRequest request, HttpServletResponse response) {
-		int width = 0;
-		int height = 0;
-		if (iSysConstService.getCfgEnableRegistration()) {
-			width = 108;
-			height = 38;
-		} else {
-			width = 80;
-			height = 38;
-		}
+	@GetMapping("/captcha")
+	public void captcha(HttpServletRequest request, HttpServletResponse response) {
 		int codeCount = 3;
 		String code = RandomUtil.randomNumbers(codeCount);
-		LineCaptcha captcha = CaptchaUtil.createLineCaptcha(width, height, codeCount, 24);
-		captcha.setBackground(new Color(245, 245, 245));
-		captcha.setTextAlpha(0.98F);
+		LineCaptcha captcha = CaptchaUtil.createLineCaptcha(108, 38, codeCount, 24);
 		Image image = captcha.createImage(code);
 		request.getSession().setAttribute(ConstVal.CAPTCHA_SESSION_KEY, code);
 		@Cleanup
 		ServletOutputStream out = response.getOutputStream();
 		ImgUtil.write(image, ImgUtil.IMAGE_TYPE_PNG, out);
+	}
+
+	/**
+	 * 图片
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	@SneakyThrows
+	@GetMapping("/kaptcha")
+	public void kaptcha(HttpServletRequest request, HttpServletResponse response) {
+		response.setDateHeader("Expires", 0);
+		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+		response.addHeader("Cache-Control", "post-check=0, pre-check=0");
+		response.setHeader("Pragma", "no-cache");
+		response.setContentType("image/jpeg");
+		String capText = producer.createText();
+		request.getSession().setAttribute(ConstVal.CAPTCHA_SESSION_KEY, capText);
+		BufferedImage bi = producer.createImage(capText);
+		@Cleanup
+		ServletOutputStream out = response.getOutputStream();
+		ImageIO.write(bi, "jpeg", out);
 	}
 }
