@@ -464,8 +464,6 @@ function modifyPersonal () {
 		                if (resultJson.statusCode == 200) {
 							$('#user-nickname').html(resultJson.data.nickname);
 							$('#user-username').html(resultJson.data.username);
-							$('.systemname').siblings().remove();
-							$('.systemname').before("<img class='admin-nav-logo' src='" + ctx + "/sys/file/download/" + resultJson.data.avatar + "?inline' />");
 		                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 							$personalDialog.dialog('close');
 		                } else {
