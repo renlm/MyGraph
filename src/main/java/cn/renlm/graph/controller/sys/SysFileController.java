@@ -73,7 +73,7 @@ public class SysFileController {
 			SysFile form) {
 		User user = (User) authentication.getPrincipal();
 		Page<SysFile> data = iSysFileService.page(page, Wrappers.<SysFile>lambdaQuery().func(wrapper -> {
-			wrapper.select(SysFile.class, field -> !field.getPropertyType().isArray());
+			wrapper.select(SysFile.class, field -> field.getTypeHandler() == null);
 			wrapper.eq(SysFile::getDeleted, false);
 			if (request.isUserInRole(Role.SUPER.name())) {
 				if (StrUtil.isNotBlank(form.getCreatorUserId())) {
