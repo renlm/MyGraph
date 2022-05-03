@@ -1,32 +1,32 @@
 
 .sidemenu .accordion .panel-title{
-    color: #b8c7ce;
+    color: #fff;
 }
 .sidemenu .accordion .accordion-header{
     background: #222d32;
-    color: #b8c7ce;
+    color: #fff;
 }
 .sidemenu .accordion .accordion-body{
     background: #2c3b41;
-    color: #8aa4af;
+    color: #fff;
     border-bottom: none;
 }
 .sidemenu .accordion .accordion-body .tree-title{
-    color: #8aa4af !important;
+    color: #fff !important;
 }
 
 .sidemenu .accordion .accordion-header-selected{
-    background: #1e282c;
+    background: #367FA9;
 }
 .sidemenu .accordion .accordion-collapse{
     background: transparent;
 }
 .sidemenu .tree-node-hover{
-    background: #2c3b41;
+    background: #367FA9 !important;
     color: #fff;
 }
 .sidemenu .tree-node-selected{
-    background: #2c3b41;
+    background: #367FA9 !important;
     color: #fff;
 }
 .sidemenu .accordion-header .panel-icon{
