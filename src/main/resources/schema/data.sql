@@ -1,9 +1,9 @@
 -- 用户（密码：S-crawler^3324.）
 DELETE FROM sys_user;
 INSERT INTO sys_user 
-	   (id,		user_id, 							nickname, 	username,		password, 														mobile, 		email) 
-VALUES (1,		'ABFEE20BA6AC4783A683C7117763951E',	'令狐冲', 	'S-linghc',		'$2a$10$l90tWt3ZDJD95AmtdI3SHur.dm.M2HYLXMkZRSocIRzU0mLO/xTCK', '18801330084', 	'renlm@21cn.com'),
-	   (2,		'AE82571C404544218D373B294EB87E80',	'任盈盈', 	'S-renyy',		'$2a$10$l90tWt3ZDJD95AmtdI3SHur.dm.M2HYLXMkZRSocIRzU0mLO/xTCK', '17338158607', 	'renlmer@qq.com')
+	   (id,		user_id, 							nickname, 	username,		password, 														mobile, 		email,				sign) 
+VALUES (1,		'ABFEE20BA6AC4783A683C7117763951E',	'令狐冲', 	'S-linghc',		'$2a$10$l90tWt3ZDJD95AmtdI3SHur.dm.M2HYLXMkZRSocIRzU0mLO/xTCK', '18801330084', 	'renlm@21cn.com',	'在深邃的编码世界，做一枚轻盈的纸飞机'),
+	   (2,		'AE82571C404544218D373B294EB87E80',	'任盈盈', 	'S-renyy',		'$2a$10$l90tWt3ZDJD95AmtdI3SHur.dm.M2HYLXMkZRSocIRzU0mLO/xTCK', '17338158607', 	'renlmer@qq.com',	'凡人皆有一死')
 ;
 
 -- 角色
