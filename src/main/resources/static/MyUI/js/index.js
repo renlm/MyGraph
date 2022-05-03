@@ -487,6 +487,9 @@ function modifyPersonal () {
             $.getJSON(ctx + '/api/user/getInfo', function (result) {
 				// 初始化表单
 				$personalDialog.form('load', result.data);
+				if (result.data.avatar) {
+					$personalDialog.find(".avatar img").attr("src", ctx + '/sys/file/download/' + result.data.avatar + '?inline').show().siblings().hide().parent().parent().css('padding-top', '10px');
+				}
 				// 绑定头像上传
 				layui.upload.render({
 					elem: $personalDialog.find(".avatar").get(0),
@@ -494,18 +497,16 @@ function modifyPersonal () {
 					accept: "images",
 				   	acceptMime: "image/*",
 					before: function(obj) {
-						window.uploadeindex = layer.load(2);
-						obj.preview(function(index, file, result) {
-							if(index && file && result) {
-								$personalDialog.find(".avatar img").attr("src", result).show().siblings().hide();
-							}
-			         	});
+						if (obj) {
+							window.uploadeindex = layer.load(2);
+						}
 					},
 					done: function(res, index, upload) {
 						if(res && index && upload) {
 							layer.close(window.uploadeindex);
 							if(res.success) {
-								$personalDialog.find(".avatar img").attr("src", ctx + '/sys/file/download/' + res.data.fileId + '?inline').show().siblings().hide();
+								$personalDialog.find(".avatar input[name='avatar']").val(res.data.fileId);
+								$personalDialog.find(".avatar img").attr("src", ctx + '/sys/file/download/' + res.data.fileId + '?inline').show().siblings().hide().parent().parent().css('padding-top', '10px');
 							} else {
 								layer.msg("上传失败", { icon: 5, shift:6 });
 							}
