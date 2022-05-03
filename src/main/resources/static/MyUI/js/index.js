@@ -436,8 +436,8 @@ function modifyPersonal () {
 	var $personalDialog = $('<form id=\'personalDialog\' method=\'get\' class=\'myui\'></form>');
     $personalDialog.dialog({
         title: '个人信息',
-        width: 800,
-        height: 385,
+        width: 730,
+        height: 530,
 		collapsible: true,
 		minimizable: false,
 		maximizable: true,

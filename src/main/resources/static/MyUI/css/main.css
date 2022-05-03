@@ -2,6 +2,11 @@
 
 @import "../themes/default/core.css";
 
+#personalDialog .textbox textarea.textbox-text {
+    padding: 4px;
+    height: 78px !important;
+}
+
 .nav-bar .nav-left {
 	width: 230px;
 	float: left;
