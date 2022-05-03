@@ -23,6 +23,10 @@
 	background: url(../images/welcome.png) no-repeat center center;
 }
 
+.layim-tool-about {
+	visibility: hidden;
+}
+
 /* PEACE */
 
 .pace {
