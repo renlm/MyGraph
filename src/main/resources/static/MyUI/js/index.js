@@ -477,7 +477,7 @@ function modifyPersonal () {
             text: '关闭',
             iconCls: 'fa fa-close',
             handler: function () {
-                $personalDialog.dialog('close');
+                $personalDialog.dialog('destroy');
             }
         }],
         onLoad: function () {
@@ -485,9 +485,45 @@ function modifyPersonal () {
 			$personalDialog.next().find('.fa.fa-save').parent().parent().addClass('myui-btn-blue');
 			$personalDialog.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-red');
             $.getJSON(ctx + '/api/user/getInfo', function (result) {
-                $personalDialog.form('load', result.data);
+				// 初始化表单
+				$personalDialog.form('load', result.data);
+				// 绑定头像上传
+				layui.upload.render({
+					elem: $personalDialog.find(".avatar").get(0),
+					url: ctx + "/sys/file/upload",
+					accept: "images",
+				   	acceptMime: "image/*",
+					before: function(obj) {
+						window.uploadeindex = layer.load(2);
+						obj.preview(function(index, file, result) {
+							if(index && file && result) {
+								$personalDialog.find(".avatar img").attr("src", result).show().siblings().hide();
+							}
+			         	});
+					},
+					done: function(res, index, upload) {
+						if(res && index && upload) {
+							layer.close(window.uploadeindex);
+							if(res.success) {
+								$personalDialog.find(".avatar img").attr("src", ctx + '/sys/file/download/' + res.data.fileId + '?inline').show().siblings().hide();
+							} else {
+								layer.msg("上传失败", { icon: 5, shift:6 });
+							}
+						} else {
+							layer.msg("出错了", { icon: 5, shift:6 });
+						}
+				    },
+				    error: function(index, upload) {
+						if(index && upload) {
+							layer.msg("出错了", { icon: 5, shift:6 });
+						}
+				    }
+				});
             });
-        }
+        },
+		onClose: function () {
+			$personalDialog.dialog('destroy');
+		}
     });
 }
 
