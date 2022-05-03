@@ -52,15 +52,15 @@
 		                    	formatter:function(value,row,index){
 			                   		switch(value) {
 										case 1:
-									   		return '<span style=\'color:blue;\'>可下载</span>';
+									   		return '可下载';
 									 	case 2:
-									     	return '任务初始化';
+									     	return '<span style=\'color:cornflowerblue;\'>任务初始化</span>';
 									 	case 3:
 									     	return '<span style=\'color:green;\'>任务执行中</span>';
 									 	case 4:
 									     	return '<span style=\'color:red;\' title=\''+row.message+'\'>任务异常</span>';
 									 	case 5:
-									 		return '<span style=\'color:blue;\'>任务已完成（可下载）</span>';
+									 		return '任务已完成（可下载）';
 									  	default:
 									     	return value;
 									}
