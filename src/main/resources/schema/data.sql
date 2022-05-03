@@ -131,7 +131,7 @@ VALUES ('BA8A2BE8EFE24768942B7BA468CD3440',	'cfgSystemName',					'系统名称',
 	   ('1E358EC8EB6F4C9391EF59AC99326ABB',	'cfgSystemVersion',					'系统版本',			'v1.0.1',				2,		'系统当前上线版本'),
 	   ('1199F98DB51143B7B4825ADB91759E56',	'cfgSystemVersionPublishDate',		'发布日期',			'2022-04-29',			3,		'系统当前上线版本的发布日期'),
 	   ('828E0187483F4F768571C1A749DD63EF',	'cfgSiteBeian',						'网站备案号',			'京ICP备2021000671号',	4,		'网站上显示的备案号'),
-	   ('FE4640997D1648FD96835A414B4D6F37',	'cfgEnableRegistration',			'是否启用注册账号',		'是',					5,		'是/否')
+	   ('FE4640997D1648FD96835A414B4D6F37',	'cfgEnableRegistration',			'是否启用注册账号',		'否',					5,		'是/否')
 ;
 
 -- 图形设计

@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-05-02
+ * @since 2022-05-03
  */
 @Getter
 @Setter
@@ -27,9 +27,15 @@ public class SysFile implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 主键ID
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    /**
      * 文件ID
      */
-    @TableId(value = "file_id", type = IdType.ASSIGN_ID)
+    @TableField("file_id")
     private String fileId;
 
     /**

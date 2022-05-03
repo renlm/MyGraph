@@ -165,7 +165,8 @@ CREATE TABLE sys_dict(
 -- 文件
 DROP TABLE IF EXISTS sys_file;
 CREATE TABLE sys_file(
-    file_id            			CHAR(32)      	PRIMARY KEY 					COMMENT '文件ID',
+	id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    file_id            			VARCHAR(32)   	UNIQUE			NOT NULL 		COMMENT '文件ID',
     original_filename       	VARCHAR(255) 									COMMENT '文件名',
     is_public        			TINYINT(1) 		DEFAULT 0 		NOT NULL 		COMMENT '是否公开（默认否）',
     file_type       			VARCHAR(255) 									COMMENT '文件类型',
