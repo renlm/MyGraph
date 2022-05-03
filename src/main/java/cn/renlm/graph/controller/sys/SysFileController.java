@@ -88,8 +88,7 @@ public class SysFileController {
 			if (StrUtil.isNotBlank(form.getOriginalFilename())) {
 				wrapper.like(SysFile::getOriginalFilename, form.getOriginalFilename());
 			}
-			wrapper.orderByDesc(SysFile::getCreatedAt);
-			wrapper.orderByDesc(SysFile::getFileId);
+			wrapper.orderByDesc(SysFile::getId);
 		}));
 		return Datagrid.of(data);
 	}
@@ -131,7 +130,7 @@ public class SysFileController {
 			@PathVariable("fileId") String fileId) throws IOException {
 		boolean inline = request.getParameterMap().containsKey("inline");
 		String openStyle = inline ? "inline" : "attachment";
-		SysFile file = iSysFileService.getById(fileId);
+		SysFile file = iSysFileService.getOne(Wrappers.<SysFile>lambdaQuery().eq(SysFile::getFileId, fileId));
 		String filename = URLEncoder.encode(file.getOriginalFilename(), "UTF-8");
 		response.setHeader("Content-Type", file.getFileType());
 		response.setHeader("Content-Disposition", openStyle + ";fileName=" + filename);
