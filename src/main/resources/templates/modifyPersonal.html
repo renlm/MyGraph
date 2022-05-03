@@ -1,112 +1,129 @@
 <div class="myui-fluid">
     <div class="myui-row"></div>
-	<div class="myui-row">
-		<div class="myui-col-sm6">
-			<label class="myui-form-label">登录账号</label>
-			<div class="myui-input-block">
-				<input type="text" name="username" 
-					class="easyui-textbox"
-					data-options="width:254,
-						disabled:true
-					"/>
-			</div>
+    <div class="myui-row">
+		<div class="myui-col-sm4">
+			888
 		</div>
-		<div class="myui-col-sm6">
-			<label class="myui-form-label">昵称</label>
-			<div class="myui-input-block">
-				<input type="text" name="nickname" 
-					class="easyui-textbox"
-					data-options="width:254,
-						required:true,
-						prompt:'必填'
-					"/>
+		<div class="myui-col-sm8">
+			<div class="myui-row">
+				<div class="myui-col-sm12">
+					<label class="myui-form-label">登录账号</label>
+					<div class="myui-input-block">
+						<input type="text" name="username" 
+							class="easyui-textbox"
+							data-options="width:254,
+								disabled:true
+							"/>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="myui-row">
-		<div class="myui-col-sm6">
-			<label class="myui-form-label">真实姓名</label>
-			<div class="myui-input-block">
-				<input type="text" name="realname" 
-					class="easyui-textbox"
-					data-options="width:254,
-						prompt:'真实姓名'
-					"/>
+			<div class="myui-row">
+				<div class="myui-col-sm12">
+					<label class="myui-form-label">昵称</label>
+					<div class="myui-input-block">
+						<input type="text" name="nickname" 
+							class="easyui-textbox"
+							data-options="width:254,
+								required:true,
+								prompt:'必填',
+								validType:'maxLength[255]'
+							"/>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="myui-col-sm6">
-			<label class="myui-form-label">身份证号</label>
-			<div class="myui-input-block">
-				<input type="text" name="idCard" 
-					class="easyui-textbox"
-					data-options="width:254,
-						prompt:'身份证号',
-						validType:'idCard'
-					"/>
+			<div class="myui-row">
+				<div class="myui-col-sm12">
+					<label class="myui-form-label">真实姓名</label>
+					<div class="myui-input-block">
+						<input type="text" name="realname" 
+							class="easyui-textbox"
+							data-options="width:254,
+								prompt:'真实姓名',
+								validType:'maxLength[255]'
+							"/>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="myui-row">
-		<div class="myui-col-sm6">
-			<label class="myui-form-label">性别</label>
-			<div class="myui-input-block">
-				<input type="text" name="sex" 
-					class="easyui-combobox"
-					data-options="width:254,
-                  		prompt:'请选择',
-						valueField:'value',
-						textField:'text',
-						panelHeight:'auto',
-						data: [
-						    {text:'请选择',value:null},
-						    {text:'男',value:'M'},
-						    {text:'女',value:'F'}
-						]
-					"/>
+			<div class="myui-row">
+				<div class="myui-col-sm12">
+					<label class="myui-form-label">性别</label>
+					<div class="myui-input-block">
+						<input type="text" name="sex" 
+							class="easyui-combobox"
+							data-options="width:254,
+		                  		prompt:'请选择',
+								valueField:'value',
+								textField:'text',
+								panelHeight:'auto',
+								data: [
+								    {text:'请选择',value:null},
+								    {text:'男',value:'M'},
+								    {text:'女',value:'F'}
+								]
+							"/>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="myui-col-sm6">
-			<label class="myui-form-label">出生日期</label>
-			<div class="myui-input-block">
-				<input type="text" name="birthday" 
-					class="easyui-datebox"
-					data-options="width:254,
-						prompt:'出生日期',
-	        			parser:function(s){
-					        if(s){
-						        if(!isNaN(s)){
-							        return new Date(s);
-							    }else{
-							        var t = Date.parse(s);
-							        if(!isNaN(t)){
-							        	return new Date(t);
+			<div class="myui-row">
+				<div class="myui-col-sm12">
+					<label class="myui-form-label">出生日期</label>
+					<div class="myui-input-block">
+						<input type="text" name="birthday" 
+							class="easyui-datebox"
+							data-options="width:254,
+								prompt:'出生日期',
+			        			parser:function(s){
+							        if(s){
+								        if(!isNaN(s)){
+									        return new Date(s);
+									    }else{
+									        var t = Date.parse(s);
+									        if(!isNaN(t)){
+									        	return new Date(t);
+										    }
+									    }
 								    }
-							    }
-						    }
-						    return new Date();
-	        			}
-	        		"/>
+								    return new Date();
+			        			}
+			        		"/>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="myui-row">
-		<div class="myui-col-sm6">
+		<div class="myui-col-sm12">
+			<label class="myui-form-label">个性签名</label>
+			<div class="myui-input-block">
+				<input type="text" name="sign" 
+					class="easyui-textbox"
+					data-options="width:630,
+						prompt:'个性签名',
+						validType:'maxLength[255]'
+					"/>
+			</div>
+		</div>
+	</div>
+	<div class="myui-row">
+		<div class="myui-col-sm12">
 			<label class="myui-form-label">手机号码</label>
 			<div class="myui-input-block">
 				<input type="text" name="mobile" 
 					class="easyui-textbox"
-					data-options="width:254,
+					data-options="width:630,
 						prompt:'手机号码',
 						validType:'cellphone'
 					"/>
 			</div>
 		</div>
-		<div class="myui-col-sm6">
+	</div>
+	<div class="myui-row">
+		<div class="myui-col-sm12">
 			<label class="myui-form-label">邮箱地址</label>
 			<div class="myui-input-block">
 				<input type="text" name="email" 
 					class="easyui-textbox"
-					data-options="width:254,
+					data-options="width:630,
 						prompt:'邮箱地址',
 						validType:'email'
 					"/>
@@ -119,9 +136,10 @@
 			<div class="myui-input-block">
 				<input type="text" name="remark" 
 					class="easyui-textbox"
-					data-options="width:640,
+					data-options="width:630,
 						multiline:true,
-						prompt:'备注'
+						prompt:'备注',
+						validType:'maxLength[800]'
 					"/>
 			</div>
 		</div>
