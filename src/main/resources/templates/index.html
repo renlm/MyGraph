@@ -34,8 +34,7 @@
 			data-options="region:'north',border:false,split:false">
 			<div class="nav-bar">
 	        	<div class="nav-left webname">
-	                <span th:if="${#strings.isEmpty(#authentication.principal.avatar)}" class="admin-nav-logo fa fa-image"></span>
-	                <img th:if="${!#strings.isEmpty(#authentication.principal.avatar)}" class="admin-nav-logo" th:src="|@{/sys/file/download/}${#authentication.principal.avatar}?inline|" />
+	                <img class="admin-nav-logo" th:src="@{/static/images/logo.svg}" />
 	                <span class="systemname" style="margin-left: 8px;" th:text="${#ConstUtil.getValue('cfgSystemName')}"></span>
 	            </div>
 	         	<div class="menu-collapse">
