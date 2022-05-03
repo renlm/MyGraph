@@ -501,10 +501,10 @@ function modifyPersonal () {
 							window.uploadeindex = layer.load(2);
 						}
 					},
-					done: function(res, index, upload) {
-						if(res && index && upload) {
+					done: function (res, index, upload) {
+						if (res && index && upload) {
 							layer.close(window.uploadeindex);
-							if(res.success) {
+							if (res.success) {
 								$personalDialog.find(".avatar input[name='avatar']").val(res.data.fileId);
 								$personalDialog.find(".avatar img").attr("src", ctx + '/sys/file/download/' + res.data.fileId + '?inline').show().siblings().hide().parent().parent().css('padding-top', '10px');
 							} else {
@@ -514,8 +514,8 @@ function modifyPersonal () {
 							layer.msg("出错了", { icon: 5, shift:6 });
 						}
 				    },
-				    error: function(index, upload) {
-						if(index && upload) {
+				    error: function (index, upload) {
+						if (index && upload) {
 							layer.msg("出错了", { icon: 5, shift:6 });
 						}
 				    }
