@@ -59,7 +59,7 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(10, 			'FF784D818217460DB745C5013EE0C2B5',	'10', 			'工作台', 		'menu', 			null, 														'fa fa-windows', 			null, 				null, 			1, 		1, 		'closed',	0,					null,		null)
 	  ,(1001, 			'BFD547E1E8B241EF8B19E94B997FBBB6',	'1001', 		'图形设计', 		'menu', 			null, 														'fa fa-xing', 				null, 				null, 			2, 		1, 		'closed',	0,					10,			null)
 	  ,(100101, 		'1A2288C7B39D43D7B27CD7BD71A9EF44',	'100101', 		'我的', 			'menu', 			'/graph/mine', 												'fa fa-user-plus', 			null, 				null, 			3, 		1, 		'open',		0,					1001,		null)
-	  ,(100102, 		'FEA19FB294134CC19C74786577F21CBB',	'100102', 		'公共图库', 		'urlInsidePage', 	'/graph/lib', 												'fa fa-audio-description', 	null, 				null, 			3, 		2, 		'open',		0,					1001,		null)
+	  ,(100102, 		'FEA19FB294134CC19C74786577F21CBB',	'100102', 		'公共图库', 		'urlInsidePage', 	'/graph/lib', 												'fa fa-image', 				null, 				null, 			3, 		2, 		'open',		0,					1001,		null)
 	  ,(100103, 		'B7D338D9D1144D8E92A23F1D4B78E348',	'100103', 		'数据源', 		'menu', 			'/ds/list', 												'fa fa-soccer-ball-o', 		null, 				null, 			3, 		3, 		'open',		0,					1001,		null)
 	  ,(20, 			'35BD72793CF14E37947D9D0629B242BF',	'20', 			'系统管理', 		'menu', 			null, 														'fa fa-cog', 				null, 				null, 			1, 		2, 		'closed',	0,					null,		null)
 	  ,(2001, 			'F41159ACD09B4DD3B04D0E6EEAE6E875',	'2001', 		'权限管理', 		'menu', 			null, 														'fa fa-cube', 				null, 				null, 			2, 		1, 		'closed',	0,					20,			null)
