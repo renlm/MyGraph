@@ -71,6 +71,9 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 			}
 		}
 		List<SysDict> list = this.list();
+		if (CollUtil.isEmpty(list)) {
+			return CollUtil.newArrayList();
+		}
 		return TreeUtil.build(list, pid, (object, treeNode) -> {
 			BeanUtil.copyProperties(object, treeNode);
 			treeNode.setId(object.getId());
