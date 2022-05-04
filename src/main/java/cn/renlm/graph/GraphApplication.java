@@ -27,7 +27,7 @@ public class GraphApplication {
 	}
 
 	@Bean
-	public RSA crawlRSA() {
+	public RSA rsa() {
 		String privateKeyBase64 = ResourceUtil.readUtf8Str("config/pub.asc");
 		String publicKeyBase64 = ResourceUtil.readUtf8Str("config/pub");
 		return new RSA(privateKeyBase64, publicKeyBase64);

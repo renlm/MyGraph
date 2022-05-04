@@ -33,7 +33,7 @@ import cn.renlm.graph.response.Result;
 public class SysDictController {
 
 	@Resource
-	private RSA crawlRSA;
+	private RSA rsa;
 
 	@Autowired
 	private ISysDictService iSysDictService;
@@ -46,7 +46,7 @@ public class SysDictController {
 	 */
 	@GetMapping
 	public String index(ModelMap model) {
-		String actuator = crawlRSA.encryptBase64("cn.renlm.crawler.sys.service.ISysDictService.exportDataToFile",
+		String actuator = rsa.encryptBase64("cn.renlm.crawler.sys.service.ISysDictService.exportDataToFile",
 				KeyType.PrivateKey);
 		model.put("actuator", Base64.encodeUrlSafe(actuator));
 		return "sys/dict";
