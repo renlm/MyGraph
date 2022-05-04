@@ -3,6 +3,70 @@
  */
 (function($) {
 	$.extend({
+		/***
+         * 通过js触发打开一个错误消息列表
+         * @param opts 需要覆盖的属性
+         * @param errors 错误消息列表
+         * @returns {*|jQuery|HTMLElement}
+         */
+        errorsDialog: function (opts, errors) {
+            var myDialogId = opts.id || (new Date()).getTime();
+			var myDialogIDatagridId = myDialogId + "Content";
+			var width = opts.width ? opts.width : 850;
+            var $myDialog = $("<form id='" + myDialogId + "' style='overflow-x: hidden' class='myui'></form>");
+            var defaultOptions = {
+                id: myDialogId,
+                title: opts.title ? opts.title : "错误消息",
+                closed: false,
+    	        cache: false,
+                width: width,
+                height: opts.height ? opts.height : 495,
+                content: "<table id='" + myDialogIDatagridId + "'></table>",
+                buttons: [
+                    {
+                   		text: "关闭", 
+						iconCls: "fa fa-close",
+						handler: function () {
+                            $myDialog.dialog("destroy");
+                        }
+                    }
+                ],
+				onOpen: function() {
+    				$myDialog.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
+					$myDialog.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-normal myui-btn-red');
+					var messages = [];
+					if (errors) {
+						if(Array.isArray(errors)) {
+							errors.forEach(function(item, index) {
+	                   			messages.push({ index: index, message: item });
+	                   		});
+						} else {
+							messages.push({ index: 0, message: errors });
+						}
+					}
+					$("#" + myDialogIDatagridId).datagrid({
+						border: false,
+						fitColumns: true,
+						pagination: false,
+						columns: [[
+							{	
+								field: 'seq',
+	                    		title: '序号',
+	                    		formatter:function(value, index) {
+									if (!value) {
+										return $("#" + myDialogIDatagridId).datagrid('getRowIndex',index) + 1;
+									}
+	                    		}
+							},
+							{ field: "message", title: "消息内容", width: width - 80 }
+						]],
+						data: messages
+					});
+				}
+            };
+            $myDialog.dialog($.extend(true, {}, defaultOptions, opts));
+            return $myDialog;
+        },
 		/**
 		 * 创建表格文件导出任务
 		 * @param params actuator 任务执行器
