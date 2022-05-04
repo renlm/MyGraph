@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.modular.sys.entity.SysDict;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
 
 /**
@@ -35,15 +37,39 @@ public class SysDictController {
 	}
 
 	/**
+	 * 获取指定父节点下级列表
+	 * 
+	 * @param pUuid
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/ajax/findListByPUuid")
+	public List<SysDict> findListByPUuid(String pUuid) {
+		return iSysDictService.findListByPUuid(pUuid);
+	}
+
+	/**
+	 * 获取由上而下的父子集
+	 * 
+	 * @param codePaths
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/ajax/findListByPath")
+	public List<SysDict> findListByPath(String codePaths) {
+		return iSysDictService.findListByPath(codePaths);
+	}
+
+	/**
 	 * 获取树形字典
 	 * 
-	 * @param parentId
+	 * @param codePaths
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/getTree")
-	public List<Tree<Long>> getTree(Long parentId) {
-		List<Tree<Long>> tree = iSysDictService.getTree(parentId);
+	public List<Tree<Long>> getTree(String codePaths) {
+		List<Tree<Long>> tree = iSysDictService.getTree(StrUtil.splitToArray(codePaths, StrUtil.COMMA));
 		return tree;
 	}
 }

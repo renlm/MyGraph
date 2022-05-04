@@ -18,11 +18,27 @@ import cn.renlm.graph.modular.sys.entity.SysDict;
 public interface ISysDictService extends IService<SysDict> {
 
 	/**
-	 * 获取树形字典
+	 * 获取指定父节点下级列表
 	 * 
-	 * @param parentId
+	 * @param pUuid
 	 * @return
 	 */
-	List<Tree<Long>> getTree(Long parentId);
+	List<SysDict> findListByPUuid(String pUuid);
+
+	/**
+	 * 获取由上而下的父子集
+	 * 
+	 * @param codePaths
+	 * @return
+	 */
+	List<SysDict> findListByPath(String... codePaths);
+
+	/**
+	 * 获取树形字典
+	 * 
+	 * @param codePaths
+	 * @return
+	 */
+	List<Tree<Long>> getTree(String... codePaths);
 
 }

@@ -67,6 +67,16 @@
 			delete param.rows;
 		},
 		/**
+		 * 禁用状态格式化
+		 */
+		disabledFormatter: function (value) {
+			if(value) {
+				return '<span style=\'color:red;\'>禁用</span>';
+			} else {
+				return '<span style=\'color:green;\'>启用</span>';
+			}
+		},
+		/**
 		 * 字节大小格式化
 		 */
 		formatBytes: function (value) {
