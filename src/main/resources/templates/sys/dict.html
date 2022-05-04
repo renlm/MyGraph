@@ -75,6 +75,7 @@
        	</a>
        	<div id="moreOpsMenu" class="myui-toolbar">
         	<div th:data-actuator="${actuator}"
+        		onclick="$.createExcelExportTask($(this).data('actuator'), '数据字典')"
         		class="easyui-menubutton"
            		data-options="iconCls:'fa fa-file-excel-o',
            			hasDownArrow:false

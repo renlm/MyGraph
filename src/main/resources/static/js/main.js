@@ -4,6 +4,34 @@
 (function($) {
 	$.extend({
 		/**
+		 * 创建表格文件导出任务
+		 * @param params actuator 任务执行器
+		 * @param params fileName 文件名
+		 * @param params formID 参数表单ID
+		 */
+		createExcelExportTask: function (actuator, fileName, formID) {
+			var paramJson = $("#" + formID).formJson();
+			parent.layer.prompt({
+					title: "新建导出任务（"+fileName+"）",
+					formType: 0, 
+					value: fileName + layui.util.toDateString(new Date(), ".yyyy-MM-dd.HH.mm"),
+					skin: "layui-layer-rim layui-layer-prompt custom-layui-btn-center" 
+				}, function (taskName, index) {
+					var _tempindex = parent.layer.load(2);
+					$.post(ctx + "/sys/file/createExcelExportTask", 
+						{ actuator: actuator, originalFilename: taskName, paramJson: JSON.stringify(paramJson) },
+						function(data){
+							parent.layer.close(_tempindex);
+							if(data.statusCode == 200) {
+								parent.layer.close(index);
+								parent.layer.msg(data.message?data.message:"任务已添加", { icon: 1, time: 1500 });
+							}else{
+								parent.layer.msg(data.message?data.message:"服务器出错了", { icon: 5, shift:6 });
+							}
+						});
+				});
+		},
+		/**
 		 * 打开图形
 		 */
 		openGraphEditorFormatter: function (value, row, index) {
