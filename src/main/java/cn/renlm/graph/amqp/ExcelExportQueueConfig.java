@@ -20,6 +20,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.ReflectUtil;
@@ -67,7 +69,7 @@ public class ExcelExportQueueConfig {
 			log.error("无效表格导出任务，{}", fileId);
 			return;
 		}
-		SysFile sysFile = iSysFileService.getById(fileId);
+		SysFile sysFile = iSysFileService.getOne(Wrappers.<SysFile>lambdaQuery().eq(SysFile::getFileId, fileId));
 		if (sysFile == null) {
 			log.error("无效表格导出任务，{}", fileId);
 			return;
