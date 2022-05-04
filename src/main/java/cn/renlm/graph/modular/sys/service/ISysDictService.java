@@ -1,7 +1,11 @@
 package cn.renlm.graph.modular.sys.service;
 
-import cn.renlm.graph.modular.sys.entity.SysDict;
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import cn.hutool.core.lang.tree.Tree;
+import cn.renlm.graph.modular.sys.entity.SysDict;
 
 /**
  * <p>
@@ -12,5 +16,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-04-29
  */
 public interface ISysDictService extends IService<SysDict> {
+
+	/**
+	 * 获取树形字典
+	 * 
+	 * @param parentId
+	 * @return
+	 */
+	List<Tree<Long>> getTree(Long parentId);
 
 }

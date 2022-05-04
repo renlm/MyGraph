@@ -1,10 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <title>字典列表</title>
 </head>
-<body>
-
+<body layout:fragment="content" class="myui">
+	<div class="easyui-layout" 
+		data-options="fit:true">
+		<div data-options="region:'center',
+				split:true,
+				border:false">
+			<table class="easyui-treegrid"
+          		data-options="border:false,
+					fit:true,
+					fitColumns:true,
+					singleSelect:true,
+					idField:'id',
+			   		treeField:'text',
+					toolbar:'#toolbar',
+					method:'get',
+               		url:'dict/ajax/getTree'
+              	">
+				<thead>
+               		<tr>
+                       	<th data-options="field:'text',title:'字典名称',width:160"></th>
+                       	<th data-options="field:'code',title:'字典编码',width:100"></th>
+                       	<th data-options="field:'abbreviation',title:'简称',width:100"></th>
+                       	<th data-options="field:'alias',title:'别名',width:100"></th>
+                     	<th data-options="field:'level',title:'层级',width:100"></th>
+                     	<th data-options="field:'sort',title:'排序',width:100"></th>
+                    	<th data-options="field:'disabled',title:'启用状态',width:100"></th>
+                     	<th data-options="field:'remark',title:'备注',width:100"></th>
+					</tr>
+              	</thead>
+			</table>
+		</div>
+	</div>
+	<div id="toolbar" class="myui-toolbar">
+		<a href="javascript:void(0);"
+          	class="easyui-menubutton myui-btn-normal myui-btn-green"
+         	data-options="menu:'#moreAddMenu',
+           		iconCls:'fa fa-plus',
+           		hasDownArrow:true
+        	">新增
+       	</a>
+  		<div id="moreAddMenu" class="myui-toolbar" style="width:100px;">
+        	<a href="javascript:void(0);"
+            	class="easyui-menubutton"
+              	data-options="iconCls:'fa fa-plus',
+           			hasDownArrow:false
+      			">新增根节点
+      		</a>
+     		<a href="javascript:void(0);"
+             	class="easyui-menubutton"
+              	data-options="iconCls:'fa fa-plus',
+           			hasDownArrow:false
+      			">新增子节点
+      		</a>
+  		</div>
+		<a href="javascript:void(0);"
+			class="easyui-menubutton myui-btn-normal myui-btn-blue"
+           	data-options="iconCls:'fa fa-pencil',
+           		hasDownArrow:false
+       		">编辑
+   		</a>
+   		<a href="javascript:void(0);"
+        	class="easyui-menubutton myui-btn-normal myui-btn-orange"
+         	data-options="menu:'#moreOpsMenu',
+           		iconCls:'fa fa-list',
+           		hasDownArrow:true
+       		">更多
+       	</a>
+       	<div id="moreOpsMenu" class="myui-toolbar">
+        	<div th:data-actuator="${actuator}"
+        		class="easyui-menubutton"
+           		data-options="iconCls:'fa fa-file-excel-o',
+           			hasDownArrow:false
+            	">导出字典
+         	</div>
+        	<div class="easyui-menubutton"
+		    	data-options="iconCls:'fa fa-upload',
+           			hasDownArrow:false
+		   		">导入字典
+         	</div>
+		</div>
+    </div>
 </body>
 </html>
