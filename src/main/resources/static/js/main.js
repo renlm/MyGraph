@@ -12,7 +12,7 @@
 		createExcelExportTask: function (actuator, fileName, formID) {
 			var paramJson = $("#" + formID).formJson();
 			parent.layer.prompt({
-					title: "新建导出任务（"+fileName+"）",
+					title: "新建导出任务（" + fileName + "）",
 					formType: 0, 
 					value: fileName + layui.util.toDateString(new Date(), ".yyyy-MM-dd.HH.mm"),
 					skin: "layui-layer-rim layui-layer-prompt custom-layui-btn-center" 
