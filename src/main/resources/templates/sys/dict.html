@@ -94,7 +94,7 @@
     	 * 导入字典（弹窗）
     	 */
     	function uploadDictDialog () {
-    		var $uploadDictDialog = $('<form id=\'uploadDictDialog\' method=\'get\' class=\'myui\'></form>');
+    		var $uploadDictDialog = $('<form id=\'uploadDictDialog\' method=\'post\' enctype=\'multipart/form-data\' class=\'myui\'></form>');
     	    $uploadDictDialog.dialog({
     	        title: '导入字典',
     	        width: 500,

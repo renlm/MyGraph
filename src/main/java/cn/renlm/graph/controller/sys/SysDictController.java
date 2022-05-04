@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -99,7 +100,7 @@ public class SysDictController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/imp")
+	@PostMapping("/ajax/imp")
 	public Result<List<String>> imp(Authentication authentication, MultipartFile file) {
 		try {
 			User user = (User) authentication.getPrincipal();

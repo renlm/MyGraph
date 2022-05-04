@@ -1,5 +1,7 @@
 <div class="myui-fluid">
-    <div class="myui-row"></div>
+    <div class="myui-row">
+    	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    </div>
     <div class="myui-row" style="margin-left: -55px;margin-right: 15px;margin-top: 30px;">
         <div class="myui-col-sm12">
         	<label class="myui-form-label">字典文件</label>
