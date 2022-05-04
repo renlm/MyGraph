@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel name="cn.renlm.graph.modular.sys.entity.SysDict"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://www.renlm.cn/schemas/MyExcel.xsd">
+	<sheet name="数据字典">
+		<column field="id" not-null="true" prefix="#">
+			<title>主键ID</title>
+		</column>
+		<column field="uuid" not-null="true">
+			<title>UUID</title>
+		</column>
+		<column field="code" not-null="true">
+			<title>代码</title>
+		</column>
+		<column field="text" not-null="true">
+			<title>名称</title>
+		</column>
+		<column field="abbreviation">
+			<title>简称</title>
+		</column>
+		<column field="alias">
+			<title>别名</title>
+		</column>
+		<column field="iconCls">
+			<title>图标</title>
+		</column>
+		<column field="level" not-null="true">
+			<title>层级</title>
+		</column>
+		<column field="sort">
+			<title>排序</title>
+		</column>
+		<column field="state" not-null="true">
+			<title>展开状态</title>
+			<dict type="value" force-check="true">
+				<item value="无子节点" key="open" />
+				<item value="有子节点" key="closed" />
+			</dict>
+		</column>
+		<column field="pid" prefix="#">
+			<title>父级ID</title>
+		</column>
+		<column field="createdAt" date-format="yyyy/MM/dd HH:mm:ss">
+			<title>创建时间</title>
+		</column>
+		<column field="updatedAt" date-format="yyyy/MM/dd HH:mm:ss">
+			<title>更新时间</title>
+		</column>
+		<column field="disabled" not-null="true">
+			<title>是否禁用（默认否）</title>
+			<dict type="value" force-check="true">
+				<item value="是" key="true" />
+				<item value="否" key="false" />
+			</dict>
+		</column>
+		<column field="remark">
+			<title>备注</title>
+		</column>
+	</sheet>
+</excel>

@@ -2,16 +2,25 @@ package cn.renlm.graph.controller.sys;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.asymmetric.KeyType;
+import cn.hutool.crypto.asymmetric.RSA;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysDict;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
+import cn.renlm.graph.response.Result;
 
 /**
  * 数据字典
@@ -23,16 +32,23 @@ import cn.renlm.graph.modular.sys.service.ISysDictService;
 @RequestMapping("/sys/dict")
 public class SysDictController {
 
+	@Resource
+	private RSA crawlRSA;
+
 	@Autowired
 	private ISysDictService iSysDictService;
 
 	/**
 	 * 字典列表
 	 * 
+	 * @param model
 	 * @return
 	 */
 	@GetMapping
-	public String index() {
+	public String index(ModelMap model) {
+		String actuator = crawlRSA.encryptBase64("cn.renlm.crawler.sys.service.ISysDictService.exportDataToFile",
+				KeyType.PrivateKey);
+		model.put("actuator", Base64.encodeUrlSafe(actuator));
 		return "sys/dict";
 	}
 
@@ -59,5 +75,24 @@ public class SysDictController {
 	public List<Tree<Long>> getTree(String codePaths) {
 		List<Tree<Long>> tree = iSysDictService.getTree(StrUtil.splitToArray(codePaths, StrUtil.COMMA));
 		return tree;
+	}
+
+	/**
+	 * 字典导入
+	 * 
+	 * @param request
+	 * @param fileId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/imp")
+	public Result<List<String>> imp(Authentication authentication, String fileId) {
+		try {
+			User user = (User) authentication.getPrincipal();
+			return iSysDictService.importDataFromFile(user, fileId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("服务器出错了");
+		}
 	}
 }

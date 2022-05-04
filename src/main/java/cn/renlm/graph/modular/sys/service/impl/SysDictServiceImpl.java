@@ -1,19 +1,35 @@
 package cn.renlm.graph.modular.sys.service.impl;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
+import org.apache.poi.ss.usermodel.Workbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.exceptions.ExceptionUtil;
+import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysDict;
+import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.mapper.SysDictMapper;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
+import cn.renlm.graph.modular.sys.service.ISysFileService;
+import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyExcelUtil;
+import cn.renlm.plugins.MyExcel.handler.DataWriterHandler;
 
 /**
  * <p>
@@ -25,6 +41,9 @@ import cn.renlm.graph.modular.sys.service.ISysDictService;
  */
 @Service
 public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> implements ISysDictService {
+
+	@Autowired
+	private ISysFileService iSysFileService;
 
 	@Override
 	public List<SysDict> findListByPid(Long pid) {
@@ -61,6 +80,78 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		});
 	}
 
+	@Override
+	public void exportDataToFile(SysFile file) {
+		List<Tree<Long>> trees = this.getTree();
+		AtomicLong id = new AtomicLong(1);
+		try (Workbook workbook = MyExcelUtil.createWorkbook("excel/sys/SysDict.excel.xml", false, sheet -> {
+			for (Tree<Long> tree : trees) {
+				SysDict sysDict = (SysDict) tree.get(SysDict.class.getName());
+				sysDict.setId(id.getAndIncrement());
+				sheet.write(sysDict);
+				List<Tree<Long>> childs = tree.getChildren();
+				if (CollUtil.isNotEmpty(childs)) {
+					for (Tree<Long> child : childs) {
+						this.writeExcelSheet(sheet, id, sysDict.getId(), child);
+					}
+				}
+			}
+		})) {
+			ByteArrayOutputStream stream = new ByteArrayOutputStream();
+			workbook.write(stream);
+			file.setFileContent(stream.toByteArray());
+			file.setSize((long) file.getFileContent().length);
+			file.setStatus(5);
+			file.setUpdatedAt(new Date());
+		} catch (IOException e) {
+			e.printStackTrace();
+			file.setStatus(4);
+			file.setUpdatedAt(new Date());
+			file.setMessage(ExceptionUtil.stacktraceToString(e));
+		}
+		iSysFileService.updateById(file);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public Result<List<String>> importDataFromFile(User user, String fileId) {
+		SysFile sysFile = iSysFileService.getById(fileId);
+		List<String> errors = CollUtil.newArrayList();
+		List<SysDict> list = CollUtil.newArrayList();
+		int rows = MyExcelUtil.readBySax("excel/sys/SysDict.excel.xml", IoUtil.toStream(sysFile.getFileContent()),
+				"数据字典", (data, checkResult) -> {
+					// 出错了
+					if (checkResult.isError()) {
+						// 表头已处理完，进入行数据读取流程中
+						if (checkResult.isProcess()) {
+							CollUtil.addAll(errors, checkResult.getErrors());
+						}
+						// 模板表头校验失败
+						else {
+							CollUtil.addAll(errors, checkResult.getErrors());
+						}
+					}
+					// 成功
+					else {
+						SysDict item = BeanUtil.toBean(data, SysDict.class);
+						item.setUuid(IdUtil.simpleUUID().toUpperCase());
+						item.setCreatedAt(new Date());
+						CollUtil.addAll(list, item);
+					}
+				});
+		if (rows == 0) {
+			Result<List<String>> result = Result.error();
+			return result.setData(CollUtil.newArrayList("未读到表头，模板不符合要求！"));
+		}
+		if (CollUtil.isNotEmpty(errors)) {
+			Result<List<String>> result = Result.error();
+			return result.setData(errors);
+		}
+		this.remove(Wrappers.<SysDict>lambdaQuery().isNotNull(SysDict::getId));
+		this.saveBatch(list);
+		return Result.success();
+	}
+
 	/**
 	 * 获取由上而下的父子集
 	 * 
@@ -85,5 +176,26 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * 向文件中写入子节点
+	 * 
+	 * @param sheet
+	 * @param id
+	 * @param pid
+	 * @param node
+	 */
+	private void writeExcelSheet(DataWriterHandler sheet, AtomicLong id, Long pid, Tree<Long> node) {
+		SysDict sysDict = (SysDict) node.get(SysDict.class.getName());
+		sysDict.setId(id.getAndIncrement());
+		sysDict.setPid(pid);
+		sheet.write(sysDict);
+		List<Tree<Long>> childs = node.getChildren();
+		if (CollUtil.isNotEmpty(childs)) {
+			for (Tree<Long> child : childs) {
+				this.writeExcelSheet(sheet, id, sysDict.getId(), child);
+			}
+		}
 	}
 }
