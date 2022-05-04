@@ -1,6 +1,8 @@
 package cn.renlm.graph.controller.sys;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 数据字典
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author Renlm
  *
  */
+@Controller
+@RequestMapping("/sys/dict")
 public class SysDictController {
 
 	/**
