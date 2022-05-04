@@ -32,8 +32,8 @@
                     }
                 ],
 				onOpen: function() {
-    				$myDialog.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
-					$myDialog.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-normal myui-btn-red');
+					$myDialog.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
+					setTimeout(function () { $myDialog.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-normal myui-btn-red'); }, 300);
 					var messages = [];
 					if (errors) {
 						if(Array.isArray(errors)) {
@@ -62,6 +62,9 @@
 						]],
 						data: messages
 					});
+				},
+				onClose: function () {
+					$myDialog.dialog('destroy');
 				}
             };
             $myDialog.dialog($.extend(true, {}, defaultOptions, opts));
