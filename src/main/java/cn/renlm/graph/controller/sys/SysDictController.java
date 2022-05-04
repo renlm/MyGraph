@@ -3,6 +3,7 @@ package cn.renlm.graph.controller.sys;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -11,6 +12,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.lang.tree.Tree;
@@ -78,6 +81,16 @@ public class SysDictController {
 	}
 
 	/**
+	 * 弹窗（字典上传）
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/uploadDialog")
+	public String uploadDialog() {
+		return "sys/dictUploadDialog";
+	}
+
+	/**
 	 * 字典导入
 	 * 
 	 * @param request
@@ -94,5 +107,29 @@ public class SysDictController {
 			e.printStackTrace();
 			return Result.error("服务器出错了");
 		}
+	}
+
+	/**
+	 * 字典弹窗
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/dialog")
+	public String dialog(ModelMap model) {
+		return "sys/dictDialog";
+	}
+
+	/**
+	 * 根据Uuid获取详细信息
+	 * 
+	 * @param request
+	 * @param uuid
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/getDetailByUuid")
+	public SysDict getDetailByUuid(HttpServletRequest request, String uuid) {
+		return iSysDictService.getOne(Wrappers.<SysDict>lambdaQuery().eq(SysDict::getUuid, uuid));
 	}
 }
