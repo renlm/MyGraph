@@ -2,6 +2,8 @@ package cn.renlm.graph.modular.sys.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.hutool.core.lang.tree.Tree;
@@ -47,9 +49,9 @@ public interface ISysDictService extends IService<SysDict> {
 	 * 导入字典
 	 * 
 	 * @param user
-	 * @param fileId
+	 * @param file
 	 * @return
 	 */
-	Result<List<String>> importDataFromFile(User user, String fileId);
+	Result<List<String>> importDataFromFile(User user, MultipartFile file);
 
 }

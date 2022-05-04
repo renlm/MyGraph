@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
@@ -93,16 +94,16 @@ public class SysDictController {
 	/**
 	 * 字典导入
 	 * 
-	 * @param request
-	 * @param fileId
+	 * @param authentication
+	 * @param file
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/imp")
-	public Result<List<String>> imp(Authentication authentication, String fileId) {
+	public Result<List<String>> imp(Authentication authentication, MultipartFile file) {
 		try {
 			User user = (User) authentication.getPrincipal();
-			return iSysDictService.importDataFromFile(user, fileId);
+			return iSysDictService.importDataFromFile(user, file);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("服务器出错了");

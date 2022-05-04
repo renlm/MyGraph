@@ -75,18 +75,80 @@
        	</a>
        	<div id="moreOpsMenu" class="myui-toolbar">
         	<div th:data-actuator="${actuator}"
-        		onclick="$.createExcelExportTask($(this).data('actuator'), '数据字典')"
+        		onclick="$.createExcelExportTask($(this).data('actuator'), '数据字典');"
         		class="easyui-menubutton"
            		data-options="iconCls:'fa fa-file-excel-o',
            			hasDownArrow:false
             	">导出字典
          	</div>
         	<div class="easyui-menubutton"
+        		onclick="uploadDictDialog();"
 		    	data-options="iconCls:'fa fa-upload',
            			hasDownArrow:false
 		   		">导入字典
          	</div>
 		</div>
     </div>
+    <script type="text/javascript">
+    	/**
+    	 * 导入字典（弹窗）
+    	 */
+    	function uploadDictDialog () {
+    		var $uploadDictDialog = $('<form id=\'uploadDictDialog\' method=\'get\' class=\'myui\'></form>');
+    	    $uploadDictDialog.dialog({
+    	        title: '导入字典',
+    	        width: 500,
+    	        height: 180,
+    			collapsible: true,
+    			minimizable: false,
+    			maximizable: true,
+    	        closed: false,
+    	        cache: false,
+    	        href: ctx + '/sys/dict/uploadDialog',
+    	        modal: true,
+    	        buttons: [{
+    	            text: '确定',
+    	            iconCls: 'fa fa-plus',
+    	            handler: function () {
+    					$.messager.progress({'text': '请求中……'});
+    			        $uploadDictDialog.form('submit', {
+    			            url: ctx + '/sys/dict/ajax/imp',
+    			            onSubmit: function () {
+    			                var isValid = $(this).form('validate');
+    			                if (!isValid) {
+    			                    $.messager.progress('close');
+    			                }
+    			                return isValid;
+    			            },
+    			            success: function (result) {
+    							var resultJson = JSON.parse(result);
+    			                if (resultJson.statusCode == 200) {
+    			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+    								$uploadDictDialog.dialog('destroy');
+    			                } else {
+    			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+    			                }
+    			                $.messager.progress('close');
+    			        	}
+    			 		});
+    				}
+    	        }, {
+    	            text: '关闭',
+    	            iconCls: 'fa fa-close',
+    	            handler: function () {
+    	                $uploadDictDialog.dialog('destroy');
+    	            }
+    	        }],
+    	        onLoad: function () {
+    				$uploadDictDialog.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
+    				$uploadDictDialog.next().find('.fa.fa-plus').parent().parent().addClass('myui-btn-normal myui-btn-green');
+    				$uploadDictDialog.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-normal myui-btn-red');
+    	        },
+    			onClose: function () {
+    				$uploadDictDialog.dialog('destroy');
+    			}
+    	    });
+    	}
+    </script>
 </body>
 </html>

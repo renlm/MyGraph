@@ -1,23 +1,17 @@
-<style type="text/css">
-    .custom-tr-upload {
-        margin-left: -55px;
-        margin-right: 15px;
-        margin-top: 30px;
-    }
-</style>
-<div class="topjui-fluid">
-    <div class="topjui-row"></div>
-    <div class="topjui-row custom-tr-upload">
-        <div class="topjui-col-sm12">
-        	<label class="topjui-form-label">字典文件</label>
-            <div class="topjui-input-block">
-           		<input type="text" name="fileId" 
-           			data-toggle="topjui-uploadbox" 
+<div class="myui-fluid">
+    <div class="myui-row"></div>
+    <div class="myui-row" style="margin-left: -55px;margin-right: 15px;margin-top: 30px;">
+        <div class="myui-col-sm12">
+        	<label class="myui-form-label">字典文件</label>
+            <div class="myui-input-block">
+           		<input type="text" name="file" 
+           			class="easyui-filebox" 
            			data-options="required:true,
+           				width:378,
            				editable:false,
+           				buttonIcon:'fa fa-cloud-upload',
 				   		buttonText:'上传文件',
-				   		accept:'file',
-				   		uploadUrl:ctx+'/sys/file/upload'
+				   		accept:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv'
 				   	"/>
             </div>
         </div>

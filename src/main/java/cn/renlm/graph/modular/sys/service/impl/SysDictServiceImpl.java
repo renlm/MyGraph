@@ -10,6 +10,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -30,6 +31,7 @@ import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.response.Result;
 import cn.renlm.plugins.MyExcelUtil;
 import cn.renlm.plugins.MyExcel.handler.DataWriterHandler;
+import lombok.SneakyThrows;
 
 /**
  * <p>
@@ -116,9 +118,13 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	}
 
 	@Override
+	@SneakyThrows
 	@Transactional(rollbackFor = Exception.class)
-	public Result<List<String>> importDataFromFile(User user, String fileId) {
-		SysFile sysFile = iSysFileService.getById(fileId);
+	public Result<List<String>> importDataFromFile(User user, MultipartFile file) {
+		SysFile sysFile = iSysFileService.upload(file.getOriginalFilename(), file.getBytes(), entity -> {
+			entity.setCreatorUserId(user.getUserId());
+			entity.setCreatorNickname(user.getNickname());
+		});
 		List<String> errors = CollUtil.newArrayList();
 		List<SysDict> list = CollUtil.newArrayList();
 		int rows = MyExcelUtil.readBySax("excel/sys/SysDict.excel.xml", IoUtil.toStream(sysFile.getFileContent()),
