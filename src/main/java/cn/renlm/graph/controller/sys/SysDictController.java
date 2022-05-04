@@ -42,7 +42,7 @@ public class SysDictController {
 	private ISysDictService iSysDictService;
 
 	/**
-	 * 字典列表
+	 * 通用字典
 	 * 
 	 * @param model
 	 * @return

@@ -89,7 +89,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		AtomicLong id = new AtomicLong(1);
 		try (Workbook workbook = MyExcelUtil.createWorkbook("excel/sys/SysDict.excel.xml", false, sheet -> {
 			for (Tree<Long> tree : trees) {
-				SysDict sysDict = (SysDict) tree.get(SysDict.class.getName());
+				SysDict sysDict = BeanUtil.copyProperties(tree, SysDict.class);
 				sysDict.setId(id.getAndIncrement());
 				sheet.write(sysDict);
 				List<Tree<Long>> childs = tree.getChildren();
@@ -190,7 +190,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	 * @param node
 	 */
 	private void writeExcelSheet(DataWriterHandler sheet, AtomicLong id, Long pid, Tree<Long> node) {
-		SysDict sysDict = (SysDict) node.get(SysDict.class.getName());
+		SysDict sysDict = BeanUtil.copyProperties(node, SysDict.class);
 		sysDict.setId(id.getAndIncrement());
 		sysDict.setPid(pid);
 		sheet.write(sysDict);
