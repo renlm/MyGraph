@@ -29,6 +29,7 @@ import cn.hutool.crypto.asymmetric.RSA;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Excel导出队列
@@ -36,6 +37,7 @@ import cn.renlm.graph.modular.sys.service.ISysFileService;
  * @author Renlm
  *
  */
+@Slf4j
 @Configuration
 public class ExcelExportQueueConfig {
 
@@ -61,7 +63,15 @@ public class ExcelExportQueueConfig {
 	@RabbitListener(bindings = {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
 	public void receiveMessage(String fileId) {
+		if (StrUtil.isBlank(fileId)) {
+			log.error("无效表格导出任务，{}", fileId);
+			return;
+		}
 		SysFile sysFile = iSysFileService.getById(fileId);
+		if (sysFile == null) {
+			log.error("无效表格导出任务，{}", fileId);
+			return;
+		}
 		// 更新状态
 		sysFile.setStatus(3);
 		sysFile.setUpdatedAt(new Date());
