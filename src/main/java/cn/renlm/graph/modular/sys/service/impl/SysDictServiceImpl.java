@@ -11,7 +11,6 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
-import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.modular.sys.entity.SysDict;
 import cn.renlm.graph.modular.sys.mapper.SysDictMapper;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
@@ -28,24 +27,17 @@ import cn.renlm.graph.modular.sys.service.ISysDictService;
 public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> implements ISysDictService {
 
 	@Override
-	public List<Tree<Long>> getTree(String... codePaths) {
-		Long pid = null;
-		if (codePaths.length > 0) {
-			List<SysDict> nodes = this.findListByPath(codePaths);
-			if (CollUtil.isEmpty(nodes)) {
-				return CollUtil.newArrayList();
+	public List<SysDict> findListByPid(Long pid) {
+		return this.list(Wrappers.<SysDict>lambdaQuery().func(wrapper -> {
+			if (pid == null) {
+				wrapper.isNull(SysDict::getPid);
+				wrapper.eq(SysDict::getLevel, 1);
 			} else {
-				pid = CollUtil.getLast(nodes).getId();
+				wrapper.eq(SysDict::getPid, pid);
 			}
-		}
-		List<SysDict> list = this.list();
-		return TreeUtil.build(list, pid, (object, treeNode) -> {
-			BeanUtil.copyProperties(object, treeNode);
-			treeNode.setId(object.getId());
-			treeNode.setName(object.getText());
-			treeNode.setWeight(object.getSort());
-			treeNode.setParentId(object.getPid());
-		});
+			wrapper.orderByAsc(SysDict::getSort);
+			wrapper.orderByAsc(SysDict::getId);
+		}));
 	}
 
 	@Override
@@ -70,25 +62,23 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	}
 
 	@Override
-	public List<SysDict> findListByPUuid(String pUuid) {
-		SysDict parent = new SysDict();
-		if (StrUtil.isNotBlank(pUuid)) {
-			SysDict sysDict = this.getOne(Wrappers.<SysDict>lambdaQuery().eq(SysDict::getUuid, pUuid));
-			if (sysDict == null) {
+	public List<Tree<Long>> getTree(String... codePaths) {
+		Long pid = null;
+		if (codePaths.length > 0) {
+			List<SysDict> nodes = this.findListByPath(codePaths);
+			if (CollUtil.isEmpty(nodes)) {
 				return CollUtil.newArrayList();
 			} else {
-				BeanUtil.copyProperties(sysDict, parent);
+				pid = CollUtil.getLast(nodes).getId();
 			}
 		}
-		return this.list(Wrappers.<SysDict>lambdaQuery().func(wrapper -> {
-			if (StrUtil.isBlank(pUuid)) {
-				wrapper.isNull(SysDict::getPid);
-				wrapper.eq(SysDict::getLevel, 1);
-			} else {
-				wrapper.eq(SysDict::getPid, parent.getId());
-			}
-			wrapper.orderByAsc(SysDict::getSort);
-			wrapper.orderByAsc(SysDict::getId);
-		}));
+		List<SysDict> list = this.list();
+		return TreeUtil.build(list, pid, (object, treeNode) -> {
+			BeanUtil.copyProperties(object, treeNode);
+			treeNode.setId(object.getId());
+			treeNode.setName(object.getText());
+			treeNode.setWeight(object.getSort());
+			treeNode.setParentId(object.getPid());
+		});
 	}
 }

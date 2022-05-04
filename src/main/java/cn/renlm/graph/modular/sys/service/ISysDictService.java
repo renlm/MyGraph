@@ -20,10 +20,10 @@ public interface ISysDictService extends IService<SysDict> {
 	/**
 	 * 获取指定父节点下级列表
 	 * 
-	 * @param pUuid
+	 * @param pid
 	 * @return
 	 */
-	List<SysDict> findListByPUuid(String pUuid);
+	List<SysDict> findListByPid(Long pid);
 
 	/**
 	 * 获取由上而下的父子集
