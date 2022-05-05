@@ -240,6 +240,9 @@
 		}
 	});
 })(jQuery);
+/***
+ * 表单验证器
+ */
 (function($) {
 	if (!$.fn 
 		|| !$.fn.validatebox 
@@ -295,6 +298,9 @@
         }
     });
 })(jQuery);
+/***
+ * 消息框重写
+ */
 (function($) {
 	if (!$.messager) {
 		return;
@@ -307,6 +313,9 @@
 		}
     });
 })(jQuery);
+/***
+ * 对话框重写
+ */
 (function($) {
 	$.fn.myuiDialog = function (_2c1, _2c2) {
 		var dlg = this.dialog(_2c1, _2c2);
@@ -316,6 +325,9 @@
 		return dlg;
 	}
 })(jQuery);
+/***
+ * 图标选择器
+ */
 (function(a) {
 	function b(b) {
         var c = a(this).val(), d = b.data.target, f = a(d), h = f.combobox("options"), i = f.combobox("panel"),
