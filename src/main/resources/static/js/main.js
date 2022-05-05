@@ -317,11 +317,6 @@
 	}
 })(jQuery);
 (function(a) {
-	function setId(a, b) {
-	    $(a);
-	    return void 0 == b.id && (b.id = getRandomNumByDef()), a.id = b.id, b
-	}
-
 	function b(b) {
         var c = a(this).val(), d = b.data.target, f = a(d), h = f.combobox("options"), i = f.combobox("panel"),
             j = i[0].children[0].className;
@@ -356,11 +351,10 @@
         }, 500)
     }
 
-    function d(b, c) {
+    function d(b) {
         a.ajax({
             url: ctx + '/fontAwesome/getIcons', type: "get", dataType: "json", success: function (a) {
                 g = a, b && e(g, b)
-				console.log(g, b);
             }
         })
     }
@@ -368,11 +362,11 @@
     function e(b, c, d) {
         var e = [];
         d ? b.filter(function (a) {
-            if (a.value.indexOf(d) >= 0) return e.push(a)
+            if (a.indexOf(d) >= 0) return e.push(a)
         }) : e = b, a("." + c + " .iconlist").empty();
         var f = "";
         a.each(e, function (a, b) {
-            f += '<span class="fa ' + b + '" title="' + b + '" style="width:30px;height:30px;border:1px solid #ccc;border-radius:8px;text-align:center;padding: 5px;font-size: 16px;margin: 0 8px 8px 0;" ></span>'
+            f += '<span class="fa ' + e[a] + '" title="' + b + '" style="width:30px;height:30px;border:1px solid #ccc;border-radius:8px;text-align:center;padding: 5px;font-size: 16px;margin: 0 8px 8px 0;" ></span>'
         }), a("." + c + " .iconlist").append(f)
     }
 
@@ -412,3 +406,7 @@
         }
     }
 })(jQuery);
+function setId(a, b) {
+    $(a);
+    return void 0 == b.id && (b.id = getRandomNumByDef()), a.id = b.id, b
+}
