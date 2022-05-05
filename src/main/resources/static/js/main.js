@@ -307,3 +307,12 @@
 		}
     });
 })(jQuery);
+(function($) {
+	$.fn.myuiDialog = function (_2c1, _2c2) {
+		var dlg = this.dialog(_2c1, _2c2);
+		dlg.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
+		dlg.next().find('.fa.fa-save').parent().parent().addClass('myui-btn-normal myui-btn-green');
+		dlg.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-normal myui-btn-red');
+		return dlg;
+	}
+})(jQuery);
