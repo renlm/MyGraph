@@ -62,6 +62,20 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	}
 
 	@Override
+	public List<SysDict> findFathers(Long id) {
+		if (id == null) {
+			return CollUtil.newArrayList();
+		}
+		SysDict sysDict = this.getById(id);
+		List<SysDict> list = CollUtil.newArrayList(sysDict);
+		int level = sysDict.getLevel();
+		while (--level > 0) {
+			list.add(this.getById(sysDict.getPid()));
+		}
+		return CollUtil.reverse(list);
+	}
+
+	@Override
 	public List<Tree<Long>> getTree(String... codePaths) {
 		Long pid = null;
 		if (codePaths.length > 0) {
