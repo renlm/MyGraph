@@ -2,6 +2,11 @@
 
 @import "../themes/default/core.css";
 
+.tfrcenter>div.myui-row {
+	margin-left: -35px;
+	margin-right: 35px;
+}
+
 #personalDialog .textbox textarea.textbox-text {
     padding: 4px;
     height: 78px !important;
