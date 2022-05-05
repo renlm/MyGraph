@@ -90,13 +90,17 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		if (CollUtil.isEmpty(list)) {
 			return CollUtil.newArrayList();
 		}
-		return TreeUtil.build(list, pid, (object, treeNode) -> {
+		List<Tree<Long>> tree = TreeUtil.build(list, pid, (object, treeNode) -> {
 			BeanUtil.copyProperties(object, treeNode);
 			treeNode.setId(object.getId());
 			treeNode.setName(object.getText());
 			treeNode.setWeight(object.getSort());
 			treeNode.setParentId(object.getPid());
 		});
+		if (CollUtil.isEmpty(tree)) {
+			return CollUtil.newArrayList();
+		}
+		return tree;
 	}
 
 	@Override
