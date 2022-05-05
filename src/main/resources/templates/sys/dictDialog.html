@@ -6,16 +6,13 @@
         	<div class="myui-input-block">
            		<input type="text" name="pid" 
                 	class="easyui-combotreegrid"
-                  	data-options="border:false,
-						fit:true,
-						fitColumns:true,
+                  	data-options="required:false,
+                  		fitColumns:true,
 						singleSelect:true,
+                  		width:568,
+                  		panelHeight:257,
 						idField:'id',
 				   		treeField:'text',
-                  		width:568,
-    			   		required:false,
-                  		readonly:false,
-                  		panelHeight:257,
 						method:'get',
                        	url:'dict/ajax/findListByPid',
                    		columns:[[
@@ -43,8 +40,7 @@
             <div class="myui-input-block">
                 <input type="text" name="code"
                 	class="easyui-textbox" 
-                	data-options="id:'code',
-                		required:true,
+                	data-options="required:true,
                    		width:219,
                    		prompt:'必填',
                 		validType:['alphaDash','maxLength[20]']
@@ -115,9 +111,8 @@
             <div class="myui-input-block">
                 <input type="text" name="iconCls" 
                 	class="easyui-textbox" 
-                	data-options="width:219,
-                   		delIcon:true" 
-                	/>
+                	data-options="width:219 
+                	"/>
             </div>
         </div>
         <div class="myui-col-sm6">
