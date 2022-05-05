@@ -295,3 +295,15 @@
         }
     });
 })(jQuery);
+(function($) {
+	if (!$.messager) {
+		return;
+	}
+	$.extend($.messager, {
+   		myuiAlert:function(title,msg,icon,fn){
+			var dlg = $.messager.alert(title,msg,icon,fn);
+			dlg.next().find('a').addClass('myui-btn-red').find(".l-btn-left").addClass("l-btn-icon-left").append('<span class="l-btn-icon fa fa-check-circle">&nbsp;</span>').find('.l-btn-text').css('height', '28px').css('line-height', '28px').next().css('cssText', 'margin-top:-5px!important;');
+			return dlg;
+		}
+    });
+})(jQuery);

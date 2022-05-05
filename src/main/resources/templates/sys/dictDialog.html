@@ -1,92 +1,85 @@
-<input type="hidden" name="uuid"
-	data-toggle="topjui-textbox"
-	data-options="cls:'hidden',
-		onChange:function(newValue,oldValue){
-			if(newValue){
-				$('#code').iTextbox('readonly');
-			}
-		}
-	"/>
-<div class="topjui-fluid">
-    <div class="topjui-row"></div>
-    <div class="topjui-row">
-        <div class="topjui-col-sm12">
-        	<label class="topjui-form-label">父级资源</label>
-        	<div class="topjui-input-block">
+<div class="myui-fluid">
+    <div class="myui-row"></div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+        	<label class="myui-form-label">父级资源</label>
+        	<div class="myui-input-block">
            		<input type="text" name="pid" 
-                	data-toggle="topjui-combotreegrid"
-                  	data-options="idField:'id',
-    			   		treeField:'text',
+                	class="easyui-combotreegrid"
+                  	data-options="border:false,
+						fit:true,
+						fitColumns:true,
+						singleSelect:true,
+						idField:'id',
+				   		treeField:'text',
+                  		width:568,
     			   		required:false,
                   		readonly:false,
-                  		panelHeight:283,
-                       	url:'dict/ajax/listByLevel?level=1',
-                       	expandUrl:'dict/ajax/listByPid?pid={id}',
-                       	getFatherIdsUrl:'dict/ajax/getFatherIds?id={id}',
+                  		panelHeight:257,
+						method:'get',
+                       	url:'dict/ajax/findListByPid',
                    		columns:[[
                         	{field:'text',title:'字典名称',width:100},
                         	{field:'code',title:'字典编码',width:100}
-                       	]],
-	                   	loadFilter:function(data){
-	                   		data.forEach(function(item,index){
-	                   			item._state = item.state;
-                   				item.state = item.isLeaf?'open':'closed';
-	                   		});
-	                   		return data;
-	                   	}
+                       	]]
             		"/>
             </div>
         </div>
     </div>
-    <div class="topjui-row">
-        <div class="topjui-col-sm6">
-            <label class="topjui-form-label">字典名称</label>
-            <div class="topjui-input-block">
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">字典名称</label>
+            <div class="myui-input-block">
                 <input type="text" name="text" 
-                	data-toggle="topjui-textbox" 
+                	class="easyui-textbox" 
                 	data-options="required:true,
+                   		width:219,
                    		prompt:'必填'
                    	"/>
             </div>
         </div>
-        <div class="topjui-col-sm6">
-            <label class="topjui-form-label">字典编码</label>
-            <div class="topjui-input-block">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">字典编码</label>
+            <div class="myui-input-block">
                 <input type="text" name="code"
-                	data-toggle="topjui-textbox" 
+                	class="easyui-textbox" 
                 	data-options="id:'code',
                 		required:true,
+                   		width:219,
                    		prompt:'必填',
                 		validType:['alphaDash','maxLength[20]']
             		"/>
             </div>
         </div>
     </div>
-    <div class="topjui-row">
-        <div class="topjui-col-sm6">
-            <label class="topjui-form-label">简称</label>
-            <div class="topjui-input-block">
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">简称</label>
+            <div class="myui-input-block">
                 <input type="text" name="abbreviation" 
-                	data-toggle="topjui-textbox" 
-                	/>
+                	class="easyui-textbox" 
+                	data-options="width:219
+                   	"/>
             </div>
         </div>
-        <div class="topjui-col-sm6">
-            <label class="topjui-form-label">别名</label>
-            <div class="topjui-input-block">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">别名</label>
+            <div class="myui-input-block">
                 <input type="text" name="alias" 
-                	data-toggle="topjui-textbox" 
-                	/>
+                	class="easyui-textbox" 
+                	data-options="width:219
+                   	"/>
             </div>
         </div>
     </div>
-    <div class="topjui-row">
-        <div class="topjui-col-sm6">
-            <label class="topjui-form-label">启用状态</label>
-            <div class="topjui-input-block">
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">启用状态</label>
+            <div class="myui-input-block">
                 <input type="text" name="disabled" value="0"
-                	data-toggle="topjui-combobox"
+                	class="easyui-combobox"
                   	data-options="required:true,
+                   		width:219,
 						valueField:'value',
 						textField:'text',
 						panelHeight:'auto',
@@ -97,12 +90,13 @@
             		"/>
             </div>
         </div>
-        <div class="topjui-col-sm6">
-            <label class="topjui-form-label">子菜单</label>
-            <div class="topjui-input-block">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">子菜单</label>
+            <div class="myui-input-block">
                 <input type="text" name="state"
-              		data-toggle="topjui-combobox"
+              		class="easyui-combobox"
                    	data-options="required:true,
+                   		width:219,
                    		prompt:'必选',
 						valueField:'value',
 						textField:'text',
@@ -115,34 +109,38 @@
             </div>
         </div>
     </div>
-    <div class="topjui-row">
-        <div class="topjui-col-sm6">
-            <label class="topjui-form-label">字典图标</label>
-            <div class="topjui-input-block">
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">字典图标</label>
+            <div class="myui-input-block">
                 <input type="text" name="iconCls" 
-                	data-toggle="topjui-iconpicker" 
-                	data-options="delIcon:true" 
+                	class="easyui-textbox" 
+                	data-options="width:219,
+                   		delIcon:true" 
                 	/>
             </div>
         </div>
-        <div class="topjui-col-sm6">
-            <label class="topjui-form-label">字典排序</label>
-            <div class="topjui-input-block">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">字典排序</label>
+            <div class="myui-input-block">
                 <input type="text" name="sort"
-               		data-toggle="topjui-numberspinner"
+               		class="easyui-numberspinner"
                    	data-options="required:true,
+                   		width:219,
                    		prompt:'必填'
                    	"/>
             </div>
         </div>
     </div>
-    <div class="topjui-row">
-        <div class="topjui-col-sm12"><label class="topjui-form-label">备注</label>
-            <div class="topjui-input-block">
+    <div class="myui-row">
+        <div class="myui-col-sm12"><label class="myui-form-label">备注</label>
+            <div class="myui-input-block">
                 <input type="text" name="remark" 
-                	data-toggle="topjui-textarea"
-                   	data-options="height:100" 
-                	/>
+                	class="easyui-textbox"
+                   	data-options="width:568,
+                   		height:100,
+                   		multiline:true
+                   	"/>
             </div>
         </div>
     </div>
