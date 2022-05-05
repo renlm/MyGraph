@@ -5,8 +5,9 @@
         	<label class="myui-form-label">父级资源</label>
         	<div class="myui-input-block">
            		<input type="text" th:field="*{pid}" 
+           			id="pid"
                 	class="easyui-combotreegrid"
-                  	th:data-options="|required:false,
+                  	th:data-options="|id:'pid',required:false,
                   		fitColumns:true,
 						singleSelect:true,
                   		width:589,
@@ -18,7 +19,12 @@
                    		columns:[[
                         	{field:'text',title:'字典名称',width:100},
                         	{field:'code',title:'字典编码',width:100}
-                       	]]
+                       	]],
+                       	onLoadSuccess:function(row,data){
+                       		console.log($(this).treegrid('expand', 128));
+                       		console.log($(this).treegrid('expand', 129));
+                       		console.log($(this).treegrid('expand', 130));
+                       	}
             		|"/>
             </div>
         </div>
