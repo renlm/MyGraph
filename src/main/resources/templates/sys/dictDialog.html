@@ -6,7 +6,7 @@
         	<div class="myui-input-block">
            		<input type="text" th:field="*{pid}" 
                 	class="easyui-combotreegrid"
-                  	data-options="required:false,
+                  	th:data-options="|required:false,
                   		fitColumns:true,
 						singleSelect:true,
                   		width:589,
@@ -14,12 +14,12 @@
 						idField:'id',
 				   		treeField:'text',
 						method:'get',
-                       	url:'dict/ajax/findListByPid',
+                       	url:'dict/ajax/findListByPid*{pid==null?'':#strings.concat('?selected=',pid)}',
                    		columns:[[
                         	{field:'text',title:'字典名称',width:100},
                         	{field:'code',title:'字典编码',width:100}
                        	]]
-            		"/>
+            		|"/>
             </div>
         </div>
     </div>
