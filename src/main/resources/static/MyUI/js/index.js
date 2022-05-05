@@ -434,7 +434,7 @@ function recursionMenuTree(sourceData, children) {
  */
 function modifyPersonal () {
 	var $personalDialog = $('<form id=\'personalDialog\' method=\'get\' class=\'myui\'></form>');
-    $personalDialog.dialog({
+    $personalDialog.myuiDialog({
         title: '个人信息',
         width: 730,
         height: 530,
@@ -481,9 +481,6 @@ function modifyPersonal () {
             }
         }],
         onLoad: function () {
-			$personalDialog.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
-			$personalDialog.next().find('.fa.fa-save').parent().parent().addClass('myui-btn-blue');
-			$personalDialog.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-red');
             $.getJSON(ctx + '/api/user/getInfo', function (result) {
 				// 初始化表单
 				$personalDialog.form('load', result.data);

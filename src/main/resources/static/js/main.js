@@ -32,8 +32,6 @@
                     }
                 ],
 				onOpen: function() {
-					$myDialog.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
-					setTimeout(function () { $myDialog.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-normal myui-btn-red'); }, 300);
 					var messages = [];
 					if (errors) {
 						if(Array.isArray(errors)) {
@@ -67,7 +65,7 @@
 					$myDialog.dialog('destroy');
 				}
             };
-            $myDialog.dialog($.extend(true, {}, defaultOptions, opts));
+            $myDialog.myuiDialog($.extend(true, {}, defaultOptions, opts));
             return $myDialog;
         },
 		/**
@@ -320,6 +318,7 @@
 	$.fn.myuiDialog = function (_2c1, _2c2) {
 		var dlg = this.dialog(_2c1, _2c2);
 		dlg.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
+		dlg.next().find('.fa.fa-plus').parent().parent().addClass('myui-btn-normal myui-btn-blue');
 		dlg.next().find('.fa.fa-save').parent().parent().addClass('myui-btn-normal myui-btn-green');
 		dlg.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-normal myui-btn-red');
 		return dlg;

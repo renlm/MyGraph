@@ -161,7 +161,7 @@
     	 */
     	function uploadDictDialog () {
     		var $uploadDictDialog = $('<form id=\'uploadDictDialog\' method=\'post\' enctype=\'multipart/form-data\' class=\'myui\'></form>');
-    	    $uploadDictDialog.dialog({
+    	    $uploadDictDialog.myuiDialog({
     	        title: '导入字典',
     	        width: 500,
     	        height: 180,
@@ -206,11 +206,6 @@
     	                $uploadDictDialog.dialog('destroy');
     	            }
     	        }],
-    	        onLoad: function () {
-    				$uploadDictDialog.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
-    				$uploadDictDialog.next().find('.fa.fa-plus').parent().parent().addClass('myui-btn-normal myui-btn-green');
-    				$uploadDictDialog.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-normal myui-btn-red');
-    	        },
     			onClose: function () {
     				$uploadDictDialog.dialog('destroy');
     			}
