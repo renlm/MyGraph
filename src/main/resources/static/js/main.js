@@ -371,27 +371,27 @@
     }
 
     function f(b, c) {
-        var d = a("#" + b).iIconpicker("options"), e = a("#" + b).next("span").children(" .textbox-addon")[0].classList,
+        var d = a("#" + b).iconpicker("options"), e = a("#" + b).next("span").children(" .textbox-addon")[0].classList,
             f = e[e.length - 1];
         a("." + f + " .pre-icon") && a("." + f + " .pre-icon").remove(), a("." + f + " a").before('<a href="javascript:;" class="textbox-icon pre-icon ' + c + '" tabindex="-1" style="width: 26px; height: 28px;text-align: center;line-height:28px;color: #000"></a>'), 0 === a("." + f + " a.pre-icon .delBtn").length && d.delIcon && (a(".pre-icon").append('<a href="javascript:;" class="delBtn" style="display: inline-block;font-size: 14px;border: 1px solid #000;border-radius: 50%;width: 16px;height: 16px;line-height: 14px;vertical-align: text-bottom; margin-left: 5px;">x</a>'), a(".pre-icon").css("width", "45px"), a(".delBtn").click(function () {
-            a("#" + b).iIconpicker("clear"), a("." + f + " .pre-icon").remove()
+            a("#" + b).iconpicker("clear"), a("." + f + " .pre-icon").remove()
         }))
     }
 
-    a.fn.iIconpicker = function (b, d) {
+    a.fn.iconpicker = function (b, d) {
         if ("string" == typeof b) {
-            var e = a.fn.iIconpicker.methods[b];
+            var e = a.fn.iconpicker.methods[b];
             return e ? e(this, d) : this.combo(b, d)
         }
         this.each(function () {
-            b = a.fn.iIconpicker.parseOptions(this, b), a(this).combobox(b), c(this)
+            b = a.fn.iconpicker.parseOptions(this, b), a(this).combobox(b), c(this)
         })
     };
     var g = [];
-    a.fn.iIconpicker.methods = {}, a.fn.iIconpicker.parseOptions = function (b, c) {
-        var d = a.extend({}, a.fn.combobox.parseOptions(b), a.fn.iIconpicker.defaults, a.parser.parseOptions(b, ["id"]), c);
+    a.fn.iconpicker.methods = {}, a.fn.iconpicker.parseOptions = function (b, c) {
+        var d = a.extend({}, a.fn.combobox.parseOptions(b), a.fn.iconpicker.defaults, a.parser.parseOptions(b, ["id"]), c);
         return setId(b, d)
-    }, a.fn.iIconpicker.defaults = {
+    }, a.fn.iconpicker.defaults = {
         width: "100%", editable: !0, delIcon: !1, onShowPanel: function () {
             var b = (a(this).combobox("options"), a(this).combobox("panel")), c = b[0].children[0].className;
             1 != b[0].children.length && b[0].children[1].remove(), d(c)
@@ -404,9 +404,25 @@
                 }
             }
         }
-    }
+    }, a.parser && a.parser.plugins && a.parser.plugins.push("iconpicker");
 })(jQuery);
+
 function setId(a, b) {
     $(a);
     return void 0 == b.id && (b.id = getRandomNumByDef()), a.id = b.id, b
+}
+
+function getRandomNum(a, b) {
+    switch (arguments.length) {
+        case 1:
+            return parseInt(Math.random() * a + 1);
+        case 2:
+            return parseInt(Math.random() * (b - a + 1) + a);
+        default:
+            return 0
+    }
+}
+
+function getRandomNumByDef() {
+    return getRandomNum(1e5, 999999)
 }

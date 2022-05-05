@@ -149,7 +149,6 @@
     	        onLoad: function () {
     	            $.getJSON(ctx + '/sys/dict/ajax/getDetailByUuid?uuid=' + selected.uuid, function (result) {
     					$editDialog.form('load', result);
-    					$editDialog.find('#iconCls').iIconpicker({delIcon:true})
     	            });
     	        },
     			onClose: function () {
