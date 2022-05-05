@@ -17,7 +17,8 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
-import cn.renlm.graph.common.GraphCategory;
+import cn.renlm.graph.common.Mxgraph;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErDto;
 import cn.renlm.graph.modular.er.entity.ErField;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
@@ -27,7 +28,6 @@ import cn.renlm.graph.mxgraph.model.MxCell;
 import cn.renlm.graph.mxgraph.model.MxGeometry;
 import cn.renlm.graph.mxgraph.model.MxGraphModel;
 import cn.renlm.graph.mxgraph.model.Root;
-import cn.renlm.graph.dto.User;
 
 /**
  * ER图形解析器
@@ -80,8 +80,8 @@ public class ERModelParser {
 		MxGraphModel mxGraphModel = this.initMxGraphModel(graph, ers);
 		graph.setXml(this.convertMxGraphModelToXml(mxGraphModel));
 		graph.setName(name);
-		graph.setCategoryCode(GraphCategory.ER.name());
-		graph.setCategoryName(GraphCategory.ER.getText());
+		graph.setCategoryCode(Mxgraph.ER.name());
+		graph.setCategoryName(Mxgraph.ER.getText());
 		GraphDto.fillDefault(graph);
 		graph.setCreatedAt(new Date());
 		graph.setCreatorUserId(user.getUserId());
