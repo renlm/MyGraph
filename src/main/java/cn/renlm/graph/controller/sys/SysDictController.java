@@ -128,23 +128,15 @@ public class SysDictController {
 	 * 字典弹窗
 	 * 
 	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/dialog")
-	public String dialog(ModelMap model) {
-		return "sys/dictDialog";
-	}
-
-	/**
-	 * 根据Uuid获取详细信息
-	 * 
-	 * @param request
 	 * @param uuid
 	 * @return
 	 */
-	@ResponseBody
-	@RequestMapping("/ajax/getDetailByUuid")
-	public SysDict getDetailByUuid(HttpServletRequest request, String uuid) {
-		return iSysDictService.getOne(Wrappers.<SysDict>lambdaQuery().eq(SysDict::getUuid, uuid));
+	@RequestMapping("/dialog")
+	public String dialog(ModelMap model, String uuid) {
+		if (StrUtil.isNotBlank(uuid)) {
+			SysDict sysDict = iSysDictService.getOne(Wrappers.<SysDict>lambdaQuery().eq(SysDict::getUuid, uuid));
+			model.put("sysDict", sysDict);
+		}
+		return "sys/dictDialog";
 	}
 }

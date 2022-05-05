@@ -1,10 +1,10 @@
-<div class="myui-fluid tfrcenter">
+<div class="myui-fluid tfrcenter" th:object="${sysDict}">
     <div class="myui-row"></div>
     <div class="myui-row">
         <div class="myui-col-sm12">
         	<label class="myui-form-label">父级资源</label>
         	<div class="myui-input-block">
-           		<input type="text" name="pid" 
+           		<input type="text" th:field="*{pid}" 
                 	class="easyui-combotreegrid"
                   	data-options="required:false,
                   		fitColumns:true,
@@ -27,7 +27,7 @@
         <div class="myui-col-sm6">
             <label class="myui-form-label">字典名称</label>
             <div class="myui-input-block">
-                <input type="text" name="text" 
+                <input type="text" th:field="*{text}" 
                 	class="easyui-textbox" 
                 	data-options="required:true,
                    		width:222,
@@ -38,7 +38,7 @@
         <div class="myui-col-sm6">
             <label class="myui-form-label">字典编码</label>
             <div class="myui-input-block">
-                <input type="text" name="code"
+                <input type="text" th:field="*{code}"
                 	class="easyui-textbox" 
                 	data-options="required:true,
                    		width:222,
@@ -52,7 +52,7 @@
         <div class="myui-col-sm6">
             <label class="myui-form-label">字典图标</label>
             <div class="myui-input-block">
-                <input type="text" name="iconCls" 
+                <input type="text" th:field="*{iconCls}" 
                 	class="easyui-iconpicker"
                 	data-options="width:222,
                 		panelHeight:240,
@@ -63,7 +63,7 @@
         <div class="myui-col-sm6">
             <label class="myui-form-label">简称</label>
             <div class="myui-input-block">
-                <input type="text" name="abbreviation" 
+                <input type="text" th:field="*{abbreviation}" 
                 	class="easyui-textbox" 
                 	data-options="width:222
                    	"/>
@@ -74,7 +74,7 @@
         <div class="myui-col-sm6">
             <label class="myui-form-label">子菜单</label>
             <div class="myui-input-block">
-                <input type="text" name="state"
+                <input type="text" th:field="*{state}"
               		class="easyui-combobox"
                    	data-options="required:true,
                    		width:222,
@@ -92,7 +92,7 @@
         <div class="myui-col-sm6">
             <label class="myui-form-label">别名</label>
             <div class="myui-input-block">
-                <input type="text" name="alias" 
+                <input type="text" th:field="*{alias}" 
                 	class="easyui-textbox" 
                 	data-options="width:222
                    	"/>
@@ -103,7 +103,7 @@
         <div class="myui-col-sm6">
             <label class="myui-form-label">启用状态</label>
             <div class="myui-input-block">
-                <input type="text" name="disabled" value="0"
+                <input type="text" th:field="*{disabled}" value="false"
                 	class="easyui-combobox"
                   	data-options="required:true,
                    		width:222,
@@ -111,8 +111,8 @@
 						textField:'text',
 						panelHeight:'auto',
 						data: [
-						    {text:'禁用',value:true},
-							{text:'启用',value:false}
+						    {text:'禁用',value:'true'},
+							{text:'启用',value:'false'}
 						]
             		"/>
             </div>
@@ -120,7 +120,7 @@
         <div class="myui-col-sm6">
             <label class="myui-form-label">字典排序</label>
             <div class="myui-input-block">
-                <input type="text" name="sort"
+                <input type="text" th:field="*{sort}"
                		class="easyui-numberspinner"
                    	data-options="required:true,
                    		width:222,
@@ -132,7 +132,7 @@
     <div class="myui-row">
         <div class="myui-col-sm12"><label class="myui-form-label">备注</label>
             <div class="myui-input-block">
-                <input type="text" name="remark" 
+                <input type="text" th:field="*{remark}" 
                 	class="easyui-textbox"
                    	data-options="width:589,
                    		height:100,

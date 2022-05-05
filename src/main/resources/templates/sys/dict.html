@@ -106,7 +106,7 @@
     			maximizable: true,
     	        closed: false,
     	        cache: false,
-    	        href: ctx + '/sys/dict/dialog',
+    	        href: ctx + '/sys/dict/dialog?uuid=' + selected.uuid,
     	        modal: true,
     	        buttons: [{
     	            text: '更新',
@@ -125,10 +125,9 @@
     			            success: function (result) {
     							var resultJson = JSON.parse(result);
     			                if (resultJson.statusCode == 200) {
-    								$('#user-nickname').html(resultJson.data.nickname);
-    								$('#user-username').html(resultJson.data.username);
     			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-    								$editDialog.dialog('destroy');
+    			                	$('#treeGrid').treegrid('reload');
+    			                	$editDialog.dialog('destroy');
     			                } else {
     			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
     			                }
@@ -143,11 +142,6 @@
     	                $editDialog.dialog('destroy');
     	            }
     	        }],
-    	        onLoad: function () {
-    	            $.getJSON(ctx + '/sys/dict/ajax/getDetailByUuid?uuid=' + selected.uuid, function (result) {
-    					$editDialog.form('load', result);
-    	            });
-    	        },
     			onClose: function () {
     				$editDialog.dialog('destroy');
     			}
