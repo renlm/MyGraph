@@ -60,7 +60,7 @@
       			">新增子节点
       		</a>
   		</div>
-		<a href="javascript:void(0);"
+		<a href="javascript:editDialog();"
 			class="easyui-menubutton myui-btn-normal myui-btn-blue"
            	data-options="iconCls:'fa fa-pencil',
            		hasDownArrow:false
@@ -90,6 +90,110 @@
 		</div>
     </div>
     <script type="text/javascript">
+    	/**
+    	 * 编辑弹窗
+    	 */
+    	function editDialog () {
+    		var selected = $('#treeGrid').treegrid('getSelected');
+    		if (!selected) {
+    			$.messager.alert('My Title','Here is a info message!','warning');
+    		}
+    		console.log(selected);
+    		return;
+    		var $editDialog = $('<form id=\'editDialog\' method=\'get\' class=\'myui\'></form>');
+    	    $editDialog.dialog({
+    	        title: '个人信息',
+    	        width: 730,
+    	        height: 530,
+    			collapsible: true,
+    			minimizable: false,
+    			maximizable: true,
+    	        closed: false,
+    	        cache: false,
+    	        href: ctx + '/sys/user/editDialog',
+    	        modal: true,
+    	        buttons: [{
+    	            text: '更新',
+    	            iconCls: 'fa fa-save',
+    	            handler: function () {
+    					$.messager.progress({'text': '请求中……'});
+    			        $editDialog.form('submit', {
+    			            url: ctx + '/sys/user/doModifyPersonal',
+    			            onSubmit: function () {
+    			                var isValid = $(this).form('validate');
+    			                if (!isValid) {
+    			                    $.messager.progress('close');
+    			                }
+    			                return isValid;
+    			            },
+    			            success: function (result) {
+    							var resultJson = JSON.parse(result);
+    			                if (resultJson.statusCode == 200) {
+    								$('#user-nickname').html(resultJson.data.nickname);
+    								$('#user-username').html(resultJson.data.username);
+    			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+    								$editDialog.dialog('destroy');
+    			                } else {
+    			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+    			                }
+    			                $.messager.progress('close');
+    			        	}
+    			 		});
+    				}
+    	        }, {
+    	            text: '关闭',
+    	            iconCls: 'fa fa-close',
+    	            handler: function () {
+    	                $editDialog.dialog('destroy');
+    	            }
+    	        }],
+    	        onLoad: function () {
+    				$editDialog.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
+    				$editDialog.next().find('.fa.fa-save').parent().parent().addClass('myui-btn-blue');
+    				$editDialog.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-red');
+    	            $.getJSON(ctx + '/api/user/getInfo', function (result) {
+    					// 初始化表单
+    					$editDialog.form('load', result.data);
+    					if (result.data.avatar) {
+    						$editDialog.find(".avatar img").attr("src", ctx + '/sys/file/download/' + result.data.avatar + '?inline').show().siblings().hide().parent().parent().css('padding-top', '10px');
+    					}
+    					// 绑定头像上传
+    					layui.upload.render({
+    						elem: $editDialog.find(".avatar").get(0),
+    						url: ctx + "/sys/file/upload",
+    						accept: "images",
+    					   	acceptMime: "image/*",
+    						before: function(obj) {
+    							if (obj) {
+    								window.uploadeindex = layer.load(2);
+    							}
+    						},
+    						done: function (res, index, upload) {
+    							if (res && index && upload) {
+    								layer.close(window.uploadeindex);
+    								if (res.success) {
+    									$editDialog.find(".avatar input[name='avatar']").val(res.data.fileId);
+    									$editDialog.find(".avatar img").attr("src", ctx + '/sys/file/download/' + res.data.fileId + '?inline').show().siblings().hide().parent().parent().css('padding-top', '10px');
+    								} else {
+    									layer.msg("上传失败", { icon: 5, shift:6 });
+    								}
+    							} else {
+    								layer.msg("出错了", { icon: 5, shift:6 });
+    							}
+    					    },
+    					    error: function (index, upload) {
+    							if (index && upload) {
+    								layer.msg("出错了", { icon: 5, shift:6 });
+    							}
+    					    }
+    					});
+    	            });
+    	        },
+    			onClose: function () {
+    				$editDialog.dialog('destroy');
+    			}
+    	    });
+    	}
     	/**
     	 * 导入字典（弹窗）
     	 */
