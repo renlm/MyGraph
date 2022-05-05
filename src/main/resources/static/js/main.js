@@ -316,3 +316,99 @@
 		return dlg;
 	}
 })(jQuery);
+(function(a) {
+	function setId(a, b) {
+	    $(a);
+	    return void 0 == b.id && (b.id = getRandomNumByDef()), a.id = b.id, b
+	}
+
+	function b(b) {
+        var c = a(this).val(), d = b.data.target, f = a(d), h = f.combobox("options"), i = f.combobox("panel"),
+            j = i[0].children[0].className;
+        switch (f.combobox("showPanel"), b.keyCode) {
+            case 38:
+                break;
+            case 40:
+                break;
+            case 37:
+                break;
+            case 39:
+                break;
+            case 13:
+                return !1;
+            case 9:
+                return !1;
+            case 27:
+                break;
+            default:
+                h.editable && e(g, j, c)
+        }
+    }
+
+    function c(b) {
+        var c = a.data(b, "combobox"), e = c.options, g = e.id;
+        a("#" + g).combobox("panel").addClass("icon-panel"), a('<div class="iconSelectPanel' + Math.ceil(100 * Math.random()) + '"><div style="padding:10px" class="iconlist"></div></div>').appendTo(".icon-panel"), a("#" + g).next("span").children(" .textbox-addon").addClass("icon-box" + Math.ceil(100 * Math.random()));
+        var h = a(b).val();
+        h && (d(), f(g, h));
+        var i = "";
+        setTimeout(function () {
+            i = a("#" + g).combobox("getValue"), i && (d(), f(g, i))
+        }, 500)
+    }
+
+    function d(b, c) {
+        a.ajax({
+            url: ctx + '/fontAwesome/getIcons', type: "get", dataType: "json", success: function (a) {
+                g = a, b && e(g, b)
+				console.log(g, b);
+            }
+        })
+    }
+
+    function e(b, c, d) {
+        var e = [];
+        d ? b.filter(function (a) {
+            if (a.value.indexOf(d) >= 0) return e.push(a)
+        }) : e = b, a("." + c + " .iconlist").empty();
+        var f = "";
+        a.each(e, function (a, b) {
+            f += '<span class="fa ' + b + '" title="' + b + '" style="width:30px;height:30px;border:1px solid #ccc;border-radius:8px;text-align:center;padding: 5px;font-size: 16px;margin: 0 8px 8px 0;" ></span>'
+        }), a("." + c + " .iconlist").append(f)
+    }
+
+    function f(b, c) {
+        var d = a("#" + b).iIconpicker("options"), e = a("#" + b).next("span").children(" .textbox-addon")[0].classList,
+            f = e[e.length - 1];
+        a("." + f + " .pre-icon") && a("." + f + " .pre-icon").remove(), a("." + f + " a").before('<a href="javascript:;" class="textbox-icon pre-icon ' + c + '" tabindex="-1" style="width: 26px; height: 28px;text-align: center;line-height:28px;color: #000"></a>'), 0 === a("." + f + " a.pre-icon .delBtn").length && d.delIcon && (a(".pre-icon").append('<a href="javascript:;" class="delBtn" style="display: inline-block;font-size: 14px;border: 1px solid #000;border-radius: 50%;width: 16px;height: 16px;line-height: 14px;vertical-align: text-bottom; margin-left: 5px;">x</a>'), a(".pre-icon").css("width", "45px"), a(".delBtn").click(function () {
+            a("#" + b).iIconpicker("clear"), a("." + f + " .pre-icon").remove()
+        }))
+    }
+
+    a.fn.iIconpicker = function (b, d) {
+        if ("string" == typeof b) {
+            var e = a.fn.iIconpicker.methods[b];
+            return e ? e(this, d) : this.combo(b, d)
+        }
+        this.each(function () {
+            b = a.fn.iIconpicker.parseOptions(this, b), a(this).combobox(b), c(this)
+        })
+    };
+    var g = [];
+    a.fn.iIconpicker.methods = {}, a.fn.iIconpicker.parseOptions = function (b, c) {
+        var d = a.extend({}, a.fn.combobox.parseOptions(b), a.fn.iIconpicker.defaults, a.parser.parseOptions(b, ["id"]), c);
+        return setId(b, d)
+    }, a.fn.iIconpicker.defaults = {
+        width: "100%", editable: !0, delIcon: !1, onShowPanel: function () {
+            var b = (a(this).combobox("options"), a(this).combobox("panel")), c = b[0].children[0].className;
+            1 != b[0].children.length && b[0].children[1].remove(), d(c)
+        }, inputEvents: {keydown: b}, panelEvents: {
+            mousedown: function (b) {
+                var c = b.target.className, d = b.target.classList[0], e = b.handleObj.data.target.id;
+                if (c && "fa" == d) {
+                    var g = '<span class="fa ' + c + '" title="' + c + '"  ></span>';
+                    a(".selectedIcon").html(g), a("#" + e).combobox("setValue", c).combobox("setText", c).combobox("hidePanel"), f(e, c)
+                }
+            }
+        }
+    }
+})(jQuery);
