@@ -3,6 +3,7 @@ package cn.renlm.graph.modular.sys.service.impl;
 import static cn.hutool.core.text.StrPool.COMMA;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,13 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
+import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.mapper.SysOrgMapper;
 import cn.renlm.graph.modular.sys.service.ISysOrgService;
+import cn.renlm.graph.modular.sys.service.ISysUserService;
 
 /**
  * <p>
@@ -76,18 +80,21 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 			treeNode.setName(object.getText());
 			treeNode.setWeight(object.getSort());
 			treeNode.setParentId(object.getPid());
-			if (object.getLeaderUserId() != null) {
-				List<SysOrgDto> orgs = this.findListByUser(object.getLeaderUserId());
+			if (StrUtil.isNotBlank(object.getLeaderUserId())) {
+				SysUser sysUser = SpringUtil.getBean(ISysUserService.class)
+						.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUserId, object.getLeaderUserId()));
+				treeNode.putExtra("leaderUserName", sysUser.getNickname());
+				treeNode.putExtra("mobile", sysUser.getMobile());
+				treeNode.putExtra("email", sysUser.getEmail());
+				List<SysOrgDto> orgs = this.findListByUser(sysUser.getUserId());
 				orgs.forEach(org -> {
-					Object p = treeNode.get("positionCode");
-					Object n = treeNode.get("positionName");
-					Object op = org.getPositionCode();
-					Object on = org.getPositionName();
-					treeNode.put("leaderUserName", org.getLeaderUserName());
-					treeNode.put("positionCode", p == null ? op : StrUtil.join(COMMA, p, op));
-					treeNode.put("positionName", n == null ? on : StrUtil.join(COMMA, n, on));
-					treeNode.put("mobile", org.getMobile());
-					treeNode.put("email", org.getEmail());
+					List<SysOrg> fathers = this.findFathers(org.getId());
+					List<Long> fatherIds = fathers.stream().map(SysOrg::getId).collect(Collectors.toList());
+					if (fatherIds.contains(object.getId())) {
+						Object n = treeNode.get("positionName");
+						Object on = org.getPositionName();
+						treeNode.putExtra("positionName", n == null ? on : StrUtil.join(COMMA, n, on));
+					}
 				});
 			}
 		});
