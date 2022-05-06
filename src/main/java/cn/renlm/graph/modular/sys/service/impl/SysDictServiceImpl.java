@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysDict;
 import cn.renlm.graph.modular.sys.entity.SysFile;
@@ -101,6 +104,52 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 			return CollUtil.newArrayList();
 		}
 		return tree;
+	}
+
+	@Override
+	@Transactional
+	public Result<SysDict> ajaxSave(SysDict sysDict) {
+		if (StrUtil.isBlank(sysDict.getUuid())) {
+			sysDict.setUuid(IdUtil.simpleUUID().toUpperCase());
+			sysDict.setCreatedAt(new Date());
+		} else {
+			SysDict Dict = this.getOne(Wrappers.<SysDict>lambdaQuery().eq(SysDict::getUuid, sysDict.getUuid()));
+			sysDict.setId(Dict.getId());
+			sysDict.setCreatedAt(Dict.getCreatedAt());
+			sysDict.setUpdatedAt(new Date());
+		}
+		// 校验字典编码（同级编码不能重复）
+		long cnt = this.count(Wrappers.<SysDict>lambdaQuery().func(wrapper -> {
+			wrapper.eq(SysDict::getCode, sysDict.getCode());
+			wrapper.eq(SysDict::getLevel, sysDict.getLevel());
+			if (sysDict.getId() != null) {
+				wrapper.notIn(SysDict::getId, sysDict.getId());
+			}
+			if (sysDict.getPid() == null) {
+				wrapper.isNull(SysDict::getPid);
+			} else {
+				wrapper.eq(SysDict::getPid, sysDict.getPid());
+			}
+		}));
+		if (cnt > 0) {
+			return Result.error("同级目录字典编码不能重复");
+		}
+		if (sysDict.getPid() == null) {
+			sysDict.setLevel(1);
+		} else {
+			SysDict parent = this.getById(sysDict.getPid());
+			parent.setState(TreeState.closed.name());
+			sysDict.setLevel(parent.getLevel() + 1);
+			List<SysDict> fathers = this.findFathers(parent.getId());
+			List<Long> fatherIds = fathers.stream().map(SysDict::getId).collect(Collectors.toList());
+			if (fatherIds.contains(sysDict.getId())) {
+				return Result.error("不能选择自身或子节点作为父级字典");
+			} else {
+				this.updateById(parent);
+			}
+		}
+		this.saveOrUpdate(sysDict);
+		return Result.success(sysDict);
 	}
 
 	@Override

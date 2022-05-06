@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import cn.hutool.core.lang.tree.Tree;
 import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
+import cn.renlm.graph.response.Result;
 
 /**
  * <p>
@@ -50,5 +51,14 @@ public interface ISysOrgService extends IService<SysOrg> {
 	 * @return
 	 */
 	List<Tree<Long>> getTree(boolean root, Long pid);
+
+	/**
+	 * 保存（新建|编辑）
+	 * 
+	 * @param request
+	 * @param sysOrg
+	 * @return
+	 */
+	Result<SysOrg> ajaxSave(SysOrg sysOrg);
 
 }

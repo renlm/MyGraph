@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.hutool.core.lang.tree.Tree;
 import cn.renlm.graph.modular.sys.entity.SysResource;
+import cn.renlm.graph.response.Result;
 
 /**
  * <p>
@@ -49,5 +50,14 @@ public interface ISysResourceService extends IService<SysResource> {
 	 * @return
 	 */
 	List<Tree<Long>> getTree(boolean root, Long pid);
+
+	/**
+	 * 保存（新建|编辑）
+	 * 
+	 * @param request
+	 * @param sysResource
+	 * @return
+	 */
+	Result<SysResource> ajaxSave(SysResource sysResource);
 
 }

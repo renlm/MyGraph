@@ -2,10 +2,12 @@ package cn.renlm.graph.modular.sys.service.impl;
 
 import static cn.hutool.core.text.StrPool.COMMA;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,16 +17,19 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
+import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.mapper.SysOrgMapper;
 import cn.renlm.graph.modular.sys.service.ISysOrgService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.response.Result;
 
 /**
  * <p>
@@ -116,5 +121,45 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 		} else {
 			return tree;
 		}
+	}
+
+	@Override
+	@Transactional
+	public Result<SysOrg> ajaxSave(SysOrg sysOrg) {
+		SysOrg exists = this.getOne(Wrappers.<SysOrg>lambdaQuery().eq(SysOrg::getCode, sysOrg.getCode()));
+		if (StrUtil.isBlank(sysOrg.getOrgId())) {
+			// 校验组织机构代码（是否存在）
+			if (exists != null) {
+				return Result.error("组织机构代码重复");
+			}
+			sysOrg.setOrgId(IdUtil.getSnowflakeNextIdStr());
+			sysOrg.setCreatedAt(new Date());
+		} else {
+			SysOrg entity = this.getOne(Wrappers.<SysOrg>lambdaQuery().eq(SysOrg::getOrgId, sysOrg.getOrgId()));
+			// 校验组织机构代码（是否存在）
+			if (exists != null && !NumberUtil.equals(exists.getId(), entity.getId())) {
+				return Result.error("组织机构代码重复");
+			}
+			sysOrg.setId(entity.getId());
+			sysOrg.setCreatedAt(entity.getCreatedAt());
+			sysOrg.setUpdatedAt(new Date());
+			sysOrg.setDeleted(entity.getDeleted());
+		}
+		if (sysOrg.getPid() == null) {
+			sysOrg.setLevel(1);
+		} else {
+			SysOrg parent = this.getById(sysOrg.getPid());
+			parent.setState(TreeState.closed.name());
+			sysOrg.setLevel(parent.getLevel() + 1);
+			List<SysOrg> fathers = this.findFathers(parent.getId());
+			List<Long> fatherIds = fathers.stream().map(SysOrg::getId).collect(Collectors.toList());
+			if (fatherIds.contains(sysOrg.getId())) {
+				return Result.error("不能选择自身或子节点作为父级");
+			} else {
+				this.updateById(parent);
+			}
+		}
+		this.saveOrUpdate(sysOrg);
+		return Result.success(sysOrg);
 	}
 }

@@ -47,6 +47,15 @@ public interface ISysDictService extends IService<SysDict> {
 	List<Tree<Long>> getTree(String... codePaths);
 
 	/**
+	 * 保存（新建|编辑）
+	 * 
+	 * @param request
+	 * @param sysDict
+	 * @return
+	 */
+	Result<SysDict> ajaxSave(SysDict sysDict);
+
+	/**
 	 * 导出字典（重新编排id及pid）
 	 * 
 	 * @param file

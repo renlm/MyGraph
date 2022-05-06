@@ -1,8 +1,11 @@
 package cn.renlm.graph.modular.sys.service.impl;
 
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -12,12 +15,16 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.mapper.SysResourceMapper;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
+import cn.renlm.graph.response.Result;
+import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
 
 /**
  * <p>
@@ -101,5 +108,48 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 		} else {
 			return tree;
 		}
+	}
+
+	@Override
+	@Transactional
+	public Result<SysResource> ajaxSave(SysResource sysResource) {
+		SysResource exists = this
+				.getOne(Wrappers.<SysResource>lambdaQuery().eq(SysResource::getCode, sysResource.getCode()));
+		if (StrUtil.isBlank(sysResource.getResourceId())) {
+			// 校验资源编码（是否存在）
+			if (exists != null) {
+				return Result.error("资源编码重复");
+			}
+			sysResource.setResourceId(IdUtil.getSnowflakeNextIdStr());
+			sysResource.setCreatedAt(new Date());
+		} else {
+			SysResource entity = this.getOne(
+					Wrappers.<SysResource>lambdaQuery().eq(SysResource::getResourceId, sysResource.getResourceId()));
+			// 校验资源编码（是否存在）
+			if (exists != null && !NumberUtil.equals(exists.getId(), entity.getId())) {
+				return Result.error("资源编码重复");
+			}
+			sysResource.setId(entity.getId());
+			sysResource.setCreatedAt(entity.getCreatedAt());
+			sysResource.setUpdatedAt(new Date());
+			sysResource.setDeleted(entity.getDeleted());
+		}
+		if (sysResource.getPid() == null) {
+			sysResource.setLevel(1);
+		} else {
+			SysResource parent = this.getById(sysResource.getPid());
+			parent.setState(TreeState.closed.name());
+			sysResource.setLevel(parent.getLevel() + 1);
+			List<SysResource> fathers = this.findFathers(parent.getId());
+			List<Long> fatherIds = fathers.stream().map(SysResource::getId).collect(Collectors.toList());
+			if (fatherIds.contains(sysResource.getId())) {
+				return Result.error("不能选择自身或子节点作为父级资源");
+			} else {
+				this.updateById(parent);
+			}
+		}
+		this.saveOrUpdate(sysResource);
+		DynamicFilterInvocationSecurityMetadataSource.allConfigAttributes.clear();
+		return Result.success(sysResource);
 	}
 }

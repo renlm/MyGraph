@@ -1,8 +1,6 @@
 package cn.renlm.graph.controller.sys;
 
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,15 +15,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.tree.Tree;
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.response.Result;
-import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
 import cn.renlm.graph.security.UserService;
 
 /**
@@ -141,44 +135,7 @@ public class SysResourceController {
 	@RequestMapping("/ajax/save")
 	public Result<SysResource> ajaxSave(HttpServletRequest request, SysResource sysResource) {
 		try {
-			SysResource exists = iSysResourceService
-					.getOne(Wrappers.<SysResource>lambdaQuery().eq(SysResource::getCode, sysResource.getCode()));
-			if (StrUtil.isBlank(sysResource.getResourceId())) {
-				// 校验资源编码（是否存在）
-				if (exists != null) {
-					return Result.error("资源编码重复");
-				}
-				sysResource.setResourceId(IdUtil.getSnowflakeNextIdStr());
-				sysResource.setCreatedAt(new Date());
-			} else {
-				SysResource entity = iSysResourceService.getOne(Wrappers.<SysResource>lambdaQuery()
-						.eq(SysResource::getResourceId, sysResource.getResourceId()));
-				// 校验资源编码（是否存在）
-				if (exists != null && !NumberUtil.equals(exists.getId(), entity.getId())) {
-					return Result.error("资源编码重复");
-				}
-				sysResource.setId(entity.getId());
-				sysResource.setCreatedAt(entity.getCreatedAt());
-				sysResource.setUpdatedAt(new Date());
-				sysResource.setDeleted(entity.getDeleted());
-			}
-			if (sysResource.getPid() == null) {
-				sysResource.setLevel(1);
-			} else {
-				SysResource parent = iSysResourceService.getById(sysResource.getPid());
-				parent.setState(TreeState.closed.name());
-				sysResource.setLevel(parent.getLevel() + 1);
-				List<SysResource> fathers = iSysResourceService.findFathers(parent.getId());
-				List<Long> fatherIds = fathers.stream().map(SysResource::getId).collect(Collectors.toList());
-				if (fatherIds.contains(sysResource.getId())) {
-					return Result.error("不能选择自身或子节点作为父级资源");
-				} else {
-					iSysResourceService.updateById(parent);
-				}
-			}
-			iSysResourceService.saveOrUpdate(sysResource);
-			DynamicFilterInvocationSecurityMetadataSource.allConfigAttributes.clear();
-			return Result.success(sysResource);
+			return iSysResourceService.ajaxSave(sysResource);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("服务器出错了");
