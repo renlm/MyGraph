@@ -25,6 +25,7 @@ import cn.renlm.graph.modular.sys.mapper.SysResourceMapper;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
+import cn.renlm.graph.util.TreeExtraUtil;
 
 /**
  * <p>
@@ -104,9 +105,9 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 		});
 		if (ObjectUtil.isNotEmpty(top)) {
 			top.setChildren(tree);
-			return CollUtil.newArrayList(top);
+			return TreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
 		} else {
-			return tree;
+			return TreeExtraUtil.resetLevel(tree, 1);
 		}
 	}
 

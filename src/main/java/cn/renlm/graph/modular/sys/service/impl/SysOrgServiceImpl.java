@@ -30,6 +30,7 @@ import cn.renlm.graph.modular.sys.mapper.SysOrgMapper;
 import cn.renlm.graph.modular.sys.service.ISysOrgService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.util.TreeExtraUtil;
 
 /**
  * <p>
@@ -117,9 +118,9 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 		});
 		if (ObjectUtil.isNotEmpty(top)) {
 			top.setChildren(tree);
-			return CollUtil.newArrayList(top);
+			return TreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
 		} else {
-			return tree;
+			return TreeExtraUtil.resetLevel(tree, 1);
 		}
 	}
 

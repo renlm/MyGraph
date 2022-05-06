@@ -32,6 +32,7 @@ import cn.renlm.graph.modular.sys.mapper.SysDictMapper;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.util.TreeExtraUtil;
 import cn.renlm.plugins.MyExcelUtil;
 import cn.renlm.plugins.MyExcel.handler.DataWriterHandler;
 import lombok.SneakyThrows;
@@ -103,7 +104,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		if (CollUtil.isEmpty(tree)) {
 			return CollUtil.newArrayList();
 		}
-		return tree;
+		return TreeExtraUtil.resetLevel(tree, 1);
 	}
 
 	@Override
