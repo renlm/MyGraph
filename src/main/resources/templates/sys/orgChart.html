@@ -16,29 +16,26 @@
 	<div id="container" class="orgchart-box"></div>
 	<script type="text/javascript">
 	    $(function () {
-	        // 1. 获取所有组织机构
-	        var id = getUrlParam("id") || 1;
-	
-	        $.get("[(@{/sys/org/ajax/getTree})]", function (orgTree) {
+	    	$.get('ajax/getTree', function (orgTree) {
 	            if (orgTree.length === 0) {
-	                init({name: "null", text: "未查询到组织机构树"});
+	                init({text: "未查询到组织机构树"});
 	            } else {
 	            	init(orgTree[0]);
 	            }
-	        }, "JSON");
+	        });
 	
-	        function init(datascource) {
+	        function init(orgTree) {
 	            $('#container').orgchart({
-	                'visibleLevel': 3,
-	                'pan': true, // 平移
-	                'zoom': true, // 缩放
-	                'zoominLimit': 3,
-	                'verticalLevel': 3,
-	                'toggleSiblingsResp': true,
-	                'data': datascource,
-	                'nodeContent': 'text',
-	                'exportButton': true,
-	                "nodeTemplate": function (data) {
+	            	pan: true,
+	            	zoom: true,
+	            	zoominLimit: 3,
+	            	verticalLevel: 3,
+	          		visibleLevel: 3,
+	          		toggleSiblingsResp: true,
+	          		data: orgTree,
+	          		exportButton: true,
+	          		nodeContent: 'text',
+	          		nodeTemplate: function (data) {
 	                    var html = "";
 	                    // 判断是否是叶子节点（即成员节点）
 	                    if(data.className && data.className == "slide-up"){
@@ -72,16 +69,6 @@
 	            });
 	        }
 	    });
-	
-	    /**
-	     * 获取url中的参数
-	  	 */
-	    function getUrlParam(name) {
-	        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-	        var r = window.location.search.substr(1).match(reg);
-	        if (r != null) return unescape(r[2]);
-	        return null;
-	    }
 	</script>
 </body>
 </html>
