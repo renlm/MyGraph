@@ -192,6 +192,20 @@
 		    }
 		},
 		/**
+		 * 组织机构类型格式化
+		 */
+		orgTypeFormatter: function (value) {
+			if(value == 1) {
+		  		return '公司';
+			} else if(value == 2) {
+		  		return '部门';
+			} else if(value == 3) {
+				return '岗位';
+		 	} else {
+				return value;
+			}
+		},
+		/**
 		 * 资源类别格式化
 		 */
 		resourceTypeFormatter: function (value) {

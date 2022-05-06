@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-    <title>资源列表</title>
+    <title>组织机构</title>
 </head>
 <body layout:fragment="content" class="myui">
 	<div class="easyui-layout" 
@@ -18,20 +18,15 @@
 			   		treeField:'text',
 					toolbar:'#toolbar',
 					method:'get',
-               		url:'resource/ajax/findListByPid'
+               		url:'org/ajax/findListByPid'
               	">
 				<thead>
                		<tr>
-                       	<th data-options="field:'text',title:'资源名称',width:160,formatter:$.treeTextFormatter,styler:$.treeIconStyler"></th>
-                      	<th data-options="field:'resourceTypeCode',title:'资源类别',width:80,formatter:$.resourceTypeFormatter"></th>
-                      	<th data-options="field:'url',title:'资源地址或标识',hidden:true"></th>
-                       	<th data-options="field:'code',title:'资源编码',width:100"></th>
-                     	<th data-options="field:'level',title:'层级',width:80"></th>
-                     	<th data-options="field:'sort',title:'排序',width:80"></th>
-                    	<th data-options="field:'disabled',title:'启用状态',width:100,formatter:$.disabledFormatter"></th>
-                    	<th data-options="field:'commonly',title:'常用菜单',width:80,formatter:function(value,row){if(value){return '是'} return '';}"></th>
-                    	<th data-options="field:'defaultHomePage',title:'默认主页',width:80,formatter:function(value,row){if(value){return '是'} return '';}"></th>
-                     	<th data-options="field:'remark',title:'备注',width:100"></th>
+	                    <th data-options="field:'text',title:'名称'"></th>
+	                    <th data-options="field:'orgTypeCode',title:'类型',formatter:$.orgTypeFormatter"></th>
+	                    <th data-options="field:'level',title:'层级'"></th>
+	                    <th data-options="field:'code',title:'代码'"></th>
+	               		<th data-options="field:'disabled',title:'状态',width:100,formatter:$.disabledFormatter"></th>
 					</tr>
               	</thead>
 			</table>
@@ -46,20 +41,20 @@
         	">新增
        	</a>
   		<div id="moreAddMenu" class="myui-toolbar" style="width:100px;">
-        	<a href="javascript:resourceDialog(1);"
+        	<a href="javascript:orgDialog(1);"
             	class="easyui-menubutton"
               	data-options="iconCls:'fa fa-plus',
            			hasDownArrow:false
       			">新增根节点
       		</a>
-     		<a href="javascript:resourceDialog(2);"
+     		<a href="javascript:orgDialog(2);"
              	class="easyui-menubutton"
               	data-options="iconCls:'fa fa-plus',
            			hasDownArrow:false
       			">新增子节点
       		</a>
   		</div>
-		<a href="javascript:resourceDialog(3);"
+		<a href="javascript:orgDialog(3);"
 			class="easyui-menubutton myui-btn-normal myui-btn-blue"
            	data-options="iconCls:'fa fa-pencil',
            		hasDownArrow:false
@@ -68,12 +63,12 @@
     </div>
     <script type="text/javascript">
     	/**
-    	 * 资源弹窗
+    	 * 弹窗
          * @param type 1：新增根节点，2：新增子节点，3：编辑
     	 */
-    	function resourceDialog (type) {
+    	function orgDialog (type) {
     		var isAdd = true;
-    		var dialogHref = ctx + '/sys/resource/dialog';
+    		var dialogHref = ctx + '/sys/org/dialog';
     		if (type === 2 || type === 3) {
         		var selected = $('#treeGrid').treegrid('getSelected');
         		if (selected) {
@@ -81,15 +76,15 @@
         				dialogHref += '?pid=' + selected.id;
         			} else if (type === 3) {
         				isAdd = false;
-        				dialogHref += '?resourceId=' + selected.resourceId;
+        				dialogHref += '?orgId=' + selected.orgId;
         			}
         		} else {
         			$.messager.myuiAlert('操作提示', '请先选择要操作的数据', 'warning');
         			return;
         		}
     		}
-    		var $resourceDialog = $('<form id=\'resourceDialog\' method=\'get\' class=\'myui\'></form>');
-    	    $resourceDialog.myuiDialog({
+    		var $orgDialog = $('<form id=\'orgDialog\' method=\'get\' class=\'myui\'></form>');
+    	    $orgDialog.myuiDialog({
     	        title: isAdd ? '新增' : '编辑',
     	        width: 890,
     	        height: 483,
@@ -105,8 +100,8 @@
     	            iconCls: isAdd ? 'fa fa-plus' : 'fa fa-save',
     	            handler: function () {
     					$.messager.progress({'text': '请求中……'});
-    			        $resourceDialog.form('submit', {
-    			            url: ctx + '/sys/resource/ajax/save',
+    			        $orgDialog.form('submit', {
+    			            url: ctx + '/sys/org/ajax/save',
     			            onSubmit: function () {
     			                var isValid = $(this).form('validate');
     			                if (!isValid) {
@@ -118,7 +113,7 @@
     							var resultJson = JSON.parse(result);
     			                if (resultJson.statusCode == 200) {
     			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-    			                	$resourceDialog.dialog('destroy');
+    			                	$orgDialog.dialog('destroy');
     			                	if (resultJson.data.pid == null) {
     			                		$('#treeGrid').treegrid('reload');
     			                	} else {
@@ -135,11 +130,11 @@
     	            text: '关闭',
     	            iconCls: 'fa fa-close',
     	            handler: function () {
-    	                $resourceDialog.dialog('destroy');
+    	                $orgDialog.dialog('destroy');
     	            }
     	        }],
     			onClose: function () {
-    				$resourceDialog.dialog('destroy');
+    				$orgDialog.dialog('destroy');
     			}
     	    });
     	}
