@@ -7,7 +7,13 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeUtil;
+import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.mapper.SysResourceMapper;
@@ -64,5 +70,36 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 			list.add(this.getById(CollUtil.getLast(list).getPid()));
 		}
 		return CollUtil.reverse(list);
+	}
+
+	@Override
+	public List<Tree<Long>> getTree(boolean root, Long pid) {
+		List<SysResource> list = this.list();
+		if (CollUtil.isEmpty(list)) {
+			return CollUtil.newArrayList();
+		}
+		Tree<Long> top = new Tree<>();
+		List<Tree<Long>> tree = TreeUtil.build(list, pid, (object, treeNode) -> {
+			BeanUtil.copyProperties(object, treeNode);
+			treeNode.setId(object.getId());
+			treeNode.setName(object.getText());
+			treeNode.setWeight(object.getSort());
+			treeNode.setParentId(object.getPid());
+			if (BooleanUtil.isFalse(root)) {
+				return;
+			}
+			if (pid == null) {
+				return;
+			}
+			if (NumberUtil.equals(pid, object.getId())) {
+				BeanUtil.copyProperties(treeNode, top);
+			}
+		});
+		if (ObjectUtil.isNotEmpty(top)) {
+			top.setChildren(tree);
+			return CollUtil.newArrayList(top);
+		} else {
+			return tree;
+		}
 	}
 }

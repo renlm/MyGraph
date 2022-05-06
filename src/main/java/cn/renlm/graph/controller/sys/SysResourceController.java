@@ -93,6 +93,20 @@ public class SysResourceController {
 	}
 
 	/**
+	 * 获取树形结构
+	 * 
+	 * @param root
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/ajax/getTree")
+	public List<Tree<Long>> getTree(boolean root, Long id) {
+		List<Tree<Long>> tree = iSysResourceService.getTree(root, id);
+		return tree;
+	}
+
+	/**
 	 * 资源弹窗
 	 * 
 	 * @param model
