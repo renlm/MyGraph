@@ -16,11 +16,11 @@
 	<div id="container" class="orgchart-box"></div>
 	<script type="text/javascript">
 	    $(function () {
-	    	$.get('ajax/getTree', function (orgTree) {
-	            if (orgTree.length === 0) {
-	                init({text: "未查询到组织机构树"});
+	    	$.get('ajax/getTree', function (orgTrees) {
+	            if (orgTrees.length === 0) {
+	                init({ name: "未查询到组织机构树" });
 	            } else {
-	            	init(orgTree[0]);
+	            	init(orgTrees[0]);
 	            }
 	        });
 	
@@ -35,15 +35,22 @@
 	          		data: orgTree,
 	          		exportButton: true,
 	          		nodeTemplate: function (data) {
-	                	return `
-	                   			<div class="title">${data.name}</div>
-	                   			<div class="content">
-	                   				<p><i class="fa fa-user-circle"></i> 负责人: ${data.name}</p>
-	                   				<p><i class="fa fa-suitcase"></i> 职 位: ${data.name}</p>
-	                   				<p><i class="fa fa-address-book-o "></i> 手 机: ${data.name}</p>
-	                   				<p><i class="fa fa-envelope-o"></i> 邮 件: ${data.name}</p>
-	                   			</div>
-	                		`;
+	          			if (data.id) {
+	          				return `
+		                   			<div class="title">${data.name}</div>
+		                   			<div class="content">
+		                   				<p><i class="fa fa-user-circle"></i> 负责人: ${data.leaderUserName?data.leaderUserName:'<span>（无）</span>'}</p>
+		                   				<p><i class="fa fa-suitcase"></i> 职 位: ${data.positionName?data.positionName:'<span>（无）</span>'}</p>
+		                   				<p><i class="fa fa-address-book-o "></i> 手 机: ${data.mobile?data.mobile:'<span>（无）</span>'}</p>
+		                   				<p><i class="fa fa-envelope-o"></i> 邮 件: ${data.email?data.email:'<span>（无）</span>'}</p>
+		                   			</div>
+		                		`;
+	          			} else {
+	          				return `
+		                   			<div class="title">${data.name}</div>
+		                   			<div class="content"></div>
+		                		`;
+	          			}
 	                }
 	            });
 	        }
