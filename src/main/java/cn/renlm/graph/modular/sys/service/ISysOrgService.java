@@ -1,7 +1,10 @@
 package cn.renlm.graph.modular.sys.service;
 
-import cn.renlm.graph.modular.sys.entity.SysOrg;
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import cn.renlm.graph.modular.sys.entity.SysOrg;
 
 /**
  * <p>
@@ -12,5 +15,21 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-04-29
  */
 public interface ISysOrgService extends IService<SysOrg> {
+
+	/**
+	 * 获取指定父节点下级列表
+	 * 
+	 * @param pid
+	 * @return
+	 */
+	List<SysOrg> findListByPid(Long pid);
+
+	/**
+	 * 获取由上而下的父子集
+	 * 
+	 * @param id
+	 * @return
+	 */
+	List<SysOrg> findFathers(Long id);
 
 }

@@ -1,0 +1,219 @@
+<div class="myui-fluid mlr15center" th:object="${sysResource}">
+    <div class="myui-row">
+    	<input type="hidden" th:field="*{resourceId}" />
+    	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+        	<label class="myui-form-label">父级资源</label>
+        	<div class="myui-input-block">
+           		<input type="text" th:field="*{pid}" 
+                	class="easyui-combotreegrid"
+                  	th:data-options="|required:false,
+                  		fitColumns:true,
+						singleSelect:true,
+                  		width:728,
+                  		panelHeight:328,
+						idField:'id',
+				   		treeField:'text',
+						method:'get',
+                       	url:'resource/ajax/findListByPid',
+                   		columns:[[
+                        	{field:'text',title:'资源名称',width:100},
+                        	{field:'code',title:'资源编码',width:100}
+                       	]],
+                       	onLoadSuccess:function(row,data){
+                       		var that = this;
+                       		var expand = $(that).data('expand');
+                       		if (expand) {
+                       			$.each(data, function (i, node) {
+                       				if (expand.contains(node.id)) {
+                       					$(that).treegrid('expand', node.id);
+                       				}
+                       			});
+                       		} else {
+                       			$.get('resource/ajax/findFathers', { id: *{pid} }, function (fathers) {
+                       				var fatherIds = [];
+                       				$.each(fathers, function (i, father) {
+                       					fatherIds.push(father.id);
+                       					if (i === 0) {
+                       						$(that).treegrid('expand', father.id);
+                       					}
+                       				});
+                       				$(that).data('expand', fatherIds);
+                       			});
+                       		}
+                       	},
+                       	onExpand:function(row){
+                       		$(this).treegrid('scrollTo', row.id);
+                       	}
+            		|"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">资源名称</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{text}" 
+                	class="easyui-textbox" 
+                	data-options="required:true,
+                		prompt:'必填',
+                		width:299
+                	"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">启用状态</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{disabled}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+						valueField:'value',
+						textField:'text',
+                		width:299,
+						panelHeight:'auto',
+						data: [
+						    {text:'禁用',value:'true'},
+							{text:'启用',value:'false'}
+						]
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">资源编码</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{code}" 
+                	class="easyui-textbox" 
+                	data-options="required:true,
+                		prompt:'必填',
+                		width:299,
+                		validType:['alphaDash','maxLength[20]','notStartWith[\'ROLE_\']']
+                	"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">默认主页</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{defaultHomePage}"
+              		class="easyui-combobox"
+                   	data-options="required:true,
+                   		prompt:'必选',
+						valueField:'value',
+						textField:'text',
+                		width:299,
+						panelHeight:'auto',
+						data: [
+						    {text:'是',value:'true'},
+							{text:'否',value:'false'}
+						]
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">资源类型</label>
+            <div class="myui-input-block">
+            	<input type="text" th:field="*{resourceTypeCode}"
+                 	class="easyui-combobox"
+                 	data-options="required:true,
+                   		prompt:'必选',
+                		width:299,
+                   		panelHeight:'auto',
+						method:'get',
+                   		url:'dict/ajax/getTree?codePaths=RESOURCE_TYPE',
+                    	valueField:'code',
+                    	textField:'text'
+              		"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">子菜单</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{state}"
+              		class="easyui-combobox"
+                   	data-options="required:true,
+                   		prompt:'必选',
+						valueField:'value',
+						textField:'text',
+                		width:299,
+						panelHeight:'auto',
+						data: [
+						    {text:'有',value:'closed'},
+							{text:'无',value:'open'}
+						]
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+        	<label class="myui-form-label">资源地址或标识</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{url}" 
+                	class="easyui-textbox"
+                	data-options="width:728
+                   	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">资源图标</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{iconCls}" 
+                	class="easyui-iconpicker" 
+                	data-options="delIcon:true,
+                		width:299
+                	"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">资源排序</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{sort}"
+               		class="easyui-numberspinner"
+                   	data-options="required:true,
+                		prompt:'必填',
+                		width:299
+                	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">资源图标颜色</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{iconClsColour}" 
+                	class="easyui-textbox"
+                	data-options="width:299
+                   	"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">资源名称颜色</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{textColour}" 
+                	class="easyui-textbox"
+                	data-options="width:299
+                   	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+        	<label class="myui-form-label">备注</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{remark}" 
+                	class="easyui-textbox"
+                   	data-options="width:728,
+                   		height:100,
+                   		multiline:true
+                   	"/>
+            </div>
+        </div>
+    </div>
+</div>
