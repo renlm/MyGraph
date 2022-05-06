@@ -26,10 +26,9 @@ public interface ISysDictService extends IService<SysDict> {
 	 * 获取指定父节点下级列表
 	 * 
 	 * @param pid
-	 * @param selected
 	 * @return
 	 */
-	List<Tree<Long>> findListByPid(Long pid, Long selected);
+	List<SysDict> findListByPid(Long pid);
 
 	/**
 	 * 获取由上而下的父子集

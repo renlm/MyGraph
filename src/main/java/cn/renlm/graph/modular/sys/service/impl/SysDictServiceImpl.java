@@ -48,8 +48,8 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	private ISysFileService iSysFileService;
 
 	@Override
-	public List<Tree<Long>> findListByPid(Long pid, Long selected) {
-		List<SysDict> list = this.list(Wrappers.<SysDict>lambdaQuery().func(wrapper -> {
+	public List<SysDict> findListByPid(Long pid) {
+		return this.list(Wrappers.<SysDict>lambdaQuery().func(wrapper -> {
 			if (pid == null) {
 				wrapper.isNull(SysDict::getPid);
 				wrapper.eq(SysDict::getLevel, 1);
@@ -59,18 +59,6 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 			wrapper.orderByAsc(SysDict::getSort);
 			wrapper.orderByAsc(SysDict::getId);
 		}));
-		list.addAll(this.findFathers(selected));
-		List<Tree<Long>> tree = TreeUtil.build(list, pid, (object, treeNode) -> {
-			BeanUtil.copyProperties(object, treeNode);
-			treeNode.setId(object.getId());
-			treeNode.setName(object.getText());
-			treeNode.setWeight(object.getSort());
-			treeNode.setParentId(object.getPid());
-		});
-		if (CollUtil.isEmpty(tree)) {
-			return CollUtil.newArrayList();
-		}
-		return tree;
 	}
 
 	@Override

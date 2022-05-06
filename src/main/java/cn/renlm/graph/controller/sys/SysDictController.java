@@ -60,13 +60,24 @@ public class SysDictController {
 	 * 获取指定父节点下级列表
 	 * 
 	 * @param id
-	 * @param selected
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/findListByPid")
-	public List<Tree<Long>> findListByPid(Long id, Long selected) {
-		return iSysDictService.findListByPid(id, selected);
+	public List<SysDict> findListByPid(Long id) {
+		return iSysDictService.findListByPid(id);
+	}
+
+	/**
+	 * 获取由上而下的父子集
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/ajax/findFathers")
+	public List<SysDict> findFathers(Long id) {
+		return iSysDictService.findFathers(id);
 	}
 
 	/**
