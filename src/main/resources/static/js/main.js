@@ -1,3 +1,17 @@
+/**
+ * 扩展数组方法
+ */
+(function(arr) {
+	arr.prototype.contains = function(obj) {
+		var i = this.length;
+		while (i--) {
+			if (this[i] === obj) {
+		   		return true;
+			}
+		}
+		return false;
+	}
+})(Array);
 /***
  * 封装一些常用的方法
  */

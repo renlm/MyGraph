@@ -21,13 +21,23 @@
                        	]],
                        	onLoadSuccess:function(row,data){
                        		var that = this;
-                       		var init = $(that).data('init');
-                       		if (!init) {
-                       			$(that).data('init', true);
+                       		var expand = $(that).data('expand');
+                       		if (expand) {
+                       			$.each(data, function (i, node) {
+                       				if (expand.contains(node.id)) {
+                       					$(that).treegrid('expand', node.id);
+                       				}
+                       			});
+                       		} else {
                        			$.get('dict/ajax/findFathers', { id: *{pid} }, function (fathers) {
+                       				var fatherIds = [];
                        				$.each(fathers, function (i, father) {
-                       					$(that).treegrid('expand', father.id);
+                       					fatherIds.push(father.id);
+                       					if (i === 0) {
+                       						$(that).treegrid('expand', father.id);
+                       					}
                        				});
+                       				$(that).data('expand', fatherIds);
                        			});
                        		}
                        	}
