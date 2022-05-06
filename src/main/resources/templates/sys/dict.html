@@ -92,6 +92,7 @@
          * @param type 1：新增根节点，2：新增子节点，3：编辑
     	 */
     	function dictDialog (type) {
+    		var isAdd = true;
     		var dialogTitle = '新增';
     		var dialogHref = ctx + '/sys/dict/dialog';
     		if (type === 2 || type === 3) {
@@ -100,6 +101,7 @@
         			if (type === 2) {
         				dialogHref += '?pid=' + selected.id;
         			} else if (type === 3) {
+        				isAdd = false;
         				dialogHref += '?uuid=' + selected.uuid;
         			}
         		} else {
@@ -120,8 +122,8 @@
     	        href: dialogHref,
     	        modal: true,
     	        buttons: [{
-    	            text: '更新',
-    	            iconCls: 'fa fa-save',
+    	            text: isAdd ? '保存' : '更新',
+    	            iconCls: isAdd ? 'fa fa-plus' : 'fa fa-save',
     	            handler: function () {
     					$.messager.progress({'text': '请求中……'});
     			        $dictDialog.form('submit', {
