@@ -114,7 +114,7 @@
     	            handler: function () {
     					$.messager.progress({'text': '请求中……'});
     			        $editDialog.form('submit', {
-    			            url: ctx + '/sys/user/doModifyPersonal',
+    			            url: ctx + '/sys/dict/ajax/save',
     			            onSubmit: function () {
     			                var isValid = $(this).form('validate');
     			                if (!isValid) {
@@ -126,7 +126,7 @@
     							var resultJson = JSON.parse(result);
     			                if (resultJson.statusCode == 200) {
     			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-    			                	$('#treeGrid').treegrid('reload');
+    			                	$('#treeGrid').treegrid('reload', resultJson.data.pid);
     			                	$editDialog.dialog('destroy');
     			                } else {
     			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});

@@ -1,5 +1,8 @@
 <div class="myui-fluid tfrcenter" th:object="${sysDict}">
-    <div class="myui-row"></div>
+    <div class="myui-row">
+    	<input type="hidden" th:field="*{uuid}" />
+    	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    </div>
     <div class="myui-row">
         <div class="myui-col-sm12">
         	<label class="myui-form-label">父级资源</label>
