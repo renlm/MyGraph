@@ -122,7 +122,14 @@
     			                	if (resultJson.data.pid == null) {
     			                		$('#treeGrid').treegrid('reload');
     			                	} else {
+    			                		if (!isAdd) {
+    			                			$('#treeGrid').treegrid('remove', resultJson.data.id);
+    			                		}
+    			                		var parentNode = $('#treeGrid').treegrid('find', resultJson.data.pid);
+    			                		parentNode.state = 'closed';
+    			                		$('#treeGrid').treegrid('update', { id: parentNode.id, row: parentNode });
     			                		$('#treeGrid').treegrid('reload', resultJson.data.pid);
+    			                		$('#treeGrid').treegrid('expandTo', resultJson.data.pid);
     			                	}
     			                } else {
     			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
