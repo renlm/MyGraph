@@ -30,7 +30,18 @@
                					$(that).treegrid('expand', item.id);
                				});
                			}
-               		}
+               		},
+               		onClickRow:function(row){
+				   		var url = 'org/chart';
+				    	if (row && row.id) {
+				       		url = url + '?id=' + row.id;
+				      	}
+				     	var pp = $('#eastTabs').tabs('getSelected');
+				       	var tabIframe = pp.find('iframe')[0];
+				     	if (tabIframe) {
+				     		tabIframe.contentWindow.location.href = url;
+				     	}
+					}
               	">
 				<thead>
                		<tr>
@@ -50,6 +61,7 @@
         		width:'65%'
         	">
           	<div class="easyui-tabs"
+          		id="eastTabs"
             	data-options="fit:true,
              		border:true,
              		bodyCls:'border_right_none'
