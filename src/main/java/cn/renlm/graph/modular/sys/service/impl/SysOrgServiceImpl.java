@@ -15,6 +15,8 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.modular.sys.dto.SysOrgDto;
@@ -74,6 +76,7 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 		if (CollUtil.isEmpty(list)) {
 			return CollUtil.newArrayList();
 		}
+		Tree<Long> top = new Tree<>();
 		List<Tree<Long>> tree = TreeUtil.build(list, pid, (object, treeNode) -> {
 			BeanUtil.copyProperties(object, treeNode);
 			treeNode.setId(object.getId());
@@ -97,22 +100,18 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 					}
 				});
 			}
-		});
-		if (pid == null || BooleanUtil.isFalse(root)) {
-			if (CollUtil.isEmpty(tree)) {
-				return CollUtil.newArrayList();
-			} else {
-				return tree;
+			if (pid == null || BooleanUtil.isFalse(root)) {
+				return;
 			}
+			if (NumberUtil.equals(pid, object.getId())) {
+				BeanUtil.copyProperties(treeNode, top);
+			}
+		});
+		if (ObjectUtil.isNotEmpty(top)) {
+			top.setChildren(tree);
+			return CollUtil.newArrayList(top);
+		} else {
+			return tree;
 		}
-		Tree<Long> top = new Tree<>();
-		SysOrg parent = this.getById(pid);
-		BeanUtil.copyProperties(parent, top);
-		top.setId(parent.getId());
-		top.setName(parent.getText());
-		top.setWeight(parent.getSort());
-		top.setParentId(parent.getPid());
-		top.setChildren(tree);
-		return CollUtil.newArrayList(top);
 	}
 }
