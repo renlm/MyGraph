@@ -100,7 +100,10 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 					}
 				});
 			}
-			if (pid == null || BooleanUtil.isFalse(root)) {
+			if (BooleanUtil.isFalse(root)) {
+				return;
+			}
+			if (pid == null) {
 				return;
 			}
 			if (NumberUtil.equals(pid, object.getId())) {
