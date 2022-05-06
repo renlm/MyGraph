@@ -20,6 +20,7 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
 import cn.renlm.graph.modular.sys.service.ISysOrgService;
 import cn.renlm.graph.response.Result;
@@ -155,11 +156,14 @@ public class SysOrgController {
 				sysOrg.setLevel(1);
 			} else {
 				SysOrg parent = iSysOrgService.getById(sysOrg.getPid());
+				parent.setState(TreeState.closed.name());
 				sysOrg.setLevel(parent.getLevel() + 1);
 				List<SysOrg> fathers = iSysOrgService.findFathers(parent.getId());
 				List<Long> fatherIds = fathers.stream().map(SysOrg::getId).collect(Collectors.toList());
 				if (fatherIds.contains(sysOrg.getId())) {
 					return Result.error("不能选择自身或子节点作为父级");
+				} else {
+					iSysOrgService.updateById(parent);
 				}
 			}
 			iSysOrgService.saveOrUpdate(sysOrg);

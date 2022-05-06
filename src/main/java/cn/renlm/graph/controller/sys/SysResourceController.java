@@ -20,6 +20,7 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
@@ -165,11 +166,14 @@ public class SysResourceController {
 				sysResource.setLevel(1);
 			} else {
 				SysResource parent = iSysResourceService.getById(sysResource.getPid());
+				parent.setState(TreeState.closed.name());
 				sysResource.setLevel(parent.getLevel() + 1);
 				List<SysResource> fathers = iSysResourceService.findFathers(parent.getId());
 				List<Long> fatherIds = fathers.stream().map(SysResource::getId).collect(Collectors.toList());
 				if (fatherIds.contains(sysResource.getId())) {
 					return Result.error("不能选择自身或子节点作为父级资源");
+				} else {
+					iSysResourceService.updateById(parent);
 				}
 			}
 			iSysResourceService.saveOrUpdate(sysResource);

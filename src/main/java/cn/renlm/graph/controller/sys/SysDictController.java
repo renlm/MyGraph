@@ -26,6 +26,7 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
+import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysDict;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
@@ -169,17 +170,6 @@ public class SysDictController {
 				sysDict.setCreatedAt(Dict.getCreatedAt());
 				sysDict.setUpdatedAt(new Date());
 			}
-			if (sysDict.getPid() == null) {
-				sysDict.setLevel(1);
-			} else {
-				SysDict parent = iSysDictService.getById(sysDict.getPid());
-				sysDict.setLevel(parent.getLevel() + 1);
-				List<SysDict> fathers = iSysDictService.findFathers(parent.getId());
-				List<Long> fatherIds = fathers.stream().map(SysDict::getId).collect(Collectors.toList());
-				if (fatherIds.contains(sysDict.getId())) {
-					return Result.error("不能选择自身或子节点作为父级字典");
-				}
-			}
 			// 校验字典编码（同级编码不能重复）
 			long cnt = iSysDictService.count(Wrappers.<SysDict>lambdaQuery().func(wrapper -> {
 				wrapper.eq(SysDict::getCode, sysDict.getCode());
@@ -195,6 +185,20 @@ public class SysDictController {
 			}));
 			if (cnt > 0) {
 				return Result.error("同级目录字典编码不能重复");
+			}
+			if (sysDict.getPid() == null) {
+				sysDict.setLevel(1);
+			} else {
+				SysDict parent = iSysDictService.getById(sysDict.getPid());
+				parent.setState(TreeState.closed.name());
+				sysDict.setLevel(parent.getLevel() + 1);
+				List<SysDict> fathers = iSysDictService.findFathers(parent.getId());
+				List<Long> fatherIds = fathers.stream().map(SysDict::getId).collect(Collectors.toList());
+				if (fatherIds.contains(sysDict.getId())) {
+					return Result.error("不能选择自身或子节点作为父级字典");
+				} else {
+					iSysDictService.updateById(parent);
+				}
 			}
 			iSysDictService.saveOrUpdate(sysDict);
 			return Result.success(sysDict);
