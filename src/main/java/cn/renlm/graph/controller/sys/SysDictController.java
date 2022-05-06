@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.IdUtil;
@@ -130,15 +131,19 @@ public class SysDictController {
 	 * 字典弹窗
 	 * 
 	 * @param model
+	 * @param pid
 	 * @param uuid
 	 * @return
 	 */
 	@RequestMapping("/dialog")
-	public String dialog(ModelMap model, String uuid) {
+	public String dialog(ModelMap model, Long pid, String uuid) {
+		SysDict sysDict = new SysDict();
+		sysDict.setPid(pid);
 		if (StrUtil.isNotBlank(uuid)) {
-			SysDict sysDict = iSysDictService.getOne(Wrappers.<SysDict>lambdaQuery().eq(SysDict::getUuid, uuid));
-			model.put("sysDict", sysDict);
+			SysDict entity = iSysDictService.getOne(Wrappers.<SysDict>lambdaQuery().eq(SysDict::getUuid, uuid));
+			BeanUtil.copyProperties(entity, sysDict);
 		}
+		model.put("sysDict", sysDict);
 		return "sys/dictDialog";
 	}
 

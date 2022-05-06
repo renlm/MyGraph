@@ -44,20 +44,20 @@
         	">新增
        	</a>
   		<div id="moreAddMenu" class="myui-toolbar" style="width:100px;">
-        	<a href="javascript:void(0);"
+        	<a href="javascript:dictDialog(1);"
             	class="easyui-menubutton"
               	data-options="iconCls:'fa fa-plus',
            			hasDownArrow:false
       			">新增根节点
       		</a>
-     		<a href="javascript:void(0);"
+     		<a href="javascript:dictDialog(2);"
              	class="easyui-menubutton"
               	data-options="iconCls:'fa fa-plus',
            			hasDownArrow:false
       			">新增子节点
       		</a>
   		</div>
-		<a href="javascript:editDialog();"
+		<a href="javascript:dictDialog(3);"
 			class="easyui-menubutton myui-btn-normal myui-btn-blue"
            	data-options="iconCls:'fa fa-pencil',
            		hasDownArrow:false
@@ -88,17 +88,28 @@
     </div>
     <script type="text/javascript">
     	/**
-    	 * 编辑弹窗
+    	 * 字典弹窗
+         * @param type 1：新增根节点，2：新增子节点，3：编辑
     	 */
-    	function editDialog () {
-    		var selected = $('#treeGrid').treegrid('getSelected');
-    		if (!selected) {
-    			$.messager.myuiAlert('操作提示', '请先选择要操作的数据', 'warning');
-    			return;
+    	function dictDialog (type) {
+    		var dialogTitle = '新增';
+    		var dialogHref = ctx + '/sys/dict/dialog';
+    		if (type === 2 || type === 3) {
+        		var selected = $('#treeGrid').treegrid('getSelected');
+        		if (selected) {
+        			if (type === 2) {
+        				dialogHref += '?pid=' + selected.id;
+        			} else if (type === 3) {
+        				dialogHref += '?uuid=' + selected.uuid;
+        			}
+        		} else {
+        			$.messager.myuiAlert('操作提示', '请先选择要操作的数据', 'warning');
+        			return;
+        		}
     		}
-    		var $editDialog = $('<form id=\'editDialog\' method=\'get\' class=\'myui\'></form>');
-    	    $editDialog.myuiDialog({
-    	        title: '编辑',
+    		var $dictDialog = $('<form id=\'dictDialog\' method=\'get\' class=\'myui\'></form>');
+    	    $dictDialog.myuiDialog({
+    	        title: dialogTitle,
     	        width: 730,
     	        height: 405,
     			collapsible: true,
@@ -106,14 +117,14 @@
     			maximizable: true,
     	        closed: false,
     	        cache: false,
-    	        href: ctx + '/sys/dict/dialog?uuid=' + selected.uuid,
+    	        href: dialogHref,
     	        modal: true,
     	        buttons: [{
     	            text: '更新',
     	            iconCls: 'fa fa-save',
     	            handler: function () {
     					$.messager.progress({'text': '请求中……'});
-    			        $editDialog.form('submit', {
+    			        $dictDialog.form('submit', {
     			            url: ctx + '/sys/dict/ajax/save',
     			            onSubmit: function () {
     			                var isValid = $(this).form('validate');
@@ -126,8 +137,12 @@
     							var resultJson = JSON.parse(result);
     			                if (resultJson.statusCode == 200) {
     			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-    			                	$('#treeGrid').treegrid('reload', resultJson.data.pid);
-    			                	$editDialog.dialog('destroy');
+    			                	$dictDialog.dialog('destroy');
+    			                	if (resultJson.data.pid) {
+    			                		$('#treeGrid').treegrid('reload', resultJson.data.pid);
+    			                	} else {
+    			                		$('#treeGrid').treegrid('reload');
+    			                	}
     			                } else {
     			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
     			                }
@@ -139,14 +154,15 @@
     	            text: '关闭',
     	            iconCls: 'fa fa-close',
     	            handler: function () {
-    	                $editDialog.dialog('destroy');
+    	                $dictDialog.dialog('destroy');
     	            }
     	        }],
     			onClose: function () {
-    				$editDialog.dialog('destroy');
+    				$dictDialog.dialog('destroy');
     			}
     	    });
     	}
+    	
     	/**
     	 * 导入字典（弹窗）
     	 */
