@@ -58,7 +58,7 @@ public class SysResourceController {
 	}
 
 	/**
-	 * 资源列表
+	 * 资源管理
 	 * 
 	 * @param model
 	 * @return
