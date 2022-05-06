@@ -49,6 +49,17 @@ public class SysOrgController {
 	}
 
 	/**
+	 * 组织机构树
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/chart")
+	public String chart(ModelMap model) {
+		return "sys/orgChart";
+	}
+
+	/**
 	 * 获取指定父节点下级列表
 	 * 
 	 * @param id

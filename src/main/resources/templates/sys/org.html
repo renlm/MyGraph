@@ -4,12 +4,16 @@
     <title>组织机构</title>
 </head>
 <body layout:fragment="content" class="myui">
-	<div class="easyui-layout" 
-		data-options="fit:true">
-		<div data-options="region:'center',
-				split:true,
-				border:false">
-			<table id="treeGrid" class="easyui-treegrid"
+	<div class="easyui-layout"
+    	data-options="fit:true">
+    	<!-- 左侧 -->
+        <div data-options="region:'center',
+        		split:true,
+        		border:false,
+        		bodyCls:'border_right',
+        		width:'35%'
+        	">
+       		<table id="treeGrid" class="easyui-treegrid"
           		data-options="border:false,
 					fit:true,
 					fitColumns:true,
@@ -37,8 +41,27 @@
 					</tr>
               	</thead>
 			</table>
-		</div>
-	</div>
+        </div>
+        <!-- 右侧 -->
+        <div data-options="region:'east',
+        		split:true,
+        		border:false,
+        		bodyCls:'border_right',
+        		width:'65%'
+        	">
+          	<div class="easyui-tabs"
+            	data-options="fit:true,
+             		border:true,
+             		bodyCls:'border_right_none'
+             	">
+                <div title="组织机构树"
+               		data-options="iconCls:'fa fa-th',
+						href:'org/chart'
+					">
+				</div>
+            </div>
+    	</div>
+    </div>
 	<div id="toolbar" class="myui-toolbar">
 		<a href="javascript:void(0);"
           	class="easyui-menubutton myui-btn-normal myui-btn-green"

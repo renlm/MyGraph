@@ -26,7 +26,7 @@
         // 1. 获取所有组织机构
         var id = getUrlParam("id")||1;
 
-        $.post("[(@{/sys/org/ajax/listTree})]", {}, function (res) {
+        $.post("[(@{/sys/org/ajax/getTree})]", {}, function (res) {
             var orgList = res;
             res[0].id = 0;
             if (!res || !id) {
