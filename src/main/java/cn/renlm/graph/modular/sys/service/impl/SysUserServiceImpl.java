@@ -23,12 +23,14 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.dto.SysUserDto;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysRoleResource;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.mapper.SysUserMapper;
+import cn.renlm.graph.modular.sys.service.ISysOrgService;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleService;
@@ -53,6 +55,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
 	@Autowired
 	private ISysRoleResourceService iSysRoleResourceService;
+
+	@Autowired
+	private ISysOrgService iSysOrgService;
 
 	@Override
 	public Page<SysUser> findPage(Page<SysUser> page, SysUserDto form) {
@@ -83,6 +88,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 		List<SysRole> roles = iSysRoleService.findListByUser(sysUser.getUserId());
 		List<SysResource> resources = iSysResourceService.findListByUser(sysUser.getUserId());
 		List<SysRoleResource> roleResources = iSysRoleResourceService.findListByUser(sysUser.getUserId());
+		List<SysOrgDto> orgs = iSysOrgService.findListByUser(sysUser.getUserId());
 
 		Map<Long, SysResource> srMap = new LinkedHashMap<>();
 		List<GrantedAuthority> authorities = CollUtil.newArrayList();
@@ -120,6 +126,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 		}
 		user.setRoles(roles);
 		user.setResources(resources);
+		user.setOrgs(orgs);
 		return user.setAuthorities(authorities);
 	}
 

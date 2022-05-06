@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.renlm.graph.modular.sys.mapper.SysOrgMapper">
-
+	<!-- 获取用户组织机构列表 -->
+	<select id="findListByUser" parameterType="java.lang.String" resultType="cn.renlm.graph.modular.sys.dto.SysOrgDto">
+		select so.*,
+			su.nickname as `leaderUserName`,
+			suo.position_code as `positionCode`,
+			suo.position_name as `positionName`,
+			su.mobile as `mobile`,
+			su.email as `email`
+		from sys_user su, sys_user_org suo, sys_org so
+		where su.user_id = #{userId,jdbcType=VARCHAR}
+			and su.id = suo.sys_user_id
+			and suo.sys_org_id = so.id
+			and suo.deleted = 0
+			and so.deleted = 0
+			and so.disabled = 0
+		order by so.`level`, so.sort
+	</select>
 </mapper>

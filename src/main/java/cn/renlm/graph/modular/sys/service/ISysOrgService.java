@@ -5,6 +5,7 @@ import java.util.List;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.hutool.core.lang.tree.Tree;
+import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
 
 /**
@@ -16,6 +17,14 @@ import cn.renlm.graph.modular.sys.entity.SysOrg;
  * @since 2022-04-29
  */
 public interface ISysOrgService extends IService<SysOrg> {
+
+	/**
+	 * 获取用户组织机构列表
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	List<SysOrgDto> findListByUser(String userId);
 
 	/**
 	 * 获取指定父节点下级列表

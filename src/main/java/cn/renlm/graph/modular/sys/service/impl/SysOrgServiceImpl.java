@@ -1,5 +1,7 @@
 package cn.renlm.graph.modular.sys.service.impl;
 
+import static cn.hutool.core.text.StrPool.COMMA;
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -12,6 +14,8 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
 import cn.renlm.graph.modular.sys.mapper.SysOrgMapper;
 import cn.renlm.graph.modular.sys.service.ISysOrgService;
@@ -26,6 +30,11 @@ import cn.renlm.graph.modular.sys.service.ISysOrgService;
  */
 @Service
 public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> implements ISysOrgService {
+
+	@Override
+	public List<SysOrgDto> findListByUser(String userId) {
+		return this.baseMapper.findListByUser(userId);
+	}
 
 	@Override
 	public List<SysOrg> findListByPid(Long pid) {
@@ -67,6 +76,20 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 			treeNode.setName(object.getText());
 			treeNode.setWeight(object.getSort());
 			treeNode.setParentId(object.getPid());
+			if (object.getLeaderUserId() != null) {
+				List<SysOrgDto> orgs = this.findListByUser(object.getLeaderUserId());
+				orgs.forEach(org -> {
+					Object p = treeNode.get("positionCode");
+					Object n = treeNode.get("positionName");
+					Object op = org.getPositionCode();
+					Object on = org.getPositionName();
+					treeNode.put("leaderUserName", org.getLeaderUserName());
+					treeNode.put("positionCode", p == null ? op : StrUtil.join(COMMA, p, op));
+					treeNode.put("positionName", n == null ? on : StrUtil.join(COMMA, n, on));
+					treeNode.put("mobile", org.getMobile());
+					treeNode.put("email", org.getEmail());
+				});
+			}
 		});
 		if (pid == null || BooleanUtil.isFalse(root)) {
 			if (CollUtil.isEmpty(tree)) {

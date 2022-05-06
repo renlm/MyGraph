@@ -13,6 +13,7 @@ import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Resource;
+import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysUser;
@@ -42,6 +43,11 @@ public class User extends SysUser implements org.springframework.security.core.u
 	 * 资源列表
 	 */
 	private List<SysResource> resources;
+
+	/**
+	 * 组织机构列表
+	 */
+	private List<SysOrgDto> orgs;
 
 	/**
 	 * 权限列表

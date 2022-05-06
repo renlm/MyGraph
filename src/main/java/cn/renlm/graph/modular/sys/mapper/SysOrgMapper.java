@@ -1,7 +1,11 @@
 package cn.renlm.graph.modular.sys.mapper;
 
-import cn.renlm.graph.modular.sys.entity.SysOrg;
+import java.util.List;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import cn.renlm.graph.modular.sys.dto.SysOrgDto;
+import cn.renlm.graph.modular.sys.entity.SysOrg;
 
 /**
  * <p>
@@ -12,5 +16,13 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2022-04-29
  */
 public interface SysOrgMapper extends BaseMapper<SysOrg> {
+
+	/**
+	 * 获取用户组织机构列表
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	List<SysOrgDto> findListByUser(String userId);
 
 }
