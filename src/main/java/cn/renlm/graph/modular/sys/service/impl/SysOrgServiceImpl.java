@@ -11,6 +11,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
+import cn.hutool.core.util.BooleanUtil;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
 import cn.renlm.graph.modular.sys.mapper.SysOrgMapper;
 import cn.renlm.graph.modular.sys.service.ISysOrgService;
@@ -55,7 +56,7 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 	}
 
 	@Override
-	public List<Tree<Long>> getTree(Long pid) {
+	public List<Tree<Long>> getTree(boolean root, Long pid) {
 		List<SysOrg> list = this.list();
 		if (CollUtil.isEmpty(list)) {
 			return CollUtil.newArrayList();
@@ -67,9 +68,21 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 			treeNode.setWeight(object.getSort());
 			treeNode.setParentId(object.getPid());
 		});
-		if (CollUtil.isEmpty(tree)) {
-			return CollUtil.newArrayList();
+		if (pid == null || BooleanUtil.isFalse(root)) {
+			if (CollUtil.isEmpty(tree)) {
+				return CollUtil.newArrayList();
+			} else {
+				return tree;
+			}
 		}
-		return tree;
+		Tree<Long> top = new Tree<>();
+		SysOrg parent = this.getById(pid);
+		BeanUtil.copyProperties(parent, top);
+		top.setId(parent.getId());
+		top.setName(parent.getText());
+		top.setWeight(parent.getSort());
+		top.setParentId(parent.getPid());
+		top.setChildren(tree);
+		return CollUtil.newArrayList(top);
 	}
 }

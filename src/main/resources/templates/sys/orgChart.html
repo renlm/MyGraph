@@ -16,7 +16,7 @@
 	<div id="container" class="orgchart-box"></div>
 	<script type="text/javascript">
 	    $(function () {
-	    	$.get('ajax/getTree', function (orgTrees) {
+	    	$.get("ajax/getTree?root=true[(${#strings.isEmpty(id)?'':('&id='+id)})]", function (orgTrees) {
 	            if (orgTrees.length === 0) {
 	                init({ name: "未查询到组织机构树" });
 	            } else {

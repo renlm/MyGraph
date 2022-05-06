@@ -36,8 +36,10 @@ public interface ISysOrgService extends IService<SysOrg> {
 	/**
 	 * 获取树形结构
 	 * 
+	 * @param root
+	 * @param pid
 	 * @return
 	 */
-	List<Tree<Long>> getTree(Long pid);
+	List<Tree<Long>> getTree(boolean root, Long pid);
 
 }

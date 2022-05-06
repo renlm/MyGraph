@@ -52,10 +52,12 @@ public class SysOrgController {
 	 * 组织机构树
 	 * 
 	 * @param model
+	 * @param id
 	 * @return
 	 */
 	@RequestMapping("/chart")
-	public String chart(ModelMap model) {
+	public String chart(ModelMap model, Long id) {
+		model.put("id", id);
 		return "sys/orgChart";
 	}
 
@@ -86,13 +88,14 @@ public class SysOrgController {
 	/**
 	 * 获取树形结构
 	 * 
+	 * @param root
 	 * @param id
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/getTree")
-	public List<Tree<Long>> getTree(Long id) {
-		List<Tree<Long>> tree = iSysOrgService.getTree(id);
+	public List<Tree<Long>> getTree(boolean root, Long id) {
+		List<Tree<Long>> tree = iSysOrgService.getTree(root, id);
 		return tree;
 	}
 
