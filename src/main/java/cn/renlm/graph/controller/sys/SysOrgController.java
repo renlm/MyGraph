@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
@@ -69,6 +70,19 @@ public class SysOrgController {
 	@GetMapping("/ajax/findFathers")
 	public List<SysOrg> findFathers(Long id) {
 		return iSysOrgService.findFathers(id);
+	}
+
+	/**
+	 * 获取树形结构
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/ajax/getTree")
+	public List<Tree<Long>> getTree(Long id) {
+		List<Tree<Long>> tree = iSysOrgService.getTree(id);
+		return tree;
 	}
 
 	/**

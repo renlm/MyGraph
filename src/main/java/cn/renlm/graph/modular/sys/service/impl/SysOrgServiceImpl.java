@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeUtil;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
 import cn.renlm.graph.modular.sys.mapper.SysOrgMapper;
 import cn.renlm.graph.modular.sys.service.ISysOrgService;
@@ -49,5 +52,24 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 			list.add(this.getById(CollUtil.getLast(list).getPid()));
 		}
 		return CollUtil.reverse(list);
+	}
+
+	@Override
+	public List<Tree<Long>> getTree(Long pid) {
+		List<SysOrg> list = this.list();
+		if (CollUtil.isEmpty(list)) {
+			return CollUtil.newArrayList();
+		}
+		List<Tree<Long>> tree = TreeUtil.build(list, pid, (object, treeNode) -> {
+			BeanUtil.copyProperties(object, treeNode);
+			treeNode.setId(object.getId());
+			treeNode.setName(object.getText());
+			treeNode.setWeight(object.getSort());
+			treeNode.setParentId(object.getPid());
+		});
+		if (CollUtil.isEmpty(tree)) {
+			return CollUtil.newArrayList();
+		}
+		return tree;
 	}
 }

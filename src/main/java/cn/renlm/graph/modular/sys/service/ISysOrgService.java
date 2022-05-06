@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import cn.hutool.core.lang.tree.Tree;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
 
 /**
@@ -31,5 +32,12 @@ public interface ISysOrgService extends IService<SysOrg> {
 	 * @return
 	 */
 	List<SysOrg> findFathers(Long id);
+
+	/**
+	 * 获取树形结构
+	 * 
+	 * @return
+	 */
+	List<Tree<Long>> getTree(Long pid);
 
 }
