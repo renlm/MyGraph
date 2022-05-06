@@ -138,10 +138,10 @@
     			                if (resultJson.statusCode == 200) {
     			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
     			                	$dictDialog.dialog('destroy');
-    			                	if (resultJson.data.pid) {
-    			                		$('#treeGrid').treegrid('reload', resultJson.data.pid);
-    			                	} else {
+    			                	if (resultJson.data.pid == null) {
     			                		$('#treeGrid').treegrid('reload');
+    			                	} else {
+    			                		$('#treeGrid').treegrid('reload', resultJson.data.pid);
     			                	}
     			                } else {
     			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});

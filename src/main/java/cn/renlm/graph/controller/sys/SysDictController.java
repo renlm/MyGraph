@@ -138,6 +138,7 @@ public class SysDictController {
 	@RequestMapping("/dialog")
 	public String dialog(ModelMap model, Long pid, String uuid) {
 		SysDict sysDict = new SysDict();
+		sysDict.setDisabled(false);
 		sysDict.setPid(pid);
 		if (StrUtil.isNotBlank(uuid)) {
 			SysDict entity = iSysDictService.getOne(Wrappers.<SysDict>lambdaQuery().eq(SysDict::getUuid, uuid));
