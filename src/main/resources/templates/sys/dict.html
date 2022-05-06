@@ -93,7 +93,6 @@
     	 */
     	function dictDialog (type) {
     		var isAdd = true;
-    		var dialogTitle = '新增';
     		var dialogHref = ctx + '/sys/dict/dialog';
     		if (type === 2 || type === 3) {
         		var selected = $('#treeGrid').treegrid('getSelected');
@@ -111,7 +110,7 @@
     		}
     		var $dictDialog = $('<form id=\'dictDialog\' method=\'get\' class=\'myui\'></form>');
     	    $dictDialog.myuiDialog({
-    	        title: dialogTitle,
+    	        title: isAdd ? '新增' : '编辑',
     	        width: 890,
     	        height: 405,
     			collapsible: true,
