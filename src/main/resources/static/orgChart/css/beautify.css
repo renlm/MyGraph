@@ -2,17 +2,21 @@
 
 @import "jquery.orgchart.min.css";
 
+* {
+	margin: 0;
+	padding: 0;
+}
+
 html, body {
 	width: 100%;
 	height: 100%;
-	margin: 0;
-	padding: 0;
+	overflow: hidden;
 }
 
 .orgchart-box {
 	height: 100%;
 	width: 100%;
-	overflow: auto;
+	overflow: hidden;
 	text-align: center;
 }
 
@@ -38,7 +42,8 @@ html, body {
 }
 
 .orgchart .node .title .symbol {
-	margin-top: 7px;
+	margin-top: 17px;
+	margin-left: 5px;
 }
 
 .orgchart .node .title {
@@ -71,4 +76,27 @@ html, body {
 .orgchart .node .content-user {
 	border-color: #cc0066 !important;
 	height: 60px;
+}
+
+.oc-export-btn {
+	display: inline-block;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	touch-action: manipulation;
+	cursor: pointer;
+	user-select: none;
+	color: #fff;
+	background-color: #5cb85c;
+	border: 1px solid transparent;
+	border-color: #4cae4c;
+	border-radius: 4px;
 }
