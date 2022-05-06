@@ -10,39 +10,22 @@
 	<link th:href="@{/static/orgchart/jquery.orgchart.css}" rel="stylesheet" />
 	<link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet" />
 	<link th:href="@{/static/orgchart/common.css}" rel="stylesheet" />
-    <script th:src="@{/static/orgchart/jquery.min.js}"></script>
+    <script th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
     <script th:src="@{/static/orgchart/html2canvas.min.js}"></script>
-    <script th:src="@{/static/orgchart/jspdf.min.js}"></script>
     <script th:src="@{/static/orgchart/jquery.orgchart.js}"></script>
-    <script th:src="@{/static/orgchart/common.js}"></script>
 </head>
 <body>
 	<div class="orgchart-box" id="chart-container"></div>
 	<script type="text/javascript">
 	    $(function () {
 	        // 1. 获取所有组织机构
-	        var id = getUrlParam("id")||1;
+	        var id = getUrlParam("id") || 1;
 	
-	        $.get("[(@{/sys/org/ajax/getTree})]", {}, function (res) {
-	            var orgList = res;
-	            res[0].id = 0;
-	            if (!res || !id) {
-	                init({name: "null", text: "未查询到组织机构树"})
+	        $.get("[(@{/sys/org/ajax/getTree})]", function (orgTree) {
+	            if (orgTree.length === 0) {
+	                init({name: "null", text: "未查询到组织机构树"});
 	            } else {
-	                var orgTree = $.getTreeList($.extend({}, orgList), id);
-	                // 1.找到根节点并进行拼接
-	                var node;
-	                for (var i = 0; i < res.length; i++) {
-	                    if (res[i].id == id) {
-	                        node = $.extend({}, res[i]);
-	                    }
-	                }
-	                // 2. 获取所有成员 并进行拼接
-	                if(orgTree && orgTree.length >0){
-	                    init($.extend({}, node, {children: orgTree}));
-	                }else{
-	                    init($.extend({}, node));
-	                }
+	            	init(orgTree[0]);
 	            }
 	        }, "JSON");
 	
