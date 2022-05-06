@@ -174,13 +174,21 @@
 			delete param.rows;
 		},
 		/**
+		 * 树图标样式
+		 */
+		treeIconStyler: function (value, row) {
+		    if(value && row.iconClsColour) {
+		        return 'color:' + row.iconClsColour + ';';
+		    }
+		},
+		/**
 		 * 树名称格式化
 		 */
 		treeTextFormatter: function (value, row) {
 		    if(row.textColour) {
-		        return value;
-		    } else {
 		        return '<font color=' + row.textColour + '>' + value + '</font>';
+		    } else {
+		        return value;
 		    }
 		},
 		/**
