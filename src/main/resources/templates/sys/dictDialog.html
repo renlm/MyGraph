@@ -40,6 +40,9 @@
                        				$(that).data('expand', fatherIds);
                        			});
                        		}
+                       	},
+                       	onExpand:function(row){
+                       		$(this).treegrid('scrollTo', row.id);
                        	}
             		|"/>
             </div>
