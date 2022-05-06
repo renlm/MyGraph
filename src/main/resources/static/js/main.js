@@ -367,7 +367,7 @@
 
     function c(b) {
         var c = a.data(b, "combobox"), e = c.options, g = e.id;
-        a("#" + g).combobox("panel").addClass("icon-panel"), a('<div class="iconSelectPanel' + Math.ceil(100 * Math.random()) + '"><div style="padding:10px" class="iconlist"></div></div>').appendTo(".icon-panel"), a("#" + g).next("span").children(" .textbox-addon").addClass("icon-box" + Math.ceil(100 * Math.random()));
+        a("#" + g).combobox("panel").addClass("icon-panel"), a('<div class="iconSelectPanel' + Math.ceil(100 * Math.random()) + '"><div style="padding:6px 10px;" class="iconlist"></div></div>').appendTo(".icon-panel"), a("#" + g).next("span").children(" .textbox-addon").addClass("icon-box" + Math.ceil(100 * Math.random()));
         var h = a(b).val();
         h && (d(), f(g, h));
         var i = "";
@@ -391,7 +391,7 @@
         }) : e = b, a("." + c + " .iconlist").empty();
         var f = "";
         a.each(e, function (a, b) {
-            f += '<span class="fa ' + e[a] + '" title="' + b + '" style="width:30px;height:30px;border:1px solid #ccc;border-radius:8px;text-align:center;padding: 5px;font-size: 16px;margin: 0 8px 8px 0;" ></span>'
+            f += '<span class="fa ' + e[a] + '" title="' + b + '" style="width:30px;height:30px;border:1px solid #ccc;border-radius:8px;text-align:center;padding: 5px;font-size: 16px;margin: 4px 4px 4px 4px;"></span>'
         }), a("." + c + " .iconlist").append(f)
     }
 
