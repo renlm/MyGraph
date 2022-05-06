@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-    <title>通用字典</title>
+    <title>资源列表</title>
 </head>
 <body layout:fragment="content" class="myui">
 	<div class="easyui-layout" 
@@ -18,17 +18,19 @@
 			   		treeField:'text',
 					toolbar:'#toolbar',
 					method:'get',
-               		url:'dict/ajax/findListByPid'
+               		url:'resource/ajax/findListByPid'
               	">
 				<thead>
                		<tr>
-                       	<th data-options="field:'text',title:'字典名称',width:160"></th>
-                       	<th data-options="field:'code',title:'字典编码',width:100"></th>
-                       	<th data-options="field:'abbreviation',title:'简称',width:100"></th>
-                       	<th data-options="field:'alias',title:'别名',width:100"></th>
-                     	<th data-options="field:'level',title:'层级',width:100"></th>
-                     	<th data-options="field:'sort',title:'排序',width:100"></th>
+                       	<th data-options="field:'text',title:'资源名称',width:160,formatter:$.treeTextFormatter"></th>
+                      	<th data-options="field:'resourceTypeCode',title:'资源类别',width:80,formatter:$.resourceTypeFormatter"></th>
+                      	<th data-options="field:'url',title:'资源地址或标识',hidden:true"></th>
+                       	<th data-options="field:'code',title:'资源编码',width:100"></th>
+                     	<th data-options="field:'level',title:'层级',width:80"></th>
+                     	<th data-options="field:'sort',title:'排序',width:80"></th>
                     	<th data-options="field:'disabled',title:'启用状态',width:100,formatter:$.disabledFormatter"></th>
+                    	<th data-options="field:'commonly',title:'常用菜单',width:80,formatter:function(value,row){if(value){return '是'} return '';}"></th>
+                    	<th data-options="field:'defaultHomePage',title:'默认主页',width:80,formatter:function(value,row){if(value){return '是'} return '';}"></th>
                      	<th data-options="field:'remark',title:'备注',width:100"></th>
 					</tr>
               	</thead>
@@ -44,57 +46,35 @@
         	">新增
        	</a>
   		<div id="moreAddMenu" class="myui-toolbar" style="width:100px;">
-        	<a href="javascript:dictDialog(1);"
+        	<a href="javascript:resourceDialog(1);"
             	class="easyui-menubutton"
               	data-options="iconCls:'fa fa-plus',
            			hasDownArrow:false
       			">新增根节点
       		</a>
-     		<a href="javascript:dictDialog(2);"
+     		<a href="javascript:resourceDialog(2);"
              	class="easyui-menubutton"
               	data-options="iconCls:'fa fa-plus',
            			hasDownArrow:false
       			">新增子节点
       		</a>
   		</div>
-		<a href="javascript:dictDialog(3);"
+		<a href="javascript:resourceDialog(3);"
 			class="easyui-menubutton myui-btn-normal myui-btn-blue"
            	data-options="iconCls:'fa fa-pencil',
            		hasDownArrow:false
        		">编辑
    		</a>
-   		<a href="javascript:void(0);"
-        	class="easyui-menubutton myui-btn-normal myui-btn-orange"
-         	data-options="menu:'#moreOpsMenu',
-           		iconCls:'fa fa-list',
-           		hasDownArrow:true
-       		">更多
-       	</a>
-       	<div id="moreOpsMenu" class="myui-toolbar">
-        	<div th:data-actuator="${actuator}"
-        		onclick="$.createExcelExportTask($(this).data('actuator'), '数据字典');"
-        		class="easyui-menubutton"
-           		data-options="iconCls:'fa fa-file-excel-o',
-           			hasDownArrow:false
-            	">导出字典
-         	</div>
-        	<div class="easyui-menubutton"
-        		onclick="uploadDictDialog();"
-		    	data-options="iconCls:'fa fa-upload',
-           			hasDownArrow:false
-		   		">导入字典
-         	</div>
-		</div>
     </div>
     <script type="text/javascript">
     	/**
-    	 * 字典弹窗
+    	 * 资源弹窗
          * @param type 1：新增根节点，2：新增子节点，3：编辑
     	 */
-    	function dictDialog (type) {
+    	function resourceDialog (type) {
     		var isAdd = true;
     		var dialogTitle = '新增';
-    		var dialogHref = ctx + '/sys/dict/dialog';
+    		var dialogHref = ctx + '/sys/resource/dialog';
     		if (type === 2 || type === 3) {
         		var selected = $('#treeGrid').treegrid('getSelected');
         		if (selected) {
@@ -109,11 +89,11 @@
         			return;
         		}
     		}
-    		var $dictDialog = $('<form id=\'dictDialog\' method=\'get\' class=\'myui\'></form>');
-    	    $dictDialog.myuiDialog({
+    		var $resourceDialog = $('<form id=\'resourceDialog\' method=\'get\' class=\'myui\'></form>');
+    	    $resourceDialog.myuiDialog({
     	        title: dialogTitle,
-    	        width: 730,
-    	        height: 405,
+    	        width: 950,
+    	        height: 488,
     			collapsible: true,
     			minimizable: false,
     			maximizable: true,
@@ -126,8 +106,8 @@
     	            iconCls: isAdd ? 'fa fa-plus' : 'fa fa-save',
     	            handler: function () {
     					$.messager.progress({'text': '请求中……'});
-    			        $dictDialog.form('submit', {
-    			            url: ctx + '/sys/dict/ajax/save',
+    			        $resourceDialog.form('submit', {
+    			            url: ctx + '/sys/resource/ajax/save',
     			            onSubmit: function () {
     			                var isValid = $(this).form('validate');
     			                if (!isValid) {
@@ -139,7 +119,7 @@
     							var resultJson = JSON.parse(result);
     			                if (resultJson.statusCode == 200) {
     			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-    			                	$dictDialog.dialog('destroy');
+    			                	$resourceDialog.dialog('destroy');
     			                	if (resultJson.data.pid == null) {
     			                		$('#treeGrid').treegrid('reload');
     			                	} else {
@@ -156,67 +136,11 @@
     	            text: '关闭',
     	            iconCls: 'fa fa-close',
     	            handler: function () {
-    	                $dictDialog.dialog('destroy');
+    	                $resourceDialog.dialog('destroy');
     	            }
     	        }],
     			onClose: function () {
-    				$dictDialog.dialog('destroy');
-    			}
-    	    });
-    	}
-    	
-    	/**
-    	 * 导入字典（弹窗）
-    	 */
-    	function uploadDictDialog () {
-    		var $uploadDictDialog = $('<form id=\'uploadDictDialog\' method=\'post\' enctype=\'multipart/form-data\' class=\'myui\'></form>');
-    	    $uploadDictDialog.myuiDialog({
-    	        title: '导入字典',
-    	        width: 500,
-    	        height: 180,
-    			collapsible: true,
-    			minimizable: false,
-    			maximizable: true,
-    	        closed: false,
-    	        cache: false,
-    	        href: ctx + '/sys/dict/uploadDialog',
-    	        modal: true,
-    	        buttons: [{
-    	            text: '确定',
-    	            iconCls: 'fa fa-plus',
-    	            handler: function () {
-    					$.messager.progress({'text': '请求中……'});
-    			        $uploadDictDialog.form('submit', {
-    			            url: ctx + '/sys/dict/ajax/imp',
-    			            onSubmit: function () {
-    			                var isValid = $(this).form('validate');
-    			                if (!isValid) {
-    			                    $.messager.progress('close');
-    			                }
-    			                return isValid;
-    			            },
-    			            success: function (result) {
-    							var resultJson = JSON.parse(result);
-    			                if (resultJson.statusCode == 200) {
-    			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-    			                	$('#treeGrid').treegrid('reload');
-    			                	$uploadDictDialog.dialog('destroy');
-    			                } else {
-    			                	$.errorsDialog({id:'errorsDialog',width:850,height:495},resultJson.data?resultJson.data:resultJson.message);
-    			                }
-    			                $.messager.progress('close');
-    			        	}
-    			 		});
-    				}
-    	        }, {
-    	            text: '关闭',
-    	            iconCls: 'fa fa-close',
-    	            handler: function () {
-    	                $uploadDictDialog.dialog('destroy');
-    	            }
-    	        }],
-    			onClose: function () {
-    				$uploadDictDialog.dialog('destroy');
+    				$resourceDialog.dialog('destroy');
     			}
     	    });
     	}

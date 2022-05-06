@@ -174,6 +174,36 @@
 			delete param.rows;
 		},
 		/**
+		 * 树名称格式化
+		 */
+		treeTextFormatter: function (value, row) {
+		    if(row.textColour) {
+		        return value;
+		    } else {
+		        return '<font color=' + row.textColour + '>' + value + '</font>';
+		    }
+		},
+		/**
+		 * 资源类别格式化
+		 */
+		resourceTypeFormatter: function (value) {
+			if(value == 'menu') {
+		        return '菜单';
+		    } else if(value == 'button') {
+		        return '按钮';
+		    } else if(value == 'urlInsidePage') {
+		        return '链接-内页';
+		    } else if(value == 'urlNewWindows') {
+		        return '链接-新窗口';
+		    } else if(value == 'more') {
+		        return '更多功能';
+		    } else if(value == 'permission') {
+		        return '权限';
+		    } else {
+		        return value;
+		    }
+		},
+		/**
 		 * 禁用状态格式化
 		 */
 		disabledFormatter: function (value) {
