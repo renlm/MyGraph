@@ -5,9 +5,8 @@
         	<label class="myui-form-label">父级资源</label>
         	<div class="myui-input-block">
            		<input type="text" th:field="*{pid}" 
-           			id="pid"
                 	class="easyui-combotreegrid"
-                  	th:data-options="|id:'pid',required:false,
+                  	th:data-options="|required:false,
                   		fitColumns:true,
 						singleSelect:true,
                   		width:589,
@@ -15,15 +14,22 @@
 						idField:'id',
 				   		treeField:'text',
 						method:'get',
-                       	url:'dict/ajax/findListByPid*{pid==null?'':#strings.concat('?selected=',pid)}',
+                       	url:'dict/ajax/findListByPid',
                    		columns:[[
                         	{field:'text',title:'字典名称',width:100},
                         	{field:'code',title:'字典编码',width:100}
                        	]],
                        	onLoadSuccess:function(row,data){
-                       		console.log($(this).treegrid('expand', 128));
-                       		console.log($(this).treegrid('expand', 129));
-                       		console.log($(this).treegrid('expand', 130));
+                       		var that = this;
+                       		var init = $(that).data('init');
+                       		if (!init) {
+                       			$(that).data('init', true);
+                       			$.get('dict/ajax/findFathers', { id: *{pid} }, function (fathers) {
+                       				$.each(fathers, function (i, father) {
+                       					$(that).treegrid('expand', father.id);
+                       				});
+                       			});
+                       		}
                        	}
             		|"/>
             </div>

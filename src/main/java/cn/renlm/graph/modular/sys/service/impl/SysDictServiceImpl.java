@@ -70,7 +70,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		List<SysDict> list = CollUtil.newArrayList(sysDict);
 		int level = sysDict.getLevel();
 		while (--level > 0) {
-			list.add(this.getById(sysDict.getPid()));
+			list.add(this.getById(CollUtil.getLast(list).getPid()));
 		}
 		return CollUtil.reverse(list);
 	}
