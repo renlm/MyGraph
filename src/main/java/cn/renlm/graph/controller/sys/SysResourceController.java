@@ -103,6 +103,7 @@ public class SysResourceController {
 	@RequestMapping("/dialog")
 	public String dialog(ModelMap model, Long pid, String resourceId) {
 		SysResource sysResource = new SysResource();
+		sysResource.setDefaultHomePage(false);
 		sysResource.setDisabled(false);
 		sysResource.setPid(pid);
 		if (StrUtil.isNotBlank(resourceId)) {

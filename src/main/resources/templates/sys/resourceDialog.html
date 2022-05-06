@@ -1,4 +1,4 @@
-<div class="myui-fluid tfrcenter" th:object="${sysResource}">
+<div class="myui-fluid" th:object="${sysResource}">
     <div class="myui-row">
     	<input type="hidden" th:field="*{resourceId}" />
     	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -12,7 +12,7 @@
                   	th:data-options="|required:false,
                   		fitColumns:true,
 						singleSelect:true,
-                  		width:823,
+                  		width:788,
                   		panelHeight:328,
 						idField:'id',
 				   		treeField:'text',
@@ -58,7 +58,8 @@
                 <input type="text" th:field="*{text}" 
                 	class="easyui-textbox" 
                 	data-options="required:true,
-                		prompt:'必填'
+                		prompt:'必填',
+                		width:788
                 	"/>
             </div>
         </div>
@@ -69,9 +70,9 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{code}" 
                 	class="easyui-textbox" 
-                	data-options="id:'code',
-                		required:true,
+                	data-options="required:true,
                 		prompt:'必填',
+                		width:329,
                 		validType:['alphaDash','maxLength[20]','notStartWith[\'ROLE_\']']
                 	"/>
             </div>
@@ -85,10 +86,11 @@
                    		prompt:'必选',
 						valueField:'value',
 						textField:'text',
+                		width:329,
 						panelHeight:'auto',
 						data: [
-						    {text:'是',value:true},
-							{text:'否',value:false}
+						    {text:'是',value:'true'},
+							{text:'否',value:'false'}
 						]
 					"/>
             </div>
@@ -102,7 +104,9 @@
                  	class="easyui-combobox"
                  	data-options="required:true,
                    		prompt:'必选',
+                		width:329,
                    		panelHeight:'auto',
+						method:'get',
                    		url:'dict/ajax/getTree?codePaths=RESOURCE_TYPE',
                     	valueField:'code',
                     	textField:'text'
@@ -118,6 +122,7 @@
                    		prompt:'必选',
 						valueField:'value',
 						textField:'text',
+                		width:329,
 						panelHeight:'auto',
 						data: [
 						    {text:'有',value:'closed'},
@@ -132,8 +137,9 @@
         	<label class="myui-form-label">资源地址或标识</label>
             <div class="myui-input-block">
                 <input type="text" th:field="*{url}" 
-                	class="easyui-textbox" 
-                	/>
+                	class="easyui-textbox"
+                	data-options="width:788
+                   	"/>
             </div>
         </div>
     </div>
@@ -146,26 +152,11 @@
                   	data-options="required:true,
 						valueField:'value',
 						textField:'text',
+                		width:329,
 						panelHeight:'auto',
 						data: [
-						    {text:'禁用',value:true},
-							{text:'启用',value:false}
-						]
-					"/>
-            </div>
-        </div>
-        <div class="myui-col-sm6">
-            <label class="myui-form-label">是否常用</label>
-            <div class="myui-input-block">
-                <input type="text" th:field="*{commonly}"
-                	class="easyui-combobox"
-                  	data-options="required:true,
-						valueField:'value',
-						textField:'text',
-						panelHeight:'auto',
-						data: [
-						    {text:'是',value:true},
-							{text:'否',value:false}
+						    {text:'禁用',value:'true'},
+							{text:'启用',value:'false'}
 						]
 					"/>
             </div>
@@ -177,8 +168,9 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{iconCls}" 
                 	class="easyui-iconpicker" 
-                	data-options="delIcon:true" 
-                	/>
+                	data-options="delIcon:true,
+                		width:329
+                	"/>
             </div>
         </div>
         <div class="myui-col-sm6">
@@ -187,7 +179,8 @@
                 <input type="text" th:field="*{sort}"
                		class="easyui-numberspinner"
                    	data-options="required:true,
-                		prompt:'必填'
+                		prompt:'必填',
+                		width:329
                 	"/>
             </div>
         </div>
@@ -197,8 +190,9 @@
             <label class="myui-form-label">资源图标颜色</label>
             <div class="myui-input-block">
                 <input type="text" th:field="*{iconClsColour}" 
-                	class="easyui-textbox" 
-                	/>
+                	class="easyui-textbox"
+                	data-options="width:329
+                   	"/>
             </div>
         </div>
         <div class="myui-col-sm6">
@@ -206,7 +200,7 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{textColour}" 
                 	class="easyui-textbox"
-                	data-options="width:346.5
+                	data-options="width:329
                    	"/>
             </div>
         </div>
@@ -217,7 +211,7 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{remark}" 
                 	class="easyui-textbox"
-                   	data-options="width:823,
+                   	data-options="width:788,
                    		height:64,
                    		multiline:true
                    	"/>
