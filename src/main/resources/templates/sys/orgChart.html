@@ -34,37 +34,16 @@
 	          		toggleSiblingsResp: true,
 	          		data: orgTree,
 	          		exportButton: true,
-	          		nodeContent: 'text',
 	          		nodeTemplate: function (data) {
-	                    var html = "";
-	                    // 判断是否是叶子节点（即成员节点）
-	                    if(data.className && data.className == "slide-up"){
-	                        if (data.name == "null") {
-	                            html =
-	                                "    <div class=\"title title-user\">" + data.text + "</div>\n" +
-	                                "    <div class=\"content content-user\"><p>null</p></div>\n";
-	                        } else {
-	                            html += "    <div class=\"title title-user\">" + data.text + "</div><div class=\"content content-user\">";
-	                            html += "<p><i class='fa fa-user-circle'></i> 姓 名: " + (data.name ? data.name : "<span>（无）</span>") + "</p>";
-	                            html += "<p><i class='fa fa-address-book-o '></i> 手 机: " + (data.mobile ? data.mobile : "<span>（无）</span>") + "</p>";
-	                            html += "<p><i class='fa fa-envelope-o'></i> 邮 件: " + (data.email ? data.email : "<span>（无）</span>") + "</p>";
-	                            html += "</div>";
-	                        }
-	                    }else{
-	                        if (data.name == "null") {
-	                            html =
-	                                "    <div class=\"title\">" + data.text + "</div>\n" +
-	                                "    <div class=\"content\"><p>null</p></div>\n";
-	                        } else {
-	                            html += "    <div class=\"title\">" + data.text + "</div><div class=\"content\">";
-	                            html += "<p><i class='fa fa-user-circle'></i> 负责人: " + (data.name ? data.name : "<span>（无）</span>") + "</p>";
-	                            html += "<p><i class='fa fa-suitcase'></i> 职 位: " + (data.positionName ? data.positionName : "<span>（无）</span>") + "</p>";
-	                            html += "<p><i class='fa fa-address-book-o '></i> 手 机: " + (data.mobile ? data.mobile : "<span>（无）</span>") + "</p>";
-	                            html += "<p><i class='fa fa-envelope-o'></i> 邮 件: " + (data.email ? data.email : "<span>（无）</span>") + "</p>";
-	                            html += "</div>";
-	                        }
-	                    }
-	                    return html;
+	                	return `
+	                   			<div class="title">${data.name}</div>
+	                   			<div class="content">
+	                   				<p><i class="fa fa-user-circle"></i> 负责人: ${data.name}</p>
+	                   				<p><i class="fa fa-suitcase"></i> 职 位: ${data.name}</p>
+	                   				<p><i class="fa fa-address-book-o "></i> 手 机: ${data.name}</p>
+	                   				<p><i class="fa fa-envelope-o"></i> 邮 件: ${data.name}</p>
+	                   			</div>
+	                		`;
 	                }
 	            });
 	        }
