@@ -5,7 +5,7 @@
     </div>
     <div class="myui-row">
         <div class="myui-col-sm12">
-        	<label class="myui-form-label">父级资源</label>
+        	<label class="myui-form-label">父级节点</label>
         	<div class="myui-input-block">
            		<input type="text" th:field="*{pid}" 
                 	class="easyui-combotreegrid"
@@ -32,7 +32,7 @@
                        				}
                        			});
                        		} else {
-                       			$.get('resource/ajax/findFathers', { id: *{pid} }, function (fathers) {
+                       			$.get('org/ajax/findFathers', { id: *{pid} }, function (fathers) {
                        				var fatherIds = [];
                        				$.each(fathers, function (i, father) {
                        					fatherIds.push(father.id);
@@ -52,41 +52,14 @@
         </div>
     </div>
     <div class="myui-row">
-     	<div class="myui-col-sm6">
-     		<label class="myui-form-label">类型</label>
-        	<div class="myui-input-block">
-            	<input type="text" name="orgTypeCode"
-                 	class="easyui-combobox"
-                 	data-options="required:true,
-                   		prompt:'必选',
-                   		panelHeight:'auto',
-                   		url:'dict/ajax/getTree?codePaths=ORG_TYPE',
-                    	valueField:'code',
-                    	textField:'text'
-              		"/>
-       		</div>
-   		</div>
-    </div>
-    <div class="myui-row">
-        <div class="myui-col-sm6">
-            <label class="myui-form-label">名称</label>
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">组织机构名称</label>
             <div class="myui-input-block">
-                <input type="text" name="text"
+                <input type="text" th:field="*{text}"
                 	class="easyui-textbox"
                 	data-options="required:true,
-                   		prompt:'必填'
-                	"/>
-            </div>
-        </div>
-        <div class="myui-col-sm6">
-            <label class="myui-form-label">代码</label>
-            <div class="myui-input-block">
-                <input type="text" name="code" 
-                	class="easyui-textbox" 
-                	data-options="id:'code',
-                		required:true,
                    		prompt:'必填',
-                		validType:['alphaDash','maxLength[20]']
+                   		width:728
                 	"/>
             </div>
         </div>
@@ -95,13 +68,12 @@
         <div class="myui-col-sm12">
             <label class="myui-form-label">负责人</label>
             <div class="myui-input-block">
-	            <input type="text" name="leaderUserId"
+	            <input type="text" th:field="*{leaderUserId}"
 	               	class="easyui-combogrid"
 	             	data-options="idField:'userId',
 	             		textField:'nickname',
 	             		prompt:'负责人',
-	             		width:220,
-	             		panelWidth:500,
+	             		width:728,
 	            		pagination:true,
 	            		fitColumns:true,
 	            		pageSize:10,
@@ -120,58 +92,95 @@
     </div>
     <div class="myui-row">
         <div class="myui-col-sm6">
-            <label class="myui-form-label">启用状态</label>
+            <label class="myui-form-label">代码</label>
             <div class="myui-input-block">
-                <input type="text" name="disabled"
-                	class="easyui-combobox"
-                  	data-options="required:true,
-						valueField:'value',
-						textField:'text',
-						panelHeight:'auto',
-						value:0,
-						data: [
-						    {text:'禁用',value:true},
-							{text:'启用',value:false}
-						]
+                <input type="text" th:field="*{code}" 
+                	class="easyui-textbox" 
+                	data-options="required:true,
+                   		prompt:'必填',
+                   		width:299,
+                		validType:['alphaDash','maxLength[20]']
+                	"/>
+            </div>
+        </div>
+    	<div class="myui-col-sm6">
+     		<label class="myui-form-label">类型</label>
+        	<div class="myui-input-block">
+            	<input type="text" th:field="*{orgTypeCode}"
+                 	class="easyui-combobox"
+                 	data-options="required:true,
+                   		prompt:'必选',
+                		width:299,
+                   		panelHeight:'auto',
+						method:'get',
+                   		url:'dict/ajax/getTree?codePaths=ORG_TYPE',
+                    	valueField:'code',
+                    	textField:'text'
+              		"/>
+       		</div>
+   		</div>
+    </div>
+    <fieldset>
+        <legend>其它信息</legend>
+    </fieldset>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">图标</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{iconCls}" 
+                	class="easyui-iconpicker" 
+                	data-options="delIcon:true,
+                		width:299,
+                   		panelHeight:200
                 	"/>
             </div>
         </div>
         <div class="myui-col-sm6">
-            <label class="myui-form-label">是否有子节点</label>
+            <label class="myui-form-label">排序</label>
             <div class="myui-input-block">
-                <input type="text" name="state"
-                	class="easyui-combobox"
-                  	data-options="required:true,
-                		prompt:'必选',
-						valueField:'value',
-						textField:'text',
-						panelHeight:'closed',
-						data: [
-						    {text:'是',value:'closed'},
-							{text:'否',value:'open'}
-						]
+                <input type="text" th:field="*{sort}"
+               		class="easyui-numberspinner"
+                   	data-options="required:true,
+                		prompt:'必填',
+                		width:299
                 	"/>
             </div>
         </div>
     </div>
     <div class="myui-row">
         <div class="myui-col-sm6">
-            <label class="myui-form-label">图标</label>
+            <label class="myui-form-label">启用状态</label>
             <div class="myui-input-block">
-                <input type="text" name="iconCls" 
-                	class="easyui-iconpicker" 
-                	data-options="delIcon:true" 
-                	/>
+                <input type="text" th:field="*{disabled}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+						valueField:'value',
+						textField:'text',
+                		width:299,
+						panelHeight:'auto',
+						data: [
+						    {text:'禁用',value:'true'},
+							{text:'启用',value:'false'}
+						]
+					"/>
             </div>
         </div>
         <div class="myui-col-sm6">
-            <label class="myui-form-label">排序</label>
+            <label class="myui-form-label">是否有子节点</label>
             <div class="myui-input-block">
-                <input type="text" name="sort"
-                	class="easyui-numberspinner"
-                	data-options="required:true,
-                		prompt:'必填'
-                	"/>
+                <input type="text" th:field="*{state}"
+              		class="easyui-combobox"
+                   	data-options="required:true,
+                   		prompt:'必选',
+						valueField:'value',
+						textField:'text',
+                		width:299,
+						panelHeight:'auto',
+						data: [
+						    {text:'有',value:'closed'},
+							{text:'无',value:'open'}
+						]
+					"/>
             </div>
         </div>
     </div>
@@ -179,10 +188,12 @@
         <div class="myui-col-sm12">
         	<label class="myui-form-label">备注</label>
             <div class="myui-input-block">
-                <input type="text" name="remark" 
-                	class="easyui-textarea" 
-                	data-options="height:120"
-                	/>
+                <input type="text" th:field="*{remark}" 
+                	class="easyui-textbox"
+                   	data-options="width:728,
+                   		height:100,
+                   		multiline:true
+                   	"/>
             </div>
         </div>
     </div>
