@@ -24,4 +24,20 @@ public interface ISysResourceService extends IService<SysResource> {
 	 */
 	List<SysResource> findListByUser(String userId);
 
+	/**
+	 * 获取指定父节点下级列表
+	 * 
+	 * @param pid
+	 * @return
+	 */
+	List<SysResource> findListByPid(Long pid);
+
+	/**
+	 * 获取由上而下的父子集
+	 * 
+	 * @param id
+	 * @return
+	 */
+	List<SysResource> findFathers(Long id);
+
 }

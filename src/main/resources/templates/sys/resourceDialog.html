@@ -1,0 +1,172 @@
+<div class="myui-fluid tfrcenter" th:object="${sysDict}">
+    <div class="myui-row">
+    	<input type="hidden" th:field="*{uuid}" />
+    	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+        	<label class="myui-form-label">父级资源</label>
+        	<div class="myui-input-block">
+           		<input type="text" th:field="*{pid}" 
+                	class="easyui-combotreegrid"
+                  	th:data-options="|required:false,
+                  		fitColumns:true,
+						singleSelect:true,
+                  		width:589,
+                  		panelHeight:257,
+						idField:'id',
+				   		treeField:'text',
+						method:'get',
+                       	url:'dict/ajax/findListByPid',
+                   		columns:[[
+                        	{field:'text',title:'字典名称',width:100},
+                        	{field:'code',title:'字典编码',width:100}
+                       	]],
+                       	onLoadSuccess:function(row,data){
+                       		var that = this;
+                       		var expand = $(that).data('expand');
+                       		if (expand) {
+                       			$.each(data, function (i, node) {
+                       				if (expand.contains(node.id)) {
+                       					$(that).treegrid('expand', node.id);
+                       				}
+                       			});
+                       		} else {
+                       			$.get('dict/ajax/findFathers', { id: *{pid} }, function (fathers) {
+                       				var fatherIds = [];
+                       				$.each(fathers, function (i, father) {
+                       					fatherIds.push(father.id);
+                       					if (i === 0) {
+                       						$(that).treegrid('expand', father.id);
+                       					}
+                       				});
+                       				$(that).data('expand', fatherIds);
+                       			});
+                       		}
+                       	},
+                       	onExpand:function(row){
+                       		$(this).treegrid('scrollTo', row.id);
+                       	}
+            		|"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">字典名称</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{text}" 
+                	class="easyui-textbox" 
+                	data-options="required:true,
+                   		width:222,
+                   		prompt:'必填'
+                   	"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">字典编码</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{code}"
+                	class="easyui-textbox" 
+                	data-options="required:true,
+                   		width:222,
+                   		prompt:'必填',
+                		validType:['alphaDash','maxLength[20]']
+            		"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">字典图标</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{iconCls}" 
+                	class="easyui-iconpicker"
+                	data-options="width:222,
+                		panelHeight:240,
+                		delIcon:true
+                	"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">简称</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{abbreviation}" 
+                	class="easyui-textbox" 
+                	data-options="width:222
+                   	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">子菜单</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{state}"
+              		class="easyui-combobox"
+                   	data-options="required:true,
+                   		width:222,
+                   		prompt:'必选',
+						valueField:'value',
+						textField:'text',
+						panelHeight:'auto',
+						data: [
+						    {text:'有',value:'closed'},
+							{text:'无',value:'open'}
+						]
+            		"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">别名</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{alias}" 
+                	class="easyui-textbox" 
+                	data-options="width:222
+                   	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">启用状态</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{disabled}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+                   		width:222,
+						valueField:'value',
+						textField:'text',
+						panelHeight:'auto',
+						data: [
+						    {text:'禁用',value:'true'},
+							{text:'启用',value:'false'}
+						]
+            		"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">字典排序</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{sort}"
+               		class="easyui-numberspinner"
+                   	data-options="required:true,
+                   		width:222,
+                   		prompt:'必填'
+                   	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12"><label class="myui-form-label">备注</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{remark}" 
+                	class="easyui-textbox"
+                   	data-options="width:589,
+                   		height:100,
+                   		multiline:true
+                   	"/>
+            </div>
+        </div>
+    </div>
+</div>

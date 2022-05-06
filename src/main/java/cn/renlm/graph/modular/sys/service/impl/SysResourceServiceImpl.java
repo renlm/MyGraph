@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.mapper.SysResourceMapper;
@@ -35,5 +36,33 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 			wrapper.orderByAsc(SysResource::getSort);
 			wrapper.orderByAsc(SysResource::getId);
 		}));
+	}
+
+	@Override
+	public List<SysResource> findListByPid(Long pid) {
+		return this.list(Wrappers.<SysResource>lambdaQuery().func(wrapper -> {
+			if (pid == null) {
+				wrapper.isNull(SysResource::getPid);
+				wrapper.eq(SysResource::getLevel, 1);
+			} else {
+				wrapper.eq(SysResource::getPid, pid);
+			}
+			wrapper.orderByAsc(SysResource::getSort);
+			wrapper.orderByAsc(SysResource::getId);
+		}));
+	}
+
+	@Override
+	public List<SysResource> findFathers(Long id) {
+		if (id == null) {
+			return CollUtil.newArrayList();
+		}
+		SysResource sysDict = this.getById(id);
+		List<SysResource> list = CollUtil.newArrayList(sysDict);
+		int level = sysDict.getLevel();
+		while (--level > 0) {
+			list.add(this.getById(CollUtil.getLast(list).getPid()));
+		}
+		return CollUtil.reverse(list);
 	}
 }
