@@ -293,6 +293,30 @@
 		return;
 	}
 	$.extend($.fn.validatebox.defaults.rules, {
+		username: {
+	        validator: function(value) {
+	            return new RegExp("^[A-Z-a-z_\\d]{3,20}$").test(value);
+	        },
+	        message: '账号限定3~20个字符，只能包含字母、数字、下划线或横线'
+	    },
+		password: {
+	        validator: function(value) {
+	            return new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\W)[\\s\\S]{6,20}").test(value);
+	        },
+	        message: '密码限定6~20个字符，大小写字母、数字及特殊字符至少各一个'
+	    },
+		notStartWith: {
+	        validator: function(value, param) {
+	            return new RegExp("^(?!" + param[0] + ")").test(value);
+	        },
+	        message: '不能以{0}开头'
+	    },
+		decimal: {
+	        validator: function(value, param) {
+	            return new RegExp("^([1-9]+[\\d]{0," + (param[0] - param[1]) + "}(.[0-9]{1," + param[1] + "})?)$").test(value);
+	        },
+	        message: '输入内容只能是数字，最多{0}位，小数位不超过{1}位'
+	    },
         equals: {
             validator: function (b, c) {
                 return b == a(c[0]).val()
