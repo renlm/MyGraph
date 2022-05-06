@@ -18,7 +18,15 @@
 			   		treeField:'text',
 					toolbar:'#toolbar',
 					method:'get',
-               		url:'org/ajax/getTree'
+               		url:'org/ajax/getTree',
+               		onLoadSuccess:function(row,data){
+               			var that = this;
+               			if (row == null) {
+               				$.each(data, function (i, item) {
+               					$(that).treegrid('expand', item.id);
+               				});
+               			}
+               		}
               	">
 				<thead>
                		<tr>
