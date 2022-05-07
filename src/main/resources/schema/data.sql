@@ -65,7 +65,7 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(2001, 			'F41159ACD09B4DD3B04D0E6EEAE6E875',	'2001', 		'权限管理', 		'menu', 			null, 														'fa fa-cube', 				null, 				null, 			2, 		1, 		'closed',	0,					20,			null)
 	  ,(200101, 		'1A22415278094E2D802A73382B60CDA7',	'200101', 		'用户管理', 		'menu', 			null, 														'fa fa-user', 				null, 				null, 			3, 		1, 		'open',		0,					2001,		null)
 	  ,(200102, 		'27687B485B80460A80F077E964163D25',	'200102', 		'组织机构', 		'menu', 			'/sys/org', 												'fa fa-sitemap', 			null, 				null, 			3, 		2, 		'open',		0,					2001,		null)
-	  ,(200103, 		'D182D4DA30F44B9A92CC57AC4A2A5918',	'200103', 		'角色管理', 		'menu', 			null, 														'fa fa-user-circle', 		null, 				null, 			3, 		3, 		'open',		0,					2001,		null)
+	  ,(200103, 		'D182D4DA30F44B9A92CC57AC4A2A5918',	'200103', 		'角色管理', 		'menu', 			'/sys/role', 												'fa fa-user-circle', 		null, 				null, 			3, 		3, 		'open',		0,					2001,		null)
 	  ,(2002, 			'7D59CAD9CA0C4D69905612E2C801E87E',	'2002', 		'数据字典', 		'menu', 			null, 														'fa fa-cogs', 				null, 				null, 			2, 		2, 		'closed',	0,					20,			null)
 	  ,(200201, 		'32DDAEA4491E4D03BE12A531FDA6D8A9',	'200201', 		'通用字典', 		'menu', 			'/sys/dict', 												'fa fa-calendar', 			null, 				null, 			3, 		1, 		'open',		0,					2002,		null)
 	  ,(200202, 		'17A93E79D780487284BF886B99A05E2F',	'200202', 		'系统常量', 		'menu', 			'/sys/const', 												'fa fa-file-word-o', 		null, 				null, 			3, 		2, 		'open',		0,					2002,		null)
