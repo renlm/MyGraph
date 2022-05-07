@@ -166,10 +166,12 @@
 		 * 表格分页参数处理
 		 */
 		pageOnBeforeLoad: function (param) {
-			param.keywords = param.q;
+			if (param.q) {
+				param.keywords = param.q;
+				delete param.q;
+			}
 			param.current = param.page;
 			param.size = param.rows;
-			delete param.q;
 			delete param.page;
 			delete param.rows;
 		},
