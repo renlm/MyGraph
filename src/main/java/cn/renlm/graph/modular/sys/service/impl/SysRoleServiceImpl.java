@@ -148,6 +148,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 			}
 		}
 		this.saveOrUpdate(sysRole);
-		return Result.success();
+		return Result.success(sysRole);
 	}
 }

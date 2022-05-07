@@ -24,6 +24,9 @@ public class TreeExtraUtil {
 	 * @return
 	 */
 	public static final <T> List<Tree<T>> resetLevel(List<Tree<T>> tree, int level) {
+		if (CollUtil.isEmpty(tree)) {
+			return CollUtil.newArrayList();
+		}
 		for (Tree<T> node : tree) {
 			node.putExtra("level", level);
 			if (CollUtil.isNotEmpty(node.getChildren())) {
