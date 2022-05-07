@@ -410,6 +410,12 @@
 			var dlg = $.messager.alert(title,msg,icon,fn);
 			dlg.next().find('a').addClass('myui-btn-red').find(".l-btn-left").addClass("l-btn-icon-left").append('<span class="l-btn-icon fa fa-check-circle">&nbsp;</span>').find('.l-btn-text').css('height', '28px').css('line-height', '28px').next().css('cssText', 'margin-top:-5px!important;');
 			return dlg;
+		},
+		myuiConfirm:function(title,msg,fn){
+			var dlg = $.messager.confirm(title,msg,fn);
+			dlg.next().find('a:eq(0)').addClass('myui-btn-blue').find(".l-btn-left").addClass("l-btn-icon-left").append('<span class="l-btn-icon fa fa-check-circle">&nbsp;</span>').find('.l-btn-text').css('height', '28px').css('line-height', '28px').next().css('cssText', 'margin-top:-5px!important;');
+			dlg.next().find('a:eq(1)').addClass('myui-btn-red').find(".l-btn-left").addClass("l-btn-icon-left").append('<span class="l-btn-icon fa fa-close">&nbsp;</span>').find('.l-btn-text').css('height', '28px').css('line-height', '28px').next().css('cssText', 'margin-top:-5px!important;');
+			return dlg;
 		}
     });
 })(jQuery);

@@ -43,7 +43,7 @@
         </div>
     </div>
     <div id="toolbar" class="myui-toolbar">
-		<a href="javascript:void(0);"
+		<a href="javascript:userDialog();"
           	class="easyui-menubutton myui-btn-normal myui-btn-green"
          	data-options="iconCls:'fa fa-plus',
            		hasDownArrow:false
@@ -57,7 +57,7 @@
        		">更多
        	</a>
        	<div id="moreOpsMenu" class="myui-toolbar">
-        	<div onclick="javascript:void(0);"
+        	<div onclick="javascript:resetPassword();"
         		class="easyui-menubutton"
            		data-options="iconCls:'fa fa-key',
            			hasDownArrow:false
@@ -106,7 +106,7 @@
 	 * 查询
 	 */
 	function search () {
-		$("#dataGrid").datagrid("load", {
+		$('#dataGrid').datagrid('load', {
 			orgId: $('#orgId').combo('getValue'),
 			keywords: $('#keywords').textbox('getValue')
 		});
@@ -118,6 +118,94 @@
 	function reset () {
 		$('#form').form('clear');
 		search();
+	}
+	
+	/**
+	 * 弹窗（新增|编辑）
+	 */
+	function userDialog (userId) {
+		var $userDialog = $('<form id=\'userDialog\' method=\'get\' class=\'myui\'></form>');
+	    $userDialog.myuiDialog({
+	        title: userId ? '编辑' : '新增',
+	        width: 890,
+	        height: 483,
+			collapsible: true,
+			minimizable: false,
+			maximizable: true,
+	        closed: false,
+	        cache: false,
+	        href: 'user/dialog',
+	        modal: true,
+	        buttons: [{
+	            text: userId ? '更新' : '保存',
+	            iconCls: userId ? 'fa fa-save' : 'fa fa-plus',
+	            handler: function () {
+					$.messager.progress({'text': '请求中……'});
+			        $userDialog.form('submit', {
+			            url: 'user/ajax/save',
+			            onSubmit: function () {
+			                var isValid = $(this).form('validate');
+			                if (!isValid) {
+			                    $.messager.progress('close');
+			                }
+			                return isValid;
+			            },
+			            success: function (result) {
+							var resultJson = JSON.parse(result);
+			                if (resultJson.statusCode == 200) {
+			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+			                	$userDialog.dialog('destroy');
+			                	$('#dataGrid').datagrid('load');
+			                } else {
+			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+			                }
+			                $.messager.progress('close');
+			        	}
+			 		});
+				}
+	        }, {
+	            text: '关闭',
+	            iconCls: 'fa fa-close',
+	            handler: function () {
+	                $userDialog.dialog('destroy');
+	            }
+	        }],
+			onClose: function () {
+				$userDialog.dialog('destroy');
+			}
+	    });
+	}
+	
+	/**
+	 * 重置密码
+	 */
+	function resetPassword () {
+		var checked = $('#dataGrid').datagrid('getChecked');
+		if (!checked || checked.length === 0) {
+			$.messager.myuiAlert('操作提示', '请先选中要重置密码的用户！', 'warning');
+			return;
+		} else {
+			var userIds = [];
+			$.each(checked, function (i, item) {
+				userIds[i] = item.userId;
+			});
+			$.messager.myuiConfirm('操作提示', '确定要重置该用户密码吗？重置后新密码只显示一次，请自行记录。', function (r) {
+				if (r) {
+					$.messager.progress({'text': '请求中……'});
+					$.post('user/ajax/resetPassword', 
+							{ userIds: userIds.join() }, 
+							function (resultJson) {
+				                $.messager.progress('close');
+								if (resultJson.statusCode == 200) {
+				                	$.messager.show({title: '我的消息', msg: resultJson.data, timeout: 10000, showType: 'slide'});
+				                	$orgDialog.dialog('destroy');
+				                } else {
+				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+				                }
+							});
+				}
+			});
+		}
 	}
 </script>
 </body>

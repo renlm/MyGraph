@@ -1,15 +1,25 @@
 package cn.renlm.graph.controller.sys;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.hutool.core.util.RandomUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.dto.SysUserDto;
 import cn.renlm.graph.modular.sys.entity.SysUser;
@@ -88,6 +98,35 @@ public class SysUserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
+		}
+	}
+
+	/**
+	 * 批量重置用户密码
+	 * 
+	 * @param request
+	 * @param userIds
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/ajax/resetPassword")
+	public Result<String> resetPassword(HttpServletRequest request, String userIds) {
+		try {
+			if (StrUtil.isBlank(userIds)) {
+				return Result.error("未选中用户");
+			}
+			String newPassword = RandomUtil.randomString(RandomUtil.randomInt(8, 12));
+			List<SysUser> users = iSysUserService.list(
+					Wrappers.<SysUser>lambdaQuery().in(SysUser::getUserId, StrUtil.splitTrim(userIds, StrUtil.COMMA)));
+			users.forEach(user -> {
+				user.setPassword(new BCryptPasswordEncoder().encode(newPassword));
+				user.setUpdatedAt(new Date());
+			});
+			iSysUserService.saveOrUpdateBatch(users);
+			return Result.success(newPassword);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("服务器出错了");
 		}
 	}
 }
