@@ -35,6 +35,17 @@ public class SysUserController {
 	private ISysUserService iSysUserService;
 
 	/**
+	 * 用户管理
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping
+	public String index(ModelMap model) {
+		return "sys/user";
+	}
+
+	/**
 	 * 用户列表
 	 * 
 	 * @param page
