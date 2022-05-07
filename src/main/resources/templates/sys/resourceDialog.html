@@ -18,6 +18,12 @@
 				   		treeField:'text',
 						method:'get',
                        	url:'resource/ajax/findListByPid',
+                       	icons:[{
+                        	iconCls:'fa fa-remove',
+                            handler:function(e){
+                                $(e.data.target).combotreegrid('clear');
+                          	}
+                      	}],
                    		columns:[[
                         	{field:'text',title:'资源名称',width:100},
                         	{field:'code',title:'资源编码',width:100}

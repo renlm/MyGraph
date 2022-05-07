@@ -18,6 +18,12 @@
 				   		treeField:'text',
 						method:'get',
                        	url:'dict/ajax/findListByPid',
+                       	icons:[{
+                        	iconCls:'fa fa-remove',
+                            handler:function(e){
+                                $(e.data.target).combotreegrid('clear');
+                          	}
+                      	}],
                    		columns:[[
                         	{field:'text',title:'字典名称',width:100},
                         	{field:'code',title:'字典编码',width:100}
