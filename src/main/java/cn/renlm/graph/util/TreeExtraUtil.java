@@ -35,4 +35,25 @@ public class TreeExtraUtil {
 		}
 		return tree;
 	}
+
+	/**
+	 * 获取全部节点
+	 * 
+	 * @param <T>
+	 * @param tree
+	 * @return
+	 */
+	public static final <T> List<Tree<T>> getAllNodes(List<Tree<T>> tree) {
+		List<Tree<T>> nodes = CollUtil.newArrayList();
+		if (CollUtil.isEmpty(tree)) {
+			return nodes;
+		}
+		for (Tree<T> node : tree) {
+			nodes.add(node);
+			if (CollUtil.isNotEmpty(node.getChildren())) {
+				nodes.addAll(getAllNodes(node.getChildren()));
+			}
+		}
+		return nodes;
+	}
 }

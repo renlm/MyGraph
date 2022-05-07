@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +19,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -25,6 +27,7 @@ import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.dto.SysUserDto;
+import cn.renlm.graph.modular.sys.entity.SysOrg;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysRoleResource;
@@ -35,6 +38,7 @@ import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.util.TreeExtraUtil;
 
 /**
  * <p>
@@ -62,6 +66,16 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	@Override
 	public Page<SysUser> findPage(Page<SysUser> page, SysUserDto form) {
 		Page<SysUser> data = this.page(page, Wrappers.<SysUser>lambdaQuery().func(wrapper -> {
+			if (StrUtil.isNotBlank(form.getOrgId())) {
+				SysOrg sysOrg = iSysOrgService
+						.getOne(Wrappers.<SysOrg>lambdaQuery().eq(SysOrg::getOrgId, form.getOrgId()));
+				List<Tree<Long>> orgTrees = iSysOrgService.getTree(true, sysOrg.getId());
+				List<Tree<Long>> orgNodes = TreeExtraUtil.getAllNodes(orgTrees);
+				wrapper.inSql(SysUser::getId, StrUtil.indexedFormat(
+						"select suo.sys_user_id from sys_org so, sys_user_org suo where so.id in ({0}) and so.id = suo.sys_org_id and so.deleted = 0 and suo.deleted = 0",
+						orgNodes.stream().map(it -> String.valueOf(it.getId()))
+								.collect(Collectors.joining(StrUtil.COMMA))));
+			}
 			if (StrUtil.isNotBlank(form.getKeywords())) {
 				wrapper.and(it -> {
 					it.or().like(SysUser::getUsername, form.getKeywords());
