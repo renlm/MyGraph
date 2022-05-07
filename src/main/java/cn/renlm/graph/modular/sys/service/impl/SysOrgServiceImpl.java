@@ -67,9 +67,9 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 		if (id == null) {
 			return CollUtil.newArrayList();
 		}
-		SysOrg sysDict = this.getById(id);
-		List<SysOrg> list = CollUtil.newArrayList(sysDict);
-		int level = sysDict.getLevel();
+		SysOrg sysOrg = this.getById(id);
+		List<SysOrg> list = CollUtil.newArrayList(sysOrg);
+		int level = sysOrg.getLevel();
 		while (--level > 0) {
 			list.add(this.getById(CollUtil.getLast(list).getPid()));
 		}
@@ -157,6 +157,7 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 			if (fatherIds.contains(sysOrg.getId())) {
 				return Result.error("不能选择自身或子节点作为父级");
 			} else {
+				parent.setUpdatedAt(new Date());
 				this.updateById(parent);
 			}
 		}

@@ -146,6 +146,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 			if (fatherIds.contains(sysDict.getId())) {
 				return Result.error("不能选择自身或子节点作为父级字典");
 			} else {
+				parent.setUpdatedAt(new Date());
 				this.updateById(parent);
 			}
 		}

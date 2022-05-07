@@ -71,9 +71,9 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 		if (id == null) {
 			return CollUtil.newArrayList();
 		}
-		SysResource sysDict = this.getById(id);
-		List<SysResource> list = CollUtil.newArrayList(sysDict);
-		int level = sysDict.getLevel();
+		SysResource sysResource = this.getById(id);
+		List<SysResource> list = CollUtil.newArrayList(sysResource);
+		int level = sysResource.getLevel();
 		while (--level > 0) {
 			list.add(this.getById(CollUtil.getLast(list).getPid()));
 		}
@@ -146,6 +146,7 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 			if (fatherIds.contains(sysResource.getId())) {
 				return Result.error("不能选择自身或子节点作为父级资源");
 			} else {
+				parent.setUpdatedAt(new Date());
 				this.updateById(parent);
 			}
 		}
