@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-    <title>组织机构</title>
+    <title>角色管理</title>
 </head>
 <body layout:fragment="content" class="myui">
 	<div class="easyui-layout"
@@ -22,7 +22,7 @@
 			   		treeField:'text',
 					toolbar:'#toolbar',
 					method:'get',
-               		url:'org/ajax/getTree',
+               		url:'role/ajax/getTree',
                		onLoadSuccess:function(row,data){
                			var that = this;
                			if (row == null) {
@@ -32,23 +32,14 @@
                			}
                		},
                		onClickRow:function(row){
-				   		var url = 'org/chart';
-				    	if (row && row.id) {
-				       		url = url + '?id=' + row.id;
-				      	}
-				     	var pp = $('#eastTabs').tabs('getSelected');
-				       	var tabIframe = pp.find('iframe')[0];
-				     	if (tabIframe) {
-				     		tabIframe.contentWindow.location.href = url;
-				     	}
+				   		
 					}
               	">
 				<thead>
                		<tr>
-	                    <th data-options="field:'text',title:'名称'"></th>
-	                    <th data-options="field:'orgTypeCode',title:'类型',formatter:$.orgTypeFormatter"></th>
-	                    <th data-options="field:'level',title:'层级'"></th>
-	               		<th data-options="field:'disabled',title:'状态',width:100,formatter:$.disabledFormatter"></th>
+	                    <th data-options="field:'text',title:'名称',width:100"></th>
+	                    <th data-options="field:'sort',title:'排序',width:25"></th>
+	                    <th data-options="field:'disabled',title:'状态',width:25,formatter:$.disabledFormatter"></th>
 					</tr>
               	</thead>
 			</table>
@@ -67,9 +58,18 @@
              		bodyCls:'border_right_none'
              	">
                 <div style="overflow: hidden;"
-                	title="组织机构树"
-               		data-options="iconCls:'fa fa-th',
-						content:'<iframe src=\'org/chart\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'
+                	title="功能权限"
+               		data-options="iconCls:'fa fa-th'
+					">
+				</div>
+				<div style="overflow: hidden;"
+                	title="授权人员"
+               		data-options="iconCls:'fa fa-th'
+					">
+				</div>
+				<div style="overflow: hidden;"
+                	title="自定义"
+               		data-options="iconCls:'fa fa-th'
 					">
 				</div>
             </div>
@@ -84,20 +84,20 @@
         	">新增
        	</a>
   		<div id="moreAddMenu" class="myui-toolbar" style="width:100px;">
-        	<a href="javascript:orgDialog(1);"
+        	<a href="javascript:roleDialog(1);"
             	class="easyui-menubutton"
               	data-options="iconCls:'fa fa-plus',
            			hasDownArrow:false
       			">新增根节点
       		</a>
-     		<a href="javascript:orgDialog(2);"
+     		<a href="javascript:roleDialog(2);"
              	class="easyui-menubutton"
               	data-options="iconCls:'fa fa-plus',
            			hasDownArrow:false
       			">新增子节点
       		</a>
   		</div>
-		<a href="javascript:orgDialog(3);"
+		<a href="javascript:roleDialog(3);"
 			class="easyui-menubutton myui-btn-normal myui-btn-blue"
            	data-options="iconCls:'fa fa-pencil',
            		hasDownArrow:false
@@ -109,9 +109,9 @@
     	 * 弹窗
          * @param type 1：新增根节点，2：新增子节点，3：编辑
     	 */
-    	function orgDialog (type) {
+    	function roleDialog (type) {
     		var isAdd = true;
-    		var dialogHref = ctx + '/sys/org/dialog';
+    		var dialogHref = ctx + '/sys/role/dialog';
     		if (type === 2 || type === 3) {
         		var selected = $('#treeGrid').treegrid('getSelected');
         		if (selected) {
@@ -126,8 +126,8 @@
         			return;
         		}
     		}
-    		var $orgDialog = $('<form id=\'orgDialog\' method=\'get\' class=\'myui\'></form>');
-    	    $orgDialog.myuiDialog({
+    		var $roleDialog = $('<form id=\'roleDialog\' method=\'get\' class=\'myui\'></form>');
+    	    $roleDialog.myuiDialog({
     	        title: isAdd ? '新增' : '编辑',
     	        width: 890,
     	        height: 483,
@@ -143,8 +143,8 @@
     	            iconCls: isAdd ? 'fa fa-plus' : 'fa fa-save',
     	            handler: function () {
     					$.messager.progress({'text': '请求中……'});
-    			        $orgDialog.form('submit', {
-    			            url: ctx + '/sys/org/ajax/save',
+    			        $roleDialog.form('submit', {
+    			            url: ctx + '/sys/role/ajax/save',
     			            onSubmit: function () {
     			                var isValid = $(this).form('validate');
     			                if (!isValid) {
@@ -156,7 +156,7 @@
     							var resultJson = JSON.parse(result);
     			                if (resultJson.statusCode == 200) {
     			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-    			                	$orgDialog.dialog('destroy');
+    			                	$roleDialog.dialog('destroy');
     			                	if (resultJson.data.pid == null) {
     			                		$('#treeGrid').treegrid('reload');
     			                	} else {
@@ -180,11 +180,11 @@
     	            text: '关闭',
     	            iconCls: 'fa fa-close',
     	            handler: function () {
-    	                $orgDialog.dialog('destroy');
+    	                $roleDialog.dialog('destroy');
     	            }
     	        }],
     			onClose: function () {
-    				$orgDialog.dialog('destroy');
+    				$roleDialog.dialog('destroy');
     			}
     	    });
     	}
