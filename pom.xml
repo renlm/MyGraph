@@ -137,7 +137,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>cn.aghost</groupId>
+			<groupId>pro.fessional</groupId>
 			<artifactId>kaptcha</artifactId>
 			<version>2.3.3</version>
 		</dependency>
