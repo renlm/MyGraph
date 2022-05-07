@@ -285,6 +285,16 @@
 			}
 		},
 		/**
+		 * 否是状态格式化
+		 */
+		noYesFormatter: function (value) {
+			if(value) {
+				return '<span style=\'color:gray;\'>否</span>';
+			} else {
+				return '<span style=\'color:green;\'>是</span>';
+			}
+		},
+		/**
 		 * 创建时间格式化
 		 */
 		createdAtFormatter: function (value) {
