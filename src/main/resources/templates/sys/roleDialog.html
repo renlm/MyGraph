@@ -25,8 +25,9 @@
                           	}
                       	}],
                    		columns:[[
-                        	{field:'text',title:'资源名称',width:100},
-                        	{field:'code',title:'资源编码',width:100}
+                        	{field:'text',title:'角色名称',width:100},
+                        	{field:'code',title:'角色代码',width:100},
+                        	{field:'disabled',title:'状态',width:25,formatter:$.disabledFormatter}
                        	]],
                        	onLoadSuccess:function(row,data){
                        		var that = this;
