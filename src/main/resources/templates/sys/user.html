@@ -37,6 +37,7 @@
                        	<th data-options="field:'remark',title:'备注'"></th>
 	                    <th data-options="field:'createdAt',title:'创建时间',width:153,align:'right',formatter:$.createdAtFormatter"></th>
 	                    <th data-options="field:'updatedAt',title:'更新时间',width:153,align:'right',formatter:$.updatedAtFormatter"></th>
+                       	<th data-options="field:'actions',title:'操作',align:'center',formatter:operateFormatter"></th>
 	                </tr>
                 </thead>
             </table>
@@ -119,6 +120,13 @@
 		$('#form').form('clear');
 		search();
 	}
+
+	/**
+	 * 操作
+	 */
+	function operateFormatter (value, row, index) {
+		return '<a href="javascript:userDialog(\'' + row.userId + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">编辑</span><span class="l-btn-icon fa fa-pencil"></span></span></a>';
+	}
 	
 	/**
 	 * 弹窗（新增|编辑）
@@ -198,7 +206,6 @@
 				                $.messager.progress('close');
 								if (resultJson.statusCode == 200) {
 				                	$.messager.show({title: '我的消息', msg: resultJson.data, timeout: 10000, showType: 'slide'});
-				                	$orgDialog.dialog('destroy');
 				                } else {
 				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
 				                }
