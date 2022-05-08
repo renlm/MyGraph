@@ -136,7 +136,7 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 			if (exists != null) {
 				return Result.error("组织机构代码重复");
 			}
-			sysOrg.setOrgId(IdUtil.getSnowflakeNextIdStr());
+			sysOrg.setOrgId(IdUtil.simpleUUID().toUpperCase());
 			sysOrg.setCreatedAt(new Date());
 		} else {
 			SysOrg entity = this.getOne(Wrappers.<SysOrg>lambdaQuery().eq(SysOrg::getOrgId, sysOrg.getOrgId()));

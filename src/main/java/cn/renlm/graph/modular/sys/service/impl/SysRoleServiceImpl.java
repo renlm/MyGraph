@@ -119,7 +119,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 			if (exists != null) {
 				return Result.error("角色代码重复");
 			}
-			sysRole.setRoleId(IdUtil.getSnowflakeNextIdStr());
+			sysRole.setRoleId(IdUtil.simpleUUID().toUpperCase());
 			sysRole.setCreatedAt(new Date());
 		} else {
 			SysRole entity = this.getOne(Wrappers.<SysRole>lambdaQuery().eq(SysRole::getRoleId, sysRole.getRoleId()));

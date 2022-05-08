@@ -75,6 +75,7 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 	@Override
 	public List<SysResource> findListByPid(Long pid) {
 		return this.list(Wrappers.<SysResource>lambdaQuery().func(wrapper -> {
+			wrapper.eq(SysResource::getDeleted, false);
 			if (pid == null) {
 				wrapper.isNull(SysResource::getPid);
 				wrapper.eq(SysResource::getLevel, 1);
@@ -102,7 +103,7 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 
 	@Override
 	public List<Tree<Long>> getTree(boolean root, Long pid) {
-		List<SysResource> list = this.list();
+		List<SysResource> list = this.list(Wrappers.<SysResource>lambdaQuery().eq(SysResource::getDeleted, false));
 		if (CollUtil.isEmpty(list)) {
 			return CollUtil.newArrayList();
 		}
@@ -141,7 +142,7 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 			if (exists != null) {
 				return Result.error("资源编码重复");
 			}
-			sysResource.setResourceId(IdUtil.getSnowflakeNextIdStr());
+			sysResource.setResourceId(IdUtil.simpleUUID().toUpperCase());
 			sysResource.setCreatedAt(new Date());
 		} else {
 			SysResource entity = this.getOne(
