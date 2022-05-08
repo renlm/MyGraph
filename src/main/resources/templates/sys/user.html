@@ -142,7 +142,7 @@
 			maximizable: true,
 	        closed: false,
 	        cache: false,
-	        href: 'user/dialog',
+	        href: 'user/dialog' + (userId ? ('?userId=' + userId) : ''),
 	        modal: true,
 	        buttons: [{
 	            text: userId ? '更新' : '保存',
