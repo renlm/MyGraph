@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +21,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.dto.SysOrgDto;
@@ -37,7 +41,10 @@ import cn.renlm.graph.modular.sys.service.ISysOrgService;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleService;
+import cn.renlm.graph.modular.sys.service.ISysUserOrgService;
+import cn.renlm.graph.modular.sys.service.ISysUserRoleService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.TreeExtraUtil;
 
 /**
@@ -55,6 +62,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	private ISysRoleService iSysRoleService;
 
 	@Autowired
+	private ISysUserRoleService iSysUserRoleService;
+
+	@Autowired
 	private ISysResourceService iSysResourceService;
 
 	@Autowired
@@ -63,13 +73,19 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	@Autowired
 	private ISysOrgService iSysOrgService;
 
+	@Autowired
+	private ISysUserOrgService iSysUserOrgService;
+
 	@Override
 	public Page<SysUser> findPage(Page<SysUser> page, SysUserDto form) {
 		Page<SysUser> data = this.page(page, Wrappers.<SysUser>lambdaQuery().func(wrapper -> {
-			if (StrUtil.isNotBlank(form.getOrgId())) {
-				SysOrg sysOrg = iSysOrgService
-						.getOne(Wrappers.<SysOrg>lambdaQuery().eq(SysOrg::getOrgId, form.getOrgId()));
-				List<Tree<Long>> orgTrees = iSysOrgService.getTree(true, sysOrg.getId());
+			if (StrUtil.isNotBlank(form.getOrgIds())) {
+				List<String> orgIds = StrUtil.splitTrim(form.getOrgIds(), StrUtil.COMMA);
+				List<SysOrg> sysOrgs = iSysOrgService.list(Wrappers.<SysOrg>lambdaQuery().in(SysOrg::getOrgId, orgIds));
+				List<Tree<Long>> orgTrees = CollUtil.newArrayList();
+				sysOrgs.forEach(sysOrg -> {
+					iSysOrgService.getTree(true, sysOrg.getId());
+				});
 				List<Tree<Long>> orgNodes = TreeExtraUtil.getAllNodes(orgTrees);
 				wrapper.inSql(SysUser::getId, StrUtil.indexedFormat(
 						"select suo.sys_user_id from sys_org so, sys_user_org suo where so.id in ({0}) and so.id = suo.sys_org_id and so.deleted = 0 and suo.deleted = 0",
@@ -145,7 +161,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public void doModifyPersonal(Long id, SysUser form) {
 		SysUser entity = this.getById(id);
 		entity.setNickname(form.getNickname());
@@ -159,5 +175,44 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 		entity.setRemark(form.getRemark());
 		entity.setUpdatedAt(new Date());
 		this.updateById(entity);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public Result<SysUserDto> ajaxSave(SysUserDto form) {
+		// 校验账号（格式）
+		if (!ReUtil.isMatch(ConstVal.username_reg, form.getUsername())) {
+			return Result.error(ConstVal.username_msg);
+		}
+		SysUser exists = this.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername, form.getUsername()));
+		if (form.getUserId() == null) {
+			// 校验账号（是否存在）
+			if (exists != null) {
+				return Result.error("登录账号已存在");
+			}
+			// 校验密码（格式）
+			if (!ReUtil.isMatch(ConstVal.password_reg, form.getPassword())) {
+				return Result.error(ConstVal.password_msg);
+			}
+			form.setUserId(IdUtil.simpleUUID().toUpperCase());
+			form.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
+			form.setCreatedAt(new Date());
+		} else {
+			SysUser entity = this.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUserId, form.getUserId()));
+			// 校验账号（是否存在）
+			if (exists != null && !NumberUtil.equals(exists.getId(), entity.getId())) {
+				return Result.error("登录账号已存在");
+			}
+			form.setId(entity.getId());
+			form.setPassword(entity.getPassword());
+			form.setAccountNonExpired(entity.getAccountNonExpired());
+			form.setCredentialsNonExpired(entity.getCredentialsNonExpired());
+			form.setCreatedAt(entity.getCreatedAt());
+			form.setUpdatedAt(new Date());
+		}
+		this.saveOrUpdate(form);
+		iSysUserOrgService.saveRelationships(form.getUserId(), StrUtil.splitTrim(form.getOrgIds(), StrUtil.COMMA));
+		iSysUserRoleService.saveRelationships(form.getUserId(), StrUtil.splitTrim(form.getRoleIds(), StrUtil.COMMA));
+		return Result.success(form);
 	}
 }

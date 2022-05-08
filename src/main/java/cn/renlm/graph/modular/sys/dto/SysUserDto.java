@@ -19,9 +19,14 @@ public class SysUserDto extends SysUser {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 所属组织机构ID
+	 * 组织机构ID集
 	 */
-	private String orgId;
+	private String orgIds;
+
+	/**
+	 * 角色ID集
+	 */
+	private String roleIds;
 
 	/**
 	 * 搜索关键词

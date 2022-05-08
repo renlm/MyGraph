@@ -129,4 +129,33 @@ public class SysUserController {
 			return Result.error("服务器出错了");
 		}
 	}
+
+	/**
+	 * 弹窗（新增|编辑）
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/dialog")
+	public String dialog(ModelMap model) {
+		return "sys/userDialog";
+	}
+
+	/**
+	 * 保存（新建|编辑）
+	 * 
+	 * @param request
+	 * @param form
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/save")
+	public Result<SysUserDto> ajaxSave(HttpServletRequest request, SysUserDto form) {
+		try {
+			return iSysUserService.ajaxSave(form);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("服务器出错了");
+		}
+	}
 }

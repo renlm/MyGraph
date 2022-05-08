@@ -1,7 +1,10 @@
 package cn.renlm.graph.modular.sys.service;
 
-import cn.renlm.graph.modular.sys.entity.SysUserRole;
+import java.util.List;
+
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import cn.renlm.graph.modular.sys.entity.SysUserRole;
 
 /**
  * <p>
@@ -12,5 +15,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-04-29
  */
 public interface ISysUserRoleService extends IService<SysUserRole> {
+
+	/**
+	 * 保存用户角色关系
+	 * 
+	 * @param userId
+	 * @param roleIds
+	 */
+	void saveRelationships(String userId, List<String> roleIds);
 
 }

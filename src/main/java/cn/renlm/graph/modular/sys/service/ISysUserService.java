@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.dto.SysUserDto;
 import cn.renlm.graph.modular.sys.entity.SysUser;
+import cn.renlm.graph.response.Result;
 
 /**
  * <p>
@@ -41,5 +42,13 @@ public interface ISysUserService extends IService<SysUser> {
 	 * @param form
 	 */
 	void doModifyPersonal(Long id, SysUser form);
+
+	/**
+	 * 保存（新建|编辑）
+	 * 
+	 * @param form
+	 * @return
+	 */
+	Result<SysUserDto> ajaxSave(SysUserDto form);
 
 }
