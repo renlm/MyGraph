@@ -104,7 +104,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="myui-row" th:if="*{#strings.isEmpty(userId)}">
+	<div class="myui-row" 
+		th:if="*{#strings.isEmpty(userId)}">
 		<div class="myui-col-sm6">
 			<label class="myui-form-label">登录密码</label>
 			<div class="myui-input-block">
@@ -121,11 +122,11 @@
 			<label class="myui-form-label">确认密码</label>
 			<div class="myui-input-block">
 				<input type="text" name="confirmPassword" 
-					validtype="equals['#pwd']"
 					class="easyui-passwordbox"
 					data-options="required:true,
 						prompt:'必填',
-                		width:294
+                		width:294,
+						validType:'equals[\'#password\']'
 					"/>
 			</div>
 		</div>

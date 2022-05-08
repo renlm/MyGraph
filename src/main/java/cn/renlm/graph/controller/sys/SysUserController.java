@@ -147,6 +147,7 @@ public class SysUserController {
 	public String dialog(ModelMap model, String userId) {
 		SysUserDto userDetail = new SysUserDto();
 		userDetail.setEnabled(true);
+		userDetail.setAccountNonLocked(true);
 		if (StrUtil.isNotBlank(userId)) {
 			SysUser entity = iSysUserService.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUserId, userId));
 			BeanUtil.copyProperties(entity, userDetail);

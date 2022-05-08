@@ -353,7 +353,7 @@
 	    },
         equals: {
             validator: function (b, c) {
-                return b == a(c[0]).val()
+                return b == $(c[0]).val()
             }, message: "两次输入的内容不一致"
         }, cellphone: {
             validator: function (a) {
