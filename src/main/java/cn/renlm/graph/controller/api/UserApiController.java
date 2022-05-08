@@ -1,5 +1,6 @@
 package cn.renlm.graph.controller.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.security.UserService;
 
 /**
  * 用户信息接口
@@ -19,6 +21,9 @@ import cn.renlm.graph.response.Result;
 @Controller
 @RequestMapping("/api/user")
 public class UserApiController {
+
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * 获取用户信息
@@ -32,8 +37,8 @@ public class UserApiController {
 		if (authentication == null) {
 			return Result.of(HttpStatus.UNAUTHORIZED);
 		}
-		User user = (User) authentication.getPrincipal();
-		user.setPassword(null);
-		return Result.success(user);
+		User refreshUser = userService.refreshAuthentication();
+		refreshUser.setPassword(null);
+		return Result.success(refreshUser);
 	}
 }
