@@ -111,7 +111,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public Result<SysRole> ajaxSave(SysRole sysRole) {
 		SysRole exists = this.getOne(Wrappers.<SysRole>lambdaQuery().eq(SysRole::getCode, sysRole.getCode()));
 		if (StrUtil.isBlank(sysRole.getRoleId())) {

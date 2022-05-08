@@ -108,7 +108,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public Result<SysDict> ajaxSave(SysDict sysDict) {
 		if (StrUtil.isBlank(sysDict.getUuid())) {
 			sysDict.setUuid(IdUtil.simpleUUID().toUpperCase());

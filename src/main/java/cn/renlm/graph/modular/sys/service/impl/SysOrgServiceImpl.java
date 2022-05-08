@@ -128,7 +128,7 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	public Result<SysOrg> ajaxSave(SysOrg sysOrg) {
 		SysOrg exists = this.getOne(Wrappers.<SysOrg>lambdaQuery().eq(SysOrg::getCode, sysOrg.getCode()));
 		if (StrUtil.isBlank(sysOrg.getOrgId())) {
