@@ -23,7 +23,9 @@
 					<div class="myui-input-block">
 						<input type="text" th:field="*{username}" 
 							class="easyui-textbox"
-							data-options="width:435.33,
+							data-options="required:true,
+								prompt:'必填',
+								width:435.33,
 							"/>
 					</div>
 				</div>
@@ -99,6 +101,106 @@
 			        		"/>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+	<div class="myui-row" th:if="*{#strings.isEmpty(userId)}">
+		<div class="myui-col-sm6">
+			<label class="myui-form-label">登录密码</label>
+			<div class="myui-input-block">
+				<input type="text" th:field="*{password}" 
+					class="easyui-passwordbox"
+					data-options="required:true,
+						prompt:'必填',
+                		width:294,
+						validType:'password'
+					"/>
+			</div>
+		</div>
+		<div class="myui-col-sm6">
+			<label class="myui-form-label">确认密码</label>
+			<div class="myui-input-block">
+				<input type="text" name="confirmPassword" 
+					validtype="equals['#pwd']"
+					class="easyui-passwordbox"
+					data-options="required:true,
+						prompt:'必填',
+                		width:294
+					"/>
+			</div>
+		</div>
+	</div>
+	<div class="myui-row">
+        <div class="myui-col-sm12">
+        	<label class="myui-form-label">所属机构</label>
+        	<div class="myui-input-block">
+           		<input type="text" th:field="*{orgIds}"
+                	class="easyui-combotreegrid"
+                  	data-options="idField:'orgId',
+    			   		treeField:'text',
+    			   		required:true,
+    			   		fitColumns:true,
+                   		prompt:'必选',
+                   		width:718,
+                   		panelHeight:288,
+                   		editable:true,
+                   		limitToGrid:true,
+						method:'get',
+                       	url:ctx+'/sys/org/ajax/getTree',
+                       	icons:[{
+                        	iconCls:'fa fa-remove',
+                            handler:function(e){
+                                $(e.data.target).combotreegrid('clear');
+                          	}
+                      	}],
+                   		columns:[[
+                        	{field:'text',title:'组织机构名称',width:100},
+                        	{field:'code',title:'代码',width:100},
+                        	{field:'disabled',title:'状态',width:25,formatter:$.disabledFormatter}
+                       	]],
+	               		onLoadSuccess:function(row,data){
+	               			$(this).treegrid('expandAll');
+	               		}
+					"/>
+            </div>
+        </div>
+    </div>
+	<div class="myui-row">
+		<div class="myui-col-sm12">
+			<label class="myui-form-label">角色授权</label>
+			<div class="myui-input-block">
+				<input type="text" th:field="*{roleIds}"
+                	class="easyui-combotreegrid"
+                  	data-options="idField:'roleId',
+    			   		treeField:'text',
+    			   		required:false,
+    			   		fitColumns:true,
+                   		prompt:'可选',
+                   		width:718,
+                   		panelHeight:248,
+                  		multiple:true,
+                       	checkbox:true,
+                       	cascadeCheck:false,
+                       	onlyLeafCheck:true,
+                   		editable:true,
+                   		limitToGrid:true,
+						method:'get',
+                       	url:ctx+'/sys/role/ajax/getTree',
+                       	icons:[{
+                        	iconCls:'fa fa-remove',
+                            handler:function(e){
+                                $(e.data.target).combotreegrid('clear');
+                          	}
+                      	}],
+                   		columns:[[
+                        	{field:'text',title:'角色名称',width:100},
+                        	{field:'code',title:'角色代码',width:100},
+                        	{field:'disabled',title:'状态',width:25,formatter:$.disabledFormatter}
+                       	]],
+	               		onLoadSuccess:function(row,data){
+	               			$(this).treegrid('expandAll');
+	               		}
+					"/>
 			</div>
 		</div>
 	</div>

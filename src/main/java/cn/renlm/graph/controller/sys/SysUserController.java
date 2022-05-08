@@ -151,6 +151,7 @@ public class SysUserController {
 			SysUser entity = iSysUserService.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUserId, userId));
 			BeanUtil.copyProperties(entity, userDetail);
 			User user = iSysUserService.loadUserByUsername(entity.getUsername());
+			userDetail.setPassword(null);
 			userDetail.setOrgIds(user.getOrgs().stream().map(SysOrgDto::getOrgId).collect(Collectors.joining(COMMA)));
 			userDetail.setRoleIds(user.getRoles().stream().map(SysRole::getRoleId).collect(Collectors.joining(COMMA)));
 		}
