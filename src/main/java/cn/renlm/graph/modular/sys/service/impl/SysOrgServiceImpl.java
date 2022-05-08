@@ -54,6 +54,7 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 	@Override
 	public List<SysOrg> findListByPid(Long pid) {
 		return this.list(Wrappers.<SysOrg>lambdaQuery().func(wrapper -> {
+			wrapper.eq(SysOrg::getDeleted, false);
 			if (pid == null) {
 				wrapper.isNull(SysOrg::getPid);
 				wrapper.eq(SysOrg::getLevel, 1);
@@ -81,7 +82,7 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 
 	@Override
 	public List<Tree<Long>> getTree(boolean root, Long pid) {
-		List<SysOrg> list = this.list();
+		List<SysOrg> list = this.list(Wrappers.<SysOrg>lambdaQuery().eq(SysOrg::getDeleted, false));
 		if (CollUtil.isEmpty(list)) {
 			return CollUtil.newArrayList();
 		}

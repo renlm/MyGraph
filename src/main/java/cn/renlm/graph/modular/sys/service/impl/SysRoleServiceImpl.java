@@ -54,6 +54,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 	@Override
 	public List<SysRole> findListByPid(Long pid) {
 		return this.list(Wrappers.<SysRole>lambdaQuery().func(wrapper -> {
+			wrapper.eq(SysRole::getDeleted, false);
 			if (pid == null) {
 				wrapper.isNull(SysRole::getPid);
 				wrapper.eq(SysRole::getLevel, 1);
@@ -81,7 +82,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
 	@Override
 	public List<Tree<Long>> getTree(boolean root, Long pid) {
-		List<SysRole> list = this.list();
+		List<SysRole> list = this.list(Wrappers.<SysRole>lambdaQuery().eq(SysRole::getDeleted, false));
 		if (CollUtil.isEmpty(list)) {
 			return CollUtil.newArrayList();
 		}
