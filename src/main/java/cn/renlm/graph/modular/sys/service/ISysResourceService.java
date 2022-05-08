@@ -56,9 +56,10 @@ public interface ISysResourceService extends IService<SysResource> {
 	 * 
 	 * @param root
 	 * @param pid
+	 * @param includeDisabled
 	 * @return
 	 */
-	List<Tree<Long>> getTree(boolean root, Long pid);
+	List<Tree<Long>> getTree(boolean root, Long pid, Boolean includeDisabled);
 
 	/**
 	 * 保存（新建|编辑）

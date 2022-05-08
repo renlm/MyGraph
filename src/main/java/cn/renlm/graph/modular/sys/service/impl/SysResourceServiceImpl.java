@@ -102,8 +102,13 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 	}
 
 	@Override
-	public List<Tree<Long>> getTree(boolean root, Long pid) {
-		List<SysResource> list = this.list(Wrappers.<SysResource>lambdaQuery().eq(SysResource::getDeleted, false));
+	public List<Tree<Long>> getTree(boolean root, Long pid, Boolean includeDisabled) {
+		List<SysResource> list = this.list(Wrappers.<SysResource>lambdaQuery().func(wrapper -> {
+			wrapper.eq(SysResource::getDeleted, false);
+			if (BooleanUtil.isFalse(includeDisabled)) {
+				wrapper.eq(SysResource::getDisabled, false);
+			}
+		}));
 		if (CollUtil.isEmpty(list)) {
 			return CollUtil.newArrayList();
 		}

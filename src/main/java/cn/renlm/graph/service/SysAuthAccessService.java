@@ -57,7 +57,7 @@ public class SysAuthAccessService {
 				return CollUtil.newArrayList();
 			}
 		}
-		List<Tree<Long>> tree = iSysResourceService.getTree(root, pid);
+		List<Tree<Long>> tree = iSysResourceService.getTree(root, pid, false);
 		TreeExtraUtil.foreach(tree, node -> {
 			node.putExtra("accessAuth", authAccessedMap.containsKey(node.getId()));
 		});

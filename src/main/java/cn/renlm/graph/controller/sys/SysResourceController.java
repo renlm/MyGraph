@@ -97,7 +97,7 @@ public class SysResourceController {
 	@ResponseBody
 	@GetMapping("/ajax/getTree")
 	public List<Tree<Long>> getTree(boolean root, Long id) {
-		List<Tree<Long>> tree = iSysResourceService.getTree(root, id);
+		List<Tree<Long>> tree = iSysResourceService.getTree(root, id, true);
 		return tree;
 	}
 
