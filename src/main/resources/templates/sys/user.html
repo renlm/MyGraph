@@ -66,8 +66,8 @@
          	</div>
 		</div>
 		<form id="form" class="search-box">
-	    	<input type="text" name="orgId"
-	    		id="orgId"
+	    	<input type="text" name="orgIds"
+	    		id="orgIds"
           		class="easyui-combotreegrid"
              	th:data-options="|fitColumns:true,
 					singleSelect:true,
@@ -108,7 +108,7 @@
 	 */
 	function search () {
 		$('#dataGrid').datagrid('load', {
-			orgIds: $('#orgId').combo('getValue'),
+			orgIds: $('#orgIds').combo('getValue'),
 			keywords: $('#keywords').textbox('getValue')
 		});
 	}
