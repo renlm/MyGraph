@@ -1,6 +1,7 @@
 package cn.renlm.graph.util;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
@@ -14,6 +15,25 @@ import lombok.experimental.UtilityClass;
  */
 @UtilityClass
 public class TreeExtraUtil {
+
+	/**
+	 * 遍历树
+	 * 
+	 * @param <T>
+	 * @param tree
+	 * @param node
+	 */
+	public static final <T> void foreach(List<Tree<T>> tree, Consumer<Tree<T>> node) {
+		if (CollUtil.isEmpty(tree)) {
+			return;
+		}
+		for (Tree<T> item : tree) {
+			node.accept(item);
+			if (CollUtil.isNotEmpty(item.getChildren())) {
+				foreach(item.getChildren(), node);
+			}
+		}
+	}
 
 	/**
 	 * 重设层级

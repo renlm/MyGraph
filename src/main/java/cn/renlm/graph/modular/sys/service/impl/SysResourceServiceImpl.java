@@ -2,6 +2,7 @@ package cn.renlm.graph.modular.sys.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.TreeState;
+import cn.renlm.graph.modular.sys.dto.SysResourceDto;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.mapper.SysResourceMapper;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
@@ -50,6 +52,24 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 			wrapper.orderByAsc(SysResource::getSort);
 			wrapper.orderByAsc(SysResource::getId);
 		}));
+	}
+
+	@Override
+	public List<SysResourceDto> findListByRole(String roleId) {
+		return this.list(Wrappers.<SysResource>lambdaQuery().func(wrapper -> {
+			wrapper.eq(SysResource::getDeleted, false);
+			wrapper.eq(SysResource::getDisabled, false);
+			wrapper.inSql(SysResource::getId, StrUtil.indexedFormat(
+					"select srr.sys_resource_id from sys_role sr, sys_role_resource srr where sr.role_id = ''{0}'' and sr.id = srr.sys_role_id and srr.deleted = 0",
+					roleId));
+			wrapper.orderByAsc(SysResource::getLevel);
+			wrapper.orderByAsc(SysResource::getSort);
+			wrapper.orderByAsc(SysResource::getId);
+		})).stream().filter(Objects::nonNull).map(obj -> {
+			SysResourceDto data = BeanUtil.copyProperties(obj, SysResourceDto.class);
+			data.setAccessAuth(true);
+			return data;
+		}).collect(Collectors.toList());
 	}
 
 	@Override

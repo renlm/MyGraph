@@ -5,6 +5,7 @@ import java.util.List;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.hutool.core.lang.tree.Tree;
+import cn.renlm.graph.modular.sys.dto.SysResourceDto;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.response.Result;
 
@@ -25,6 +26,14 @@ public interface ISysResourceService extends IService<SysResource> {
 	 * @return
 	 */
 	List<SysResource> findListByUser(String userId);
+
+	/**
+	 * 获取角色资源列表
+	 * 
+	 * @param roleId
+	 * @return
+	 */
+	List<SysResourceDto> findListByRole(String roleId);
 
 	/**
 	 * 获取指定父节点下级列表
