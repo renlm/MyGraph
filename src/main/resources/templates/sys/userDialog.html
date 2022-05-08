@@ -8,7 +8,7 @@
 			<div class="layui-card avatar" style="box-shadow: none;margin: 21px 60px;width: 168px;height: 168px;">
 				<div class="layui-card-body" style="text-align: center;padding-top: 60px;">
 					<div class="layui-upload-drag" style="border: none;padding: 0px;">
-						<input type="hidden" name="avatar" />
+						<input type="hidden" th:field="*{avatar}" />
 						<img style="max-width: 100%;max-height: 168px;display: none;" />
 						<i class="layui-icon layui-icon-upload" style="font-size: 80px;"></i>
 						<p>上传头像</p>
