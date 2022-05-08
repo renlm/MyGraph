@@ -1,398 +1,156 @@
-<input type="hidden" id="userId" name="userId"
-	data-toggle="topjui-textbox"
-	data-options="cls:'hidden',
-		onChange:function(newValue,oldValue){
-			if(newValue){
-				$('#pwd-row').remove();
-			}
-		}
-	"/>
-<div class="topjui-fluid">
-    <div class="topjui-row"></div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">登录账号</label>
-			<div class="topjui-input-block">
-				<input type="text" name="username" 
-					data-toggle="topjui-textbox"
-					data-options="required:true,
-						prompt:'必填',
-						validType:'username'
-					"/>
+<div class="myui-fluid">
+    <div class="myui-row"></div>
+    <div class="myui-row">
+		<div class="myui-col-sm4">
+			<div class="layui-card avatar" style="box-shadow: none;margin: 21px 60px;width: 168px;height: 168px;">
+				<div class="layui-card-body" style="text-align: center;padding-top: 60px;">
+					<div class="layui-upload-drag" style="border: none;padding: 0px;">
+						<input type="hidden" name="avatar" />
+						<img style="max-width: 100%;max-height: 168px;display: none;" />
+						<i class="layui-icon layui-icon-upload" style="font-size: 80px;"></i>
+						<p>上传头像</p>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">昵称</label>
-			<div class="topjui-input-block">
-				<input type="text" name="nickname" 
-					data-toggle="topjui-textbox"
-					data-options="required:true,
-						prompt:'必填'
-					"/>
+		<div class="myui-col-sm8">
+			<div class="myui-row">
+				<div class="myui-col-sm12">
+					<label class="myui-form-label">登录账号</label>
+					<div class="myui-input-block">
+						<input type="text" name="username" 
+							class="easyui-textbox"
+							data-options="width:334.656,
+								disabled:true
+							"/>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div id="pwd-row" class="topjui-row">
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">登录密码</label>
-			<div class="topjui-input-block">
-				<input type="text" id="pwd" name="password" 
-					data-toggle="topjui-passwordbox"
-					data-options="required:true,
-						prompt:'必填',
-                		validType:'password'
-					"/>
+			<div class="myui-row">
+				<div class="myui-col-sm12">
+					<label class="myui-form-label">昵称</label>
+					<div class="myui-input-block">
+						<input type="text" name="nickname" 
+							class="easyui-textbox"
+							data-options="width:334.656,
+								required:true,
+								prompt:'必填',
+								validType:'maxLength[255]'
+							"/>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">确认密码</label>
-			<div class="topjui-input-block">
-				<input type="text" name="confirmPassword" 
-					validtype="equals['#pwd']"
-					data-toggle="topjui-passwordbox"
-					data-options="required:true,
-						prompt:'必填'
-					"/>
+			<div class="myui-row">
+				<div class="myui-col-sm12">
+					<label class="myui-form-label">真实姓名</label>
+					<div class="myui-input-block">
+						<input type="text" name="realname" 
+							class="easyui-textbox"
+							data-options="width:334.656,
+								prompt:'真实姓名',
+								validType:'maxLength[255]'
+							"/>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="topjui-row">
-        <div class="topjui-col-sm12">
-        	<label class="topjui-form-label">所属机构</label>
-        	<div class="topjui-input-block">
-           		<input type="text" name="orgIds"
-                	data-toggle="topjui-combotreegrid"
-                  	data-options="id:'orgsCombotreegrid',
-                  		idField:'orgId',
-    			   		treeField:'text',
-    			   		required:true,
-                   		prompt:'必选',
-                   		panelHeight:288,
-                   		editable:true,
-                   		limitToGrid:true,
-                       	url:ctx+'/sys/org/ajax/listTree',
-                       	icons:[{
-                        	iconCls:'fa fa-remove',
-                            handler:function(e){
-                                $(e.data.target).iCombotreegrid('clear');
-                          	}
-                      	}],
-                   		columns:[[
-                        	{field:'text',title:'名称',width:250},
-                        	{field:'orgTypeCode',title:'类型',formatter:orgTypeFormatter,width:120},
-                        	{field:'disabled',title:'状态',width:80,formatter:disabledFormatter}
-                       	]],
-	                	loadFilter:function(data){
-	                   		data.forEach(function(item,index){
-	                   			item.state = 'open';
-	                   		});
-	              			return $.getTreeList(data,-1);
-	                   	}
-					"/>
-            </div>
-        </div>
-    </div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm12">
-			<label class="topjui-form-label">角色授权</label>
-			<div class="topjui-input-block">
-				<input type="text" name="roleIds"
-                	data-toggle="topjui-combotreegrid"
-                  	data-options="id:'rolesCombotreegrid',
-                  		idField:'roleId',
-    			   		treeField:'text',
-    			   		required:false,
-                   		prompt:'可选',
-                   		panelHeight:248,
-                  		multiple:true,
-                       	checkbox:true,
-                       	cascadeCheck:false,
-                       	onlyLeafCheck:true,
-                   		editable:true,
-                   		limitToGrid:true,
-                       	url:ctx+'/sys/role/ajax/listTree',
-                       	icons:[{
-                        	iconCls:'fa fa-remove',
-                            handler:function(e){
-                                $(e.data.target).iCombotreegrid('clear');
-                          	}
-                      	}],
-                   		columns:[[
-                        	{field:'text',title:'角色名称',width:250},
-                        	{field:'code',title:'代码',width:120},
-                        	{field:'disabled',title:'状态',width:80,formatter:disabledFormatter}
-                       	]],
-	                	loadFilter:function(data){
-	                   		data.forEach(function(item,index){
-	                   			item.state = 'open';
-	                   		});
-	              			return $.getTreeList(data,null);
-	                   	}
-					"/>
+			<div class="myui-row">
+				<div class="myui-col-sm12">
+					<label class="myui-form-label">性别</label>
+					<div class="myui-input-block">
+						<input type="text" name="sex" 
+							class="easyui-combobox"
+							data-options="width:334.656,
+		                  		prompt:'请选择',
+								valueField:'value',
+								textField:'text',
+								panelHeight:'auto',
+								data: [
+								    {text:'请选择',value:null},
+								    {text:'男',value:'M'},
+								    {text:'女',value:'F'}
+								]
+							"/>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">真实姓名</label>
-			<div class="topjui-input-block">
-				<input type="text" name="realname" 
-					data-toggle="topjui-textbox"
-					data-options="prompt:'真实姓名'"
-					/>
-			</div>
-		</div>
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">身份证号</label>
-			<div class="topjui-input-block">
-				<input type="text" name="idCard" 
-					data-toggle="topjui-textbox"
-					data-options="prompt:'身份证号',
-						validType:'idCard'
-					"/>
-			</div>
-		</div>
-	</div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm6">
-            <label class="topjui-form-label">性别</label>
-            <div class="topjui-input-block">
-                <input type="text" name="sex"
-                	data-toggle="topjui-combobox"
-                  	data-options="required:false,
-                  		prompt:'请选择',
-						valueField:'value',
-						textField:'text',
-						panelHeight:'auto',
-						data: [
-						    {text:'请选择',value:null},
-						    {text:'男',value:'M'},
-						    {text:'女',value:'F'}
-						]
-					"/>
-            </div>
-        </div>
-		<div class="topjui-col-sm6">
-            <label class="topjui-form-label">出生日期</label>
-            <div class="topjui-input-block">
-                <input type="text" name="birthday" 
-	        		data-toggle="topjui-datebox" 
-	        		data-options="prompt:'出生日期',
-	        			parser:function(s){
-					        if(s){
-						        if(!isNaN(s)){
-							        return new Date(s);
-							    }else{
-							        var t = Date.parse(s);
-							        if(!isNaN(t)){
-							        	return new Date(t);
+			<div class="myui-row">
+				<div class="myui-col-sm12">
+					<label class="myui-form-label">出生日期</label>
+					<div class="myui-input-block">
+						<input type="text" name="birthday" 
+							class="easyui-datebox"
+							data-options="width:334.656,
+								prompt:'出生日期',
+			        			parser:function(s){
+							        if(s){
+								        if(!isNaN(s)){
+									        return new Date(s);
+									    }else{
+									        var t = Date.parse(s);
+									        if(!isNaN(t)){
+									        	return new Date(t);
+										    }
+									    }
 								    }
-							    }
-						    }
-						    return new Date();
-	        			}
-	        		"/>
-            </div>
-        </div>
+								    return new Date();
+			        			}
+			        		"/>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">手机号码</label>
-			<div class="topjui-input-block">
+	<div class="myui-row">
+		<div class="myui-col-sm12">
+			<label class="myui-form-label">个性签名</label>
+			<div class="myui-input-block">
+				<input type="text" name="sign" 
+					class="easyui-textbox"
+					data-options="width:568,
+						prompt:'个性签名',
+						validType:'maxLength[255]'
+					"/>
+			</div>
+		</div>
+	</div>
+	<div class="myui-row">
+		<div class="myui-col-sm12">
+			<label class="myui-form-label">手机号码</label>
+			<div class="myui-input-block">
 				<input type="text" name="mobile" 
-					data-toggle="topjui-textbox"
-					data-options="prompt:'手机号码',
+					class="easyui-textbox"
+					data-options="width:568,
+						prompt:'手机号码',
 						validType:'cellphone'
 					"/>
 			</div>
 		</div>
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">邮箱</label>
-			<div class="topjui-input-block">
+	</div>
+	<div class="myui-row">
+		<div class="myui-col-sm12">
+			<label class="myui-form-label">邮箱地址</label>
+			<div class="myui-input-block">
 				<input type="text" name="email" 
-					data-toggle="topjui-textbox"
-					data-options="prompt:'邮箱',
+					class="easyui-textbox"
+					data-options="width:568,
+						prompt:'邮箱地址',
 						validType:'email'
 					"/>
 			</div>
 		</div>
 	</div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm6">
-            <label class="topjui-form-label">启用状态</label>
-            <div class="topjui-input-block">
-                <input type="text" name="enabled" value="1"
-                	data-toggle="topjui-combobox"
-                  	data-options="required:true,
-						valueField:'value',
-						textField:'text',
-						panelHeight:'auto',
-						data: [
-						    {text:'启用',value:true},
-							{text:'禁用',value:false}
-						]
-					"/>
-            </div>
-        </div>
-		<div class="topjui-col-sm6">
-            <label class="topjui-form-label">是否锁定</label>
-            <div class="topjui-input-block">
-                <input type="text" name="accountNonLocked" value="1"
-                	data-toggle="topjui-combobox"
-                  	data-options="required:true,
-						valueField:'value',
-						textField:'text',
-						panelHeight:'auto',
-						data: [
-						    {text:'否',value:true},
-							{text:'是',value:false}
-						]
-					"/>
-            </div>
-        </div>
-	</div>
-    <fieldset>
-        <legend>其它信息</legend>
-    </fieldset>
-	<div class="topjui-row">
-		<div class="topjui-col-sm12">
-			<label class="topjui-form-label">所属区域</label>
-			<div class="topjui-input-block">
-				<input type="text" name="zone"
-					data-toggle="topjui-combotree"
-					data-options="required:false,
-                   		prompt:'所属区域',
-                   		url:ctx+'/sys/dict/ajax/getItemsByPaths?paths=A',
-				   		expandUrl:ctx+'/sys/dict/ajax/listByPid?pid={id}',
-                   		getFatherIdsUrl:ctx+'/sys/dict/ajax/getFatherIds?id={id}',
-                   		backfill:{url:ctx+'/sys/dict/ajax/getZoneFillbackData?uuid={uuid}'}
+	<div class="myui-row">
+		<div class="myui-col-sm12">
+			<label class="myui-form-label">备注</label>
+			<div class="myui-input-block">
+				<input type="text" name="remark" 
+					class="easyui-textbox"
+					data-options="width:568,
+						multiline:true,
+						prompt:'备注',
+						validType:'maxLength[800]'
 					"/>
 			</div>
 		</div>
 	</div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">国家</label>
-			<div class="topjui-input-block">
-				<input type="hidden" name="countryCode" />
-				<input type="text" name="countryName" 
-					data-toggle="topjui-textbox"
-					data-options="readonly:true"
-					/>
-			</div>
-		</div>
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">省份</label>
-			<div class="topjui-input-block">
-				<input type="hidden" name="provinceCode" />
-				<input type="text" name="provinceName" 
-					data-toggle="topjui-textbox"
-					data-options="readonly:true"
-					/>
-			</div>
-		</div>
-	</div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">城市</label>
-			<div class="topjui-input-block">
-				<input type="hidden" name="cityCode" />
-				<input type="text" name="cityName" 
-					data-toggle="topjui-textbox"
-					data-options="readonly:true"
-					/>
-			</div>
-		</div>
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">区县</label>
-			<div class="topjui-input-block">
-				<input type="hidden" name="districtCode" />
-				<input type="text" name="districtName"
-					data-toggle="topjui-textbox"
-					data-options="readonly:true"
-					/>
-			</div>
-		</div>
-	</div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">籍贯</label>
-			<div class="topjui-input-block">
-				<input type="text" name="nativePlaceCode"
-                 	data-toggle="topjui-combobox"
-                 	data-options="required:false,
-                   		prompt:'籍贯',
-                   		panelHeight:180,
-                   		url:ctx+'/sys/dict/ajax/getItemsByPaths?paths=NATIVE_PLACE&empty=请选择',
-                    	valueField:'code',
-                    	textField:'text'
-              		"/>
-			</div>
-		</div>
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">民族</label>
-			<div class="topjui-input-block">
-				<input type="text" name="nationCode"
-                 	data-toggle="topjui-combobox"
-                 	data-options="required:false,
-                   		prompt:'民族',
-                   		panelHeight:180,
-                   		url:ctx+'/sys/dict/ajax/getItemsByPaths?paths=NATION&empty=请选择',
-                    	valueField:'code',
-                    	textField:'text'
-              		"/>
-			</div>
-		</div>
-	</div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">学历</label>
-			<div class="topjui-input-block">
-				<input type="text" name="educationCode"
-                 	data-toggle="topjui-combobox"
-                 	data-options="required:false,
-                   		prompt:'学历',
-                   		panelHeight:140,
-                   		url:ctx+'/sys/dict/ajax/getItemsByPaths?paths=EDUCATION&empty=请选择',
-                    	valueField:'code',
-                    	textField:'text'
-              		"/>
-			</div>
-		</div>
-		<div class="topjui-col-sm6">
-			<label class="topjui-form-label">学位</label>
-			<div class="topjui-input-block">
-				<input type="text" name="degreeCode"
-                 	data-toggle="topjui-combobox"
-                 	data-options="required:false,
-                   		prompt:'学位',
-                   		panelHeight:'auto',
-                   		url:ctx+'/sys/dict/ajax/getItemsByPaths?paths=DEGREE&empty=请选择',
-                    	valueField:'code',
-                    	textField:'text'
-              		"/>
-			</div>
-		</div>
-	</div>
-	<div class="topjui-row">
-		<div class="topjui-col-sm12">
-			<label class="topjui-form-label">毕业院校</label>
-			<div class="topjui-input-block">
-				<input type="text" name="graduateSchool" 
-					data-toggle="topjui-textbox" 
-					/>
-			</div>
-		</div>
-	</div>
-	<div class="topjui-row">
-        <div class="topjui-col-sm12">
-        	<label class="topjui-form-label">备注</label>
-            <div class="topjui-input-block">
-                <input type="text" name="remark" 
-                	data-toggle="topjui-textarea" 
-                	data-options="height:80"
-                	/>
-            </div>
-        </div>
-    </div>
 </div>

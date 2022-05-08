@@ -1,7 +1,10 @@
 package cn.renlm.graph.controller.sys;
 
+import static cn.hutool.core.text.StrPool.COMMA;
+
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,10 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.dto.SysUserDto;
+import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
 import cn.renlm.graph.response.Datagrid;
@@ -116,8 +122,8 @@ public class SysUserController {
 				return Result.error("未选中用户");
 			}
 			String newPassword = RandomUtil.randomString(RandomUtil.randomInt(8, 12));
-			List<SysUser> users = iSysUserService.list(
-					Wrappers.<SysUser>lambdaQuery().in(SysUser::getUserId, StrUtil.splitTrim(userIds, StrUtil.COMMA)));
+			List<SysUser> users = iSysUserService
+					.list(Wrappers.<SysUser>lambdaQuery().in(SysUser::getUserId, StrUtil.splitTrim(userIds, COMMA)));
 			users.forEach(user -> {
 				user.setPassword(new BCryptPasswordEncoder().encode(newPassword));
 				user.setUpdatedAt(new Date());
@@ -131,13 +137,24 @@ public class SysUserController {
 	}
 
 	/**
-	 * 弹窗（新增|编辑）
+	 * 弹窗（新建|编辑）
 	 * 
 	 * @param model
+	 * @param userId
 	 * @return
 	 */
 	@RequestMapping("/dialog")
-	public String dialog(ModelMap model) {
+	public String dialog(ModelMap model, String userId) {
+		SysUserDto userDetail = new SysUserDto();
+		userDetail.setEnabled(true);
+		if (StrUtil.isNotBlank(userId)) {
+			SysUser entity = iSysUserService.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUserId, userId));
+			BeanUtil.copyProperties(entity, userDetail);
+			User user = iSysUserService.loadUserByUsername(entity.getUsername());
+			userDetail.setOrgIds(user.getOrgs().stream().map(SysOrgDto::getOrgId).collect(Collectors.joining(COMMA)));
+			userDetail.setRoleIds(user.getRoles().stream().map(SysRole::getRoleId).collect(Collectors.joining(COMMA)));
+		}
+		model.put("userDetail", userDetail);
 		return "sys/userDialog";
 	}
 
