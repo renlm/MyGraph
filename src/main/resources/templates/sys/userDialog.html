@@ -229,6 +229,44 @@
 		</div>
 	</div>
 	<div class="myui-row">
+		<div class="myui-col-sm6">
+            <label class="myui-form-label">启用状态</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{enabled}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+                  		valueField:'value',
+						textField:'text',
+						prompt:'必选',
+						width:294,
+						panelHeight:'auto',
+						data: [
+						    {text:'启用',value:'true'},
+							{text:'禁用',value:'false'}
+						]
+					"/>
+            </div>
+        </div>
+		<div class="myui-col-sm6">
+            <label class="myui-form-label">是否锁定</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{accountNonLocked}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+						valueField:'value',
+						textField:'text',
+						prompt:'必选',
+						width:294,
+						panelHeight:'auto',
+						data: [
+						    {text:'否',value:'true'},
+							{text:'是',value:'false'}
+						]
+					"/>
+            </div>
+        </div>
+	</div>
+	<div class="myui-row">
 		<div class="myui-col-sm12">
 			<label class="myui-form-label">个性签名</label>
 			<div class="myui-input-block">
