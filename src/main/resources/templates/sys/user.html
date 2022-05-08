@@ -108,7 +108,7 @@
 	 */
 	function search () {
 		$('#dataGrid').datagrid('load', {
-			orgId: $('#orgId').combo('getValue'),
+			orgIds: $('#orgId').combo('getValue'),
 			keywords: $('#keywords').textbox('getValue')
 		});
 	}

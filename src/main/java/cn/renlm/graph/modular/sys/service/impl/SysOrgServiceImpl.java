@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,6 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
@@ -42,6 +42,9 @@ import cn.renlm.graph.util.TreeExtraUtil;
  */
 @Service
 public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> implements ISysOrgService {
+
+	@Autowired
+	private ISysUserService iSysUserService;
 
 	@Override
 	public List<SysOrgDto> findListByUser(String userId) {
@@ -90,7 +93,7 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 			treeNode.setWeight(object.getSort());
 			treeNode.setParentId(object.getPid());
 			if (StrUtil.isNotBlank(object.getLeaderUserId())) {
-				SysUser sysUser = SpringUtil.getBean(ISysUserService.class)
+				SysUser sysUser = iSysUserService
 						.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUserId, object.getLeaderUserId()));
 				treeNode.putExtra("leaderUserName", sysUser.getNickname());
 				treeNode.putExtra("mobile", sysUser.getMobile());
