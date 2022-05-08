@@ -32,7 +32,7 @@
                			}
                		},
                		onClickRow:function(row){
-				   		
+				   		$('#authAccessTreegrid').treegrid('reload');
 					}
               	">
 				<thead>
@@ -74,6 +74,12 @@
 							toolbar:'#authAccessTreegridToolbar',
 							method:'get',
                        		url:ctx+'/sys/authAccess/ajax/getTree',
+                       		onBeforeLoad:function(row,param){
+		               			var selectedRole = $('#treeGrid').treegrid('getSelected');
+		               			if (selectedRole) {
+		               				param.roleId = selectedRole.roleId;
+		               			}
+		               		},
 		               		onLoadSuccess:function(row,data){
 		               			$(this).treegrid('expandAll');
 		               		}
