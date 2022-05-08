@@ -33,7 +33,7 @@ public class SysAuthAccessController {
 	 * @return
 	 */
 	@ResponseBody
-	@GetMapping("/getTree")
+	@GetMapping("/ajax/getTree")
 	public List<Tree<Long>> getTree(String roleId, boolean root, Long id) {
 		return sysAuthAccessService.getTree(roleId, root, id);
 	}
