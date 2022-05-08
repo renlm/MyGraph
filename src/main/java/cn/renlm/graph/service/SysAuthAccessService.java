@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.modular.sys.dto.SysResourceDto;
@@ -46,19 +47,23 @@ public class SysAuthAccessService {
 		if (StrUtil.isBlank(roleId)) {
 			return CollUtil.newArrayList();
 		}
+		SysRole sysRole = iSysRoleService.getOne(Wrappers.<SysRole>lambdaQuery().eq(SysRole::getRoleId, roleId));
+		if (ObjectUtil.isEmpty(sysRole)) {
+			return CollUtil.newArrayList();
+		}
 		Map<Long, SysResourceDto> authAccessedMap = new LinkedHashMap<>();
 		List<SysResourceDto> authAccessed = iSysResourceService.findListByRole(roleId);
 		authAccessed.forEach(srd -> {
 			authAccessedMap.put(srd.getId(), srd);
 		});
 		if (CollUtil.isEmpty(authAccessed)) {
-			SysRole sysRole = iSysRoleService.getOne(Wrappers.<SysRole>lambdaQuery().eq(SysRole::getRoleId, roleId));
 			if (TreeState.closed.name().equals(sysRole.getState())) {
 				return CollUtil.newArrayList();
 			}
 		}
 		List<Tree<Long>> tree = iSysResourceService.getTree(root, pid, false);
 		TreeExtraUtil.foreach(tree, node -> {
+			node.putExtra("roleId", sysRole.getRoleId());
 			node.putExtra("accessAuth", authAccessedMap.containsKey(node.getId()));
 		});
 		return tree;

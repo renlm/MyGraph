@@ -96,9 +96,9 @@
 	                            		align:'center',
 	                            		formatter:function(value,row,index){
 	                                		if (row.accessAuth) {
-	                                    		return '<span data-resource-id=\''+row.resourceId+'\' data-id=\''+row.id+'\' class=\'singleUnGrant layui-btn layui-btn-xs layui-btn-primary\' onclick=\'singleUnGrantOnclick(this);\'><i class=\'fa fa-times\'></i> 取消</span>';
+	                                    		return '<span data-role-id=\''+row.roleId+'\' data-resource-id=\''+row.resourceId+'\' data-id=\''+row.id+'\' class=\'singleUnGrant layui-btn layui-btn-xs layui-btn-primary\' onclick=\'singleUnGrantOnclick(this);\'><i class=\'fa fa-times\'></i> 取消</span>';
 	                                		} else {
-	                                    		return '<span data-resource-id=\''+row.resourceId+'\' data-id=\''+row.id+'\' class=\'singleGrant layui-btn layui-btn-xs\' onclick=\'singleGrantOnclick(this);\'><i class=\'fa fa-check\'></i> 授权</span>';
+	                                    		return '<span data-role-id=\''+row.roleId+'\' data-resource-id=\''+row.resourceId+'\' data-id=\''+row.id+'\' class=\'singleGrant layui-btn layui-btn-xs\' onclick=\'singleGrantOnclick(this);\'><i class=\'fa fa-check\'></i> 授权</span>';
 	                                		}
 	                            		}
 	                            	"></th>
