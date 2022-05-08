@@ -317,6 +317,17 @@
 	});
 })(jQuery);
 /***
+ * 汉化
+ */
+(function($) {
+	if (!$.fn 
+		|| !$.fn.combotreegrid
+		|| !$.fn.combotreegrid.defaults) {
+		return;
+	}
+	$.fn.combotreegrid.defaults.missingMessage = '必选';
+})(jQuery);
+/***
  * 表单验证器
  */
 (function($) {
