@@ -208,6 +208,16 @@
 			}
 		},
 		/**
+		 * 授权状态格式化
+		 */
+		accessAuthFormatter: function (value) {
+			if(value) {
+		        return '<span style=\'color:green\'>已授权</span>';
+		    } else {
+		        return '<span style=\'color:red\'>未授权</span>';
+		    }
+		},
+		/**
 		 * 资源类别格式化
 		 */
 		resourceTypeFormatter: function (value) {
