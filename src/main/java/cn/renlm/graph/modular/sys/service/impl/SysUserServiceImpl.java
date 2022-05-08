@@ -84,7 +84,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 				List<SysOrg> sysOrgs = iSysOrgService.list(Wrappers.<SysOrg>lambdaQuery().in(SysOrg::getOrgId, orgIds));
 				List<Tree<Long>> orgTrees = CollUtil.newArrayList();
 				sysOrgs.forEach(sysOrg -> {
-					iSysOrgService.getTree(true, sysOrg.getId());
+					orgTrees.addAll(iSysOrgService.getTree(true, sysOrg.getId()));
 				});
 				List<Tree<Long>> orgNodes = TreeExtraUtil.getAllNodes(orgTrees);
 				wrapper.inSql(SysUser::getId, StrUtil.indexedFormat(
