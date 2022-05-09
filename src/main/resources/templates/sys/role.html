@@ -86,6 +86,7 @@
 		               			$(this).treegrid('getCheckedNodes').forEach(function(item) {
 			                    	$(that).treegrid('uncheckNode', item.id);
 			               		});
+			               		$('#customTreegrid').treegrid('reload');
 		               		}
                     	">
                         <thead>
@@ -119,6 +120,49 @@
                 	title="自定义"
                		data-options="iconCls:'fa fa-chain'
                		">
+               		<table id="customTreegrid" 
+                    	class="easyui-treegrid"
+                    	data-options="border:false,
+							fit:true,
+							fitColumns:false,
+							singleSelect:true,
+							idField:'id',
+					   		treeField:'text',
+                       		animate:false,
+                     		checkbox:false,
+							method:'get',
+                       		url:ctx+'/sys/authAccess/ajax/getTree',
+                       		onBeforeLoad:function(row,param){
+		               			var selectedRole = $('#treeGrid').treegrid('getSelected');
+		               			if (selectedRole) {
+		               				param.roleId = selectedRole.roleId;
+		               			}
+		               		},
+		               		onLoadSuccess:function(row,data){
+		               			$(this).treegrid('expandAll');
+		               		}
+                    	">
+                        <thead>
+	                        <tr>
+	                            <th data-options="field:'text',title:'资源名称',width:250"></th>
+	                            <th data-options="field:'accessAuth',title:'授权状态',width:80,align:'center',formatter:$.accessAuthFormatter"></th>
+	                            <th data-options="field:'code',title:'编码',width:120"></th>
+                      			<th data-options="field:'resourceTypeCode',title:'资源类别',width:120,align:'center',formatter:$.resourceTypeFormatter"></th>
+	                            <th data-options="field:'opt',
+	                            		title:'操作',
+	                            		width:80,
+	                            		align:'center',
+	                            		formatter:function(value,row,index){
+	                                		if (row.accessAuth) {
+	                                    		return '<span data-role-id=\''+row.roleId+'\' data-resource-id=\''+row.resourceId+'\' data-id=\''+row.id+'\' class=\'singleUnGrant layui-btn layui-btn-xs layui-btn-primary\' onclick=\'singleUnGrantOnclick(this);\'><i class=\'fa fa-times\'></i> 取消</span>';
+	                                		} else {
+	                                    		return '<span data-role-id=\''+row.roleId+'\' data-resource-id=\''+row.resourceId+'\' data-id=\''+row.id+'\' class=\'singleGrant layui-btn layui-btn-xs\' onclick=\'singleGrantOnclick(this);\'><i class=\'fa fa-check\'></i> 授权</span>';
+	                                		}
+	                            		}
+	                            	"></th>
+	                        </tr>
+                        </thead>
+                    </table>
 				</div>
             </div>
     	</div>
