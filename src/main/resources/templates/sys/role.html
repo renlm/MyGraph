@@ -133,6 +133,7 @@
 							method:'get',
                        		url:ctx+'/sys/authAccess/ajax/getTree',
                        		onBeforeLoad:function(row,param){
+                       			param.authAccessed = true;
 		               			var selectedRole = $('#treeGrid').treegrid('getSelected');
 		               			if (selectedRole) {
 		               				param.roleId = selectedRole.roleId;

@@ -83,6 +83,7 @@ public class SysAuthAccessService {
 				treeNode.setName(object.getText());
 				treeNode.setWeight(object.getSort());
 				treeNode.setParentId(object.getPid());
+				treeNode.putExtra("roleId", sysRole.getRoleId());
 				if (BooleanUtil.isFalse(root)) {
 					return;
 				}
