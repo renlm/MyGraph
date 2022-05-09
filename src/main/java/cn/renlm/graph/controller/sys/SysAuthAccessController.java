@@ -51,7 +51,7 @@ public class SysAuthAccessController {
 	 * @return
 	 */
 	@ResponseBody
-	@PostMapping("/grant")
+	@PostMapping("/ajax/grant")
 	public Result<?> grant(String roleId, String resourceIds) {
 		try {
 			sysAuthAccessService.grant(roleId, StrUtil.splitTrim(resourceIds, COMMA));
@@ -70,7 +70,7 @@ public class SysAuthAccessController {
 	 * @return
 	 */
 	@ResponseBody
-	@PostMapping("/unGrant")
+	@PostMapping("/ajax/unGrant")
 	public Result<?> unGrant(String roleId, String resourceIds) {
 		try {
 			sysAuthAccessService.unGrant(roleId, StrUtil.splitTrim(resourceIds, COMMA));
