@@ -541,6 +541,72 @@
 			$('#userDataGridForm').form('clear');
 			searchUserDataGrid();
 		}
+		
+		/**
+		 * 添加成员
+		 */
+		function addRoleMember () {
+			var checked = $('#userDataGrid').datagrid('getChecked');
+			if (!checked || checked.length === 0) {
+				$.messager.myuiAlert('操作提示', '请先勾选中要操作的数据前的复选框！', 'warning');
+				return;
+			} else {
+				var userIds = [];
+				$.each(checked, function (i, item) {
+					userIds[i] = item.userId;
+				});
+				var selectedRole = $('#treeGrid').treegrid('getSelected');
+				$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
+					if (r) {
+						$.messager.progress({'text': '请求中……'});
+						$.post(ctx+'/sys/authAccess/ajax/addRoleMember', 
+								{ roleId: selectedRole.roleId, userIds: userIds.join() }, 
+								function (resultJson) {
+					                $.messager.progress('close');
+									if (resultJson.statusCode == 200) {
+										$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+					                	searchUserDataGrid();
+					                } else {
+					                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+					                }
+								});
+					}
+				});
+			}
+		}
+		
+		/**
+		 * 移除成员
+		 */
+		function removeRoleMember () {
+			var checked = $('#userDataGrid').datagrid('getChecked');
+			if (!checked || checked.length === 0) {
+				$.messager.myuiAlert('操作提示', '请先勾选中要操作的数据前的复选框！', 'warning');
+				return;
+			} else {
+				var userIds = [];
+				$.each(checked, function (i, item) {
+					userIds[i] = item.userId;
+				});
+				var selectedRole = $('#treeGrid').treegrid('getSelected');
+				$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
+					if (r) {
+						$.messager.progress({'text': '请求中……'});
+						$.post(ctx+'/sys/authAccess/ajax/removeRoleMember', 
+								{ roleId: selectedRole.roleId, userIds: userIds.join() }, 
+								function (resultJson) {
+					                $.messager.progress('close');
+									if (resultJson.statusCode == 200) {
+										$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+					                	searchUserDataGrid();
+					                } else {
+					                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+					                }
+								});
+					}
+				});
+			}
+		}
 	</script>
     <script type="text/javascript">
     	/**
