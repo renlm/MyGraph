@@ -141,44 +141,59 @@
 		               		onLoadSuccess:function(row,data){
 		               			$(this).treegrid('expandAll');
 		               		},
-							onDblClickRow:function(rowIndex,rowData){
-								if (!rowData.editing) {
-									editRow(rowIndex);
+							onDblClickRow:function(row){
+								if (!row.editing) {
+									editRow(row.id);
 								}
 							},
-							onBeforeEdit:function(index,row){
+							onBeforeEdit:function(row){
 								row.editing = true;
-								$(this).treegrid('refreshRow',index);
+								$(this).treegrid('refreshRow',row.id);
 							},
-							onAfterEdit:function(index,row){
+							onAfterEdit:function(row,changes){
 								row.editing = false;
-								$(this).treegrid('refreshRow',index);
+								$(this).treegrid('refreshRow',row.id);
 							},
-							onCancelEdit:function(index,row){
+							onCancelEdit:function(row){
 								row.editing = false;
-								$(this).treegrid('refreshRow',index);
+								$(this).treegrid('refreshRow',row.id);
 							}
                     	">
                         <thead>
 	                        <tr>
 	                            <th data-options="field:'text',title:'资源名称',width:250"></th>
-	                            <th data-options="field:'accessAuth',title:'授权状态',width:80,align:'center',formatter:$.accessAuthFormatter"></th>
-	                            <th data-options="field:'code',title:'编码',width:120"></th>
                       			<th data-options="field:'resourceTypeCode',title:'资源类别',width:120,align:'center',formatter:$.resourceTypeFormatter"></th>
-	                            <th data-options="field:'alias',title:'别名',width:120,editor:{type:'textbox',options:{required:true,height:30}}"></th>
+	                            <th data-options="field:'alias',title:'别名',width:120,editor:{type:'textbox',options:{required:false,height:30}}"></th>
 	                            <th data-options="field:'sort',title:'排序',width:80,align:'right',editor:{type:'numberspinner',options:{required:true,height:30}}"></th>
-	                            <th data-options="field:'defaultHomePage',title:'默认主页',width:80,align:'center',formatter:function(value,row){if(value){return '是'} return '';}"></th>
+	                            <th data-options="field:'defaultHomePage',
+	                            		title:'默认主页',
+	                            		width:80,
+	                            		align:'center',
+	                            		formatter:$.yesNoFormatter,
+                              			editor:{
+                              				type:'combobox',
+                              				options:{
+                              					required:false,
+                              					textField:'label',
+                              					valueField:'value',
+                              					panelHeight:70,
+                              					data:[
+                              						{label:'是',value:true},
+                              						{label:'否',value:false}
+                              					]
+                              				}
+                              			}"></th>
 	                            <th data-options="field:'actions',
 			                    		title:'操作',
-			                    		width:100,
+			                    		width:154,
 			                    		align:'center',
 			                    		formatter:function(value,row,index){
 											if (row.editing) {
-												var s = '<a href=\'javascript:saveRow('+index+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>保存</span><span class=\'l-btn-icon fa fa-save\'></span></span></a> ';
-												var c = '<a href=\'javascript:cancelRow('+index+');\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
+												var s = '<a href=\'javascript:saveRow('+row.id+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>保存</span><span class=\'l-btn-icon fa fa-save\'></span></span></a> ';
+												var c = '<a href=\'javascript:cancelRow('+row.id+');\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
 												return s + c;
 											} else {
-												var e = '<a href=\'javascript:editRow('+index+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
+												var e = '<a href=\'javascript:editRow('+row.id+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
 												return e;
 											}
 										}
@@ -405,8 +420,8 @@
     	/**
    		 * 编辑行
    		 */
-		function editRow(index){
-			$('#customTreegrid').treegrid('beginEdit', index);
+		function editRow(id){
+			$('#customTreegrid').treegrid('beginEdit', id);
 		}
     	
 		/**
@@ -439,8 +454,8 @@
 		/**
    		 * 取消编辑
    		 */
-		function cancelRow(index){
-			$('#customTreegrid').treegrid('cancelEdit', index);
+		function cancelRow(id){
+			$('#customTreegrid').treegrid('cancelEdit', id);
 		}
     </script>
 </body>
