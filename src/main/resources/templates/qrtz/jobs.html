@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <title>定时任务</title>
 </head>
-<body>
-
+<body layout:fragment="content" class="myui">
+    <div class="easyui-layout"
+    	data-options="fit:true">
+    	<!-- 任务列表 -->
+        <div data-options="region:'center',
+        		split:true,
+        		height:'60%',
+        		border:false,
+        		bodyCls:'border_bottom'
+        	">
+       		
+        </div>
+        <div data-options="region:'south',
+        		split:true,
+        		height:'40%',
+        		border:false,
+                bodyCls:'border_top'
+        	">
+         	<div class="easyui-tabs"
+           		data-options="fit:true,
+                  	border:false
+             	">
+              	<div title="任务日志" 
+	            	data-options="iconCls:'fa fa-th'
+	              	">
+	               		
+	         	</div>
+        	</div>
+        </div>
+    </div>
 </body>
 </html>
