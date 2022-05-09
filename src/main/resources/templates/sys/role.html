@@ -299,11 +299,12 @@
 			$.post(isGrant ? SCOPE.permissionUrl : SCOPE.unPermissionUrl, 
 					{ roleId: roleId, resourceIds: resourceIds }, 
 					function (resultJson) {
+						$.messager.progress('close');
 		                if (resultJson.statusCode == 200) {
 		                	$('#authAccessTreegrid').treegrid('reload');
-		                	$.messager.show({title: '我的消息', msg: isGrant ? MSG.permissionSuccess : MSG.unPermissionSuccess, timeout: 5000, showType: 'slide'});
+		                	$.messager.show({title: '操作提示', msg: isGrant ? MSG.permissionSuccess : MSG.unPermissionSuccess, timeout: 5000, showType: 'slide'});
 		                } else {
-		                	$.messager.alert("提示", isGrant ? MSG.permissionFail : MSG.unPermissionFail, "messager-error");
+		                	$.messager.myuiAlert("提示", isGrant ? MSG.permissionFail : MSG.unPermissionFail, "error");
 		                }
 		            });
 		}
