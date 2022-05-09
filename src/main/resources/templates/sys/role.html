@@ -140,7 +140,24 @@
 		               		},
 		               		onLoadSuccess:function(row,data){
 		               			$(this).treegrid('expandAll');
-		               		}
+		               		},
+							onDblClickRow:function(rowIndex,rowData){
+								if (!rowData.editing) {
+									editRow(rowIndex);
+								}
+							},
+							onBeforeEdit:function(index,row){
+								row.editing = true;
+								$(this).treegrid('refreshRow',index);
+							},
+							onAfterEdit:function(index,row){
+								row.editing = false;
+								$(this).treegrid('refreshRow',index);
+							},
+							onCancelEdit:function(index,row){
+								row.editing = false;
+								$(this).treegrid('refreshRow',index);
+							}
                     	">
                         <thead>
 	                        <tr>
@@ -148,18 +165,24 @@
 	                            <th data-options="field:'accessAuth',title:'授权状态',width:80,align:'center',formatter:$.accessAuthFormatter"></th>
 	                            <th data-options="field:'code',title:'编码',width:120"></th>
                       			<th data-options="field:'resourceTypeCode',title:'资源类别',width:120,align:'center',formatter:$.resourceTypeFormatter"></th>
-	                            <th data-options="field:'opt',
-	                            		title:'操作',
-	                            		width:80,
-	                            		align:'center',
-	                            		formatter:function(value,row,index){
-	                                		if (row.accessAuth) {
-	                                    		return '<span data-role-id=\''+row.roleId+'\' data-resource-id=\''+row.resourceId+'\' data-id=\''+row.id+'\' class=\'singleUnGrant layui-btn layui-btn-xs layui-btn-primary\' onclick=\'singleUnGrantOnclick(this);\'><i class=\'fa fa-times\'></i> 取消</span>';
-	                                		} else {
-	                                    		return '<span data-role-id=\''+row.roleId+'\' data-resource-id=\''+row.resourceId+'\' data-id=\''+row.id+'\' class=\'singleGrant layui-btn layui-btn-xs\' onclick=\'singleGrantOnclick(this);\'><i class=\'fa fa-check\'></i> 授权</span>';
-	                                		}
-	                            		}
-	                            	"></th>
+	                            <th data-options="field:'alias',title:'别名',width:120,editor:{type:'textbox',options:{required:true,height:30}}"></th>
+	                            <th data-options="field:'sort',title:'排序',width:80,align:'right',editor:{type:'numberspinner',options:{required:true,height:30}}"></th>
+	                            <th data-options="field:'defaultHomePage',title:'默认主页',width:80,align:'center',formatter:function(value,row){if(value){return '是'} return '';}"></th>
+	                            <th data-options="field:'actions',
+			                    		title:'操作',
+			                    		width:100,
+			                    		align:'center',
+			                    		formatter:function(value,row,index){
+											if (row.editing) {
+												var s = '<a href=\'javascript:saveRow('+index+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>保存</span><span class=\'l-btn-icon fa fa-save\'></span></span></a> ';
+												var c = '<a href=\'javascript:cancelRow('+index+');\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
+												return s + c;
+											} else {
+												var e = '<a href=\'javascript:editRow('+index+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
+												return e;
+											}
+										}
+									"></th>
 	                        </tr>
                         </thead>
                     </table>
@@ -376,6 +399,48 @@
 		                	$.messager.myuiAlert("提示", isGrant ? MSG.permissionFail : MSG.unPermissionFail, "error");
 		                }
 		            });
+		}
+    </script>
+    <script type="text/javascript">
+    	/**
+   		 * 编辑行
+   		 */
+		function editRow(index){
+			$('#customTreegrid').treegrid('beginEdit', index);
+		}
+    	
+		/**
+   		 * 保存行
+   		 */
+		function saveRow(index){
+			$.messager.progress({'text': '请求中……'});
+			var rowDatas = $('#customTreegrid').treegrid('getRows');
+			var rowData = rowDatas[index];
+			var edVal = $('#customTreegrid').treegrid('getEditor', { index: index, field: 'val' });
+			var edSort = $('#customTreegrid').treegrid('getEditor', { index: index, field: 'sort' });
+			var edRemark = $('#customTreegrid').treegrid('getEditor', { index: index, field: 'remark' });
+			var val = $(edVal.target).textbox('getValue');
+			var sort = $(edSort.target).textbox('getValue');
+			var remark = $(edRemark.target).textbox('getValue');
+			$.post(ctx + '/sys/const/ajax/save',
+					{ constId: rowData.constId, val: val, sort: sort, remark: remark },
+					function (data) {
+						if (data.statusCode == 200) {
+		                	$.messager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
+		                	$('#customTreegrid').treegrid('endEdit', index);
+		                	$('#customTreegrid').treegrid('reload');
+		                } else {
+		                    $.messager.show({title: '我的消息', msg: data.message?data.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+		                }
+		                $.messager.progress('close');
+					});
+		}
+    	
+		/**
+   		 * 取消编辑
+   		 */
+		function cancelRow(index){
+			$('#customTreegrid').treegrid('cancelEdit', index);
 		}
     </script>
 </body>
