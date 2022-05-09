@@ -1,22 +1,30 @@
 package cn.renlm.graph.service;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.modular.sys.dto.SysResourceDto;
+import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.entity.SysRole;
+import cn.renlm.graph.modular.sys.entity.SysRoleResource;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
+import cn.renlm.graph.modular.sys.service.ISysRoleResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleService;
 import cn.renlm.graph.util.TreeExtraUtil;
 
@@ -34,6 +42,9 @@ public class SysAuthAccessService {
 
 	@Autowired
 	private ISysResourceService iSysResourceService;
+
+	@Autowired
+	private ISysRoleResourceService iSysRoleResourceService;
 
 	/**
 	 * 获取角色授权资源列表
@@ -67,5 +78,111 @@ public class SysAuthAccessService {
 			node.putExtra("accessAuth", authAccessedMap.containsKey(node.getId()));
 		});
 		return tree;
+	}
+
+	/**
+	 * 添加授权
+	 * 
+	 * @param roleId
+	 * @param resourceIds
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public void grant(String roleId, List<String> resourceIds) {
+		if (StrUtil.isBlank(roleId) || CollUtil.isEmpty(resourceIds)) {
+			return;
+		}
+
+		// 查询角色资源
+		SysRole role = iSysRoleService.getOne(Wrappers.<SysRole>lambdaQuery().eq(SysRole::getRoleId, roleId));
+		List<SysResourceDto> resources = iSysResourceService
+				.list(Wrappers.<SysResource>lambdaQuery().in(SysResource::getResourceId, resourceIds)).stream()
+				.filter(Objects::nonNull).map(obj -> {
+					SysResourceDto dto = BeanUtil.copyProperties(obj, SysResourceDto.class);
+					dto.setAccessAuth(true);
+					return dto;
+				}).collect(Collectors.toList());
+
+		// 删除原有关系
+		Long sysRoleId = role.getId();
+		List<Long> sysResourceIds = resources.stream().map(SysResource::getId).collect(Collectors.toList());
+		iSysRoleResourceService.update(Wrappers.<SysRoleResource>lambdaUpdate().func(wrapper -> {
+			wrapper.eq(SysRoleResource::getSysRoleId, sysRoleId);
+			wrapper.in(SysRoleResource::getSysResourceId, sysResourceIds);
+			wrapper.set(SysRoleResource::getDeleted, true);
+			wrapper.set(SysRoleResource::getUpdatedAt, new Date());
+		}));
+
+		// 获取全路径资源节点集
+		List<Long> allSysResourceIds = CollUtil.newArrayList();
+		for (Long sysResourceId : sysResourceIds) {
+			if (allSysResourceIds.contains(sysResourceId)) {
+				continue;
+			}
+			List<SysResource> list = iSysResourceService.findFathers(sysResourceId);
+			CollUtil.addAll(allSysResourceIds, list.stream().map(SysResource::getId).collect(Collectors.toList()));
+		}
+
+		// 批量保存
+		List<Long> news = CollUtil.distinct(allSysResourceIds);
+		Map<Long, SysResource> map = new LinkedHashMap<>();
+		List<SysResource> list = iSysResourceService.listByIds(news);
+		list.forEach(it -> {
+			map.put(it.getId(), it);
+		});
+		List<SysRoleResource> rels = CollUtil.newArrayList();
+		for (Long sysResourceId : news) {
+			SysResource sysResource = map.get(sysResourceId);
+			SysRoleResource rel = new SysRoleResource();
+			rel.setSysRoleId(sysRoleId);
+			rel.setSysResourceId(sysResourceId);
+			rel.setSort(sysResource.getSort());
+			rel.setDefaultHomePage(sysResource.getDefaultHomePage());
+			rel.setCreatedAt(new Date());
+			rels.add(rel);
+		}
+		iSysRoleResourceService.saveBatch(rels);
+	}
+
+	/**
+	 * 取消授权
+	 * 
+	 * @param roleId
+	 * @param resourceIds
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public void unGrant(String roleId, List<String> resourceIds) {
+		if (StrUtil.isBlank(roleId) || CollUtil.isEmpty(resourceIds)) {
+			return;
+		}
+
+		// 查询角色资源
+		SysRole role = iSysRoleService.getOne(Wrappers.<SysRole>lambdaQuery().eq(SysRole::getRoleId, roleId));
+		List<SysResourceDto> resources = iSysResourceService
+				.list(Wrappers.<SysResource>lambdaQuery().in(SysResource::getResourceId, resourceIds)).stream()
+				.filter(Objects::nonNull).map(obj -> {
+					SysResourceDto dto = BeanUtil.copyProperties(obj, SysResourceDto.class);
+					dto.setAccessAuth(false);
+					return dto;
+				}).collect(Collectors.toList());
+
+		// 获取全部子节点
+		List<Long> allSysResourceIds = CollUtil.newArrayList();
+		List<Long> sysResourceIds = resources.stream().map(SysResource::getId).collect(Collectors.toList());
+		for (Long sysResourceId : sysResourceIds) {
+			if (allSysResourceIds.contains(sysResourceId)) {
+				continue;
+			}
+			List<SysResourceDto> list = CollUtil.newArrayList();
+			CollUtil.addAll(allSysResourceIds, list.stream().map(SysResource::getId).collect(Collectors.toList()));
+		}
+
+		// 删除原有关系
+		List<Long> news = CollUtil.distinct(allSysResourceIds);
+		iSysRoleResourceService.update(Wrappers.<SysRoleResource>lambdaUpdate().func(wrapper -> {
+			wrapper.eq(SysRoleResource::getSysRoleId, role.getId());
+			wrapper.in(SysRoleResource::getSysResourceId, news);
+			wrapper.set(SysRoleResource::getDeleted, true);
+			wrapper.set(SysRoleResource::getUpdatedAt, new Date());
+		}));
 	}
 }
