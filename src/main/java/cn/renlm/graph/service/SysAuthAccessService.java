@@ -269,19 +269,19 @@ public class SysAuthAccessService {
 				wrapper.notInSql(SysUser::getId, sql);
 			}
 			if (StrUtil.isNotBlank(form.getOrgIds())) {
+				List<Long> allSysOrgIds = CollUtil.newArrayList();
 				List<SysOrg> orgs = iSysOrgService.list(Wrappers.<SysOrg>lambdaQuery().in(SysOrg::getOrgId,
 						StrUtil.splitTrim(form.getOrgIds(), COMMA)));
 				if (CollUtil.isNotEmpty(orgs)) {
 					List<Long> sysOrgIds = orgs.stream().map(SysOrg::getId).collect(Collectors.toList());
 					sysOrgIds.forEach(it -> {
 						List<Tree<Long>> list = TreeExtraUtil.getAllNodes(iSysOrgService.getTree(true, it));
-						CollUtil.addAll(orgs, list.stream().map(Tree::getId).collect(Collectors.toList()));
+						CollUtil.addAll(allSysOrgIds, list.stream().map(Tree::getId).collect(Collectors.toList()));
 					});
-					if (CollUtil.isNotEmpty(sysOrgIds)) {
-						sysOrgIds = orgs.stream().map(SysOrg::getId).collect(Collectors.toList());
+					if (CollUtil.isNotEmpty(allSysOrgIds)) {
 						wrapper.inSql(SysUser::getId, StrUtil.indexedFormat(
 								"select suo.sys_user_id from sys_user_org suo, sys_org so where suo.deleted = 0 and so.deleted = 0 and suo.sys_org_id = so.id and so.id in ({0})",
-								StrUtil.join(COMMA, sysOrgIds)));
+								StrUtil.join(COMMA, allSysOrgIds)));
 					}
 				}
 			}

@@ -129,16 +129,15 @@
 							pageSize:20,
 							method:'get',
 							url:ctx+'/sys/authAccess/ajax/getPageUsers',
-                       		onBeforeLoad:function(row,param){
-                       			$.pageOnBeforeLoad(row,param);
+                       		onBeforeLoad:function(param){
+                       			$.pageOnBeforeLoad(param);
                        			try{
-			               			var selectedRole = $('#treeGrid').treegrid('getSelected');
-			               			if (selectedRole) {
-			               				param.roleId = selectedRole.roleId;
-			               			}
-		               			}catch(e){
-		               				console.log(e);
-		               			}
+                       				param.orgIds = $('#orgIds').combo('getValue');
+									param.accessAuth = $('#accessAuth').combo('getValue');
+									param.keywords = $('#keywords').textbox('getValue');
+	                       			var selectedRole = $('#treeGrid').treegrid('getSelected');
+			               			if (selectedRole) { param.roleId = selectedRole.roleId; }
+		               			}catch(e){}
 		               		}
 		               	">
 		                <thead>
