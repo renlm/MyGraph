@@ -136,7 +136,9 @@
 			               			if (selectedRole) {
 			               				param.roleId = selectedRole.roleId;
 			               			}
-		               			}catch(e){}
+		               			}catch(e){
+		               				console.log(e);
+		               			}
 		               		}
 		               	">
 		                <thead>
@@ -320,7 +322,7 @@
                			$(this).treegrid('expandAll');
                		}
            		|"/>
-           	<input type="text" name="accessAuth" value="1"
+           	<input type="text" name="accessAuth" value="true"
            		id="accessAuth"
 	        	class="easyui-combobox"
 	        	data-options="prompt:'是否授权',
@@ -331,8 +333,8 @@
 					textField:'text',
 					data: [
 					    {text:'全部',value:''},
-					    {text:'已授权',value:true},
-						{text:'未授权',value:false}
+					    {text:'已授权',value:'true'},
+						{text:'未授权',value:'false'}
 					]
 				"/>
 	   		<input type="text" name="keywords"
@@ -349,7 +351,7 @@
 	    	<a href="javascript:resetUserDataGrid();"
        			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
        			data-options="iconCls:'fa fa-trash'
-       			">重置
+       			">清空
           	</a>
 		</form>
 	</div>
@@ -519,6 +521,28 @@
 		            });
 		}
     </script>
+    <script type="text/javascript">
+		/**
+		 * 查询授权人员
+		 */
+		function searchUserDataGrid () {
+			var selectedRole = $('#treeGrid').treegrid('getSelected');
+			$('#userDataGrid').datagrid('load', {
+				roleId: selectedRole ? selectedRole.roleId : null,
+				orgIds: $('#orgIds').combo('getValue'),
+				accessAuth: $('#accessAuth').combo('getValue'),
+				keywords: $('#keywords').textbox('getValue')
+			});
+		}
+		
+		/**
+		 * 重置授权人员
+		 */
+		function resetUserDataGrid () {
+			$('#userDataGridForm').form('clear');
+			searchUserDataGrid();
+		}
+	</script>
     <script type="text/javascript">
     	/**
    		 * 编辑行
