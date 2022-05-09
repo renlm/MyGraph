@@ -33,6 +33,7 @@
                		},
                		onClickRow:function(row){
 				   		$('#authAccessTreegrid').treegrid('reload');
+				   		$('#userDataGrid').datagrid('reload');
 					}
               	">
 				<thead>
@@ -115,6 +116,40 @@
                 	title="授权人员"
                		data-options="iconCls:'fa fa-user-md'
                		">
+               		<table id="userDataGrid" 
+		            	class="easyui-datagrid"
+		            	data-options="border:false,
+							fit:true,
+							fitColumns:true,
+							singleSelect:true,
+							checkOnSelect:false,
+							selectOnCheck:false,
+							toolbar:'#userDataGridToolbar',
+							pagination:true,
+							pageSize:20,
+							method:'get',
+							url:ctx+'/sys/authAccess/ajax/getPageUsers',
+                       		onBeforeLoad:function(row,param){
+                       			$.pageOnBeforeLoad(row,param);
+                       			try{
+			               			var selectedRole = $('#treeGrid').treegrid('getSelected');
+			               			if (selectedRole) {
+			               				param.roleId = selectedRole.roleId;
+			               			}
+		               			}catch(e){}
+		               		}
+		               	">
+		                <thead>
+			                <tr>
+			                	<th data-options="field:'userId',title:'用户ID',checkbox:true"></th>
+	                            <th data-options="field:'nickname',title:'昵称',width:120"></th>
+	                            <th data-options="field:'accessAuth',title:'授权状态',width:80,align:'center',formatter:$.accessAuthFormatter"></th>
+	                            <th data-options="field:'username',title:'账号',width:120"></th>
+	                            <th data-options="field:'mobile',title:'手机',width:120"></th>
+	                            <th data-options="field:'email',title:'邮箱',width:250"></th>
+			                </tr>
+		                </thead>
+		            </table>
 				</div>
 				<div style="overflow: hidden;"
                 	title="自定义"
@@ -249,6 +284,21 @@
         	data-options="iconCls:'fa fa-trash',
            		hasDownArrow:false
         	">批量取消
+   		</a>
+	</div>
+    <!-- 授权人员 工具栏 -->
+  	<div id="userDataGridToolbar" class="myui-toolbar">
+  		<a href="javascript:addRoleMember();"
+         	class="easyui-menubutton myui-btn-normal myui-btn-green"
+         	data-options="iconCls:'fa fa-plus',
+           		hasDownArrow:false
+          	">添加成员
+   		</a>
+    	<a href="javascript:removeRoleMember();"
+        	class="easyui-menubutton myui-btn-normal myui-btn-red"
+        	data-options="iconCls:'fa fa-minus',
+           		hasDownArrow:false
+        	">移除成员
    		</a>
 	</div>
     <script type="text/javascript">
