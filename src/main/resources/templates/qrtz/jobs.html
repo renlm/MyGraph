@@ -11,23 +11,134 @@
         		iconCls:'fa fa-deaf',
         		title:'任务列表',
         		split:true,
-        		height:'60%',
+        		height:'55%',
         		border:false,
         		cls:'north-border_none',
         		bodyCls:'border_bottom'
         	">
        		
         </div>
+        <!-- 任务日志 -->
         <div data-options="region:'center',
         		iconCls:'fa fa-tags',
         		title:'任务日志',
         		split:true,
-        		height:'40%',
+        		height:'45%',
         		border:false,
         		headerCls:'border_top'
         	">
-         	
+       		<table id="logDataGrid" class="easyui-datagrid"
+            	data-options="border:false,
+					fit:true,
+					fitColumns:true,
+					singleSelect:true,
+					toolbar:'#logDataGridToolbar',
+					pagination:true,
+					pageSize:20,
+					sortName:'createdAt',
+           			sortOrder:'desc',
+					method:'get',
+					url:'log/ajax/list',
+                   	onBeforeLoad:$.pageOnBeforeLoad
+               	">
+                <thead>
+	                <tr>
+	                	<th data-options="field:'createdAt',title:'时间',width:153,sortable:true,formatter:$.createdAtFormatter"></th>
+	                    <th data-options="field:'jobName',title:'任务名称',width:250"></th>
+	                    <th data-options="field:'seq',title:'序列',width:60"></th>
+	                    <th data-options="field:'level',title:'日志级别',width:80"></th>
+	                    <th data-options="field:'text',title:'日志内容',width:300"></th>
+	                    <th data-options="field:'jobDataMapJson',title:'参数',width:200"></th>
+	                    <th data-options="field:'machine',title:'机器ip',width:160"></th>
+	                    <th data-options="field:'batch',title:'批次',width:160"></th>
+	                    <th data-options="field:'jobClassName',title:'执行类',width:200"></th>
+	                </tr>
+                </thead>
+            </table>
         </div>
     </div>
+    <!-- 任务日志 工具栏 -->
+    <div id="logDataGridToolbar" class="myui-toolbar">
+    	<button type="button" class="layui-btn layui-btn-primary layui-border-black layui-btn-sm" 
+    		th:data-actuator="${actuator}"
+        	onclick="$.createExcelExportTask($(this).data('actuator'), '任务日志');">
+			<i class="fa fa-file-excel-o"></i> 导出表格
+		</button>
+		<form id="logDataGridToolbarForm" class="search-box">
+	   		<input type="text" name="batch"
+	        	id="logBatch" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'批次',
+	        		width:220
+	        	"/>
+	        <input type="text" name="jobClassName"
+	        	id="logJobClassName"
+               	class="easyui-combogrid"
+             	data-options="idField:'jobClassName',
+             		textField:'jobName',
+             		prompt:'任务名称',
+             		width:220,
+	        		panelWidth:500,
+            		pagination:false,
+            		fitColumns:true,
+            		mode:'remote',
+            		method:'get',
+                   	url:'ajax/repertoires',
+                   	onBeforeLoad:$.pageOnBeforeLoad,
+                  	columns:[[
+                   		{field:'jobName',title:'任务名称'},
+                   		{field:'jobClassName',title:'执行类'}
+              		]]
+           		"/>
+	        <input type="text" name="level" 
+	        	id="logLevel"
+	        	class="easyui-combobox"
+	       		data-options="prompt:'日志级别',
+	           		width:220,
+	        		panelHeight:152,
+	                valueField:'value',
+	                textField:'label',
+	              	multiple:false,
+	              	editable:false,
+	               	data:[
+	               		{label:'全部',value:null},
+	               		{label:'DEBUG',value:'DEBUG'},
+	                   	{label:'INFO',value:'INFO'},
+	                   	{label:'WARN',value:'WARN'},
+	                   	{label:'ERROR',value:'ERROR'}
+	              	]
+	      		"/>
+	        <a href="javascript:searchLog();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:resetLog();"
+       			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+       			data-options="iconCls:'fa fa-trash'
+       			">重置
+          	</a>
+		</form> 
+    </div>
+    <script type="text/javascript">
+		/**
+		 * 查询任务日志
+		 */
+		function searchLog () {
+			$('#logDataGrid').datagrid('load', {
+				batch: $('#logBatch').textbox('getValue'),
+				jobClassName: $('#logJobClassName').combo('getValue'),
+				level: $('#logLevel').combo('getValue')
+			});
+		}
+		
+		/**
+		 * 重置任务日志
+		 */
+		function resetLog () {
+			$('#logDataGridToolbarForm').form('clear');
+			searchLog();
+		}
+	</script>
 </body>
 </html>

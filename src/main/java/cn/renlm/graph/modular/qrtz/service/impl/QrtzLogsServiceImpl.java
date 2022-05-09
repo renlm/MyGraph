@@ -75,6 +75,9 @@ public class QrtzLogsServiceImpl extends ServiceImpl<QrtzLogsMapper, QrtzLogs> i
 			if (StrUtil.isNotBlank(form.getJobName())) {
 				wrapper.eq(QrtzLogs::getJobName, form.getJobName());
 			}
+			if (StrUtil.isNotBlank(form.getJobClassName())) {
+				wrapper.eq(QrtzLogs::getJobClassName, form.getJobClassName());
+			}
 			if (StrUtil.isNotBlank(form.getLevel())) {
 				wrapper.eq(QrtzLogs::getLevel, form.getLevel());
 			}
