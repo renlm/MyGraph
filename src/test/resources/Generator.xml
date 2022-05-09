@@ -32,4 +32,8 @@
 	<module name="graph" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="graph" entity="true" />
 	</module>
+
+	<module name="qrtz" package="cn.renlm.graph.modular">
+		<table author="Renlm" name="QRTZ_LOGS" entity="true" />
+	</module>
 </generator>

@@ -296,3 +296,24 @@ CREATE TABLE graph(
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
     remark VARCHAR(255) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '图形设计';
+
+-- 定时任务日志
+DROP TABLE IF EXISTS `QRTZ_LOGS`;
+CREATE TABLE `QRTZ_LOGS`(
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    machine						VARCHAR(128)									COMMENT '机器ip',	
+    trigger_name				VARCHAR(128)									COMMENT '触发器',
+    job_name					VARCHAR(128)									COMMENT '任务描述',
+    job_class_name				VARCHAR(128)									COMMENT '执行类',
+    job_data_map_json			TEXT											COMMENT '任务参数',
+    batch            			VARCHAR(32)						NOT NULL        COMMENT '批次',
+    seq            				INT             								COMMENT '序列',
+    level						VARCHAR(10)										COMMENT '日志级别',
+    text						TEXT											COMMENT '日志内容',
+    created_at timestamp default current_timestamp comment '创建时间',
+    INDEX trigger_name(trigger_name),
+    INDEX job_name(job_name),
+    INDEX batch(batch),
+    INDEX seq(seq),
+    INDEX created_at(created_at)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = '定时任务日志';
