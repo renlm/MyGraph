@@ -272,14 +272,24 @@
     	 * 批量授权
     	 */
 		function permissionOnclick () {
-    		
+    		var checkedNodes = $('#authAccessTreegrid').treegrid('getCheckedNodes');
+    		if (!checkedNodes || checkedNodes.length === 0) {
+    			$.messager.myuiAlert('操作提示', '请勾选资源！', 'warning');
+    			return;
+    		}
+    		console.log(checkedNodes);
     	}
 
 		/**
     	 * 批量取消授权
     	 */
 		function unPermissionOnclick () {
-    		
+			var checkedNodes = $('#authAccessTreegrid').treegrid('getCheckedNodes');
+    		if (!checkedNodes || checkedNodes.length === 0) {
+    			$.messager.myuiAlert('操作提示', '请勾选资源！', 'warning');
+    			return;
+    		}
+    		console.log(checkedNodes);
     	}
 		
 		/**
