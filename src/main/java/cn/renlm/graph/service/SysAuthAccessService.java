@@ -52,6 +52,7 @@ public class SysAuthAccessService {
 	/**
 	 * 获取角色授权资源列表
 	 * 
+	 * @param authAccessed
 	 * @param roleId
 	 * @param root
 	 * @param pid
