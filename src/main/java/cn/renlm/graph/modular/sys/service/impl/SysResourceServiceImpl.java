@@ -1,10 +1,13 @@
 package cn.renlm.graph.modular.sys.service.impl;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +26,10 @@ import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.modular.sys.dto.SysResourceDto;
 import cn.renlm.graph.modular.sys.entity.SysResource;
+import cn.renlm.graph.modular.sys.entity.SysRoleResource;
 import cn.renlm.graph.modular.sys.mapper.SysResourceMapper;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
+import cn.renlm.graph.modular.sys.service.ISysRoleResourceService;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
 import cn.renlm.graph.util.TreeExtraUtil;
@@ -39,6 +44,9 @@ import cn.renlm.graph.util.TreeExtraUtil;
  */
 @Service
 public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysResource> implements ISysResourceService {
+
+	@Autowired
+	private ISysRoleResourceService iSysRoleResourceService;
 
 	@Override
 	public List<SysResource> findListByUser(String userId) {
@@ -56,7 +64,9 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 
 	@Override
 	public List<SysResourceDto> findListByRole(String roleId) {
-		return this.list(Wrappers.<SysResource>lambdaQuery().func(wrapper -> {
+		Map<Long, SysResourceDto> srMap = new LinkedHashMap<>();
+		List<SysRoleResource> roleResources = iSysRoleResourceService.findListByRole(roleId);
+		List<SysResourceDto> resources = this.list(Wrappers.<SysResource>lambdaQuery().func(wrapper -> {
 			wrapper.eq(SysResource::getDeleted, false);
 			wrapper.eq(SysResource::getDisabled, false);
 			wrapper.inSql(SysResource::getId, StrUtil.indexedFormat(
@@ -68,8 +78,31 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 		})).stream().filter(Objects::nonNull).map(obj -> {
 			SysResourceDto data = BeanUtil.copyProperties(obj, SysResourceDto.class);
 			data.setAccessAuth(true);
+			srMap.put(data.getId(), data);
 			return data;
 		}).collect(Collectors.toList());
+		if (CollUtil.isNotEmpty(roleResources)) {
+			for (SysRoleResource srr : roleResources) {
+				SysResourceDto sr = srMap.get(srr.getSysResourceId());
+				if (sr != null) {
+					sr.setAlias(srr.getAlias());
+					sr.setSort(ObjectUtil.defaultIfNull(srr.getSort(), sr.getSort()));
+					sr.setDefaultHomePage(ObjectUtil.defaultIfNull(srr.getDefaultHomePage(), sr.getDefaultHomePage()));
+				}
+			}
+			CollUtil.sort(resources, (o1, o2) -> {
+				if (NumberUtil.equals(o1.getLevel(), o2.getLevel())) {
+					if (NumberUtil.equals(o1.getSort(), o2.getSort())) {
+						return -1;
+					} else {
+						return o1.getSort() - o2.getSort();
+					}
+				} else {
+					return o1.getLevel() - o2.getLevel();
+				}
+			});
+		}
+		return resources;
 	}
 
 	@Override

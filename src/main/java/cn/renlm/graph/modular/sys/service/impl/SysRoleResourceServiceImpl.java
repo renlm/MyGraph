@@ -34,4 +34,15 @@ public class SysRoleResourceServiceImpl extends ServiceImpl<SysRoleResourceMappe
 			wrapper.orderByAsc(SysRoleResource::getId);
 		}));
 	}
+
+	@Override
+	public List<SysRoleResource> findListByRole(String roleId) {
+		return this.list(Wrappers.<SysRoleResource>lambdaQuery().func(wrapper -> {
+			wrapper.eq(SysRoleResource::getDeleted, false);
+			wrapper.inSql(SysRoleResource::getId, StrUtil.indexedFormat(
+					"select srr.id from sys_role sr, sys_role_resource srr, sys_resource sr2 where sr.role_id = ''{0}'' and sr.id = srr.sys_role_id and srr.sys_resource_id = sr2.id and srr.deleted = 0 and sr2.deleted = 0 and sr2.disabled = 0",
+					roleId));
+			wrapper.orderByAsc(SysRoleResource::getId);
+		}));
+	}
 }

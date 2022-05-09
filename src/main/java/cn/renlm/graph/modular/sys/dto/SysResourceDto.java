@@ -19,6 +19,11 @@ public class SysResourceDto extends SysResource {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * 别名
+	 */
+	private String alias;
+
+	/**
 	 * 是否授权
 	 */
 	private Boolean accessAuth;

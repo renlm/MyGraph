@@ -75,7 +75,15 @@ public class SysAuthAccessService {
 		List<Tree<Long>> tree = iSysResourceService.getTree(root, pid, false);
 		TreeExtraUtil.foreach(tree, node -> {
 			node.putExtra("roleId", sysRole.getRoleId());
-			node.putExtra("accessAuth", authAccessedMap.containsKey(node.getId()));
+			SysResourceDto srd = authAccessedMap.get(node.getId());
+			if (ObjectUtil.isNotEmpty(srd)) {
+				node.putExtra("accessAuth", true);
+				node.putExtra("alias", srd.getAlias());
+				node.putExtra("sort", srd.getSort());
+				node.putExtra("defaultHomePage", srd.getDefaultHomePage());
+			} else {
+				node.putExtra("accessAuth", false);
+			}
 		});
 		return tree;
 	}

@@ -24,4 +24,12 @@ public interface ISysRoleResourceService extends IService<SysRoleResource> {
 	 */
 	List<SysRoleResource> findListByUser(String userId);
 
+	/**
+	 * 获取角色资源关系列表
+	 * 
+	 * @param roleId
+	 * @return
+	 */
+	List<SysRoleResource> findListByRole(String roleId);
+
 }
