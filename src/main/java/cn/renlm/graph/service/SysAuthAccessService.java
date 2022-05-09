@@ -123,24 +123,21 @@ public class SysAuthAccessService {
 		}
 
 		// 批量保存
-		List<Long> news = CollUtil.distinct(allSysResourceIds);
-		Map<Long, SysResource> map = new LinkedHashMap<>();
-		List<SysResource> list = iSysResourceService.listByIds(news);
-		list.forEach(it -> {
-			map.put(it.getId(), it);
-		});
+		List<Long> ids = CollUtil.distinct(allSysResourceIds);
+		List<SysResource> list = iSysResourceService.listByIds(ids);
 		List<SysRoleResource> rels = CollUtil.newArrayList();
-		for (Long sysResourceId : news) {
-			SysResource sysResource = map.get(sysResourceId);
+		for (SysResource sysResource : list) {
 			SysRoleResource rel = new SysRoleResource();
 			rel.setSysRoleId(sysRoleId);
-			rel.setSysResourceId(sysResourceId);
+			rel.setSysResourceId(sysResource.getId());
 			rel.setSort(sysResource.getSort());
 			rel.setDefaultHomePage(sysResource.getDefaultHomePage());
 			rel.setCreatedAt(new Date());
 			rels.add(rel);
 		}
-		iSysRoleResourceService.saveBatch(rels);
+		if (CollUtil.isNotEmpty(rels)) {
+			iSysRoleResourceService.saveBatch(rels);
+		}
 	}
 
 	/**
