@@ -249,5 +249,64 @@
     	    });
     	}
     </script>
+    <script type="text/javascript">
+    	/**
+    	 * 单个授权
+    	 */
+    	function singleGrantOnclick (e) {
+    		var roleId = $(e).data('role-id');
+    		var resourceId = $(e).data('resource-id');
+    		sendPermissionRequest(true, roleId, resourceId);
+    	}
+    	
+    	/**
+    	 * 单个取消授权
+    	 */
+		function singleUnGrantOnclick (e) {
+			var roleId = $(e).data('role-id');
+    		var resourceId = $(e).data('resource-id');
+    		sendPermissionRequest(false, roleId, resourceId);
+    	}
+    	
+		/**
+    	 * 批量授权
+    	 */
+		function permissionOnclick () {
+    		
+    	}
+
+		/**
+    	 * 批量取消授权
+    	 */
+		function unPermissionOnclick () {
+    		
+    	}
+		
+		/**
+    	 * 授权请求
+    	 */
+		function sendPermissionRequest (isGrant, roleId, resourceIds) {
+			var SCOPE = {
+			    	permissionUrl: ctx + "/sys/authAccess/ajax/grant",
+			        unPermissionUrl: ctx + "/sys/authAccess/ajax/unGrant"
+				};
+		    var MSG = {
+		        	permissionSuccess: "赋予授权成功！",
+		        	permissionFail: "赋予授权失败！",
+		        	unPermissionSuccess: "取消授权成功!",
+		        	unPermissionFail: "取消授权失败！"
+		    	};
+			$.post(isGrant ? SCOPE.permissionUrl : SCOPE.unPermissionUrl, 
+					{ roleId: roleId, resourceIds: resourceIds }, 
+					function (resultJson) {
+		                if (resultJson.statusCode == 200) {
+		                	$('#authAccessTreegrid').treegrid('reload');
+		                	$.messager.show({title: '我的消息', msg: isGrant ? MSG.permissionSuccess : MSG.unPermissionSuccess, timeout: 5000, showType: 'slide'});
+		                } else {
+		                	$.messager.alert("提示", isGrant ? MSG.permissionFail : MSG.unPermissionFail, "messager-error");
+		                }
+		            });
+		}
+    </script>
 </body>
 </html>
