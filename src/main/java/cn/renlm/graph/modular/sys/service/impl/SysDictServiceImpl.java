@@ -182,8 +182,9 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 			file.setStatus(4);
 			file.setUpdatedAt(new Date());
 			file.setMessage(ExceptionUtil.stacktraceToString(e));
+		} finally {
+			iSysFileService.updateById(file);
 		}
-		iSysFileService.updateById(file);
 	}
 
 	@Override
