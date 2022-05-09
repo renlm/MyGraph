@@ -169,15 +169,16 @@ public class SysAuthAccessService {
 			if (allSysResourceIds.contains(sysResourceId)) {
 				continue;
 			}
-			List<SysResourceDto> list = CollUtil.newArrayList();
-			CollUtil.addAll(allSysResourceIds, list.stream().map(SysResource::getId).collect(Collectors.toList()));
+			List<Tree<Long>> list = TreeExtraUtil.getAllNodes(iSysResourceService.getTree(true, sysResourceId, true));
+			CollUtil.addAll(allSysResourceIds, list.stream().map(Tree::getId).collect(Collectors.toList()));
 		}
 
 		// 删除原有关系
-		List<Long> news = CollUtil.distinct(allSysResourceIds);
+		Long sysRoleId = role.getId();
+		List<Long> ids = CollUtil.distinct(allSysResourceIds);
 		iSysRoleResourceService.update(Wrappers.<SysRoleResource>lambdaUpdate().func(wrapper -> {
-			wrapper.eq(SysRoleResource::getSysRoleId, role.getId());
-			wrapper.in(SysRoleResource::getSysResourceId, news);
+			wrapper.eq(SysRoleResource::getSysRoleId, sysRoleId);
+			wrapper.in(SysRoleResource::getSysResourceId, ids);
 			wrapper.set(SysRoleResource::getDeleted, true);
 			wrapper.set(SysRoleResource::getUpdatedAt, new Date());
 		}));
