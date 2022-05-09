@@ -300,6 +300,58 @@
            		hasDownArrow:false
         	">移除成员
    		</a>
+   		<form id="userDataGridForm" class="search-box">
+	    	<input type="text" name="orgIds"
+	    		id="orgIds"
+          		class="easyui-combotreegrid"
+             	th:data-options="|fitColumns:true,
+					singleSelect:true,
+                 	prompt:'组织机构',
+                 	width:220,
+	                panelWidth:344,
+					idField:'orgId',
+			   		treeField:'text',
+					method:'get',
+                 	url:ctx+'/sys/org/ajax/getTree',
+                  	columns:[[
+                       	{field:'text',title:'组织机构名称',width:100}
+                	]],
+               		onLoadSuccess:function(row,data){
+               			$(this).treegrid('expandAll');
+               		}
+           		|"/>
+           	<input type="text" name="accessAuth" value="1"
+           		id="accessAuth"
+	        	class="easyui-combobox"
+	        	data-options="prompt:'是否授权',
+                  	width:120,
+					panelHeight:120,
+					editable:false,
+                 	valueField:'value',
+					textField:'text',
+					data: [
+					    {text:'全部',value:''},
+					    {text:'已授权',value:true},
+						{text:'未授权',value:false}
+					]
+				"/>
+	   		<input type="text" name="keywords"
+	    		id="keywords" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'昵称、账号、手机号',
+		       		width:220
+	        	"/>
+	        <a href="javascript:searchUserDataGrid();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:resetUserDataGrid();"
+       			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+       			data-options="iconCls:'fa fa-trash'
+       			">重置
+          	</a>
+		</form>
 	</div>
     <script type="text/javascript">
     	/**
