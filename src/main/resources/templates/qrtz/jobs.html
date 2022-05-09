@@ -7,30 +7,26 @@
     <div class="easyui-layout"
     	data-options="fit:true">
     	<!-- 任务列表 -->
-        <div data-options="region:'center',
+        <div data-options="region:'north',
+        		iconCls:'fa fa-deaf',
+        		title:'任务列表',
         		split:true,
         		height:'60%',
         		border:false,
+        		cls:'north-border_none',
         		bodyCls:'border_bottom'
         	">
        		
         </div>
-        <div data-options="region:'south',
+        <div data-options="region:'center',
+        		iconCls:'fa fa-tags',
+        		title:'任务日志',
         		split:true,
         		height:'40%',
         		border:false,
-                bodyCls:'border_top'
+        		headerCls:'border_top'
         	">
-         	<div class="easyui-tabs"
-           		data-options="fit:true,
-                  	border:false
-             	">
-              	<div title="任务日志" 
-	            	data-options="iconCls:'fa fa-th'
-	              	">
-	               		
-	         	</div>
-        	</div>
+         	
         </div>
     </div>
 </body>

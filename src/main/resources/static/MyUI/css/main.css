@@ -2,6 +2,10 @@
 
 @import "../themes/default/core.css";
 
+div.north-border_none + div.layout-panel-center + div.layout-split-proxy-h + div.layout-split-proxy-v + div.layout-expand .panel-header {
+	border: none;
+}
+
 .mlr15center>div.myui-row {
 	margin-left: -15px;
 	margin-right: 15px;
