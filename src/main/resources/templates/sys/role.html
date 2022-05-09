@@ -81,7 +81,11 @@
 		               			}
 		               		},
 		               		onLoadSuccess:function(row,data){
+		               			var that = this;
 		               			$(this).treegrid('expandAll');
+		               			$(this).treegrid('getCheckedNodes').forEach(function(item) {
+			                    	$(that).treegrid('uncheckNode', item.id);
+			               		});
 		               		}
                     	">
                         <thead>
@@ -277,7 +281,13 @@
     			$.messager.myuiAlert('操作提示', '请勾选资源！', 'warning');
     			return;
     		}
-    		console.log(checkedNodes);
+    		var roleId = checkedNodes[0].roleId;
+    		var resourceIds = [];
+    		$.each(checkedNodes, function (i, node) {
+    			resourceIds.push(node.resourceId);
+    		});
+    		$.messager.progress({'text': '请求中……'});
+    		sendPermissionRequest(true, roleId, resourceIds.join());
     	}
 
 		/**
@@ -289,7 +299,13 @@
     			$.messager.myuiAlert('操作提示', '请勾选资源！', 'warning');
     			return;
     		}
-    		console.log(checkedNodes);
+    		var roleId = checkedNodes[0].roleId;
+    		var resourceIds = [];
+    		$.each(checkedNodes, function (i, node) {
+    			resourceIds.push(node.resourceId);
+    		});
+    		$.messager.progress({'text': '请求中……'});
+    		sendPermissionRequest(false, roleId, resourceIds.join());
     	}
 		
 		/**
