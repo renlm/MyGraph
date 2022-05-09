@@ -173,7 +173,7 @@
                               			editor:{
                               				type:'combobox',
                               				options:{
-                              					required:false,
+                              					required:true,
                               					textField:'label',
                               					valueField:'value',
                               					panelHeight:70,
@@ -427,27 +427,25 @@
 		/**
    		 * 保存行
    		 */
-		function saveRow(index){
+		function saveRow(id){
 			$.messager.progress({'text': '请求中……'});
-			var rowDatas = $('#customTreegrid').treegrid('getRows');
-			var rowData = rowDatas[index];
-			var edVal = $('#customTreegrid').treegrid('getEditor', { index: index, field: 'val' });
-			var edSort = $('#customTreegrid').treegrid('getEditor', { index: index, field: 'sort' });
-			var edRemark = $('#customTreegrid').treegrid('getEditor', { index: index, field: 'remark' });
-			var val = $(edVal.target).textbox('getValue');
+			var rowData = $('#customTreegrid').treegrid('find', id);
+			var edAlias = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'alias' });
+			var edSort = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'sort' });
+			var edDefaultHomePage = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'defaultHomePage' });
+			var alias = $(edAlias.target).textbox('getValue');
 			var sort = $(edSort.target).textbox('getValue');
-			var remark = $(edRemark.target).textbox('getValue');
-			$.post(ctx + '/sys/const/ajax/save',
-					{ constId: rowData.constId, val: val, sort: sort, remark: remark },
+			var defaultHomePage = $(edDefaultHomePage.target).combobox('getValue');
+			$.post(ctx + '/sys/resource/ajax/updateRoleCustom',
+					{ roleId: rowData.roleId, resourceId: rowData.resourceId, alias: alias, sort: sort, defaultHomePage: defaultHomePage },
 					function (data) {
+		                $.messager.progress('close');
 						if (data.statusCode == 200) {
 		                	$.messager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
-		                	$('#customTreegrid').treegrid('endEdit', index);
-		                	$('#customTreegrid').treegrid('reload');
+		                	$('#customTreegrid').treegrid('endEdit', id);
 		                } else {
 		                    $.messager.show({title: '我的消息', msg: data.message?data.message:'服务器出错了', timeout: 5000, showType: 'slide'});
 		                }
-		                $.messager.progress('close');
 					});
 		}
     	

@@ -1,5 +1,6 @@
 package cn.renlm.graph.controller.sys;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,11 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysResource;
+import cn.renlm.graph.modular.sys.entity.SysRole;
+import cn.renlm.graph.modular.sys.entity.SysRoleResource;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
+import cn.renlm.graph.modular.sys.service.ISysRoleResourceService;
+import cn.renlm.graph.modular.sys.service.ISysRoleService;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.security.UserService;
 
@@ -36,7 +41,13 @@ public class SysResourceController {
 	private UserService userService;
 
 	@Autowired
+	private ISysRoleService iSysRoleService;
+
+	@Autowired
 	private ISysResourceService iSysResourceService;
+
+	@Autowired
+	private ISysRoleResourceService iSysRoleResourceService;
 
 	/**
 	 * 获取菜单列表
@@ -136,6 +147,40 @@ public class SysResourceController {
 	public Result<SysResource> ajaxSave(HttpServletRequest request, SysResource sysResource) {
 		try {
 			return iSysResourceService.ajaxSave(sysResource);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("服务器出错了");
+		}
+	}
+
+	/**
+	 * 更新角色自定义参数
+	 * 
+	 * @param request
+	 * @param roleId
+	 * @param resourceId
+	 * @param alias
+	 * @param sort
+	 * @param defaultHomePage
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/updateRoleCustom")
+	public Result<?> updateRoleCustom(HttpServletRequest request, String roleId, String resourceId, String alias,
+			Integer sort, Boolean defaultHomePage) {
+		try {
+			SysRole sysRole = iSysRoleService.getOne(Wrappers.<SysRole>lambdaQuery().eq(SysRole::getRoleId, roleId));
+			SysResource sysResource = iSysResourceService
+					.getOne(Wrappers.<SysResource>lambdaQuery().eq(SysResource::getResourceId, resourceId));
+			iSysRoleResourceService.update(Wrappers.<SysRoleResource>lambdaUpdate().func(wrapper -> {
+				wrapper.set(SysRoleResource::getAlias, alias);
+				wrapper.set(SysRoleResource::getSort, sort);
+				wrapper.set(SysRoleResource::getDefaultHomePage, defaultHomePage);
+				wrapper.set(SysRoleResource::getUpdatedAt, new Date());
+				wrapper.eq(SysRoleResource::getSysRoleId, sysRole.getId());
+				wrapper.eq(SysRoleResource::getSysResourceId, sysResource.getId());
+			}));
+			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("服务器出错了");
