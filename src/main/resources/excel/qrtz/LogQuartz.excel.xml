@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<excel name="cn.renlm.graph.modular.qrtz.entity.QrtzLogs"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://www.renlm.cn/schemas/MyExcel.xsd">
+	<sheet name="执行日志">
+		<column field="createdAt" date-format="yyyy/MM/dd HH:mm:ss">
+			<title>时间</title>
+		</column>
+		<column field="jobName">
+			<title>任务名称</title>
+		</column>
+		<column field="seq">
+			<title>序列</title>
+		</column>
+		<column field="level">
+			<title>日志级别</title>
+		</column>
+		<column field="text">
+			<title>日志内容</title>
+		</column>
+		<column field="jobDataMapJson">
+			<title>参数</title>
+		</column>
+		<column field="machine">
+			<title>机器ip</title>
+		</column>
+		<column field="batch">
+			<title>批次</title>
+		</column>
+		<column field="jobClassName">
+			<title>执行类</title>
+		</column>
+	</sheet>
+</excel>
