@@ -16,6 +16,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeUtil;
+import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.TreeState;
@@ -54,7 +57,7 @@ public class SysAuthAccessService {
 	 * @param pid
 	 * @return
 	 */
-	public List<Tree<Long>> getTree(String roleId, boolean root, Long pid) {
+	public List<Tree<Long>> getTree(boolean authAccessed, String roleId, boolean root, Long pid) {
 		if (StrUtil.isBlank(roleId)) {
 			return CollUtil.newArrayList();
 		}
@@ -63,13 +66,38 @@ public class SysAuthAccessService {
 			return CollUtil.newArrayList();
 		}
 		Map<Long, SysResourceDto> authAccessedMap = new LinkedHashMap<>();
-		List<SysResourceDto> authAccessed = iSysResourceService.findListByRole(roleId);
-		authAccessed.forEach(srd -> {
+		List<SysResourceDto> authAccessedList = iSysResourceService.findListByRole(roleId);
+		authAccessedList.forEach(srd -> {
 			authAccessedMap.put(srd.getId(), srd);
 		});
-		if (CollUtil.isEmpty(authAccessed)) {
+		if (CollUtil.isEmpty(authAccessedList)) {
 			if (TreeState.closed.name().equals(sysRole.getState())) {
 				return CollUtil.newArrayList();
+			}
+		}
+		if (BooleanUtil.isTrue(authAccessed)) {
+			Tree<Long> top = new Tree<>();
+			List<Tree<Long>> tree = TreeUtil.build(authAccessedList, pid, (object, treeNode) -> {
+				BeanUtil.copyProperties(object, treeNode);
+				treeNode.setId(object.getId());
+				treeNode.setName(object.getText());
+				treeNode.setWeight(object.getSort());
+				treeNode.setParentId(object.getPid());
+				if (BooleanUtil.isFalse(root)) {
+					return;
+				}
+				if (pid == null) {
+					return;
+				}
+				if (NumberUtil.equals(pid, object.getId())) {
+					BeanUtil.copyProperties(treeNode, top);
+				}
+			});
+			if (ObjectUtil.isNotEmpty(top)) {
+				top.setChildren(tree);
+				return TreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
+			} else {
+				return TreeExtraUtil.resetLevel(tree, 1);
 			}
 		}
 		List<Tree<Long>> tree = iSysResourceService.getTree(root, pid, false);

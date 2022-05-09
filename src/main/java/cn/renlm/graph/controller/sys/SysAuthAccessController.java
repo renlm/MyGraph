@@ -32,6 +32,7 @@ public class SysAuthAccessController {
 	/**
 	 * 获取角色授权资源列表
 	 * 
+	 * @param authAccessed
 	 * @param roleId
 	 * @param root
 	 * @param id
@@ -39,8 +40,8 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/getTree")
-	public List<Tree<Long>> getTree(String roleId, boolean root, Long id) {
-		return sysAuthAccessService.getTree(roleId, root, id);
+	public List<Tree<Long>> getTree(boolean authAccessed, String roleId, boolean root, Long id) {
+		return sysAuthAccessService.getTree(authAccessed, roleId, root, id);
 	}
 
 	/**

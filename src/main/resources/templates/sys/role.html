@@ -443,6 +443,7 @@
 						if (data.statusCode == 200) {
 		                	$.messager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
 		                	$('#customTreegrid').treegrid('endEdit', id);
+		                	$('#customTreegrid').treegrid('reload');
 		                } else {
 		                    $.messager.show({title: '我的消息', msg: data.message?data.message:'服务器出错了', timeout: 5000, showType: 'slide'});
 		                }
