@@ -4,6 +4,8 @@ import static cn.hutool.core.text.StrPool.COMMA;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.modular.sys.dto.SysUserDto;
+import cn.renlm.graph.modular.sys.entity.SysUser;
+import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.service.SysAuthAccessService;
 
@@ -75,6 +82,61 @@ public class SysAuthAccessController {
 	public Result<?> unGrant(String roleId, String resourceIds) {
 		try {
 			sysAuthAccessService.unGrant(roleId, StrUtil.splitTrim(resourceIds, COMMA));
+			return Result.success();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("服务器出错了");
+		}
+	}
+
+	/**
+	 * 授权人员分页列表
+	 * 
+	 * @param page
+	 * @param roleId
+	 * @param form
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/getPageUsers")
+	public Datagrid<SysUserDto> getPageUsers(Page<SysUser> page, String roleId, SysUserDto form) {
+		Page<SysUserDto> pager = sysAuthAccessService.getPageUsers(page, roleId, form);
+		return Datagrid.of(pager);
+	}
+
+	/**
+	 * 添加授权人员
+	 * 
+	 * @param request
+	 * @param roleId
+	 * @param userIds
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/addRoleMember")
+	public Result<?> addRoleMember(HttpServletRequest request, String roleId, String userIds) {
+		try {
+			sysAuthAccessService.addRoleMember(roleId, StrUtil.splitTrim(userIds, COMMA));
+			return Result.success();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("服务器出错了");
+		}
+	}
+
+	/**
+	 * 移除授权人员
+	 * 
+	 * @param request
+	 * @param roleId
+	 * @param userIds
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/removeRoleMember")
+	public Result<?> removeRoleMember(HttpServletRequest request, String roleId, String userIds) {
+		try {
+			sysAuthAccessService.removeRoleMember(roleId, StrUtil.splitTrim(userIds, COMMA));
 			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
