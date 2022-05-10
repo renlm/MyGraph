@@ -183,7 +183,7 @@ public class QuartzController {
 	public Result<?> jobAdd(String triggerName, String jobName, String jobClassName, String cronExpression,
 			String description, String jobDataMapJson) {
 		try {
-			if (CronExpression.isValidExpression(cronExpression)) {
+			if (!CronExpression.isValidExpression(cronExpression)) {
 				return Result.error("无效的时间表达式");
 			}
 			JobDataMap jobDataMap = new JobDataMap();
