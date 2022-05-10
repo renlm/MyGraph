@@ -6,81 +6,78 @@
 <body layout:fragment="content" class="myui">
     <div class="easyui-layout"
     	data-options="fit:true">
-    	<!-- 任务列表 -->
-        <div data-options="region:'north',
-        		iconCls:'fa fa-deaf',
-        		title:'任务列表',
-        		split:true,
-        		height:'55%',
-        		border:false,
-        		cls:'north-border_none',
-        		bodyCls:'border_bottom'
+    	<div data-options="region:'center',
+       			split:true,
+             	border:false
         	">
-       		<table id="jobDataGrid" class="easyui-datagrid"
-            	data-options="border:false,
-					fit:true,
-					fitColumns:true,
-					singleSelect:true,
-					toolbar:'#jobDataGridToolbar',
-					pagination:true,
-					pageSize:20,
-					sortName:'createdAt',
-           			sortOrder:'desc',
-					method:'get',
-					url:'job/ajax/list',
-                   	onBeforeLoad:$.pageOnBeforeLoad
-               	">
-                <thead>
-	                <tr>
-	                	<th data-options="field:'jobName',title:'任务名称',width:250"></th>
-	                    <th data-options="field:'jobClassName',title:'执行类',width:200"></th>
-	                    <th data-options="field:'triggerState',title:'状态',width:80,formatter:function(value,row,index){switch(value){case 'WAITING': return '等待';case 'PAUSED': return '暂停';case 'ACQUIRED': return '运行中';case 'BLOCKED': return '阻塞';case 'ERROR': return '错误';default: return value;}}"></th>
-	                    <th data-options="field:'cronExpression',title:'时间表达式',width:120"></th>
-	                    <th data-options="field:'description',title:'备注',width:200"></th>
-	                    <th data-options="field:'jobDataMapJson',title:'参数',width:200"></th>
-	                    <th data-options="field:'operate',title:'操作',align:'right',width:200,formatter:jobOperateFormatter"></th>
-	                </tr>
-                </thead>
-            </table>
-        </div>
-        <!-- 任务日志 -->
-        <div data-options="region:'center',
-        		iconCls:'fa fa-tags',
-        		title:'任务日志',
-        		split:true,
-        		height:'45%',
-        		border:false,
-        		headerCls:'border_top'
-        	">
-       		<table id="logDataGrid" class="easyui-datagrid"
-            	data-options="border:false,
-					fit:true,
-					fitColumns:true,
-					singleSelect:true,
-					toolbar:'#logDataGridToolbar',
-					pagination:true,
-					pageSize:20,
-					sortName:'createdAt',
-           			sortOrder:'desc',
-					method:'get',
-					url:'log/ajax/list',
-                   	onBeforeLoad:$.pageOnBeforeLoad
-               	">
-                <thead>
-	                <tr>
-	                	<th data-options="field:'createdAt',title:'时间',width:153,sortable:true,formatter:$.createdAtFormatter"></th>
-	                    <th data-options="field:'jobName',title:'任务名称',width:250"></th>
-	                    <th data-options="field:'seq',title:'序列',width:60"></th>
-	                    <th data-options="field:'level',title:'日志级别',width:80"></th>
-	                    <th data-options="field:'text',title:'日志内容',width:300"></th>
-	                    <th data-options="field:'jobDataMapJson',title:'参数',width:200"></th>
-	                    <th data-options="field:'machine',title:'机器ip',width:160"></th>
-	                    <th data-options="field:'batch',title:'批次',width:160"></th>
-	                    <th data-options="field:'jobClassName',title:'执行类',width:200"></th>
-	                </tr>
-                </thead>
-            </table>
-        </div>
+    		<div class="easyui-tabs"
+             	data-options="fit:true,
+                  	border:false
+             	">
+              	<div title="任务列表" 
+              		data-options="iconCls:'fa fa-deaf'
+                	">
+              		<table id="jobDataGrid" class="easyui-datagrid"
+		            	data-options="border:false,
+							fit:true,
+							fitColumns:true,
+							singleSelect:true,
+							toolbar:'#jobDataGridToolbar',
+							pagination:true,
+							pageSize:20,
+							sortName:'createdAt',
+		           			sortOrder:'desc',
+							method:'get',
+							url:'job/ajax/list',
+		                   	onBeforeLoad:$.pageOnBeforeLoad
+		               	">
+		                <thead>
+			                <tr>
+			                	<th data-options="field:'jobName',title:'任务名称',width:250"></th>
+			                    <th data-options="field:'jobClassName',title:'执行类',width:200"></th>
+			                    <th data-options="field:'triggerState',title:'状态',width:80,formatter:function(value,row,index){switch(value){case 'WAITING': return '等待';case 'PAUSED': return '暂停';case 'ACQUIRED': return '运行中';case 'BLOCKED': return '阻塞';case 'ERROR': return '错误';default: return value;}}"></th>
+			                    <th data-options="field:'cronExpression',title:'时间表达式',width:120"></th>
+			                    <th data-options="field:'description',title:'备注',width:200"></th>
+			                    <th data-options="field:'jobDataMapJson',title:'参数',width:200"></th>
+			                    <th data-options="field:'operate',title:'操作',align:'right',width:200,formatter:jobOperateFormatter"></th>
+			                </tr>
+		                </thead>
+		            </table>
+        		</div>
+              	<div title="任务日志" 
+              		data-options="iconCls:'fa fa-tags'
+                	">
+              		<table id="logDataGrid" class="easyui-datagrid"
+		            	data-options="border:false,
+							fit:true,
+							fitColumns:true,
+							singleSelect:true,
+							toolbar:'#logDataGridToolbar',
+							pagination:true,
+							pageSize:20,
+							sortName:'createdAt',
+		           			sortOrder:'desc',
+							method:'get',
+							url:'log/ajax/list',
+		                   	onBeforeLoad:$.pageOnBeforeLoad
+		               	">
+		                <thead>
+			                <tr>
+			                	<th data-options="field:'createdAt',title:'时间',width:153,sortable:true,formatter:$.createdAtFormatter"></th>
+			                    <th data-options="field:'jobName',title:'任务名称',width:250"></th>
+			                    <th data-options="field:'seq',title:'序列',width:60"></th>
+			                    <th data-options="field:'level',title:'日志级别',width:80"></th>
+			                    <th data-options="field:'text',title:'日志内容',width:300"></th>
+			                    <th data-options="field:'jobDataMapJson',title:'参数',width:200"></th>
+			                    <th data-options="field:'machine',title:'机器ip',width:160"></th>
+			                    <th data-options="field:'batch',title:'批次',width:160"></th>
+			                    <th data-options="field:'jobClassName',title:'执行类',width:200"></th>
+			                </tr>
+		                </thead>
+		            </table>
+        		</div>
+        	</div>
+    	</div>
     </div>
     <!-- 任务列表 表格工具栏 -->
     <div id="jobDataGridToolbar" class="myui-toolbar">
