@@ -293,6 +293,14 @@
 		                $jobDialog.dialog('destroy');
 		            }
 		        }],
+		        onLoad: function () {
+		        	var jobDataMapJsonEle = $('#jobDataMapJson', $jobDialog);
+		        	var jobDataMapJson = jobDataMapJsonEle.textbox('getValue');
+		        	if (jobDataMapJson) {
+		        		var jobDataMapJsonFormat = JSON.stringify(JSON.parse(jobDataMapJson), null, 2);
+		        		jobDataMapJsonEle.textbox('setValue', jobDataMapJsonFormat);
+		        	}
+		        },
 				onClose: function () {
 					$jobDialog.dialog('destroy');
 				}
