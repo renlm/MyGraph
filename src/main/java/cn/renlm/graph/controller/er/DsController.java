@@ -74,6 +74,7 @@ public class DsController {
 		Ds ds = new Ds();
 		if (StrUtil.isNotBlank(uuid)) {
 			Ds entity = iDsService.getOne(Wrappers.<Ds>lambdaQuery().eq(Ds::getUuid, uuid));
+			entity.setPassword(null);
 			BeanUtil.copyProperties(entity, ds);
 		}
 		model.put("ds", ds);
