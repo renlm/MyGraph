@@ -94,6 +94,60 @@ public class QuartzController {
 	}
 
 	/**
+	 * 恢复任务
+	 * 
+	 * @param triggerName
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/job/ajax/resume")
+	public Result<?> jobAjaxResume(String triggerName) {
+		try {
+			iQrtzTriggersService.resume(triggerName);
+			return Result.success();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error();
+		}
+	}
+
+	/**
+	 * 停止任务
+	 * 
+	 * @param triggerName
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/job/ajax/pause")
+	public Result<?> jobAjaxPause(String triggerName) {
+		try {
+			iQrtzTriggersService.pause(triggerName);
+			return Result.success();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error();
+		}
+	}
+
+	/**
+	 * 立即执行
+	 * 
+	 * @param triggerName
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/job/ajax/run")
+	public Result<?> jobAjaxRun(String triggerName) {
+		try {
+			iQrtzTriggersService.run(triggerName);
+			return Result.success();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error();
+		}
+	}
+
+	/**
 	 * 任务弹窗
 	 * 
 	 * @return
