@@ -3,8 +3,6 @@ package cn.renlm.graph.controller.er;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -22,6 +20,7 @@ import cn.renlm.graph.modular.er.dto.ErDto;
 import cn.renlm.graph.modular.er.entity.Er;
 import cn.renlm.graph.modular.er.service.IErService;
 import cn.renlm.graph.mxgraph.ERModelParser;
+import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
 
 /**
@@ -43,15 +42,17 @@ public class ErController {
 	/**
 	 * 分页列表
 	 * 
-	 * @param request
+	 * @param authentication
 	 * @param page
 	 * @param form
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/page")
-	public Page<ErDto> page(HttpServletRequest request, Page<Er> page, ErDto form) {
-		return iErService.findPage(page, form);
+	public Datagrid<ErDto> page(Authentication authentication, Page<Er> page, ErDto form) {
+		User user = (User) authentication.getPrincipal();
+		Page<ErDto> data = iErService.findPage(page, user, form);
+		return Datagrid.of(data);
 	}
 
 	/**

@@ -5,6 +5,7 @@ import java.util.List;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErDto;
 import cn.renlm.graph.modular.er.entity.Er;
 
@@ -22,10 +23,11 @@ public interface IErService extends IService<Er> {
 	 * 分页列表
 	 * 
 	 * @param page
+	 * @param user
 	 * @param form
 	 * @return
 	 */
-	Page<ErDto> findPage(Page<Er> page, ErDto form);
+	Page<ErDto> findPage(Page<Er> page, User user, ErDto form);
 
 	/**
 	 * 获取包含字段的表信息

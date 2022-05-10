@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErDto;
 import cn.renlm.graph.modular.er.entity.Er;
 import cn.renlm.graph.modular.er.entity.ErField;
@@ -38,8 +39,9 @@ public class ErServiceImpl extends ServiceImpl<ErMapper, Er> implements IErServi
 	private IErFieldService iErFieldService;
 
 	@Override
-	public Page<ErDto> findPage(Page<Er> page, ErDto form) {
+	public Page<ErDto> findPage(Page<Er> page, User user, ErDto form) {
 		Page<Er> pager = this.page(page, Wrappers.<Er>lambdaQuery().func(wrapper -> {
+			wrapper.eq(Er::getCreatorUserId, user.getUserId());
 			wrapper.eq(Er::getDeleted, false);
 			wrapper.orderByDesc(Er::getUpdatedAt);
 			wrapper.orderByDesc(Er::getId);
