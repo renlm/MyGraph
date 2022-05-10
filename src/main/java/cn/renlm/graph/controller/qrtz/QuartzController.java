@@ -184,10 +184,10 @@ public class QuartzController {
 			if (JSONUtil.isTypeJSON(jobDataMapJson)) {
 				jobDataMap.putAll(JSONUtil.toBean(jobDataMapJson, JobDataMap.class));
 			}
-			Class<JobBean> jobClass = ClassUtil.loadClass(jobClassName);
 			if (StrUtil.isNotBlank(triggerName)) {
 				iQrtzTriggersService.update(triggerName, cronExpression, jobDataMap, description);
 			} else {
+				Class<JobBean> jobClass = ClassUtil.loadClass(jobClassName);
 				if (iQrtzTriggersService.exists(jobClassName)) {
 					return Result.error("任务重复");
 				} else {
