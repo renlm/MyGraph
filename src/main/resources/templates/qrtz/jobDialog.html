@@ -8,6 +8,7 @@
         	<label class="myui-form-label">执行类</label>
             <div class="myui-input-block">
                 <input type="text" th:field="*{jobClassName}"
+                	th:disabled="*{!#strings.isEmpty(triggerName)}"
                 	class="easyui-combogrid"
 	             	data-options="idField:'jobClassName',
 	             		textField:'jobClassName',
@@ -36,6 +37,7 @@
         	<label class="myui-form-label">任务名称</label>
             <div class="myui-input-block">
                 <input type="text" th:field="*{jobName}" 
+                	th:disabled="*{!#strings.isEmpty(triggerName)}"
                 	class="easyui-textbox"
                    	data-options="width:718
                    	"/>
