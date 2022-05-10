@@ -178,21 +178,19 @@
 	    	function renderOshiCharts (VM) {
 	    		VM.serverMap = OSHI_IP;
 	    		$.each(OSHI_IP, function (ip, data) {
-	    			renderChart(document.getElementById('cpu-' + ip), 'Cpu使用率', (function () {
-				 		var seriesData = [];
-				 		$.each(OSHI_POOL, function (i, item) { if(item.ip === ip) { seriesData.push({ name: item.time, value: [ item.time, item.cpuUsedRate ] }); } });
-				 		return seriesData;
-				 	})());
-	    			renderChart(document.getElementById('memory-' + ip), '系统内存使用率', (function () {
-				 		var seriesData = [];
-				 		$.each(OSHI_POOL, function (i, item) { if(item.ip === ip) { seriesData.push({ name: item.time, value: [ item.time, item.memoryUsedRate ] }); } });
-				 		return seriesData;
-				 	})());
-	    			renderChart(document.getElementById('jvm-' + ip), 'Jvm内存使用率', (function () {
-				 		var seriesData = [];
-				 		$.each(OSHI_POOL, function (i, item) { if(item.ip === ip) { seriesData.push({ name: item.time, value: [ item.time, item.jvmMemoryUsedRate ] }); } });
-				 		return seriesData;
-				 	})());
+	    			var seriesDataCpu = [];
+	    			var seriesDataMemory = [];
+	    			var seriesDataJvm = [];
+	    			$.each(OSHI_POOL, function (i, item) { 
+	    				if(item.ip === ip) { 
+	    					seriesDataCpu.push({ name: item.time, value: [ item.time, item.cpuUsedRate ] }); 
+	    					seriesDataMemory.push({ name: item.time, value: [ item.time, item.memoryUsedRate ] }); 
+	    					seriesDataJvm.push({ name: item.time, value: [ item.time, item.jvmMemoryUsedRate ] }); 
+	    				} 
+	    			});
+	    			renderChart(document.getElementById('cpu-' + ip), 'Cpu使用率', seriesDataCpu);
+	    			renderChart(document.getElementById('memory-' + ip), '系统内存使用率', seriesDataMemory);
+	    			renderChart(document.getElementById('jvm-' + ip), 'Jvm内存使用率', seriesDataJvm);
 	    		});
 	    	}
 	    	
@@ -282,7 +280,15 @@
 	    		        name: title,
 	    		        type: 'line',
 	    		        showSymbol: false,
-	    		        hoverAnimation: false,
+	    		        animation: false,
+	    		        lineStyle: {
+    		        		width: 2
+    		        	},
+	    		        emphasis: {
+	    		        	lineStyle: {
+	    		        		width: 2
+	    		        	}
+	    		        },
 	    		        data: data
 	    		    }]
 	    		}, true);
