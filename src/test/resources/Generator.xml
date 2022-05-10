@@ -34,6 +34,17 @@
 	</module>
 
 	<module name="qrtz" package="cn.renlm.graph.modular">
+		<table author="Renlm" name="QRTZ_BLOB_TRIGGERS" entity="true" />
+		<table author="Renlm" name="QRTZ_CALENDARS" entity="true" />
+		<table author="Renlm" name="QRTZ_CRON_TRIGGERS" entity="true" />
+		<table author="Renlm" name="QRTZ_FIRED_TRIGGERS" entity="true" />
+		<table author="Renlm" name="QRTZ_JOB_DETAILS" entity="true" />
+		<table author="Renlm" name="QRTZ_LOCKS" entity="true" />
 		<table author="Renlm" name="QRTZ_LOGS" entity="true" />
+		<table author="Renlm" name="QRTZ_PAUSED_TRIGGER_GRPS" entity="true" />
+		<table author="Renlm" name="QRTZ_SCHEDULER_STATE" entity="true" />
+		<table author="Renlm" name="QRTZ_SIMPLE_TRIGGERS" entity="true" />
+		<table author="Renlm" name="QRTZ_SIMPROP_TRIGGERS" entity="true" />
+		<table author="Renlm" name="QRTZ_TRIGGERS" entity="true" />
 	</module>
 </generator>
