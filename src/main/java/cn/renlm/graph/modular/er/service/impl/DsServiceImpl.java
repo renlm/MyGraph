@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,13 +14,15 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.asymmetric.KeyType;
+import cn.hutool.crypto.asymmetric.RSA;
 import cn.hutool.db.meta.Column;
 import cn.hutool.db.meta.Table;
 import cn.hutool.db.meta.TableType;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.DsDto;
 import cn.renlm.graph.modular.er.entity.Ds;
 import cn.renlm.graph.modular.er.entity.DsErRel;
@@ -30,7 +34,6 @@ import cn.renlm.graph.modular.er.service.IDsService;
 import cn.renlm.graph.modular.er.service.IErFieldService;
 import cn.renlm.graph.modular.er.service.IErService;
 import cn.renlm.graph.response.Result;
-import cn.renlm.graph.dto.User;
 import cn.renlm.plugins.MyUtil.MyDbUtil;
 
 /**
@@ -43,6 +46,9 @@ import cn.renlm.plugins.MyUtil.MyDbUtil;
  */
 @Service
 public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsService {
+
+	@Resource
+	private RSA rsa;
 
 	@Autowired
 	private IDsErRelService iDsErRelService;
@@ -62,6 +68,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 			wrapper.orderByDesc(Ds::getId);
 			if (StrUtil.isNotBlank(form.getKeywords())) {
 				wrapper.and(item -> {
+					item.or().like(Ds::getName, form.getKeywords());
 					item.or().like(Ds::getUrl, form.getKeywords());
 					item.or().like(Ds::getSchemaName, form.getKeywords());
 					item.or().like(Ds::getUsername, form.getKeywords());
@@ -77,7 +84,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 		List<Table> tables = MyDbUtil.getTableMetas(ds.getUrl(), ds.getSchemaName(), ds.getUsername(), ds.getPassword(),
 				TableType.TABLE);
 		// 保存数据源
-		ds.setPassword(Base64.encodeUrlSafe(ds.getPassword()));
+		ds.setPassword(rsa.encryptBase64(ds.getPassword(), KeyType.PrivateKey));
 		if (StrUtil.isBlank(ds.getUuid())) {
 			ds.setUuid(IdUtil.simpleUUID().toUpperCase());
 			ds.setCreatedAt(new Date());
