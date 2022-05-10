@@ -196,15 +196,52 @@
 		 * 任务操作
 		 */
 	    function jobOperateFormatter(value, row, index) {
-			var htmlstr = '<button class="layui-btn layui-btn-xs" style="background-color: #2F4056;" onclick="execute(\'run\',\'您确定立即执行一次任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">执行</button>';
-		    htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jobDialog(\'编辑任务\',\'' + row.triggerName + '\')">编辑</button>';
+			var htmlstr = '<button class="layui-btn layui-btn-xs" style="background-color: #2F4056;" onclick="executeJob(\'run\',\'您确定立即执行一次任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">执行</button>';
+		    htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jobDialog(\'' + row.triggerName + '\')">编辑</button>';
 		    if(row.triggerState == 'PAUSED') {
-		    	htmlstr += '<button class="layui-btn layui-btn-xs" onclick="execute(\'resume\',\'您确定恢复任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">恢复</button>';
+		    	htmlstr += '<button class="layui-btn layui-btn-xs" onclick="executeJob(\'resume\',\'您确定恢复任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">恢复</button>';
 		    } else {
-		    	htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-danger" onclick="execute(\'pause\',\'您确定停止任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">停止</button>';
+		    	htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-danger" onclick="executeJob(\'pause\',\'您确定停止任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">停止</button>';
 		    }
 		    return htmlstr;
 		}
+	    
+	    /**
+		 * 任务动作
+		 */
+		function executeJob (command, message, triggerName) {
+	    	var url = null;
+	    	// 立即执行
+	    	if (command === 'run') {
+	    		url = 'job/ajax/run';
+	    	}
+	    	// 恢复任务
+	    	else if (command === 'resume') {
+	    		url = 'job/ajax/resume';
+	    	}
+	    	// 停止任务
+	    	else if (command === 'pause') {
+	    		url = 'job/ajax/pause';
+	    	}
+	    	if (url) {
+	    		$.messager.myuiConfirm('操作提示', message, function (r) {
+					if (r) {
+						$.messager.progress({'text': '请求中……'});
+						$.post(url, 
+								{ triggerName: triggerName }, 
+								function (resultJson) {
+					                $.messager.progress('close');
+									if (resultJson.statusCode == 200) {
+										$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+					                	$('#jobDataGrid').datagrid('reload');
+					                } else {
+					                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+					                }
+								});
+					}
+				});
+	    	}
+	    }
 	    
 	    /**
 		 * 弹窗（新增|编辑）
@@ -238,6 +275,7 @@
 				            },
 				            success: function (result) {
 								var resultJson = JSON.parse(result);
+				                $.messager.progress('close');
 				                if (resultJson.statusCode == 200) {
 				                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 				                	$jobDialog.dialog('destroy');
@@ -245,7 +283,6 @@
 				                } else {
 				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
 				                }
-				                $.messager.progress('close');
 				        	}
 				 		});
 					}
