@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jobs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="Job.xsd">
-	<job class="cn.renlm.graph.jobs.DemoJob">定时任务Demo</job>
+	<job className="cn.renlm.graph.jobs.DemoJob">定时任务Demo</job>
 </jobs>
