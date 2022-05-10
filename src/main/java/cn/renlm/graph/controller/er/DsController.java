@@ -5,18 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.DsDto;
 import cn.renlm.graph.modular.er.entity.Ds;
 import cn.renlm.graph.modular.er.service.IDsService;
+import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
 
 /**
@@ -52,9 +56,28 @@ public class DsController {
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/list")
-	public Page<Ds> ajaxList(Authentication authentication, Page<Ds> page, DsDto form) {
+	public Datagrid<Ds> ajaxList(Authentication authentication, Page<Ds> page, DsDto form) {
 		User user = (User) authentication.getPrincipal();
-		return iDsService.findPage(page, user, form);
+		Page<Ds> data = iDsService.findPage(page, user, form);
+		return Datagrid.of(data);
+	}
+
+	/**
+	 * 弹窗（新建|编辑）
+	 * 
+	 * @param model
+	 * @param uuid
+	 * @return
+	 */
+	@RequestMapping("/dialog")
+	public String dialog(ModelMap model, String uuid) {
+		Ds ds = new Ds();
+		if (StrUtil.isNotBlank(uuid)) {
+			Ds entity = iDsService.getOne(Wrappers.<Ds>lambdaQuery().eq(Ds::getUuid, uuid));
+			BeanUtil.copyProperties(entity, ds);
+		}
+		model.put("ds", ds);
+		return "ds/dialog";
 	}
 
 	/**

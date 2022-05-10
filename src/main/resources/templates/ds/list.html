@@ -14,7 +14,30 @@
         		headerCls:'border_right',
         		bodyCls:'border_right'
         	">
-       		
+       		<table id="dsDataGrid" 
+            	class="easyui-datagrid"
+            	data-options="border:false,
+					fit:true,
+					fitColumns:true,
+					singleSelect:true,
+					checkOnSelect:false,
+					selectOnCheck:false,
+					toolbar:'#dsDataGridToolbar',
+					pagination:true,
+					pageSize:20,
+					method:'get',
+					url:ctx+'/ds/ajax/list',
+                   	onBeforeLoad:$.pageOnBeforeLoad
+               	">
+                <thead>
+	                <tr>
+	                	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+	                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#dataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+                     	<th data-options="field:'name',title:'名称',width:250"></th>
+                       	<th data-options="field:'actions',title:'操作',width:80,align:'center',formatter:dsOperateFormatter"></th>
+	                </tr>
+                </thead>
+            </table>
         </div>
         <div data-options="region:'center',
         		split:true,
@@ -55,5 +78,159 @@
             </div>
         </div>
     </div>
+    <div id="dsDataGridToolbar" class="myui-toolbar">
+		<a href="javascript:dsDialog();"
+          	class="easyui-menubutton myui-btn-normal myui-btn-green"
+         	data-options="iconCls:'fa fa-plus',
+           		hasDownArrow:false
+        	">新增
+       	</a>
+   		<a href="javascript:void(0);"
+        	class="easyui-menubutton myui-btn-normal myui-btn-orange"
+         	data-options="menu:'#moreOpsMenu',
+           		iconCls:'fa fa-list',
+           		hasDownArrow:true
+       		">更多
+       	</a>
+       	<div id="moreOpsMenu" class="myui-toolbar">
+        	<div onclick="javascript:delDs();"
+        		class="easyui-menubutton"
+           		data-options="iconCls:'fa fa-trash',
+           			hasDownArrow:false
+            	">删除
+         	</div>
+		</div>
+		<form id="dsDataGridForm" class="search-box">
+	   		<input type="text" name="keywords"
+	    		id="dsDataGridKeywords" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'关键字',
+	        		width:220
+	        	"/>
+	        <a href="javascript:searchDs();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:resetDs();"
+       			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+       			data-options="iconCls:'fa fa-trash'
+       			">重置
+          	</a>
+		</form> 
+	</div>
+<script type="text/javascript">
+	/**
+	 * 查询数据源
+	 */
+	function searchDs () {
+		$('#dsDataGrid').datagrid('load', {
+			keywords: $('#dsDataGridKeywords').textbox('getValue')
+		});
+	}
+	
+	/**
+	 * 重置数据源
+	 */
+	function resetDs () {
+		$('#dsDataGridForm').form('clear');
+		searchDs();
+	}
+
+	/**
+	 * 操作数据源
+	 */
+	function dsOperateFormatter (value, row, index) {
+		return '<a href="javascript:dsDialog(\'' + row.uuid + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">编辑</span><span class="l-btn-icon fa fa-pencil"></span></span></a>';
+	}
+	
+	/**
+	 * 数据源弹窗（新增|编辑）
+	 */
+	function dsDialog (uuid) {
+		var $dsDialog = $('<form id=\'dsDialog\' method=\'post\' class=\'myui\'></form>');
+	    $dsDialog.myuiDialog({
+	        title: uuid ? '编辑' : '新增',
+	        width: 890,
+	        height: 483,
+			collapsible: true,
+			minimizable: false,
+			maximizable: true,
+	        closed: false,
+	        cache: false,
+	        href: ctx + '/ds/dialog' + (uuid ? ('?uuid=' + uuid) : ''),
+	        modal: true,
+	        buttons: [{
+	            text: uuid ? '更新' : '保存',
+	            iconCls: uuid ? 'fa fa-save' : 'fa fa-plus',
+	            handler: function () {
+					$.messager.progress({'text': '请求中……'});
+			        $dsDialog.form('submit', {
+			            url: ctx + 'ds/ajax/save',
+			            onSubmit: function () {
+			                var isValid = $(this).form('validate');
+			                if (!isValid) {
+			                    $.messager.progress('close');
+			                }
+			                return isValid;
+			            },
+			            success: function (result) {
+							var resultJson = JSON.parse(result);
+			                if (resultJson.statusCode == 200) {
+			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+			                	$dsDialog.dialog('destroy');
+			                	$('#dsDataGrid').datagrid('reload');
+			                } else {
+			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+			                }
+			                $.messager.progress('close');
+			        	}
+			 		});
+				}
+	        }, {
+	            text: '关闭',
+	            iconCls: 'fa fa-close',
+	            handler: function () {
+	                $dsDialog.dialog('destroy');
+	            }
+	        }],
+			onClose: function () {
+				$dsDialog.dialog('destroy');
+			}
+	    });
+	}
+	
+	/**
+	 * 删除数据源
+	 */
+	function delDs () {
+		var checked = $('#dsDataGrid').datagrid('getChecked');
+		if (!checked || checked.length === 0) {
+			$.messager.myuiAlert('操作提示', '请先选中要删除的数据源！', 'warning');
+			return;
+		} else {
+			var uuids = [];
+			$.each(checked, function (i, item) {
+				uuids[i] = item.uuid;
+			});
+			$.messager.myuiConfirm('操作提示', '确定要重置该用户密码吗？重置后新密码只显示一次，请自行记录。', function (r) {
+				if (r) {
+					$.messager.progress({'text': '请求中……'});
+					$.post(ctx + '/ds/ajax/del', 
+							{ uuids: uuids.join() }, 
+							function (resultJson) {
+				                $.messager.progress('close');
+								if (resultJson.statusCode == 200) {
+									$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+				                	$('#dsDataGrid').datagrid('reload');
+				                } else {
+				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+				                }
+							});
+				}
+			});
+		}
+	}
+</script>
 </body>
 </html>
