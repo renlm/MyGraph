@@ -92,13 +92,13 @@
        	</a>
 		<form id="jobDataGridToolbarForm" class="search-box">
 	   		<input type="text" name="jobName"
-	        	id="jobName" 
+	        	id="jobDataGridToolbarFormJobName" 
 	   			class="easyui-textbox"
 	        	data-options="prompt:'任务名称',
 	        		width:220
 	        	"/>
 	        <input type="text" name="triggerState" 
-	        	id="triggerState"
+	        	id="jobDataGridToolbarFormTriggerState"
 	        	class="easyui-combobox"
 	       		data-options="prompt:'任务状态',
 	           		width:220,
@@ -137,13 +137,13 @@
 		</button>
 		<form id="logDataGridToolbarForm" class="search-box">
 	   		<input type="text" name="batch"
-	        	id="logBatch" 
+	        	id="logDataGridToolbarFormBatch" 
 	   			class="easyui-textbox"
 	        	data-options="prompt:'批次',
 	        		width:220
 	        	"/>
 	        <input type="text" name="jobClassName"
-	        	id="logJobClassName"
+	        	id="logDataGridToolbarFormJobClassName"
                	class="easyui-combogrid"
              	data-options="idField:'jobClassName',
              		textField:'description',
@@ -162,7 +162,7 @@
               		]]
            		"/>
 	        <input type="text" name="level" 
-	        	id="logLevel"
+	        	id="logDataGridToolbarFormLevel"
 	        	class="easyui-combobox"
 	       		data-options="prompt:'日志级别',
 	           		width:220,
@@ -267,8 +267,8 @@
 		 */
 		function searchJob () {
 			$('#jobDataGrid').datagrid('load', {
-				jobName: $('#jobName').textbox('getValue'),
-				triggerState: $('#triggerState').combo('getValue')
+				jobName: $('#jobDataGridToolbarFormJobName').textbox('getValue'),
+				triggerState: $('#jobDataGridToolbarFormTriggerState').combo('getValue')
 			});
 		}
 		
@@ -286,9 +286,9 @@
 		 */
 		function searchLog () {
 			$('#logDataGrid').datagrid('load', {
-				batch: $('#logBatch').textbox('getValue'),
-				jobClassName: $('#logJobClassName').combo('getValue'),
-				level: $('#logLevel').combo('getValue')
+				batch: $('#logDataGridToolbarFormBatch').textbox('getValue'),
+				jobClassName: $('#logDataGridToolbarFormJobClassName').combo('getValue'),
+				level: $('#logDataGridToolbarFormLevel').combo('getValue')
 			});
 		}
 		
