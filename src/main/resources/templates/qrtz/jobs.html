@@ -75,10 +75,10 @@
 	        	id="logJobClassName"
                	class="easyui-combogrid"
              	data-options="idField:'jobClassName',
-             		textField:'jobName',
+             		textField:'description',
              		prompt:'任务名称',
              		width:220,
-	        		panelWidth:500,
+	        		panelWidth:444,
             		pagination:false,
             		fitColumns:true,
             		mode:'remote',
@@ -86,8 +86,8 @@
                    	url:'ajax/repertoires',
                    	onBeforeLoad:$.pageOnBeforeLoad,
                   	columns:[[
-                   		{field:'jobName',title:'任务名称'},
-                   		{field:'jobClassName',title:'执行类'}
+                   		{field:'description',title:'任务名称',width:100},
+                   		{field:'jobClassName',title:'执行类',width:100}
               		]]
            		"/>
 	        <input type="text" name="level" 
