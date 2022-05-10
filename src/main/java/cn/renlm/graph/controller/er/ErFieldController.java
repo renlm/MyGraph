@@ -55,7 +55,7 @@ public class ErFieldController {
 	 * @param uuid
 	 * @param name
 	 * @param comment
-	 * @param type
+	 * @param fieldType
 	 * @param size
 	 * @param digit
 	 * @param isNullable
@@ -68,15 +68,15 @@ public class ErFieldController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/update")
-	public Result<?> ajaxUpdate(Authentication authentication, String uuid, String name, String comment, Integer type,
-			Integer size, Integer digit, Boolean isNullable, Boolean autoIncrement, String columnDef, Boolean isPk,
-			Boolean isFk, String remark) {
+	public Result<?> ajaxUpdate(Authentication authentication, String uuid, String name, String comment,
+			Integer fieldType, Integer size, Integer digit, Boolean isNullable, Boolean autoIncrement, String columnDef,
+			Boolean isPk, Boolean isFk, String remark) {
 		try {
 			User user = (User) authentication.getPrincipal();
 			ErField entity = iErFieldService.getOne(Wrappers.<ErField>lambdaQuery().eq(ErField::getUuid, uuid));
 			entity.setName(name);
 			entity.setComment(comment);
-			entity.setFieldType(type);
+			entity.setFieldType(fieldType);
 			entity.setSize(size);
 			entity.setDigit(digit);
 			entity.setIsNullable(isNullable);
