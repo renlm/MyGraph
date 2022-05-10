@@ -71,7 +71,17 @@
 			var OSHI_IP = {};
 			var OSHI_UID = [];
 			var OSHI_POOL = [];
-            new Vue({ el: "#container", data: { serverMap: { } }, mounted() { initData(this); initWs(this); } });
+            new Vue({ 
+            	el: "#container", 
+            	data: { serverMap: { } },
+       		    created() { 
+            		initData(this);
+            		initWs(this);
+       		    }, 
+            	mounted() {
+    				renderOshiCharts(this);
+       		    } 
+       		});
 			
 			/**
         	 * 初始化数据
@@ -80,34 +90,19 @@
     			USER_NUM = parseInt($('#onlineUserNumber').val());
     			var oshiInfos = JSON.parse($('#oshiInfos').html());
     			$.each(oshiInfos, function (key, data) {
-    				var seriesDataCpu = [];
-	    			var seriesDataMemory = [];
-	    			var seriesDataJvm = [];
 					if(data instanceof Array) {
 						$.each(data, function (i, item) {
 							if(!OSHI_UID.contains(item.uid)) { OSHI_UID.push(item.uid); OSHI_POOL.push(item); OSHI_IP[item.ip]=item; }
         					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
         					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
-    						if(item.ip === key) { 
-    	    					seriesDataCpu.push({ name: item.time, value: [ item.time, item.cpuUsedRate ] }); 
-    	    					seriesDataMemory.push({ name: item.time, value: [ item.time, item.memoryUsedRate ] }); 
-    	    					seriesDataJvm.push({ name: item.time, value: [ item.time, item.jvmMemoryUsedRate ] }); 
-    	    				}
 			   			});
 					} else {
 						if(!OSHI_UID.contains(data.uid)) { OSHI_UID.push(data.uid); OSHI_POOL.push(data); OSHI_IP[data.ip]=data; }
     					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
     					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
-    					if(data.ip === key) { 
-    						seriesDataCpu.push({ name: data.time, value: [ data.time, data.cpuUsedRate ] }); 
-	    					seriesDataMemory.push({ name: data.time, value: [ data.time, data.memoryUsedRate ] }); 
-	    					seriesDataJvm.push({ name: data.time, value: [ data.time, data.jvmMemoryUsedRate ] });
-	    				}
 					}
-					renderChart(document.getElementById('cpu-' + key), 'Cpu使用率', seriesDataCpu);
-	    			renderChart(document.getElementById('memory-' + key), '系统内存使用率', seriesDataMemory);
-	    			renderChart(document.getElementById('jvm-' + key), 'Jvm内存使用率', seriesDataJvm);
 				});
+    			VM.serverMap = OSHI_IP;
     		}
 			
 			/**
