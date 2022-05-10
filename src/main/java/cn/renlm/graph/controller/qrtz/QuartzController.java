@@ -86,8 +86,9 @@ public class QuartzController {
 	 */
 	@ResponseBody
 	@RequestMapping("/job/ajax/list")
-	public Page<QrtzTriggersDto> jobAjaxList(Page<QrtzTriggersDto> page, QrtzTriggersDto form) {
-		return iQrtzTriggersService.findPage(page, form);
+	public Datagrid<QrtzTriggersDto> jobAjaxList(Page<QrtzTriggersDto> page, QrtzTriggersDto form) {
+		Page<QrtzTriggersDto> pager = iQrtzTriggersService.findPage(page, form);
+		return Datagrid.of(pager);
 	}
 
 	/**

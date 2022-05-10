@@ -16,7 +16,32 @@
         		cls:'north-border_none',
         		bodyCls:'border_bottom'
         	">
-       		
+       		<table id="jobDataGrid" class="easyui-datagrid"
+            	data-options="border:false,
+					fit:true,
+					fitColumns:true,
+					singleSelect:true,
+					toolbar:'#jobDataGridToolbar',
+					pagination:true,
+					pageSize:20,
+					sortName:'createdAt',
+           			sortOrder:'desc',
+					method:'get',
+					url:'job/ajax/list',
+                   	onBeforeLoad:$.pageOnBeforeLoad
+               	">
+                <thead>
+	                <tr>
+	                	<th data-options="field:'jobName',title:'任务名称',width:250"></th>
+	                    <th data-options="field:'jobClassName',title:'执行类',width:200"></th>
+	                    <th data-options="field:'triggerState',title:'状态',width:80,formatter:function(value,row,index){switch(value){case 'WAITING': return '等待';case 'PAUSED': return '暂停';case 'ACQUIRED': return '运行中';case 'BLOCKED': return '阻塞';case 'ERROR': return '错误';default: return value;}}"></th>
+	                    <th data-options="field:'cronExpression',title:'时间表达式',width:120"></th>
+	                    <th data-options="field:'description',title:'备注',width:200"></th>
+	                    <th data-options="field:'jobDataMapJson',title:'参数',width:200"></th>
+	                    <th data-options="field:'operate',title:'操作',align:'right',width:200,formatter:jobOperateFormatter"></th>
+	                </tr>
+                </thead>
+            </table>
         </div>
         <!-- 任务日志 -->
         <div data-options="region:'center',
@@ -56,6 +81,52 @@
                 </thead>
             </table>
         </div>
+    </div>
+    <!-- 任务列表 表格工具栏 -->
+    <div id="jobDataGridToolbar" class="myui-toolbar">
+		<a href="javascript:openJobDialog();"
+          	class="easyui-menubutton myui-btn-normal myui-btn-green"
+         	data-options="iconCls:'fa fa-plus',
+           		hasDownArrow:false
+        	">新增
+       	</a>
+		<form id="jobDataGridToolbarForm" class="search-box">
+	   		<input type="text" name="jobName"
+	        	id="jobName" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'任务名称',
+	        		width:220
+	        	"/>
+	        <input type="text" name="triggerState" 
+	        	id="triggerState"
+	        	class="easyui-combobox"
+	       		data-options="prompt:'任务状态',
+	           		width:220,
+	        		panelHeight:182,
+	                valueField:'value',
+	                textField:'label',
+	              	multiple:false,
+	              	editable:false,
+	               	data:[
+	               		{label:'全部',value:null},
+	               		{label:'等待',value:'WAITING'},
+	               		{label:'暂停',value:'PAUSED'},
+	               		{label:'运行中',value:'ACQUIRED'},
+	                   	{label:'阻塞',value:'BLOCKED'},
+	                   	{label:'错误',value:'ERROR'}
+	              	]
+	      		"/>
+	        <a href="javascript:searchJob();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:resetJob();"
+       			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+       			data-options="iconCls:'fa fa-trash'
+       			">重置
+          	</a>
+		</form>
     </div>
     <!-- 任务日志 工具栏 -->
     <div id="logDataGridToolbar" class="myui-toolbar">
@@ -120,6 +191,40 @@
           	</a>
 		</form> 
     </div>
+    <script type="text/javascript">
+	    /**
+		 * 任务操作
+		 */
+	    function jobOperateFormatter(value, row, index) {
+			var htmlstr = '<button class="layui-btn layui-btn-xs" style="background-color: #2F4056;" onclick="execute(\'run\',\'您确定立即执行一次任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">执行</button>';
+		    htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-normal" onclick="openJobDialog(\'编辑任务\',\'' + row.triggerName + '\')">编辑</button>';
+		    if(row.triggerState == 'PAUSED') {
+		    	htmlstr += '<button class="layui-btn layui-btn-xs" onclick="execute(\'resume\',\'您确定恢复任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">恢复</button>';
+		    } else {
+		    	htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-danger" onclick="execute(\'pause\',\'您确定停止任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">停止</button>';
+		    }
+		    htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-primary" onclick="openJobDialog(\'任务详情\',\'' + row.triggerName + '\',true)">详情</button>';
+		    return htmlstr;
+		}
+	    
+	    /**
+		 * 查询任务列表
+		 */
+		function searchJob () {
+			$('#jobDataGrid').datagrid('load', {
+				jobName: $('#jobName').textbox('getValue'),
+				triggerState: $('#triggerState').combo('getValue')
+			});
+		}
+		
+		/**
+		 * 重置任务列表
+		 */
+		function resetJob () {
+			$('#jobDataGridToolbarForm').form('clear');
+			searchJob();
+		}
+    </script>
     <script type="text/javascript">
 		/**
 		 * 查询任务日志
