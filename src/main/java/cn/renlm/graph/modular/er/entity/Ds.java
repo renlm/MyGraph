@@ -39,6 +39,12 @@ public class Ds implements Serializable {
     private String uuid;
 
     /**
+     * 名称
+     */
+    @TableField("name")
+    private String name;
+
+    /**
      * JDBC链接
      */
     @TableField("url")
