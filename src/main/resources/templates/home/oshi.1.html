@@ -71,15 +71,21 @@
 			var OSHI_IP = {};
 			var OSHI_UID = [];
 			var OSHI_POOL = [];
-            var VM = new Vue({ el: "#vue-app", data: { serverMap: { } } });
-			
-			initData();
-            initWs();
+            new Vue({ 
+            	el: "#vue-app", 
+            	data: { 
+            		serverMap: { } 
+            	},
+       	      	mounted() {
+            		initData(this);
+                	initWs(this);
+       	     	} 
+            });
 			
 			/**
         	 * 初始化数据
         	 */
-    		function initData () {
+    		function initData (VM) {
     			USER_NUM = parseInt($('#onlineUserNumber').val());
     			var oshiInfos = JSON.parse($('#oshiInfos').html());
     			$.each(oshiInfos, function (key, data) {
@@ -96,13 +102,13 @@
 					}
 				});
 				// 更新图形（服务器信息）
-				renderOshiCharts();
+				renderOshiCharts(VM);
     		}
 			
 			/**
 	    	 * 初始化 WebSocket
 	    	 */
-	    	function initWs () {
+	    	function initWs (VM) {
 	    		var protocol = document.location.protocol;
 	    		var timestamp = new Date().getTime();
 	    		var webSocketHost = protocol.indexOf("https") > -1?"[(${#ConfigUtil.wssHost})]":"[(${#ConfigUtil.wsHost})]";
@@ -153,7 +159,7 @@
 	    					}
 	    				});
 	    				// 更新图形（服务器信息）
-	    				renderOshiCharts();
+	    				renderOshiCharts(VM);
 	    			}
 	    			// 上线
 	    			else if (message.type == "online") {
@@ -169,52 +175,22 @@
 	    	/**
 	    	 * 服务器信息
 	    	 */
-	    	function renderOshiCharts () {
+	    	function renderOshiCharts (VM) {
 	    		VM.serverMap = OSHI_IP;
 	    		$.each(OSHI_IP, function (ip, data) {
 	    			renderChart(document.getElementById('cpu-' + ip), 'Cpu使用率', (function () {
 				 		var seriesData = [];
-				 		$.each(OSHI_POOL, function (i, item) {
-				 			if(item.ip === ip) {
-				 				seriesData.push({
-				 					name: item.time.toString(),
-				 				 	value: [
-				 				    	layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss"),
-				 				     	item.cpuUsedRate
-				 				  	]
-			 					});
-				 			}
-				 		});
+				 		$.each(OSHI_POOL, function (i, item) { if(item.ip === ip) { seriesData.push({ name: item.time, value: [ item.time, item.cpuUsedRate ] }); } });
 				 		return seriesData;
 				 	})());
 	    			renderChart(document.getElementById('memory-' + ip), '系统内存使用率', (function () {
 				 		var seriesData = [];
-				 		$.each(OSHI_POOL, function (i, item) {
-				 			if(item.ip === ip) {
-				 				seriesData.push({
-				 					name: item.time.toString(),
-				 				 	value: [
-				 				    	layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss"),
-				 				     	item.memoryUsedRate
-				 				  	]
-			 					});
-				 			}
-				 		});
+				 		$.each(OSHI_POOL, function (i, item) { if(item.ip === ip) { seriesData.push({ name: item.time, value: [ item.time, item.memoryUsedRate ] }); } });
 				 		return seriesData;
 				 	})());
 	    			renderChart(document.getElementById('jvm-' + ip), 'Jvm内存使用率', (function () {
 				 		var seriesData = [];
-				 		$.each(OSHI_POOL, function (i, item) {
-				 			if(item.ip === ip) {
-				 				seriesData.push({
-				 					name: item.time.toString(),
-				 				 	value: [
-				 				    	layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss"),
-				 				     	item.jvmMemoryUsedRate
-				 				  	]
-			 					});
-				 			}
-				 		});
+				 		$.each(OSHI_POOL, function (i, item) { if(item.ip === ip) { seriesData.push({ name: item.time, value: [ item.time, item.jvmMemoryUsedRate ] }); } });
 				 		return seriesData;
 				 	})());
 	    		});
@@ -224,7 +200,6 @@
 	    	 * 创建图形
 	    	 */
 	    	function renderChart (target, title, data) {
-	    		console.log(target, data);
 	    		if(!target || !data) {
 	    			return;
 	    		}
@@ -237,12 +212,12 @@
 	    				});
 	    		myChart.setOption({
 	    			title: {
-	    		    	left: "center",
+	    		    	left: 'center',
 	    		    	top: 20,
 	    		        text: title
 	    		    },
 	    		    tooltip: {
-	    		        trigger: "axis",
+	    		        trigger: 'axis',
 	    		        formatter: function (params) {
 	    		        	var param = params[0];
 	    		        	var htmlStr = param.seriesName + '<br/>';
@@ -265,28 +240,34 @@
 	    		        }
 	    		    },
 	    		    xAxis: {
-	    		        type: "time",
+	    		        type: 'time',
 	    		        splitLine: {
 	    		            show: false
 	    		        }
 	    		    },
 	    		    yAxis: {
-	    		        type: "value",
+	    		        type: 'value',
 	    		        min: 0,
 	    		        max: 100,
-	    		        boundaryGap: [ 0, "100%" ],
+	    		        boundaryGap: [ 0, '100%' ],
 	    		        splitLine: {
 	    		            show: false
 	    		        },
+	    		        axisLine: { 
+    						show: true
+    					},
+        		        axisTick: {
+        		        	show: true
+        		        },
 	    		        axisLabel: {
 	    		        	show: true,  
-	                           interval: "auto",  
-	                           formatter: "{value} %"
+	                     	interval: 'auto',  
+	                      	formatter: '{value} %'
 	    		        }
 	    		    },
 	    		    series: [{
 	    		        name: title,
-	    		        type: "line",
+	    		        type: 'line',
 	    		        showSymbol: false,
 	    		        hoverAnimation: false,
 	    		        data: data
