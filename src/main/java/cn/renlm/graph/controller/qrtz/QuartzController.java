@@ -179,7 +179,7 @@ public class QuartzController {
 	 * @return
 	 */
 	@ResponseBody
-	@PostMapping("/job/ajax/save")
+	@RequestMapping("/job/ajax/save")
 	public Result<?> jobAdd(String triggerName, String jobName, String jobClassName, String cronExpression,
 			String description, String jobDataMapJson) {
 		try {
