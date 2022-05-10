@@ -1,7 +1,5 @@
 package cn.renlm.graph.modular.qrtz.service.impl;
 
-import java.util.Map;
-
 import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
 import org.quartz.DateBuilder;
@@ -21,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.renlm.graph.modular.qrtz.dto.QrtzTriggersDto;
 import cn.renlm.graph.modular.qrtz.mapper.QrtzTriggersMapper;
 import cn.renlm.graph.modular.qrtz.service.IQrtzTriggersService;
@@ -45,25 +44,23 @@ public class QrtzTriggersServiceImpl implements IQrtzTriggersService {
 	@SneakyThrows
 	@Transactional(rollbackFor = Exception.class)
 	public void add(String jobName, Class<? extends QuartzJobBean> jobClass, String cronExpression,
-			Map<String, Object> params, String description) {
-		JobDataMap jobDataMap = new JobDataMap();
+			JobDataMap jobDataMap, String description) {
 		JobKey jobKey = new JobKey(jobName, jobClass.getName());
 		String triggerName = TriggerKey.createUniqueName(jobKey.getGroup());
 
-		// 任务参数
-		if (params != null) {
-			jobDataMap.putAll(params);
-		}
+		// 删除已有任务
+		scheduler.deleteJob(jobKey);
 
 		// 创建调度作业
 		JobBuilder jobBuilder = JobBuilder.newJob(jobClass).withIdentity(jobKey);
 		JobDetail jobDetail = jobBuilder.withDescription(description).build();
 
 		// 定义调度触发规则
-		TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger().withIdentity(triggerName,
-				jobKey.getGroup());
+		TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger().withIdentity(triggerName);
+		if (ObjectUtil.isNotEmpty(jobDataMap)) {
+			triggerBuilder.usingJobData(jobDataMap);
+		}
 		triggerBuilder.withDescription(description);
-		triggerBuilder.usingJobData(jobDataMap);
 		triggerBuilder.startAt(DateBuilder.futureDate(1, IntervalUnit.SECOND));
 		triggerBuilder.withSchedule(CronScheduleBuilder.cronSchedule(cronExpression));
 		Trigger trigger = triggerBuilder.startNow().build();
@@ -75,21 +72,23 @@ public class QrtzTriggersServiceImpl implements IQrtzTriggersService {
 	@Override
 	@SneakyThrows
 	@Transactional(rollbackFor = Exception.class)
-	public void update(String triggerName, String cronExpression, Map<String, Object> params, String description) {
+	public void update(String triggerName, String cronExpression, JobDataMap jobDataMap, String description) {
 		QrtzTriggersDto detail = findDetail(triggerName);
 		TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, detail.getJobGroup());
 		CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
 
-		// 任务参数
-		if (params != null) {
-			trigger.getJobDataMap().putAll(params);
+		// 更新调度触发规则
+		TriggerBuilder<CronTrigger> triggerBuilder = trigger.getTriggerBuilder().withIdentity(triggerKey);
+		if (ObjectUtil.isNotEmpty(jobDataMap)) {
+			triggerBuilder.usingJobData(jobDataMap);
 		}
-
-		trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withDescription(description)
-				.withSchedule(CronScheduleBuilder.cronSchedule(cronExpression)).build();
+		triggerBuilder.withDescription(description);
+		triggerBuilder.startAt(DateBuilder.futureDate(1, IntervalUnit.SECOND));
+		triggerBuilder.withSchedule(CronScheduleBuilder.cronSchedule(cronExpression));
+		Trigger newTrigger = triggerBuilder.startNow().build();
 
 		// 重启触发器
-		scheduler.rescheduleJob(triggerKey, trigger);
+		scheduler.rescheduleJob(triggerKey, newTrigger);
 	}
 
 	@Override

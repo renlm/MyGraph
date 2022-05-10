@@ -1,7 +1,6 @@
 package cn.renlm.graph.modular.qrtz.service;
 
-import java.util.Map;
-
+import org.quartz.JobDataMap;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -22,10 +21,10 @@ public interface IQrtzTriggersService {
 	 * @param jobName        任务名称
 	 * @param jobClass       任务实现类
 	 * @param cronExpression 时间表达式 （如：0/5 * * * * ? ）
-	 * @param params         任务参数
+	 * @param jobDataMap     任务参数
 	 * @param description    任务描述
 	 */
-	void add(String jobName, Class<? extends QuartzJobBean> jobClass, String cronExpression, Map<String, Object> params,
+	void add(String jobName, Class<? extends QuartzJobBean> jobClass, String cronExpression, JobDataMap jobDataMap,
 			String description);
 
 	/**
@@ -33,10 +32,10 @@ public interface IQrtzTriggersService {
 	 * 
 	 * @param triggerName    触发器名称
 	 * @param cronExpression 时间表达式 （如：0/5 * * * * ? ）
-	 * @param params         任务参数
+	 * @param jobDataMap     任务参数
 	 * @param description    任务描述
 	 */
-	void update(String triggerName, String cronExpression, Map<String, Object> params, String description);
+	void update(String triggerName, String cronExpression, JobDataMap jobDataMap, String description);
 
 	/**
 	 * 停止

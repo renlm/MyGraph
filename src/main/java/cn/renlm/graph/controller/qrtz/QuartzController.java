@@ -1,11 +1,10 @@
 package cn.renlm.graph.controller.qrtz;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.quartz.JobDataMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,13 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
-import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.modular.qrtz.JobBean;
 import cn.renlm.graph.modular.qrtz.JobConfig;
@@ -185,19 +182,18 @@ public class QuartzController {
 	public Result<?> jobAdd(String triggerName, String jobName, String jobClassName, String cronExpression,
 			String description, String jobDataMapJson) {
 		try {
-			Map<String, Object> params = new LinkedHashMap<>();
+			JobDataMap jobDataMap = new JobDataMap();
 			if (JSONUtil.isTypeJSON(jobDataMapJson)) {
-				JSONObject jobDataMap = JSONUtil.parseObj(jobDataMapJson);
-				BeanUtil.copyProperties(jobDataMap, params);
+				jobDataMap.putAll(JSONUtil.toBean(jobDataMapJson, JobDataMap.class));
 			}
 			Class<JobBean> jobClass = ClassUtil.loadClass(jobClassName);
 			if (StrUtil.isNotBlank(triggerName)) {
-				iQrtzTriggersService.update(triggerName, cronExpression, params, description);
+				iQrtzTriggersService.update(triggerName, cronExpression, jobDataMap, description);
 			} else {
 				if (iQrtzTriggersService.exists(jobClassName)) {
 					return Result.error("任务重复");
 				} else {
-					iQrtzTriggersService.add(jobName, jobClass, cronExpression, params, description);
+					iQrtzTriggersService.add(jobName, jobClass, cronExpression, jobDataMap, description);
 				}
 			}
 			return Result.success();
