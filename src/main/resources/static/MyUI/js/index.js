@@ -467,7 +467,7 @@ function modifyPersonal () {
 		                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 							$personalDialog.dialog('destroy');
 		                } else {
-		                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+		                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
 		                }
 		                $.messager.progress('close');
 		        	}

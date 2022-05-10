@@ -132,7 +132,7 @@ public class SysUserController {
 			return Result.success(newPassword);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error("服务器出错了");
+			return Result.error("出错了");
 		}
 	}
 
@@ -174,7 +174,7 @@ public class SysUserController {
 			return iSysUserService.ajaxSave(form);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error("服务器出错了");
+			return Result.error("出错了");
 		}
 	}
 }

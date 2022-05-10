@@ -105,7 +105,7 @@
 								parent.layer.close(index);
 								parent.layer.msg(data.message?data.message:"任务已添加", { icon: 1, time: 1500 });
 							}else{
-								parent.layer.msg(data.message?data.message:"服务器出错了", { icon: 5, shift:6 });
+								parent.layer.msg(data.message?data.message:"出错了", { icon: 5, shift:6 });
 							}
 						});
 				});

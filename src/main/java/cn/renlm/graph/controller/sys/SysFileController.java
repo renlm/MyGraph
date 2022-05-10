@@ -113,7 +113,7 @@ public class SysFileController {
 			return Result.success(sysFile);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error("服务器出错了");
+			return Result.error("出错了");
 		}
 	}
 
@@ -171,7 +171,7 @@ public class SysFileController {
 			return Result.success(sysFile).setMessage("任务已添加，请在 [ 文件管理 ] 查看");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error("服务器出错了");
+			return Result.error("出错了");
 		}
 	}
 }

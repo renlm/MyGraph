@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.quartz.CronExpression;
 import org.quartz.JobDataMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -73,7 +76,7 @@ public class QuartzController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/repertoires")
+	@GetMapping("/ajax/repertoires")
 	public List<JobItem> repertoires() {
 		return config.getJobs();
 	}
@@ -86,7 +89,7 @@ public class QuartzController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/job/ajax/list")
+	@GetMapping("/job/ajax/list")
 	public Datagrid<QrtzTriggersDto> jobAjaxList(Page<QrtzTriggersDto> page, QrtzTriggersDto form) {
 		Page<QrtzTriggersDto> pager = iQrtzTriggersService.findPage(page, form);
 		return Datagrid.of(pager);
@@ -99,14 +102,14 @@ public class QuartzController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/job/ajax/resume")
+	@PostMapping("/job/ajax/resume")
 	public Result<?> jobAjaxResume(String triggerName) {
 		try {
 			iQrtzTriggersService.resume(triggerName);
 			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error();
+			return Result.error("出错了");
 		}
 	}
 
@@ -117,14 +120,14 @@ public class QuartzController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/job/ajax/pause")
+	@PostMapping("/job/ajax/pause")
 	public Result<?> jobAjaxPause(String triggerName) {
 		try {
 			iQrtzTriggersService.pause(triggerName);
 			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error();
+			return Result.error("出错了");
 		}
 	}
 
@@ -135,14 +138,14 @@ public class QuartzController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/job/ajax/run")
+	@PostMapping("/job/ajax/run")
 	public Result<?> jobAjaxRun(String triggerName) {
 		try {
 			iQrtzTriggersService.run(triggerName);
 			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error();
+			return Result.error("出错了");
 		}
 	}
 
@@ -153,7 +156,7 @@ public class QuartzController {
 	 * @param triggerName
 	 * @return
 	 */
-	@RequestMapping("/job/dialog")
+	@GetMapping("/job/dialog")
 	public String jobDialog(ModelMap model, String triggerName) {
 		QrtzTriggersDto detail = new QrtzTriggersDto();
 		if (StrUtil.isNotBlank(triggerName)) {
@@ -176,10 +179,13 @@ public class QuartzController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/job/ajax/save")
+	@PostMapping("/job/ajax/save")
 	public Result<?> jobAdd(String triggerName, String jobName, String jobClassName, String cronExpression,
 			String description, String jobDataMapJson) {
 		try {
+			if (CronExpression.isValidExpression(cronExpression)) {
+				return Result.error("无效的时间表达式");
+			}
 			JobDataMap jobDataMap = new JobDataMap();
 			if (JSONUtil.isTypeJSON(jobDataMapJson)) {
 				jobDataMap.putAll(JSONUtil.toBean(jobDataMapJson, JobDataMap.class));
@@ -197,7 +203,7 @@ public class QuartzController {
 			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error();
+			return Result.error("出错了");
 		}
 	}
 
@@ -209,7 +215,7 @@ public class QuartzController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/log/ajax/list")
+	@GetMapping("/log/ajax/list")
 	public Datagrid<QrtzLogs> logAjaxList(Page<QrtzLogs> page, QrtzLogsDto form) {
 		Page<QrtzLogs> pager = iQrtzLogsService.findPage(page, form);
 		return Datagrid.of(pager);

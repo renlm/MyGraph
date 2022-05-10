@@ -106,7 +106,7 @@
 						if(resJson.statusCode == 200) {
 							layer.msg(resJson.message?resJson.message:"已保存", { icon: 1, time: 1500 });
 						} else {
-							layer.msg(resJson.message?resJson.message:"服务器出错了", { icon: 5, shift:6 });
+							layer.msg(resJson.message?resJson.message:"出错了", { icon: 5, shift:6 });
 						}
 					} 
 					else 

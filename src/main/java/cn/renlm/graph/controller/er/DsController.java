@@ -72,7 +72,7 @@ public class DsController {
 			return iDsService.init(user, ds);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error("服务器出错了");
+			return Result.error("出错了");
 		}
 	}
 
@@ -95,7 +95,7 @@ public class DsController {
 			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error("服务器出错了");
+			return Result.error("出错了");
 		}
 	}
 }

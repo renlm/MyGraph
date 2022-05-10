@@ -120,7 +120,7 @@ public class SysDictController {
 			return iSysDictService.importDataFromFile(user, file);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error("服务器出错了");
+			return Result.error("出错了");
 		}
 	}
 
@@ -159,7 +159,7 @@ public class SysDictController {
 			return iSysDictService.ajaxSave(sysDict);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error("服务器出错了");
+			return Result.error("出错了");
 		}
 	}
 }
