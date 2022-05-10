@@ -18,6 +18,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.entity.ErField;
 import cn.renlm.graph.modular.er.service.IErFieldService;
+import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
 
 /**
@@ -42,8 +43,9 @@ public class ErFieldController {
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/list")
-	public List<ErField> list(HttpServletRequest request, String erUuid) {
-		return iErFieldService.findListByErUuid(erUuid);
+	public Datagrid<ErField> list(HttpServletRequest request, String erUuid) {
+		List<ErField> datas = iErFieldService.findListByErUuid(erUuid);
+		return Datagrid.of(datas);
 	}
 
 	/**
