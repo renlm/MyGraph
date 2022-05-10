@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.renlm.crawler.qrtz.mapper.QrtzTriggersMapper">
+
+	<!-- 任务名称是否存在 -->
+	<select id="exists" resultType="boolean">
+		SELECT CASE WHEN COUNT(1) = 0 THEN 0 ELSE 1 END 
+		FROM `QRTZ_TRIGGERS` T 
+		WHERE T.`JOB_NAME` = #{jobName,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 任务详情 -->
+	<select id="findDetail" resultType="cn.renlm.crawler.qrtz.dto.QrtzTriggersDto">
+		SELECT K1.`SCHED_NAME` AS schedName,
+			K1.`JOB_GROUP` AS jobGroup,
+			K1.`JOB_NAME` AS jobName,
+			K1.`JOB_CLASS_NAME` AS jobClassName,
+			T.`TRIGGER_GROUP` AS triggerGroup,
+			T.`TRIGGER_NAME` AS triggerName,
+			T.`TIME_ZONE_ID` AS timeZoneId,
+			T.`CRON_EXPRESSION` AS cronExpression,
+			K.`TRIGGER_STATE` AS triggerState,
+			K.`DESCRIPTION` AS description,
+			K.`JOB_DATA` AS jobData
+		FROM `QRTZ_CRON_TRIGGERS` T
+		LEFT JOIN `QRTZ_TRIGGERS` K
+			ON K.`SCHED_NAME` = T.`SCHED_NAME`
+				AND K.`TRIGGER_GROUP` = T.`TRIGGER_GROUP`
+				AND K.`TRIGGER_NAME` = T.`TRIGGER_NAME`
+		LEFT JOIN `QRTZ_JOB_DETAILS` K1
+			ON K1.`SCHED_NAME` = K.`SCHED_NAME`
+				AND K1.`JOB_GROUP` = K.`JOB_GROUP`
+				AND K1.`JOB_NAME` = K.`JOB_NAME`
+		WHERE T.`TRIGGER_NAME` = #{triggerName,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 分页列表 -->
+	<select id="findPage" resultType="cn.renlm.crawler.qrtz.dto.QrtzTriggersDto">
+		SELECT K1.`SCHED_NAME` AS schedName,
+			K1.`JOB_GROUP` AS jobGroup,
+			K1.`JOB_NAME` AS jobName,
+			K1.`JOB_CLASS_NAME` AS jobClassName,
+			T.`TRIGGER_GROUP` AS triggerGroup,
+			T.`TRIGGER_NAME` AS triggerName,
+			T.`TIME_ZONE_ID` AS timeZoneId,
+			T.`CRON_EXPRESSION` AS cronExpression,
+			K.`TRIGGER_STATE` AS triggerState,
+			K.`DESCRIPTION` AS description,
+			K.`JOB_DATA` AS jobData
+		FROM `QRTZ_CRON_TRIGGERS` T
+		LEFT JOIN `QRTZ_TRIGGERS` K
+			ON K.`SCHED_NAME` = T.`SCHED_NAME`
+				AND K.`TRIGGER_GROUP` = T.`TRIGGER_GROUP`
+				AND K.`TRIGGER_NAME` = T.`TRIGGER_NAME`
+		LEFT JOIN `QRTZ_JOB_DETAILS` K1
+			ON K1.`SCHED_NAME` = K.`SCHED_NAME`
+				AND K1.`JOB_GROUP` = K.`JOB_GROUP`
+				AND K1.`JOB_NAME` = K.`JOB_NAME`
+		<where>
+			<if test="form.jobName != null and form.jobName != ''">
+				K1.`JOB_NAME` LIKE CONCAT('%', #{form.jobName,jdbcType=VARCHAR}, '%')
+			</if>
+			<if test="form.triggerState != null and form.triggerState != ''">
+				K.`TRIGGER_STATE` = #{form.triggerState,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+</mapper>
