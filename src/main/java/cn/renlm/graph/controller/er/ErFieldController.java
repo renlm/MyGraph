@@ -76,7 +76,7 @@ public class ErFieldController {
 			ErField entity = iErFieldService.getOne(Wrappers.<ErField>lambdaQuery().eq(ErField::getUuid, uuid));
 			entity.setName(name);
 			entity.setComment(comment);
-			entity.setType(type);
+			entity.setFieldType(type);
 			entity.setSize(size);
 			entity.setDigit(digit);
 			entity.setIsNullable(isNullable);

@@ -59,8 +59,8 @@ public class ErField implements Serializable {
     /**
      * 类型，java.sql.Types
      */
-    @TableField("type")
-    private Integer type;
+    @TableField("field_type")
+    private Integer fieldType;
 
     /**
      * 类型名称

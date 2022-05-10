@@ -247,7 +247,7 @@ CREATE TABLE er_field (
     uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
     name       					VARCHAR(255)					NOT NULL		COMMENT '列名',
     comment       				VARCHAR(500)									COMMENT '注释',
-    type       					INT								NOT NULL		COMMENT '类型，java.sql.Types',
+    field_type       			INT								NOT NULL		COMMENT '类型，java.sql.Types',
     type_name      				VARCHAR(255)					NOT NULL		COMMENT '类型名称',
     size       					INT												COMMENT '精度',
     digit       				INT												COMMENT '标度',

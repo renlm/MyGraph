@@ -165,7 +165,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 					erField.setUuid(IdUtil.simpleUUID().toUpperCase());
 					erField.setName(column.getName());
 					erField.setComment(column.getComment());
-					erField.setType(column.getType());
+					erField.setFieldType(column.getType());
 					erField.setTypeName(column.getTypeName());
 					erField.setSize(column.getSize());
 					erField.setDigit(column.getDigit());
