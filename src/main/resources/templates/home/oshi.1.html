@@ -171,6 +171,136 @@
 	    	 */
 	    	function renderOshiCharts () {
 	    		VM.serverMap = OSHI_IP;
+	    		$.each(OSHI_IP, function (ip, data) {
+	    			renderChart(document.getElementById('cpu-' + ip), 'Cpu使用率', (function () {
+				 		var seriesData = [];
+				 		$.each(OSHI_POOL, function (i, item) {
+				 			if(item.ip === ip) {
+				 				seriesData.push({
+				 					name: item.time.toString(),
+				 				 	value: [
+				 				    	layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss"),
+				 				     	item.cpuUsedRate
+				 				  	]
+			 					});
+				 			}
+				 		});
+				 		return seriesData;
+				 	})());
+	    			renderChart(document.getElementById('memory-' + ip), '系统内存使用率', (function () {
+				 		var seriesData = [];
+				 		$.each(OSHI_POOL, function (i, item) {
+				 			if(item.ip === ip) {
+				 				seriesData.push({
+				 					name: item.time.toString(),
+				 				 	value: [
+				 				    	layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss"),
+				 				     	item.memoryUsedRate
+				 				  	]
+			 					});
+				 			}
+				 		});
+				 		return seriesData;
+				 	})());
+	    			renderChart(document.getElementById('jvm-' + ip), 'Jvm内存使用率', (function () {
+				 		var seriesData = [];
+				 		$.each(OSHI_POOL, function (i, item) {
+				 			if(item.ip === ip) {
+				 				seriesData.push({
+				 					name: item.time.toString(),
+				 				 	value: [
+				 				    	layui.util.toDateString(item.time, "yyyy-MM-dd HH:mm:ss"),
+				 				     	item.jvmMemoryUsedRate
+				 				  	]
+			 					});
+				 			}
+				 		});
+				 		return seriesData;
+				 	})());
+	    		});
+	    	}
+	    	
+	    	/**
+	    	 * 创建图形
+	    	 */
+	    	function renderChart (target, title, data) {
+	    		console.log(target, data);
+	    		if(!target || !data) {
+	    			return;
+	    		}
+	    		var myChart = echarts.init(target, 
+	    				null, 
+	    				{
+	    					renderer: 'svg',
+			    			width: $(target).width(),
+			    			height: $(target).height()
+	    				});
+	    		myChart.setOption({
+	    			title: {
+	    		    	left: "center",
+	    		    	top: 20,
+	    		        text: title
+	    		    },
+	    		    tooltip: {
+	    		        trigger: "axis",
+	    		        formatter: function (params) {
+	    		        	var param = params[0];
+	    		        	var htmlStr = param.seriesName + '<br/>';
+	                			htmlStr += '<div>';
+					          	htmlStr +=     '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#3eb177;"></span>';
+					          	htmlStr +=     '日&#12288;期：' + layui.util.toDateString(param.name, "yyyy/MM/dd");
+					          	htmlStr += '</div>';
+	                			htmlStr += '<div>';
+					          	htmlStr +=     '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#f2637b;"></span>';
+					          	htmlStr +=     '时&#12288;间：' + layui.util.toDateString(param.name, "HH:mm:ss");
+					          	htmlStr += '</div>';
+	                			htmlStr += '<div>';
+					          	htmlStr +=	   '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:#fbd444;"></span>';
+					          	htmlStr +=     '使用率：' + param.value[1] + ' %';
+					          	htmlStr += '</div>';
+	                		return htmlStr;
+	    		        },
+	    		        axisPointer: {
+	    		            animation: false
+	    		        }
+	    		    },
+	    		    xAxis: {
+	    		        type: "time",
+	    		        splitLine: {
+	    		            show: false
+	    		        }
+	    		    },
+	    		    yAxis: {
+	    		        type: "value",
+	    		        min: 0,
+	    		        max: 100,
+	    		        boundaryGap: [ 0, "100%" ],
+	    		        splitLine: {
+	    		            show: false
+	    		        },
+	    		        axisLabel: {
+	    		        	show: true,  
+	                           interval: "auto",  
+	                           formatter: "{value} %"
+	    		        }
+	    		    },
+	    		    series: [{
+	    		        name: title,
+	    		        type: "line",
+	    		        showSymbol: false,
+	    		        hoverAnimation: false,
+	    		        data: data
+	    		    }]
+	    		}, true);
+	    		// 自适应
+	    		var originFn = window.onresize;
+	       		window.onresize = function () { 
+	       			originFn && originFn();
+	       			myChart.resize({ 
+	       				width: $(target).width(),
+		    			height: $(target).height()
+	    			});
+	       		}
 	    	}
 		});
 	</script>
