@@ -47,6 +47,7 @@ public class QrtzTriggersServiceImpl implements IQrtzTriggersService {
 			JobDataMap jobDataMap, String description) {
 		JobKey jobKey = new JobKey(jobName, jobClass.getName());
 		String triggerName = TriggerKey.createUniqueName(jobKey.getGroup());
+		TriggerKey triggerKey = TriggerKey.triggerKey(triggerName, jobKey.getGroup());
 
 		// 删除已有任务
 		scheduler.deleteJob(jobKey);
@@ -56,7 +57,7 @@ public class QrtzTriggersServiceImpl implements IQrtzTriggersService {
 		JobDetail jobDetail = jobBuilder.withDescription(description).build();
 
 		// 定义调度触发规则
-		TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger().withIdentity(triggerName);
+		TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger().withIdentity(triggerKey);
 		if (ObjectUtil.isNotEmpty(jobDataMap)) {
 			triggerBuilder.usingJobData(jobDataMap);
 		}
