@@ -120,8 +120,8 @@ public class QrtzTriggersServiceImpl implements IQrtzTriggersService {
 	}
 
 	@Override
-	public boolean exists(String jobName) {
-		return qrtzTriggersMapper.exists(jobName);
+	public boolean exists(String jobClassName) {
+		return qrtzTriggersMapper.exists(jobClassName);
 	}
 
 	@Override

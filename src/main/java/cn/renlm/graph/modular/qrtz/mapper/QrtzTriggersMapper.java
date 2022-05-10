@@ -15,17 +15,17 @@ import cn.renlm.graph.modular.qrtz.dto.QrtzTriggersDto;
 public interface QrtzTriggersMapper {
 
 	/**
-	 * 任务名称是否存在
+	 * 任务是否存在
 	 * 
-	 * @param jobName
+	 * @param jobClassName 任务执行类
 	 * @return
 	 */
-	boolean exists(String jobName);
+	boolean exists(String jobClassName);
 
 	/**
 	 * 任务详情
 	 * 
-	 * @param triggerName
+	 * @param triggerName 触发器名称
 	 * @return
 	 */
 	QrtzTriggersDto findDetail(String triggerName);
@@ -33,8 +33,8 @@ public interface QrtzTriggersMapper {
 	/**
 	 * 分页列表
 	 * 
-	 * @param page
-	 * @param form
+	 * @param page 分页参数
+	 * @param form 查询表单
 	 * @return
 	 */
 	Page<QrtzTriggersDto> findPage(Page<QrtzTriggersDto> page, @Param("form") QrtzTriggersDto form);

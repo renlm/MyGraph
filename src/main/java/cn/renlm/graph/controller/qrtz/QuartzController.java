@@ -1,6 +1,8 @@
 package cn.renlm.graph.controller.qrtz;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -12,15 +14,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.util.ClassUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import cn.renlm.graph.modular.qrtz.JobBean;
 import cn.renlm.graph.modular.qrtz.JobConfig;
 import cn.renlm.graph.modular.qrtz.JobConfig.JobItem;
 import cn.renlm.graph.modular.qrtz.dto.QrtzLogsDto;
+import cn.renlm.graph.modular.qrtz.dto.QrtzTriggersDto;
 import cn.renlm.graph.modular.qrtz.entity.QrtzLogs;
 import cn.renlm.graph.modular.qrtz.service.IQrtzLogsService;
+import cn.renlm.graph.modular.qrtz.service.IQrtzTriggersService;
 import cn.renlm.graph.response.Datagrid;
+import cn.renlm.graph.response.Result;
 import cn.renlm.plugins.MyUtil.MyXStreamUtil;
 
 /**
@@ -40,6 +51,9 @@ public class QuartzController {
 
 	@Autowired
 	private IQrtzLogsService iQrtzLogsService;
+
+	@Autowired
+	private IQrtzTriggersService iQrtzTriggersService;
 
 	/**
 	 * 任务管理
@@ -64,6 +78,79 @@ public class QuartzController {
 	@RequestMapping("/ajax/repertoires")
 	public List<JobItem> repertoires() {
 		return config.getJobs();
+	}
+
+	/**
+	 * 任务列表
+	 * 
+	 * @param page
+	 * @param form
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/job/ajax/list")
+	public Page<QrtzTriggersDto> jobAjaxList(Page<QrtzTriggersDto> page, QrtzTriggersDto form) {
+		return iQrtzTriggersService.findPage(page, form);
+	}
+
+	/**
+	 * 任务弹窗
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/job/dialog")
+	public String jobDialog() {
+		return "qrtz/jobDialog";
+	}
+
+	/**
+	 * 任务详情
+	 * 
+	 * @param triggerName
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/job/ajax/detail")
+	public QrtzTriggersDto jobAjaxDetail(String triggerName) {
+		return iQrtzTriggersService.findDetail(triggerName);
+	}
+
+	/**
+	 * 保存任务（新建|编辑）
+	 * 
+	 * @param triggerName
+	 * @param jobName
+	 * @param jobClassName
+	 * @param cronExpression
+	 * @param description
+	 * @param jobDataMapJson
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/job/ajax/save")
+	public Result<?> jobAdd(String triggerName, String jobName, String jobClassName, String cronExpression,
+			String description, String jobDataMapJson) {
+		try {
+			Map<String, Object> params = new LinkedHashMap<>();
+			if (JSONUtil.isTypeJSON(jobDataMapJson)) {
+				JSONObject jobDataMap = JSONUtil.parseObj(jobDataMapJson);
+				BeanUtil.copyProperties(jobDataMap, params);
+			}
+			Class<JobBean> jobClass = ClassUtil.loadClass(jobClassName);
+			if (StrUtil.isNotBlank(triggerName)) {
+				iQrtzTriggersService.update(triggerName, cronExpression, params, description);
+			} else {
+				if (iQrtzTriggersService.exists(jobClassName)) {
+					return Result.error("任务重复");
+				} else {
+					iQrtzTriggersService.add(jobName, jobClass, cronExpression, params, description);
+				}
+			}
+			return Result.success();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error();
+		}
 	}
 
 	/**

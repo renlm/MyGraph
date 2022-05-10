@@ -60,12 +60,12 @@ public interface IQrtzTriggersService {
 	void run(String triggerName);
 
 	/**
-	 * 任务名称是否存在
+	 * 任务是否存在
 	 * 
-	 * @param jobName
+	 * @param jobClassName 任务执行类
 	 * @return
 	 */
-	boolean exists(String jobName);
+	boolean exists(String jobClassName);
 
 	/**
 	 * 任务详情
@@ -78,8 +78,8 @@ public interface IQrtzTriggersService {
 	/**
 	 * 分页列表
 	 * 
-	 * @param page
-	 * @param form
+	 * @param page 分页参数
+	 * @param form 查询表单
 	 * @return
 	 */
 	Page<QrtzTriggersDto> findPage(Page<QrtzTriggersDto> page, QrtzTriggersDto form);

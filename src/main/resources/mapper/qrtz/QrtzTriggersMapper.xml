@@ -2,15 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.renlm.graph.modular.qrtz.mapper.QrtzTriggersMapper">
 
-	<!-- 任务名称是否存在 -->
-	<select id="exists" resultType="boolean">
+	<!-- 任务是否存在 -->
+	<select id="exists" parameterType="string" resultType="boolean">
 		SELECT CASE WHEN COUNT(1) = 0 THEN 0 ELSE 1 END 
-		FROM `QRTZ_TRIGGERS` T 
-		WHERE T.`JOB_NAME` = #{jobName,jdbcType=VARCHAR}
+		FROM `QRTZ_TRIGGERS` T,  `QRTZ_JOB_DETAILS` K
+		WHERE T.`SCHED_NAME` = K.`SCHED_NAME`
+			AND T.`JOB_GROUP` = K.`JOB_GROUP`
+			AND T.`JOB_NAME` = K.`JOB_NAME`
+			AND K.`JOB_CLASS_NAME` = #{jobClassName,jdbcType=VARCHAR}
 	</select>
 
 	<!-- 任务详情 -->
-	<select id="findDetail" resultType="cn.renlm.graph.modular.qrtz.dto.QrtzTriggersDto">
+	<select id="findDetail" parameterType="string" resultType="cn.renlm.graph.modular.qrtz.dto.QrtzTriggersDto">
 		SELECT K1.`SCHED_NAME` AS schedName,
 			K1.`JOB_GROUP` AS jobGroup,
 			K1.`JOB_NAME` AS jobName,
