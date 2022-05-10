@@ -232,6 +232,7 @@
 			            },
 			            success: function (result) {
 							var resultJson = JSON.parse(result);
+			                $.messager.progress('close');
 			                if (resultJson.statusCode == 200) {
 			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 			                	$dsDialog.dialog('destroy');
@@ -239,7 +240,6 @@
 			                } else {
 			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
 			                }
-			                $.messager.progress('close');
 			        	}
 			 		});
 				}
@@ -280,7 +280,7 @@
 									$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 				                	$('#dsDataGrid').datagrid('reload');
 				                } else {
-				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+				                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
 				                }
 							});
 				}
@@ -332,7 +332,7 @@
 					if (resultJson.statusCode == 200) {
 						$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 	                } else {
-	                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+	                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
 	                }
 				});
 			});
