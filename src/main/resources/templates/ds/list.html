@@ -189,6 +189,7 @@
 	 */
 	function searchDs () {
 		$('#dsDataGrid').datagrid('unselectAll');
+		searchEr();
 		$('#dsDataGrid').datagrid('load', {
 			keywords: $('#dsDataGridKeywords').textbox('getValue')
 		});
@@ -200,7 +201,6 @@
 	function resetDs () {
 		$('#dsDataGridForm').form('clear');
 		searchDs();
-		searchEr();
 	}
 
 	/**
@@ -246,7 +246,9 @@
 			                if (resultJson.statusCode == 200) {
 			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 			                	$dsDialog.dialog('destroy');
+			                	$('#dsDataGrid').datagrid('unselectAll');
 			                	$('#dsDataGrid').datagrid('reload');
+			            		searchEr();
 			                } else {
 			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
 			                }
