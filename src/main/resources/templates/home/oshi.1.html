@@ -71,16 +71,7 @@
 			var OSHI_IP = {};
 			var OSHI_UID = [];
 			var OSHI_POOL = [];
-            new Vue({ 
-            	el: "#container", 
-            	data: { 
-            		serverMap: { } 
-            	},
-       	      	mounted() {
-            		initData(this);
-                	initWs(this);
-       	     	} 
-            });
+            new Vue({ el: "#container", data: { serverMap: { } }, mounted() { initData(this); initWs(this); } });
 			
 			/**
         	 * 初始化数据
