@@ -71,7 +71,15 @@
 							pageSize:20,
 							method:'get',
 							url:ctx+'/er/ajax/page',
-		                   	onBeforeLoad:$.pageOnBeforeLoad
+		                   	onBeforeLoad:function(param){
+		                   		$.pageOnBeforeLoad(param);
+		                   		try{
+		                   			var selectedDs = $('#dsDataGrid').datagrid('getSelected');
+		                   			if (selectedDs) {
+		                   				param.dsUuid = selectedDs.uuid;
+		                   			}
+		                   		}catch(e){}
+		                   	}
 		               	">
 		                <thead>
 			                <tr>
@@ -180,6 +188,7 @@
 	 * 查询数据源
 	 */
 	function searchDs () {
+		$('#dsDataGrid').datagrid('unselectAll');
 		$('#dsDataGrid').datagrid('load', {
 			keywords: $('#dsDataGridKeywords').textbox('getValue')
 		});
@@ -191,6 +200,7 @@
 	function resetDs () {
 		$('#dsDataGridForm').form('clear');
 		searchDs();
+		searchEr();
 	}
 
 	/**
@@ -293,6 +303,7 @@
 	 * 查询数据库表
 	 */
 	function searchEr () {
+		$('#erDataGrid').datagrid('unselectAll');
 		$('#erDataGrid').datagrid('load', {
 			keywords: $('#erDataGridKeywords').textbox('getValue')
 		});
