@@ -79,6 +79,7 @@ public class QrtzTriggersServiceImpl implements IQrtzTriggersService {
 		CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
 
 		// 更新调度触发规则
+		trigger.getJobDataMap().clear();
 		TriggerBuilder<CronTrigger> triggerBuilder = trigger.getTriggerBuilder().withIdentity(triggerKey);
 		if (ObjectUtil.isNotEmpty(jobDataMap)) {
 			triggerBuilder.usingJobData(jobDataMap);
