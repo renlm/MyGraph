@@ -34,7 +34,7 @@ public class JobConfig implements Serializable {
 		private static final long serialVersionUID = 1L;
 
 		@XStreamAsAttribute
-		@XStreamAlias("job-class")
+		@XStreamAlias("class")
 		private String jobClassName;
 
 		private String description;

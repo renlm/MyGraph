@@ -4,7 +4,7 @@
 	<xsd:element name="jobs" type="Job">
 		<xsd:key name="job">
 			<xsd:selector xpath="job"></xsd:selector>
-			<xsd:field xpath="@job-class"></xsd:field>
+			<xsd:field xpath="@class"></xsd:field>
 		</xsd:key>
 	</xsd:element>
 
@@ -12,9 +12,7 @@
 		<xsd:choice minOccurs="0" maxOccurs="unbounded">
 			<xsd:element name="job">
 				<xsd:complexType mixed="true">
-					<xsd:attribute name="job-class" type="xsd:string"
-						use="required" />
-					<xsd:attribute name="cron" type="xsd:string"
+					<xsd:attribute name="class" type="xsd:string"
 						use="required" />
 				</xsd:complexType>
 			</xsd:element>
