@@ -47,7 +47,7 @@ public class DsController {
 	}
 
 	/**
-	 * 列表数据
+	 * 分页列表
 	 * 
 	 * @param authentication
 	 * @param page
@@ -55,7 +55,7 @@ public class DsController {
 	 * @return
 	 */
 	@ResponseBody
-	@GetMapping("/ajax/list")
+	@GetMapping("/ajax/page")
 	public Datagrid<Ds> ajaxList(Authentication authentication, Page<Ds> page, DsDto form) {
 		User user = (User) authentication.getPrincipal();
 		Page<Ds> data = iDsService.findPage(page, user, form);

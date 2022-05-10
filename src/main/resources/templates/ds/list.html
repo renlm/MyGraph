@@ -26,8 +26,11 @@
 					pagination:true,
 					pageSize:20,
 					method:'get',
-					url:ctx+'/ds/ajax/list',
-                   	onBeforeLoad:$.pageOnBeforeLoad
+					url:ctx+'/ds/ajax/page',
+                   	onBeforeLoad:$.pageOnBeforeLoad,
+                   	onClickRow:function(index,row){
+                   		searchEr();
+                   	}
                	">
                 <thead>
 	                <tr>
@@ -55,7 +58,31 @@
                 		border:false,
                 		bodyCls:'border_bottom'
                 	">
-                  	
+                  	<table id="erDataGrid" 
+		            	class="easyui-datagrid"
+		            	data-options="border:false,
+							fit:true,
+							fitColumns:true,
+							singleSelect:true,
+							checkOnSelect:false,
+							selectOnCheck:false,
+							toolbar:'#erDataGridToolbar',
+							pagination:true,
+							pageSize:20,
+							method:'get',
+							url:ctx+'/er/ajax/page',
+		                   	onBeforeLoad:$.pageOnBeforeLoad
+		               	">
+		                <thead>
+			                <tr>
+			                	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+			                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#erDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+		                     	<th data-options="field:'tableName',title:'表名',width:100"></th>
+	                            <th data-options="field:'comment',title:'注释',width:100"></th>
+			                    <th data-options="field:'updatedAt',title:'更新时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
+			                </tr>
+		                </thead>
+		            </table>
                 </div>
                 <div data-options="region:'center',
                 		split:true,
@@ -79,6 +106,7 @@
             </div>
         </div>
     </div>
+    <!-- 数据源 工具栏 -->
     <div id="dsDataGridToolbar" class="myui-toolbar">
 		<a href="javascript:dsDialog();"
           	class="easyui-menubutton myui-btn-normal myui-btn-green"
@@ -114,6 +142,33 @@
 	         	">查询
 	    	</a>
 	    	<a href="javascript:resetDs();"
+       			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+       			data-options="iconCls:'fa fa-trash'
+       			">重置
+          	</a>
+		</form> 
+	</div>
+    <!-- 数据库表 工具栏 -->
+    <div id="erDataGridToolbar" class="myui-toolbar">
+		<a href="javascript:createGraph();"
+          	class="easyui-menubutton myui-btn-normal myui-btn-black"
+         	data-options="iconCls:'fa fa-send',
+           		hasDownArrow:false
+        	"> 生成ER图
+       	</a>
+		<form id="erDataGridForm" class="search-box">
+	   		<input type="text" name="keywords"
+	    		id="erDataGridKeywords" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'关键字',
+	        		width:220
+	        	"/>
+	        <a href="javascript:searchEr();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:resetEr();"
        			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
        			data-options="iconCls:'fa fa-trash'
        			">重置
@@ -214,7 +269,7 @@
 			$.each(checked, function (i, item) {
 				uuids[i] = item.uuid;
 			});
-			$.messager.myuiConfirm('操作提示', '确定要重置该用户密码吗？重置后新密码只显示一次，请自行记录。', function (r) {
+			$.messager.myuiConfirm('操作提示', '您确定要删除选中的数据源吗？', function (r) {
 				if (r) {
 					$.messager.progress({'text': '请求中……'});
 					$.post(ctx + '/ds/ajax/del', 
@@ -229,6 +284,57 @@
 				                }
 							});
 				}
+			});
+		}
+	}
+</script>
+<script type="text/javascript">
+	/**
+	 * 查询数据库表
+	 */
+	function searchEr () {
+		$('#erDataGrid').datagrid('load', {
+			keywords: $('#erDataGridKeywords').textbox('getValue')
+		});
+	}
+	
+	/**
+	 * 重置数据库表
+	 */
+	function resetEr () {
+		$('#erDataGridForm').form('clear');
+		searchEr();
+	}
+	
+	/**
+	 * 生成ER图
+	 */
+	function createGraph () {
+		var checked = $('#erDataGrid').datagrid('getChecked');
+		if (!checked || checked.length === 0) {
+			$.messager.myuiAlert('操作提示', '请先选中要生成ER图的表！', 'warning');
+			return;
+		} else {
+			var uuids = [];
+			$.each(checked, function (i, item) {
+				uuids[i] = item.uuid;
+			});
+			parent.layer.prompt({
+				title: '新建ER设计图',
+				formType: 0, 
+				value: null,
+				skin: 'layui-layer-rim layui-layer-prompt custom-layui-btn-center'
+			}, function (name, index) {
+				parent.layer.closeAll();
+   				$.messager.progress({'text':'正在生成……'});
+   				$.post(ctx + '/er/ajax/createGraph', { name: name, uuids: uuids }, function (resultJson) {
+   					$.messager.progress('close');
+					if (resultJson.statusCode == 200) {
+						$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+	                } else {
+	                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+	                }
+				});
 			});
 		}
 	}
