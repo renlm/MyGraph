@@ -327,7 +327,7 @@
 			}, function (name, index) {
 				parent.layer.closeAll();
    				$.messager.progress({'text':'正在生成……'});
-   				$.post(ctx + '/er/ajax/createGraph', { name: name, uuids: uuids }, function (resultJson) {
+   				$.post(ctx + '/er/ajax/createGraph', { name: name, uuids: uuids.join() }, function (resultJson) {
    					$.messager.progress('close');
 					if (resultJson.statusCode == 200) {
 						$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});

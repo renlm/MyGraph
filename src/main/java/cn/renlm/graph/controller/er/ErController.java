@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErDto;
@@ -65,11 +66,17 @@ public class ErController {
 	@PostMapping("/ajax/createGraph")
 	public Result<?> createGraph(Authentication authentication, String name, String uuids) {
 		try {
+			if (StrUtil.isBlank(name)) {
+				return Result.error("名称缺失");
+			}
 			User user = (User) authentication.getPrincipal();
 			List<String> uuidList = StrUtil.splitTrim(uuids, StrUtil.COMMA);
+			if (CollUtil.isEmpty(uuidList)) {
+				return Result.error("请选择要生成ER图的表");
+			}
 			List<ErDto> ers = iErService.findListWithFields(uuidList);
 			eRModelParser.create(user, name, ers);
-			return Result.success();
+			return Result.success().setMessage("ER图已生成，请到[图形设计->我的]中查看");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
