@@ -3,7 +3,10 @@ package cn.renlm.graph.controller;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
+import cn.renlm.graph.common.CacheKey;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.oshi.OshiInfo;
 import cn.renlm.graph.oshi.OshiInfoUtil;
@@ -29,6 +33,9 @@ public class HomeController {
 
 	@Autowired
 	private UserService userService;
+
+	@Resource
+	private RedisTemplate<String, Integer> redisTemplate;
 
 	/**
 	 * 主页
@@ -73,6 +80,11 @@ public class HomeController {
 	 */
 	@GetMapping("/home/oshi")
 	public String oshi(ModelMap model, Integer type) {
+		if (type == null) {
+			type = redisTemplate.opsForValue().get(CacheKey.OshiType.name());
+		} else {
+			redisTemplate.opsForValue().set(CacheKey.OshiType.name(), type);
+		}
 		long onlineUserNumber = WsUtil.getOnlineUserNumber();
 		Map<String, Set<OshiInfo>> oshiInfos = OshiInfoUtil.get();
 		model.put("onlineUserNumber", onlineUserNumber);
