@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.renlm.crawler.qrtz.mapper.QrtzTriggersMapper">
+<mapper namespace="cn.renlm.graph.modular.qrtz.mapper.QrtzTriggersMapper">
 
 	<!-- 任务名称是否存在 -->
 	<select id="exists" resultType="boolean">
@@ -10,7 +10,7 @@
 	</select>
 
 	<!-- 任务详情 -->
-	<select id="findDetail" resultType="cn.renlm.crawler.qrtz.dto.QrtzTriggersDto">
+	<select id="findDetail" resultType="cn.renlm.graph.modular.qrtz.dto.QrtzTriggersDto">
 		SELECT K1.`SCHED_NAME` AS schedName,
 			K1.`JOB_GROUP` AS jobGroup,
 			K1.`JOB_NAME` AS jobName,
@@ -35,7 +35,7 @@
 	</select>
 
 	<!-- 分页列表 -->
-	<select id="findPage" resultType="cn.renlm.crawler.qrtz.dto.QrtzTriggersDto">
+	<select id="findPage" resultType="cn.renlm.graph.modular.qrtz.dto.QrtzTriggersDto">
 		SELECT K1.`SCHED_NAME` AS schedName,
 			K1.`JOB_GROUP` AS jobGroup,
 			K1.`JOB_NAME` AS jobName,
