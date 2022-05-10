@@ -7,12 +7,14 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.CacheKey;
 import cn.renlm.graph.dto.User;
@@ -75,15 +77,18 @@ public class HomeController {
 	 * 服务器监控
 	 * 
 	 * @param model
+	 * @param authentication
 	 * @param type
 	 * @return
 	 */
 	@GetMapping("/home/oshi")
-	public String oshi(ModelMap model, Integer type) {
+	public String oshi(ModelMap model, Authentication authentication, Integer type) {
+		User user = (User) authentication.getPrincipal();
+		String cacheTypeKey = CacheKey.OshiType.name() + StrUtil.AT + user.getUserId();
 		if (type == null) {
-			type = redisTemplate.opsForValue().get(CacheKey.OshiType.name());
+			type = redisTemplate.opsForValue().get(cacheTypeKey);
 		} else {
-			redisTemplate.opsForValue().set(CacheKey.OshiType.name(), type);
+			redisTemplate.opsForValue().set(cacheTypeKey, type);
 		}
 		long onlineUserNumber = WsUtil.getOnlineUserNumber();
 		Map<String, Set<OshiInfo>> oshiInfos = OshiInfoUtil.get();
