@@ -2,6 +2,10 @@
 
 @import "../themes/default/core.css";
 
+[v-cloak] {
+	display: none;
+}
+
 .myui .tabs-header-left ul.tabs {
 	border-width: 0px;
 }
