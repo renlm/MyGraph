@@ -1,0 +1,70 @@
+<input type="hidden" name="triggerName" />
+<div class="topjui-fluid">
+    <div class="topjui-row"></div>
+    <div class="topjui-row">
+    	<div class="topjui-col-sm11">
+    		<label class="topjui-form-label">执行类</label>
+            <div class="topjui-input-block">
+                <input id="jobDialogJobClassName" type="text" name="jobClassName"
+                	data-toggle="topjui-combogrid"
+               		data-options="required:true,
+               			idField:'jobClassName',
+    			   		textField:'jobClassName',
+                       	url:ctx+'/qrtz/job/ajax/classes',
+                       	onSelect:function(index,row){
+                       		if(!$('#jobDialogJobName').iTextbox('getValue')) {
+                       			$('#jobDialogJobName').iTextbox('setValue',row.description);
+                       		}
+                       	},
+                   		columns:[[
+                       		{field:'jobClassName',title:'执行类',width:'20%'},
+                       		{field:'description',title:'任务描述',width:'80%'}
+                       	]]
+            		"/>
+            </div>
+        </div>
+    </div>
+	<div class="topjui-row">
+		<div class="topjui-col-sm11">
+			<label class="topjui-form-label">任务名称</label>
+			<div class="topjui-input-block">
+				<input id="jobDialogJobName" type="text" name="jobName" 
+					data-toggle="topjui-textbox" 
+					data-options="required:true"
+					/>
+			</div>
+		</div>
+	</div>
+	<div class="topjui-row">
+		<div class="topjui-col-sm11">
+			<label class="topjui-form-label">时间表达式</label>
+			<div class="topjui-input-block">
+				<input id="jobDialogCronExpression" type="text" name="cronExpression" 
+					data-toggle="topjui-textbox" 
+					data-options="required:true"
+					/>
+			</div>
+		</div>
+	</div>
+	<div class="topjui-row">
+		<div class="topjui-col-sm11">
+			<label class="topjui-form-label">备注</label>
+			<div class="topjui-input-block">
+				<input id="jobDialogDescription" type="text" name="description" 
+					data-toggle="topjui-textbox"
+					/>
+			</div>
+		</div>
+	</div>
+	<div class="topjui-row">
+		<div class="topjui-col-sm11">
+			<label class="topjui-form-label">参数</label>
+			<div class="topjui-input-block">
+				<input id="jobDialogJobDataMapJson" type="text" name="jobDataMapJson" 
+					data-toggle="topjui-textarea" 
+					data-options="height:230"
+					/>
+			</div>
+		</div>
+	</div>
+</div>

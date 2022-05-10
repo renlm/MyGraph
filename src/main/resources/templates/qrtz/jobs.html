@@ -84,7 +84,7 @@
     </div>
     <!-- 任务列表 表格工具栏 -->
     <div id="jobDataGridToolbar" class="myui-toolbar">
-		<a href="javascript:openJobDialog();"
+		<a href="javascript:jobDialog();"
           	class="easyui-menubutton myui-btn-normal myui-btn-green"
          	data-options="iconCls:'fa fa-plus',
            		hasDownArrow:false
@@ -197,14 +197,69 @@
 		 */
 	    function jobOperateFormatter(value, row, index) {
 			var htmlstr = '<button class="layui-btn layui-btn-xs" style="background-color: #2F4056;" onclick="execute(\'run\',\'您确定立即执行一次任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">执行</button>';
-		    htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-normal" onclick="openJobDialog(\'编辑任务\',\'' + row.triggerName + '\')">编辑</button>';
+		    htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-normal" onclick="jobDialog(\'编辑任务\',\'' + row.triggerName + '\')">编辑</button>';
 		    if(row.triggerState == 'PAUSED') {
 		    	htmlstr += '<button class="layui-btn layui-btn-xs" onclick="execute(\'resume\',\'您确定恢复任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">恢复</button>';
 		    } else {
 		    	htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-danger" onclick="execute(\'pause\',\'您确定停止任务？</br>《' + row.jobName + '》\',\'' + row.triggerName + '\')">停止</button>';
 		    }
-		    htmlstr += '<button class="layui-btn layui-btn-xs layui-btn-primary" onclick="openJobDialog(\'任务详情\',\'' + row.triggerName + '\',true)">详情</button>';
 		    return htmlstr;
+		}
+	    
+	    /**
+		 * 弹窗（新增|编辑）
+		 */
+		function jobDialog (triggerName) {
+			var $jobDialog = $('<form id=\'jobDialog\' method=\'get\' class=\'myui\'></form>');
+		    $jobDialog.myuiDialog({
+		        title: triggerName ? '编辑' : '新增',
+		        width: 890,
+		        height: 483,
+				collapsible: true,
+				minimizable: false,
+				maximizable: true,
+		        closed: false,
+		        cache: false,
+		        href: 'job/dialog' + (triggerName ? ('?triggerName=' + triggerName) : ''),
+		        modal: true,
+		        buttons: [{
+		            text: triggerName ? '更新' : '保存',
+		            iconCls: triggerName ? 'fa fa-save' : 'fa fa-plus',
+		            handler: function () {
+						$.messager.progress({'text': '请求中……'});
+				        $jobDialog.form('submit', {
+				            url: 'job/ajax/save',
+				            onSubmit: function () {
+				                var isValid = $(this).form('validate');
+				                if (!isValid) {
+				                    $.messager.progress('close');
+				                }
+				                return isValid;
+				            },
+				            success: function (result) {
+								var resultJson = JSON.parse(result);
+				                if (resultJson.statusCode == 200) {
+				                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+				                	$jobDialog.dialog('destroy');
+				                	$('#jobDataGrid').datagrid('reload');
+				                } else {
+				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'服务器出错了', timeout: 5000, showType: 'slide'});
+				                }
+				                $.messager.progress('close');
+				        	}
+				 		});
+					}
+		        }, {
+		            text: '关闭',
+		            iconCls: 'fa fa-close',
+		            handler: function () {
+		                $jobDialog.dialog('destroy');
+		            }
+		        }],
+				onClose: function () {
+					$jobDialog.dialog('destroy');
+				}
+		    });
 		}
 	    
 	    /**

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
@@ -146,25 +147,21 @@ public class QuartzController {
 	}
 
 	/**
-	 * 任务弹窗
+	 * 任务弹窗（新增|编辑）
 	 * 
-	 * @return
-	 */
-	@RequestMapping("/job/dialog")
-	public String jobDialog() {
-		return "qrtz/jobDialog";
-	}
-
-	/**
-	 * 任务详情
-	 * 
+	 * @param model
 	 * @param triggerName
 	 * @return
 	 */
-	@ResponseBody
-	@RequestMapping("/job/ajax/detail")
-	public QrtzTriggersDto jobAjaxDetail(String triggerName) {
-		return iQrtzTriggersService.findDetail(triggerName);
+	@RequestMapping("/job/dialog")
+	public String jobDialog(ModelMap model, String triggerName) {
+		QrtzTriggersDto detail = new QrtzTriggersDto();
+		if (StrUtil.isNotBlank(triggerName)) {
+			QrtzTriggersDto trigger = iQrtzTriggersService.findDetail(triggerName);
+			BeanUtil.copyProperties(trigger, detail);
+		}
+		model.put("trigger", detail);
+		return "qrtz/jobDialog";
 	}
 
 	/**
