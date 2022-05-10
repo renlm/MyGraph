@@ -63,7 +63,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 			if (StrUtil.isNotBlank(form.getKeywords())) {
 				wrapper.and(item -> {
 					item.or().like(Ds::getUrl, form.getKeywords());
-					item.or().like(Ds::getSchema, form.getKeywords());
+					item.or().like(Ds::getSchemaName, form.getKeywords());
 					item.or().like(Ds::getUsername, form.getKeywords());
 					item.or().like(Ds::getRemark, form.getKeywords());
 				});
@@ -74,7 +74,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public Result<String> init(User user, DsDto ds) {
-		List<Table> tables = MyDbUtil.getTableMetas(ds.getUrl(), ds.getSchema(), ds.getUsername(), ds.getPassword(),
+		List<Table> tables = MyDbUtil.getTableMetas(ds.getUrl(), ds.getSchemaName(), ds.getUsername(), ds.getPassword(),
 				TableType.TABLE);
 		// 保存数据源
 		ds.setPassword(Base64.encodeUrlSafe(ds.getPassword()));
@@ -129,7 +129,7 @@ public class DsServiceImpl extends ServiceImpl<DsMapper, Ds> implements IDsServi
 		if (CollUtil.isNotEmpty(tables)) {
 			List<ErField> erFields = CollUtil.newArrayList();
 			for (Table table : tables) {
-				ds.setSchema(table.getSchema());
+				ds.setSchemaName(table.getSchema());
 				// ER模型
 				Er er = new Er();
 				er.setUuid(IdUtil.simpleUUID().toUpperCase());

@@ -53,8 +53,8 @@ public class Ds implements Serializable {
     /**
      * 模式
      */
-    @TableField("schema")
-    private String schema;
+    @TableField("schema_name")
+    private String schemaName;
 
     /**
      * 账号
