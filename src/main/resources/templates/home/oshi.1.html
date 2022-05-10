@@ -6,12 +6,12 @@
 </head>
 <body layout:fragment="content">
     <div id="vue-app" class="container-fluid" style="margin-top: 20px;" v-cloak>
-    	<div class="row" v-for="(item, key, index) in serverMap" v-bind:data-machine="item.machine">
+    	<div class="row" v-for="(item, key, index) in serverMap" v-bind:data-ip="item.ip">
     		<div class="col-md-12">
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
 	                    <i class="fa fa-server"></i> 
-	               		<span>服务器信息，机器ip：{{item.machine}}，磁盘：{{item.diskStr}}，已使用磁盘：{{item.diskUsedStr}}，磁盘使用率：{{item.diskUsedRate}} %</span>
+	               		<span>服务器信息，机器ip：{{item.ip}}，磁盘：{{item.diskStr}}，已使用磁盘：{{item.diskUsedStr}}，磁盘使用率：{{item.diskUsedRate}} %</span>
 	                </div>
 	                <div class="panel-body" style="border-width: 0px;">
 	                	<div class="topjui-row">
@@ -41,13 +41,13 @@
 	                    </div>
 	                    <div class="topjui-row">
 					    	<div class="layui-col-lg4 layui-col-sm4 topjui-col-xs12">
-					    		<div v-bind:id="'cpu-' + item.machine" style="height: 300px;"></div>
+					    		<div v-bind:id="'cpu-' + item.ip" style="height: 300px;"></div>
 					    	</div>
 					    	<div class="layui-col-lg4 layui-col-sm4 topjui-col-xs12">
-					    		<div v-bind:id="'memory-' + item.machine" style="height: 300px;"></div>
+					    		<div v-bind:id="'memory-' + item.ip" style="height: 300px;"></div>
 					    	</div>
 					    	<div class="layui-col-lg4 layui-col-sm4 topjui-col-xs12">
-					    		<div v-bind:id="'jvm-' + item.machine" style="height: 300px;"></div>
+					    		<div v-bind:id="'jvm-' + item.ip" style="height: 300px;"></div>
 					    	</div>
 						</div>
 	                </div>
@@ -95,6 +95,8 @@
     					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
 					}
 				});
+				// 更新图形（服务器信息）
+				renderOshiCharts();
     		}
 			
 			/**
@@ -168,7 +170,7 @@
 	    	 * 服务器信息
 	    	 */
 	    	function renderOshiCharts () {
-	    		
+	    		VM.serverMap = OSHI_IP;
 	    	}
 		});
 	</script>
