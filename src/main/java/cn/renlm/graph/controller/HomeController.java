@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.oshi.OshiInfo;
@@ -67,14 +68,15 @@ public class HomeController {
 	 * 服务器监控
 	 * 
 	 * @param model
+	 * @param type
 	 * @return
 	 */
 	@GetMapping("/home/oshi")
-	public String oshi(ModelMap model) {
+	public String oshi(ModelMap model, Integer type) {
 		long onlineUserNumber = WsUtil.getOnlineUserNumber();
 		Map<String, Set<OshiInfo>> oshiInfos = OshiInfoUtil.get();
 		model.put("onlineUserNumber", onlineUserNumber);
 		model.put("oshiInfos", JSONUtil.toJsonStr(oshiInfos));
-		return "home/oshi";
+		return "home/oshi." + ObjectUtil.defaultIfNull(type, 1);
 	}
 }
