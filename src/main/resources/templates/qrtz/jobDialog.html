@@ -10,7 +10,8 @@
                 <input type="text" th:field="*{jobClassName}"
                 	th:disabled="*{!#strings.isEmpty(triggerName)}"
                 	class="easyui-combogrid"
-	             	data-options="idField:'jobClassName',
+	             	data-options="required:true,
+						idField:'jobClassName',
 	             		textField:'jobClassName',
 	             		prompt:'执行类',
 	             		width:718,
@@ -39,7 +40,8 @@
                 <input type="text" th:field="*{jobName}" 
                 	th:disabled="*{!#strings.isEmpty(triggerName)}"
                 	class="easyui-textbox"
-                   	data-options="width:718
+                   	data-options="required:true,
+						width:718
                    	"/>
             </div>
         </div>
@@ -50,7 +52,8 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{cronExpression}" 
                 	class="easyui-textbox"
-                   	data-options="width:718
+                   	data-options="required:true,
+						width:718
                    	"/>
             </div>
         </div>
