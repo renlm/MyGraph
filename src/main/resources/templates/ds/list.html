@@ -166,7 +166,7 @@
 	            handler: function () {
 					$.messager.progress({'text': '请求中……'});
 			        $dsDialog.form('submit', {
-			            url: ctx + 'ds/ajax/save',
+			            url: ctx + '/ds/ajax/save',
 			            onSubmit: function () {
 			                var isValid = $(this).form('validate');
 			                if (!isValid) {
