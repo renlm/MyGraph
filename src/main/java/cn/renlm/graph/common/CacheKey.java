@@ -10,7 +10,9 @@ import lombok.Getter;
  */
 public enum CacheKey {
 
-	SysConst("系统常量"), FontAwesomeIcons("Font Awesome 图标集"), OshiType("服务器监控视图");
+	SysConst("系统常量"), 
+	FontAwesomeIcons("Font Awesome 图标集"), 
+	OshiType("服务器监控");
 
 	@Getter
 	private final String text;
