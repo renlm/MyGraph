@@ -172,7 +172,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 		entity.setEmail(form.getEmail());
 		entity.setSign(form.getSign());
 		entity.setAvatar(form.getAvatar());
-		entity.setRemark(form.getRemark());
 		entity.setUpdatedAt(new Date());
 		this.updateById(entity);
 	}
