@@ -95,7 +95,7 @@
 		    		seekShow: false,
 		    		seekIcon: "iconfont-xiala",
 		    		seekSelected: { code: null, name: "全部分类" },
-		    		category: { UML: "UML", FLOW: "流程图", ER: "ER模型", GENERAL: "一般设计", OTHER: "其它" },
+		    		category: JSON.parse('[[${#DictUtil.MapItems("MXGRAPH")}]]'),
 	    			defaultImgSrc: "[(@{/static/images/holder.png})]",
 			    	response: { current: 1, pages: 1, records: [], size: 8, total: 0 }
 		    	};
