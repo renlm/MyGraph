@@ -331,7 +331,9 @@
 				                $.messager.progress('close');
 								if (resultJson.statusCode == 200) {
 									$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+									$('#dsDataGrid').datagrid('unselectAll');
 				                	$('#dsDataGrid').datagrid('reload');
+				            		searchEr();
 				                } else {
 				                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
 				                }
