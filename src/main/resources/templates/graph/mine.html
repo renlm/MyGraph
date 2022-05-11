@@ -119,7 +119,10 @@
 		 * 操作
 		 */
 		function operateFormatter (value, row, index) {
-			return '<a href="javascript:graphDialog(\'' + row.uuid + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">编辑</span><span class="l-btn-icon fa fa-pencil"></span></span></a>';
+			var opts = '<a href="javascript:graphDialog(\'' + row.uuid + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">编辑</span><span class="l-btn-icon fa fa-pencil"></span></span></a>';
+			    opts+= '<p style="height: 10px;"></p>';
+			    opts+= '<a href="javascript:$.openGraphEditor(\'' + row.uuid + '\', \'' + row.name + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">画图</span><span class="l-btn-icon fa fa-pencil"></span></span></a>';
+			return opts;
 		}
 		
 		/**
@@ -270,6 +273,5 @@
 		    }
 		});
 	</script>
-
 </body>
 </html>
