@@ -6,6 +6,20 @@
 	display: none;
 }
 
+div.south-border-left_none + div.layout-split-proxy-h + div.layout-split-proxy-v + div.layout-expand-south .panel-header {
+	border-left: none;
+}
+
+div.south-border-bottom_none + div.layout-split-proxy-h + div.layout-split-proxy-v + div.layout-expand-south .panel-header {
+	border-bottom: none;
+}
+
+div.south-border-left-bottom_none .panel-header,
+div.south-border-left-bottom_none + div.layout-split-proxy-h + div.layout-split-proxy-v + div.layout-expand-south .panel-header {
+	border-left: none;
+	border-bottom: none;
+}
+
 .myui .tabs-header-left ul.tabs {
 	border-width: 0px;
 }
