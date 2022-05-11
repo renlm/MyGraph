@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-    <title>我的作品</title>
+    <title>我的</title>
 </head>
 <body layout:fragment="content" class="myui">
 	<div class="easyui-layout" 
@@ -25,7 +25,7 @@
 					method:'get',
 					url:ctx+'/graph/mine/ajax/page',
                    	onBeforeLoad:$.pageOnBeforeLoad
-					">
+				">
 				<thead>
 					<tr>
 						<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
@@ -36,6 +36,7 @@
 		          		<th data-options="field:'isPublic',title:'是否公开',width:100,align:'center',formatter:$.yesNoFormatter"></th>
 		            	<th data-options="field:'updatedAt',title:'更新时间',width:153,align:'right',formatter:$.updatedAtFormatter"></th>
 		           		<th data-options="field:'remark',title:'备注',width:100"></th>
+                       	<th data-options="field:'actions',title:'操作',width:80,align:'center',formatter:operateFormatter"></th>
 					</tr>
 				</thead>
 			</table>
@@ -67,22 +68,22 @@
 	    	<input type="text" name="categoryCode" 
 	        	id="categoryCode"
 	        	class="easyui-combobox"
-	       		data-options="prompt:'图形分类',
+	       		th:data-options="|prompt:'图形分类',
 	           		width:220,
-	        		panelHeight:182,
+	        		panelHeight:'auto',
 	                valueField:'value',
 	                textField:'label',
 	              	multiple:false,
 	              	editable:false,
-	               	data:[
-	               		{label:'全部',value:null},
-	               		{label:'等待',value:'WAITING'},
-	               		{label:'暂停',value:'PAUSED'},
-	               		{label:'运行中',value:'ACQUIRED'},
-	                   	{label:'阻塞',value:'BLOCKED'},
-	                   	{label:'错误',value:'ERROR'}
-	              	]
-	      		"/>
+	               	data:(function(){
+	               		var data = [];
+	               		var MapItems = JSON.parse('${#DictUtil.MapItemsJson('MXGRAPH')}');
+	               		$.each(MapItems, function (code, text) {
+	               			data.push({ label: text, value: code });
+	               		});
+	               		return data;
+	               	})()
+	      		|"/>
 	   		<input type="text" name="keywords"
 	    		id="keywords" 
 	   			class="easyui-textbox"
@@ -101,5 +102,118 @@
           	</a>
 		</form> 
     </div>
+    <script type="text/javascript">
+		/**
+		 * 查询
+		 */
+		function search () {
+			$('#dataGrid').datagrid('load', {
+				categoryCode: $('#categoryCode').combobox('getValue'),
+				keywords: $('#keywords').textbox('getValue')
+			});
+		}
+		
+		/**
+		 * 重置
+		 */
+		function reset () {
+			$('#form').form('clear');
+			search();
+		}
+	
+		/**
+		 * 操作
+		 */
+		function operateFormatter (value, row, index) {
+			return '<a href="javascript:graphDialog(\'' + row.uuid + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">编辑</span><span class="l-btn-icon fa fa-pencil"></span></span></a>';
+		}
+		
+		/**
+		 * 弹窗（新增|编辑）
+		 */
+		function graphDialog (userId) {
+			var $graphDialog = $('<form id=\'graphDialog\' method=\'get\' class=\'myui\'></form>');
+		    $graphDialog.myuiDialog({
+		        title: userId ? '编辑' : '新增',
+		        width: 890,
+		        height: 483,
+				collapsible: true,
+				minimizable: false,
+				maximizable: true,
+		        closed: false,
+		        cache: false,
+		        href: 'user/dialog' + (userId ? ('?userId=' + userId) : ''),
+		        modal: true,
+		        buttons: [{
+		            text: userId ? '更新' : '保存',
+		            iconCls: userId ? 'fa fa-save' : 'fa fa-plus',
+		            handler: function () {
+						$.messager.progress({'text': '请求中……'});
+				        $graphDialog.form('submit', {
+				            url: 'user/ajax/save',
+				            onSubmit: function () {
+				                var isValid = $(this).form('validate');
+				                if (!isValid) {
+				                    $.messager.progress('close');
+				                }
+				                return isValid;
+				            },
+				            success: function (result) {
+								var resultJson = JSON.parse(result);
+				                if (resultJson.statusCode == 200) {
+				                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+				                	$graphDialog.dialog('destroy');
+				                	$('#dataGrid').datagrid('reload');
+				                } else {
+				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+				                }
+				                $.messager.progress('close');
+				        	}
+				 		});
+					}
+		        }, {
+		            text: '关闭',
+		            iconCls: 'fa fa-close',
+		            handler: function () {
+		                $graphDialog.dialog('destroy');
+		            }
+		        }],
+				onClose: function () {
+					$graphDialog.dialog('destroy');
+				}
+		    });
+		}
+		
+		/**
+		 * 删除
+		 */
+		function delGraph () {
+			var checked = $('#dataGrid').datagrid('getChecked');
+			if (!checked || checked.length === 0) {
+				$.messager.myuiAlert('操作提示', '请先选中要重置密码的用户！', 'warning');
+				return;
+			} else {
+				var userIds = [];
+				$.each(checked, function (i, item) {
+					userIds[i] = item.userId;
+				});
+				$.messager.myuiConfirm('操作提示', '确定要重置该用户密码吗？重置后新密码只显示一次，请自行记录。', function (r) {
+					if (r) {
+						$.messager.progress({'text': '请求中……'});
+						$.post('user/ajax/resetPassword', 
+								{ userIds: userIds.join() }, 
+								function (resultJson) {
+					                $.messager.progress('close');
+									if (resultJson.statusCode == 200) {
+					                	$.messager.show({title: '我的消息', msg: resultJson.data, timeout: 10000, showType: 'slide'});
+					                } else {
+					                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+					                }
+								});
+					}
+				});
+			}
+		}
+	</script>
 </body>
 </html>

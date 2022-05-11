@@ -11,6 +11,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.modular.sys.entity.SysDict;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
 
@@ -25,6 +26,16 @@ public class DictUtil {
 
 	@Autowired
 	private ISysDictService iSysDictService;
+
+	/**
+	 * 获取字典映射
+	 * 
+	 * @param codePaths
+	 * @return
+	 */
+	public String MapItemsJson(String codePaths) {
+		return JSONUtil.toJsonStr(this.MapItems(codePaths));
+	}
 
 	/**
 	 * 获取字典映射
