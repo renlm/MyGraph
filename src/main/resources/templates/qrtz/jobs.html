@@ -161,24 +161,18 @@
                    		{field:'jobClassName',title:'执行类',width:100}
               		]]
            		"/>
-	        <input type="text" name="level" 
+           	<input type="text" name="level" 
 	        	id="logDataGridToolbarFormLevel"
 	        	class="easyui-combobox"
-	       		data-options="prompt:'日志级别',
-	           		width:220,
-	        		panelHeight:152,
-	                valueField:'value',
-	                textField:'label',
-	              	multiple:false,
-	              	editable:false,
-	               	data:[
-	               		{label:'全部',value:null},
-	               		{label:'DEBUG',value:'DEBUG'},
-	                   	{label:'INFO',value:'INFO'},
-	                   	{label:'WARN',value:'WARN'},
-	                   	{label:'ERROR',value:'ERROR'}
-	              	]
-	      		"/>
+	       		th:data-options="|prompt:'日志级别',
+                 	width:220,
+	        		panelHeight:'auto',
+	        		editable:false,
+					method:'get',
+                 	url:ctx+'/sys/dict/ajax/getTree?codePaths=LOG_LEVEL',
+                   	valueField:'code',
+                   	textField:'text'
+	      		|"/>
 	        <a href="javascript:searchLog();" 
 	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
 	       		data-options="iconCls:'fa fa-search'
