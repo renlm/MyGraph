@@ -13,7 +13,7 @@ import org.thymeleaf.dialect.IExpressionObjectDialect;
 import org.thymeleaf.expression.IExpressionObjectFactory;
 
 import cn.renlm.graph.modular.sys.service.ISysConstService;
-import cn.renlm.graph.modular.sys.service.ISysDictService;
+import cn.renlm.graph.util.DictUtil;
 import cn.renlm.graph.util.MyConfigProperties;
 
 /**
@@ -27,12 +27,12 @@ public class DialectUtil extends AbstractDialect implements IExpressionObjectDia
 
 	private final Map<String, Object> map = Collections.synchronizedMap(new HashMap<>());
 
-	protected DialectUtil(MyConfigProperties myConfigProperties, ISysConstService iSysConstService,
-			ISysDictService iSysDictService, Environment environment) {
+	protected DialectUtil(MyConfigProperties myConfigProperties, ISysConstService iSysConstService, DictUtil dictUtil,
+			Environment environment) {
 		super(DialectUtil.class.getSimpleName());
 		map.put("ConfigUtil", myConfigProperties);
 		map.put("ConstUtil", iSysConstService);
-		map.put("DictUtil", iSysDictService);
+		map.put("DictUtil", dictUtil);
 		map.put("ProfileUtil", environment.getActiveProfiles());
 	}
 
