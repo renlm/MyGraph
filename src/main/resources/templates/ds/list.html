@@ -3,7 +3,7 @@
 <head>
     <title>数据源</title>
 </head>
-<body layout:fragment="content">
+<body layout:fragment="content" class="myui">
 	<div class="easyui-layout"
     	data-options="fit:true">
     	<div data-options="region:'center',
@@ -16,8 +16,7 @@
                   	tabPosition:'left'
              	">
               	<div title="数据源" 
-              		data-options="iconCls:'fa fa-deaf'
-                	">
+              		data-options="iconCls:'fa fa-deaf'">
               		<table id="dsDataGrid" 
 		            	class="easyui-datagrid"
 		            	data-options="border:false,
@@ -52,11 +51,11 @@
               		data-options="iconCls:'fa fa-tags'">
               		<div class="easyui-layout"
 				    	data-options="fit:true">
-				    	<!-- 数据源 -->
+				    	<!-- 表 -->
 				        <div data-options="region:'center',
 				        		split:true,
 				        		border:false,
-				        		bodyCls:'border_right_bottom_left'
+				        		bodyCls:'border_bottom'
 				        	">
 				          	<table id="erDataGrid" 
 				            	class="easyui-datagrid"
@@ -97,6 +96,7 @@
 				                </thead>
 				            </table>
 				        </div>
+				        <!-- 字段 -->
 				    	<div data-options="region:'south',
 				        		split:true,
 				        		title:'字段信息',
@@ -104,8 +104,8 @@
 				            	border:false,
 				            	cls:'south-border-left-bottom_none',
 				            	iconCls:'fa fa-road',
-				            	headerCls:'border_top_left',
-				              	bodyCls:'border_top_left'
+				            	headerCls:'border_top',
+				              	bodyCls:'border_top'
 				          	">
 				          	<table id="erFieldDataGrid" class="easyui-datagrid" 
 								data-options="border:false,
