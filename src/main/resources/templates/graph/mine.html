@@ -69,20 +69,13 @@
 	        	id="categoryCode"
 	        	class="easyui-combobox"
 	       		th:data-options="|prompt:'图形分类',
-	           		width:220,
+                 	width:220,
 	        		panelHeight:'auto',
-	                valueField:'value',
-	                textField:'label',
-	              	multiple:false,
-	              	editable:false,
-	               	data:(function(){
-	               		var data = [];
-	               		var MapItems = JSON.parse('${#DictUtil.MapItemsJson('MXGRAPH')}');
-	               		$.each(MapItems, function (code, text) {
-	               			data.push({ label: text, value: code });
-	               		});
-	               		return data;
-	               	})()
+	        		editable:false,
+					method:'get',
+                 	url:ctx+'/sys/dict/ajax/getTree?codePaths=MXGRAPH',
+                   	valueField:'code',
+                   	textField:'text'
 	      		|"/>
 	   		<input type="text" name="keywords"
 	    		id="keywords" 

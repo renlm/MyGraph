@@ -34,26 +34,15 @@ public class DictUtil {
 	 * @return
 	 */
 	public String MapItemsJson(String codePaths) {
-		return JSONUtil.toJsonStr(this.MapItems(codePaths));
-	}
-
-	/**
-	 * 获取字典映射
-	 * 
-	 * @param codePaths
-	 * @return
-	 */
-	public Map<String, String> MapItems(String codePaths) {
 		Map<String, String> mapItems = new LinkedHashMap<>();
 		List<Tree<Long>> children = iSysDictService.getTree(StrUtil.splitToArray(codePaths, StrUtil.COMMA));
 		CollUtil.removeNull(children);
-		if (CollUtil.isEmpty(children)) {
-			return mapItems;
+		if (CollUtil.isNotEmpty(children)) {
+			TreeExtraUtil.foreach(children, node -> {
+				SysDict sd = BeanUtil.copyProperties(node, SysDict.class);
+				mapItems.put(sd.getCode(), sd.getText());
+			});
 		}
-		TreeExtraUtil.foreach(children, node -> {
-			SysDict sd = BeanUtil.copyProperties(node, SysDict.class);
-			mapItems.put(sd.getCode(), sd.getText());
-		});
-		return mapItems;
+		return JSONUtil.toJsonStr(mapItems);
 	}
 }
