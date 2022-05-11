@@ -1,4 +1,4 @@
-<div class="myui-fluid mlr15center" th:object="${graph}">
+<div class="myui-fluid mlr25center" th:object="${graph}">
 	<div class="myui-row">
     	<input type="hidden" th:field="*{uuid}" />
     	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -11,7 +11,7 @@
                 	class="easyui-textbox" 
                 	data-options="required:true,
                    		prompt:'必填',
-                   		width:728
+                   		width:618
                 	"/>
             </div>
         </div>
@@ -24,7 +24,7 @@
               		class="easyui-combobox"
                    	data-options="required:true,
                 		prompt:'必选',
-                   		width:728,
+                   		width:618,
 						panelHeight:'auto',
 						valueField:'value',
 						textField:'text',
@@ -44,8 +44,8 @@
                  	class="easyui-combobox"
                  	data-options="required:true,
                    		prompt:'图形分类',
-                   		width:728,
-                   		panelHeight:'auto',
+                   		width:618,
+                   		panelHeight:221,
 						method:'get',
                    		url:ctx+'/sys/dict/ajax/getTree?codePaths=MXGRAPH',
                     	valueField:'code',
@@ -60,8 +60,8 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{remark}" 
                 	class="easyui-textbox"
-                   	data-options="width:728,
-                   		height:100,
+                   	data-options="width:618,
+                   		height:160,
                    		multiline:true
                    	"/>
             </div>
