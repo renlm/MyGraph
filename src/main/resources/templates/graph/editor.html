@@ -95,6 +95,13 @@
 					this.editor.setModified(false);
 				}
 				
+				// 折叠左侧边栏
+				this.hsplitPosition = 0;
+				this.hsplitClickEnabled = false;
+				
+				// 隐藏格式面板
+				this.formatWidth = 0;
+				
 				// 缩放视图
 				this.editor.graph.zoomTo(__GraphJson.zoom);
 				
