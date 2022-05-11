@@ -74,23 +74,35 @@
     	/**
    		 * 编辑行
    		 */
-		function editRow(index){
+		function editRow(index) {
 			$('#dataGrid').datagrid('beginEdit', index);
 		}
     	
 		/**
    		 * 保存行
    		 */
-		function saveRow(index){
-			$.messager.progress({'text': '请求中……'});
+		function saveRow(index) {
 			var rowDatas = $('#dataGrid').datagrid('getRows');
 			var rowData = rowDatas[index];
 			var edVal = $('#dataGrid').datagrid('getEditor', { index: index, field: 'val' });
 			var edSort = $('#dataGrid').datagrid('getEditor', { index: index, field: 'sort' });
 			var edRemark = $('#dataGrid').datagrid('getEditor', { index: index, field: 'remark' });
+			if (!$(edVal.target).textbox('isValid')) {
+				$(edVal.target).textbox('textbox').focus();
+				return;
+			}
+			if (!$(edSort.target).numberspinner('isValid')) {
+				$(edSort.target).numberspinner('textbox').focus();
+				return;
+			}
+			if (!$(edRemark.target).textbox('isValid')) {
+				$(edRemark.target).textbox('textbox').focus();
+				return;
+			}
 			var val = $(edVal.target).textbox('getValue');
-			var sort = $(edSort.target).textbox('getValue');
+			var sort = $(edSort.target).numberspinner('getValue');
 			var remark = $(edRemark.target).textbox('getValue');
+			$.messager.progress({'text': '请求中……'});
 			$.post(ctx + '/sys/const/ajax/save',
 					{ constId: rowData.constId, val: val, sort: sort, remark: remark },
 					function (data) {
@@ -108,7 +120,7 @@
 		/**
    		 * 取消编辑
    		 */
-		function cancelRow(index){
+		function cancelRow(index) {
 			$('#dataGrid').datagrid('cancelEdit', index);
 		}
     </script>
