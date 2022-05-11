@@ -51,120 +51,129 @@
               		data-options="iconCls:'fa fa-tags'">
               		<div class="easyui-layout"
 				    	data-options="fit:true">
-				    	<!-- 表 -->
-				        <div data-options="region:'center',
+				    	<div data-options="region:'center',
 				        		split:true,
 				        		border:false,
-				        		bodyCls:'border_bottom'
+				        		bodyCls:'border_left'
 				        	">
-				          	<table id="erDataGrid" 
-				            	class="easyui-datagrid"
-				            	data-options="border:false,
-									fit:true,
-									fitColumns:true,
-									singleSelect:true,
-									checkOnSelect:false,
-									selectOnCheck:false,
-									toolbar:'#erDataGridToolbar',
-									pagination:true,
-									pageSize:10,
-									method:'get',
-									url:ctx+'/er/ajax/page',
-				                   	onBeforeLoad:function(param){
-				                   		$.pageOnBeforeLoad(param);
-				                   		try{
-				                   			var selectedDs = $('#dsDataGrid').datagrid('getSelected');
-				                   			if (selectedDs) {
-				                   				param.dsUuid = selectedDs.uuid;
-				                   			}
-				                   		}catch(e){}
-				                   	},
-				                   	onClickRow:function(index,row){
-				                   		$('#erFieldDataGrid').datagrid('load', {
-				                   			erUuid: row.uuid
-				                   		});
-				                   	}
-				               	">
-				                <thead>
-					                <tr>
-					                	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
-					                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#erDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
-				                     	<th data-options="field:'tableName',title:'表名',width:100"></th>
-				                           <th data-options="field:'comment',title:'注释',width:100"></th>
-					                    <th data-options="field:'updatedAt',title:'更新时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
-					                </tr>
-				                </thead>
-				            </table>
-				        </div>
-				        <!-- 字段 -->
-				    	<div data-options="region:'south',
-				        		split:true,
-				        		title:'字段信息',
-				       			height:'50%',
-				            	border:false,
-				            	cls:'south-border-left-bottom_none',
-				            	iconCls:'fa fa-road',
-				            	headerCls:'border_top',
-				              	bodyCls:'border_top'
-				          	">
-				          	<table id="erFieldDataGrid" class="easyui-datagrid" 
-								data-options="border:false,
-									fit:true,
-									fitColumns:true,
-									singleSelect:true,
-									pagination:false,
-									method:'get',
-									url:ctx+'/erField/ajax/list',
-									onDblClickRow:function(rowIndex,rowData){
-										if (!rowData.editing) {
-											editRow(rowIndex);
-										}
-									},
-									onBeforeEdit:function(index,row){
-										row.editing = true;
-										$(this).datagrid('refreshRow',index);
-									},
-									onAfterEdit:function(index,row){
-										row.editing = false;
-										$(this).datagrid('refreshRow',index);
-									},
-									onCancelEdit:function(index,row){
-										row.editing = false;
-										$(this).datagrid('refreshRow',index);
-									}
-								">
-				                <thead>
-					                <tr>
-					                    <th data-options="field:'seq',title:'序号',formatter:function(value,index){return $('#erFieldDataGrid').datagrid('getRowIndex',index)+1;}"></th>
-					                    <th data-options="field:'name',title:'列名',width:120"></th>
-				                       	<th data-options="field:'comment',title:'注释',width:200,editor:{type:'textbox',options:{required:true}}"></th>
-				                   		<th data-options="field:'jdbcType',title:'数据类型',width:100"></th>
-				                   		<th data-options="field:'size',title:'长度',width:40"></th>
-				                   		<th data-options="field:'digit',title:'精度',width:40"></th>
-				                   		<th data-options="field:'isNullable',title:'是否可为空',width:60,formatter:$.yesNoFormatter"></th>
-				                   		<th data-options="field:'autoIncrement',title:'是否自增',width:60,formatter:$.yesNoFormatter"></th>
-				                   		<th data-options="field:'columnDef',title:'字段默认值',width:100"></th>
-				                   		<th data-options="field:'isPk',title:'主键',width:40,formatter:$.yesNoFormatter"></th>
-				                   		<th data-options="field:'isFk',title:'外键',width:40,formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}"></th>
-					                    <th data-options="field:'actions',
-					                    		title:'操作',
-					                    		width:120,
-					                    		align:'center',
-					                    		formatter:function(value,row,index){
-													if (row.editing) {
-														var s = '<a href=\'javascript:saveRow('+index+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>保存</span><span class=\'l-btn-icon fa fa-save\'></span></span></a> ';
-														var c = '<a href=\'javascript:cancelRow('+index+');\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
-														return s + c;
-													} else {
-														var e = '<a href=\'javascript:editRow('+index+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
-														return e;
-													}
+					    	<div class="easyui-layout"
+					    		data-options="fit:true">
+						    	<!-- 表 -->
+						        <div data-options="region:'center',
+						        		split:true,
+						        		border:false,
+						        		bodyCls:'border_bottom'
+						        	">
+						          	<table id="erDataGrid" 
+						            	class="easyui-datagrid"
+						            	data-options="border:false,
+											fit:true,
+											fitColumns:true,
+											singleSelect:true,
+											checkOnSelect:false,
+											selectOnCheck:false,
+											toolbar:'#erDataGridToolbar',
+											pagination:true,
+											pageSize:10,
+											method:'get',
+											url:ctx+'/er/ajax/page',
+						                   	onBeforeLoad:function(param){
+						                   		$.pageOnBeforeLoad(param);
+						                   		try{
+						                   			var selectedDs = $('#dsDataGrid').datagrid('getSelected');
+						                   			if (selectedDs) {
+						                   				param.dsUuid = selectedDs.uuid;
+						                   			}
+						                   		}catch(e){}
+						                   	},
+						                   	onClickRow:function(index,row){
+						                   		$('#erFieldDataGrid').datagrid('load', {
+						                   			erUuid: row.uuid
+						                   		});
+						                   	}
+						               	">
+						                <thead>
+							                <tr>
+							                	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+							                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#erDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+						                     	<th data-options="field:'tableName',title:'表名',width:100"></th>
+						                       	<th data-options="field:'comment',title:'注释',width:100"></th>
+							                    <th data-options="field:'updatedAt',title:'更新时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
+							                </tr>
+						                </thead>
+						            </table>
+						        </div>
+						        <!-- 字段 -->
+						    	<div data-options="region:'south',
+						        		split:true,
+						        		title:'字段信息',
+						       			height:'50%',
+						            	border:false,
+						            	cls:'south-border-left-bottom_none',
+						            	iconCls:'fa fa-road',
+						            	headerCls:'border_top',
+						              	bodyCls:'border_top'
+						          	">
+						          	<table id="erFieldDataGrid" class="easyui-datagrid" 
+										data-options="border:false,
+											fit:true,
+											fitColumns:true,
+											singleSelect:true,
+											pagination:false,
+											method:'get',
+											url:ctx+'/erField/ajax/list',
+											onDblClickRow:function(rowIndex,rowData){
+												if (!rowData.editing) {
+													editRow(rowIndex);
 												}
-											"></th>
-					                </tr>
-				                </thead>
-				        	</table>
-				      	</div>
+											},
+											onBeforeEdit:function(index,row){
+												row.editing = true;
+												$(this).datagrid('refreshRow',index);
+											},
+											onAfterEdit:function(index,row){
+												row.editing = false;
+												$(this).datagrid('refreshRow',index);
+											},
+											onCancelEdit:function(index,row){
+												row.editing = false;
+												$(this).datagrid('refreshRow',index);
+											}
+										">
+						                <thead>
+							                <tr>
+							                    <th data-options="field:'seq',title:'序号',formatter:function(value,index){return $('#erFieldDataGrid').datagrid('getRowIndex',index)+1;}"></th>
+							                    <th data-options="field:'name',title:'列名',width:120"></th>
+						                       	<th data-options="field:'comment',title:'注释',width:200,editor:{type:'textbox',options:{required:true}}"></th>
+						                   		<th data-options="field:'jdbcType',title:'数据类型',width:100"></th>
+						                   		<th data-options="field:'size',title:'长度',width:40"></th>
+						                   		<th data-options="field:'digit',title:'精度',width:40"></th>
+						                   		<th data-options="field:'isNullable',title:'是否可为空',width:60,formatter:$.yesNoFormatter"></th>
+						                   		<th data-options="field:'autoIncrement',title:'是否自增',width:60,formatter:$.yesNoFormatter"></th>
+						                   		<th data-options="field:'columnDef',title:'字段默认值',width:100"></th>
+						                   		<th data-options="field:'isPk',title:'主键',width:40,formatter:$.yesNoFormatter"></th>
+						                   		<th data-options="field:'isFk',title:'外键',width:40,formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}"></th>
+							                    <th data-options="field:'actions',
+							                    		title:'操作',
+							                    		width:120,
+							                    		align:'center',
+							                    		formatter:function(value,row,index){
+															if (row.editing) {
+																var s = '<a href=\'javascript:saveRow('+index+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>保存</span><span class=\'l-btn-icon fa fa-save\'></span></span></a> ';
+																var c = '<a href=\'javascript:cancelRow('+index+');\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
+																return s + c;
+															} else {
+																var e = '<a href=\'javascript:editRow('+index+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
+																return e;
+															}
+														}
+													"></th>
+							                </tr>
+						                </thead>
+						        	</table>
+						      	</div>
+				    		</div>
+				    	</div>
 				    </div>
         		</div>
         	</div>
