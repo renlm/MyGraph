@@ -131,10 +131,10 @@
 		/**
 		 * 弹窗（新增|编辑）
 		 */
-		function graphDialog (userId) {
+		function graphDialog (uuid) {
 			var $graphDialog = $('<form id=\'graphDialog\' method=\'get\' class=\'myui\'></form>');
 		    $graphDialog.myuiDialog({
-		        title: userId ? '编辑' : '新增',
+		        title: uuid ? '编辑' : '新增',
 		        width: 890,
 		        height: 483,
 				collapsible: true,
@@ -142,15 +142,15 @@
 				maximizable: true,
 		        closed: false,
 		        cache: false,
-		        href: 'user/dialog' + (userId ? ('?userId=' + userId) : ''),
+		        href: ctx + '/graph/mine/dialog' + (uuid ? ('?uuid=' + uuid) : ''),
 		        modal: true,
 		        buttons: [{
-		            text: userId ? '更新' : '保存',
-		            iconCls: userId ? 'fa fa-save' : 'fa fa-plus',
+		            text: uuid ? '更新' : '保存',
+		            iconCls: uuid ? 'fa fa-save' : 'fa fa-plus',
 		            handler: function () {
 						$.messager.progress({'text': '请求中……'});
 				        $graphDialog.form('submit', {
-				            url: 'user/ajax/save',
+				            url: ctx + '/graph/mine/ajax/save',
 				            onSubmit: function () {
 				                var isValid = $(this).form('validate');
 				                if (!isValid) {
@@ -160,6 +160,7 @@
 				            },
 				            success: function (result) {
 								var resultJson = JSON.parse(result);
+				                $.messager.progress('close');
 				                if (resultJson.statusCode == 200) {
 				                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 				                	$graphDialog.dialog('destroy');
@@ -167,7 +168,6 @@
 				                } else {
 				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
 				                }
-				                $.messager.progress('close');
 				        	}
 				 		});
 					}
@@ -190,24 +190,25 @@
 		function delGraph () {
 			var checked = $('#dataGrid').datagrid('getChecked');
 			if (!checked || checked.length === 0) {
-				$.messager.myuiAlert('操作提示', '请先选中要重置密码的用户！', 'warning');
+				$.messager.myuiAlert('操作提示', '请先选中要删除的数据！', 'warning');
 				return;
 			} else {
-				var userIds = [];
+				var uuids = [];
 				$.each(checked, function (i, item) {
-					userIds[i] = item.userId;
+					uuids[i] = item.uuid;
 				});
-				$.messager.myuiConfirm('操作提示', '确定要重置该用户密码吗？重置后新密码只显示一次，请自行记录。', function (r) {
+				$.messager.myuiConfirm('操作提示', '您确定要删除选中的数据吗？', function (r) {
 					if (r) {
 						$.messager.progress({'text': '请求中……'});
-						$.post('user/ajax/resetPassword', 
-								{ userIds: userIds.join() }, 
+						$.post(ctx + '/graph/mine/ajax/del', 
+								{ uuids: uuids.join() }, 
 								function (resultJson) {
 					                $.messager.progress('close');
 									if (resultJson.statusCode == 200) {
-					                	$.messager.show({title: '我的消息', msg: resultJson.data, timeout: 10000, showType: 'slide'});
+										$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+					                	$('#dataGrid').datagrid('reload');
 					                } else {
-					                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+					                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
 					                }
 								});
 					}
