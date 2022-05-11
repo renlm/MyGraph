@@ -97,7 +97,17 @@
 				
 				// 折叠左侧边栏
 				this.hsplitPosition = 0;
-				this.hsplitClickEnabled = false;
+				mxEvent.addListener(this.hsplit, 'click', mxUtils.bind(this, function(evt)
+						{
+							if (mxEvent.isConsumed(evt)) {
+								var mxEventSource = $(mxEvent.getSource(evt));
+								if (!mxEventSource.data('$hsplitPosition')) {
+									mxEventSource.data('$hsplitPosition', EditorUi.prototype.hsplitPosition);
+									this.hsplitPosition = EditorUi.prototype.hsplitPosition;
+									this.refresh();
+								}
+							}
+						}));
 				
 				// 隐藏格式面板
 				this.formatWidth = 0;
