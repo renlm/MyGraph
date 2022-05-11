@@ -214,12 +214,10 @@
 	</div>
     <!-- 数据库表 工具栏 -->
     <div id="erDataGridToolbar" class="myui-toolbar">
-		<a href="javascript:createGraph();"
-          	class="easyui-menubutton myui-btn-normal myui-btn-black"
-         	data-options="iconCls:'fa fa-send',
-           		hasDownArrow:false
-        	"> 生成ER图
-       	</a>
+       	<button type="button" class="layui-btn layui-btn-primary layui-border-black layui-btn-sm" 
+        	onclick="createGraph();">
+			<i class="fa fa-cloud-upload"></i> 生成ER图
+		</button>
 		<form id="erDataGridForm" class="search-box">
 	   		<input type="text" name="keywords"
 	    		id="erDataGridKeywords" 
