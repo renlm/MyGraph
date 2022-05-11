@@ -398,21 +398,25 @@
 	/**
 	 * 编辑行
 	 */
-	function editRow(index){
+	function editRow(index) {
 		$('#erFieldDataGrid').datagrid('beginEdit', index);
 	}
 	  	
 	/**
 	 * 保存行
 	 */
-	function saveRow(index){
-		$.messager.progress({'text': '请求中……'});
+	function saveRow(index) {
 		var rowDatas = $('#erFieldDataGrid').datagrid('getRows');
 		var rowData = rowDatas[index];
 		var edComment = $('#erFieldDataGrid').datagrid('getEditor', { index: index, field: 'comment' });
 		var edIsFk = $('#erFieldDataGrid').datagrid('getEditor', { index: index, field: 'isFk' });
+		if (!$(edComment.target).textbox('isValid')) {
+			$(edComment.target).textbox('textbox').focus();
+			return;
+		}
 		rowData.comment = $(edComment.target).textbox('getValue');
 		rowData.isFk = $(edIsFk.target).combobox('getValue');
+		$.messager.progress({'text': '请求中……'});
 		$.post(ctx + '/erField/ajax/update',
 				rowData,
 				function (data) {
@@ -429,7 +433,7 @@
 	/**
 	 * 取消编辑
 	 */
-	function cancelRow(index){
+	function cancelRow(index) {
 		$('#erFieldDataGrid').datagrid('cancelEdit', index);
 	}
 </script>
