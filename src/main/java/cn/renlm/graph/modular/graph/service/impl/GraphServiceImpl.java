@@ -14,6 +14,8 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.amqp.AmqpUtil;
+import cn.renlm.graph.amqp.GraphCoverQueueConfig;
 import cn.renlm.graph.common.Mxgraph;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
@@ -120,6 +122,7 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 		graph.setUpdatorUserId(user.getUserId());
 		graph.setUpdatorNickname(user.getNickname());
 		this.updateById(graph);
+		AmqpUtil.createQueue(GraphCoverQueueConfig.EXCHANGE, GraphCoverQueueConfig.ROUTINGKEY, graph.getUuid());
 		return Result.success(graph);
 	}
 }
