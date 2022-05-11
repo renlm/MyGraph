@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
+import cn.hutool.db.meta.JdbcType;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.entity.ErField;
 import cn.renlm.graph.modular.er.service.IErFieldService;
@@ -55,7 +56,7 @@ public class ErFieldController {
 	 * @param uuid
 	 * @param name
 	 * @param comment
-	 * @param fieldType
+	 * @param sqlType
 	 * @param size
 	 * @param digit
 	 * @param isNullable
@@ -69,14 +70,15 @@ public class ErFieldController {
 	@ResponseBody
 	@PostMapping("/ajax/update")
 	public Result<?> ajaxUpdate(Authentication authentication, String uuid, String name, String comment,
-			Integer fieldType, Integer size, Integer digit, Boolean isNullable, Boolean autoIncrement, String columnDef,
+			Integer sqlType, Integer size, Integer digit, Boolean isNullable, Boolean autoIncrement, String columnDef,
 			Boolean isPk, Boolean isFk, String remark) {
 		try {
 			User user = (User) authentication.getPrincipal();
 			ErField entity = iErFieldService.getOne(Wrappers.<ErField>lambdaQuery().eq(ErField::getUuid, uuid));
 			entity.setName(name);
 			entity.setComment(comment);
-			entity.setFieldType(fieldType);
+			entity.setSqlType(sqlType);
+			entity.setJdbcType(JdbcType.valueOf(sqlType).name());
 			entity.setSize(size);
 			entity.setDigit(digit);
 			entity.setIsNullable(isNullable);

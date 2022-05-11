@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-05-10
+ * @since 2022-05-11
  */
 @Getter
 @Setter
@@ -57,25 +57,25 @@ public class ErField implements Serializable {
     private String comment;
 
     /**
-     * 类型，java.sql.Types
+     * java.sql.Types
      */
-    @TableField("field_type")
-    private Integer fieldType;
+    @TableField("sql_type")
+    private Integer sqlType;
 
     /**
-     * 类型名称
+     * JdbcType
      */
-    @TableField("type_name")
-    private String typeName;
+    @TableField("jdbc_type")
+    private String jdbcType;
 
     /**
-     * 精度
+     * 长度
      */
     @TableField("size")
     private Integer size;
 
     /**
-     * 标度
+     * 精度
      */
     @TableField("digit")
     private Integer digit;
