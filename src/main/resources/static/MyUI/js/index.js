@@ -437,7 +437,7 @@ function modifyPersonal () {
     $personalDialog.myuiDialog({
         title: '个人信息',
         width: 730,
-        height: 530,
+        height: 445,
 		collapsible: true,
 		minimizable: false,
 		maximizable: true,
