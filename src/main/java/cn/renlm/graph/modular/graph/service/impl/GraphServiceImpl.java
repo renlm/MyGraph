@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.Mxgraph;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
@@ -59,6 +60,7 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public Result<GraphDto> mineAjaxSave(User user, GraphDto form) {
+		form.setCategoryName(Mxgraph.valueOf(form.getCategoryCode()).getText());
 		if (StrUtil.isBlank(form.getUuid())) {
 			form.setUuid(IdUtil.simpleUUID().toUpperCase());
 			GraphDto.fillDefault(form);
