@@ -1,5 +1,7 @@
 package cn.renlm.graph.mxgraph;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -8,7 +10,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.w3c.dom.Document;
 
+import com.mxgraph.io.mxCodec;
+import com.mxgraph.util.mxCellRenderer;
+import com.mxgraph.util.mxRectangle;
+import com.mxgraph.util.mxXmlUtils;
+import com.mxgraph.view.mxGraph;
 import com.thoughtworks.xstream.XStream;
 
 import cn.hutool.core.codec.Base64;
@@ -16,6 +24,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.Mxgraph;
 import cn.renlm.graph.dto.User;
@@ -65,6 +74,43 @@ public class ERModelParser {
 	 * 元点位置
 	 */
 	public static final int[] xy = { 200, -80 };
+	
+	/**
+	 * 生成封面图
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public static final BufferedImage createBufferedImage(Graph data) {
+		if(data == null || StrUtil.isBlank(data.getXml())) {
+			return null;
+		}
+		
+		// 基础参数
+		mxGraph graph = new mxGraph();
+		Object[] cells = null;
+		double scale = 1;
+		Color background = Color.WHITE;
+		boolean antiAlias = true;
+		mxRectangle clip = null;
+		
+		// 缩放
+		if(ObjectUtil.isNotEmpty(data.getZoom())) {
+			scale = data.getZoom().doubleValue();
+		}
+		
+		// 背景色
+		if(StrUtil.isNotBlank(data.getBackground())) {
+			background = Color.getColor(data.getBackground());
+		}
+		
+		// 解析Xml并生成图片
+		Document doc = mxXmlUtils.parseXml(data.getXml());
+		mxCodec codec = new mxCodec(doc);
+		codec.decode(doc.getDocumentElement(), graph.getModel());
+		BufferedImage image = mxCellRenderer.createBufferedImage(graph, cells, scale, background, antiAlias, clip);
+		return image;
+	}
 
 	/**
 	 * 根据ER模型创建图形
