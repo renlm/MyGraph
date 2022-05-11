@@ -30,7 +30,7 @@
 					<tr>
 						<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
 		             	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#dataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
-                      	<th data-options="field:'cover',title:'封面',width:250,align:'center'"></th>
+                      	<th data-options="field:'cover',title:'封面',width:250,align:'center',formatter:coverFormatter"></th>
 		              	<th data-options="field:'name',title:'名称',width:250,formatter:$.openGraphEditorFormatter"></th>
 		             	<th data-options="field:'categoryName',title:'分类',width:100"></th>
 		          		<th data-options="field:'isPublic',title:'是否公开',width:100,align:'center',formatter:$.yesNoFormatter"></th>
@@ -95,6 +95,7 @@
           	</a>
 		</form> 
     </div>
+    <div id="upload-drag" style="display: none;"></div>
     <script type="text/javascript">
 		/**
 		 * 查询
@@ -209,5 +210,66 @@
 			}
 		}
 	</script>
+	<script type="text/javascript">
+		/**
+		 * 默认图片
+		 */
+		function imgOnError () {
+	    	var img = event.srcElement; 
+	    	img.src = "[(@{/static/images/holder.png})]"; 
+	    	img.onerror = null;
+		}
+		
+		/**
+		 * 封面图片
+		 */
+		function coverFormatter (value, row, index) {
+			return "<img style='height:125px;width:auto;margin:10px 0px;cursor:pointer;' id='CoverUpload-" + row.uuid + "' onclick=\"uploadCover(\'" + row.uuid + "\');\" src='" + (value ? (ctx+"/sys/file/download/"+value+"?inline") : "[(@{/static/images/holder.png})]") + "' onerror='javascript:imgOnError();'/>";
+		}
+		
+		/**
+		 * 封面上传
+		 */
+		function uploadCover(uuid) {
+			$("#upload-drag").data("uuid", uuid);
+	    	$("#upload-drag").click();
+		}
+		
+		/**
+		 * 绑定上传事件
+		 */
+		layui.upload.render({
+			elem: "#upload-drag",
+			url: ctx + "/graph/ajax/uploadCover",
+			accept: "images",
+		   	acceptMime: "image/*",
+			before: function(obj) {
+	            this.data = { "uuid": $("#upload-drag").data("uuid") };
+	            var layui_process = '<div style="margin: 20px 10px;" class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="uploader">';
+	    		layui_process 	 += 	'<div class="layui-progress-bar" lay-percent="0%"><span class="layui-progress-text">0%</span></div>';
+	    		layui_process    += '</div>';
+	    		window.uploadeindex = layer.open({ type: 1, title: "上传进度", skin: "layui-layer-rim", area: ["420px", "120px"], content: layui_process });
+	    		obj.preview(function(index, file, result){ window.filename = file.name; });
+			},
+	    	progress: function(percent) {
+	    		layui.element.progress("uploader", percent + "%");
+			},
+			done: function(res, index, upload) {
+				setTimeout(function() {
+	    			if(res.statusCode == 200) {
+	    				layer.close(window.uploadeindex);
+	    				$("#CoverUpload-" + $("#upload-drag").data("uuid")).attr("src", ctx+"/sys/file/download/"+res.data+"?inline");
+	                	$.messager.show({title: "我的消息", msg: res.message? res.message : "上传成功", timeout: 5000, showType: "slide"});
+	                } else {
+	                	layer.msg(res.message, { icon: 5, shift:6 });
+	                }
+	            }, 900);
+		    },
+		    error: function(index, upload) {
+		    	layer.msg("出错了", { icon: 5, shift:6 });
+		    }
+		});
+	</script>
+
 </body>
 </html>

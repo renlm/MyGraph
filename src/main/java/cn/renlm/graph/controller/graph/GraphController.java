@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -27,6 +28,8 @@ import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
 import cn.renlm.graph.modular.graph.service.IGraphService;
+import cn.renlm.graph.modular.sys.entity.SysFile;
+import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
 
@@ -42,6 +45,9 @@ public class GraphController {
 
 	@Resource
 	private IGraphService iGraphService;
+
+	@Resource
+	private ISysFileService iSysFileService;
 
 	/**
 	 * 我的
@@ -135,6 +141,40 @@ public class GraphController {
 				wrapper.in(Graph::getUuid, uuidList);
 			}));
 			return Result.success();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("出错了");
+		}
+	}
+
+	/**
+	 * 封面上传
+	 * 
+	 * @param authentication
+	 * @param uuid
+	 * @param file
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/uploadCover")
+	public Result<String> uploadCover(Authentication authentication, String uuid, MultipartFile file) {
+		try {
+			User user = (User) authentication.getPrincipal();
+			String originalFilename = file.getOriginalFilename();
+			byte[] bytes = file.getBytes();
+			SysFile image = iSysFileService.upload(originalFilename, bytes, sysFile -> {
+				sysFile.setCreatorUserId(user.getUserId());
+				sysFile.setCreatorNickname(user.getNickname());
+			});
+			iGraphService.update(Wrappers.<Graph>lambdaUpdate().func(wrapper -> {
+				wrapper.set(Graph::getCover, image.getFileId());
+				wrapper.set(Graph::getUpdatedAt, new Date());
+				wrapper.set(Graph::getUpdatorUserId, user.getUserId());
+				wrapper.set(Graph::getUpdatorNickname, user.getNickname());
+				wrapper.eq(Graph::getCreatorUserId, user.getUserId());
+				wrapper.in(Graph::getUuid, uuid);
+			}));
+			return Result.success(image.getFileId());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
