@@ -1,5 +1,6 @@
 package cn.renlm.graph.modular.graph.service.impl;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
@@ -9,7 +10,9 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Mxgraph;
 import cn.renlm.graph.dto.User;
@@ -95,5 +98,28 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 		}
 		this.saveOrUpdate(form);
 		return Result.success(form);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public Result<Graph> saveEditor(User user, GraphDto form) {
+		Graph graph = this.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, form.getUuid()));
+		graph.setZoom(ObjectUtil.defaultIfNull(form.getZoom(), new BigDecimal(1)));
+		graph.setDx(ObjectUtil.defaultIfNull(form.getDx(), 0));
+		graph.setDy(ObjectUtil.defaultIfNull(form.getDy(), 0));
+		graph.setGridEnabled(ObjectUtil.defaultIfNull(form.getGridEnabled(), true));
+		graph.setGridSize(ObjectUtil.defaultIfNull(form.getGridSize(), 1));
+		graph.setGridColor(form.getGridColor());
+		graph.setPageVisible(ObjectUtil.defaultIfNull(form.getPageVisible(), false));
+		graph.setBackground(form.getBackground());
+		graph.setConnectionArrowsEnabled(ObjectUtil.defaultIfNull(form.getConnectionArrowsEnabled(), false));
+		graph.setConnectable(ObjectUtil.defaultIfNull(form.getConnectable(), true));
+		graph.setGuidesEnabled(ObjectUtil.defaultIfNull(form.getGuidesEnabled(), true));
+		graph.setXml(Base64.decodeStr(form.getXml()));
+		graph.setUpdatedAt(new Date());
+		graph.setUpdatorUserId(user.getUserId());
+		graph.setUpdatorNickname(user.getNickname());
+		this.updateById(graph);
+		return Result.success(graph);
 	}
 }

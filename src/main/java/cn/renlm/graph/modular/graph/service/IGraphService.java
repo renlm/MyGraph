@@ -36,4 +36,13 @@ public interface IGraphService extends IService<Graph> {
 	 */
 	Result<GraphDto> mineAjaxSave(User user, GraphDto form);
 
+	/**
+	 * 保存编辑器
+	 * 
+	 * @param user
+	 * @param form
+	 * @return
+	 */
+	Result<Graph> saveEditor(User user, GraphDto form);
+
 }

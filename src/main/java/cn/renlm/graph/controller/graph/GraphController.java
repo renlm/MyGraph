@@ -1,6 +1,5 @@
 package cn.renlm.graph.controller.graph;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +20,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.dto.User;
@@ -243,27 +241,10 @@ public class GraphController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/saveEditor")
-	public Result<?> saveEditor(Authentication authentication, GraphDto form) {
+	public Result<Graph> saveEditor(Authentication authentication, GraphDto form) {
 		User user = (User) authentication.getPrincipal();
 		try {
-			Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, form.getUuid()));
-			graph.setZoom(ObjectUtil.defaultIfNull(form.getZoom(), new BigDecimal(1)));
-			graph.setDx(ObjectUtil.defaultIfNull(form.getDx(), 0));
-			graph.setDy(ObjectUtil.defaultIfNull(form.getDy(), 0));
-			graph.setGridEnabled(ObjectUtil.defaultIfNull(form.getGridEnabled(), true));
-			graph.setGridSize(ObjectUtil.defaultIfNull(form.getGridSize(), 1));
-			graph.setGridColor(form.getGridColor());
-			graph.setPageVisible(ObjectUtil.defaultIfNull(form.getPageVisible(), false));
-			graph.setBackground(form.getBackground());
-			graph.setConnectionArrowsEnabled(ObjectUtil.defaultIfNull(form.getConnectionArrowsEnabled(), false));
-			graph.setConnectable(ObjectUtil.defaultIfNull(form.getConnectable(), true));
-			graph.setGuidesEnabled(ObjectUtil.defaultIfNull(form.getGuidesEnabled(), true));
-			graph.setXml(Base64.decodeStr(form.getXml()));
-			graph.setUpdatedAt(new Date());
-			graph.setUpdatorUserId(user.getUserId());
-			graph.setUpdatorNickname(user.getNickname());
-			iGraphService.updateById(graph);
-			return Result.success();
+			return iGraphService.saveEditor(user, form);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
