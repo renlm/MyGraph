@@ -4,28 +4,102 @@
     <title>我的作品</title>
 </head>
 <body layout:fragment="content" class="myui">
-	<table id="dataGrid" class="easyui-datagrid" 
-		data-options="border:false,
-			fit:true,
-			fitColumns:true,
-			method:'get',
-			url:ctx+'/graph/ajax/minePage',
-			pagination:true,
-			pagePosition:'bottom',
-         	pageSize:5,
-          	pageList:[5,10,20,40,80]
+	<div class="easyui-layout" 
+		data-options="fit:true">
+		<div data-options="region:'center',
+				split:true,
+				border:false
 			">
-		<thead>
-			<tr>
-				<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
-             	<th data-options="field:'cover',title:'封面',width:250,align:'center'"></th>
-              	<th data-options="field:'name',title:'名称',width:250,formatter:$.openGraphEditorFormatter"></th>
-             	<th data-options="field:'categoryName',title:'分类',width:100"></th>
-          		<th data-options="field:'isPublic',title:'是否公开',width:100,align:'center',formatter:$.yesNoFormatter"></th>
-            	<th data-options="field:'updatedAt',title:'更新时间',width:153,align:'right',formatter:$.updatedAtFormatter"></th>
-           		<th data-options="field:'remark',title:'备注',width:100"></th>
-			</tr>
-		</thead>
-	</table>
+			<table id="dataGrid" class="easyui-datagrid"
+				data-options="border:false,
+					fit:true,
+					fitColumns:true,
+					singleSelect:true,
+					checkOnSelect:false,
+					selectOnCheck:false,
+					toolbar:'#toolbar',
+					pagination:true,
+					pagePosition:'bottom',
+		         	pageSize:5,
+		          	pageList:[5,10,20,40,80],
+					method:'get',
+					url:ctx+'/graph/mine/ajax/page',
+                   	onBeforeLoad:$.pageOnBeforeLoad
+					">
+				<thead>
+					<tr>
+						<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+		             	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#dataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+                      	<th data-options="field:'cover',title:'封面',width:250,align:'center'"></th>
+		              	<th data-options="field:'name',title:'名称',width:250,formatter:$.openGraphEditorFormatter"></th>
+		             	<th data-options="field:'categoryName',title:'分类',width:100"></th>
+		          		<th data-options="field:'isPublic',title:'是否公开',width:100,align:'center',formatter:$.yesNoFormatter"></th>
+		            	<th data-options="field:'updatedAt',title:'更新时间',width:153,align:'right',formatter:$.updatedAtFormatter"></th>
+		           		<th data-options="field:'remark',title:'备注',width:100"></th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+	<div id="toolbar" class="myui-toolbar">
+		<a href="javascript:graphDialog();"
+          	class="easyui-menubutton myui-btn-normal myui-btn-green"
+         	data-options="iconCls:'fa fa-plus',
+           		hasDownArrow:false
+        	">新增
+       	</a>
+   		<a href="javascript:void(0);"
+        	class="easyui-menubutton myui-btn-normal myui-btn-orange"
+         	data-options="menu:'#moreOpsMenu',
+           		iconCls:'fa fa-list',
+           		hasDownArrow:true
+       		">更多
+       	</a>
+       	<div id="moreOpsMenu" class="myui-toolbar">
+        	<div onclick="javascript:delGraph();"
+        		class="easyui-menubutton"
+           		data-options="iconCls:'fa fa-key',
+           			hasDownArrow:false
+            	">删除
+         	</div>
+		</div>
+		<form id="form" class="search-box">
+	    	<input type="text" name="categoryCode" 
+	        	id="categoryCode"
+	        	class="easyui-combobox"
+	       		data-options="prompt:'图形分类',
+	           		width:220,
+	        		panelHeight:182,
+	                valueField:'value',
+	                textField:'label',
+	              	multiple:false,
+	              	editable:false,
+	               	data:[
+	               		{label:'全部',value:null},
+	               		{label:'等待',value:'WAITING'},
+	               		{label:'暂停',value:'PAUSED'},
+	               		{label:'运行中',value:'ACQUIRED'},
+	                   	{label:'阻塞',value:'BLOCKED'},
+	                   	{label:'错误',value:'ERROR'}
+	              	]
+	      		"/>
+	   		<input type="text" name="keywords"
+	    		id="keywords" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'关键词',
+	        		width:220
+	        	"/>
+	        <a href="javascript:search();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:reset();"
+       			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+       			data-options="iconCls:'fa fa-trash'
+       			">重置
+          	</a>
+		</form> 
+    </div>
 </body>
 </html>

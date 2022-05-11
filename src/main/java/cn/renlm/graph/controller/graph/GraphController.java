@@ -62,7 +62,7 @@ public class GraphController {
 	 * @return
 	 */
 	@ResponseBody
-	@GetMapping("/mine/ajax/age")
+	@GetMapping("/mine/ajax/page")
 	public Datagrid<Graph> mineAjaxPage(Authentication authentication, Page<Graph> page, GraphDto form) {
 		User user = (User) authentication.getPrincipal();
 		form.setCreatorUserId(user.getUserId());
