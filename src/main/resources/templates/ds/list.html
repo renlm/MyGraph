@@ -40,7 +40,10 @@
 			                <tr>
 			                	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
 			                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#dsDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
-		                     	<th data-options="field:'name',title:'数据源名称',width:200"></th>
+		                     	<th data-options="field:'name',title:'数据源名称',width:120"></th>
+		                     	<th data-options="field:'url',title:'JDBC链接',width:200"></th>
+		                     	<th data-options="field:'schemaName',title:'Schema',width:80"></th>
+		                     	<th data-options="field:'remark',title:'备注',width:120"></th>
 			                    <th data-options="field:'updatedAt',title:'更新时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
 		                       	<th data-options="field:'actions',title:'操作',width:80,align:'center',formatter:dsOperateFormatter"></th>
 			                </tr>
@@ -77,15 +80,7 @@
 											pageSize:10,
 											method:'get',
 											url:ctx+'/er/ajax/page',
-						                   	onBeforeLoad:function(param){
-						                   		$.pageOnBeforeLoad(param);
-						                   		try{
-						                   			var selectedDs = $('#dsDataGrid').datagrid('getSelected');
-						                   			if (selectedDs) {
-						                   				param.dsUuid = selectedDs.uuid;
-						                   			}
-						                   		}catch(e){}
-						                   	},
+						                   	onBeforeLoad:$.pageOnBeforeLoad,
 						                   	onClickRow:function(index,row){
 						                   		$('#erFieldDataGrid').datagrid('load', {
 						                   			erUuid: row.uuid
@@ -228,6 +223,26 @@
 			<i class="fa fa-cloud-upload"></i> 生成ER图
 		</button>
 		<form id="erDataGridForm" class="search-box">
+			<input type="text" name="dsUuid"
+	        	id="erDataGridDsUuid"
+               	class="easyui-combogrid"
+             	data-options="idField:'uuid',
+             		textField:'name',
+             		prompt:'数据源',
+             		width:220,
+             		panelWidth:444,
+            		pagination:true,
+            		fitColumns:true,
+            		pageSize:10,
+            		mode:'remote',
+            		method:'get',
+                   	url:ctx+'/ds/ajax/page',
+                   	onBeforeLoad:$.pageOnBeforeLoad,
+                  	columns:[[
+                   		{field:'name',title:'数据源名称',width:100},
+                   		{field:'url',title:'JDBC链接',width:200}
+              		]]
+           		"/>
 	   		<input type="text" name="keywords"
 	    		id="erDataGridKeywords" 
 	   			class="easyui-textbox"
@@ -373,6 +388,7 @@
 		$('#erDataGrid').datagrid('unselectAll');
 		$('#erFieldDataGrid').datagrid('load',{});
 		$('#erDataGrid').datagrid('load', {
+			dsUuid: $('#erDataGridDsUuid').combogrid('getValue'),
 			keywords: $('#erDataGridKeywords').textbox('getValue')
 		});
 	}

@@ -86,7 +86,7 @@
              		textField:'nickname',
              		prompt:'创建人',
              		width:220,
-             		panelWidth:500,
+             		panelWidth:444,
             		pagination:true,
             		fitColumns:true,
             		pageSize:10,
@@ -130,7 +130,7 @@
 	 */
 	function search () {
 		$("#dataGrid").datagrid("load", {
-			creatorUserId: $("#creatorUserId").val(),
+			creatorUserId: $("#creatorUserId").combogrid("getValue"),
 			createdAt: $("#createdAt").textbox("getValue"),
 			originalFilename: $("#originalFilename").textbox("getValue")
 		});
