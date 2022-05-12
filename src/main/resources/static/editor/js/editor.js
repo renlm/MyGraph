@@ -162,6 +162,7 @@
 					__JsonERModel = __JsonStrERModel ? JSON.parse(__JsonStrERModel) : null;
 				} catch (e) { }
 				if(evt && __JsonERModel) {
+					mxEvent.consume(evt);
 					erModelViewerDialog({ id: 'erModelViewerDialog' },
 						this.isEnabled(),
 						__JsonERModel,
