@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN" layout:decorate="~{layout/decorate}">
+<head>
+    <title>数据库表</title>
+    <link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet"/>
+	<script th:src="@{/webjars/layui/layui.js}"></script>
+</head>
+<body layout:fragment="content">
+	<div data-toggle="topjui-layout"
+		data-options="fit:true">
+		<div data-options="region:'center',
+				title:'',
+				iconCls:'icon-reload',
+				split:true,
+				border:false
+			">
+            <table data-toggle="topjui-datagrid"
+            	data-options="id:'erDatagrid',
+            		pagination:true,
+           			fitColumns:true,
+           			pageSize:20,
+           			pageList:[20,50,300,800],
+                 	url:ctx+'/er/ajax/page?includeFields=true',
+                 	onBeforeLoad:pageOnBeforeLoad,
+                 	loadFilter:pageLoadFilter
+               	">
+                <thead>
+	                <tr>
+                      	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+                    	<th data-options="field:'tableName',title:'表名',width:100"></th>
+                      	<th data-options="field:'comment',title:'注释',width:100"></th>
+                      	<th data-options="field:'remark',title:'备注',width:60"></th>
+                    	<th data-options="field:'updatedAt',title:'更新时间',width:80,align:'right',formatter:updatedAtFormatter"></th>
+              		</tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    
+    <!-- 搜索工具栏 -->
+    <div id="erDatagrid-toolbar" class="topjui-toolbar"
+    	data-options="grid:{
+    		id:'erDatagrid',
+    		type:'datagrid'
+    	}">
+    	<a href="javascript:void(0);"
+    		style="margin-right: 32px;"
+      		data-toggle="topjui-menubutton"
+      		data-options="iconCls:'fa fa-table'"
+      		>选择表
+   		</a>
+		<form id="queryERForm" class="search-box">
+	        <input id="__dsUuid" type="text" name="dsUuid"
+               	data-toggle="topjui-combogrid"
+             	data-options="idField:'uuid',
+             		textField:'url',
+             		prompt:'数据源',
+             		width:320,
+             		panelWidth:605,
+            		pagination:true,
+            		fitColumns:true,
+            		pageSize:10,
+                   	url:ctx+'/ds/ajax/page',
+                   	onBeforeLoad:pageOnBeforeLoad,
+                 	loadFilter:pageLoadFilter,
+                  	columns:[[
+                   		{field:'url',title:'JDBC链接',width:200},
+                   		{field:'schema',title:'Schema',width:60},
+                   		{field:'remark',title:'备注',width:60}
+              		]]
+           		"/>
+	   		<input id="__keywords" type="text" name="keywords" 
+	   			data-toggle="topjui-textbox"
+	        	data-options="prompt:'关键字',
+	        		width:280
+	        	"/>
+	        <a href="javascript:void(0);" 
+	        	data-toggle="topjui-menubutton"
+	       		data-options="iconCls:'fa fa-search',
+	           		btnCls:'topjui-btn-blue',
+               		onClick:function(){
+               			var dsUuid = $('#__dsUuid').iCombogrid('getValue');
+               			var keywords = $('#__keywords').iTextbox('getValue');
+               			$('#erDatagrid').iDatagrid('load',{dsUuid:dsUuid,keywords:keywords});
+               		}
+	         	">查询
+	    	</a>
+	    	<a href="javascript:void(0);"
+       			data-toggle="topjui-linkbutton"
+       			data-options="iconCls:'fa fa-trash',
+                   	btnCls:'topjui-btn-brown',
+               		onClick:function(){
+               			$('#__dsUuid').iCombogrid('clear');
+               			$('#__keywords').iTextbox('clear');
+               			$('#erDatagrid').iDatagrid('load',{});
+               		}
+            	">重置
+          	</a>
+		</form> 
+    </div>
+</body>
+</html>

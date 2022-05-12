@@ -205,6 +205,16 @@ public class GraphController {
 	}
 
 	/**
+	 * 选择器（数据库表）
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/dbTableSelector")
+	public String dbTableSelector() {
+		return "graph/dbTableSelector";
+	}
+
+	/**
 	 * 图形编辑
 	 * 
 	 * @param model
