@@ -1,0 +1,2 @@
+driverPath = /opt/chrome/chromedriver
+sleepTime = 1200
