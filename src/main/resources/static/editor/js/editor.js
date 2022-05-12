@@ -181,8 +181,8 @@
 			var tableName = "Tablename";
 			var fields = [
 				{ name: "id", 			comment: "主键ID", 			sqlType: -5,	jdbcType: 'BIGINT',		size: 19,	digit: 0,	isNullable: false,	autoIncrement: true,	columnDef: null,	isPk: true,	 isFk: false },
-				{ name: "created_at", 	comment: "创建时间", 			sqlType: 93,	jdbcType: 'TIMESTAMP',	size: 29,	digit: 6,	isNullable: false,	autoIncrement: false,	columnDef: 'now()',	isPk: false, isFk: false },
-				{ name: "updated_at", 	comment: "更新时间", 			sqlType: 93,	jdbcType: 'TIMESTAMP',	size: 29,	digit: 6,	isNullable: true,	autoIncrement: false,	columnDef: null,	isPk: false, isFk: false },
+				{ name: "created_at", 	comment: "创建时间", 			sqlType: 93,	jdbcType: 'TIMESTAMP',	size: 19,	digit: 0,	isNullable: false,	autoIncrement: false,	columnDef: 'now()',	isPk: false, isFk: false },
+				{ name: "updated_at", 	comment: "更新时间", 			sqlType: 93,	jdbcType: 'TIMESTAMP',	size: 19,	digit: 0,	isNullable: true,	autoIncrement: false,	columnDef: null,	isPk: false, isFk: false },
 				{ name: "deleted", 		comment: "是否删除（默认否）", 	sqlType: -7,	jdbcType: 'BIT',		size: 1,	digit: 0,	isNullable: false,	autoIncrement: false,	columnDef: false,	isPk: false, isFk: false },
 				{ name: "remark", 		comment: "备注", 				sqlType: 12,	jdbcType: 'VARCHAR',	size: 255,	digit: 0,	isNullable: true,	autoIncrement: false,	columnDef: null,	isPk: false, isFk: false }
 			];

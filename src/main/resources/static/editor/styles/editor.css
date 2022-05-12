@@ -94,7 +94,7 @@ td.mxPopupMenuIcon table tr td {
 }
 
 .ermodel-fields tr.ermodel-fk td.ermodel-key:before {
-	content: "\f08d";
+	content: "\f084";
 	color: slateblue;
 }
 
