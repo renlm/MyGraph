@@ -319,7 +319,25 @@
 		            text: "暂存数据",
 		            iconCls: "left fa fa-save",
 		            handler: function () {
-						$("#" + myDialogDatagridId).datagrid('saveRow');
+						var $myDatagrid = $("#" + myDialogDatagridId);
+						var rowDatas = $myDatagrid.datagrid('getRows');
+						var isValid = true;
+						$.each(rowDatas, function (index, row) {
+							if (row.editing) {
+								var editors = $myDatagrid.datagrid('getEditors', index);
+								$.each(editors, function (j, e) {
+									if (j) {}
+									if (isValid && !$(e.target).textbox('isValid')) {
+										isValid = false;
+										$(e.target).textbox('textbox').focus();
+										return;
+									}
+								});
+								if (isValid) {
+									$myDatagrid.datagrid('endEdit', index);
+								}
+							}
+						});
 					}
 		        },
 				{
