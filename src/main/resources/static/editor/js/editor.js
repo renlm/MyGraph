@@ -282,6 +282,38 @@
         var $myDialog = $("<form id='" + myDialogId + "' class='myui' style='overflow-x: hidden' ></form>");
 		var $buttons = [];
 		if(editable) {
+			// 暂存数据
+			var saveTemporaryData = function () {
+				var $myDatagrid = $("#" + myDialogDatagridId);
+				var rowDatas = $myDatagrid.datagrid('getRows');
+				var isValid = true;
+				$.each(rowDatas, function (index, row) {
+					if (row.editing) {
+						var editors = $myDatagrid.datagrid('getEditors', index);
+						$.each(editors, function (j, e) {
+							if (j) {}
+							if (isValid && !$(e.target).textbox('isValid')) {
+								isValid = false;
+								$(e.target).textbox('textbox').focus();
+								return;
+							}
+						});
+						if (isValid) {
+							$myDatagrid.datagrid('endEdit', index);
+							$myDatagrid.datagrid('updateRow', { 
+								index: index, 
+								row: {
+									isNullable: row.isNullable === 'true',
+									autoIncrement: row.autoIncrement === 'true',
+									isPk: row.isPk === 'true',
+									isFk: row.isFk === 'true'
+								}
+							});
+						}
+					}
+				});
+				return isValid;
+			};
 			$buttons = [
 				{
 		            text: "添加行",
@@ -318,36 +350,7 @@
 				{
 		            text: "暂存数据",
 		            iconCls: "left fa fa-save",
-		            handler: function () {
-						var $myDatagrid = $("#" + myDialogDatagridId);
-						var rowDatas = $myDatagrid.datagrid('getRows');
-						var isValid = true;
-						$.each(rowDatas, function (index, row) {
-							if (row.editing) {
-								var editors = $myDatagrid.datagrid('getEditors', index);
-								$.each(editors, function (j, e) {
-									if (j) {}
-									if (isValid && !$(e.target).textbox('isValid')) {
-										isValid = false;
-										$(e.target).textbox('textbox').focus();
-										return;
-									}
-								});
-								if (isValid) {
-									$myDatagrid.datagrid('endEdit', index);
-									$myDatagrid.datagrid('updateRow', { 
-										index: index, 
-										row: {
-											isNullable: row.isNullable === 'true',
-											autoIncrement: row.autoIncrement === 'true',
-											isPk: row.isPk === 'true',
-											isFk: row.isFk === 'true'
-										}
-									});
-								}
-							}
-						});
-					}
+		            handler: saveTemporaryData
 		        },
 				{
 		            text: "取消编辑",
@@ -386,27 +389,20 @@
 						var $opflag = false;
 						var $myDatagrid = $("#" + myDialogDatagridId);
 						if(callback) {
-							erDto.fields = $myDatagrid.datagrid('getData').rows;
-							erDto.fields.forEach(function(item) { 
-								var $rowIndex = $myDatagrid.datagrid('getRowIndex', item);
-								var $eds = $myDatagrid.datagrid('getEditors', $rowIndex);
-								$opflag = $opflag ? $opflag : ($eds && $eds.length);
-							});
-							if($opflag) {
-								$.iMessager.alert('操作提示', '请先保存编辑的字段', 'messager-error');
-								$opflag = false;
-							} else {
-								var $isValid = $myDialog.iForm("validate");
-								if($isValid) {
-									erDto.tableName = $('#__eTableName').iTextbox('getValue');
-									erDto.comment = $('#__eComment').iTextbox('getValue');
-									$opflag = callback(erDto);
+							erDto.fields = $myDatagrid.datagrid('getRows');
+							var $isValid = $myDialog.form("validate");
+							if($isValid && saveTemporaryData()) {
+								erDto.tableName = $('#__eTableName').textbox('getValue');
+								erDto.comment = $('#__eComment').textbox('getValue');
+								$opflag = callback(erDto);
+								if($opflag) {
+									$myDialog.dialog("destroy");
+								} else {
+									$.messager.myuiAlert('操作提示', '出错了', 'error');
 								}
 							}
 						}
-						if($opflag) {
-							$myDialog.dialog("destroy");
-						}
+						
 					}
 		        },
                 {
