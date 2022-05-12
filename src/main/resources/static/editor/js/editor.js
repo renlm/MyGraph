@@ -348,6 +348,11 @@
 						var rowDatas = $myDatagrid.datagrid('getRows');
 						var isValid = true;
 						$.each(rowDatas, function (index, row) {
+							if (row.editing && row.$id) {
+								$myDatagrid.datagrid('cancelEdit', index);
+							}
+						});
+						$.each(rowDatas, function (index, row) {
 							if (row.editing) {
 								var editors = $myDatagrid.datagrid('getEditors', index);
 								$.each(editors, function (j, e) {
@@ -500,6 +505,7 @@
 						]],
 						onDblClickRow: function (index, row) {
 							if (!row.editing) {
+								row.$id = index;
 								$(this).datagrid('beginEdit', index);
 							}
 						},
