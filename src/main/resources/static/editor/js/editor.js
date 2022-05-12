@@ -328,8 +328,22 @@
 		            handler: function () {
 						var $myDatagrid = $("#" + myDialogDatagridId);
 						var rowDatas = $myDatagrid.datagrid('getRows');
-						$.each(rowDatas, function (index) {
-							$myDatagrid.datagrid('cancelEdit', index);
+						var isValid = true;
+						$.each(rowDatas, function (index, row) {
+							if (row.editing) {
+								var editors = $myDatagrid.datagrid('getEditors', index);
+								$.each(editors, function (j, e) {
+									if (j) {}
+									if (isValid && !$(e.target).textbox('isValid')) {
+										isValid = false;
+										$(e.target).textbox('textbox').focus();
+										return;
+									}
+								});
+								if (isValid) {
+									$myDatagrid.datagrid('cancelEdit', index);
+								}
+							}
 						});
 					}
 		        },
