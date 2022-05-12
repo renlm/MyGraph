@@ -2,6 +2,14 @@
 
 @import "../../css/scrollbar.css";
 
+body.geEditor.myui * {
+  -moz-box-sizing: initial;
+  -webkit-box-sizing: initial;
+  -o-box-sizing: initial;
+  -ms-box-sizing: initial;
+  box-sizing: initial;
+}
+
 td.mxPopupMenuIcon table tr td {
 	padding: 8px;
 }
