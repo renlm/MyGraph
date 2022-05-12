@@ -282,6 +282,44 @@
         var $myDialog = $("<form id='" + myDialogId + "' class='myui' style='overflow-x: hidden' ></form>");
 		var $buttons = [];
 		if(editable) {
+			// 编辑行
+			editRow = function (index) {
+				var $myDatagrid = $("#" + myDialogDatagridId);
+				$myDatagrid.datagrid('beginEdit', index);
+			};
+			// 保存行
+			saveRow = function (index) {
+				var $myDatagrid = $("#" + myDialogDatagridId);
+				var isValid = true;
+				var rows = $myDatagrid.datagrid('getRows');
+				var row = rows[index];
+				var editors = $myDatagrid.datagrid('getEditors', index);
+				$.each(editors, function (j, e) {
+					if (j) {}
+					if (isValid && !$(e.target).textbox('isValid')) {
+						isValid = false;
+						$(e.target).textbox('textbox').focus();
+						return;
+					}
+				});
+				if (isValid) {
+					$myDatagrid.datagrid('endEdit', index);
+					$myDatagrid.datagrid('updateRow', { 
+						index: index, 
+						row: {
+							isNullable: row.isNullable === 'true',
+							autoIncrement: row.autoIncrement === 'true',
+							isPk: row.isPk === 'true',
+							isFk: row.isFk === 'true'
+						}
+					});
+				}
+			};
+			// 取消编辑
+			cancelRow = function (index) {
+				var $myDatagrid = $("#" + myDialogDatagridId);
+				$myDatagrid.datagrid('cancelEdit', index);
+			};
 			// 暂存数据
 			var saveTemporaryData = function () {
 				var $myDatagrid = $("#" + myDialogDatagridId);
@@ -499,7 +537,24 @@
 							{field:'autoIncrement',title:'是否自增',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
 							{field:'columnDef',title:'字段默认值',width:80,editor:{type:'textbox',options:{required:false}}},
 							{field:'isPk',title:'主键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'isFk',title:'外键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}}
+							{field:'isFk',title:'外键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
+							{
+								field: 'actions',
+	                    		title: '操作',
+	                    		width: 100,
+	                    		align: 'center',
+	                    		formatter: function (value, row, index) {
+									if (value) { }
+									if (row.editing) {
+										var s = '<a href=\'javascript:saveRow('+index+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>保存</span><span class=\'l-btn-icon fa fa-save\'></span></span></a> ';
+										var c = '<a href=\'javascript:cancelRow('+index+');\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
+										return s + c;
+									} else {
+										var e = '<a href=\'javascript:editRow('+index+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
+										return e;
+									}
+								}
+							}
 						]],
 						onDblClickRow: function (index, row) {
 							if (!row.editing) {
