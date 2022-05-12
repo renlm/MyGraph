@@ -255,9 +255,8 @@
         var myDialogId = opts.id || (new Date()).getTime();
 		var width = opts.width ? opts.width : 850;
 		var height = opts.height ? opts.height : 495;
-        var $myDialog = $("<form id='" + myDialogId + "' style='overflow-x: hidden' ></form>");
+        var $myDialog = $("<form id='" + myDialogId + "' class='myui' style='overflow-x: hidden' ></form>");
         var defaultOptions = {
-            id: myDialogId,
             title: opts.title ? opts.title : "数据库",
 			top: 120,
             width: width,
