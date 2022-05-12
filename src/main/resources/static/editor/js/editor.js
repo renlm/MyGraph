@@ -419,7 +419,7 @@
 							 "</div>" + 
 					 	"</div>" +
 					 	"<div data-options=\"region:'center'," +
-			        			"fit:true," +
+			        			"fit:false," +
 			        			"border:false," +
 			        			"bodyCls:'border_right'\">" +
 					 		"<table id='" + myDialogIDatagridId + "'></table>" +
@@ -503,9 +503,11 @@
 						}
 					};
 				} else {
-					$('#__eTableName').iTextbox('readonly');
-					$('#__eComment').iTextbox('readonly');
-					$myIEdatagrid.iDatagrid({
+					$('#__eTableName').textbox('readonly');
+					$('#__eComment').textbox('readonly');
+					$myIEdatagrid.datagrid({
+						border: false,
+						fit: true,
 						fitColumns: true,
 						pagination: false,
 						data: erDto.fields,
@@ -515,7 +517,7 @@
 							{field:'comment',title:'注释',width:160,editor:{type:'textbox',options:{required:true}}},
 						]],
 						columns: [[
-							{field:'type',title:'数据类型',width:120,formatter:$.jdbcTypeFormatter,editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:[]}}},
+							{field:'sqlType',title:'数据类型',width:120,formatter:$.jdbcTypeFormatter,editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:[]}}},
 							{field:'size',title:'精度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
 							{field:'digit',title:'标度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
 							{field:'isNullable',title:'是否可为空',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
