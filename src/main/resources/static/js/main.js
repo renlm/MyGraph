@@ -448,8 +448,11 @@
 		var dlg = this.dialog(_2c1, _2c2);
 		dlg.prev().find('.panel-title').after('<div class="panel-icon fa fa-windows"></div>').css('padding-left', '30px').next().css('margin-top', '-9px');
 		dlg.next().find('.fa.fa-plus').parent().parent().addClass('myui-btn-normal myui-btn-blue');
+		dlg.next().find('.fa.fa-minus').parent().parent().addClass('myui-btn-normal myui-btn-brown');
 		dlg.next().find('.fa.fa-save').parent().parent().addClass('myui-btn-normal myui-btn-green');
+		dlg.next().find('.fa.fa-mail-reply').parent().parent().addClass('myui-btn-normal myui-btn-black');
 		dlg.next().find('.fa.fa-close').parent().parent().addClass('myui-btn-normal myui-btn-red');
+		dlg.next().find('.left').parent().parent().css('float', 'left');
 		return dlg;
 	}
 })(jQuery);

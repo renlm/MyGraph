@@ -318,14 +318,14 @@
 					}
 		        },
 				{
-		            text: "保存",
+		            text: "暂存数据",
 		            iconCls: "left fa fa-save",
 		            handler: function () {
 						$("#" + myDialogDatagridId).datagrid('saveRow');
 					}
 		        },
 				{
-		            text: "取消",
+		            text: "取消编辑",
 		            iconCls: "left fa fa-mail-reply",
 		            handler: function () {
 						$("#" + myDialogDatagridId).datagrid('cancelRow');
