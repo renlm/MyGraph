@@ -20,7 +20,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.img.ImgUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -77,9 +76,10 @@ public class GraphCoverQueue {
 		BufferedImage image = ERModelParser.createBufferedImage(graph);
 		if (ObjectUtil.isNotEmpty(image)) {
 			// 设置尺寸
-			Setting chromeSetting = BeanUtil.copyProperties(ConstVal.chromeSetting, Setting.class);
-			chromeSetting.set("windowSize", StrUtil.join(StrUtil.DOT, image.getWidth() + 100, image.getHeight() + 100));
-			// 保存文件
+			Setting chromeSetting = new Setting(ConstVal.chromeSetting.getSettingPath());
+			chromeSetting.set("windowSize",
+					StrUtil.join(StrUtil.COMMA, image.getWidth() + 100, image.getHeight() + 100));
+			// 启动爬虫
 			String imageType = ImgUtil.IMAGE_TYPE_PNG;
 			String originalFilename = StrUtil.join(StrUtil.DOT, graph.getName(), imageType);
 			MySite site = MySite.me();

@@ -74,6 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * 白名单
 	 */
 	public static final String[] WHITE_LIST = {  
+			"/mxgraph/viewer",
 			"/captcha",
 			"/kaptcha",
 			"/register",
