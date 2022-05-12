@@ -382,7 +382,8 @@
 		}
         var defaultOptions = {
             title: opts.title ? opts.title : (erDto.comment ? erDto.comment : erDto.tableName),
-			top: 120,
+	        width: 890,
+	        height: 483,
 			collapsible: true,
 			minimizable: false,
 			maximizable: true,
