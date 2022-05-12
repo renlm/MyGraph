@@ -63,17 +63,17 @@
 							var __selectionCells = null;
 							checkedErs.forEach(function(item, index) {
 								var __col = Math.ceil(index % __cols);
-			           			var __demo = $.FormatERModel(ui.sidebar, false, item);
+			           			var __demo = $.FormatERModel(UI.sidebar, false, item);
 								__x = __col === 0 ? __originx : __x;
 								__colYMap[__col] = __colYMap[__col] ? __colYMap[__col] : __y;
-								__selectionCells = graph.importCells([__demo.cell], __x, __colYMap[__col]);
+								__selectionCells = UI.editor.graph.importCells([__demo.cell], __x, __colYMap[__col]);
 								__x = __x + __demo.width + __interval;
 								__colYMap[__col] = __colYMap[__col] + __demo.height + __interval;
 			           		});
 							if(__selectionCells) {
-								graph.clearSelection();
-								graph.setSelectionCells(__selectionCells);
-								graph.scrollCellToVisible(graph.getSelectionCell());
+								UI.editor.graph.clearSelection();
+								UI.editor.graph.setSelectionCells(__selectionCells);
+								UI.editor.graph.scrollCellToVisible(UI.editor.graph.getSelectionCell());
 							}
 							return true;
 						});
