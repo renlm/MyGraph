@@ -4,7 +4,7 @@
 			split:true,
 			border:false
 		">
-    	<table id="erDatagrid" 
+    	<table id="erDataGrid" 
 			class="easyui-datagrid"
 			data-options="border:false,
 				fit:true,
@@ -22,7 +22,7 @@
         	<thead>
             	<tr>
                 	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
-                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#erDatagrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#erDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
                		<th data-options="field:'tableName',title:'表名',width:100"></th>
                 	<th data-options="field:'comment',title:'注释',width:100"></th>
                     <th data-options="field:'updatedAt',title:'更新时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
@@ -75,3 +75,22 @@
       	</a>
 	</form> 
 </div>
+<script type="text/javascript">
+	/**
+	 * 查询数据库表
+	 */
+	function searchEr () {
+		$('#erDataGrid').datagrid('load', {
+			dsUuid: $('#erDataGridDsUuid').combogrid('getValue'),
+			keywords: $('#erDataGridKeywords').textbox('getValue')
+		});
+	}
+	
+	/**
+	 * 重置数据库表
+	 */
+	function resetEr () {
+		$('#erDataGridForm').form('clear');
+		searchEr();
+	}
+</script>

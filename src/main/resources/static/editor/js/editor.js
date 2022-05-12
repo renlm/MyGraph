@@ -281,7 +281,7 @@
 		            text: "确定",
 		            iconCls: "fa fa-save",
 		            handler: function () {
-						var checkedErs = $('#erDatagrid').datagrid('getChecked');
+						var checkedErs = $('#erDataGrid').datagrid('getChecked');
 						if(!checkedErs || checkedErs.length == 0) {
 							$.messager.myuiAlert('操作提示', '请选择要添加的数据库表', 'error');
 							return;
