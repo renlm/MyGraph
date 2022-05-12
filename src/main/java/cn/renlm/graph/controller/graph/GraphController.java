@@ -22,6 +22,8 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
+import cn.renlm.graph.amqp.AmqpUtil;
+import cn.renlm.graph.amqp.GraphCoverQueue;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
@@ -244,7 +246,9 @@ public class GraphController {
 	public Result<Graph> saveEditor(Authentication authentication, GraphDto form) {
 		User user = (User) authentication.getPrincipal();
 		try {
-			return iGraphService.saveEditor(user, form);
+			Result<Graph> result = iGraphService.saveEditor(user, form);
+			AmqpUtil.createQueue(GraphCoverQueue.EXCHANGE, GraphCoverQueue.ROUTINGKEY, form.getUuid());
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
