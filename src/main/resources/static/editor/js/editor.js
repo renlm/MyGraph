@@ -282,14 +282,6 @@
         var $myDialog = $("<form id='" + myDialogId + "' class='myui' style='overflow-x: hidden' ></form>");
 		var $buttons = [];
 		if(editable) {
-			// 刷新行（全部）
-			refreshAllRow = function () {
-				var $myDatagrid = $("#" + myDialogDatagridId);
-				var rowDatas = $myDatagrid.datagrid('getRows');
-				$.each(rowDatas, function (index) {
-					$myDatagrid.datagrid('refreshRow', index);
-				});
-			};
 			// 是否编辑状态
 			isEditing = function () {
 				var $myDatagrid = $("#" + myDialogDatagridId);
@@ -304,7 +296,9 @@
 				return inEditing;
 			};
 			// 编辑行
-			editRow = function (index) {
+			editRow = function (target) {
+				var tr = $(target).closest('tr.datagrid-row');
+      			var index = parseInt(tr.attr('datagrid-row-index'));
 				var $myDatagrid = $("#" + myDialogDatagridId);
 				var rows = $myDatagrid.datagrid('getRows');
 				var row = rows[index];
@@ -312,7 +306,9 @@
 				$myDatagrid.datagrid('beginEdit', index);
 			};
 			// 保存行
-			saveRow = function (index) {
+			saveRow = function (target) {
+				var tr = $(target).closest('tr.datagrid-row');
+      			var index = parseInt(tr.attr('datagrid-row-index'));
 				var $myDatagrid = $("#" + myDialogDatagridId);
 				var isValid = true;
 				var rows = $myDatagrid.datagrid('getRows');
@@ -340,7 +336,9 @@
 				}
 			};
 			// 取消编辑
-			cancelRow = function (index) {
+			cancelRow = function (target) {
+				var tr = $(target).closest('tr.datagrid-row');
+      			var index = parseInt(tr.attr('datagrid-row-index'));
 				var $myDatagrid = $("#" + myDialogDatagridId);
 				var rows = $myDatagrid.datagrid('getRows');
 				var row = rows[index];
@@ -406,7 +404,6 @@
 						var $selectedRow = $myDatagrid.datagrid('getSelected');
 						var $selectedRowIndex = $selectedRow == null ? rowDatas.length : $myDatagrid.datagrid('getRowIndex', $selectedRow) + 1;
 						$myDatagrid.datagrid('insertRow', { index: $selectedRowIndex, row: { isNullable: true, autoIncrement: false, isPk: false, isFk: false } });
-						refreshAllRow();
 						$myDatagrid.datagrid('beginEdit', $selectedRowIndex);
 					}
 		        },
@@ -426,7 +423,6 @@
 									var index = $myDatagrid.datagrid('getRowIndex', checkedRow);
 									$myDatagrid.datagrid('deleteRow', index); 
 								});
-								refreshAllRow();
 							}
 						});
 					}
@@ -573,17 +569,17 @@
 	                    		width: 100,
 	                    		align: 'center',
 	                    		formatter: function (value, row, index) {
-									if (value) { }
+									if (value && index) { }
 									if (row.editing) {
-										var s = '<a href=\'javascript:saveRow('+index+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>保存</span><span class=\'l-btn-icon fa fa-save\'></span></span></a> ';
-										var c = '<a href=\'javascript:cancelRow('+index+');\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
+										var s = '<a href=\'javascript:void(0);\' onclick=\'saveRow(this)\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>保存</span><span class=\'l-btn-icon fa fa-save\'></span></span></a> ';
+										var c = '<a href=\'javascript:void(0);\' onclick=\'cancelRow(this)\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
 										if (row.$id) {
 											return s + c;
 										} else {
 											return s;
 										}
 									} else {
-										var e = '<a href=\'javascript:editRow('+index+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
+										var e = '<a href=\'javascript:void(0);\' onclick=\'editRow(this)\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
 										return e;
 									}
 								}
