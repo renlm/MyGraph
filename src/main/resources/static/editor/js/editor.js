@@ -286,9 +286,9 @@
 		            text: "添加行",
 		            iconCls: "left fa fa-plus",
 		            handler: function () {
-						var $myIEdatagrid = $("#" + myDialogIDatagridId);
-						var $selectedRow = $myIEdatagrid.datagrid('getSelected');
-						var $selectedRowIndex = $selectedRow == null ? null : $myIEdatagrid.datagrid('getRowIndex', $selectedRow);
+						var $myDatagrid = $("#" + myDialogIDatagridId);
+						var $selectedRow = $myDatagrid.datagrid('getSelected');
+						var $selectedRowIndex = $selectedRow == null ? null : $myDatagrid.datagrid('getRowIndex', $selectedRow);
 						if($selectedRowIndex == null) {
 							$("#" + myDialogIDatagridId).datagrid('addRow',{
 									row:{isNullable:true,autoIncrement:false,isPk:false,isFk:false}
@@ -305,15 +305,15 @@
 		            text: "删除行",
 		            iconCls: "left fa fa-minus",
 		            handler: function () {
-						var $myIEdatagrid = $("#" + myDialogIDatagridId);
-						var checkedErFields = $myIEdatagrid.datagrid('getChecked');
+						var $myDatagrid = $("#" + myDialogIDatagridId);
+						var checkedErFields = $myDatagrid.datagrid('getChecked');
 						if(!checkedErFields || checkedErFields.length == 0) {
 							$.iMessager.alert('操作提示', '请选择要删除的字段', 'messager-error');
 							return;
 						}
 						var checkedErFieldRowIndexs = [];
-				    	checkedErFields.forEach(function(item) { checkedErFieldRowIndexs.push($myIEdatagrid.datagrid('getRowIndex', item)); });
-						$myIEdatagrid.datagrid('destroyRow', checkedErFieldRowIndexs);
+				    	checkedErFields.forEach(function(item) { checkedErFieldRowIndexs.push($myDatagrid.datagrid('getRowIndex', item)); });
+						$myDatagrid.datagrid('destroyRow', checkedErFieldRowIndexs);
 					}
 		        },
 				{
@@ -335,12 +335,12 @@
 		            iconCls: "fa fa-save",
 		            handler: function () {
 						var $opflag = false;
-						var $myIEdatagrid = $("#" + myDialogIDatagridId);
+						var $myDatagrid = $("#" + myDialogIDatagridId);
 						if(callback) {
-							erDto.fields = $myIEdatagrid.datagrid('getData').rows;
+							erDto.fields = $myDatagrid.datagrid('getData').rows;
 							erDto.fields.forEach(function(item) { 
-								var $rowIndex = $myIEdatagrid.datagrid('getRowIndex', item);
-								var $eds = $myIEdatagrid.datagrid('getEditors', $rowIndex);
+								var $rowIndex = $myDatagrid.datagrid('getRowIndex', item);
+								var $eds = $myDatagrid.datagrid('getEditors', $rowIndex);
 								$opflag = $opflag ? $opflag : ($eds && $eds.length);
 							});
 							if($opflag) {
@@ -394,7 +394,7 @@
 								"border:false," +
 			        			"height:'51px'," +
 			        			"bodyCls:'border_bottom'\">" +
-					 		"<div class='myui-fluid tfrcenter'>" + 
+					 		"<div class='myui-fluid mlr25center'>" + 
 								"<div class='myui-row'></div>" + 
 							 	"<div class='myui-row'>" + 
 							    	"<div class='myui-col-sm6'>" + 
@@ -428,9 +428,9 @@
             buttons: $buttons,
 			onOpen: function() {
 				$myDialog.form("load", erDto);
-				var $myIEdatagrid = $("#" + myDialogIDatagridId);
+				var $myDatagrid = $("#" + myDialogIDatagridId);
 				if(editable) {
-					$myIEdatagrid.datagrid({
+					$myDatagrid.datagrid({
 						border:false,
 						fit:true,
 						fitColumns: true,
@@ -459,11 +459,11 @@
 						]],
 						onBeforeSave: function(index) {
 							var $saveFlag = true;
-							var $datas = $myIEdatagrid.datagrid('getData');
-							var $ed = $myIEdatagrid.datagrid('getEditor',{index:index,field:'name'});
+							var $datas = $myDatagrid.datagrid('getData');
+							var $ed = $myDatagrid.datagrid('getEditor',{index:index,field:'name'});
 							var fieldNameValue = $($ed.target).iTextbox('getValue');
 							$datas.rows.forEach(function(item) { 
-								var $index = $myIEdatagrid.datagrid('getRowIndex', item);
+								var $index = $myDatagrid.datagrid('getRowIndex', item);
 								if(!($index === index)) {
 									if(item.name === fieldNameValue) {
 										$saveFlag = false;
@@ -481,50 +481,50 @@
 							row.autoIncrement = row.autoIncrement === 'true';
 							row.isPk = row.isPk === 'true';
 							row.isFk = row.isFk === 'true';
-							$myIEdatagrid.datagrid('updateRow',{index:index,row:row});
+							$myDatagrid.datagrid('updateRow',{index:index,row:row});
 						}
 					});
 					moveUpERModelField = function(index) {
-						var $datas = $myIEdatagrid.datagrid('getData');
+						var $datas = $myDatagrid.datagrid('getData');
 						if(index > 0) {
 							var $upData = Object.assign({}, $datas.rows[index-1]);
 							var $downData = Object.assign({}, $datas.rows[index]);
-							$myIEdatagrid.datagrid('updateRow',{index:(index-1),row:$downData});
-							$myIEdatagrid.datagrid('updateRow',{index:index,row:$upData});
+							$myDatagrid.datagrid('updateRow',{index:(index-1),row:$downData});
+							$myDatagrid.datagrid('updateRow',{index:index,row:$upData});
 						}
 					};
 					moveDownERModelField = function(index) {
-						var $datas = $myIEdatagrid.datagrid('getData');
+						var $datas = $myDatagrid.datagrid('getData');
 						if(index < $datas.total) {
 							var $upData = Object.assign({}, $datas.rows[index]);
 							var $downData = Object.assign({}, $datas.rows[index+1]);
-							$myIEdatagrid.datagrid('updateRow',{index:index,row:$downData});
-							$myIEdatagrid.datagrid('updateRow',{index:(index+1),row:$upData});
+							$myDatagrid.datagrid('updateRow',{index:index,row:$downData});
+							$myDatagrid.datagrid('updateRow',{index:(index+1),row:$upData});
 						}
 					};
 				} else {
 					$('#__eTableName').textbox('readonly');
 					$('#__eComment').textbox('readonly');
-					$myIEdatagrid.datagrid({
+					$myDatagrid.datagrid({
 						border: false,
 						fit: true,
 						fitColumns: true,
 						pagination: false,
 						data: erDto.fields,
 						frozenColumns: [[
-							{field:'uuid',title:'UUID',checkbox:true},
-							{field:'name',title:'列名',width:150,editor:{type:'textbox',options:{required:true}}},
-							{field:'comment',title:'注释',width:160,editor:{type:'textbox',options:{required:true}}},
+							{field:'id',title:'序号',formatter:function(value,index){return $myDatagrid.datagrid('getRowIndex',index)+1;}},
+							{field:'name',title:'列名',width:150},
+							{field:'comment',title:'注释',width:160},
 						]],
 						columns: [[
-							{field:'sqlType',title:'数据类型',width:120,formatter:$.jdbcTypeFormatter,editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:[]}}},
-							{field:'size',title:'精度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
-							{field:'digit',title:'标度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
-							{field:'isNullable',title:'是否可为空',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'autoIncrement',title:'是否自增',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'columnDef',title:'字段默认值',width:80,editor:{type:'textbox',options:{required:false}}},
-							{field:'isPk',title:'主键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'isFk',title:'外键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}}
+							{field:'jdbcType',title:'数据类型',width:120,formatter:$.jdbcTypeFormatter},
+							{field:'size',title:'长度',width:60,align:'right'},
+							{field:'digit',title:'精度',width:60,align:'right'},
+							{field:'isNullable',title:'是否可为空',width:80,align:'center',formatter:$.yesNoFormatter},
+							{field:'autoIncrement',title:'是否自增',width:80,align:'center',formatter:$.yesNoFormatter},
+							{field:'columnDef',title:'字段默认值',width:80},
+							{field:'isPk',title:'主键',width:60,align:'center',formatter:$.yesNoFormatter},
+							{field:'isFk',title:'外键',width:60,align:'center',formatter:$.yesNoFormatter}
 						]]
 					});
 				}
