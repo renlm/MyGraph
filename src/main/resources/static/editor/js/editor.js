@@ -285,17 +285,17 @@
 				{
 		            text: "添加行",
 		            iconCls: "fa fa-plus",
-		            btnCls: "topjui-btn-green float-left",
+		            btnCls: "myui-btn-green float-left",
 		            handler: function () {
 						var $myIEdatagrid = $("#" + myDialogIDatagridId);
-						var $selectedRow = $myIEdatagrid.iEdatagrid('getSelected');
-						var $selectedRowIndex = $selectedRow == null ? null : $myIEdatagrid.iEdatagrid('getRowIndex', $selectedRow);
+						var $selectedRow = $myIEdatagrid.datagrid('getSelected');
+						var $selectedRowIndex = $selectedRow == null ? null : $myIEdatagrid.datagrid('getRowIndex', $selectedRow);
 						if($selectedRowIndex == null) {
-							$("#" + myDialogIDatagridId).iEdatagrid('addRow',{
+							$("#" + myDialogIDatagridId).datagrid('addRow',{
 									row:{isNullable:true,autoIncrement:false,isPk:false,isFk:false}
 								});
 						} else {
-							$("#" + myDialogIDatagridId).iEdatagrid('addRow',{
+							$("#" + myDialogIDatagridId).datagrid('addRow',{
 									index:($selectedRowIndex+1),
 									row:{isNullable:true,autoIncrement:false,isPk:false,isFk:false}
 								});
@@ -305,47 +305,47 @@
 				{
 		            text: "删除行",
 		            iconCls: "fa fa-minus",
-		            btnCls: "topjui-btn-brown float-left",
+		            btnCls: "myui-btn-brown float-left",
 		            handler: function () {
 						var $myIEdatagrid = $("#" + myDialogIDatagridId);
-						var checkedErFields = $myIEdatagrid.iEdatagrid('getChecked');
+						var checkedErFields = $myIEdatagrid.datagrid('getChecked');
 						if(!checkedErFields || checkedErFields.length == 0) {
 							$.iMessager.alert('操作提示', '请选择要删除的字段', 'messager-error');
 							return;
 						}
 						var checkedErFieldRowIndexs = [];
-				    	checkedErFields.forEach(function(item) { checkedErFieldRowIndexs.push($myIEdatagrid.iEdatagrid('getRowIndex', item)); });
-						$myIEdatagrid.iEdatagrid('destroyRow', checkedErFieldRowIndexs);
+				    	checkedErFields.forEach(function(item) { checkedErFieldRowIndexs.push($myIEdatagrid.datagrid('getRowIndex', item)); });
+						$myIEdatagrid.datagrid('destroyRow', checkedErFieldRowIndexs);
 					}
 		        },
 				{
 		            text: "保存",
 		            iconCls: "fa fa-save",
-		            btnCls: "topjui-btn-blue float-left",
+		            btnCls: "myui-btn-blue float-left",
 		            handler: function () {
-						$("#" + myDialogIDatagridId).iEdatagrid('saveRow');
+						$("#" + myDialogIDatagridId).datagrid('saveRow');
 					}
 		        },
 				{
 		            text: "取消",
 		            iconCls: "fa fa-mail-reply",
-		            btnCls: "topjui-btn-black float-left",
+		            btnCls: "myui-btn-black float-left",
 		            handler: function () {
-						$("#" + myDialogIDatagridId).iEdatagrid('cancelRow');
+						$("#" + myDialogIDatagridId).datagrid('cancelRow');
 					}
 		        },
 				{
 		            text: "确定",
 		            iconCls: "fa fa-save",
-		            btnCls: "topjui-btn-purple",
+		            btnCls: "myui-btn-purple",
 		            handler: function () {
 						var $opflag = false;
 						var $myIEdatagrid = $("#" + myDialogIDatagridId);
 						if(callback) {
-							erDto.fields = $myIEdatagrid.iEdatagrid('getData').rows;
+							erDto.fields = $myIEdatagrid.datagrid('getData').rows;
 							erDto.fields.forEach(function(item) { 
-								var $rowIndex = $myIEdatagrid.iEdatagrid('getRowIndex', item);
-								var $eds = $myIEdatagrid.iEdatagrid('getEditors', $rowIndex);
+								var $rowIndex = $myIEdatagrid.datagrid('getRowIndex', item);
+								var $eds = $myIEdatagrid.datagrid('getEditors', $rowIndex);
 								$opflag = $opflag ? $opflag : ($eds && $eds.length);
 							});
 							if($opflag) {
@@ -361,16 +361,16 @@
 							}
 						}
 						if($opflag) {
-							$myDialog.iDialog("destroy");
+							$myDialog.dialog("destroy");
 						}
 					}
 		        },
                 {
                		text: "关闭", 
 					iconCls: "fa fa-close", 
-					btnCls: "topjui-btn-red", 
+					btnCls: "myui-btn-red", 
 					handler: function () {
-                        $myDialog.iDialog("destroy");
+                        $myDialog.dialog("destroy");
                     }
                 }
             ];
@@ -379,9 +379,9 @@
                 {
                		text: "关闭", 
 					iconCls: "fa fa-close", 
-					btnCls: "topjui-btn-red", 
+					btnCls: "myui-btn-red", 
 					handler: function () {
-                        $myDialog.iDialog("destroy");
+                        $myDialog.dialog("destroy");
                     }
                 }
             ];
@@ -393,28 +393,28 @@
 			cache: false,
 			top: 120,
 			maximized: true,
-            content: "<div data-toggle=\"topjui-layout\" data-options=\"fit:true\">" +
+            content: "<div class=\"easyui-layout\" data-options=\"fit:true\">" +
 						"<div data-options=\"region:'north'," +
 								"border:false," +
 			        			"height:'51px'," +
 			        			"bodyCls:'border_bottom'\">" +
-					 		"<div class='topjui-fluid tfrcenter'>" + 
-								"<div class='topjui-row'></div>" + 
-							 	"<div class='topjui-row'>" + 
-							    	"<div class='topjui-col-sm6'>" + 
-							        	"<label class='topjui-form-label'>表名</label>" + 
-							            "<div class='topjui-input-block'>" + 
+					 		"<div class='myui-fluid tfrcenter'>" + 
+								"<div class='myui-row'></div>" + 
+							 	"<div class='myui-row'>" + 
+							    	"<div class='myui-col-sm6'>" + 
+							        	"<label class='myui-form-label'>表名</label>" + 
+							            "<div class='myui-input-block'>" + 
 							                "<input id='__eTableName' type='text' name='tableName' " + 
-							                	"data-toggle='topjui-textbox'" + 
+							                	"class='easyui-textbox'" + 
 												"data-options=\"required:true,prompt:'表名'\"" + 
 							                	"/>" + 
 							            "</div>" + 
 							        "</div>" + 
-									"<div class='topjui-col-sm6'>" + 
-							        	"<label class='topjui-form-label'>注释</label>" + 
-							            "<div class='topjui-input-block'>" + 
+									"<div class='myui-col-sm6'>" + 
+							        	"<label class='myui-form-label'>注释</label>" + 
+							            "<div class='myui-input-block'>" + 
 							                "<input id='__eComment' type='text' name='comment' " + 
-							                	"data-toggle='topjui-textbox'" + 
+							                	"class='easyui-textbox'" + 
 												"data-options=\"required:true,prompt:'注释'\"" + 
 							                	"/>" + 
 							            "</div>" + 
@@ -423,7 +423,7 @@
 							 "</div>" + 
 					 	"</div>" +
 					 	"<div data-options=\"region:'center'," +
-			        			"fit:false," +
+			        			"fit:true," +
 			        			"border:false," +
 			        			"bodyCls:'border_right'\">" +
 					 		"<table id='" + myDialogIDatagridId + "'></table>" +
@@ -434,7 +434,9 @@
 				$myDialog.form("load", erDto);
 				var $myIEdatagrid = $("#" + myDialogIDatagridId);
 				if(editable) {
-					$myIEdatagrid.iEdatagrid({
+					$myIEdatagrid.datagrid({
+						border:false,
+						fit:true,
 						fitColumns: true,
 						pagination: false,
 						autoSave: true,
@@ -445,14 +447,14 @@
 							{field:'comment',title:'注释',width:160,editor:{type:'textbox',options:{required:true}}},
 						]],
 						columns: [[
-							{field:'type',title:'数据类型',width:120,formatter:jdbcTypeFormatter,editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:__JDBC_TYPES}}},
+							{field:'type',title:'数据类型',width:120,formatter:$.jdbcTypeFormatter,editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:[]}}},
 							{field:'size',title:'精度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
 							{field:'digit',title:'标度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
-							{field:'isNullable',title:'是否可为空',width:80,align:'center',formatter:yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'autoIncrement',title:'是否自增',width:80,align:'center',formatter:yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
+							{field:'isNullable',title:'是否可为空',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
+							{field:'autoIncrement',title:'是否自增',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
 							{field:'columnDef',title:'字段默认值',width:80,editor:{type:'textbox',options:{required:false}}},
-							{field:'isPk',title:'主键',width:60,align:'center',formatter:yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'isFk',title:'外键',width:60,align:'center',formatter:yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
+							{field:'isPk',title:'主键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
+							{field:'isFk',title:'外键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
 							{field:'operate',title:'操作',width:60,align:'center',formatter: function(value,row,index) {
 								var operateTpl = '<span onclick="moveUpERModelField(' + index + ');" title="上移" class="fa fa-angle-double-up" style="cursor:pointer;padding-right:15px;"></span>';
 								operateTpl += '<span onclick="moveDownERModelField(' + index + ');" title="下移" class="fa fa-angle-double-down" style="cursor:pointer;"></span>';
@@ -461,11 +463,11 @@
 						]],
 						onBeforeSave: function(index) {
 							var $saveFlag = true;
-							var $datas = $myIEdatagrid.iEdatagrid('getData');
-							var $ed = $myIEdatagrid.iEdatagrid('getEditor',{index:index,field:'name'});
+							var $datas = $myIEdatagrid.datagrid('getData');
+							var $ed = $myIEdatagrid.datagrid('getEditor',{index:index,field:'name'});
 							var fieldNameValue = $($ed.target).iTextbox('getValue');
 							$datas.rows.forEach(function(item) { 
-								var $index = $myIEdatagrid.iEdatagrid('getRowIndex', item);
+								var $index = $myIEdatagrid.datagrid('getRowIndex', item);
 								if(!($index === index)) {
 									if(item.name === fieldNameValue) {
 										$saveFlag = false;
@@ -483,25 +485,25 @@
 							row.autoIncrement = row.autoIncrement === 'true';
 							row.isPk = row.isPk === 'true';
 							row.isFk = row.isFk === 'true';
-							$myIEdatagrid.iEdatagrid('updateRow',{index:index,row:row});
+							$myIEdatagrid.datagrid('updateRow',{index:index,row:row});
 						}
 					});
 					moveUpERModelField = function(index) {
-						var $datas = $myIEdatagrid.iEdatagrid('getData');
+						var $datas = $myIEdatagrid.datagrid('getData');
 						if(index > 0) {
 							var $upData = Object.assign({}, $datas.rows[index-1]);
 							var $downData = Object.assign({}, $datas.rows[index]);
-							$myIEdatagrid.iEdatagrid('updateRow',{index:(index-1),row:$downData});
-							$myIEdatagrid.iEdatagrid('updateRow',{index:index,row:$upData});
+							$myIEdatagrid.datagrid('updateRow',{index:(index-1),row:$downData});
+							$myIEdatagrid.datagrid('updateRow',{index:index,row:$upData});
 						}
 					};
 					moveDownERModelField = function(index) {
-						var $datas = $myIEdatagrid.iEdatagrid('getData');
+						var $datas = $myIEdatagrid.datagrid('getData');
 						if(index < $datas.total) {
 							var $upData = Object.assign({}, $datas.rows[index]);
 							var $downData = Object.assign({}, $datas.rows[index+1]);
-							$myIEdatagrid.iEdatagrid('updateRow',{index:index,row:$downData});
-							$myIEdatagrid.iEdatagrid('updateRow',{index:(index+1),row:$upData});
+							$myIEdatagrid.datagrid('updateRow',{index:index,row:$downData});
+							$myIEdatagrid.datagrid('updateRow',{index:(index+1),row:$upData});
 						}
 					};
 				} else {
@@ -517,20 +519,20 @@
 							{field:'comment',title:'注释',width:160,editor:{type:'textbox',options:{required:true}}},
 						]],
 						columns: [[
-							{field:'type',title:'数据类型',width:120,formatter:jdbcTypeFormatter,editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:__JDBC_TYPES}}},
+							{field:'type',title:'数据类型',width:120,formatter:$.jdbcTypeFormatter,editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:[]}}},
 							{field:'size',title:'精度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
 							{field:'digit',title:'标度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
-							{field:'isNullable',title:'是否可为空',width:80,align:'center',formatter:yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'autoIncrement',title:'是否自增',width:80,align:'center',formatter:yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
+							{field:'isNullable',title:'是否可为空',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
+							{field:'autoIncrement',title:'是否自增',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
 							{field:'columnDef',title:'字段默认值',width:80,editor:{type:'textbox',options:{required:false}}},
-							{field:'isPk',title:'主键',width:60,align:'center',formatter:yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'isFk',title:'外键',width:60,align:'center',formatter:yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}}
+							{field:'isPk',title:'主键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
+							{field:'isFk',title:'外键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}}
 						]]
 					});
 				}
 			}
         };
-        $myDialog.iDialog($.extend(true, {}, defaultOptions, opts));
+        $myDialog.myuiDialog($.extend(true, {}, defaultOptions, opts));
         return $myDialog;
     }
 	/***
