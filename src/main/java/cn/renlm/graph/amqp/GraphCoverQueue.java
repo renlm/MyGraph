@@ -76,9 +76,10 @@ public class GraphCoverQueue {
 		BufferedImage image = ERModelParser.createBufferedImage(graph);
 		if (ObjectUtil.isNotEmpty(image)) {
 			// 设置尺寸
+			int width = image.getWidth() < 800 ? 800 : image.getWidth();
+			int height = image.getHeight() < 600 ? 600 : image.getWidth();
 			Setting chromeSetting = new Setting(ConstVal.chromeSetting.getSettingPath());
-			chromeSetting.set("windowSize",
-					StrUtil.join(StrUtil.COMMA, image.getWidth() + 100, image.getHeight() + 100));
+			chromeSetting.set("windowSize", StrUtil.join(StrUtil.COMMA, width, height));
 			// 启动爬虫
 			String imageType = ImgUtil.IMAGE_TYPE_PNG;
 			String originalFilename = StrUtil.join(StrUtil.DOT, graph.getName(), imageType);
