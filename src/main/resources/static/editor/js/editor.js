@@ -449,6 +449,10 @@
 		            text: "确定",
 		            iconCls: "fa fa-save",
 		            handler: function () {
+						if (isEditing()) {
+							$.messager.myuiAlert('操作提示', '请先保存数据！', 'error');
+							return;
+						}
 						var $opflag = false;
 						var $myDatagrid = $("#" + myDialogDatagridId);
 						if(callback) {
