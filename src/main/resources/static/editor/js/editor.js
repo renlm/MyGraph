@@ -58,13 +58,25 @@
 			{
 				if (UI.editor.graph.isEnabled() && !UI.editor.graph.isCellLocked(UI.editor.graph.getDefaultParent()))
 				{
-					var __demo = $.CreateERModelVertexDemo(UI.sidebar, false);
-					var __cell = UI.editor.graph.getSelectionCell();
-					var __geometry = UI.editor.graph.getCellGeometry(__cell ? __cell : UI.editor.graph.getChildCells()[UI.editor.graph.getChildCells().length - 1]);
-					var __cells = UI.editor.graph.importCells([__demo.cell], __geometry ? __geometry.x : 0, __geometry ? (__geometry.y + __geometry.height + 10) : 0);
-					UI.editor.graph.clearSelection();
-					UI.editor.graph.setSelectionCells(__cells);
-					UI.editor.graph.scrollCellToVisible(UI.editor.graph.getSelectionCell());
+					dbTableSelector({ id: 'dbTableSelector', width: 850, height: 495 }, 
+						function (checkedErs) {
+							var __selectionCells = null;
+							checkedErs.forEach(function(item, index) {
+								var __col = Math.ceil(index % __cols);
+			           			var __demo = $.FormatERModel(ui.sidebar, false, item);
+								__x = __col === 0 ? __originx : __x;
+								__colYMap[__col] = __colYMap[__col] ? __colYMap[__col] : __y;
+								__selectionCells = graph.importCells([__demo.cell], __x, __colYMap[__col]);
+								__x = __x + __demo.width + __interval;
+								__colYMap[__col] = __colYMap[__col] + __demo.height + __interval;
+			           		});
+							if(__selectionCells) {
+								graph.clearSelection();
+								graph.setSelectionCells(__selectionCells);
+								graph.scrollCellToVisible(graph.getSelectionCell());
+							}
+							return true;
+						});
 				}
 			})).isEnabled = UI.actions.actions.save.isEnabled;
 			
@@ -233,6 +245,59 @@
 			return formatJson;
 		}
 	});
+	/***
+     * 通过js触发打开一个数据库表选择器
+     * @param opts 需要覆盖的属性
+     * @param callback 回调函数
+     * @returns {*|jQuery|HTMLElement}
+     */
+	function dbTableSelector (opts, callback) {
+        var myDialogId = opts.id || (new Date()).getTime();
+		var width = opts.width ? opts.width : 850;
+		var height = opts.height ? opts.height : 495;
+        var $myDialog = $("<form id='" + myDialogId + "' style='overflow-x: hidden' ></form>");
+        var defaultOptions = {
+            id: myDialogId,
+            title: opts.title ? opts.title : "数据库",
+            closed: false,
+			cache: false,
+			top: 120,
+            width: width,
+            height: height,
+            href: ctx + "/mxgraph/dbTableSelector",
+            buttons: [
+				{
+		            text: "确定",
+		            iconCls: "fa fa-save",
+		            btnCls: "topjui-btn-blue",
+		            handler: function () {
+						var checkedErs = $('#erDatagrid').iDatagrid('getChecked');
+						if(!checkedErs || checkedErs.length == 0) {
+							$.iMessager.alert('操作提示', '请选择要添加的数据库表', 'messager-error');
+							return;
+						}
+						var opflag = false;
+						if(callback) {
+							opflag = callback(checkedErs);
+						}
+						if(opflag) {
+							$myDialog.iDialog("destroy");
+						}
+					}
+		        }, 
+                {
+               		text: "关闭", 
+					iconCls: "fa fa-close", 
+					btnCls: "topjui-btn-red", 
+					handler: function () {
+                        $myDialog.iDialog("destroy");
+                    }
+                }
+            ]
+        };
+        $myDialog.iDialog($.extend(true, {}, defaultOptions, opts));
+        return $myDialog;
+    }
 	/**
 	 * 自定义元图-ER模型
 	 * @author Renlm
