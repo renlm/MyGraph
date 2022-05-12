@@ -268,6 +268,7 @@
         	closed: false,
         	cache: false,
             href: ctx + "/graph/dbTableSelector",
+			modal: true,
             buttons: [
 				{
 		            text: "确定",
