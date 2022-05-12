@@ -389,11 +389,11 @@
 						var $opflag = false;
 						var $myDatagrid = $("#" + myDialogDatagridId);
 						if(callback) {
-							erDto.fields = $myDatagrid.datagrid('getRows');
 							var $isValid = $myDialog.form("validate");
 							if($isValid && saveTemporaryData()) {
 								erDto.tableName = $('#__eTableName').textbox('getValue');
 								erDto.comment = $('#__eComment').textbox('getValue');
+								erDto.fields = $myDatagrid.datagrid('getRows');
 								$opflag = callback(erDto);
 								if($opflag) {
 									$myDialog.dialog("destroy");
@@ -402,7 +402,6 @@
 								}
 							}
 						}
-						
 					}
 		        },
                 {
