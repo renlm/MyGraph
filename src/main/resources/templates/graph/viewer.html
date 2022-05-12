@@ -110,7 +110,7 @@
 				
 				// 适应窗口（纯图展示）
 				if(urlParams["headless"] == "true") {
-					this.actions.get("fitWindow").funct();
+					if(urlParams["fitWindow"] == "false") { } else { this.actions.get("fitWindow").funct(); }
 					this.toolbarContainer.style.display = "none";
 					this.diagramContainer.style.marginTop = "-39px";
 					document.getElementById("__GeEditor").className += " no-scrollbar";

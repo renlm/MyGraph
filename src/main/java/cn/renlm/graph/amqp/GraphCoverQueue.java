@@ -77,9 +77,9 @@ public class GraphCoverQueue {
 		if (ObjectUtil.isNotEmpty(image)) {
 			// 设置尺寸
 			int width = image.getWidth() < 800 ? 800 : image.getWidth();
-			int height = image.getHeight() < 600 ? 600 : image.getWidth();
+			int height = image.getHeight() < 600 ? 600 : image.getHeight();
 			Setting chromeSetting = new Setting(ConstVal.chromeSetting.getSettingPath());
-			chromeSetting.set("windowSize", StrUtil.join(StrUtil.COMMA, width, height));
+			chromeSetting.set("windowSize", StrUtil.join(StrUtil.COMMA, width + 60, height + 60));
 			// 启动爬虫
 			String imageType = ImgUtil.IMAGE_TYPE_PNG;
 			String originalFilename = StrUtil.join(StrUtil.DOT, graph.getName(), imageType);
@@ -105,7 +105,7 @@ public class GraphCoverQueue {
 					wrapper.in(Graph::getUuid, uuid);
 				}));
 			});
-			spider.addUrl(myConfigProperties.getCtx() + "/graph/viewer?headless=true&uuid=" + uuid);
+			spider.addUrl(myConfigProperties.getCtx() + "/graph/viewer?headless=true&fitWindow=false&uuid=" + uuid);
 			spider.run();
 		}
 	}
