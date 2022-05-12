@@ -441,12 +441,12 @@
 						data: erDto.fields,
 						frozenColumns: [[
 							{field:'uuid',title:'UUID',checkbox:true},
-							{field:'id',title:'序号',formatter:function(value,index){ if(value){} return $myDatagrid.datagrid('getRowIndex',index)+1;}},
+							{field:'id',title:'序号',formatter:function(value,row,index){if(value&&index){}return $myDatagrid.datagrid('getRowIndex',row)+1;}},
 							{field:'name',title:'列名',width:150,editor:{type:'textbox',options:{required:true}}},
 							{field:'comment',title:'注释',width:160,editor:{type:'textbox',options:{required:true}}},
 						]],
 						columns: [[
-							{field:'sqlType',title:'数据类型',width:120,formatter:$.jdbcTypeFormatter,editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:[]}}},
+							{field:'sqlType',title:'数据类型',width:120,formatter:function(value,row,index){if(value&&index){}return JDBC_TYPE[row.sqlType];},editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:(function(){var data=[];$.each(JDBC_TYPE,function(key,text){data.push({label:text,value:key})});return data;})()}}},
 							{field:'size',title:'长度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
 							{field:'digit',title:'精度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
 							{field:'isNullable',title:'是否可为空',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
@@ -454,7 +454,7 @@
 							{field:'columnDef',title:'字段默认值',width:80,editor:{type:'textbox',options:{required:false}}},
 							{field:'isPk',title:'主键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
 							{field:'isFk',title:'外键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'operate',title:'操作',width:60,align:'center',formatter: function(value,row,index) {
+							{field:'operate',title:'操作',width:60,align:'center',formatter: function (value, row, index) {
 								if(value && row) {}
 								var operateTpl = '<span onclick="moveUpERModelField(' + index + ');" title="上移" class="fa fa-angle-double-up" style="cursor:pointer;padding-right:15px;"></span>';
 								operateTpl += '<span onclick="moveDownERModelField(' + index + ');" title="下移" class="fa fa-angle-double-down" style="cursor:pointer;"></span>';
@@ -533,7 +533,7 @@
 						pagination: false,
 						data: erDto.fields,
 						frozenColumns: [[
-							{field:'id',title:'序号',formatter:function(value,index){ if(value){} return $myDatagrid.datagrid('getRowIndex',index)+1;}},
+							{field:'id',title:'序号',formatter:function(value,row,index){if(value&&index){}return $myDatagrid.datagrid('getRowIndex',row)+1;}},
 							{field:'name',title:'列名',width:150},
 							{field:'comment',title:'注释',width:160},
 						]],

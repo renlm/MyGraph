@@ -51,6 +51,9 @@
 		window.mxBasePath = '[(@{/webjars/mxgraph-client})]';
 		window.mxLanguage = urlParams["lang"] || "zh";
 		window.mxLanguages = ["zh"];
+		
+		// 字典
+		window.JDBC_TYPE = JSON.parse('[(${#DictUtil.MapItemsJson("JDBC_TYPE")})]');
 	</script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/js/Init.js}"></script>
 	<script type="text/javascript" th:src="@{/webjars/mxgraph-editor/deflate/pako.min.js}"></script>
