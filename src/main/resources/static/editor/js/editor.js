@@ -450,7 +450,7 @@
 		            iconCls: "fa fa-save",
 		            handler: function () {
 						if (isEditing()) {
-							$.messager.myuiAlert('操作提示', '请先保存数据！', 'error');
+							$.messager.myuiAlert('操作提示', '请完成字段编辑！', 'error');
 							return;
 						}
 						var $opflag = false;
