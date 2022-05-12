@@ -78,7 +78,7 @@ public class GraphCoverQueue {
 		if (ObjectUtil.isNotEmpty(image)) {
 			// 设置尺寸
 			Setting chromeSetting = BeanUtil.copyProperties(ConstVal.chromeSetting, Setting.class);
-			chromeSetting.set("windowSize", StrUtil.join(StrUtil.DOT, image.getWidth(), image.getHeight()));
+			chromeSetting.set("windowSize", StrUtil.join(StrUtil.DOT, image.getWidth() + 100, image.getHeight() + 100));
 			// 保存文件
 			String imageType = ImgUtil.IMAGE_TYPE_PNG;
 			String originalFilename = StrUtil.join(StrUtil.DOT, graph.getName(), imageType);
