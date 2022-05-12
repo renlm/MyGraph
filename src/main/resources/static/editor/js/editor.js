@@ -284,8 +284,7 @@
 			$buttons = [
 				{
 		            text: "添加行",
-		            iconCls: "fa fa-plus",
-		            btnCls: "myui-btn-green float-left",
+		            iconCls: "left fa fa-plus",
 		            handler: function () {
 						var $myIEdatagrid = $("#" + myDialogIDatagridId);
 						var $selectedRow = $myIEdatagrid.datagrid('getSelected');
@@ -304,8 +303,7 @@
 		        },
 				{
 		            text: "删除行",
-		            iconCls: "fa fa-minus",
-		            btnCls: "myui-btn-brown float-left",
+		            iconCls: "left fa fa-minus",
 		            handler: function () {
 						var $myIEdatagrid = $("#" + myDialogIDatagridId);
 						var checkedErFields = $myIEdatagrid.datagrid('getChecked');
@@ -320,16 +318,14 @@
 		        },
 				{
 		            text: "保存",
-		            iconCls: "fa fa-save",
-		            btnCls: "myui-btn-blue float-left",
+		            iconCls: "left fa fa-save",
 		            handler: function () {
 						$("#" + myDialogIDatagridId).datagrid('saveRow');
 					}
 		        },
 				{
 		            text: "取消",
-		            iconCls: "fa fa-mail-reply",
-		            btnCls: "myui-btn-black float-left",
+		            iconCls: "left fa fa-mail-reply",
 		            handler: function () {
 						$("#" + myDialogIDatagridId).datagrid('cancelRow');
 					}
@@ -337,7 +333,6 @@
 				{
 		            text: "确定",
 		            iconCls: "fa fa-save",
-		            btnCls: "myui-btn-purple",
 		            handler: function () {
 						var $opflag = false;
 						var $myIEdatagrid = $("#" + myDialogIDatagridId);
@@ -368,7 +363,6 @@
                 {
                		text: "关闭", 
 					iconCls: "fa fa-close", 
-					btnCls: "myui-btn-red", 
 					handler: function () {
                         $myDialog.dialog("destroy");
                     }
@@ -379,7 +373,6 @@
                 {
                		text: "关闭", 
 					iconCls: "fa fa-close", 
-					btnCls: "myui-btn-red", 
 					handler: function () {
                         $myDialog.dialog("destroy");
                     }
@@ -387,12 +380,15 @@
             ];
 		}
         var defaultOptions = {
-            id: myDialogId,
             title: opts.title ? opts.title : (erDto.comment ? erDto.comment : erDto.tableName),
-            closed: false,
-			cache: false,
 			top: 120,
+			collapsible: true,
+			minimizable: false,
+			maximizable: true,
+	        closed: false,
+	        cache: false,
 			maximized: true,
+			modal: true,
             content: "<div class=\"easyui-layout\" data-options=\"fit:true\">" +
 						"<div data-options=\"region:'north'," +
 								"border:false," +
@@ -406,7 +402,7 @@
 							            "<div class='myui-input-block'>" + 
 							                "<input id='__eTableName' type='text' name='tableName' " + 
 							                	"class='easyui-textbox'" + 
-												"data-options=\"required:true,prompt:'表名'\"" + 
+												"data-options=\"required:true,prompt:'表名',width:'100%'\"" + 
 							                	"/>" + 
 							            "</div>" + 
 							        "</div>" + 
@@ -415,7 +411,7 @@
 							            "<div class='myui-input-block'>" + 
 							                "<input id='__eComment' type='text' name='comment' " + 
 							                	"class='easyui-textbox'" + 
-												"data-options=\"required:true,prompt:'注释'\"" + 
+												"data-options=\"required:true,prompt:'注释',width:'100%'\"" + 
 							                	"/>" + 
 							            "</div>" + 
 							        "</div>" +
