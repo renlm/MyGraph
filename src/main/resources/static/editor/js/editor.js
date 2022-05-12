@@ -341,7 +341,7 @@
 				}
 			};
 			// 暂存数据
-			var saveTemporaryData = function () {
+			var saveTemporaryData = function (isSave) {
 				var $myDatagrid = $("#" + myDialogDatagridId);
 				var rowDatas = $myDatagrid.datagrid('getRows');
 				var isValid = true;
@@ -359,7 +359,7 @@
 								return;
 							}
 						});
-						if (isValid) {
+						if (isValid && (isSave || isSave == null)) {
 							selectRow2 = index;
 							$myDatagrid.datagrid('endEdit', index);
 							$myDatagrid.datagrid('updateRow', { 
@@ -390,7 +390,7 @@
 		            text: "添加行",
 		            iconCls: "left fa fa-plus",
 		            handler: function () {
-						if (isEditing() && !saveTemporaryData()) {
+						if (isEditing() && !saveTemporaryData(false)) {
 							return;
 						}
 						var $myDatagrid = $("#" + myDialogDatagridId);
