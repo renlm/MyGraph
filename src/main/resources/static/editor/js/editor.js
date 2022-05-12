@@ -331,7 +331,11 @@
 			// 取消编辑
 			cancelRow = function (index) {
 				var $myDatagrid = $("#" + myDialogDatagridId);
-				$myDatagrid.datagrid('cancelEdit', index);
+				var rows = $myDatagrid.datagrid('getRows');
+				var row = rows[index];
+				if (row.$id) {
+					$myDatagrid.datagrid('cancelEdit', index);
+				}
 			};
 			// 暂存数据
 			var saveTemporaryData = function () {
@@ -412,26 +416,9 @@
 		            handler: function () {
 						var $myDatagrid = $("#" + myDialogDatagridId);
 						var rowDatas = $myDatagrid.datagrid('getRows');
-						var isValid = true;
 						$.each(rowDatas, function (index, row) {
 							if (row.editing && row.$id) {
 								$myDatagrid.datagrid('cancelEdit', index);
-							}
-						});
-						$.each(rowDatas, function (index, row) {
-							if (row.editing) {
-								var editors = $myDatagrid.datagrid('getEditors', index);
-								$.each(editors, function (j, e) {
-									if (j) {}
-									if (isValid && !$(e.target).textbox('isValid')) {
-										isValid = false;
-										$(e.target).textbox('textbox').focus();
-										return;
-									}
-								});
-								if (isValid) {
-									$myDatagrid.datagrid('cancelEdit', index);
-								}
 							}
 						});
 					}
@@ -564,7 +551,11 @@
 									if (row.editing) {
 										var s = '<a href=\'javascript:saveRow('+index+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>保存</span><span class=\'l-btn-icon fa fa-save\'></span></span></a> ';
 										var c = '<a href=\'javascript:cancelRow('+index+');\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
-										return s + c;
+										if (row.$id) {
+											return s + c;
+										} else {
+											return s;
+										}
 									} else {
 										var e = '<a href=\'javascript:editRow('+index+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
 										return e;
