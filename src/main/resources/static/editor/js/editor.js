@@ -282,6 +282,19 @@
         var $myDialog = $("<form id='" + myDialogId + "' class='myui' style='overflow-x: hidden' ></form>");
 		var $buttons = [];
 		if(editable) {
+			// 是否编辑状态
+			isEditing = function () {
+				var $myDatagrid = $("#" + myDialogDatagridId);
+				var rowDatas = $myDatagrid.datagrid('getRows');
+				var inEditing = false;
+				$.each(rowDatas, function (index, row) {
+					if (index) { }
+					if (row.editing) {
+						inEditing = true;
+					}
+				});
+				return inEditing;
+			};
 			// 编辑行
 			editRow = function (index) {
 				var $myDatagrid = $("#" + myDialogDatagridId);
@@ -357,6 +370,9 @@
 		            text: "添加行",
 		            iconCls: "left fa fa-plus",
 		            handler: function () {
+						if (isEditing() && !saveTemporaryData()) {
+							return;
+						}
 						var $myDatagrid = $("#" + myDialogDatagridId);
 						var rowDatas = $myDatagrid.datagrid('getRows');
 						var $selectedRow = $myDatagrid.datagrid('getSelected');
