@@ -278,7 +278,7 @@
      */
 	function erModelViewerDialog (opts, editable, erDto, callback) {
         var myDialogId = opts.id || (new Date()).getTime();
-		var myDialogIDatagridId = myDialogId + "Content";
+		var myDialogDatagridId = myDialogId + "Content";
         var $myDialog = $("<form id='" + myDialogId + "' class='myui' style='overflow-x: hidden' ></form>");
 		var $buttons = [];
 		if(editable) {
@@ -287,15 +287,15 @@
 		            text: "添加行",
 		            iconCls: "left fa fa-plus",
 		            handler: function () {
-						var $myDatagrid = $("#" + myDialogIDatagridId);
+						var $myDatagrid = $("#" + myDialogDatagridId);
 						var $selectedRow = $myDatagrid.datagrid('getSelected');
 						var $selectedRowIndex = $selectedRow == null ? null : $myDatagrid.datagrid('getRowIndex', $selectedRow);
 						if($selectedRowIndex == null) {
-							$("#" + myDialogIDatagridId).datagrid('addRow',{
+							$("#" + myDialogDatagridId).datagrid('addRow',{
 									row:{isNullable:true,autoIncrement:false,isPk:false,isFk:false}
 								});
 						} else {
-							$("#" + myDialogIDatagridId).datagrid('addRow',{
+							$("#" + myDialogDatagridId).datagrid('addRow',{
 									index:($selectedRowIndex+1),
 									row:{isNullable:true,autoIncrement:false,isPk:false,isFk:false}
 								});
@@ -306,7 +306,7 @@
 		            text: "删除行",
 		            iconCls: "left fa fa-minus",
 		            handler: function () {
-						var $myDatagrid = $("#" + myDialogIDatagridId);
+						var $myDatagrid = $("#" + myDialogDatagridId);
 						var checkedErFields = $myDatagrid.datagrid('getChecked');
 						if(!checkedErFields || checkedErFields.length == 0) {
 							$.iMessager.alert('操作提示', '请选择要删除的字段', 'messager-error');
@@ -321,14 +321,14 @@
 		            text: "保存",
 		            iconCls: "left fa fa-save",
 		            handler: function () {
-						$("#" + myDialogIDatagridId).datagrid('saveRow');
+						$("#" + myDialogDatagridId).datagrid('saveRow');
 					}
 		        },
 				{
 		            text: "取消",
 		            iconCls: "left fa fa-mail-reply",
 		            handler: function () {
-						$("#" + myDialogIDatagridId).datagrid('cancelRow');
+						$("#" + myDialogDatagridId).datagrid('cancelRow');
 					}
 		        },
 				{
@@ -336,7 +336,7 @@
 		            iconCls: "fa fa-save",
 		            handler: function () {
 						var $opflag = false;
-						var $myDatagrid = $("#" + myDialogIDatagridId);
+						var $myDatagrid = $("#" + myDialogDatagridId);
 						if(callback) {
 							erDto.fields = $myDatagrid.datagrid('getData').rows;
 							erDto.fields.forEach(function(item) { 
@@ -423,30 +423,31 @@
 			        			"fit:false," +
 			        			"border:false," +
 			        			"bodyCls:'border_right'\">" +
-					 		"<table id='" + myDialogIDatagridId + "'></table>" +
+					 		"<table id='" + myDialogDatagridId + "'></table>" +
 					 	"</div>" +
 					 "</div>",
             buttons: $buttons,
 			onOpen: function() {
 				$myDialog.form("load", erDto);
-				var $myDatagrid = $("#" + myDialogIDatagridId);
+				var $myDatagrid = $("#" + myDialogDatagridId);
 				if(editable) {
 					$myDatagrid.datagrid({
-						border:false,
-						fit:true,
+						border: false,
+						fit: true,
 						fitColumns: true,
 						pagination: false,
 						autoSave: true,
 						data: erDto.fields,
 						frozenColumns: [[
 							{field:'uuid',title:'UUID',checkbox:true},
+							{field:'id',title:'序号',formatter:function(value,index){ if(value){} return $myDatagrid.datagrid('getRowIndex',index)+1;}},
 							{field:'name',title:'列名',width:150,editor:{type:'textbox',options:{required:true}}},
 							{field:'comment',title:'注释',width:160,editor:{type:'textbox',options:{required:true}}},
 						]],
 						columns: [[
-							{field:'type',title:'数据类型',width:120,formatter:$.jdbcTypeFormatter,editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:[]}}},
-							{field:'size',title:'精度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
-							{field:'digit',title:'标度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
+							{field:'sqlType',title:'数据类型',width:120,formatter:$.jdbcTypeFormatter,editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:[]}}},
+							{field:'size',title:'长度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
+							{field:'digit',title:'精度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
 							{field:'isNullable',title:'是否可为空',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
 							{field:'autoIncrement',title:'是否自增',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
 							{field:'columnDef',title:'字段默认值',width:80,editor:{type:'textbox',options:{required:false}}},
@@ -513,7 +514,7 @@
 						pagination: false,
 						data: erDto.fields,
 						frozenColumns: [[
-							{field:'id',title:'序号',formatter:function(value,index){return $myDatagrid.datagrid('getRowIndex',index)+1;}},
+							{field:'id',title:'序号',formatter:function(value,index){ if(value){} return $myDatagrid.datagrid('getRowIndex',index)+1;}},
 							{field:'name',title:'列名',width:150},
 							{field:'comment',title:'注释',width:160},
 						]],
