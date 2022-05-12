@@ -20,14 +20,21 @@ import org.springframework.context.annotation.Configuration;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.img.ImgUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.setting.Setting;
+import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.modular.graph.entity.Graph;
 import cn.renlm.graph.modular.graph.service.IGraphService;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.mxgraph.ERModelParser;
+import cn.renlm.graph.util.MyConfigProperties;
+import cn.renlm.plugins.MyCrawlerUtil;
+import cn.renlm.plugins.MyCrawler.MySite;
+import cn.renlm.plugins.MyCrawler.MySpider;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -49,15 +56,18 @@ public class GraphCoverQueue {
 	public static final String ROUTINGKEY = QUEUE + AmqpUtil.RoutingKey;
 
 	@Autowired
+	private MyConfigProperties myConfigProperties;
+
+	@Autowired
 	private IGraphService iGraphService;
 
 	@Autowired
 	private ISysFileService iSysFileService;
 
 	/**
-	 * 执行表格导出
+	 * 抓取封面
 	 * 
-	 * @param fileId
+	 * @param uuid
 	 */
 	@RabbitListener(bindings = {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
@@ -66,22 +76,36 @@ public class GraphCoverQueue {
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
 		BufferedImage image = ERModelParser.createBufferedImage(graph);
 		if (ObjectUtil.isNotEmpty(image)) {
+			// 设置尺寸
+			Setting chromeSetting = BeanUtil.copyProperties(ConstVal.chromeSetting, Setting.class);
+			chromeSetting.set("windowSize", StrUtil.join(StrUtil.DOT, image.getWidth(), image.getHeight()));
 			// 保存文件
 			String imageType = ImgUtil.IMAGE_TYPE_PNG;
 			String originalFilename = StrUtil.join(StrUtil.DOT, graph.getName(), imageType);
-			byte[] bytes = ImgUtil.toBytes(image, imageType);
-			SysFile file = iSysFileService.upload(originalFilename, bytes, sysFile -> {
-				sysFile.setCreatorUserId(graph.getCreatorUserId());
-				sysFile.setCreatorNickname(graph.getCreatorNickname());
+			MySite site = MySite.me();
+			site.setEnableSelenuim(true);
+			site.setHeadless(true);
+			site.setScreenshot(true);
+			site.setSleepTime(3000);
+			site.setChromeSetting(chromeSetting);
+			MySpider spider = MyCrawlerUtil.createSpider(site, myPage -> {
+				BufferedImage screenshot = ImgUtil.toImage(myPage.screenshotBASE64());
+				byte[] bytes = ImgUtil.toBytes(screenshot, ImgUtil.IMAGE_TYPE_PNG);
+				SysFile sysFile = iSysFileService.upload(originalFilename, bytes, file -> {
+					file.setCreatorUserId(graph.getCreatorUserId());
+					file.setCreatorNickname(graph.getCreatorNickname());
+				});
+				// 设置封面
+				iGraphService.update(Wrappers.<Graph>lambdaUpdate().func(wrapper -> {
+					wrapper.set(Graph::getCover, sysFile.getFileId());
+					wrapper.set(Graph::getUpdatedAt, new Date());
+					wrapper.set(Graph::getUpdatorUserId, graph.getCreatorUserId());
+					wrapper.set(Graph::getUpdatorNickname, graph.getUpdatorNickname());
+					wrapper.in(Graph::getUuid, uuid);
+				}));
 			});
-			// 设置封面
-			iGraphService.update(Wrappers.<Graph>lambdaUpdate().func(wrapper -> {
-				wrapper.set(Graph::getCover, file.getFileId());
-				wrapper.set(Graph::getUpdatedAt, new Date());
-				wrapper.set(Graph::getUpdatorUserId, graph.getCreatorUserId());
-				wrapper.set(Graph::getUpdatorNickname, graph.getUpdatorNickname());
-				wrapper.in(Graph::getUuid, uuid);
-			}));
+			spider.addUrl(myConfigProperties.getCtx() + "/mxgraph/viewer?headless=true&uuid=" + uuid);
+			spider.run();
 		}
 	}
 

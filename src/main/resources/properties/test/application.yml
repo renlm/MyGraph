@@ -3,6 +3,7 @@ server:
     
 my:
   config:
+    ctx: http://localhost
     wsHost: ws://localhost
     wsAllowedOrigins: http://localhost
     

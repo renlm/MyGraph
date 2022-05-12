@@ -7,6 +7,7 @@ server:
     
 my:
   config:
+    ctx: https://graph.renlm.cn
     wsHost: ws://graph.renlm.cn
     wssHost: wss://graph.renlm.cn:443
     wsAllowedOrigins: http://graph.renlm.cn,https://graph.renlm.cn

@@ -16,6 +16,8 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "my.config")
 public class MyConfigProperties {
 
+	private String ctx;
+
 	private String wsHost;
 
 	private String wssHost;

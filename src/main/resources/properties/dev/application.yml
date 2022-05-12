@@ -5,6 +5,7 @@ server:
     
 my:
   config:
+    ctx: http://localhost/mygraph
     wsHost: ws://localhost
     wsAllowedOrigins: http://localhost
     
