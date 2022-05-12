@@ -288,18 +288,11 @@
 		            iconCls: "left fa fa-plus",
 		            handler: function () {
 						var $myDatagrid = $("#" + myDialogDatagridId);
+						var rowDatas = $myDatagrid.datagrid('getRows');
 						var $selectedRow = $myDatagrid.datagrid('getSelected');
-						var $selectedRowIndex = $selectedRow == null ? null : $myDatagrid.datagrid('getRowIndex', $selectedRow);
-						if($selectedRowIndex == null) {
-							$("#" + myDialogDatagridId).datagrid('addRow',{
-									row:{isNullable:true,autoIncrement:false,isPk:false,isFk:false}
-								});
-						} else {
-							$("#" + myDialogDatagridId).datagrid('addRow',{
-									index:($selectedRowIndex+1),
-									row:{isNullable:true,autoIncrement:false,isPk:false,isFk:false}
-								});
-						}
+						var $selectedRowIndex = $selectedRow == null ? rowDatas.length : $myDatagrid.datagrid('getRowIndex', $selectedRow) + 1;
+						$myDatagrid.datagrid('insertRow', { index: $selectedRowIndex, row: { isNullable: true, autoIncrement: false, isPk: false, isFk: false } });
+						$myDatagrid.datagrid('beginEdit', $selectedRowIndex);
 					}
 		        },
 				{
@@ -309,12 +302,17 @@
 						var $myDatagrid = $("#" + myDialogDatagridId);
 						var checkedErFields = $myDatagrid.datagrid('getChecked');
 						if(!checkedErFields || checkedErFields.length == 0) {
-							$.iMessager.alert('操作提示', '请选择要删除的字段', 'messager-error');
+							$.messager.myuiAlert('操作提示', '请勾选要删除的字段', 'error');
 							return;
 						}
-						var checkedErFieldRowIndexs = [];
-				    	checkedErFields.forEach(function(item) { checkedErFieldRowIndexs.push($myDatagrid.datagrid('getRowIndex', item)); });
-						$myDatagrid.datagrid('destroyRow', checkedErFieldRowIndexs);
+						$.messager.myuiConfirm('操作提示', '您确定要删除选中的字段吗？', function (r) {
+							if (r) {
+								checkedErFields.forEach(function (checkedRow) { 
+									var index = $myDatagrid.datagrid('getRowIndex', checkedRow);
+									$myDatagrid.datagrid('deleteRow', index); 
+								});
+							}
+						});
 					}
 		        },
 				{
@@ -328,9 +326,10 @@
 		            text: "取消编辑",
 		            iconCls: "left fa fa-mail-reply",
 		            handler: function () {
-						var rowDatas = $("#" + myDialogDatagridId).datagrid('getRows');
+						var $myDatagrid = $("#" + myDialogDatagridId);
+						var rowDatas = $myDatagrid.datagrid('getRows');
 						$.each(rowDatas, function (index) {
-							$("#" + myDialogDatagridId).datagrid('cancelEdit', index);
+							$myDatagrid.datagrid('cancelEdit', index);
 						});
 					}
 		        },
@@ -439,6 +438,9 @@
 						border: false,
 						fit: true,
 						fitColumns: true,
+						singleSelect: true,
+						checkOnSelect: false,
+						selectOnCheck: false,
 						pagination: false,
 						autoSave: true,
 						data: erDto.fields,
@@ -533,6 +535,9 @@
 						border: false,
 						fit: true,
 						fitColumns: true,
+						singleSelect: true,
+						checkOnSelect: false,
+						selectOnCheck: false,
 						pagination: false,
 						data: erDto.fields,
 						frozenColumns: [[
