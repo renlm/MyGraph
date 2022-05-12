@@ -104,7 +104,7 @@ public class GraphCoverQueue {
 					wrapper.in(Graph::getUuid, uuid);
 				}));
 			});
-			spider.addUrl(myConfigProperties.getCtx() + "/mxgraph/viewer?headless=true&uuid=" + uuid);
+			spider.addUrl(myConfigProperties.getCtx() + "/graph/viewer?headless=true&uuid=" + uuid);
 			spider.run();
 		}
 	}
