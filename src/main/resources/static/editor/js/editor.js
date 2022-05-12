@@ -259,21 +259,23 @@
         var defaultOptions = {
             id: myDialogId,
             title: opts.title ? opts.title : "数据库",
-            closed: false,
-			cache: false,
 			top: 120,
             width: width,
             height: height,
-            href: ctx + "/mxgraph/dbTableSelector",
+			collapsible: true,
+			minimizable: false,
+			maximizable: true,
+        	closed: false,
+        	cache: false,
+            href: ctx + "/graph/dbTableSelector",
             buttons: [
 				{
 		            text: "确定",
 		            iconCls: "fa fa-save",
-		            btnCls: "topjui-btn-blue",
 		            handler: function () {
-						var checkedErs = $('#erDatagrid').iDatagrid('getChecked');
+						var checkedErs = $('#erDatagrid').datagrid('getChecked');
 						if(!checkedErs || checkedErs.length == 0) {
-							$.iMessager.alert('操作提示', '请选择要添加的数据库表', 'messager-error');
+							$.messager.myuiAlert('操作提示', '请选择要添加的数据库表', 'error');
 							return;
 						}
 						var opflag = false;
@@ -281,21 +283,23 @@
 							opflag = callback(checkedErs);
 						}
 						if(opflag) {
-							$myDialog.iDialog("destroy");
+							$myDialog.dialog("destroy");
 						}
 					}
 		        }, 
                 {
                		text: "关闭", 
 					iconCls: "fa fa-close", 
-					btnCls: "topjui-btn-red", 
 					handler: function () {
-                        $myDialog.iDialog("destroy");
+                        $myDialog.dialog("destroy");
                     }
                 }
-            ]
+            ],
+			onClose: function () {
+				$myDialog.dialog('destroy');
+			}
         };
-        $myDialog.iDialog($.extend(true, {}, defaultOptions, opts));
+        $myDialog.myuiDialog($.extend(true, {}, defaultOptions, opts));
         return $myDialog;
     }
 	/**
