@@ -455,11 +455,29 @@
 							{field:'isPk',title:'主键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
 							{field:'isFk',title:'外键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
 							{field:'operate',title:'操作',width:60,align:'center',formatter: function(value,row,index) {
+								if(value && row) {}
 								var operateTpl = '<span onclick="moveUpERModelField(' + index + ');" title="上移" class="fa fa-angle-double-up" style="cursor:pointer;padding-right:15px;"></span>';
 								operateTpl += '<span onclick="moveDownERModelField(' + index + ');" title="下移" class="fa fa-angle-double-down" style="cursor:pointer;"></span>';
 								return operateTpl;
 							}}
 						]],
+						onDblClickRow: function (index, row) {
+							if (!row.editing) {
+								$(this).datagrid('beginEdit', index);
+							}
+						},
+						onBeforeEdit: function (index, row) {
+							row.editing = true;
+							$(this).datagrid('refreshRow', index);
+						},
+						onAfterEdit: function (index, row) {
+							row.editing = false;
+							$(this).datagrid('refreshRow', index);
+						},
+						onCancelEdit: function (index, row) {
+							row.editing = false;
+							$(this).datagrid('refreshRow', index);
+						},
 						onBeforeSave: function(index) {
 							var $saveFlag = true;
 							var $datas = $myDatagrid.datagrid('getData');
