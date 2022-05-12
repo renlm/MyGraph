@@ -58,7 +58,15 @@
 			{
 				if (UI.editor.graph.isEnabled() && !UI.editor.graph.isCellLocked(UI.editor.graph.getDefaultParent()))
 				{
-					dbTableSelector({ id: 'dbTableSelector', width: 850, height: 495 }, 
+					var __cols = 8;
+					var __interval = 10;
+					var __colYMap = {};
+					var __cell = UI.editor.graph.getSelectionCell();
+					var __geometry = UI.editor.graph.getCellGeometry(__cell ? __cell : UI.editor.graph.getChildCells()[UI.editor.graph.getChildCells().length - 1]);
+					var __originx = __geometry ? __geometry.x : -555;
+					var __x = __originx;
+					var __y = __geometry ? (__geometry.y + __geometry.height + __interval) : 0;
+					dbTableSelector({ id: 'dbTableSelector', width: 850, height: 512 }, 
 						function (checkedErs) {
 							var __selectionCells = null;
 							checkedErs.forEach(function(item, index) {
@@ -254,7 +262,7 @@
 	function dbTableSelector (opts, callback) {
         var myDialogId = opts.id || (new Date()).getTime();
 		var width = opts.width ? opts.width : 850;
-		var height = opts.height ? opts.height : 495;
+		var height = opts.height ? opts.height : 512;
         var $myDialog = $("<form id='" + myDialogId + "' class='myui' style='overflow-x: hidden' ></form>");
         var defaultOptions = {
             title: opts.title ? opts.title : "数据库",
