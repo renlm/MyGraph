@@ -2,19 +2,15 @@
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
     <title>数据库表</title>
-    <link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet"/>
-	<script th:src="@{/webjars/layui/layui.js}"></script>
 </head>
 <body layout:fragment="content">
-	<div data-toggle="topjui-layout"
+	<div class="easyui-layout"
 		data-options="fit:true">
 		<div data-options="region:'center',
-				title:'',
-				iconCls:'icon-reload',
 				split:true,
 				border:false
 			">
-            <table data-toggle="topjui-datagrid"
+            <table class="easyui-datagrid"
             	data-options="id:'erDatagrid',
             		pagination:true,
            			fitColumns:true,
@@ -38,20 +34,20 @@
     </div>
     
     <!-- 搜索工具栏 -->
-    <div id="erDatagrid-toolbar" class="topjui-toolbar"
+    <div id="erDatagrid-toolbar" class="myui-toolbar"
     	data-options="grid:{
     		id:'erDatagrid',
     		type:'datagrid'
     	}">
     	<a href="javascript:void(0);"
     		style="margin-right: 32px;"
-      		data-toggle="topjui-menubutton"
+      		class="easyui-menubutton"
       		data-options="iconCls:'fa fa-table'"
       		>选择表
    		</a>
 		<form id="queryERForm" class="search-box">
 	        <input id="__dsUuid" type="text" name="dsUuid"
-               	data-toggle="topjui-combogrid"
+               	class="easyui-combogrid"
              	data-options="idField:'uuid',
              		textField:'url',
              		prompt:'数据源',
@@ -70,14 +66,14 @@
               		]]
            		"/>
 	   		<input id="__keywords" type="text" name="keywords" 
-	   			data-toggle="topjui-textbox"
+	   			class="easyui-textbox"
 	        	data-options="prompt:'关键字',
 	        		width:280
 	        	"/>
 	        <a href="javascript:void(0);" 
-	        	data-toggle="topjui-menubutton"
+	        	class="easyui-menubutton"
 	       		data-options="iconCls:'fa fa-search',
-	           		btnCls:'topjui-btn-blue',
+	           		btnCls:'myui-btn-blue',
                		onClick:function(){
                			var dsUuid = $('#__dsUuid').iCombogrid('getValue');
                			var keywords = $('#__keywords').iTextbox('getValue');
@@ -86,9 +82,9 @@
 	         	">查询
 	    	</a>
 	    	<a href="javascript:void(0);"
-       			data-toggle="topjui-linkbutton"
+       			class="easyui-linkbutton"
        			data-options="iconCls:'fa fa-trash',
-                   	btnCls:'topjui-btn-brown',
+                   	btnCls:'myui-btn-brown',
                		onClick:function(){
                			$('#__dsUuid').iCombogrid('clear');
                			$('#__keywords').iTextbox('clear');
