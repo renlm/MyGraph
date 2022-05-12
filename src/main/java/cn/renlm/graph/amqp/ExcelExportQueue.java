@@ -41,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Configuration
-public class ExcelExportQueueConfig {
+public class ExcelExportQueue {
 
 	private static final String KEY = "ExcelExport";
 

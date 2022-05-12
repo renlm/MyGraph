@@ -1,7 +1,7 @@
 package cn.renlm.graph.controller.sys;
 
-import static cn.renlm.graph.amqp.ExcelExportQueueConfig.EXCHANGE;
-import static cn.renlm.graph.amqp.ExcelExportQueueConfig.ROUTINGKEY;
+import static cn.renlm.graph.amqp.ExcelExportQueue.EXCHANGE;
+import static cn.renlm.graph.amqp.ExcelExportQueue.ROUTINGKEY;
 
 import java.io.IOException;
 import java.net.URLEncoder;

@@ -1,7 +1,7 @@
 package cn.renlm.graph.ws;
 
-import static cn.renlm.graph.amqp.WsTopicQueueConfig.EXCHANGE;
-import static cn.renlm.graph.amqp.WsTopicQueueConfig.ROUTINGKEY;
+import static cn.renlm.graph.amqp.WsTopicQueue.EXCHANGE;
+import static cn.renlm.graph.amqp.WsTopicQueue.ROUTINGKEY;
 
 import java.io.IOException;
 import java.util.List;

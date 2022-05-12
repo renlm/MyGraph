@@ -38,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Configuration
-public class GraphCoverQueueConfig {
+public class GraphCoverQueue {
 
 	private static final String KEY = "GraphCover";
 

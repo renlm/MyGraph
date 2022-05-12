@@ -1,30 +1,56 @@
 package cn.renlm.graph.amqp;
 
+import org.springframework.amqp.core.AnonymousQueue;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.ExchangeBuilder;
-import org.springframework.amqp.core.QueueBuilder;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import cn.hutool.core.convert.Convert;
+import cn.renlm.graph.ws.WsMessage;
+import cn.renlm.graph.ws.WsMessage.WsType;
+import cn.renlm.graph.ws.WsUtil;
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * 延时队列
+ * WebSocket 广播队列
  * 
  * @author Renlm
  *
  */
+@Slf4j
 @Configuration
-public class TtlQueueConfig {
+public class WsTopicQueue {
 
-	private static final String KEY = "Ttl";
+	private static final String KEY = "WsTopic";
 
 	public static final String EXCHANGE = KEY + AmqpUtil.Exchange;
 
 	public static final String QUEUE = KEY + AmqpUtil.Queue;
 
 	public static final String ROUTINGKEY = QUEUE + AmqpUtil.RoutingKey;
+
+	/**
+	 * 监听广播队列
+	 * 
+	 * @param message
+	 */
+	@RabbitListener(queues = "#{" + QUEUE + ".name}")
+	public void receiveMessage(WsMessage<Object> message) {
+		WsType type = message.getType();
+		// 上线 | 离线
+		if (WsType.online.equals(type) || WsType.offline.equals(type)) {
+			String userId = Convert.toStr(message.getData());
+			long userConnections = WsUtil.getUserConnections(userId);
+			log.info("=== {}，{}行为，该用户当前连接数：{}", userId, type, userConnections);
+			message.setData(WsUtil.getOnlineUserNumber());
+			WsUtil.topic(message);
+		}
+	}
 
 	/**
 	 * 声明交换机
@@ -43,15 +69,7 @@ public class TtlQueueConfig {
 	 */
 	@Bean(name = QUEUE)
 	public org.springframework.amqp.core.Queue queue() {
-		return QueueBuilder.durable(QUEUE)
-				// 死信交换机
-				.deadLetterExchange(DeadLetterQueueConfig.EXCHANGE)
-				// 死信路由
-				.deadLetterRoutingKey(DeadLetterQueueConfig.ROUTINGKEY)
-				// 消息过期时间（如果同时配置了队列的TTL和消息的TTL，那么较小的那个值将会被使用）
-				.ttl(AmqpUtil.maxDelayTtl)
-				// 构建队列
-				.build();
+		return new AnonymousQueue();
 	}
 
 	/**

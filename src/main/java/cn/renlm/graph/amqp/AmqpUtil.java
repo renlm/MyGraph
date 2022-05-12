@@ -76,7 +76,7 @@ public class AmqpUtil {
 		taskParam.setDelayTaskClass(taskClass.getName());
 		taskParam.setData(data);
 		AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
-		amqpTemplate.convertAndSend(TtlQueueConfig.EXCHANGE, TtlQueueConfig.ROUTINGKEY, taskParam, message -> {
+		amqpTemplate.convertAndSend(TtlQueue.EXCHANGE, TtlQueue.ROUTINGKEY, taskParam, message -> {
 			message.getMessageProperties().setExpiration(String.valueOf(delayTtl));
 			return message;
 		});
@@ -103,7 +103,7 @@ public class AmqpUtil {
 		taskParam.setRoutingKey(routingKey);
 		taskParam.setData(data);
 		AmqpTemplate amqpTemplate = SpringUtil.getBean(AmqpTemplate.class);
-		amqpTemplate.convertAndSend(TtlQueueConfig.EXCHANGE, TtlQueueConfig.ROUTINGKEY, taskParam, message -> {
+		amqpTemplate.convertAndSend(TtlQueue.EXCHANGE, TtlQueue.ROUTINGKEY, taskParam, message -> {
 			message.getMessageProperties().setExpiration(String.valueOf(delayTtl));
 			return message;
 		});

@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Configuration
-public class DeadLetterQueueConfig {
+public class DeadLetterQueue {
 
 	private static final String KEY = "DeadLetter";
 
