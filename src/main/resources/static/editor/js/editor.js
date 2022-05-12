@@ -335,6 +335,15 @@
 								});
 								if (isValid) {
 									$myDatagrid.datagrid('endEdit', index);
+									$myDatagrid.datagrid('updateRow', { 
+										index: index, 
+										row: {
+											isNullable: row.isNullable === 'true',
+											autoIncrement: row.autoIncrement === 'true',
+											isPk: row.isPk === 'true',
+											isFk: row.isFk === 'true'
+										}
+									});
 								}
 							}
 						});
@@ -495,13 +504,7 @@
 							{field:'autoIncrement',title:'是否自增',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
 							{field:'columnDef',title:'字段默认值',width:80,editor:{type:'textbox',options:{required:false}}},
 							{field:'isPk',title:'主键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'isFk',title:'外键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
-							{field:'operate',title:'操作',width:60,align:'center',formatter: function (value, row, index) {
-								if(value && row) {}
-								var operateTpl = '<span onclick="moveUpERModelField(' + index + ');" title="上移" class="fa fa-angle-double-up" style="cursor:pointer;padding-right:15px;"></span>';
-								operateTpl += '<span onclick="moveDownERModelField(' + index + ');" title="下移" class="fa fa-angle-double-down" style="cursor:pointer;"></span>';
-								return operateTpl;
-							}}
+							{field:'isFk',title:'外键',width:60,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}}
 						]],
 						onDblClickRow: function (index, row) {
 							if (!row.editing) {
@@ -520,52 +523,8 @@
 						onCancelEdit: function (index, row) {
 							row.editing = false;
 							$(this).datagrid('refreshRow', index);
-						},
-						onBeforeSave: function(index) {
-							var $saveFlag = true;
-							var $datas = $myDatagrid.datagrid('getData');
-							var $ed = $myDatagrid.datagrid('getEditor',{index:index,field:'name'});
-							var fieldNameValue = $($ed.target).iTextbox('getValue');
-							$datas.rows.forEach(function(item) { 
-								var $index = $myDatagrid.datagrid('getRowIndex', item);
-								if(!($index === index)) {
-									if(item.name === fieldNameValue) {
-										$saveFlag = false;
-										return $saveFlag;
-									}
-								}
-							});
-							if(!$saveFlag) {
-								$.iMessager.alert('操作提示', '添加的字段重复了', 'messager-error');
-							}
-							return $saveFlag;
-						},
-						onSave: function (index, row) {
-							row.isNullable = row.isNullable === 'true';
-							row.autoIncrement = row.autoIncrement === 'true';
-							row.isPk = row.isPk === 'true';
-							row.isFk = row.isFk === 'true';
-							$myDatagrid.datagrid('updateRow',{index:index,row:row});
 						}
 					});
-					moveUpERModelField = function(index) {
-						var $datas = $myDatagrid.datagrid('getData');
-						if(index > 0) {
-							var $upData = Object.assign({}, $datas.rows[index-1]);
-							var $downData = Object.assign({}, $datas.rows[index]);
-							$myDatagrid.datagrid('updateRow',{index:(index-1),row:$downData});
-							$myDatagrid.datagrid('updateRow',{index:index,row:$upData});
-						}
-					};
-					moveDownERModelField = function(index) {
-						var $datas = $myDatagrid.datagrid('getData');
-						if(index < $datas.total) {
-							var $upData = Object.assign({}, $datas.rows[index]);
-							var $downData = Object.assign({}, $datas.rows[index+1]);
-							$myDatagrid.datagrid('updateRow',{index:index,row:$downData});
-							$myDatagrid.datagrid('updateRow',{index:(index+1),row:$upData});
-						}
-					};
 				} else {
 					$('#__eTableName').textbox('readonly');
 					$('#__eComment').textbox('readonly');
