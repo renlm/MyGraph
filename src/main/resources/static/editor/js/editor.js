@@ -298,6 +298,9 @@
 			// 编辑行
 			editRow = function (index) {
 				var $myDatagrid = $("#" + myDialogDatagridId);
+				var rows = $myDatagrid.datagrid('getRows');
+				var row = rows[index];
+				row.$id = Math.max(1, index);
 				$myDatagrid.datagrid('beginEdit', index);
 			};
 			// 保存行
@@ -342,6 +345,8 @@
 				var $myDatagrid = $("#" + myDialogDatagridId);
 				var rowDatas = $myDatagrid.datagrid('getRows');
 				var isValid = true;
+				var selectRow1 = null;
+				var selectRow2 = null;
 				$.each(rowDatas, function (index, row) {
 					if (row.editing) {
 						var editors = $myDatagrid.datagrid('getEditors', index);
@@ -349,11 +354,13 @@
 							if (j) {}
 							if (isValid && !$(e.target).textbox('isValid')) {
 								isValid = false;
+								selectRow1 = index;
 								$(e.target).textbox('textbox').focus();
 								return;
 							}
 						});
 						if (isValid) {
+							selectRow2 = index;
 							$myDatagrid.datagrid('endEdit', index);
 							$myDatagrid.datagrid('updateRow', { 
 								index: index, 
@@ -367,6 +374,15 @@
 						}
 					}
 				});
+				if (isValid) {
+					if (selectRow2 === 0 || selectRow2) {
+						$myDatagrid.datagrid('selectRow', selectRow2);
+					}
+				} else {
+					if (selectRow1 === 0 || selectRow1) {
+						$myDatagrid.datagrid('selectRow', selectRow1);
+					}
+				}
 				return isValid;
 			};
 			$buttons = [
@@ -565,7 +581,7 @@
 						]],
 						onDblClickRow: function (index, row) {
 							if (!row.editing) {
-								row.$id = index;
+								row.$id = Math.max(1, index);
 								$(this).datagrid('beginEdit', index);
 							}
 						},
