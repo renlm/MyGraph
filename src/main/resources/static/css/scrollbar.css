@@ -32,7 +32,7 @@ body {
 	-moz-box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
 	-o-box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
 	box-shadow: inset 0 0 6px rgb(0 0 0/ 30%);
-	border-radius: 10px;
+	border-radius: 5px;
 	background-color: #F5F5F5;
 	background-clip: padding-box;
 	border: solid transparent;
@@ -50,7 +50,7 @@ body {
 	background-color: rgba(0, 0, 0, .1);
 	background-clip: padding-box;
 	border: solid transparent;
-	border-radius: 10px;
+	border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
