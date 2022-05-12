@@ -328,7 +328,10 @@
 		            text: "取消编辑",
 		            iconCls: "left fa fa-mail-reply",
 		            handler: function () {
-						$("#" + myDialogDatagridId).datagrid('cancelRow');
+						var rowDatas = $("#" + myDialogDatagridId).datagrid('getRows');
+						$.each(rowDatas, function (index) {
+							$("#" + myDialogDatagridId).datagrid('cancelEdit', index);
+						});
 					}
 		        },
 				{
