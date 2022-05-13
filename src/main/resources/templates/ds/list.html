@@ -156,8 +156,11 @@
 																return s + c;
 															} else {
 																var e = '<a href=\'javascript:editRow('+index+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a> ';
-																var a = '<a href=\'javascript:addFieldToLib('+index+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>收藏</span><span class=\'l-btn-icon fa fa-plus\'></span></span></a>';
-																return e + a;
+																if (row.libing) {
+																	return e + '<a href=\'javascript:void(0);\' class=\'l-btn myui-btn-gray l-btn-small l-btn-plain\' style=\'width: 60px;\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\' style=\'margin: 0px;\'>已收藏</span></span></a>';
+																} else {
+																	return e + '<a href=\'javascript:addFieldToLib('+index+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>收藏</span><span class=\'l-btn-icon fa fa-plus\'></span></span></a>';
+																}
 															}
 														}
 													"></th>

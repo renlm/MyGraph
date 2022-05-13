@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.er.dto.ErFieldDto;
 import cn.renlm.graph.modular.er.entity.ErField;
 
 /**
@@ -19,9 +21,10 @@ public interface IErFieldService extends IService<ErField> {
 	/**
 	 * 获取ER模型字段列表
 	 * 
+	 * @param user
 	 * @param erUuid
 	 * @return
 	 */
-	List<ErField> findListByErUuid(String erUuid);
+	List<ErFieldDto> findListByEr(User user, String erUuid);
 
 }

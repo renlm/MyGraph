@@ -1,3 +1,8 @@
+.myui-btn-gray, .myui-btn-gray:hover {
+	color: white;
+    background: gray;
+}
+
 .myui .window-proxy-mask, 
 .myui .window-mask {
 	background-color: rgb(0, 0, 0);

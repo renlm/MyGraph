@@ -3,8 +3,6 @@ package cn.renlm.graph.controller.er;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -17,6 +15,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.db.meta.JdbcType;
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.er.dto.ErFieldDto;
 import cn.renlm.graph.modular.er.entity.ErField;
 import cn.renlm.graph.modular.er.service.IErFieldService;
 import cn.renlm.graph.response.Datagrid;
@@ -38,14 +37,15 @@ public class ErFieldController {
 	/**
 	 * 获取ER模型字段列表
 	 * 
-	 * @param request
+	 * @param authentication
 	 * @param erUuid
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/list")
-	public Datagrid<ErField> list(HttpServletRequest request, String erUuid) {
-		List<ErField> datas = iErFieldService.findListByErUuid(erUuid);
+	public Datagrid<ErFieldDto> list(Authentication authentication, String erUuid) {
+		User user = (User) authentication.getPrincipal();
+		List<ErFieldDto> datas = iErFieldService.findListByEr(user, erUuid);
 		return Datagrid.of(datas);
 	}
 
