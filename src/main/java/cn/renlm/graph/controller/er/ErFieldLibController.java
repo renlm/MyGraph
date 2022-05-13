@@ -63,6 +63,8 @@ public class ErFieldLibController {
 	@RequestMapping("/dialog")
 	public String dialog(ModelMap model, String uuid) {
 		ErFieldLib erFieldLib = new ErFieldLib();
+		erFieldLib.setAutoIncrement(false);
+		erFieldLib.setIsNullable(true);
 		if (StrUtil.isNotBlank(uuid)) {
 			ErFieldLib entity = iErFieldLibService
 					.getOne(Wrappers.<ErFieldLib>lambdaQuery().eq(ErFieldLib::getUuid, uuid));
