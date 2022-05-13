@@ -12,7 +12,7 @@
                   	th:data-options="|required:false,
                   		fitColumns:true,
 						singleSelect:true,
-                  		width:728,
+                  		width:'100%',
                   		panelHeight:328,
 						idField:'id',
 				   		treeField:'text',
@@ -66,7 +66,7 @@
                 	class="easyui-textbox" 
                 	data-options="required:true,
                 		prompt:'必填',
-                		width:299
+                		width:'100%'
                 	"/>
             </div>
         </div>
@@ -78,7 +78,7 @@
                   	data-options="required:true,
 						valueField:'value',
 						textField:'text',
-                		width:299,
+                		width:'100%',
 						panelHeight:'auto',
 						data: [
 						    {text:'禁用',value:'true'},
@@ -96,7 +96,7 @@
                 	class="easyui-textbox" 
                 	data-options="required:true,
                 		prompt:'必填',
-                		width:299,
+                		width:'100%',
                 		validType:['alphaDash','maxLength[20]','notStartWith[\'ROLE_\']']
                 	"/>
             </div>
@@ -110,7 +110,7 @@
                    		prompt:'必选',
 						valueField:'value',
 						textField:'text',
-                		width:299,
+                		width:'100%',
 						panelHeight:'auto',
 						data: [
 						    {text:'是',value:'true'},
@@ -128,7 +128,7 @@
                  	class="easyui-combobox"
                  	data-options="required:true,
                    		prompt:'必选',
-                		width:299,
+                		width:'100%',
                    		panelHeight:'auto',
 						method:'get',
                    		url:'dict/ajax/getTree?codePaths=RESOURCE_TYPE',
@@ -146,7 +146,7 @@
                    		prompt:'必选',
 						valueField:'value',
 						textField:'text',
-                		width:299,
+                		width:'100%',
 						panelHeight:'auto',
 						data: [
 						    {text:'有',value:'closed'},
@@ -162,7 +162,7 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{url}" 
                 	class="easyui-textbox"
-                	data-options="width:728
+                	data-options="width:'100%'
                    	"/>
             </div>
         </div>
@@ -174,7 +174,7 @@
                 <input type="text" th:field="*{iconCls}" 
                 	class="easyui-iconpicker" 
                 	data-options="delIcon:true,
-                		width:299
+                		width:'100%'
                 	"/>
             </div>
         </div>
@@ -185,7 +185,7 @@
                		class="easyui-numberspinner"
                    	data-options="required:true,
                 		prompt:'必填',
-                		width:299
+                		width:'100%'
                 	"/>
             </div>
         </div>
@@ -196,7 +196,7 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{iconClsColour}" 
                 	class="easyui-textbox"
-                	data-options="width:299
+                	data-options="width:'100%'
                    	"/>
             </div>
         </div>
@@ -205,7 +205,7 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{textColour}" 
                 	class="easyui-textbox"
-                	data-options="width:299
+                	data-options="width:'100%'
                    	"/>
             </div>
         </div>
@@ -216,7 +216,7 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{remark}" 
                 	class="easyui-textbox"
-                   	data-options="width:728,
+                   	data-options="width:'100%',
                    		height:100,
                    		multiline:true
                    	"/>
