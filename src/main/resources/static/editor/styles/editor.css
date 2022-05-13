@@ -18,6 +18,10 @@ body.geEditor.myui [style*="box-sizing: border-box;"] * {
   box-sizing: border-box;
 }
 
+body.geEditor.myui .combo-p>div.combo-panel.panel-body {
+	width: auto!important;
+}
+
 td.mxPopupMenuIcon table tr td {
 	padding: 8px;
 }
