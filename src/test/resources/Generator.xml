@@ -6,7 +6,7 @@
 	<url>jdbc:mysql://renlm.cn:3306/graph</url>
 	<username>graph</username>
 	<password>Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504</password>
-	
+
 	<module name="sys" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="sys_org" entity="true" />
 		<table author="Renlm" name="sys_user" entity="true" />
@@ -16,7 +16,7 @@
 		<table author="Renlm" name="sys_role" entity="true" />
 		<table author="Renlm" name="sys_role_resource" entity="true" />
 		<table author="Renlm" name="sys_resource" entity="true" />
-		
+
 		<table author="Renlm" name="sys_const" idType="ASSIGN_ID" entity="true" />
 		<table author="Renlm" name="sys_dict" entity="true" />
 		<table author="Renlm" name="sys_file" entity="true" />
@@ -26,7 +26,12 @@
 		<table author="Renlm" name="ds" entity="true" />
 		<table author="Renlm" name="er" entity="true" />
 		<table author="Renlm" name="er_field" entity="true" />
+		<table author="Renlm" name="er_field_lib" entity="true" />
 		<table author="Renlm" name="ds_er_rel" entity="true" />
+	</module>
+
+	<module name="markdown" package="cn.renlm.graph.modular">
+		<table author="Renlm" name="markdown" entity="true" />
 	</module>
 
 	<module name="graph" package="cn.renlm.graph.modular">

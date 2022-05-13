@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.er.entity;
+package cn.renlm.graph.modular.markdown.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * ER模型-字段
+ * Markdown 文库
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("er_field")
-public class ErField implements Serializable {
+@TableName("markdown")
+public class Markdown implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,82 +33,22 @@ public class ErField implements Serializable {
     private Long id;
 
     /**
-     * ER模型ID
-     */
-    @TableField("er_id")
-    private Long erId;
-
-    /**
      * UUID
      */
     @TableField("uuid")
     private String uuid;
 
     /**
-     * 列名
+     * 文档名称
      */
     @TableField("name")
     private String name;
 
     /**
-     * 注释
+     * 文档内容
      */
-    @TableField("comment")
-    private String comment;
-
-    /**
-     * java.sql.Types
-     */
-    @TableField("sql_type")
-    private Integer sqlType;
-
-    /**
-     * JdbcType
-     */
-    @TableField("jdbc_type")
-    private String jdbcType;
-
-    /**
-     * 长度
-     */
-    @TableField("size")
-    private Integer size;
-
-    /**
-     * 精度
-     */
-    @TableField("digit")
-    private Integer digit;
-
-    /**
-     * 是否可为空
-     */
-    @TableField("is_nullable")
-    private Boolean isNullable;
-
-    /**
-     * 是否自增
-     */
-    @TableField("auto_increment")
-    private Boolean autoIncrement;
-
-    /**
-     * 字段默认值
-     */
-    @TableField("column_def")
-    private String columnDef;
-
-    /**
-     * 是否为主键（默认否）
-     */
-    @TableField("is_pk")
-    private Boolean isPk;
-
-    /**
-     * 是否为外键（默认否）
-     */
-    @TableField("is_fk")
-    private Boolean isFk;
+    @TableField("content")
+    private String content;
 
     /**
      * 创建时间

@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * ER模型-字段
+ * ER模型-我的字段库
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("er_field")
-public class ErField implements Serializable {
+@TableName("er_field_lib")
+public class ErFieldLib implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,12 +31,6 @@ public class ErField implements Serializable {
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
-    /**
-     * ER模型ID
-     */
-    @TableField("er_id")
-    private Long erId;
 
     /**
      * UUID
@@ -97,18 +91,6 @@ public class ErField implements Serializable {
      */
     @TableField("column_def")
     private String columnDef;
-
-    /**
-     * 是否为主键（默认否）
-     */
-    @TableField("is_pk")
-    private Boolean isPk;
-
-    /**
-     * 是否为外键（默认否）
-     */
-    @TableField("is_fk")
-    private Boolean isFk;
 
     /**
      * 创建时间
