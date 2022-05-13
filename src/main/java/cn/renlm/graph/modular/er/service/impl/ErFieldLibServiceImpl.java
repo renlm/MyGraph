@@ -2,6 +2,7 @@ package cn.renlm.graph.modular.er.service.impl;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,13 +10,16 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErFieldLibDto;
+import cn.renlm.graph.modular.er.entity.ErField;
 import cn.renlm.graph.modular.er.entity.ErFieldLib;
 import cn.renlm.graph.modular.er.mapper.ErFieldLibMapper;
 import cn.renlm.graph.modular.er.service.IErFieldLibService;
+import cn.renlm.graph.modular.er.service.IErFieldService;
 import cn.renlm.graph.response.Result;
 
 /**
@@ -28,6 +32,9 @@ import cn.renlm.graph.response.Result;
  */
 @Service
 public class ErFieldLibServiceImpl extends ServiceImpl<ErFieldLibMapper, ErFieldLib> implements IErFieldLibService {
+
+	@Autowired
+	private IErFieldService iErFieldService;
 
 	@Override
 	public Page<ErFieldLib> findPage(Page<ErFieldLib> page, User user, ErFieldLibDto form) {
@@ -47,7 +54,26 @@ public class ErFieldLibServiceImpl extends ServiceImpl<ErFieldLibMapper, ErField
 
 	@Override
 	public Result<ErFieldLib> addFieldToLib(User user, String fieldUuid) {
-		return null;
+		ErField erField = iErFieldService.getOne(Wrappers.<ErField>lambdaQuery().eq(ErField::getUuid, fieldUuid));
+		long cnt = this.count(Wrappers.<ErFieldLib>lambdaQuery().func(wrapper -> {
+			wrapper.eq(ErFieldLib::getName, erField.getName());
+			wrapper.eq(ErFieldLib::getDeleted, false);
+		}));
+		if (cnt > 0) {
+			Result.error("字段已存在，无需重复添加！");
+		}
+		ErFieldLib erFieldLib = BeanUtil.copyProperties(erField, ErFieldLib.class);
+		erFieldLib.setId(null);
+		erFieldLib.setUuid(IdUtil.simpleUUID().toUpperCase());
+		erFieldLib.setCreatedAt(new Date());
+		erFieldLib.setCreatorUserId(user.getUserId());
+		erFieldLib.setCreatorNickname(user.getNickname());
+		erFieldLib.setUpdatedAt(erFieldLib.getCreatedAt());
+		erFieldLib.setUpdatorUserId(null);
+		erFieldLib.setUpdatorNickname(null);
+		erFieldLib.setDeleted(false);
+		this.save(erFieldLib);
+		return Result.success(erFieldLib);
 	}
 
 	@Override
