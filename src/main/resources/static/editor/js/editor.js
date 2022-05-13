@@ -583,8 +583,9 @@
 											return s;
 										}
 									} else {
+										var dnd = '<a href=\'javascript:void(0);\' class=\'l-btn myui-btn-purple l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>拖拽</span><span class=\'l-btn-icon fa fa-arrows-v\'></span></span></a> ';
 										var e = '<a href=\'javascript:void(0);\' onclick=\'editRow(this)\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
-										return e;
+										return dnd + e;
 									}
 								}
 							}
