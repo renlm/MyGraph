@@ -292,6 +292,25 @@
 					$('tr[datagrid-row-index=' + index + ']').find('td[field=id]>div.datagrid-cell').html(index + 1);
 				});
 			};
+			// 检查重复字段
+			checkEditorRepeat = function () {
+				var isRepeat = false;
+				var $myDatagrid = $("#" + myDialogDatagridId);
+				var rowDatas = $myDatagrid.datagrid('getRows');
+				var rowDataMap = {};
+				$.each(rowDatas, function (index, row) {
+					if (rowDataMap[row.name]) {
+						var existRow = rowDataMap[row.name];
+						$.messager.myuiAlert('操作提示', '第 ' + (Math.min(existRow.$index, index) + 1) + ' 行，第 ' + (Math.max(existRow.$index, index) + 1) + ' 行，' + row.name + ' 字段重复！', 'error');
+						isRepeat = true;
+						return false;
+					} else {
+						row.$index = index;
+						rowDataMap[row.name] = row;
+					}
+				});
+				return isRepeat;
+			};
 			// 是否编辑状态
 			isEditing = function () {
 				var $myDatagrid = $("#" + myDialogDatagridId);
@@ -463,6 +482,9 @@
 		            handler: function () {
 						if (isEditing()) {
 							$.messager.myuiAlert('操作提示', '请完成字段编辑！', 'error');
+							return;
+						}
+						if (checkEditorRepeat()) {
 							return;
 						}
 						var $opflag = false;
