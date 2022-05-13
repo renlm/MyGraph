@@ -282,6 +282,15 @@
         var $myDialog = $("<form id='" + myDialogId + "' class='myui' style='overflow-x: hidden' ></form>");
 		var $buttons = [];
 		if(editable) {
+			// 刷新行序号
+			refreshAllRowSeq = function () {
+				var $myDatagrid = $("#" + myDialogDatagridId);
+				var rowDatas = $myDatagrid.datagrid('getRows');
+				$.each(rowDatas, function (index, row) {
+					if (row) { }
+					$('tr[datagrid-row-index=' + index + ']').find('td[field=id]>div.datagrid-cell').html(index + 1);
+				});
+			};
 			// 是否编辑状态
 			isEditing = function () {
 				var $myDatagrid = $("#" + myDialogDatagridId);
@@ -595,6 +604,10 @@
 						},
 						onBeforeDrag: function (row) {
 							return !row.editing;
+						},
+						onDrop: function (targetRow, sourceRow, point) {
+							if (targetRow && sourceRow && point) {}
+							refreshAllRowSeq();
 						},
 						onDblClickRow: function (index, row) {
 							if (!row.editing) {
