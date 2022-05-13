@@ -171,6 +171,7 @@
 							that.getModel().beginUpdate();
 						 	try {
 						  		cell.value = erModelHtml.html;
+						  		cell.geometry.height = erModelHtml.height;
 						        that.refresh();
 							} finally {
 						        that.getModel().endUpdate();
