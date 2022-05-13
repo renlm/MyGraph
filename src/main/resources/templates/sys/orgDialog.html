@@ -12,7 +12,7 @@
                   	th:data-options="|required:false,
                   		fitColumns:true,
 						singleSelect:true,
-                  		width:728,
+                  		width:'100%',
                   		panelHeight:328,
 						idField:'id',
 				   		treeField:'text',
@@ -66,7 +66,7 @@
                 	class="easyui-textbox"
                 	data-options="required:true,
                    		prompt:'必填',
-                   		width:728
+                   		width:'100%'
                 	"/>
             </div>
         </div>
@@ -80,7 +80,7 @@
 	             	data-options="idField:'userId',
 	             		textField:'nickname',
 	             		prompt:'负责人',
-	             		width:728,
+	             		width:'100%',
 	            		pagination:true,
 	            		fitColumns:true,
 	            		pageSize:10,
@@ -105,7 +105,7 @@
                 	class="easyui-textbox" 
                 	data-options="required:true,
                    		prompt:'必填',
-                   		width:299,
+                   		width:'100%',
                 		validType:['alphaDash','maxLength[20]']
                 	"/>
             </div>
@@ -117,7 +117,7 @@
                  	class="easyui-combobox"
                  	data-options="required:true,
                    		prompt:'必选',
-                		width:299,
+                		width:'100%',
                    		panelHeight:'auto',
 						method:'get',
                    		url:'dict/ajax/getTree?codePaths=ORG_TYPE',
@@ -137,7 +137,7 @@
                 <input type="text" th:field="*{iconCls}" 
                 	class="easyui-iconpicker" 
                 	data-options="delIcon:true,
-                		width:299,
+                		width:'100%',
                    		panelHeight:200
                 	"/>
             </div>
@@ -149,7 +149,7 @@
                		class="easyui-numberspinner"
                    	data-options="required:true,
                 		prompt:'必填',
-                		width:299
+                		width:'100%'
                 	"/>
             </div>
         </div>
@@ -163,7 +163,7 @@
                   	data-options="required:true,
 						valueField:'value',
 						textField:'text',
-                		width:299,
+                		width:'100%',
 						panelHeight:'auto',
 						data: [
 						    {text:'禁用',value:'true'},
@@ -181,7 +181,7 @@
                    		prompt:'必选',
 						valueField:'value',
 						textField:'text',
-                		width:299,
+                		width:'100%',
 						panelHeight:'auto',
 						data: [
 						    {text:'有',value:'closed'},
@@ -197,7 +197,7 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{remark}" 
                 	class="easyui-textbox"
-                   	data-options="width:728,
+                   	data-options="width:'100%',
                    		height:100,
                    		multiline:true
                    	"/>
