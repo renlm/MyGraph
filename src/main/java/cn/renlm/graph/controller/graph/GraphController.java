@@ -109,7 +109,7 @@ public class GraphController {
 			return iGraphService.mineAjaxSave(user, form);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return Result.error("服务器出错了");
+			return Result.error("出错了");
 		}
 	}
 
