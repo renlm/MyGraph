@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErFieldLibDto;
 import cn.renlm.graph.modular.er.entity.ErFieldLib;
+import cn.renlm.graph.response.Result;
 
 /**
  * <p>
@@ -26,5 +27,14 @@ public interface IErFieldLibService extends IService<ErFieldLib> {
 	 * @return
 	 */
 	Page<ErFieldLib> findPage(Page<ErFieldLib> page, User user, ErFieldLibDto form);
+
+	/**
+	 * 保存（新建|编辑）
+	 * 
+	 * @param user
+	 * @param form
+	 * @return
+	 */
+	Result<ErFieldLibDto> ajaxSave(User user, ErFieldLibDto form);
 
 }
