@@ -589,6 +589,9 @@
 								}
 							}
 						]],
+						onLoadSuccess: function() {
+							$(this).datagrid('enableDnd');
+						},
 						onDblClickRow: function (index, row) {
 							if (!row.editing) {
 								row.$id = Math.max(1, index);
