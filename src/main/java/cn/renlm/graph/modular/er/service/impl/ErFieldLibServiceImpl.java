@@ -46,6 +46,11 @@ public class ErFieldLibServiceImpl extends ServiceImpl<ErFieldLibMapper, ErField
 	}
 
 	@Override
+	public Result<ErFieldLib> addFieldToLib(User user, String fieldUuid) {
+		return null;
+	}
+
+	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public Result<ErFieldLibDto> ajaxSave(User user, ErFieldLibDto form) {
 		if (StrUtil.isBlank(form.getUuid())) {

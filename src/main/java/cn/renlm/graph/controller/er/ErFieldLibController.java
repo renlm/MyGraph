@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -69,6 +70,25 @@ public class ErFieldLibController {
 	}
 
 	/**
+	 * 添加字段到我的字段库
+	 * 
+	 * @param authentication
+	 * @param fieldUuid
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/ajax/addFieldToLib")
+	public Result<ErFieldLib> addFieldToLib(Authentication authentication, String fieldUuid) {
+		try {
+			User user = (User) authentication.getPrincipal();
+			return iErFieldLibService.addFieldToLib(user, fieldUuid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("出错了");
+		}
+	}
+
+	/**
 	 * 保存（新建|编辑）
 	 * 
 	 * @param authentication
@@ -76,7 +96,7 @@ public class ErFieldLibController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping("/ajax/save")
+	@PostMapping("/ajax/save")
 	public Result<?> ajaxSave(Authentication authentication, ErFieldLibDto form) {
 		try {
 			User user = (User) authentication.getPrincipal();

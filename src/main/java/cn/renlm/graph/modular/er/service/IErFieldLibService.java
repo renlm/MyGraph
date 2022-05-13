@@ -29,6 +29,15 @@ public interface IErFieldLibService extends IService<ErFieldLib> {
 	Page<ErFieldLib> findPage(Page<ErFieldLib> page, User user, ErFieldLibDto form);
 
 	/**
+	 * 添加字段到我的字段库
+	 * 
+	 * @param user
+	 * @param fieldUuid
+	 * @return
+	 */
+	Result<ErFieldLib> addFieldToLib(User user, String fieldUuid);
+
+	/**
 	 * 保存（新建|编辑）
 	 * 
 	 * @param user
