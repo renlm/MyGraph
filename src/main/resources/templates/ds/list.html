@@ -304,7 +304,7 @@
           	class="easyui-menubutton myui-btn-normal myui-btn-green"
          	data-options="iconCls:'fa fa-plus',
            		hasDownArrow:false
-        	">新增
+        	">添加字段
        	</a>
    		<a href="javascript:void(0);"
         	class="easyui-menubutton myui-btn-normal myui-btn-orange"
@@ -534,7 +534,7 @@
 	                $.messager.progress('close');
 					if (data.statusCode == 200) {
 	                	$('#erFieldDataGrid').datagrid('reload');
-	                	$('#erFieldLibDataGrid').datagrid('reload');
+	                	resetErFieldLib();
 	                } else {
 	                    $.messager.show({title: '我的消息', msg: data.message?data.message:'出错了', timeout: 5000, showType: 'slide'});
 	                }
@@ -590,7 +590,7 @@
 	 * 重置我的字段库
 	 */
 	function resetErFieldLib () {
-		$('#erFieldLibDataGrid').form('clear');
+		$('#erFieldLibDataGridForm').form('clear');
 		searchErFieldLib();
 	}
 
@@ -615,6 +615,7 @@
 			maximizable: true,
 	        closed: false,
 	        cache: false,
+	        method: 'get',
 	        href: ctx + '/erFieldLib/dialog' + (uuid ? ('?uuid=' + uuid) : ''),
 	        modal: true,
 	        buttons: [{
@@ -638,7 +639,6 @@
 			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 			                	$erFieldLibDialog.dialog('destroy');
 			                	$('#erFieldLibDataGrid').datagrid('reload');
-			            		searchEr();
 			                } else {
 			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
 			                }
@@ -681,7 +681,6 @@
 								if (resultJson.statusCode == 200) {
 									$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 				                	$('#erFieldLibDataGrid').datagrid('reload');
-				            		searchErFieldLib();
 				                } else {
 				                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
 				                }
