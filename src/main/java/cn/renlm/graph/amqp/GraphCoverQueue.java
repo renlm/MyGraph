@@ -71,9 +71,10 @@ public class GraphCoverQueue {
 	@RabbitListener(bindings = {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
 	public void receiveMessage(String uuid) {
+		boolean fitWindow = false;
 		log.info("=== 图形封面任务：{}", uuid);
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
-		BufferedImage image = ERModelParser.createBufferedImage(graph);
+		BufferedImage image = ERModelParser.createBufferedImage(graph, fitWindow);
 		if (ObjectUtil.isNotEmpty(image)) {
 			// 设置尺寸
 			int width = image.getWidth() < 800 ? 800 : image.getWidth();
@@ -105,7 +106,8 @@ public class GraphCoverQueue {
 					wrapper.in(Graph::getUuid, uuid);
 				}));
 			});
-			spider.addUrl(myConfigProperties.getCtx() + "/graph/viewer?headless=true&fitWindow=false&uuid=" + uuid);
+			spider.addUrl(myConfigProperties.getCtx() + "/graph/viewer?headless=true&fitWindow=" + fitWindow + "&uuid="
+					+ uuid);
 			spider.run();
 		}
 	}

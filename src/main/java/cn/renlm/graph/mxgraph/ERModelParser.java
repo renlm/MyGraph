@@ -79,9 +79,10 @@ public class ERModelParser {
 	 * 生成封面图
 	 * 
 	 * @param data
+	 * @param enableZomm
 	 * @return
 	 */
-	public static final BufferedImage createBufferedImage(Graph data) {
+	public static final BufferedImage createBufferedImage(Graph data, boolean enableZomm) {
 		// 数据为空忽略
 		if (data == null || StrUtil.isBlank(data.getXml())) {
 			return null;
@@ -96,7 +97,7 @@ public class ERModelParser {
 		mxRectangle clip = null;
 
 		// 缩放
-		if (ObjectUtil.isNotEmpty(data.getZoom())) {
+		if (enableZomm && ObjectUtil.isNotEmpty(data.getZoom())) {
 			scale = data.getZoom().doubleValue();
 		}
 
