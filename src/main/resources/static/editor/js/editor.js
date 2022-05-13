@@ -414,6 +414,7 @@
 						var $selectedRowIndex = $selectedRow == null ? rowDatas.length : $myDatagrid.datagrid('getRowIndex', $selectedRow) + 1;
 						$myDatagrid.datagrid('insertRow', { index: $selectedRowIndex, row: { isNullable: true, autoIncrement: false, isPk: false, isFk: false } });
 						$myDatagrid.datagrid('beginEdit', $selectedRowIndex);
+						refreshAllRowSeq();
 					}
 		        },
 				{
@@ -432,6 +433,7 @@
 									var index = $myDatagrid.datagrid('getRowIndex', checkedRow);
 									$myDatagrid.datagrid('deleteRow', index); 
 								});
+								refreshAllRowSeq();
 							}
 						});
 					}
