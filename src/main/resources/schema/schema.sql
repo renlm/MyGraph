@@ -266,6 +266,47 @@ CREATE TABLE er_field (
     remark VARCHAR(255) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'ER模型-字段';
 
+-- ER模型-我的字段库
+DROP TABLE IF EXISTS er_field_lib;
+CREATE TABLE er_field_lib (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
+    name       					VARCHAR(255)					NOT NULL		COMMENT '列名',
+    comment       				VARCHAR(500)									COMMENT '注释',
+    sql_type       				INT								NOT NULL		COMMENT 'java.sql.Types',
+    jdbc_type      				VARCHAR(255)					NOT NULL		COMMENT 'JdbcType',
+    size       					INT												COMMENT '长度',
+    digit       				INT												COMMENT '精度',
+    is_nullable                	TINYINT(1)										COMMENT '是否可为空',
+    auto_increment              TINYINT(1)										COMMENT '是否自增',
+    column_def              	VARCHAR(255)									COMMENT '字段默认值',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'ER模型-我的字段库';
+
+-- Markdown 文库
+DROP TABLE IF EXISTS markdown;
+CREATE TABLE markdown (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
+    name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
+    content						LONGTEXT										COMMENT '文档内容',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown 文库';
+
 -- 图形设计
 DROP TABLE IF EXISTS graph;
 CREATE TABLE graph(
