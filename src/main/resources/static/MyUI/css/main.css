@@ -6,6 +6,10 @@
 	display: none;
 }
 
+.myui input.easyui-color + span.textbox input {
+	border-radius: 0px;
+}
+
 div.south-border-left_none + div.layout-split-proxy-h + div.layout-split-proxy-v + div.layout-expand-south .panel-header {
 	border-left: none;
 }
