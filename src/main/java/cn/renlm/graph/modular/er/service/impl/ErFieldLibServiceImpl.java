@@ -53,6 +53,7 @@ public class ErFieldLibServiceImpl extends ServiceImpl<ErFieldLibMapper, ErField
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public Result<ErFieldLib> addFieldToLib(User user, String fieldUuid) {
 		ErField erField = iErFieldService.getOne(Wrappers.<ErField>lambdaQuery().eq(ErField::getUuid, fieldUuid));
 		long cnt = this.count(Wrappers.<ErFieldLib>lambdaQuery().func(wrapper -> {
