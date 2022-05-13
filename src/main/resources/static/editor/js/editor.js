@@ -659,6 +659,9 @@
 						]]
 					});
 				}
+			},
+			onClose: function () {
+				$myDialog.dialog('destroy');
 			}
         };
         $myDialog.myuiDialog($.extend(true, {}, defaultOptions, opts));
