@@ -13,6 +13,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.db.meta.JdbcType;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErFieldLibDto;
 import cn.renlm.graph.modular.er.entity.ErField;
@@ -80,6 +81,7 @@ public class ErFieldLibServiceImpl extends ServiceImpl<ErFieldLibMapper, ErField
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public Result<ErFieldLibDto> ajaxSave(User user, ErFieldLibDto form) {
+		form.setJdbcType(JdbcType.valueOf(form.getSqlType()).name());
 		if (StrUtil.isBlank(form.getUuid())) {
 			form.setUuid(IdUtil.simpleUUID().toUpperCase());
 			form.setCreatedAt(new Date());
