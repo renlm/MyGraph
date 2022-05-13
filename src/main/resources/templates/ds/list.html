@@ -155,8 +155,9 @@
 																var c = '<a href=\'javascript:cancelRow('+index+');\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
 																return s + c;
 															} else {
-																var e = '<a href=\'javascript:editRow('+index+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
-																return e;
+																var e = '<a href=\'javascript:editRow('+index+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a> ';
+																var a = '<a href=\'javascript:addFieldToLib('+index+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>收藏</span><span class=\'l-btn-icon fa fa-plus\'></span></span></a>';
+																return e + a;
 															}
 														}
 													"></th>
@@ -190,10 +191,14 @@
 			                <tr>
 			                	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
 			                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#erFieldLibDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
-		                     	<th data-options="field:'name',title:'数据源名称',width:120"></th>
-		                     	<th data-options="field:'url',title:'JDBC链接',width:200"></th>
-		                     	<th data-options="field:'schemaName',title:'Schema',width:80"></th>
-		                     	<th data-options="field:'remark',title:'备注',width:120"></th>
+			                    <th data-options="field:'name',title:'列名',width:120"></th>
+		                       	<th data-options="field:'comment',title:'注释',width:200"></th>
+		                   		<th data-options="field:'jdbcType',title:'数据类型',width:100"></th>
+		                   		<th data-options="field:'size',title:'长度',width:40"></th>
+		                   		<th data-options="field:'digit',title:'精度',width:40"></th>
+		                   		<th data-options="field:'isNullable',title:'是否可为空',width:60,formatter:$.yesNoFormatter"></th>
+		                   		<th data-options="field:'autoIncrement',title:'是否自增',width:60,formatter:$.yesNoFormatter"></th>
+		                   		<th data-options="field:'columnDef',title:'字段默认值',width:100"></th>
 			                    <th data-options="field:'updatedAt',title:'更新时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
 		                       	<th data-options="field:'actions',title:'操作',width:80,align:'center',formatter:erFieldLibOperateFormatter"></th>
 			                </tr>
@@ -512,11 +517,31 @@
 	function editRow(index) {
 		$('#erFieldDataGrid').datagrid('beginEdit', index);
 	}
+	
+	/**
+	 * 添加字段到我的字段库
+	 */
+	function addFieldToLib (index) {
+		var rowDatas = $('#erFieldDataGrid').datagrid('getRows');
+		var rowData = rowDatas[index];
+		$.messager.progress({'text': '请求中……'});
+		$.post(ctx + '/erFieldLib/ajax/addFieldToLib',
+				{ fieldUuid: rowData.uuid },
+				function (data) {
+	                $.messager.progress('close');
+					if (data.statusCode == 200) {
+	                	$('#erFieldDataGrid').datagrid('reload');
+	                	$('#erFieldLibDataGrid').datagrid('reload');
+	                } else {
+	                    $.messager.show({title: '我的消息', msg: data.message?data.message:'出错了', timeout: 5000, showType: 'slide'});
+	                }
+				});
+	}
 	  	
 	/**
 	 * 保存行
 	 */
-	function saveRow(index) {
+	function saveRow (index) {
 		var rowDatas = $('#erFieldDataGrid').datagrid('getRows');
 		var rowData = rowDatas[index];
 		var edComment = $('#erFieldDataGrid').datagrid('getEditor', { index: index, field: 'comment' });

@@ -61,7 +61,7 @@ public class ErFieldLibServiceImpl extends ServiceImpl<ErFieldLibMapper, ErField
 			wrapper.eq(ErFieldLib::getDeleted, false);
 		}));
 		if (cnt > 0) {
-			Result.error("字段已存在，无需重复添加！");
+			return Result.error("字段已存在，无需重复添加！");
 		}
 		ErFieldLib erFieldLib = BeanUtil.copyProperties(erField, ErFieldLib.class);
 		erFieldLib.setId(null);
