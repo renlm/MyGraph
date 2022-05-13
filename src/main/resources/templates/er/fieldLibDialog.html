@@ -1,0 +1,87 @@
+<div class="myui-fluid mlr25center" th:object="${ds}">
+    <div class="myui-row">
+    	<input type="hidden" th:field="*{uuid}" />
+    	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">数据源名称</label>
+            <div class="myui-input-block">
+            	<input type="text" th:field="*{name}" 
+					class="easyui-textbox"
+					data-options="required:true,
+						prompt:'数据源名称',
+						width:'100%',
+						validType:'maxLength[255]'
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">JDBC链接</label>
+            <div class="myui-input-block">
+            	<input type="text" th:field="*{url}" 
+					class="easyui-textbox"
+					data-options="required:true,
+						prompt:'JDBC链接',
+						width:'100%',
+						validType:'maxLength[500]'
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">访问账号</label>
+            <div class="myui-input-block">
+            	<input type="text" th:field="*{username}" 
+					class="easyui-textbox"
+					data-options="required:true,
+						prompt:'访问账号',
+						width:'100%',
+						validType:'maxLength[255]'
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">Schema</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{schemaName}" 
+					class="easyui-textbox"
+					data-options="prompt:'Schema',
+						width:'100%',
+						validType:'maxLength[255]'
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">认证密码</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{password}" 
+					class="easyui-passwordbox"
+					data-options="required:true,
+						prompt:'必填',
+                		width:'100%'
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+        	<label class="myui-form-label">备注</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{remark}" 
+                	class="easyui-textbox"
+                   	data-options="width:'100%',
+                   		height:180,
+                   		multiline:true
+                   	"/>
+            </div>
+        </div>
+    </div>
+</div>
