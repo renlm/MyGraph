@@ -1,5 +1,8 @@
 package cn.renlm.graph.controller.er;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -101,6 +104,35 @@ public class ErFieldLibController {
 		try {
 			User user = (User) authentication.getPrincipal();
 			return iErFieldLibService.ajaxSave(user, form);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("出错了");
+		}
+	}
+
+	/**
+	 * 删除
+	 * 
+	 * @param authentication
+	 * @param uuids
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/ajax/del")
+	public Result<?> ajaxDel(Authentication authentication, String uuids) {
+		try {
+			User user = (User) authentication.getPrincipal();
+			List<String> uuidList = StrUtil.splitTrim(uuids, StrUtil.COMMA);
+			iErFieldLibService.update(Wrappers.<ErFieldLib>lambdaUpdate().func(wrapper -> {
+				wrapper.set(ErFieldLib::getDeleted, true);
+				wrapper.set(ErFieldLib::getUpdatedAt, new Date());
+				wrapper.set(ErFieldLib::getUpdatorUserId, user.getUserId());
+				wrapper.set(ErFieldLib::getUpdatorNickname, user.getNickname());
+				wrapper.eq(ErFieldLib::getCreatorUserId, user.getUserId());
+				wrapper.eq(ErFieldLib::getDeleted, false);
+				wrapper.in(ErFieldLib::getUuid, uuidList);
+			}));
+			return Result.success();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
