@@ -197,7 +197,14 @@
                 <input type="text" th:field="*{iconClsColour}" 
                 	class="easyui-color"
                 	data-options="width:'100%',
-                		editable:true
+                		editable:false,
+                       	icons:[{
+                        	iconCls:'fa fa-remove',
+                            handler:function(e){
+                                $(e.data.target).combo('clear');
+                            	$(e.data.target.nextSibling).find('input').css('background-color', '');
+                          	}
+                      	}]
                    	"/>
             </div>
         </div>
@@ -207,7 +214,14 @@
                 <input type="text" th:field="*{textColour}" 
                 	class="easyui-color"
                 	data-options="width:'100%',
-                		editable:true
+                		editable:false,
+                       	icons:[{
+                        	iconCls:'fa fa-remove',
+                            handler:function(e){
+                                $(e.data.target).combo('clear');
+                            	$(e.data.target.nextSibling).find('input').css('background-color', '');
+                          	}
+                      	}]
                    	"/>
             </div>
         </div>
