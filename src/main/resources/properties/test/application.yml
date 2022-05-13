@@ -1,16 +1,18 @@
 server:
   port: 80
+  servlet:
+    context-path: /mygraph
     
 my:
   config:
-    ctx: http://localhost
+    ctx: http://localhost/mygraph
     wsHost: ws://localhost
     wsAllowedOrigins: http://localhost
     
 logging:
   level:
     root: info
-    cn.renlm.graph: debug
+    cn.renlm.graph: info
   file:
     name: /opt/log/my-graph.log
     max-size: 10MB
