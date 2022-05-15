@@ -462,7 +462,7 @@
 		            text: "添加字段",
 		            iconCls: "left fa fa-plus",
 		            handler: function () {
-						dbFieldSelector({ id: 'dbFieldSelector', width: 850, height: 512 }, 
+						dbFieldLibSelector({ id: 'dbFieldLibSelector', width: 850, height: 512 }, 
 						function (checkedErFields) {
 							console.log(checkedErFields);
 						});
@@ -758,12 +758,12 @@
         return $myDialog;
     }
 	/***
-     * 通过js触发打开一个字段选择器
+     * 通过js触发打开一个字段选择器（我的字段库）
      * @param opts 需要覆盖的属性
      * @param callback 回调函数
      * @returns {*|jQuery|HTMLElement}
      */
-	function dbFieldSelector (opts, callback) {
+	function dbFieldLibSelector (opts, callback) {
         var myDialogId = opts.id || (new Date()).getTime();
 		var width = opts.width ? opts.width : 850;
 		var height = opts.height ? opts.height : 512;
@@ -778,7 +778,7 @@
 			maximizable: true,
         	closed: false,
         	cache: false,
-            href: ctx + "/graph/dbFieldSelector",
+            href: ctx + "/graph/dbFieldLibSelector",
 			modal: true,
             buttons: [
 				{

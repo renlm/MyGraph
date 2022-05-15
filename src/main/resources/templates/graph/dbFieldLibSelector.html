@@ -1,0 +1,81 @@
+<div class="easyui-layout"
+	data-options="fit:true">
+	<div data-options="region:'center',
+			split:true,
+			border:false
+		">
+    	<table id="erFieldLibDataGrid" 
+			class="easyui-datagrid"
+			data-options="border:false,
+				fit:true,
+				fitColumns:true,
+				singleSelect:true,
+				checkOnSelect:false,
+				selectOnCheck:false,
+				toolbar:'#erFieldLibDataGridToolbar',
+				pagination:true,
+				pageSize:10,
+				method:'get',
+				url:ctx+'/erFieldLib/ajax/page',
+             	onBeforeLoad:$.pageOnBeforeLoad
+			">
+        	<thead>
+            	<tr>
+                	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#erFieldLibDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+                    <th data-options="field:'name',title:'列名',width:120"></th>
+                    <th data-options="field:'comment',title:'注释',width:200"></th>
+                    <th data-options="field:'jdbcType',title:'数据类型',width:100"></th>
+                 	<th data-options="field:'size',title:'长度',width:40"></th>
+                 	<th data-options="field:'digit',title:'精度',width:40"></th>
+                 	<th data-options="field:'isNullable',title:'是否可为空',width:60,formatter:$.yesNoFormatter"></th>
+                 	<th data-options="field:'autoIncrement',title:'是否自增',width:60,formatter:$.yesNoFormatter"></th>
+                 	<th data-options="field:'columnDef',title:'字段默认值',width:100"></th>
+                    <th data-options="field:'updatedAt',title:'更新时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
+             	</tr>
+       		</thead>
+   		</table>
+	</div>
+</div>
+<div id="erFieldLibDataGridToolbar" class="myui-toolbar">
+	<a href="javascript:void(0);"
+      	class="easyui-menubutton myui-btn-normal"
+     	data-options="iconCls:'fa fa-table',
+        	hasDownArrow:false
+    	">选择字段
+	</a>
+	<form id="erFieldLibDataGridForm" class="search-box">
+ 		<input type="text" name="keywords"
+    		id="erFieldLibDataGridKeywords" 
+   			class="easyui-textbox"
+        	data-options="prompt:'关键字',
+        		width:220
+        	"/>
+        <a href="javascript:searchErFieldLib();" 
+        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+       		data-options="iconCls:'fa fa-search'">查询
+    	</a>
+    	<a href="javascript:resetErFieldLib();"
+      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+      		data-options="iconCls:'fa fa-trash'">重置
+      	</a>
+	</form> 
+</div>
+<script type="text/javascript">
+	/**
+	 * 查询字段库
+	 */
+	function searchErFieldLib () {
+		$('#erFieldLibDataGrid').datagrid('load', {
+			keywords: $('#erFieldLibDataGridKeywords').textbox('getValue')
+		});
+	}
+	
+	/**
+	 * 重置字段库
+	 */
+	function resetErFieldLib () {
+		$('#erFieldLibDataGridForm').form('clear');
+		searchErFieldLib();
+	}
+</script>

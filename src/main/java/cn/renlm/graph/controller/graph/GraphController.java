@@ -215,13 +215,13 @@ public class GraphController {
 	}
 
 	/**
-	 * 选择器（字段）
+	 * 选择器（我的字段库）
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/dbFieldSelector")
-	public String dbFieldSelector() {
-		return "graph/dbFieldSelector";
+	@RequestMapping("/dbFieldLibSelector")
+	public String dbFieldLibSelector() {
+		return "graph/dbFieldLibSelector";
 	}
 
 	/**
