@@ -459,6 +459,13 @@
 					}
 		        },
 				{
+		            text: "添加字段",
+		            iconCls: "left fa fa-plus",
+		            handler: function () {
+						
+					}
+		        },
+				{
 		            text: "暂存数据",
 		            iconCls: "left fa fa-save",
 		            handler: saveTemporaryData
