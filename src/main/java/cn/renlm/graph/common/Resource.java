@@ -30,7 +30,8 @@ public enum Resource {
 		urlNewWindows("链接-新窗口"), 
 		urlInsidePage("链接-内页"),
 		more("更多功能"),
-		permission("权限");
+		permission("权限"),
+		markdown("Markdown文档");
 
 		@Getter
 		private final String text;

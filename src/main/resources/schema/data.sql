@@ -74,9 +74,18 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(200301, 		'D957245380414774BF7882933536DA86',	'200301', 		'任务管理', 		'menu', 			'/qrtz/jobs', 												'fa fa-deaf', 				null, 				null, 			3, 		1, 		'open',		0,					2003,		null)
 	  ,(30, 			'3165637A889443629EB021505A4CAC52',	'OSHI', 		'服务器', 		'urlInsidePage', 	'/home/oshi',												'fa fa-server', 			'#FF5722', 			null, 			1, 		3, 		'open',		0,					null,		null)
 	  ,(40, 			'EB0B50741EAC47E3A275FEBCABFC5AA1',	'40', 			'文件管理', 		'urlInsidePage', 	'/sys/file', 												'fa fa-clipboard', 			null, 				null, 			1, 		4, 		'open',		0,					null,		null)
-	  ,(50, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'50', 			'更多功能', 		'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		5, 		'closed',	0,					null,		null)
-	  ,(5001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'5001', 		'在线调试', 		'urlInsidePage', 	'/compile', 												'fa fa-code', 				'rebeccapurple', 	null, 			2, 		1, 		'open',		0,					50,			null)
-	  ,(5002, 			'466FA46CA81B44A0B286294B6149007F',	'5002', 		'EasyUI中文站', 	'urlNewWindows', 	'http://www.jeasyui.cn/?from=demo', 						'fa fa-link', 				null, 				null, 			2, 		2, 		'open',		0,					50,			null)
+	  ,(50, 			'BA2066BEE094406DBB6800E8CCD95967',	'50', 			'帮助文档', 		'menu', 			null, 														'fa fa-file-word-o', 		null, 				null, 			1, 		5, 		'closed',	0,					null,		null)
+	  ,(5001, 			'E6D55C0D3D4E408EB3873EF2E551A024',	'5001', 		'使用手册', 		'menu', 			null, 														'fa fa-stack-overflow', 	null, 				null, 			2, 		1, 		'closed',	0,					50,			null)
+	  ,(500101, 		'32FBBF6C0D31402881CCF30FAEC19E2F',	'500101', 		'系统简介', 		'markdown', 		null, 														null, 						null, 				null, 			3, 		1, 		'open',		0,					5001,		null)
+	  ,(5002, 			'53E9258E9A3C49AB98256EAEBDA07509',	'5002', 		'接口文档', 		'menu', 			null, 														'fa fa-road', 				null, 				null, 			2, 		2, 		'closed',	0,					50,			null)
+	  ,(500201, 		'CFDDD2848E8C4E1C93D3962CD58150B5',	'500201', 		'获取登录用户信息',	'markdown', 		null, 														null, 						null, 				null, 			3, 		1, 		'open',		0,					5002,		null)
+	  ,(500202, 		'EA9B24E717CF4B539CB42C3643C1F1A2',	'500202', 		'用户信息查询',		'markdown', 		null, 														null, 						null, 				null, 			3, 		2, 		'open',		0,					5002,		null)
+	  ,(500203, 		'4865D081FD8D49B2A3CBDFD367BFBA49',	'500203', 		'角色资源查询',		'markdown', 		null, 														null, 						null, 				null, 			3, 		3, 		'open',		0,					5002,		null)
+	  ,(500204, 		'412F8D6441B64BCAB1206A891EF6AF66',	'500204', 		'资源信息查询',		'markdown', 		null, 														null, 						null, 				null, 			3, 		4, 		'open',		0,					5002,		null)
+	  ,(500205, 		'70755924519449508A37E37EC20BCDBF',	'500205', 		'公共字典',		'markdown', 		null, 														null, 						null, 				null, 			3, 		5, 		'open',		0,					5002,		null)
+	  ,(60, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'60', 			'更多功能', 		'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		6, 		'closed',	0,					null,		null)
+	  ,(6001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'6001', 		'在线调试', 		'urlInsidePage', 	'/compile', 												'fa fa-code', 				'rebeccapurple', 	null, 			2, 		1, 		'open',		0,					60,			null)
+	  ,(6002, 			'466FA46CA81B44A0B286294B6149007F',	'6002', 		'EasyUI中文站', 	'urlNewWindows', 	'http://www.jeasyui.cn/?from=demo', 						'fa fa-link', 				null, 				null, 			2, 		2, 		'open',		0,					60,			null)
 ;
 
 -- 角色资源关系
