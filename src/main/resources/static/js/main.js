@@ -33,7 +33,7 @@
 						id : "MarkdownViewer-" + uuid,
 						title : title,
 						href : '/markdown/viewer?uuid=' + uuid + '&name=' + title,
-						iconCls : iconCls ? iconCls : 'fa fa-edit'
+						iconCls : iconCls ? iconCls : 'fa fa-eye'
 					});
 				} catch(e) {
 					top.window.open(ctx + '/markdown/viewer?uuid=' + uuid + '&name=' + title);
