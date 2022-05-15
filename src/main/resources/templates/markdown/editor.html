@@ -32,16 +32,15 @@
                 saveHTMLToTextarea: true,
                 searchReplace: true,
                 htmlDecode: "style,script,iframe|on*",  
-                emoji: true,
+                emoji: false,
                 taskList: true,
                 tocm: true,
                 tex: true,
                 flowChart: true,
                 sequenceDiagram: true,
-                imageUpload: true,
-                imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                imageUploadURL: "./php/upload.php",
+                imageUpload: false,
                 onload : function () {
+                	$("div.editormd-toolbar-container>ul.editormd-menu>li>a[title='Emoji表情']").parent().hide();
                 	var that = this;
     	    		var originFn = window.onresize;
     	       		window.onresize = function () { 
