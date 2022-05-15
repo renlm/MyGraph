@@ -340,7 +340,14 @@ function generateMenu(menuId, systemName) {
                 multiple: false,
                 border: false,
                 onSelect: function (item) {
-					addIndexTab({id: item.id, title: item.text, href: item.url, iconCls: item.iconCls});
+					if (item.resourceTypeCode === 'markdown') {
+						$.openMarkdownViewer(item.uuid, item.text);
+					} else if (item.resourceTypeCode === 'urlNewWindows') {
+						var targetUrl = (item.url.indexOf("http") === 0 || item.url.indexOf("//") === 0) ? item.url : (ctx + item.url);
+						window.open(targetUrl);
+					} else if (item.resourceTypeCode === 'urlInsidePage') {
+						addIndexTab({id: item.id, title: item.text, href: item.url, iconCls: item.iconCls});
+					}
 				}
             });
             // 初始化accordion

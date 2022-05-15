@@ -18,6 +18,29 @@
 (function($) {
 	$.extend({
 		/**
+		 * 打开Markdown文档查看器
+		 * @param params uuid 唯一标识
+		 * @param params title 标题
+		 * @param params openNew 是否打开新网页（默认否）
+		 * @param params iconCls 导航栏图标
+		 */
+		openMarkdownViewer: function (uuid, title, openNew, iconCls) {
+			if(openNew) {
+				top.window.open(ctx + '/markdown/viewer?uuid=' + uuid + '&name=' + title);
+			} else {
+				try {
+					top.MyUI.addIndexTab({
+						id : "MarkdownViewer-" + uuid,
+						title : title,
+						href : '/markdown/viewer?uuid=' + uuid + '&name=' + title,
+						iconCls : iconCls ? iconCls : 'fa fa-edit'
+					});
+				} catch(e) {
+					top.window.open(ctx + '/markdown/viewer?uuid=' + uuid + '&name=' + title);
+				}
+			}
+		},
+		/**
 		 * 打开Markdown文档编辑器
 		 * @param params uuid 唯一标识
 		 * @param params title 标题

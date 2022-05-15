@@ -1,9 +1,91 @@
 <!DOCTYPE html>
-<html lang="zh-CN" layout:decorate="~{layout/markdown}">
+<html lang="zh-CN">
 <head>
-	<title th:text="${markdown.name}"></title>
+	<title th:text="${markdown.name}">Markdown文档</title>
+	<meta charset="UTF-8" />
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<!-- Ico -->
+    <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
+	<!-- Jquery -->
+	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+	<!-- Editor.md -->
+	<link rel="stylesheet" th:href="@{/webjars/editor.md/css/editormd.min.css}" />
+	<script th:src="@{/webjars/editor.md/editormd.js}"></script>
+	<!-- Layui -->
+	<link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet" />
+	<script th:src="@{/webjars/layui/layui.js}"></script>
+	<!-- 样式修正 -->
+	<link rel="stylesheet" th:href="@{/static/css/markdown.css}" />
 </head>
-<body layout:fragment="content">
-
+<body>
+	<div id="editormd" class="noborder"></div>
+	<textarea id="markdown" style="display: none;" th:text="${markdown.content}"></textarea>
+	<script type="text/javascript">
+		$(function () {
+			var myEditor = editormd("editormd", {
+				width: document.body.clientWidth,
+				height: document.body.clientHeight,
+            	path: "[(@{/webjars/editor.md/lib/})]",
+                theme: "default",
+                previewTheme: "default",
+                editorTheme: "default",
+                markdown: $("#markdown").val(),
+                codeFold: true,
+                saveHTMLToTextarea: true,
+                searchReplace: true,
+                htmlDecode: "style,script,iframe|on*",  
+                emoji: false,
+                taskList: true,
+                tocm: true,
+                tex: true,
+                flowChart: true,
+                sequenceDiagram: true,
+                imageUpload: false,
+                toolbarIcons: function () {
+                	var toolbarIcons = editormd.toolbarModes.full;
+                	toolbarIcons.push("save");
+                	return toolbarIcons;
+                },
+                toolbarIconsClass: {
+                	save: "fa fa-save"
+                },
+                lang: {
+                    toolbar: {
+                    	save: "保存"
+                    }
+                },
+                toolbarHandlers: {
+                	save: function (cm, icon, cursor, selection) {
+                		var that = this;
+                		layer.load(2);
+                		$.post("[(@{/markdown/ajax/save})]", {
+                			"[(${_csrf.parameterName})]": "[(${_csrf.token})]",
+                			uuid: "[(${markdown.uuid})]",
+                			name: "[(${markdown.name})]",
+                			content: that.getMarkdown()
+                		}, function (resultJson) {
+                			layer.closeAll();
+                			if(resultJson.statusCode == 200) {
+    							layer.msg(resultJson.message ? resultJson.message:"已保存", { icon: 1, time: 1500 });
+    						} else {
+    							layer.msg(resultJson.message ? resultJson.message:"出错了", { icon: 5, shift:6 });
+    						}
+                		});
+                	}
+                },
+                onload: function () {
+                	$("div.editormd-toolbar-container>ul.editormd-menu>li>a[title='Emoji表情']").parent().hide();
+                	var that = this;
+    	    		var originFn = window.onresize;
+    	       		window.onresize = function () { 
+    	       			originFn && originFn();
+    	       			that.resize(document.body.clientWidth, document.body.clientHeight);
+    	       		}
+                }
+            });
+		});
+	</script>
 </body>
 </html>
