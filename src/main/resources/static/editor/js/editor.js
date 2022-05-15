@@ -465,13 +465,13 @@
 						dbFieldLibSelector({ id: 'dbFieldLibSelector', width: 850, height: 512 }, 
 						function (checkedErFields) {
 							var $myDatagrid = $("#" + myDialogDatagridId);
+							var rowDatas = $myDatagrid.datagrid('getRows');
+							var $selectedRow = $myDatagrid.datagrid('getSelected');
+							var $selectedRowIndex = $selectedRow == null ? rowDatas.length : $myDatagrid.datagrid('getRowIndex', $selectedRow) + 1;
 							$.each(checkedErFields, function (index, row) {
 								if (index) { }
-								var rowDatas = $myDatagrid.datagrid('getRows');
-								var $selectedRow = $myDatagrid.datagrid('getSelected');
-								var $selectedRowIndex = $selectedRow == null ? rowDatas.length : $myDatagrid.datagrid('getRowIndex', $selectedRow) + 1;
 								$myDatagrid.datagrid('insertRow', { index: $selectedRowIndex, row: row });
-								$myDatagrid.datagrid('beginEdit', $selectedRowIndex);
+								$myDatagrid.datagrid('beginEdit', $selectedRowIndex++);
 							});
 							refreshAllRowSeq();
 							return true;
