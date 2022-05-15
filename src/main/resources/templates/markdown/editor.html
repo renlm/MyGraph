@@ -24,7 +24,7 @@
 	<textarea id="markdown" style="display: none;" th:text="${markdown.content}"></textarea>
 	<script type="text/javascript">
 		$(function () {
-			var myEditor = editormd("editormd", {
+			editormd("editormd", {
 				width: document.body.clientWidth,
 				height: document.body.clientHeight,
             	path: "[(@{/webjars/editor.md/lib/})]",

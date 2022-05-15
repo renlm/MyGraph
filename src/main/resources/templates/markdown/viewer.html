@@ -29,25 +29,15 @@
 	<textarea id="markdown" style="display: none;" th:text="${markdown.content}"></textarea>
 	<script type="text/javascript">
 		$(function () {
-			var myEditor = editormd.markdownToHTML("editormd", {
-				width: document.body.clientWidth,
-				height: document.body.clientHeight,
-            	path: "[(@{/webjars/editor.md/lib/})]",
-                theme: "default",
-                previewTheme: "default",
-                editorTheme: "default",
-                markdown: $("#markdown").val(),
-                codeFold: true,
-                saveHTMLToTextarea: true,
-                searchReplace: true,
-                htmlDecode: "style,script,iframe|on*",
-                emoji: false,
-                taskList: true,
-                tocm: true,
-                tex: true,
-                flowChart: true,
-                sequenceDiagram: true,
-                imageUpload: false
+			editormd.markdownToHTML("editormd", {
+                markdown		: $("#markdown").val(),
+                htmlDecode      : "style,script,iframe",
+              	tocm            : true,
+             	emoji           : true,
+              	taskList        : true,
+              	tex             : true,
+              	flowChart       : true,
+             	sequenceDiagram : true
             });
 		});
 	</script>
