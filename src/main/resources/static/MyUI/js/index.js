@@ -341,11 +341,12 @@ function generateMenu(menuId, systemName) {
                 border: false,
                 onSelect: function (item) {
 					if (item.resourceTypeCode === 'markdown') {
-						$.openMarkdownViewer(item.uuid, item.text);
+						$.openMarkdownViewer(item.resourceId, item.text);
 					} else if (item.resourceTypeCode === 'urlNewWindows') {
 						var targetUrl = (item.url.indexOf("http") === 0 || item.url.indexOf("//") === 0) ? item.url : (ctx + item.url);
 						window.open(targetUrl);
-					} else if (item.resourceTypeCode === 'urlInsidePage') {
+					} else if (item.resourceTypeCode === 'menu' 
+						|| item.resourceTypeCode === 'urlInsidePage') {
 						addIndexTab({id: item.id, title: item.text, href: item.url, iconCls: item.iconCls});
 					}
 				}
