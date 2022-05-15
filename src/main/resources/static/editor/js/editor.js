@@ -465,6 +465,7 @@
 						dbFieldLibSelector({ id: 'dbFieldLibSelector', width: 850, height: 512 }, 
 						function (checkedErFields) {
 							console.log(checkedErFields);
+							return true;
 						});
 					}
 		        },
@@ -785,7 +786,7 @@
 		            text: "确定",
 		            iconCls: "fa fa-save",
 		            handler: function () {
-						var checkedErFields = $('#erDataGrid').datagrid('getChecked');
+						var checkedErFields = $('#erFieldLibDataGrid').datagrid('getChecked');
 						if(!checkedErFields || checkedErFields.length == 0) {
 							$.messager.myuiAlert('操作提示', '请选择要添加的字段', 'error');
 							return;
