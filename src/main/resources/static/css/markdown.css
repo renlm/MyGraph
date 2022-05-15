@@ -11,3 +11,8 @@ html, body {
 .editormd.noborder {
 	border: none;
 }
+
+.editormd-html-preview {
+	width: 90%;
+	margin: 0 auto;
+}

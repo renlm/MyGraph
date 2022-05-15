@@ -11,12 +11,17 @@
 	<!-- Jquery -->
 	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
 	<!-- Editor.md -->
-	<link rel="stylesheet" th:href="@{/webjars/editor.md/css/editormd.min.css}" />
+	<link rel="stylesheet" th:href="@{/webjars/editor.md/css/editormd.preview.min.css}" />
+	<script th:src="@{/webjars/editor.md/lib/marked.min.js}"></script>
+	<script th:src="@{/webjars/editor.md/lib/prettify.min.js}"></script>
+	<script th:src="@{/webjars/editor.md/lib/raphael.min.js}"></script>
+	<script th:src="@{/webjars/editor.md/lib/underscore.min.js}"></script>
+	<script th:src="@{/webjars/editor.md/lib/sequence-diagram.min.js}"></script>
+	<script th:src="@{/webjars/editor.md/lib/flowchart.min.js}"></script>
+	<script th:src="@{/webjars/editor.md/lib/jquery.flowchart.min.js}"></script>
 	<script th:src="@{/webjars/editor.md/editormd.js}"></script>
-	<!-- Layui -->
-	<link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet" />
-	<script th:src="@{/webjars/layui/layui.js}"></script>
 	<!-- 样式修正 -->
+	<link rel="stylesheet" th:href="@{/static/css/scrollbar.css}" />
 	<link rel="stylesheet" th:href="@{/static/css/markdown.css}" />
 </head>
 <body>
@@ -24,7 +29,7 @@
 	<textarea id="markdown" style="display: none;" th:text="${markdown.content}"></textarea>
 	<script type="text/javascript">
 		$(function () {
-			var myEditor = editormd("editormd", {
+			var myEditor = editormd.markdownToHTML("editormd", {
 				width: document.body.clientWidth,
 				height: document.body.clientHeight,
             	path: "[(@{/webjars/editor.md/lib/})]",
@@ -35,55 +40,14 @@
                 codeFold: true,
                 saveHTMLToTextarea: true,
                 searchReplace: true,
-                htmlDecode: "style,script,iframe|on*",  
+                htmlDecode: "style,script,iframe|on*",
                 emoji: false,
                 taskList: true,
                 tocm: true,
                 tex: true,
                 flowChart: true,
                 sequenceDiagram: true,
-                imageUpload: false,
-                toolbarIcons: function () {
-                	var toolbarIcons = editormd.toolbarModes.full;
-                	toolbarIcons.push("save");
-                	return toolbarIcons;
-                },
-                toolbarIconsClass: {
-                	save: "fa fa-save"
-                },
-                lang: {
-                    toolbar: {
-                    	save: "保存"
-                    }
-                },
-                toolbarHandlers: {
-                	save: function (cm, icon, cursor, selection) {
-                		var that = this;
-                		layer.load(2);
-                		$.post("[(@{/markdown/ajax/save})]", {
-                			"[(${_csrf.parameterName})]": "[(${_csrf.token})]",
-                			uuid: "[(${markdown.uuid})]",
-                			name: "[(${markdown.name})]",
-                			content: that.getMarkdown()
-                		}, function (resultJson) {
-                			layer.closeAll();
-                			if(resultJson.statusCode == 200) {
-    							layer.msg(resultJson.message ? resultJson.message:"已保存", { icon: 1, time: 1500 });
-    						} else {
-    							layer.msg(resultJson.message ? resultJson.message:"出错了", { icon: 5, shift:6 });
-    						}
-                		});
-                	}
-                },
-                onload: function () {
-                	$("div.editormd-toolbar-container>ul.editormd-menu>li>a[title='Emoji表情']").parent().hide();
-                	var that = this;
-    	    		var originFn = window.onresize;
-    	       		window.onresize = function () { 
-    	       			originFn && originFn();
-    	       			that.resize(document.body.clientWidth, document.body.clientHeight);
-    	       		}
-                }
+                imageUpload: false
             });
 		});
 	</script>
