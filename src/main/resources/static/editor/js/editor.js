@@ -594,9 +594,31 @@
 								title: '列名',
 								width: 150,
 								editor: {
-									type: 'textbox',
-									options:{
-										required: true
+									type: 'combogrid',
+									options: {
+										required: true,
+										editable: true,
+										fit: true,
+										fitColumns: true,
+             							panelWidth: '100%',
+										idField: 'name',
+					             		textField: 'name',
+					            		pagination: true,
+					            		pageSize: 10,
+	            						mode: 'remote',
+										method: 'get',
+										url: ctx + '/erFieldLib/ajax/page',
+					                   	onBeforeLoad: $.pageOnBeforeLoad,
+					                  	columns:[[
+						                    { field: 'name', title: '列名', width: 150 },
+					                       	{ field: 'comment', title: '注释', width: 160 },
+					                   		{ field: 'jdbcType', title: '数据类型', width: 120 },
+					                   		{ field: 'size', title: '长度', width: 60 },
+					                   		{ field: 'digit', title: '精度', width: 60 },
+					                   		{ field: 'isNullable', title: '是否可为空', width: 80, formatter: $.yesNoFormatter },
+					                   		{ field: 'autoIncrement', title: '是否自增', width: 80, formatter: $.yesNoFormatter },
+					                   		{ field: 'columnDef', title: '字段默认值', width: 80 }
+					              		]]
 									}
 								}
 							},
@@ -613,14 +635,14 @@
 								},
 								editor: {
 									type: 'combobox',
-									options:{
-										required:true,
-										editable:true,
-										textField:'label',
-										valueField:'value',
-										panelHeight:350,
+									options: {
+										required: true,
+										editable: true,
+										textField: 'label',
+										valueField: 'value',
+										panelHeight: 350,
 										data:(function () {
-											var data=[];
+											var data = [];
 											$.each(JDBC_TYPE, function (key, text) {
 												data.push({ label: text, value: key});
 											});
