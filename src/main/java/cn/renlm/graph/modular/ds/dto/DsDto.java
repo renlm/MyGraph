@@ -1,6 +1,6 @@
-package cn.renlm.graph.modular.er.dto;
+package cn.renlm.graph.modular.ds.dto;
 
-import cn.renlm.graph.modular.er.entity.Ds;
+import cn.renlm.graph.modular.ds.entity.Ds;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
