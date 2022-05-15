@@ -743,13 +743,17 @@
 							$.messager.myuiAlert('操作提示', '请选择要添加的数据库表', 'error');
 							return;
 						}
-						var opflag = false;
-						if(callback) {
-							opflag = callback(checkedErs);
-						}
-						if(opflag) {
-							$myDialog.dialog("destroy");
-						}
+						var $index = layer.load(2);
+						setTimeout(function () {
+							var opflag = false;
+							if(callback) {
+								opflag = callback(checkedErs);
+							}
+							layer.close($index);
+							if(opflag) {
+								$myDialog.dialog("destroy");
+							}
+						}, 100);
 					}
 		        }, 
                 {
@@ -800,15 +804,17 @@
 							$.messager.myuiAlert('操作提示', '请选择要添加的字段', 'error');
 							return;
 						}
-						var opflag = false;
-						if(callback) {
-							$.messager.progress({'text': '正在添加……'});
-							opflag = callback(checkedErFields);
-							$.messager.progress('close');
-						}
-						if(opflag) {
-							$myDialog.dialog("destroy");
-						}
+						var $index = layer.load(2);
+						setTimeout(function () {
+							var opflag = false;
+							if(callback) {
+								opflag = callback(checkedErFields);
+							}
+							layer.close($index);
+							if(opflag) {
+								$myDialog.dialog("destroy");
+							}
+						}, 100);
 					}
 		        }, 
                 {
