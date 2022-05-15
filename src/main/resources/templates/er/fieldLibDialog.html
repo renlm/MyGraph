@@ -22,10 +22,10 @@
                 <input type="text" th:field="*{sqlType}"
                  	class="easyui-combobox"
                  	data-options="required:true,
+                   		editable:false,
                    		prompt:'必选',
                 		width:'100%',
                    		panelHeight:250,
-                   		editable:false,
 						method:'get',
                    		url:ctx+'/sys/dict/ajax/getTree?codePaths=JDBC_TYPE',
                     	valueField:'code',

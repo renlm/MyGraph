@@ -233,7 +233,10 @@
 		        return '更多功能';
 		    } else if(value == 'permission') {
 		        return '权限';
-		    } else {
+		    } else if(value == 'markdown') {
+				var e = '<a href=\'javascript:editRow('+value+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>Markdown文档</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
+				return e;
+			} else {
 		        return value;
 		    }
 		},
