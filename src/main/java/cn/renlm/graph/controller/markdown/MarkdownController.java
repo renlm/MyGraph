@@ -65,6 +65,7 @@ public class MarkdownController {
 	@GetMapping("/viewer")
 	public String viewer(ModelMap model, String uuid) {
 		Markdown markdown = new Markdown();
+		markdown.setUuid(uuid);
 		if (StrUtil.isNotBlank(uuid)) {
 			Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
 			if (ObjectUtil.isNotEmpty(entity)) {

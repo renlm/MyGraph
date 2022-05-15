@@ -21,16 +21,17 @@
 </head>
 <body>
 	<div id="editormd" class="noborder"></div>
+	<textarea id="markdown" style="display: none;" th:text="${markdown.content}"></textarea>
 	<script type="text/javascript">
 		$(function () {
 			var myEditor = editormd("editormd", {
 				width: document.body.clientWidth,
 				height: document.body.clientHeight,
             	path: "[(@{/webjars/editor.md/lib/})]",
-                theme: "eclipse",
-                previewTheme: "eclipse",
-                editorTheme: "eclipse",
-                markdown: "[(${markdown.content})]",
+                theme: "default",
+                previewTheme: "default",
+                editorTheme: "default",
+                markdown: $("#markdown").val(),
                 codeFold: true,
                 saveHTMLToTextarea: true,
                 searchReplace: true,
