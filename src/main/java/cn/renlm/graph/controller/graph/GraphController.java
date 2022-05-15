@@ -215,6 +215,16 @@ public class GraphController {
 	}
 
 	/**
+	 * 选择器（字段）
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/dbFieldSelector")
+	public String dbFieldSelector() {
+		return "graph/dbFieldSelector";
+	}
+
+	/**
 	 * 图形编辑
 	 * 
 	 * @param model
