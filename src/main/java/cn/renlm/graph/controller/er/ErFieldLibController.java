@@ -102,7 +102,7 @@ public class ErFieldLibController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/save")
-	public Result<?> ajaxSave(Authentication authentication, ErFieldLibDto form) {
+	public Result<ErFieldLibDto> ajaxSave(Authentication authentication, ErFieldLibDto form) {
 		try {
 			User user = (User) authentication.getPrincipal();
 			return iErFieldLibService.ajaxSave(user, form);

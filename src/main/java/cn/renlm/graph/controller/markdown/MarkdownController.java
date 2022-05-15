@@ -14,9 +14,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
-import cn.renlm.graph.modular.er.dto.ErFieldLibDto;
-import cn.renlm.graph.modular.er.entity.ErFieldLib;
-import cn.renlm.graph.modular.er.service.IErFieldLibService;
+import cn.renlm.graph.modular.markdown.entity.Markdown;
+import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 import cn.renlm.graph.response.Result;
 
 /**
@@ -26,31 +25,46 @@ import cn.renlm.graph.response.Result;
  *
  */
 @Controller
-@RequestMapping("/erFieldLib")
+@RequestMapping("/markdown")
 public class MarkdownController {
 
 	@Autowired
-	private IErFieldLibService iErFieldLibService;
+	private IMarkdownService iMarkdownService;
 
 	/**
-	 * 弹窗（新增|编辑）
+	 * 编辑器
 	 * 
 	 * @param model
 	 * @param uuid
 	 * @return
 	 */
-	@GetMapping("/dialog")
-	public String dialog(ModelMap model, String uuid) {
-		ErFieldLib erFieldLib = new ErFieldLib();
-		erFieldLib.setAutoIncrement(false);
-		erFieldLib.setIsNullable(true);
+	@GetMapping("/editor")
+	public String editor(ModelMap model, String uuid) {
+		Markdown markdown = new Markdown();
 		if (StrUtil.isNotBlank(uuid)) {
-			ErFieldLib entity = iErFieldLibService
-					.getOne(Wrappers.<ErFieldLib>lambdaQuery().eq(ErFieldLib::getUuid, uuid));
-			BeanUtil.copyProperties(entity, erFieldLib);
+			Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
+			BeanUtil.copyProperties(entity, markdown);
 		}
-		model.put("erFieldLib", erFieldLib);
-		return "er/fieldLibDialog";
+		model.put("markdown", markdown);
+		return "markdown/editor";
+	}
+
+	/**
+	 * 查看器
+	 * 
+	 * @param model
+	 * @param uuid
+	 * @return
+	 */
+	@GetMapping("/viewer")
+	public String viewer(ModelMap model, String uuid) {
+		Markdown markdown = new Markdown();
+		if (StrUtil.isNotBlank(uuid)) {
+			Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
+			BeanUtil.copyProperties(entity, markdown);
+		}
+		model.put("markdown", markdown);
+		return "markdown/viewer";
 	}
 
 	/**
@@ -62,10 +76,10 @@ public class MarkdownController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/save")
-	public Result<?> ajaxSave(Authentication authentication, ErFieldLibDto form) {
+	public Result<?> ajaxSave(Authentication authentication, Markdown form) {
 		try {
 			User user = (User) authentication.getPrincipal();
-			return iErFieldLibService.ajaxSave(user, form);
+			return iMarkdownService.ajaxSave(user, form);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
