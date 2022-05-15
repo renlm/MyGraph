@@ -26,17 +26,17 @@
 		 */
 		openMarkdownEditor: function (uuid, title, openNew, iconCls) {
 			if(openNew) {
-				top.window.open(ctx + '/markdown/editor?uuid=' + uuid);
+				top.window.open(ctx + '/markdown/editor?uuid=' + uuid + '&name=' + title);
 			} else {
 				try {
 					top.MyUI.addIndexTab({
 						id : "MarkdownEditor-" + uuid,
 						title : title,
-						href : '/markdown/editor?uuid=' + uuid,
+						href : '/markdown/editor?uuid=' + uuid + '&name=' + title,
 						iconCls : iconCls ? iconCls : 'fa fa-edit'
 					});
 				} catch(e) {
-					top.window.open(ctx + '/markdown/editor?uuid=' + uuid);
+					top.window.open(ctx + '/markdown/editor?uuid=' + uuid + '&name=' + title);
 				}
 			}
 		},

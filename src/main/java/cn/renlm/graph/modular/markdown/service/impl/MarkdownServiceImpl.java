@@ -39,14 +39,23 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 			form.setDeleted(false);
 		} else {
 			Markdown entity = this.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, form.getUuid()));
-			form.setId(entity.getId());
-			form.setCreatedAt(entity.getCreatedAt());
-			form.setCreatorUserId(entity.getCreatorUserId());
-			form.setCreatorNickname(entity.getCreatorNickname());
-			form.setUpdatedAt(new Date());
-			form.setUpdatorUserId(user.getUserId());
-			form.setUpdatorNickname(user.getNickname());
-			form.setDeleted(entity.getDeleted());
+			if (entity == null) {
+				form.setUuid(form.getUuid());
+				form.setCreatedAt(new Date());
+				form.setCreatorUserId(user.getUserId());
+				form.setCreatorNickname(user.getNickname());
+				form.setUpdatedAt(form.getCreatedAt());
+				form.setDeleted(false);
+			} else {
+				form.setId(entity.getId());
+				form.setCreatedAt(entity.getCreatedAt());
+				form.setCreatorUserId(entity.getCreatorUserId());
+				form.setCreatorNickname(entity.getCreatorNickname());
+				form.setUpdatedAt(new Date());
+				form.setUpdatorUserId(user.getUserId());
+				form.setUpdatorNickname(user.getNickname());
+				form.setDeleted(entity.getDeleted());
+			}
 		}
 		this.saveOrUpdate(form);
 		return Result.success(form);

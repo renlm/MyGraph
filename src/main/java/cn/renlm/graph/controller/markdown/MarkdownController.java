@@ -37,11 +37,14 @@ public class MarkdownController {
 	 * 
 	 * @param model
 	 * @param uuid
+	 * @param name
 	 * @return
 	 */
 	@GetMapping("/editor")
-	public String editor(ModelMap model, String uuid) {
+	public String editor(ModelMap model, String uuid, String name) {
 		Markdown markdown = new Markdown();
+		markdown.setUuid(uuid);
+		markdown.setName(name);
 		if (StrUtil.isNotBlank(uuid)) {
 			Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
 			if (ObjectUtil.isNotEmpty(entity)) {

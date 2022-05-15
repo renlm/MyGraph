@@ -13,6 +13,9 @@
 	<!-- Editor.md -->
 	<link rel="stylesheet" th:href="@{/webjars/editor.md/css/editormd.min.css}" />
 	<script th:src="@{/webjars/editor.md/editormd.js}"></script>
+	<!-- Layui -->
+	<link th:href="@{/webjars/layui/css/layui.css}" rel="stylesheet" />
+	<script th:src="@{/webjars/layui/layui.js}"></script>
 	<!-- 样式修正 -->
 	<link rel="stylesheet" th:href="@{/static/css/markdown.css}" />
 </head>
@@ -27,7 +30,7 @@
                 theme: "eclipse",
                 previewTheme: "eclipse",
                 editorTheme: "eclipse",
-                markdown: null,
+                markdown: "[(${markdown.content})]",
                 codeFold: true,
                 saveHTMLToTextarea: true,
                 searchReplace: true,
@@ -54,7 +57,21 @@
                 },
                 toolbarHandlers: {
                 	save: function (cm, icon, cursor, selection) {
-                		console.log(cm, icon, cursor, selection);
+                		var that = this;
+                		layer.load(2);
+                		$.post("[(@{/markdown/ajax/save})]", {
+                			"[(${_csrf.parameterName})]": "[(${_csrf.token})]",
+                			uuid: "[(${markdown.uuid})]",
+                			name: "[(${markdown.name})]",
+                			content: that.getMarkdown()
+                		}, function (resultJson) {
+                			layer.closeAll();
+                			if(resultJson.statusCode == 200) {
+    							layer.msg(resultJson.message ? resultJson.message:"已保存", { icon: 1, time: 1500 });
+    						} else {
+    							layer.msg(resultJson.message ? resultJson.message:"出错了", { icon: 5, shift:6 });
+    						}
+                		});
                 	}
                 },
                 onload: function () {
