@@ -39,7 +39,25 @@
                 flowChart: true,
                 sequenceDiagram: true,
                 imageUpload: false,
-                onload : function () {
+                toolbarIcons: function () {
+                	var toolbarIcons = editormd.toolbarModes.full;
+                	toolbarIcons.push("save");
+                	return toolbarIcons;
+                },
+                toolbarIconsClass: {
+                	save: "fa fa-save"
+                },
+                lang: {
+                    toolbar: {
+                    	save: "保存"
+                    }
+                },
+                toolbarHandlers: {
+                	save: function (cm, icon, cursor, selection) {
+                		console.log(cm, icon, cursor, selection);
+                	}
+                },
+                onload: function () {
                 	$("div.editormd-toolbar-container>ul.editormd-menu>li>a[title='Emoji表情']").parent().hide();
                 	var that = this;
     	    		var originFn = window.onresize;
