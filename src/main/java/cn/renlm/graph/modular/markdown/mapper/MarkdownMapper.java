@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * Markdown 文库 Mapper 接口
+ * Markdown 文档 Mapper 接口
  * </p>
  *
  * @author Renlm

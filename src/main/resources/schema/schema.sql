@@ -290,7 +290,7 @@ CREATE TABLE er_field_lib (
     remark VARCHAR(255) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'ER模型-我的字段库';
 
--- Markdown 文库
+-- Markdown 文档
 DROP TABLE IF EXISTS markdown;
 CREATE TABLE markdown (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
@@ -305,7 +305,7 @@ CREATE TABLE markdown (
     updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
     remark VARCHAR(255) COMMENT '备注'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown 文库';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown 文档';
 
 -- 图形设计
 DROP TABLE IF EXISTS graph;

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * Markdown 文库 服务类
+ * Markdown 文档 服务类
  * </p>
  *
  * @author Renlm

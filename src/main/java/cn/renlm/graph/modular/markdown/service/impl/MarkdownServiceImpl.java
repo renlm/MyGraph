@@ -10,7 +10,7 @@ import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 
 /**
  * <p>
- * Markdown 文库 服务实现类
+ * Markdown 文档 服务实现类
  * </p>
  *
  * @author Renlm
