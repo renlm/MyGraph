@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.sys.entity;
+package cn.renlm.graph.modular.ds.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 用户角色关系
+ * 数据源-ER模型关系
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("sys_user_role")
-public class SysUserRole implements Serializable {
+@TableName("ds_er_rel")
+public class DsErRel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,16 +33,16 @@ public class SysUserRole implements Serializable {
     private Long id;
 
     /**
-     * 用户表（主键ID）
+     * 数据源表主键ID
      */
-    @TableField("sys_user_id")
-    private Long sysUserId;
+    @TableField("ds_id")
+    private Long dsId;
 
     /**
-     * 角色表（主键ID）
+     * ER模型表主键ID
      */
-    @TableField("sys_role_id")
-    private Long sysRoleId;
+    @TableField("er_id")
+    private Long erId;
 
     /**
      * 创建时间
@@ -51,10 +51,34 @@ public class SysUserRole implements Serializable {
     private Date createdAt;
 
     /**
+     * 创建人（用户ID）
+     */
+    @TableField("creator_user_id")
+    private String creatorUserId;
+
+    /**
+     * 创建人（昵称）
+     */
+    @TableField("creator_nickname")
+    private String creatorNickname;
+
+    /**
      * 更新时间
      */
     @TableField("updated_at")
     private Date updatedAt;
+
+    /**
+     * 更新人（用户ID）
+     */
+    @TableField("updator_user_id")
+    private String updatorUserId;
+
+    /**
+     * 更新人（昵称）
+     */
+    @TableField("updator_nickname")
+    private String updatorNickname;
 
     /**
      * 是否删除（默认否）

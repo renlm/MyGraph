@@ -22,12 +22,15 @@
 		<table author="Renlm" name="sys_file" entity="true" />
 	</module>
 
-	<module name="er" package="cn.renlm.graph.modular">
+	<module name="ds" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="ds" entity="true" />
+		<table author="Renlm" name="ds_er_rel" entity="true" />
+	</module>
+
+	<module name="er" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="er" entity="true" />
 		<table author="Renlm" name="er_field" entity="true" />
 		<table author="Renlm" name="er_field_lib" entity="true" />
-		<table author="Renlm" name="ds_er_rel" entity="true" />
 	</module>
 
 	<module name="markdown" package="cn.renlm.graph.modular">
