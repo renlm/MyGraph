@@ -589,68 +589,11 @@
 						frozenColumns: [[
 							{field:'uuid',title:'UUID',checkbox:true},
 							{field:'id',title:'序号',formatter:function(value,row,index){if(value&&index){}return $myDatagrid.datagrid('getRowIndex',row)+1;}},
-							{
-								field: 'name',
-								title: '列名',
-								width: 150,
-								editor: {
-									type: 'combogrid',
-									options: {
-										required: true,
-										editable: true,
-										fit: true,
-										fitColumns: true,
-             							panelWidth: '100%',
-										idField: 'name',
-					             		textField: 'name',
-					            		pagination: true,
-					            		pageSize: 10,
-	            						mode: 'remote',
-										method: 'get',
-										url: ctx + '/erFieldLib/ajax/page',
-					                   	onBeforeLoad: $.pageOnBeforeLoad,
-					                  	columns:[[
-						                    { field: 'name', title: '列名', width: 150 },
-					                       	{ field: 'comment', title: '注释', width: 160 },
-					                   		{ field: 'jdbcType', title: '数据类型', width: 120 },
-					                   		{ field: 'size', title: '长度', width: 60 },
-					                   		{ field: 'digit', title: '精度', width: 60 },
-					                   		{ field: 'isNullable', title: '是否可为空', width: 80, formatter: $.yesNoFormatter },
-					                   		{ field: 'autoIncrement', title: '是否自增', width: 80, formatter: $.yesNoFormatter },
-					                   		{ field: 'columnDef', title: '字段默认值', width: 80 }
-					              		]]
-									}
-								}
-							},
+							{field:'name',title:'列名',width:150,editor:{type:'textbox',options:{required:true}}},
 							{field:'comment',title:'注释',width:160,editor:{type:'textbox',options:{required:true}}},
 						]],
 						columns: [[
-							{
-								field: 'sqlType',
-								title: '数据类型',
-								width: 120,
-								formatter: function (value, row, index) {
-									if (value && index) { }
-									return JDBC_TYPE[row.sqlType];
-								},
-								editor: {
-									type: 'combobox',
-									options: {
-										required: true,
-										editable: true,
-										textField: 'label',
-										valueField: 'value',
-										panelHeight: 350,
-										data:(function () {
-											var data = [];
-											$.each(JDBC_TYPE, function (key, text) {
-												data.push({ label: text, value: key});
-											});
-											return data;
-										})()
-									}
-								}
-							},
+							{field:'sqlType',title:'数据类型',width:120,formatter:function(value,row,index){if(value&&index){}return JDBC_TYPE[row.sqlType];},editor:{type:'combobox',options:{required:true,editable:true,textField:'label',valueField:'value',panelHeight:350,data:(function(){var data=[];$.each(JDBC_TYPE,function(key,text){data.push({label:text,value:key})});return data;})()}}},
 							{field:'size',title:'长度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
 							{field:'digit',title:'精度',width:60,align:'right',editor:{type:'numberspinner',options:{required:false}}},
 							{field:'isNullable',title:'是否可为空',width:80,align:'center',formatter:$.yesNoFormatter,editor:{type:'combobox',options:{required:true,editable:false,textField:'label',valueField:'value',panelHeight:70,data:[{label:'是',value:true},{label:'否',value:false}]}}},
