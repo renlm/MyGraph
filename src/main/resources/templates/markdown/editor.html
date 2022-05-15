@@ -4,6 +4,49 @@
 	<title th:text="${markdown.name}"></title>
 </head>
 <body layout:fragment="content">
-
+	<!--1.左右两列布局-->
+	<div class="easyui-layout" data-options="fit:true">
+		<!--1.1 代码编辑器-->
+		<div data-options="region:'west',
+				split:true,
+				border:false,
+				bodyCls:'border_right',
+				width:'50%'">
+			<div id="editorPanel" class="easyui-panel"
+				data-options="iconCls:'fa fa-file-code-o',
+					title:' 代 码 ',
+					fit:true,
+					border:false,
+					headerCls:'border_top_left_none',
+					bodyCls:'border_left_none',
+					footer:'#editorPanelToolbar'">
+			</div>
+		</div>
+		<!--1.2 效果预览-->
+		<div data-options="region:'center',
+				border:false,
+				iconCls:'fa fa-eye',
+				split:true">
+			<div style="height: 100%">
+				<div id="previewPanel" 
+					class="easyui-panel"
+					data-options="iconCls:'fa fa-eye',
+						title:' 预 览 ',
+						fit:true,
+						headerCls:'border_top_right_none'">
+					<iframe id="preview" frameborder="0"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--2.代码编辑器工具栏-->
+	<div id="editorPanelToolbar">
+		<div class="myui-fluid" style="text-align: right">
+			<a class="easyui-linkbutton myui-btn-green"
+				data-options="iconCls:'fa fa-play-circle'
+				"> 保 存
+			</a>
+		</div>
+	</div>
 </body>
 </html>

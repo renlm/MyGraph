@@ -1,22 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-	<title>MyGraph 在线画图</title>
-	<meta charset="UTF-8" />
-	<meta name="renderer" content="webkit" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-	<!-- Ico -->
-    <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
-    <!-- 样式美化 -->
+	<title>Markdown文档</title>
+	<!-- 样式美化 -->
 	<link rel="stylesheet" th:href="@{/webjars/editor.md/css/editormd.preview.min.css}" />
-	<link rel="stylesheet" th:href="@{/static/css/main.css}" />
+	<!-- MyUI -->
+	<link rel="stylesheet" th:href="@{/static/MyUI/themes/default/newStyle.css}" />
 </head>
 <body class="editormder">
-	<div id="layout">
-		<div layout:fragment="content"></div>
-	</div>
-	<script th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+	<div layout:fragment="content"></div>
 	<script th:src="@{/webjars/editor.md/lib/marked.min.js}"></script>
 	<script th:src="@{/webjars/editor.md/lib/prettify.min.js}"></script>
 	<script th:src="@{/webjars/editor.md/lib/raphael.min.js}"></script>
