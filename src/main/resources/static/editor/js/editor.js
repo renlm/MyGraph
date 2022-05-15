@@ -462,7 +462,10 @@
 		            text: "添加字段",
 		            iconCls: "left fa fa-plus",
 		            handler: function () {
-						
+						dbFieldSelector({ id: 'dbFieldSelector', width: 850, height: 512 }, 
+						function (checkedErFields) {
+							console.log(checkedErFields);
+						});
 					}
 		        },
 				{
@@ -733,6 +736,63 @@
 						var opflag = false;
 						if(callback) {
 							opflag = callback(checkedErs);
+						}
+						if(opflag) {
+							$myDialog.dialog("destroy");
+						}
+					}
+		        }, 
+                {
+               		text: "关闭", 
+					iconCls: "fa fa-close", 
+					handler: function () {
+                        $myDialog.dialog("destroy");
+                    }
+                }
+            ],
+			onClose: function () {
+				$myDialog.dialog('destroy');
+			}
+        };
+        $myDialog.myuiDialog($.extend(true, {}, defaultOptions, opts));
+        return $myDialog;
+    }
+	/***
+     * 通过js触发打开一个字段选择器
+     * @param opts 需要覆盖的属性
+     * @param callback 回调函数
+     * @returns {*|jQuery|HTMLElement}
+     */
+	function dbFieldSelector (opts, callback) {
+        var myDialogId = opts.id || (new Date()).getTime();
+		var width = opts.width ? opts.width : 850;
+		var height = opts.height ? opts.height : 512;
+        var $myDialog = $("<form id='" + myDialogId + "' class='myui' style='overflow-x: hidden' ></form>");
+        var defaultOptions = {
+            title: opts.title ? opts.title : "我的字段库",
+			top: 120,
+            width: width,
+            height: height,
+			collapsible: true,
+			minimizable: false,
+			maximizable: true,
+        	closed: false,
+        	cache: false,
+            href: ctx + "/graph/dbFieldSelector",
+			modal: true,
+            buttons: [
+				{
+		            text: "确定",
+		            iconCls: "fa fa-save",
+		            handler: function () {
+						var checkedErFields = $('#erDataGrid').datagrid('getChecked');
+						if(!checkedErFields || checkedErFields.length == 0) {
+							$.messager.myuiAlert('操作提示', '请选择要添加的字段', 'error');
+							return;
+						}
+						var opflag = false;
+						if(callback) {
+							opflag = callback(checkedErFields);
 						}
 						if(opflag) {
 							$myDialog.dialog("destroy");
