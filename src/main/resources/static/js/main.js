@@ -266,7 +266,29 @@
 		/**
 		 * 资源类别格式化
 		 */
-		resourceTypeFormatter: function (value, row) {
+		resourceTypeFormatter: function (value) {
+			if(value == 'menu') {
+		        return '菜单';
+		    } else if(value == 'button') {
+		        return '按钮';
+		    } else if(value == 'urlInsidePage') {
+		        return '链接-内页';
+		    } else if(value == 'urlNewWindows') {
+		        return '链接-新窗口';
+		    } else if(value == 'more') {
+		        return '更多功能';
+		    } else if(value == 'permission') {
+		        return '权限';
+		    } else if(value == 'markdown') {
+				return 'Markdown文档';
+			} else {
+		        return value;
+		    }
+		},
+		/**
+		 * 资源类别格式化（带按钮）
+		 */
+		resourceTypeBtnFormatter: function (value, row) {
 			if(value == 'menu') {
 		        return '菜单';
 		    } else if(value == 'button') {
