@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
@@ -43,7 +44,9 @@ public class MarkdownController {
 		Markdown markdown = new Markdown();
 		if (StrUtil.isNotBlank(uuid)) {
 			Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
-			BeanUtil.copyProperties(entity, markdown);
+			if (ObjectUtil.isNotEmpty(entity)) {
+				BeanUtil.copyProperties(entity, markdown);
+			}
 		}
 		model.put("markdown", markdown);
 		return "markdown/editor";
@@ -61,7 +64,9 @@ public class MarkdownController {
 		Markdown markdown = new Markdown();
 		if (StrUtil.isNotBlank(uuid)) {
 			Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
-			BeanUtil.copyProperties(entity, markdown);
+			if (ObjectUtil.isNotEmpty(entity)) {
+				BeanUtil.copyProperties(entity, markdown);
+			}
 		}
 		model.put("markdown", markdown);
 		return "markdown/viewer";

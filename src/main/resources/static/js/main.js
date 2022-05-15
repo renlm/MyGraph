@@ -17,6 +17,29 @@
  */
 (function($) {
 	$.extend({
+		/**
+		 * 打开Markdown文档编辑器
+		 * @param params uuid 唯一标识
+		 * @param params title 标题
+		 * @param params openNew 是否打开新网页（默认否）
+		 * @param params iconCls 导航栏图标
+		 */
+		openMarkdownEditor: function (uuid, title, openNew, iconCls) {
+			if(openNew) {
+				top.window.open(ctx + '/markdown/editor?uuid=' + uuid);
+			} else {
+				try {
+					top.MyUI.addIndexTab({
+						id : "MarkdownEditor-" + uuid,
+						title : title,
+						href : '/markdown/editor?uuid=' + uuid,
+						iconCls : iconCls ? iconCls : 'fa fa-edit'
+					});
+				} catch(e) {
+					top.window.open(ctx + '/markdown/editor?uuid=' + uuid);
+				}
+			}
+		},
 		/***
          * 通过js触发打开一个错误消息列表
          * @param opts 需要覆盖的属性
@@ -220,7 +243,7 @@
 		/**
 		 * 资源类别格式化
 		 */
-		resourceTypeFormatter: function (value) {
+		resourceTypeFormatter: function (value, row) {
 			if(value == 'menu') {
 		        return '菜单';
 		    } else if(value == 'button') {
@@ -234,8 +257,7 @@
 		    } else if(value == 'permission') {
 		        return '权限';
 		    } else if(value == 'markdown') {
-				var e = '<a href=\'javascript:editRow('+value+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>Markdown文档</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
-				return e;
+				return '<a href="javascript:$.openMarkdownEditor(\'' + row.resourceId + '\',\'' + row.text + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain" style="width: 100px;"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text" style="margin: 0px;">Markdown文档</span></span></a>';
 			} else {
 		        return value;
 		    }
