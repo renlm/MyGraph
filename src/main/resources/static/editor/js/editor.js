@@ -464,7 +464,16 @@
 		            handler: function () {
 						dbFieldLibSelector({ id: 'dbFieldLibSelector', width: 850, height: 512 }, 
 						function (checkedErFields) {
-							console.log(checkedErFields);
+							var $myDatagrid = $("#" + myDialogDatagridId);
+							$.each(checkedErFields, function (index, row) {
+								if (index) { }
+								var rowDatas = $myDatagrid.datagrid('getRows');
+								var $selectedRow = $myDatagrid.datagrid('getSelected');
+								var $selectedRowIndex = $selectedRow == null ? rowDatas.length : $myDatagrid.datagrid('getRowIndex', $selectedRow) + 1;
+								$myDatagrid.datagrid('insertRow', { index: $selectedRowIndex, row: row });
+								$myDatagrid.datagrid('beginEdit', $selectedRowIndex);
+							});
+							refreshAllRowSeq();
 							return true;
 						});
 					}
@@ -793,7 +802,9 @@
 						}
 						var opflag = false;
 						if(callback) {
+							$.messager.progress({'text': '正在添加……'});
 							opflag = callback(checkedErFields);
+							$.messager.progress('close');
 						}
 						if(opflag) {
 							$myDialog.dialog("destroy");
