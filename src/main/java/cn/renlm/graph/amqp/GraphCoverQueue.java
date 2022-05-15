@@ -78,6 +78,7 @@ public class GraphCoverQueue {
 		try {
 			image = ERModelParser.createBufferedImage(graph, fitWindow);
 		} catch (Exception e) {
+			fitWindow = true;
 			e.printStackTrace();
 		}
 		Setting chromeSetting = new Setting(ConstVal.chromeSetting.getSettingPath());
