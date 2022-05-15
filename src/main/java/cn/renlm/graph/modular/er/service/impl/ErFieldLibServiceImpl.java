@@ -81,6 +81,16 @@ public class ErFieldLibServiceImpl extends ServiceImpl<ErFieldLibMapper, ErField
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public Result<ErFieldLibDto> ajaxSave(User user, ErFieldLibDto form) {
+		long cnt = this.count(Wrappers.<ErFieldLib>lambdaQuery().func(wrapper -> {
+			if (StrUtil.isNotBlank(form.getUuid())) {
+				wrapper.ne(ErFieldLib::getUuid, form.getUuid());
+			}
+			wrapper.eq(ErFieldLib::getName, form.getName());
+			wrapper.eq(ErFieldLib::getDeleted, false);
+		}));
+		if (cnt > 0) {
+			return Result.error("字段已存在，无需重复添加！");
+		}
 		form.setJdbcType(JdbcType.valueOf(form.getSqlType()).name());
 		if (StrUtil.isBlank(form.getUuid())) {
 			form.setUuid(IdUtil.simpleUUID().toUpperCase());
