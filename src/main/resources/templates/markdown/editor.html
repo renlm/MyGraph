@@ -1,63 +1,53 @@
 <!DOCTYPE html>
-<html lang="zh-CN" layout:decorate="~{layout/decorate}">
+<html lang="zh-CN">
 <head>
 	<title>Markdown文档</title>
+	<meta charset="UTF-8" />
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<!-- Ico -->
+    <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
+	<!-- Jquery -->
+	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
 	<!-- Editor.md -->
 	<link rel="stylesheet" th:href="@{/webjars/editor.md/css/editormd.min.css}" />
 	<script th:src="@{/webjars/editor.md/editormd.js}"></script>
-	<!-- MyUI -->
-	<link rel="stylesheet" th:href="@{/static/MyUI/themes/default/newStyle.css}" />
+	<!-- 样式修正 -->
+	<link rel="stylesheet" th:href="@{/static/css/markdown.css}" />
 </head>
-<body layout:fragment="content">
-	<div class="easyui-layout" 
-		data-options="fit:true">
-		<div data-options="region:'center',
-				border:false,
-				split:true,
-				iconCls:'fa fa-eye'
-			">
-			<div class="easyui-panel"
-					data-options="fit:true,
-						bodyCls:'border_left_none',
-						footer:'#editormdToolbar'
-					">
-					<div id="editormd" style="margin-bottom: 0px;"></div>
-				</div>
-		</div>
-	</div>
-	<div id="editormdToolbar">
-		<div class="myui-fluid" style="text-align: right;">
-			<a class="easyui-linkbutton myui-btn-green"
-				data-options="iconCls:'fa fa-play-circle'
-				"> 保 存
-			</a>
-		</div>
-	</div>
+<body>
+	<div id="editormd" class="noborder"></div>
 	<script type="text/javascript">
 		$(function () {
 			var myEditor = editormd("editormd", {
-				width: "100%",
-				height: document.body.clientHeight - 41,
+				width: document.body.clientWidth,
+				height: document.body.clientHeight,
             	path: "[(@{/webjars/editor.md/lib/})]",
-                theme: "dark",
-                previewTheme: "dark",
-                editorTheme: "pastel-on-dark",
+                theme: "eclipse",
+                previewTheme: "eclipse",
+                editorTheme: "eclipse",
                 markdown: null,
                 codeFold: true,
-                saveHTMLToTextarea: true,    // 保存 HTML 到 Textarea
+                saveHTMLToTextarea: true,
                 searchReplace: true,
-                htmlDecode: "style,script,iframe|on*", // 开启 HTML 标签解析，为了安全性，默认不开启    
+                htmlDecode: "style,script,iframe|on*",  
                 emoji: true,
                 taskList: true,
-                tocm: true,         // Using [TOCM]
-                tex: true,                   // 开启科学公式TeX语言支持，默认关闭
-                flowChart: true,             // 开启流程图支持，默认关闭
-                sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+                tocm: true,
+                tex: true,
+                flowChart: true,
+                sequenceDiagram: true,
                 imageUpload: true,
                 imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
                 imageUploadURL: "./php/upload.php",
                 onload : function () {
-                	
+                	var that = this;
+    	    		var originFn = window.onresize;
+    	       		window.onresize = function () { 
+    	       			originFn && originFn();
+    	       			that.resize(document.body.clientWidth, document.body.clientHeight);
+    	       		}
                 }
             });
 		});
