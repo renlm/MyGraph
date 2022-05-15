@@ -6,9 +6,7 @@
 	<link rel="stylesheet" th:href="@{/webjars/editor.md/css/editormd.preview.min.css}" />
 	<!-- MyUI -->
 	<link rel="stylesheet" th:href="@{/static/MyUI/themes/default/newStyle.css}" />
-</head>
-<body class="editormder">
-	<div layout:fragment="content"></div>
+	<!-- Editor.md -->
 	<script th:src="@{/webjars/editor.md/lib/marked.min.js}"></script>
 	<script th:src="@{/webjars/editor.md/lib/prettify.min.js}"></script>
 	<script th:src="@{/webjars/editor.md/lib/raphael.min.js}"></script>
@@ -17,5 +15,8 @@
 	<script th:src="@{/webjars/editor.md/lib/flowchart.min.js}"></script>
 	<script th:src="@{/webjars/editor.md/lib/jquery.flowchart.min.js}"></script>
 	<script th:src="@{/webjars/editor.md/editormd.js}"></script>
+</head>
+<body class="editormder">
+	<div layout:fragment="content"></div>
 </body>
 </html>
