@@ -60,7 +60,7 @@ public class ErFieldLibController {
 	 * @param uuid
 	 * @return
 	 */
-	@RequestMapping("/dialog")
+	@GetMapping("/dialog")
 	public String dialog(ModelMap model, String uuid) {
 		ErFieldLib erFieldLib = new ErFieldLib();
 		erFieldLib.setAutoIncrement(false);
