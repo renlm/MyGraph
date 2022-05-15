@@ -116,7 +116,8 @@ public class User extends SysUser implements org.springframework.security.core.u
 			return CollUtil.newArrayList();
 		}
 		SysResource parent = new SysResource();
-		Resource.Type[] types = { Resource.Type.menu, Resource.Type.urlInsidePage, Resource.Type.urlNewWindows };
+		Resource.Type[] types = { Resource.Type.menu, Resource.Type.urlInsidePage, Resource.Type.urlNewWindows,
+				Resource.Type.markdown };
 		List<SysResource> list = this.getResources().stream().filter(r -> {
 			if (StrUtil.equals(parentUuid, r.getResourceId())) {
 				BeanUtil.copyProperties(r, parent);
