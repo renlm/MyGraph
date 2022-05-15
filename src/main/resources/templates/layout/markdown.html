@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta name="renderer" content="webkit" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="keywords" content="ER图,在线画图,Java" />
+	<meta name="description" content="ER图,在线画图服务" />
+	<title>在线画图</title>
+	<link rel="stylesheet" href="../../webjars/editor.md/css/editormd.preview.min.css" />
+	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+	<link href="../css/main.css" rel="stylesheet" />
+</head>
+<body class="editormder">
+	<div id="layout">
+		<div id="editormd-view"></div>
+	</div>
+	<script src="../../webjars/jquery/dist/jquery.min.js"></script>
+	<script src="../../webjars/editor.md/lib/marked.min.js"></script>
+	<script src="../../webjars/editor.md/lib/prettify.min.js"></script>
+	<script src="../../webjars/editor.md/lib/raphael.min.js"></script>
+	<script src="../../webjars/editor.md/lib/underscore.min.js"></script>
+	<script src="../../webjars/editor.md/lib/sequence-diagram.min.js"></script>
+	<script src="../../webjars/editor.md/lib/flowchart.min.js"></script>
+	<script src="../../webjars/editor.md/lib/jquery.flowchart.min.js"></script>
+	<script src="../../webjars/editor.md/editormd.js"></script>
+	<script type="text/javascript">
+		function getQueryVariable(variable) {
+			var query = window.location.search.substring(1);
+			var vars = query.split("&");
+			for (var i = 0; i < vars.length; i++) {
+				var pair = vars[i].split("=");
+				if (pair[0] == variable) {
+					return pair[1];
+				}
+			}
+			return (false);
+		}
+		var path = getQueryVariable("path");
+                var timestamp = new Date().getTime();
+		path = path ? path : "index.md";
+		$(function() {
+			$.get(path + "?v=" + timestamp, function(markdown) {
+				editormd.markdownToHTML("editormd-view", {
+					markdown        : markdown ,
+                  	htmlDecode      : "style,script,iframe",
+                  	tocm            : true,
+                 	emoji           : true,
+                  	taskList        : true,
+                  	tex             : true,
+                  	flowChart       : true,
+                 	sequenceDiagram : true
+				});
+			});
+		});
+	</script>
+</body>
+</html>
