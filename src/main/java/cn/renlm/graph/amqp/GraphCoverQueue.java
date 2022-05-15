@@ -74,42 +74,47 @@ public class GraphCoverQueue {
 		boolean fitWindow = false;
 		log.info("=== 图形封面任务：{}", uuid);
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
-		BufferedImage image = ERModelParser.createBufferedImage(graph, fitWindow);
+		BufferedImage image = null;
+		try {
+			image = ERModelParser.createBufferedImage(graph, fitWindow);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Setting chromeSetting = new Setting(ConstVal.chromeSetting.getSettingPath());
 		if (ObjectUtil.isNotEmpty(image)) {
 			// 设置尺寸
 			int width = image.getWidth() < 800 ? 800 : image.getWidth();
 			int height = image.getHeight() < 600 ? 600 : image.getHeight();
-			Setting chromeSetting = new Setting(ConstVal.chromeSetting.getSettingPath());
 			chromeSetting.set("windowSize", StrUtil.join(StrUtil.COMMA, width + 60, height + 60));
-			// 启动爬虫
-			String imageType = ImgUtil.IMAGE_TYPE_PNG;
-			String originalFilename = StrUtil.join(StrUtil.DOT, graph.getName(), imageType);
-			MySite site = MySite.me();
-			site.setEnableSelenuim(true);
-			site.setHeadless(true);
-			site.setScreenshot(true);
-			site.setSleepTime(3000);
-			site.setChromeSetting(chromeSetting);
-			MySpider spider = MyCrawlerUtil.createSpider(site, myPage -> {
-				BufferedImage screenshot = ImgUtil.toImage(myPage.screenshotBASE64());
-				byte[] bytes = ImgUtil.toBytes(screenshot, ImgUtil.IMAGE_TYPE_PNG);
-				SysFile sysFile = iSysFileService.upload(originalFilename, bytes, file -> {
-					file.setCreatorUserId(graph.getCreatorUserId());
-					file.setCreatorNickname(graph.getCreatorNickname());
-				});
-				// 设置封面
-				iGraphService.update(Wrappers.<Graph>lambdaUpdate().func(wrapper -> {
-					wrapper.set(Graph::getCover, sysFile.getFileId());
-					wrapper.set(Graph::getUpdatedAt, new Date());
-					wrapper.set(Graph::getUpdatorUserId, graph.getCreatorUserId());
-					wrapper.set(Graph::getUpdatorNickname, graph.getUpdatorNickname());
-					wrapper.in(Graph::getUuid, uuid);
-				}));
-			});
-			spider.addUrl(myConfigProperties.getCtx() + "/graph/viewer?headless=true&fitWindow=" + fitWindow + "&uuid="
-					+ uuid);
-			spider.run();
 		}
+		// 启动爬虫
+		String imageType = ImgUtil.IMAGE_TYPE_PNG;
+		String originalFilename = StrUtil.join(StrUtil.DOT, graph.getName(), imageType);
+		MySite site = MySite.me();
+		site.setEnableSelenuim(true);
+		site.setHeadless(true);
+		site.setScreenshot(true);
+		site.setSleepTime(3000);
+		site.setChromeSetting(chromeSetting);
+		MySpider spider = MyCrawlerUtil.createSpider(site, myPage -> {
+			BufferedImage screenshot = ImgUtil.toImage(myPage.screenshotBASE64());
+			byte[] bytes = ImgUtil.toBytes(screenshot, ImgUtil.IMAGE_TYPE_PNG);
+			SysFile sysFile = iSysFileService.upload(originalFilename, bytes, file -> {
+				file.setCreatorUserId(graph.getCreatorUserId());
+				file.setCreatorNickname(graph.getCreatorNickname());
+			});
+			// 设置封面
+			iGraphService.update(Wrappers.<Graph>lambdaUpdate().func(wrapper -> {
+				wrapper.set(Graph::getCover, sysFile.getFileId());
+				wrapper.set(Graph::getUpdatedAt, new Date());
+				wrapper.set(Graph::getUpdatorUserId, graph.getCreatorUserId());
+				wrapper.set(Graph::getUpdatorNickname, graph.getUpdatorNickname());
+				wrapper.in(Graph::getUuid, uuid);
+			}));
+		});
+		spider.addUrl(
+				myConfigProperties.getCtx() + "/graph/viewer?headless=true&fitWindow=" + fitWindow + "&uuid=" + uuid);
+		spider.run();
 	}
 
 	/**
