@@ -44,24 +44,16 @@
 		 * 打开Markdown文档编辑器
 		 * @param params uuid 唯一标识
 		 * @param params title 标题
-		 * @param params openNew 是否打开新网页（默认否）
-		 * @param params iconCls 导航栏图标
 		 */
-		openMarkdownEditor: function (uuid, title, openNew, iconCls) {
-			if(openNew) {
-				top.window.open(ctx + '/markdown/editor?uuid=' + uuid + '&name=' + title);
-			} else {
-				try {
-					top.MyUI.addIndexTab({
-						id : "MarkdownEditor-" + uuid,
-						title : title,
-						href : '/markdown/editor?uuid=' + uuid + '&name=' + title,
-						iconCls : iconCls ? iconCls : 'fa fa-edit'
-					});
-				} catch(e) {
-					top.window.open(ctx + '/markdown/editor?uuid=' + uuid + '&name=' + title);
-				}
-			}
+		openMarkdownEditor: function (uuid, title) {
+			layer.open({
+				type: 2,
+			  	title: title,
+			  	shadeClose: true,
+  				shade: 0.8,
+			  	area: ['100%', '100%'],
+			  	content: ctx + '/markdown/editor?uuid=' + uuid + '&name=' + title
+			});
 		},
 		/***
          * 通过js触发打开一个错误消息列表
