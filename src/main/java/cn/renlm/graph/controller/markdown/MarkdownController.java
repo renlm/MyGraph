@@ -20,7 +20,7 @@ import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 import cn.renlm.graph.response.Result;
 
 /**
- * Markdown 文档
+ * Markdown文档
  * 
  * @author Renlm
  *

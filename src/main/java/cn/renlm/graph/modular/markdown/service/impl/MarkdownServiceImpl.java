@@ -18,7 +18,7 @@ import cn.renlm.graph.response.Result;
 
 /**
  * <p>
- * Markdown 文档 服务实现类
+ * Markdown文档 服务实现类
  * </p>
  *
  * @author Renlm
