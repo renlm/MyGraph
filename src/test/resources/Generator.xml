@@ -20,6 +20,8 @@
 		<table author="Renlm" name="sys_const" idType="ASSIGN_ID" entity="true" />
 		<table author="Renlm" name="sys_dict" entity="true" />
 		<table author="Renlm" name="sys_file" entity="true" />
+		
+		<table author="Renlm" name="sys_login_log" entity="true" />
 	</module>
 
 	<module name="ds" package="cn.renlm.graph.modular">

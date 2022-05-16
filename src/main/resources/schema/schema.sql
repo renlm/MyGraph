@@ -359,3 +359,16 @@ CREATE TABLE `QRTZ_LOGS`(
     INDEX seq(seq),
     INDEX created_at(created_at)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = '定时任务日志';
+
+-- 系统登录日志
+DROP TABLE IF EXISTS sys_login_log;
+CREATE TABLE sys_login_log(
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    user_id            			VARCHAR(32)      				NOT NULL		COMMENT '用户ID',
+    username                   	VARCHAR(255)    				NOT NULL		COMMENT '账号',
+    nickname                 	VARCHAR(255)    								COMMENT '昵称',
+    client_ip                 	VARCHAR(255)    								COMMENT '客户端ip',
+    login_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '登录时间',
+    INDEX user_id(user_id),
+    INDEX login_time(login_time)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = '系统登录日志';
