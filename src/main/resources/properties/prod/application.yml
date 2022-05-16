@@ -7,17 +7,17 @@ server:
     
 my:
   config:
-    ctx: https://graph.renlm.cn
-    wsHost: ws://graph.renlm.cn
-    wssHost: wss://graph.renlm.cn:443
-    wsAllowedOrigins: http://graph.renlm.cn,https://graph.renlm.cn
+    ctx: https://mygraph.renlm.cn
+    wsHost: ws://mygraph.renlm.cn
+    wssHost: wss://mygraph.renlm.cn:443
+    wsAllowedOrigins: http://mygraph.renlm.cn,https://mygraph.renlm.cn
     
 logging:
   level:
     root: info
     cn.renlm.graph: info
   file:
-    name: /opt/log/my-graph.log
+    name: /opt/log/mygraph.log
     max-size: 512MB
     max-history: 30
     
@@ -46,7 +46,7 @@ spring:
     timeout: 6000
     password: Rscl@GR12t2Kcs.d^_^Yhm8K7^_^0rr8df170l@G
     database: 4
-    client-name: my-graph
+    client-name: mygraph
   rabbitmq:
     virtual-host: /renlm
     host: rabbitmq
@@ -62,8 +62,8 @@ spring:
       strict: true
       datasource:
         master:
-          url: jdbc:mysql://renlm.cn:3306/graph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
-          username: graph
+          url: jdbc:mysql://renlm.cn:3306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+          username: mygraph
           password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
           driver-class-name: com.mysql.cj.jdbc.Driver
   quartz:
