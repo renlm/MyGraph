@@ -42,10 +42,10 @@ spring:
     port: 6379
     timeout: 6000
     password: Rscl@GR12t2Kcs.d^_^Yhm8K7^_^0rr8df170l@G
-    database: 3
+    database: 2
     client-name: mygraphtest
   rabbitmq:
-    virtual-host: /renlm
+    virtual-host: /mygraphtest
     host: renlm.cn
     port: 5672
     username: renlm
