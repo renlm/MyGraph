@@ -2,8 +2,8 @@
 DELETE FROM sys_user;
 INSERT INTO sys_user 
 	   (id,		user_id, 							nickname, 	username,		password, 														mobile, 		email,				sign) 
-VALUES (1,		'ABFEE20BA6AC4783A683C7117763951E',	'令狐冲', 	'S-linghc',		'$2a$10$l90tWt3ZDJD95AmtdI3SHur.dm.M2HYLXMkZRSocIRzU0mLO/xTCK', '18801330084', 	'renlm@21cn.com',	'在深邃的编码世界，做一枚轻盈的纸飞机'),
-	   (2,		'AE82571C404544218D373B294EB87E80',	'任盈盈', 	'S-renyy',		'$2a$10$l90tWt3ZDJD95AmtdI3SHur.dm.M2HYLXMkZRSocIRzU0mLO/xTCK', '17338158607', 	'renlmer@qq.com',	'凡人皆有一死')
+VALUES (1,		'ABFEE20BA6AC4783A683C7117763951E',	'令狐冲', 	'S-linghc',		'$2a$10$AYF/H7f8hDX4fU0IPCHBp.A/ngEs7kPvsNtjiQcodK96nf0fOu/Py', '18801330084', 	'renlm@21cn.com',	'在深邃的编码世界，做一枚轻盈的纸飞机'),
+	   (2,		'AE82571C404544218D373B294EB87E80',	'任盈盈', 	'S-renyy',		'$2a$10$AYF/H7f8hDX4fU0IPCHBp.A/ngEs7kPvsNtjiQcodK96nf0fOu/Py', '17338158607', 	'renlmer@qq.com',	'凡人皆有一死')
 ;
 
 -- 角色
@@ -66,6 +66,7 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(200101, 		'1A22415278094E2D802A73382B60CDA7',	'200101', 		'用户管理', 		'menu', 			'/sys/user', 												'fa fa-user', 				null, 				null, 			3, 		1, 		'open',		0,					2001,		null)
 	  ,(200102, 		'27687B485B80460A80F077E964163D25',	'200102', 		'组织机构', 		'menu', 			'/sys/org', 												'fa fa-sitemap', 			null, 				null, 			3, 		2, 		'open',		0,					2001,		null)
 	  ,(200103, 		'D182D4DA30F44B9A92CC57AC4A2A5918',	'200103', 		'角色管理', 		'menu', 			'/sys/role', 												'fa fa-user-circle', 		null, 				null, 			3, 		3, 		'open',		0,					2001,		null)
+	  ,(200104, 		'650ED3D925B048738A9FC20A2B6DD6AE',	'200104', 		'登录日志', 		'menu', 			'/sys/loginLog', 											'fa fa-trello', 			null, 				null, 			3, 		4, 		'open',		0,					2001,		null)
 	  ,(2002, 			'7D59CAD9CA0C4D69905612E2C801E87E',	'2002', 		'数据字典', 		'menu', 			null, 														'fa fa-cogs', 				null, 				null, 			2, 		2, 		'closed',	0,					20,			null)
 	  ,(200201, 		'32DDAEA4491E4D03BE12A531FDA6D8A9',	'200201', 		'通用字典', 		'menu', 			'/sys/dict', 												'fa fa-calendar', 			null, 				null, 			3, 		1, 		'open',		0,					2002,		null)
 	  ,(200202, 		'17A93E79D780487284BF886B99A05E2F',	'200202', 		'系统常量', 		'menu', 			'/sys/const', 												'fa fa-file-word-o', 		null, 				null, 			3, 		2, 		'open',		0,					2002,		null)
