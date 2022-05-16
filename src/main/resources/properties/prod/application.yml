@@ -1,5 +1,4 @@
 server:
-  port: 8090
   tomcat:
     remoteip:
       remote-ip-header: "x-forwarded-for"
@@ -44,14 +43,14 @@ spring:
     host: redis
     port: 6379
     timeout: 6000
-    password: Rscl@GR12t2Kcs.d^_^Yhm8K7^_^0rr8df170l@G
+    password: K7^rr8df1702K8_^0l@GR_^Yhscl@GR12tcs.d^m89
     database: 3
     client-name: mygraph
   rabbitmq:
     virtual-host: /mygraph
     host: rabbitmq
     port: 5672
-    username: renlm
+    username: mygraph
     password: MR1tMQdf1Q@7^_^02Kit8Rabb2K8bbiG70l@cs^_^YhmRa
     listener:
       direct:
@@ -62,7 +61,7 @@ spring:
       strict: true
       datasource:
         master:
-          url: jdbc:mysql://renlm.cn:3306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+          url: jdbc:mysql://mysql:3306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
           username: mygraph
           password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
           driver-class-name: com.mysql.cj.jdbc.Driver
