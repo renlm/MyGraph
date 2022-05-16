@@ -2,6 +2,8 @@ package cn.renlm.graph;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -20,10 +22,16 @@ import cn.hutool.extra.spring.EnableSpringUtil;
 @EnableAsync
 @EnableSpringUtil
 @SpringBootApplication
-public class GraphApplication {
+public class GraphApplication extends SpringBootServletInitializer {
+
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(GraphApplication.class);
+	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(GraphApplication.class, args);
+		SpringApplication springApplication = new SpringApplication(GraphApplication.class);
+		springApplication.run(args);
 	}
 
 	@Bean
