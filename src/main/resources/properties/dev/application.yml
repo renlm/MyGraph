@@ -41,14 +41,14 @@ spring:
     host: renlm.cn
     port: 6379
     timeout: 6000
-    password: Rscl@GR12t2Kcs.d^_^Yhm8K7^_^0rr8df170l@G
+    password: K7^rr8df1702K8_^0l@GR_^Yhscl@GR12tcs.d^m89
     database: 1
     client-name: mygraphdev
   rabbitmq:
     virtual-host: /mygraphdev
     host: renlm.cn
     port: 5672
-    username: renlm
+    username: mygraphdev
     password: MR1tMQdf1Q@7^_^02Kit8Rabb2K8bbiG70l@cs^_^YhmRa
     listener:
       direct:
