@@ -50,7 +50,6 @@ public class WsUtil {
 	public static final int cronSecond = 60;
 	public static final String cron = "0/" + cronSecond + " * * * * ?";
 	public static final long validityMillis = 1000 * cronSecond * 2;
-	public static final int delayTtl = 500;
 
 	/**
 	 * 传递参数Key
@@ -97,7 +96,7 @@ public class WsUtil {
 
 		// 广播上线状态
 		WsMessage<String> wsMessage = WsMessage.build(WsType.online, userId);
-		AmqpUtil.createDelayTask(EXCHANGE, ROUTINGKEY, wsMessage, delayTtl);
+		AmqpUtil.createQueue(EXCHANGE, ROUTINGKEY, wsMessage);
 
 		WS_USER_REL.put(wsKey, user);
 		return WS_SESSION_POOL.put(wsKey, session);
@@ -126,7 +125,7 @@ public class WsUtil {
 
 			// 广播离线状态
 			WsMessage<String> wsMessage = WsMessage.build(WsType.offline, userId);
-			AmqpUtil.createDelayTask(EXCHANGE, ROUTINGKEY, wsMessage, delayTtl);
+			AmqpUtil.createQueue(EXCHANGE, ROUTINGKEY, wsMessage);
 		}
 
 		WS_USER_REL.remove(wsKey);
