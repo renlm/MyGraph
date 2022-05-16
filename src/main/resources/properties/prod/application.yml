@@ -1,8 +1,8 @@
 server:
   tomcat:
     remoteip:
-      remote-ip-header: "x-forwarded-for"
-      protocol-header: "x-forwarded-proto"
+      remote-ip-header: "X-Forwarded-For"
+      protocol-header: "X-Forwarded-Proto"
     
 my:
   config:
