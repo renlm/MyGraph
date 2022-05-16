@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
@@ -31,8 +30,6 @@ import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.Session;
 import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
-import cn.hutool.core.util.StrUtil;
-import cn.renlm.graph.common.Profiles;
 import cn.renlm.graph.security.DynamicAccessDecisionVoter;
 import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
 import cn.renlm.graph.security.MyAuthenticationSuccessHandler;
@@ -95,9 +92,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		};
 	
 	@Autowired
-	private Environment environment;
-	
-	@Autowired
 	private UserService userService;
 	
 	@Autowired
@@ -108,10 +102,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// 在代理服务器后面运行时启用 Https
-		if(StrUtil.containsAny(Profiles.prod.name(), environment.getActiveProfiles())) {
-			http.requiresChannel().anyRequest().requiresSecure();
-		}
 		// 启用csrf
 		http.csrf()
 			.ignoringAntMatchers(APIAntMatcher)
