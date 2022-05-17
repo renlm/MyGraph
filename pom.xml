@@ -315,9 +315,6 @@
 			<properties>
 				<profiles.active>properties/dev</profiles.active>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 		</profile>
 		<profile>
 			<id>prod</id>
@@ -330,6 +327,9 @@
 			<properties>
 				<profiles.active>properties/test</profiles.active>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 	</profiles>
 
