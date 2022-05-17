@@ -3,8 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="https://www.renlm.cn/schemas/MyGenerator.xsd">
 
-	<url>jdbc:mysql://renlm.cn:3306/graph</url>
-	<username>graph</username>
+	<url>jdbc:mysql://renlm.cn:3306/mygraphdev</url>
+	<username>mygraphdev</username>
 	<password>Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504</password>
 
 	<module name="sys" package="cn.renlm.graph.modular">
