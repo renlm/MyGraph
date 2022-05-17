@@ -26,4 +26,10 @@ public class Root implements Serializable {
 	@XStreamImplicit(itemFieldName = "mxCell")
 	private List<MxCell> mxCells;
 
+	/**
+	 * 节点集
+	 */
+	@XStreamImplicit(itemFieldName = "UserObject")
+	private List<UserObject> userObjects;
+
 }

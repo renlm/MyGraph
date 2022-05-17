@@ -31,6 +31,7 @@ import cn.renlm.graph.mxgraph.model.MxCell;
 import cn.renlm.graph.mxgraph.model.MxGeometry;
 import cn.renlm.graph.mxgraph.model.MxGraphModel;
 import cn.renlm.graph.mxgraph.model.Root;
+import cn.renlm.graph.mxgraph.model.UserObject;
 
 /**
  * ER图形解析器
@@ -87,7 +88,17 @@ public class ERModelParser {
 		double iy = 0;
 		double ex = 0;
 		double ey = 0;
-		List<MxCell> mxCells = root.getMxCells();
+		List<MxCell> mxCells = CollUtil.newArrayList();
+		if (CollUtil.isNotEmpty(root.getMxCells())) {
+			mxCells.addAll(root.getMxCells());
+		}
+		if (CollUtil.isNotEmpty(root.getUserObjects())) {
+			for (UserObject userObject : root.getUserObjects()) {
+				if (CollUtil.isNotEmpty(userObject.getMxCells())) {
+					mxCells.addAll(userObject.getMxCells());
+				}
+			}
+		}
 		if (CollUtil.isNotEmpty(mxCells)) {
 			for (MxCell mxCell : mxCells) {
 				if (mxCell.getMxGeometry() == null) {
