@@ -14,7 +14,7 @@
 	</parent>
 
 	<groupId>cn.renlm.graph</groupId>
-	<artifactId>my-graph</artifactId>
+	<artifactId>mygraph</artifactId>
 	<version>1.0.1</version>
 	<name>MyGraph</name>
 	<description>ER模型在线设计与管理</description>
