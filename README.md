@@ -3,9 +3,10 @@ ER模型在线设计与管理，整合一套后台模板，支持Markdown文档�
 效果展示：<a href="https://mygraph.renlm.cn/graph/viewer?uuid=198124BBCF284A40BB24CA315A7B8E36&headless=true&fitWindow=false" target="_blank">ER图例（点击预览，图中双击表可查看字段信息）</a>
 
 # 系统体验
-地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://mygraph.renlm.cn/</a>
-账号：S-renyy
-密码：Aac^123654.
+地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://mygraph.renlm.cn/</a> <br/>
+账号：S-renyy <br/>
+密码：Aac^123654. <br/>
+项目部署相关请在体验系统查看详细文档 <br/>
 
 # 功能特色
 1、支持从数据生成ER图，新建、删除表，自由拖动连线，增、删、改、查、拖动排序字段，简洁操作加必要校验
