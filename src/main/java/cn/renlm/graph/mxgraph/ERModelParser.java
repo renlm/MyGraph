@@ -1,8 +1,6 @@
 package cn.renlm.graph.mxgraph;
 
-import java.awt.Color;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,13 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Document;
 
-import com.mxgraph.io.mxCodec;
-import com.mxgraph.util.mxCellRenderer;
-import com.mxgraph.util.mxRectangle;
-import com.mxgraph.util.mxXmlUtils;
-import com.mxgraph.view.mxGraph;
 import com.thoughtworks.xstream.XStream;
 
 import cn.hutool.core.codec.Base64;
@@ -26,7 +18,6 @@ import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.Mxgraph;
 import cn.renlm.graph.dto.User;
@@ -84,53 +75,35 @@ public class ERModelParser {
 	 * @return
 	 */
 	public static final Rectangle getRectangle(String xml) {
-		Assert.notBlank(xml, "xml内容为空");
-		mxGraph graph = new mxGraph();
-		Document doc = mxXmlUtils.parseXml(xml);
-		mxCodec codec = new mxCodec(doc);
-		codec.decode(doc.getDocumentElement(), graph.getModel());
-		Object[] cells = new Object[] { graph.getModel().getRoot() };
-		mxRectangle clip = graph.getPaintBounds(cells);
-		return clip.getRectangle();
-	}
-
-	/**
-	 * 生成封面图
-	 * 
-	 * @param data
-	 * @param enableZomm
-	 * @return
-	 */
-	public static final BufferedImage createBufferedImage(Graph data, boolean enableZomm) {
-		// 数据为空忽略
-		if (data == null || StrUtil.isBlank(data.getXml())) {
-			return null;
+		Assert.notBlank(xml, "xml内容不能为空");
+		XStream xstream = new XStream();
+		xstream.processAnnotations(MxGraphModel.class);
+		xstream.allowTypeHierarchy(MxGraphModel.class);
+		MxGraphModel mxGraphModel = (MxGraphModel) xstream.fromXML(xml);
+		Root root = mxGraphModel.getRoot();
+		int ix = 0;
+		int iy = 0;
+		int ex = 0;
+		int ey = 0;
+		List<MxCell> mxCells = root.getMxCells();
+		if (CollUtil.isNotEmpty(mxCells)) {
+			for (MxCell mxCell : mxCells) {
+				if (mxCell.getMxGeometry() == null) {
+					continue;
+				} else {
+					MxGeometry mxGeometry = mxCell.getMxGeometry();
+					int x = ObjectUtil.defaultIfNull(mxGeometry.getX(), 0);
+					int y = ObjectUtil.defaultIfNull(mxGeometry.getY(), 0);
+					int w = ObjectUtil.defaultIfNull(mxGeometry.getWidth(), 0);
+					int h = ObjectUtil.defaultIfNull(mxGeometry.getHeight(), 0);
+					ix = Math.min(ix, x);
+					iy = Math.min(iy, y);
+					ex = Math.max(ex, x + w);
+					ey = Math.max(ey, y + h);
+				}
+			}
 		}
-
-		// 基础参数
-		mxGraph graph = new mxGraph();
-		Object[] cells = null;
-		double scale = 1;
-		Color background = Color.WHITE;
-		boolean antiAlias = true;
-		mxRectangle clip = null;
-
-		// 缩放
-		if (enableZomm && ObjectUtil.isNotEmpty(data.getZoom())) {
-			scale = data.getZoom().doubleValue();
-		}
-
-		// 背景色
-		if (StrUtil.isNotBlank(data.getBackground())) {
-			background = Color.getColor(data.getBackground());
-		}
-
-		// 解析Xml并生成图片
-		Document doc = mxXmlUtils.parseXml(data.getXml());
-		mxCodec codec = new mxCodec(doc);
-		codec.decode(doc.getDocumentElement(), graph.getModel());
-		BufferedImage image = mxCellRenderer.createBufferedImage(graph, cells, scale, background, antiAlias, clip);
-		return image;
+		return new Rectangle(ix, iy, ex - ix, ey - iy);
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package cn.renlm.graph.amqp;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Date;
 
@@ -20,8 +21,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.img.ImgUtil;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.Setting;
 import cn.renlm.graph.common.ConstVal;
@@ -74,20 +75,15 @@ public class GraphCoverQueue {
 		boolean fitWindow = false;
 		log.info("=== 图形封面任务：{}", uuid);
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
-		BufferedImage image = null;
-		try {
-			image = ERModelParser.createBufferedImage(graph, fitWindow);
-		} catch (Exception e) {
-			fitWindow = true;
-			e.printStackTrace();
+		if (StrUtil.isBlank(graph.getXml())) {
+			return;
 		}
+		// 设置尺寸
+		Rectangle rectangle = ERModelParser.getRectangle(graph.getXml());
+		int width = Convert.toInt(Math.ceil(rectangle.getWidth() < 800 ? 800 : rectangle.getWidth()));
+		int height = Convert.toInt(Math.ceil(rectangle.getHeight() < 600 ? 600 : rectangle.getHeight()));
 		Setting chromeSetting = new Setting(ConstVal.chromeSetting.getSettingPath());
-		if (ObjectUtil.isNotEmpty(image)) {
-			// 设置尺寸
-			int width = image.getWidth() < 800 ? 800 : image.getWidth();
-			int height = image.getHeight() < 600 ? 600 : image.getHeight();
-			chromeSetting.set("windowSize", StrUtil.join(StrUtil.COMMA, width + 60, height + 60));
-		}
+		chromeSetting.set("windowSize", StrUtil.join(StrUtil.COMMA, width + 60, height + 60));
 		// 启动爬虫
 		String imageType = ImgUtil.IMAGE_TYPE_PNG;
 		String originalFilename = StrUtil.join(StrUtil.DOT, graph.getName(), imageType);
