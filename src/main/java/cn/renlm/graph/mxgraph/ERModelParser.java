@@ -79,6 +79,7 @@ public class ERModelParser {
 		XStream xstream = new XStream();
 		xstream.processAnnotations(MxGraphModel.class);
 		xstream.allowTypeHierarchy(MxGraphModel.class);
+		xstream.ignoreUnknownElements();
 		MxGraphModel mxGraphModel = (MxGraphModel) xstream.fromXML(xml);
 		Root root = mxGraphModel.getRoot();
 		int ix = 0;
@@ -142,6 +143,7 @@ public class ERModelParser {
 		XStream xstream = new XStream();
 		xstream.processAnnotations(MxGraphModel.class);
 		xstream.allowTypeHierarchy(MxGraphModel.class);
+		xstream.ignoreUnknownElements();
 		return xstream.toXML(mxGraphModel);
 	}
 
