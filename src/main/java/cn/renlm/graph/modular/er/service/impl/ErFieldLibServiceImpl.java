@@ -58,6 +58,7 @@ public class ErFieldLibServiceImpl extends ServiceImpl<ErFieldLibMapper, ErField
 	public Result<ErFieldLib> addFieldToLib(User user, String fieldUuid) {
 		ErField erField = iErFieldService.getOne(Wrappers.<ErField>lambdaQuery().eq(ErField::getUuid, fieldUuid));
 		long cnt = this.count(Wrappers.<ErFieldLib>lambdaQuery().func(wrapper -> {
+			wrapper.eq(ErFieldLib::getCreatorUserId, user.getUserId());
 			wrapper.eq(ErFieldLib::getName, erField.getName());
 			wrapper.eq(ErFieldLib::getDeleted, false);
 		}));
@@ -85,6 +86,7 @@ public class ErFieldLibServiceImpl extends ServiceImpl<ErFieldLibMapper, ErField
 			if (StrUtil.isNotBlank(form.getUuid())) {
 				wrapper.ne(ErFieldLib::getUuid, form.getUuid());
 			}
+			wrapper.eq(ErFieldLib::getCreatorUserId, user.getUserId());
 			wrapper.eq(ErFieldLib::getName, form.getName());
 			wrapper.eq(ErFieldLib::getDeleted, false);
 		}));
