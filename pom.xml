@@ -17,7 +17,7 @@
 	<artifactId>my-graph</artifactId>
 	<version>1.0.1</version>
 	<name>MyGraph</name>
-	<description>在线画图</description>
+	<description>ER模型在线设计与管理</description>
 	<url>https://github.com/renlm/MyGraph</url>
 
 	<properties>
