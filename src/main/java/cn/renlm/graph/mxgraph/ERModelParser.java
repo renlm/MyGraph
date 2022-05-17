@@ -83,10 +83,10 @@ public class ERModelParser {
 		xstream.ignoreUnknownElements();
 		MxGraphModel mxGraphModel = (MxGraphModel) xstream.fromXML(xml);
 		Root root = mxGraphModel.getRoot();
-		int ix = 0;
-		int iy = 0;
-		int ex = 0;
-		int ey = 0;
+		double ix = 0;
+		double iy = 0;
+		double ex = 0;
+		double ey = 0;
 		List<MxCell> mxCells = root.getMxCells();
 		if (CollUtil.isNotEmpty(mxCells)) {
 			for (MxCell mxCell : mxCells) {
@@ -94,10 +94,10 @@ public class ERModelParser {
 					continue;
 				} else {
 					MxGeometry mxGeometry = mxCell.getMxGeometry();
-					int x = Convert.toInt(Math.ceil(ObjectUtil.defaultIfNull(mxGeometry.getX(), (double) 0)));
-					int y = Convert.toInt(Math.ceil(ObjectUtil.defaultIfNull(mxGeometry.getY(), (double) 0)));
-					int w = Convert.toInt(Math.ceil(ObjectUtil.defaultIfNull(mxGeometry.getWidth(), (double) 0)));
-					int h = Convert.toInt(Math.ceil(ObjectUtil.defaultIfNull(mxGeometry.getHeight(), (double) 0)));
+					double x = ObjectUtil.defaultIfNull(mxGeometry.getX(), (double) 0);
+					double y = ObjectUtil.defaultIfNull(mxGeometry.getY(), (double) 0);
+					double w = ObjectUtil.defaultIfNull(mxGeometry.getWidth(), (double) 0);
+					double h = ObjectUtil.defaultIfNull(mxGeometry.getHeight(), (double) 0);
 					ix = Math.min(ix, x);
 					iy = Math.min(iy, y);
 					ex = Math.max(ex, x + w);
@@ -105,7 +105,11 @@ public class ERModelParser {
 				}
 			}
 		}
-		return new Rectangle(ix, iy, ex - ix, ey - iy);
+		int _ix = Convert.toInt(ix > 0 ? Math.ceil(ix) : Math.floor(ix));
+		int _iy = Convert.toInt(iy > 0 ? Math.ceil(iy) : Math.floor(iy));
+		int _ex = Convert.toInt(ex > 0 ? Math.ceil(ex) : Math.floor(ex));
+		int _ey = Convert.toInt(ey > 0 ? Math.ceil(ey) : Math.floor(ey));
+		return new Rectangle(_ix, _iy, _ex - _ix, _ey - _iy);
 	}
 
 	/**
