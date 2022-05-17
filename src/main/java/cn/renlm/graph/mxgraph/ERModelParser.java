@@ -1,6 +1,7 @@
 package cn.renlm.graph.mxgraph;
 
 import java.awt.Color;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -21,6 +22,7 @@ import com.thoughtworks.xstream.XStream;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -74,6 +76,23 @@ public class ERModelParser {
 	 * 元点位置
 	 */
 	public static final int[] xy = { 200, -80 };
+
+	/**
+	 * 获取图形尺寸
+	 * 
+	 * @param xml
+	 * @return
+	 */
+	public static final Rectangle getRectangle(String xml) {
+		Assert.notBlank(xml, "xml内容为空");
+		mxGraph graph = new mxGraph();
+		Document doc = mxXmlUtils.parseXml(xml);
+		mxCodec codec = new mxCodec(doc);
+		codec.decode(doc.getDocumentElement(), graph.getModel());
+		Object[] cells = new Object[] { graph.getModel().getRoot() };
+		mxRectangle clip = graph.getPaintBounds(cells);
+		return clip.getRectangle();
+	}
 
 	/**
 	 * 生成封面图
