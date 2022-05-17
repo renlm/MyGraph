@@ -23,25 +23,25 @@ public class MxGeometry implements Serializable {
 	 * 坐标x
 	 */
 	@XStreamAsAttribute
-	private Integer x;
+	private Double x;
 
 	/**
 	 * 坐标y
 	 */
 	@XStreamAsAttribute
-	private Integer y;
+	private Double y;
 
 	/**
 	 * 宽度
 	 */
 	@XStreamAsAttribute
-	private Integer width;
+	private Double width;
 
 	/**
 	 * 高度
 	 */
 	@XStreamAsAttribute
-	private Integer height;
+	private Double height;
 
 	/**
 	 * 类型标记

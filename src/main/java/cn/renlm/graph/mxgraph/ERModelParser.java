@@ -14,6 +14,7 @@ import com.thoughtworks.xstream.XStream;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
@@ -93,10 +94,10 @@ public class ERModelParser {
 					continue;
 				} else {
 					MxGeometry mxGeometry = mxCell.getMxGeometry();
-					int x = ObjectUtil.defaultIfNull(mxGeometry.getX(), 0);
-					int y = ObjectUtil.defaultIfNull(mxGeometry.getY(), 0);
-					int w = ObjectUtil.defaultIfNull(mxGeometry.getWidth(), 0);
-					int h = ObjectUtil.defaultIfNull(mxGeometry.getHeight(), 0);
+					int x = Convert.toInt(Math.ceil(ObjectUtil.defaultIfNull(mxGeometry.getX(), (double) 0)));
+					int y = Convert.toInt(Math.ceil(ObjectUtil.defaultIfNull(mxGeometry.getY(), (double) 0)));
+					int w = Convert.toInt(Math.ceil(ObjectUtil.defaultIfNull(mxGeometry.getWidth(), (double) 0)));
+					int h = Convert.toInt(Math.ceil(ObjectUtil.defaultIfNull(mxGeometry.getHeight(), (double) 0)));
 					ix = Math.min(ix, x);
 					iy = Math.min(iy, y);
 					ex = Math.max(ex, x + w);
@@ -230,14 +231,14 @@ public class ERModelParser {
 		MxGeometry mxGeometry = new MxGeometry();
 		if (w % 2 == 0) {
 			int shift = col - w / 2;
-			mxGeometry.setX(xy[0] + shift * fixedWidth + shift * interval + interval / 2);
+			mxGeometry.setX(new Double(xy[0] + shift * fixedWidth + shift * interval + interval / 2));
 		} else {
 			int shift = col - w / 2 - 1;
-			mxGeometry.setX(xy[0] + shift * fixedWidth + fixedWidth / 2 + shift * interval + interval / 2);
+			mxGeometry.setX(new Double(xy[0] + shift * fixedWidth + fixedWidth / 2 + shift * interval + interval / 2));
 		}
-		mxGeometry.setY(xy[1] + colYMap.get(col));
-		mxGeometry.setWidth(fixedWidth);
-		mxGeometry.setHeight(h);
+		mxGeometry.setY(new Double(xy[1] + colYMap.get(col)));
+		mxGeometry.setWidth(new Double(fixedWidth));
+		mxGeometry.setHeight(new Double(h));
 		colYMap.put(col, colYMap.get(col) + h);
 		return mxGeometry;
 	}

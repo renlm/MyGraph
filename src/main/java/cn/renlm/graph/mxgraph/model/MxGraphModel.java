@@ -23,13 +23,13 @@ public class MxGraphModel implements Serializable {
 	 * 水平平移
 	 */
 	@XStreamAsAttribute
-	private Integer dx = 2367;
+	private Double dx = (double) 2367;
 
 	/**
 	 * 垂直平移
 	 */
 	@XStreamAsAttribute
-	private Integer dy = 1188;
+	private Double dy = (double) 1188;
 
 	/**
 	 * 网格
@@ -41,7 +41,7 @@ public class MxGraphModel implements Serializable {
 	 * 网格大小（默认1）
 	 */
 	@XStreamAsAttribute
-	private Integer gridSize = 1;
+	private Double gridSize = (double) 1;
 
 	/**
 	 * 连接箭头
