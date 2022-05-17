@@ -1,4 +1,4 @@
--- 用户（密码：S-crawler^3324.）
+-- 用户（密码：Aac^123654.）
 DELETE FROM sys_user;
 INSERT INTO sys_user 
 	   (id,		user_id, 							nickname, 	username,		password, 														mobile, 		email,				sign) 
