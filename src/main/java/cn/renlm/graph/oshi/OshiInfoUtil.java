@@ -1,6 +1,7 @@
 package cn.renlm.graph.oshi;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -169,18 +170,18 @@ public class OshiInfoUtil {
 		info.setIp(SystemUtil.getHostInfo().getAddress());
 		info.setUid(IdUtil.getSnowflakeNextId());
 		info.setCpuCores(cpuCores);
-		info.setCpuUsedRate(new BigDecimal(cpuUsedRate).setScale(2, BigDecimal.ROUND_HALF_UP));
+		info.setCpuUsedRate(new BigDecimal(cpuUsedRate).setScale(2, RoundingMode.HALF_UP));
 		info.setMemory(totalByte);
 		info.setMemoryStr(FormatUtil.formatBytes(info.getMemory()));
 		info.setMemoryUsed(totalByte - acaliableByte);
 		info.setMemoryUsedStr(FormatUtil.formatBytes(info.getMemoryUsed()));
 		info.setMemoryUsedRate(
-				new BigDecimal(100.0 - (acaliableByte * 100.0 / totalByte)).setScale(2, BigDecimal.ROUND_HALF_UP));
+				new BigDecimal(100.0 - (acaliableByte * 100.0 / totalByte)).setScale(2, RoundingMode.HALF_UP));
 		info.setDisk(disk);
 		info.setDiskStr(FormatUtil.formatBytes(info.getDisk()));
 		info.setDiskUsed(disk - freeSpace);
 		info.setDiskUsedStr(FormatUtil.formatBytes(info.getDiskUsed()));
-		info.setDiskUsedRate(new BigDecimal(100.0 - (freeSpace * 100.0 / disk)).setScale(2, BigDecimal.ROUND_HALF_UP));
+		info.setDiskUsedRate(new BigDecimal(100.0 - (freeSpace * 100.0 / disk)).setScale(2, RoundingMode.HALF_UP));
 		info.setOsName(osName);
 		info.setOsArch(osArch);
 		info.setJvmMemory(jvmTotalMemoryByte);
@@ -188,7 +189,7 @@ public class OshiInfoUtil {
 		info.setJvmMemoryUsed(jvmTotalMemoryByte - freeMemoryByte);
 		info.setJvmMemoryUsedStr(FormatUtil.formatBytes(info.getJvmMemoryUsed()));
 		info.setJvmMemoryUsedRate(new BigDecimal(100.0 - (freeMemoryByte * 100.0 / jvmTotalMemoryByte)).setScale(2,
-				BigDecimal.ROUND_HALF_UP));
+				RoundingMode.HALF_UP));
 		info.setJavaVersion(javaVersion);
 
 		// 缓存服务器列表

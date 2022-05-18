@@ -246,14 +246,15 @@ public class ERModelParser {
 		MxGeometry mxGeometry = new MxGeometry();
 		if (w % 2 == 0) {
 			int shift = col - w / 2;
-			mxGeometry.setX(new Double(xy[0] + shift * fixedWidth + shift * interval + interval / 2));
+			mxGeometry.setX(Double.valueOf(xy[0] + shift * fixedWidth + shift * interval + interval / 2));
 		} else {
 			int shift = col - w / 2 - 1;
-			mxGeometry.setX(new Double(xy[0] + shift * fixedWidth + fixedWidth / 2 + shift * interval + interval / 2));
+			mxGeometry.setX(
+					Double.valueOf(xy[0] + shift * fixedWidth + fixedWidth / 2 + shift * interval + interval / 2));
 		}
-		mxGeometry.setY(new Double(xy[1] + colYMap.get(col)));
-		mxGeometry.setWidth(new Double(fixedWidth));
-		mxGeometry.setHeight(new Double(h));
+		mxGeometry.setY(Double.valueOf(xy[1] + colYMap.get(col)));
+		mxGeometry.setWidth(Double.valueOf(fixedWidth));
+		mxGeometry.setHeight(Double.valueOf(h));
 		colYMap.put(col, colYMap.get(col) + h);
 		return mxGeometry;
 	}
