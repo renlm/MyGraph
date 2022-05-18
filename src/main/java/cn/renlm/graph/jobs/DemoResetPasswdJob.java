@@ -26,6 +26,6 @@ public class DemoResetPasswdJob extends JobBean {
 	@Override
 	public void exec(String batch, AtomicInteger seq, Map<String, Object> params) {
 		JobExecutionContext context = (JobExecutionContext) params.get(CONTEXT_KEY);
-		this.log(context, batch, seq, Level.INFO, "定时任务Demo");
+		this.log(context, batch, seq, Level.INFO, "重置密码");
 	}
 }
