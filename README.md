@@ -5,7 +5,7 @@
 # 系统体验
 地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://mygraph.renlm.cn/</a>  
 账号：S-renyy  
-密码：Aac^123654.  
+密码（每5分钟重置一次）：Aac^123654.  
 项目部署相关请在体验系统查看详细文档
 
 # 功能特色
@@ -31,9 +31,9 @@
 
 ![图形设计-数据源](https://renlm.cn/images/demo/3.png "图形设计-数据源")
 
-> ___编辑ER图___
+> ___编辑ER图（Ctrl + S 保存）___
 
-![编辑ER图](https://renlm.cn/images/demo/4.png "编辑ER图")
+![编辑ER图（Ctrl + S 保存）](https://renlm.cn/images/demo/4.png "编辑ER图（Ctrl + S 保存）")
 
 > ___编辑表___
 
