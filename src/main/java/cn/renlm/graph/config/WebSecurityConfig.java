@@ -109,7 +109,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// 会话
 		http.sessionManagement()
 			.invalidSessionUrl(LoginPage)
-			.maximumSessions(1)
+			.maximumSessions(10000)
 			.expiredUrl(LoginPage)
 			.sessionRegistry(sessionRegistry());
 		// 资源访问控制
