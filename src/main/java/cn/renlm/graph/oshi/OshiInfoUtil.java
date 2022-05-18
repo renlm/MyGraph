@@ -1,10 +1,10 @@
 package cn.renlm.graph.oshi;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,9 +23,6 @@ import cn.hutool.system.oshi.CpuInfo;
 import cn.hutool.system.oshi.OshiUtil;
 import lombok.experimental.UtilityClass;
 import oshi.hardware.GlobalMemory;
-import oshi.software.os.FileSystem;
-import oshi.software.os.OSFileStore;
-import oshi.software.os.OperatingSystem;
 import oshi.util.FormatUtil;
 
 /**
@@ -158,12 +155,10 @@ public class OshiInfoUtil {
 		// 磁盘信息
 		long disk = 0L;
 		long freeSpace = 0L;
-		OperatingSystem operatingSystem = OshiUtil.getOs();
-		FileSystem fileSystem = operatingSystem.getFileSystem();
-		List<OSFileStore> fsArray = fileSystem.getFileStores();
-		for (OSFileStore fs : fsArray) {
-			disk += fs.getTotalSpace();
-			freeSpace += fs.getFreeSpace();
+		File[] disks = File.listRoots();
+		for (File file : disks) {
+			disk += file.getTotalSpace();
+			freeSpace += file.getFreeSpace();
 		}
 
 		// 封装数据
