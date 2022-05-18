@@ -48,7 +48,7 @@ DELETE FROM sys_user_org;
 INSERT INTO sys_user_org
 	   (sys_user_id, 	sys_org_id,	position_name)
 VALUES (1,				30, 		'高级软件开发工程师'),
-	   (2,				10, 		'高级企业人力资源管理师')
+	   (2,				10, 		'高级人力专员')
 ;
 
 -- 资源

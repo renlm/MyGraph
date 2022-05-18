@@ -102,3 +102,33 @@
 > ___更多功能___
 
 ![更多功能](https://renlm.cn/images/demo/21.png "更多功能")
+
+# 主要技术组件
+SpringBoot + MyBatis-plus + MySQL
+EasyUI + Mxgraph
+
+# 本地化部署
+1、数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据），项目默认启动test环境，启动dev环境会重建库。
+```
+<1>.初始账号（超级管理员）：S-linghc，密码：Aac^123654.
+<2>.初始账号（普通用户）：S-renyy，密码：Aac^123654.
+```
+2、本地化部署请修改redis、mq队列、数据库的地址账号及密码
+3、生成封面用到了谷歌浏览器驱动，请修改驱动地址
+4、配置文件中的自定义参数请修改为自己的项目地址
+
+> ___数据库初始脚本___
+
+![数据库初始脚本](https://renlm.cn/images/demo/100.png "数据库初始脚本")
+
+> ___redis、mq队列、数据库___
+
+![redis、mq队列、数据库](https://renlm.cn/images/demo/102.png "redis、mq队列、数据库")
+
+> ___谷歌浏览器驱动___
+
+![谷歌浏览器驱动](https://renlm.cn/images/demo/103.png "谷歌浏览器驱动")
+
+> ___修改自定义参数（服务器监控websocket配置等需要）___
+
+![修改自定义参数](https://renlm.cn/images/demo/101.png "修改自定义参数")
