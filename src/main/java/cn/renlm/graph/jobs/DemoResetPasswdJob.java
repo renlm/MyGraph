@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.quartz.JobExecutionContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,7 @@ import cn.renlm.graph.modular.sys.service.ISysUserService;
 @Component
 public class DemoResetPasswdJob extends JobBean {
 
+	@Autowired
 	private ISysUserService iSysUserService;
 
 	public DemoResetPasswdJob(IQrtzLogsService iQrtzLogsService) {
