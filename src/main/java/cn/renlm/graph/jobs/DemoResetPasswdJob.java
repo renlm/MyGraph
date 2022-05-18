@@ -11,15 +11,15 @@ import cn.renlm.graph.modular.qrtz.JobBean;
 import cn.renlm.graph.modular.qrtz.service.IQrtzLogsService;
 
 /**
- * 定时任务Demo（0/5 * * * * ?）
+ * 演示账号重置密码（0 0/5 * * * ?）
  * 
  * @author Renlm
  *
  */
 @Component
-public class DemoJob extends JobBean {
+public class DemoResetPasswdJob extends JobBean {
 
-	public DemoJob(IQrtzLogsService iQrtzLogsService) {
+	public DemoResetPasswdJob(IQrtzLogsService iQrtzLogsService) {
 		super(iQrtzLogsService);
 	}
 
