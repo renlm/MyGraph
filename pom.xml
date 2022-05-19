@@ -143,6 +143,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.github.Tencent</groupId>
+			<artifactId>APIJSON</artifactId>
+			<version>4.7.2</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
@@ -290,22 +296,27 @@
 
 	<repositories>
 		<repository>
-			<id>alimaven</id>
-			<name>aliyun maven</name>
+			<id>aliyunmaven</id>
+			<name>Aliyun Maven</name>
 			<url>https://maven.aliyun.com/repository/public</url>
 		</repository>
 		<repository>
-			<id>xwikimaven</id>
-			<name>XWiki Releases</name>
-			<url>https://maven.xwiki.org/releases</url>
+			<id>xwiki</id>
+			<name>XWiki Releases Repository</name>
+			<url>https://maven.xwiki.org/releases/</url>
+		</repository>
+		<repository>
+			<id>pentahoOmni</id>
+			<name>PentahoOmni Repository</name>
+			<url>https://nexus.pentaho.org/content/groups/omni/</url>
 		</repository>
 	</repositories>
 
 	<pluginRepositories>
 		<pluginRepository>
 			<id>huaweicloud</id>
-			<name>huawei maven</name>
-			<url>https://mirrors.huaweicloud.com/repository/maven</url>
+			<name>Huaweicloud Maven</name>
+			<url>https://repo.huaweicloud.com/repository/maven/</url>
 		</pluginRepository>
 	</pluginRepositories>
 
