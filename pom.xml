@@ -143,12 +143,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.github.Tencent</groupId>
-			<artifactId>APIJSON</artifactId>
-			<version>4.7.2</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
@@ -296,19 +290,14 @@
 
 	<repositories>
 		<repository>
-			<id>aliyunmaven</id>
-			<name>Aliyun Maven</name>
+			<id>aliyun</id>
+			<name>Aliyun Public</name>
 			<url>https://maven.aliyun.com/repository/public</url>
 		</repository>
 		<repository>
 			<id>xwiki</id>
 			<name>XWiki Releases Repository</name>
 			<url>https://maven.xwiki.org/releases/</url>
-		</repository>
-		<repository>
-			<id>pentahoOmni</id>
-			<name>PentahoOmni Repository</name>
-			<url>https://nexus.pentaho.org/content/groups/omni/</url>
 		</repository>
 	</repositories>
 
