@@ -107,12 +107,12 @@ public class ERModelParser {
 				} else {
 					Double x = mxGeometry.getX();
 					Double y = mxGeometry.getY();
-					Double w = mxGeometry.getWidth();
-					Double h = mxGeometry.getHeight();
-					if (x == null || y == null || w == null || h == null) {
+					Double w = ObjectUtil.defaultIfNull(mxGeometry.getWidth(), Double.valueOf(0));
+					Double h = ObjectUtil.defaultIfNull(mxGeometry.getHeight(), Double.valueOf(0));
+					if (x == null || y == null) {
 						continue;
 					}
-					if (ix == null || iy == null || ex == null || ey == null) {
+					if (ix == null || iy == null) {
 						ix = x;
 						iy = y;
 						ex = x + w;
