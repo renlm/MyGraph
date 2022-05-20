@@ -130,10 +130,10 @@ public class ERModelParser {
 				}
 			}
 		}
-		int _ix = Convert.toInt(ix > 0 ? Math.ceil(ix) : Math.floor(ix));
-		int _iy = Convert.toInt(iy > 0 ? Math.ceil(iy) : Math.floor(iy));
-		int _ex = Convert.toInt(ex > 0 ? Math.ceil(ex) : Math.floor(ex));
-		int _ey = Convert.toInt(ey > 0 ? Math.ceil(ey) : Math.floor(ey));
+		int _ix = ix == null ? 0 : Convert.toInt(ix > 0 ? Math.ceil(ix) : Math.floor(ix));
+		int _iy = iy == null ? 0 : Convert.toInt(iy > 0 ? Math.ceil(iy) : Math.floor(iy));
+		int _ex = ex == null ? 0 : Convert.toInt(ex > 0 ? Math.ceil(ex) : Math.floor(ex));
+		int _ey = ey == null ? 0 : Convert.toInt(ey > 0 ? Math.ceil(ey) : Math.floor(ey));
 		return new Rectangle(_ix, _iy, _ex - _ix, _ey - _iy);
 	}
 
