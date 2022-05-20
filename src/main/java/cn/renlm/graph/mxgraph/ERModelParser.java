@@ -84,10 +84,10 @@ public class ERModelParser {
 		xstream.ignoreUnknownElements();
 		MxGraphModel mxGraphModel = (MxGraphModel) xstream.fromXML(xml);
 		Root root = mxGraphModel.getRoot();
-		double ix = 0;
-		double iy = 0;
-		double ex = 0;
-		double ey = 0;
+		Double ix = null;
+		Double iy = null;
+		Double ex = null;
+		Double ey = null;
 		List<MxCell> mxCells = CollUtil.newArrayList();
 		if (CollUtil.isNotEmpty(root.getMxCells())) {
 			mxCells.addAll(root.getMxCells());
@@ -101,18 +101,28 @@ public class ERModelParser {
 		}
 		if (CollUtil.isNotEmpty(mxCells)) {
 			for (MxCell mxCell : mxCells) {
-				if (mxCell.getMxGeometry() == null) {
+				MxGeometry mxGeometry = mxCell.getMxGeometry();
+				if (mxGeometry == null) {
 					continue;
 				} else {
-					MxGeometry mxGeometry = mxCell.getMxGeometry();
-					double x = ObjectUtil.defaultIfNull(mxGeometry.getX(), (double) 0);
-					double y = ObjectUtil.defaultIfNull(mxGeometry.getY(), (double) 0);
-					double w = ObjectUtil.defaultIfNull(mxGeometry.getWidth(), (double) 0);
-					double h = ObjectUtil.defaultIfNull(mxGeometry.getHeight(), (double) 0);
-					ix = Math.min(ix, x);
-					iy = Math.min(iy, y);
-					ex = Math.max(ex, x + w);
-					ey = Math.max(ey, y + h);
+					Double x = mxGeometry.getX();
+					Double y = mxGeometry.getY();
+					Double w = mxGeometry.getWidth();
+					Double h = mxGeometry.getHeight();
+					if (x == null || y == null || w == null || h == null) {
+						continue;
+					}
+					if (ix == null || iy == null || ex == null || ey == null) {
+						ix = x;
+						iy = y;
+						ex = x + w;
+						ey = y + h;
+					} else {
+						ix = Math.min(ix, x);
+						iy = Math.min(iy, y);
+						ex = Math.max(ex, x + w);
+						ey = Math.max(ey, y + h);
+					}
 				}
 			}
 		}
