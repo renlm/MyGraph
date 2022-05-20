@@ -100,6 +100,8 @@ public class ERModelParser {
 			}
 		}
 		if (CollUtil.isNotEmpty(mxCells)) {
+			double dx = 0;
+			double dy = 0;
 			for (MxCell mxCell : mxCells) {
 				MxGeometry mxGeometry = mxCell.getMxGeometry();
 				if (mxGeometry == null) {
@@ -111,21 +113,31 @@ public class ERModelParser {
 					Double h = mxGeometry.getHeight();
 					if (x != null) {
 						if (ix == null) {
-							ix = x;
+							ix = x - dx;
 							ex = w == null ? x : (x + w);
 						} else {
-							ix = Math.min(ix, x);
+							ix = Math.min(ix, x - dx);
 							ex = w == null ? Math.max(ex, x) : Math.max(ex, x + w);
 						}
+						if (dx > 0) {
+							dx = 0;
+						}
+					} else if (w != null) {
+						dx = w;
 					}
 					if (y != null) {
 						if (iy == null) {
-							iy = y;
+							iy = y - dy;
 							ey = h == null ? y : (y + h);
 						} else {
-							iy = Math.min(iy, y);
+							iy = Math.min(iy, y - dy);
 							ey = h == null ? Math.max(ey, y) : Math.max(ey, y + h);
 						}
+						if (dy > 0) {
+							dy = 0;
+						}
+					} else if (h != null) {
+						dy = h;
 					}
 				}
 			}
