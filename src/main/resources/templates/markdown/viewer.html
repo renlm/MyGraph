@@ -10,20 +10,16 @@
     <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
 	<!-- Jquery -->
 	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
-	<!-- Json-viewer -->
-	<link th:href="@{/static/jquery.json-editor/json-viewer.css}" rel="stylesheet" />
-	<script th:src="@{/static/jquery.json-editor/json-editor.min.js}"></script>
-	<script th:src="@{/static/jquery.json-editor/json5.min.js}"></script>
 	<!-- Editor.md -->
-	<link rel="stylesheet" th:href="@{/webjars/editor.md/css/editormd.preview.min.css}" />
-	<script th:src="@{/webjars/editor.md/lib/marked.min.js}"></script>
-	<script th:src="@{/webjars/editor.md/lib/prettify.min.js}"></script>
-	<script th:src="@{/webjars/editor.md/lib/raphael.min.js}"></script>
-	<script th:src="@{/webjars/editor.md/lib/underscore.min.js}"></script>
-	<script th:src="@{/webjars/editor.md/lib/sequence-diagram.min.js}"></script>
-	<script th:src="@{/webjars/editor.md/lib/flowchart.min.js}"></script>
-	<script th:src="@{/webjars/editor.md/lib/jquery.flowchart.min.js}"></script>
-	<script th:src="@{/webjars/editor.md/editormd.js}"></script>
+	<link rel="stylesheet" th:href="@{/static/markdown/editor.md-1.5.0/css/editormd.preview.min.css}" />
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/marked.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/prettify.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/raphael.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/underscore.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/sequence-diagram.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/flowchart.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/jquery.flowchart.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/editormd.js}"></script>
 	<!-- 样式修正 -->
 	<link rel="stylesheet" th:href="@{/static/css/scrollbar.css}" />
 	<link rel="stylesheet" th:href="@{/static/css/markdown.css}" />
@@ -35,7 +31,7 @@
 		$(function () {
 			editormd.markdownToHTML("editormd", {
                 markdown		: $("#markdown").val(),
-                htmlDecode      : "style,script,iframe",
+                htmlDecode      : "style,script,iframe|on*", 
               	tocm            : true,
              	emoji           : false,
               	taskList        : true,

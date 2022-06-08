@@ -208,6 +208,12 @@
 			<artifactId>bootstrap</artifactId>
 			<version>3.4.1</version>
 			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.webjars</groupId>
+					<artifactId>jquery</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -256,20 +262,6 @@
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>imagesloaded</artifactId>
 			<version>4.1.4</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.webjars.bower</groupId>
-			<artifactId>editor.md</artifactId>
-			<version>1.5.0</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>codemirror</artifactId>
-			<version>5.62.2</version>
 			<scope>runtime</scope>
 		</dependency>
 
