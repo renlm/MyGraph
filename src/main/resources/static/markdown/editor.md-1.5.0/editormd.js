@@ -1510,6 +1510,32 @@
         },
         
         /**
+         * 解析Json5
+         * Json5 Renderer
+         * 
+         * @returns {editormd}             返回editormd的实例对象
+         */
+        
+        json5Render : function() {
+            
+            this.previewContainer.find(".json5").each(function(){
+                var rnd  = $(this).data("rnd");
+				if (rnd) {
+	                var code  = $(this).html();
+					var codeJson = JSON5.parse(code);
+			  		new JsonEditor("#" + rnd, 
+			  				codeJson,
+			  				{
+			  					defaultCollapsed: false,
+			  					editable: false
+			  				}).load(codeJson);
+				}
+            });   
+
+            return this;
+        },
+        
+        /**
          * 解析和渲染流程图及时序图
          * FlowChart and SequenceDiagram Renderer
          * 
@@ -2086,7 +2112,12 @@
                     {
                         editormd.loadJson5(settings.path, function() {
                             editormd.json5Loaded = true;
+                            _this.json5Render();
                         });
+                    }
+                    else 
+                    {
+                        this.json5Render();
                     }
                 }            
                 
@@ -3653,8 +3684,8 @@
             } 
             else if ( lang === "json5")
             {
-                return "<div class=\"json5\" data-rnd=\"json5-rnd-" + randomId() + "\">" + code + "</div>";
-            } 
+                return "<div class=\"json5\" id=\"json5-rnd-" + randomId() + "\" data-rnd=\"json5-rnd-" + randomId() + "\">" + code + "</div>";
+            }
             else 
             {
 
