@@ -168,6 +168,26 @@
 		    			window.$masonry.imagesLoaded().progress(function() {
 		    				window.$masonry.masonry("layout");
 		    			});
+
+		    			// 居中设置
+		    			masonryWidth();
+		    		    function masonryWidth(){
+		    		        $browser =  document.body.clientWidth;
+
+		    		        $boxWidth = 250;
+		    		        $boxSpacing = 20;
+		    		        
+		    		        if ($browser < 500) {
+		    		        	$(".masonry").css("width", $boxWidth);
+		    		        } else {
+		    		        	$num = ($browser-$boxWidth) / ($boxWidth + $boxSpacing );
+		    		            $n = parseInt($num);
+		    		            $masonryWidth = $n * ($boxWidth + $boxSpacing) + $boxWidth;
+		    		            $(".masonry").css("width", $masonryWidth);
+		    		        }
+
+		    		        window.onresize = masonryWidth;
+		    		    }
 		    		});
 				}
 			}

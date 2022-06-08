@@ -265,6 +265,7 @@ input, textarea, select, button {
 
 .masonry {
 	padding-top: 60px;
+	margin: 0 auto;
 }
 
 .masonry__column {
@@ -272,7 +273,7 @@ input, textarea, select, button {
 }
 
 .masonry__gutter {
-	width: 2.85714%;
+	width: 20px;
 }
 
 .masonry__item {
