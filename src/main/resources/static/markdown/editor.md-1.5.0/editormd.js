@@ -1521,14 +1521,16 @@
             this.previewContainer.find(".json5").each(function(){
                 var rnd  = $(this).data("rnd");
 				if (rnd) {
-	                var code  = $(this).html();
-					var codeJson = JSON5.parse(code);
-			  		new JsonEditor("#" + rnd, 
-			  				codeJson,
-			  				{
-			  					defaultCollapsed: false,
-			  					editable: false
-			  				}).load(codeJson);
+	                var code  = $(this).find("#" + rnd).data("code");
+					if (code) {
+						var codeJson = JSON5.parse(Base64.decode(code));
+				  		new JsonEditor("#" + rnd, 
+				  				codeJson,
+				  				{
+				  					defaultCollapsed: false,
+				  					editable: false
+				  				}).load(codeJson);
+					}
 				}
             });   
 
@@ -3684,7 +3686,10 @@
             } 
             else if ( lang === "json5")
             {
-                return "<div class=\"json5\" id=\"json5-rnd-" + randomId() + "\" data-rnd=\"json5-rnd-" + randomId() + "\">" + code + "</div>";
+				var rnd = "json5-rnd-" + randomId();
+                return "<div class=\"json5\" data-rnd=\"" + rnd + "\">" + 
+					       "<pre id=\"" + rnd + "\" class=\"json-editor-blackbord\" contenteditable=\"false\" data-code=\"" + Base64.encodeURI(code) + "\"></pre>" +
+					   "</div>";
             }
             else 
             {
@@ -4094,14 +4099,16 @@
                 div.find(".json5").each(function(){
 	                var rnd  = $(this).data("rnd");
 					if (rnd) {
-		                var code  = $(this).html();
-						var codeJson = JSON5.parse(code);
-				  		new JsonEditor("#" + rnd, 
-				  				codeJson,
-				  				{
-				  					defaultCollapsed: false,
-				  					editable: false
-				  				}).load(codeJson);
+		                var code  = $(this).find("#" + rnd).data("code");
+						if (code) {
+							var codeJson = JSON5.parse(Base64.decode(code));
+					  		new JsonEditor("#" + rnd, 
+					  				codeJson,
+					  				{
+					  					defaultCollapsed: false,
+					  					editable: false
+					  				}).load(codeJson);
+						}
 					}
 	            });
             };
