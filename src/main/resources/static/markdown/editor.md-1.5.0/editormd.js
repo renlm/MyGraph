@@ -4090,11 +4090,32 @@
 
 		if (settings.json5)
         {
+			var json5Handle = function() {
+                div.find(".json5").each(function(){
+	                var rnd  = $(this).data("rnd");
+					if (rnd) {
+		                var code  = $(this).html();
+						var codeJson = JSON5.parse(code);
+				  		new JsonEditor("#" + rnd, 
+				  				codeJson,
+				  				{
+				  					defaultCollapsed: false,
+				  					editable: false
+				  				}).load(codeJson);
+					}
+	            });
+            };
+
             if (!editormd.json5Loaded) 
             {
                 this.loadJson5(settings.path, function() {
                     editormd.json5Loaded = true;
+					json5Handle();
                 });
+            }
+            else
+            {
+                json5Handle();
             }
         }
         
