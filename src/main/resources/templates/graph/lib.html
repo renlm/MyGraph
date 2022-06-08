@@ -171,7 +171,7 @@
 
 		    			// 居中设置
 		    			masonryWidth();
-		    		    function masonryWidth(){
+		    		    function masonryWidth () {
 		    		        $browser =  document.body.clientWidth;
 
 		    		        $boxWidth = 250;
@@ -180,7 +180,7 @@
 		    		        if ($browser < 500) {
 		    		        	$(".masonry").css("width", $boxWidth);
 		    		        } else {
-		    		        	$num = ($browser-$boxWidth) / ($boxWidth + $boxSpacing );
+		    		        	$num = ($browser - $boxWidth) / ($boxWidth + $boxSpacing );
 		    		            $n = parseInt($num);
 		    		            $masonryWidth = $n * ($boxWidth + $boxSpacing) + $boxWidth;
 		    		            $(".masonry").css("width", $masonryWidth);
