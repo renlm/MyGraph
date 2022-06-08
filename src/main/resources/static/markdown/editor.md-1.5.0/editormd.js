@@ -3630,6 +3630,14 @@
         };
 
         markedRenderer.code = function (code, lang, escaped) { 
+			// 随机数
+            var randomId = function () {
+                var rnd = "";
+                for (var i = 0; i < 10; i++) {
+					rnd += Math.floor(Math.random() * 10);
+				}
+                return new Date().getTime() + rnd;
+            };
 
             if (lang === "seq" || lang === "sequence")
             {
@@ -3642,6 +3650,10 @@
             else if ( lang === "math" || lang === "latex" || lang === "katex")
             {
                 return "<p class=\"" + editormd.classNames.tex + "\">" + code + "</p>";
+            } 
+            else if ( lang === "json5")
+            {
+                return "<div class=\"json5\" data-rnd=\"json5-rnd-" + randomId() + "\">" + code + "</div>";
             } 
             else 
             {
