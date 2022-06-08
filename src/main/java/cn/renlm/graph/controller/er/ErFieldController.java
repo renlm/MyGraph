@@ -70,7 +70,7 @@ public class ErFieldController {
 	@ResponseBody
 	@PostMapping("/ajax/update")
 	public Result<?> ajaxUpdate(Authentication authentication, String uuid, String name, String comment,
-			Integer sqlType, Integer size, Integer digit, Boolean isNullable, Boolean autoIncrement, String columnDef,
+			Integer sqlType, Long size, Integer digit, Boolean isNullable, Boolean autoIncrement, String columnDef,
 			Boolean isPk, Boolean isFk, String remark) {
 		try {
 			User user = (User) authentication.getPrincipal();

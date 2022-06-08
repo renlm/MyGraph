@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-05-16
+ * @since 2022-06-08
  */
 @Getter
 @Setter
@@ -72,7 +72,7 @@ public class ErField implements Serializable {
      * 长度
      */
     @TableField("size")
-    private Integer size;
+    private Long size;
 
     /**
      * 精度
