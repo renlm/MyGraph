@@ -72,6 +72,7 @@ a.json-toggle:before {
 	display: inline-block;
 	width: 1em;
 	left: -1em;
+	font-size: 12px !important;
 }
 
 a.json-toggle.collapsed:before {
@@ -79,6 +80,7 @@ a.json-toggle.collapsed:before {
 	-ms-transform: rotate(-90deg);
 	-webkit-transform: rotate(-90deg);
 	left: -1.25em;
+	bottom: 0.15em;
 }
 
 a.json-placeholder {
