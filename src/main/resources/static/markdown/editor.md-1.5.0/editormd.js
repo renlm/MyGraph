@@ -99,7 +99,7 @@
         appendMarkdown       : "",             // if in init textarea value not empty, append markdown to textarea
         width                : "100%",
         height               : "100%",
-        path                 : "./lib/",       // Dependents module file directory
+        path                 : "static/markdown/editor.md-1.5.0/lib/", // Dependents module file directory
         pluginPath           : "",             // If this empty, default use settings.path + "../plugins/"
         delay                : 300,            // Delay parse markdown to html, Uint : ms
         autoLoadModules      : true,           // Automatic load dependent module files
@@ -2078,7 +2078,17 @@
                         editormd.$katex = katex;
                         this.katexRender();
                     }
-                }                
+                }
+
+				if (settings.json5)
+                {
+                    if (!editormd.json5Loaded && settings.autoLoadModules) 
+                    {
+                        editormd.loadJson5(settings.path, function() {
+                            editormd.json5Loaded = true;
+                        });
+                    }
+                }            
                 
                 if (settings.flowChart || settings.sequenceDiagram)
                 {
@@ -3902,6 +3912,7 @@
             tocDropdown          : false,
             tocContainer         : "",
             markdown             : "",
+			path                 : "static/markdown/editor.md-1.5.0/lib/", // Dependents module file directory
             markdownSourceCode   : false,
             htmlDecode           : false,
             autoLoadKaTeX        : true,
@@ -4031,6 +4042,16 @@
             else
             {
                 katexHandle();
+            }
+        }
+
+		if (settings.json5)
+        {
+            if (!editormd.json5Loaded) 
+            {
+                this.loadJson5(settings.path, function() {
+                    editormd.json5Loaded = true;
+                });
             }
         }
         
@@ -4195,6 +4216,31 @@
     editormd.loadKaTeX = function (loadPath, callback) {
         editormd.loadCSS(loadPath + editormd.katexURL.css, function(){
             editormd.loadScript(loadPath + editormd.katexURL.js, callback || function(){});
+        });
+    };
+    
+    // Custom Json5 load url.
+    editormd.json5URL  = {
+        jsonViewerCss : "json-editor/json-viewer",
+        json5Js  : "json-editor/json5.min",
+        jsonEditorJs  : "json-editor/json-editor.min"
+    };
+    
+    editormd.json5Loaded = false;
+    
+    /**
+     * 加载Json5文件
+     * load Json5 files
+     * 
+     * @param {loadPath}
+     * @param {Function} [callback=function()]  加载成功后执行的回调函数
+     */
+    
+    editormd.loadJson5 = function (loadPath, callback) {
+        editormd.loadCSS(loadPath + editormd.json5URL.jsonViewerCss, function(){
+            editormd.loadScript(loadPath + editormd.json5URL.json5Js, function(){
+				editormd.loadScript(loadPath + editormd.json5URL.jsonEditorJs, callback || function(){});
+			});
         });
     };
         
