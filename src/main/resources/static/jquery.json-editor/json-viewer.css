@@ -1,3 +1,7 @@
+.editor-preview pre {
+    border-radius: 4px;
+}
+
 .json-editor-blackbord {
 	line-height: 14px !important;
 	padding: 14px 28px !important;
@@ -74,6 +78,7 @@ a.json-toggle.collapsed:before {
 	transform: rotate(-90deg);
 	-ms-transform: rotate(-90deg);
 	-webkit-transform: rotate(-90deg);
+	left: -1.25em;
 }
 
 a.json-placeholder {
