@@ -3688,7 +3688,7 @@
             {
 				var rnd = "json5-rnd-" + randomId();
                 return "<div class=\"json5\" data-rnd=\"" + rnd + "\">" + 
-					       "<pre id=\"" + rnd + "\" class=\"json-editor-blackbord\" contenteditable=\"false\" data-code=\"" + Base64.encodeURI(code) + "\"></pre>" +
+					       "<pre id=\"" + rnd + "\" class=\"json-editor-blackbord\" data-code=\"" + Base64.encodeURI(code) + "\"></pre>" +
 					   "</div>";
             }
             else 
