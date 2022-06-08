@@ -17,7 +17,7 @@
 }
 
 .json-editor-blackbord {
-	background: #373e52;
+	background: #373e52 !important;
 	color: #fff;
 	font-size: 12px;
 	font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
