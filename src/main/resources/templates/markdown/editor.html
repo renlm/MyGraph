@@ -47,11 +47,19 @@
                 imageUploadURL: "[(@{/sys/file/upload})]",
                 toolbarIcons: function () {
                 	var toolbarIcons = editormd.toolbarModes.full;
-                	toolbarIcons.splice(toolbarIcons.indexOf("emoji"), 1);
-                	toolbarIcons.splice(toolbarIcons.indexOf("fullscreen"), 1);
-                	toolbarIcons.splice(toolbarIcons.indexOf("info"), 1);
-                	toolbarIcons.push("|");
-                	toolbarIcons.push("save");
+                	if (toolbarIcons.indexOf("emoji") >= 0) {
+                		toolbarIcons.splice(toolbarIcons.indexOf("emoji"), 1);
+                	}
+                	if (toolbarIcons.indexOf("fullscreen") >= 0) {
+                		toolbarIcons.splice(toolbarIcons.indexOf("fullscreen"), 1);
+                	}
+                	if (toolbarIcons.indexOf("info") >= 0) {
+                		toolbarIcons.splice(toolbarIcons.indexOf("info"), 1);
+                	}
+                	if (toolbarIcons.indexOf("save") < 0) {
+                		toolbarIcons.push("|");
+                    	toolbarIcons.push("save");
+                	}
                 	return toolbarIcons;
                 },
                 toolbarIconsClass: {
@@ -82,8 +90,6 @@
                 	}
                 },
                 onload: function () {
-                	$("div.editormd-toolbar-container>ul.editormd-menu>li>a[title='Emoji表情']").parent().hide();
-                	$("div.editormd-toolbar-container>ul.editormd-menu>li>a[title='关于Editor.md']").parent().hide();
                 	var that = this;
     	    		var originFn = window.onresize;
     	       		window.onresize = function () { 
