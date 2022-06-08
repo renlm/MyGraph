@@ -168,6 +168,7 @@
         tex                  : false,          // TeX(LaTeX), based on KaTeX
         flowChart            : false,          // flowChart.js only support IE9+
         sequenceDiagram      : false,          // sequenceDiagram.js only support IE9+
+		json5                : true,           // Json5格式化预览
         previewCodeHighlight : true,
                 
         toolbar              : true,           // show/hide toolbar
