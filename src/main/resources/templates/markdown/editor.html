@@ -42,9 +42,15 @@
                 tex: true,
                 flowChart: true,
                 sequenceDiagram: true,
-                imageUpload: false,
+                imageUpload: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL: "[(@{/sys/file/upload})]",
                 toolbarIcons: function () {
                 	var toolbarIcons = editormd.toolbarModes.full;
+                	toolbarIcons.splice(toolbarIcons.indexOf("emoji"), 1);
+                	toolbarIcons.splice(toolbarIcons.indexOf("fullscreen"), 1);
+                	toolbarIcons.splice(toolbarIcons.indexOf("info"), 1);
+                	toolbarIcons.push("|");
                 	toolbarIcons.push("save");
                 	return toolbarIcons;
                 },
