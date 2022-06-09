@@ -4346,9 +4346,20 @@
 			} else {
 				__codeJsonToTreeTable(map, opts.$TypeScript, [1], opts.$Example);
 			}
-			$.each(map.trs, function ($i, $tr) {
-				console.log($i, $tr);
-			});
+			if (map.trs && map.trs.length > 0) {
+				map.html = "<thead><tr><th data-field='field'>字段</th><th data-field='type'>类型</th><th data-field='required'>是否必须</th><th data-field='explain'>说明</th></tr></thead>";
+				map.html+= "<tbody>";
+				$.each(map.trs, function ($i, $tr) {
+					if ($i) { }
+					map.html+= "<tr data-tt-id='" + $tr.id + "'" + ($tr.pid ? (" data-tt-parent-id='" + $tr.pid + "'"):"") + ">";
+					map.html+=     "<td><span class='" + $tr.className + "'> " + $tr.field + "</span></td>";
+					map.html+=     "<td>" + ($tr.type ? $tr.type : "-") + "</td>";
+					map.html+=     "<td>" + ($tr.required === null ? "-" : ($tr.required ? "是":"否")) + "</td>";
+					map.html+=     "<td>" + ($tr.explain ? $tr.explain : "-") + "</td>";
+					map.html+= "</tr>";
+				});
+				map.html+= "</tbody>";
+			}
 		}
 	
 		/**
@@ -4370,7 +4381,7 @@
 						var $value = json[$key];
 						var $type = typeof $value;
 						var $class = $type == "object" ? "folder" : "file";
-						var $tr = { id: $tops.join('-'), className: $class, field: $key, type: $type, required: null, explain: null };
+						var $tr = { id: $tops.join('-'), pid: tops.join('-'), className: $class, field: $key, type: $type, required: null, explain: null };
 						map.trs.push($tr);
 						if ($type == "object") {
 							if (Array.isArray($value)) {
