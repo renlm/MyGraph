@@ -4331,7 +4331,26 @@
     editormd.json5RenderHtml = function(rnd, codeJson) {
 	
 		/**
-	     * Json对象转树形表格
+	     * Json对象转树形表格（Html）
+	     * 
+	     * @param {map}
+	     * @param {opts}
+	  	 */
+		function __codeJsonToHtml (map, opts) {
+			if (Array.isArray(opts.$Example)) {
+				$.each(opts.$Example, function ($i, $item) {
+					__codeJsonToTreeTable(map, opts.$TypeScript, [], $i + 1, $item);
+				});
+			} else {
+				__codeJsonToTreeTable(map, opts.$TypeScript, [], 1, opts.$Example);
+			}
+			$.each(map.trs, function ($i, $tr) {
+				console.log($i, $tr);
+			});
+		}
+	
+		/**
+	     * Json对象转树形表格（递归结构）
 	     * 
 	     * @param {map}
 	     * @param {ts}
@@ -4339,16 +4358,29 @@
 	     * @param {idx}
 	     * @param {json}
 	  	 */
-		function codeJsonToTreeTable (map, ts, tops, idx, json) {
+		function __codeJsonToTreeTable (map, ts, tops, idx, json) {
 			if (typeof json == "object") {
 				var keys = Object.keys(json);
 				if (keys.length > 0) {
 					$.each(keys, function ($i, $key) {
+						var $tops = [];
+						$tops.push(...tops);
+						$tops.push(idx);
+						$tops.push($i + 1);
 						var $value = json[$key];
 						var $type = typeof $value;
 						var $class = $type == "object" ? "folder" : "file";
-						var $item = { id: $i, className: $class, field: $key, type: $type, required: null, explain: null };
-						map.trs.push($item);
+						var $tr = { id: $tops.join('-'), className: $class, field: $key, type: $type, required: null, explain: null };
+						map.trs.push($tr);
+						if ($type == "object") {
+							if (Array.isArray($value)) {
+								$.each($value, function ($j, $next) {
+									__codeJsonToTreeTable(map, ts, $tops, $j + 1, $next);
+								});
+							} else {
+								__codeJsonToTreeTable(map, ts, $tops, 1, $value);
+							}
+						}
 					});
 				}
 			}
@@ -4365,13 +4397,7 @@
   				}).load(codeJson.$Example);
 			// Json注释
 			var jttBody = { trs: [], html: null };
-			if (Array.isArray(codeJson.$Example)) {
-				$.each(codeJson.$Example, function (idx, item) {
-					codeJsonToTreeTable(jttBody, codeJson.$TypeScript, [], idx, item);
-				});
-			} else {
-				codeJsonToTreeTable(jttBody, codeJson.$TypeScript, [], 0, codeJson.$Example);
-			}
+			__codeJsonToHtml(jttBody, codeJson);
 			if (jttBody.html) {
 				$("#Jtt-" + rnd).html(jttBody.html).treetable({ expandable: true });
 				$("#Jtt-" + rnd).show();
