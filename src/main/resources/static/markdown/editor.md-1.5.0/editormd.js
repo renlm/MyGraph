@@ -4351,6 +4351,12 @@
 				map.html+= "<tbody>";
 				$.each(map.trs, function ($i, $tr) {
 					if ($i) { }
+					var $tsOpts = opts.$TypeScript[$tr.fullkey];
+					if ($tsOpts) {
+						$tr.type = $tsOpts.type ? $tsOpts.type : $tr.type;
+						$tr.required = $tsOpts.required ? $tsOpts.required : $tr.required;
+						$tr.explain = $tsOpts.comment ? $tsOpts.comment : $tr.explain;
+					}
 					map.html+= "<tr data-tt-id='" + $tr.id + "'" + ($tr.pid ? (" data-tt-parent-id='" + $tr.pid + "'"):"") + ">";
 					map.html+=     "<td data-fullkey='" + $tr.fullkey + "'><span class='" + $tr.className + "'> " + ($tr.pfields ? ("<span style='padding: 0;color: #999;'>" + $tr.pfields + ".</span>"): "") + $tr.field + "</span></td>";
 					map.html+=     "<td>" + ($tr.type ? $tr.type : "-") + "</td>";
