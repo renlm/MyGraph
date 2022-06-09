@@ -4288,10 +4288,10 @@
         jsonViewerCss : "json-editor/json-viewer",
         json5Js : "json-editor/json5.min",
         jsonEditorJs : "json-editor/json-editor.min",
-        jqueryTreeTableMasterCss : "jquery-treetable/2.3.1/doc/stylesheets/master",
-        jqueryTreeTableCss : "jquery-treetable/2.3.1/src/stylesheets/jquery.treeTable",
-        jqueryUiJs : "jquery-treetable/2.3.1/doc/javascripts/jquery.ui",
-        jqueryTreeTableJs : "jquery-treetable/2.3.1/src/javascripts/jquery.treeTable"
+        jqueryTreeTableScreenCss : "jquery-treetable/3.2.0/css/screen",
+        jqueryTreeTableThemeCss : "jquery-treetable/3.2.0/css/jquery.treetable.theme.default",
+        jqueryTreeTableCss : "jquery-treetable/3.2.0/css/jquery.treetable",
+        jqueryTreeTableJs : "jquery-treetable/3.2.0/jquery.treetable"
     };
     
     editormd.json5Loaded = false;
@@ -4307,15 +4307,15 @@
     editormd.loadJson5 = function (loadPath, callback) {
         editormd.loadCSS(loadPath + editormd.json5URL.jsonViewerCss, function(){
             editormd.loadScript(loadPath + editormd.json5URL.json5Js, function(){
-				editormd.loadCSS(loadPath + editormd.json5URL.jqueryTreeTableMasterCss, function(){
-		            editormd.loadCSS(loadPath + editormd.json5URL.jqueryTreeTableCss, function(){
-			            editormd.loadScript(loadPath + editormd.json5URL.jqueryUiJs, function(){
-							editormd.loadScript(loadPath + editormd.json5URL.jqueryTreeTableJs, function(){
-								editormd.loadScript(loadPath + editormd.json5URL.jsonEditorJs, callback || function(){});
+				editormd.loadScript(loadPath + editormd.json5URL.jsonEditorJs, function(){
+					editormd.loadCSS(loadPath + editormd.json5URL.jqueryTreeTableScreenCss, function(){
+						editormd.loadCSS(loadPath + editormd.json5URL.jqueryTreeTableThemeCss, function(){
+							editormd.loadCSS(loadPath + editormd.json5URL.jqueryTreeTableCss, function(){
+								editormd.loadScript(loadPath + editormd.json5URL.jqueryTreeTableJs, callback || function(){});
 							});
 						});
-			        });
-		        });
+					});
+				});
 			});
         });
     };
