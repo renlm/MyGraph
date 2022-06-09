@@ -4338,7 +4338,7 @@
   					editable: false
   				}).load(codeJson.$Example);
 			// Json注释
-			$("#Jtt-" + rnd).treeTable({ expandable: true });
+			$("#Jtt-" + rnd).treetable({ expandable: true });
 		} else {
 			// Json预览
 			new JsonEditor("#" + rnd, 
