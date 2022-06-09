@@ -4288,7 +4288,9 @@
         jsonViewerCss : "json-editor/json-viewer",
         json5Js : "json-editor/json5.min",
         jsonEditorJs : "json-editor/json-editor.min",
+        jqueryTreeTableMasterCss : "jquery-treetable/2.3.1/doc/stylesheets/master",
         jqueryTreeTableCss : "jquery-treetable/2.3.1/src/stylesheets/jquery.treeTable",
+        jqueryUiJs : "jquery-treetable/2.3.1/doc/javascripts/jquery.ui",
         jqueryTreeTableJs : "jquery-treetable/2.3.1/src/javascripts/jquery.treeTable"
     };
     
@@ -4305,10 +4307,14 @@
     editormd.loadJson5 = function (loadPath, callback) {
         editormd.loadCSS(loadPath + editormd.json5URL.jsonViewerCss, function(){
             editormd.loadScript(loadPath + editormd.json5URL.json5Js, function(){
-				editormd.loadCSS(loadPath + editormd.json5URL.jqueryTreeTableCss, function(){
-		            editormd.loadScript(loadPath + editormd.json5URL.jqueryTreeTableJs, function(){
-						editormd.loadScript(loadPath + editormd.json5URL.jsonEditorJs, callback || function(){});
-					});
+				editormd.loadCSS(loadPath + editormd.json5URL.jqueryTreeTableMasterCss, function(){
+		            editormd.loadCSS(loadPath + editormd.json5URL.jqueryTreeTableCss, function(){
+			            editormd.loadScript(loadPath + editormd.json5URL.jqueryUiJs, function(){
+							editormd.loadScript(loadPath + editormd.json5URL.jqueryTreeTableJs, function(){
+								editormd.loadScript(loadPath + editormd.json5URL.jsonEditorJs, callback || function(){});
+							});
+						});
+			        });
 		        });
 			});
         });
@@ -4332,7 +4338,7 @@
   					editable: false
   				}).load(codeJson.$Example);
 			// Json注释
-			$("#Jtt-" + rnd).treetable({ expandable: true });
+			$("#Jtt-" + rnd).treeTable({ expandable: true });
 		} else {
 			// Json预览
 			new JsonEditor("#" + rnd, 
