@@ -95,17 +95,23 @@
                 		});
                 	},
                 	Json5: function (cm, icon, cursor, selection) {
+                		var $Json5EditorId = "Json5Editor-" + (new Date()).getTime();
                 		this.createDialog({
                             title: this.lang.toolbar.Json5,
                             width: 480,
                             height: 400,
-                            content: "<textarea class='form-control border' style='width: 100%; height: 277px;' id='Json5-editor-" + (new Date()).getTime() + "'></textarea>",
+                            content: "<textarea class='form-control border' style='width: 100%; height: 277px;' id='" + $Json5EditorId + "'></textarea>",
                             mask: true,
                             drag: true,
                             lockScreen: true,
                             buttons: {
                                 enter: ["确定", function () {
-                                	console.log(this);
+                                	var $jsonEditorStr = $("#" + $Json5EditorId).val();
+                                	var $jsonEditorData = JSON5.parse($jsonEditorStr);
+                                	var $codeJson = "```json5\r\n";
+                                		$codeJson+= JSON5.stringify({$TypeScript:{},$Example:$jsonEditorData},(k,v)=>{return v;},4);
+                                		$codeJson+= "\r\n```";
+                                	cm.replaceSelection($codeJson);
                                 	this.hide().lockScreen(false).hideMask();
                                     return false;
                                 }],
