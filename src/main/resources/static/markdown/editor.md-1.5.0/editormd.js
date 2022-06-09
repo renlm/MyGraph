@@ -4419,7 +4419,7 @@
 			var jttBody = { trs: [], html: null };
 			__codeJsonToHtml(jttBody, codeJson);
 			if (jttBody.html) {
-				$("#Jtt-" + rnd).html(jttBody.html).treetable({ expandable: true });
+				$("#Jtt-" + rnd).html(jttBody.html).treetable({ expandable: true, initialState: "expanded" });
 				$("#Jtt-" + rnd).show();
 			} else {
 				$("#Jtt-" + rnd).remove();
