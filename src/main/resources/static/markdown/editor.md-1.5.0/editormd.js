@@ -4339,10 +4339,12 @@
 		function __codeJsonToHtml (map, opts) {
 			if (Array.isArray(opts.$Example)) {
 				$.each(opts.$Example, function ($i, $item) {
-					__codeJsonToTreeTable(map, opts.$TypeScript, [], $i + 1, $item);
+					if ($i == 0) {
+						__codeJsonToTreeTable(map, opts.$TypeScript, [$i + 1], $item);
+					}
 				});
 			} else {
-				__codeJsonToTreeTable(map, opts.$TypeScript, [], 1, opts.$Example);
+				__codeJsonToTreeTable(map, opts.$TypeScript, [1], opts.$Example);
 			}
 			$.each(map.trs, function ($i, $tr) {
 				console.log($i, $tr);
@@ -4354,18 +4356,16 @@
 	     * 
 	     * @param {map}
 	     * @param {ts}
-	     * @param {tops}
 	     * @param {idx}
 	     * @param {json}
 	  	 */
-		function __codeJsonToTreeTable (map, ts, tops, idx, json) {
+		function __codeJsonToTreeTable (map, ts, tops, json) {
 			if (typeof json == "object") {
 				var keys = Object.keys(json);
 				if (keys.length > 0) {
 					$.each(keys, function ($i, $key) {
 						var $tops = [];
 						$tops.push(...tops);
-						$tops.push(idx);
 						$tops.push($i + 1);
 						var $value = json[$key];
 						var $type = typeof $value;
@@ -4375,10 +4375,12 @@
 						if ($type == "object") {
 							if (Array.isArray($value)) {
 								$.each($value, function ($j, $next) {
-									__codeJsonToTreeTable(map, ts, $tops, $j + 1, $next);
+									if ($j == 0) {
+										__codeJsonToTreeTable(map, ts, $tops, $next);
+									}
 								});
 							} else {
-								__codeJsonToTreeTable(map, ts, $tops, 1, $value);
+								__codeJsonToTreeTable(map, ts, $tops, $value);
 							}
 						}
 					});
