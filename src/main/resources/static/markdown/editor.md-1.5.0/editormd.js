@@ -1524,12 +1524,7 @@
 	                var code  = $(this).find("#" + rnd).data("code");
 					if (code) {
 						var codeJson = JSON5.parse(Base64.decode(code));
-				  		new JsonEditor("#" + rnd, 
-				  				codeJson,
-				  				{
-				  					defaultCollapsed: false,
-				  					editable: false
-				  				}).load(codeJson);
+						editormd.json5RenderHtml(rnd, codeJson);
 					}
 				}
             });   
@@ -4102,12 +4097,7 @@
 		                var code  = $(this).find("#" + rnd).data("code");
 						if (code) {
 							var codeJson = JSON5.parse(Base64.decode(code));
-					  		new JsonEditor("#" + rnd, 
-					  				codeJson,
-					  				{
-					  					defaultCollapsed: false,
-					  					editable: false
-					  				}).load(codeJson);
+					  		editormd.json5RenderHtml(rnd, codeJson);
 						}
 					}
 	            });
@@ -4313,6 +4303,32 @@
 				editormd.loadScript(loadPath + editormd.json5URL.jsonEditorJs, callback || function(){});
 			});
         });
+    };
+        
+    /**
+     * 解析Json5 Html
+     * Json5 Renderer Html
+     * 
+     * @param {rnd}
+     * @param {codeJson} [{} 或 {$Example:{},$TypeScript:{}}]  
+  	 */
+        
+    editormd.json5RenderHtml = function(rnd, codeJson) {
+        if (codeJson.$Example && codeJson.$TypeScript) {
+			new JsonEditor("#" + rnd, 
+  				codeJson.$Example,
+  				{
+  					defaultCollapsed: false,
+  					editable: false
+  				}).load(codeJson.$Example);
+		} else {
+			new JsonEditor("#" + rnd, 
+  				codeJson,
+  				{
+  					defaultCollapsed: false,
+  					editable: false
+  				}).load(codeJson);
+		}
     };
         
     /**
