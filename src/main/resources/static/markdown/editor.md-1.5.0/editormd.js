@@ -3686,7 +3686,7 @@
 				var rnd = "json5-rnd-" + randomId();
                 return "<div class=\"json5\" data-rnd=\"" + rnd + "\">" + 
 					       "<pre id=\"" + rnd + "\" class=\"json-editor-blackbord\" data-code=\"" + Base64.encodeURI(code) + "\"></pre>" +
-						   "<table id=\"Jtt-" + rnd + "\"></table>" +
+						   "<table id=\"Jtt-" + rnd + "\" style=\"display: none;\"></table>" +
 					   "</div>";
             }
             else 
@@ -4338,7 +4338,12 @@
   					editable: false
   				}).load(codeJson.$Example);
 			// Json注释
-			$("#Jtt-" + rnd).treetable({ expandable: true });
+			var jttBody = null;
+			if (jttBody) {
+				$("#Jtt-" + rnd).show().treetable({ expandable: true });
+			} else {
+				$("#Jtt-" + rnd).remove();
+			}
 		} else {
 			// Json预览
 			new JsonEditor("#" + rnd, 
