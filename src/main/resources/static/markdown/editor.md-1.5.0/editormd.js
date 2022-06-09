@@ -4340,20 +4340,15 @@
 	     * @param {json}
 	  	 */
 		function codeJsonToTreeTable (map, ts, tops, idx, json) {
-			if (typeof json == 'object') {
+			if (typeof json == "object") {
 				var keys = Object.keys(json);
 				if (keys.length > 0) {
-					if (!map.html) {
-						map.html = "<thead><tr><th>字段</th><th>类型</th><th>是否必须</th><th>说明</th></tr></thead><tbody>";
-					}
 					$.each(keys, function ($i, $key) {
 						var $value = json[$key];
-						map.html += "<tr data-tt-id='" + $i + "'>";
-						map.html += "<td><span class='file'>" + $key + "</span></td>";
-						map.html += "<td>" + (typeof $value) + "</td>";
-						map.html += "<td>" + (typeof $value) + "</td>";
-						map.html += "<td>" + (typeof $value) + "</td>";
-						map.html += "</tr>";
+						var $type = typeof $value;
+						var $class = $type == "object" ? "folder" : "file";
+						var $item = { id: $i, className: $class, field: $key, type: $type, required: null, explain: null };
+						map.trs.push($item);
 					});
 				}
 			}
@@ -4369,7 +4364,7 @@
   					editable: false
   				}).load(codeJson.$Example);
 			// Json注释
-			var jttBody = {};
+			var jttBody = { trs: [], html: null };
 			if (Array.isArray(codeJson.$Example)) {
 				$.each(codeJson.$Example, function (idx, item) {
 					codeJsonToTreeTable(jttBody, codeJson.$TypeScript, [], idx, item);
@@ -4377,8 +4372,8 @@
 			} else {
 				codeJsonToTreeTable(jttBody, codeJson.$TypeScript, [], 0, codeJson.$Example);
 			}
-			if (Object.keys(jttBody).length > 0) {
-				$("#Jtt-" + rnd).html(jttBody.html + "</tbody>").treetable({ expandable: true });
+			if (jttBody.html) {
+				$("#Jtt-" + rnd).html(jttBody.html).treetable({ expandable: true });
 				$("#Jtt-" + rnd).show();
 			} else {
 				$("#Jtt-" + rnd).remove();
