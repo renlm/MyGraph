@@ -4329,6 +4329,21 @@
   	 */
         
     editormd.json5RenderHtml = function(rnd, codeJson) {
+	
+		/**
+	     * Json对象转树形表格
+	     * 
+	     * @param {map}
+	     * @param {ts}
+	     * @param {tops}
+	     * @param {idx}
+	     * @param {json}
+	  	 */
+		function codeJsonToTreeTable (map, ts, tops, idx, json) {
+			
+		}
+	
+	    // 代码区域
         if (codeJson.$Example && codeJson.$TypeScript) {
 			// Json预览
 			new JsonEditor("#" + rnd, 
@@ -4338,9 +4353,17 @@
   					editable: false
   				}).load(codeJson.$Example);
 			// Json注释
-			var jttBody = null;
-			if (jttBody) {
-				$("#Jtt-" + rnd).show().treetable({ expandable: true });
+			var jttBody = {};
+			if (Array.isArray(codeJson.$Example)) {
+				$.each(codeJson.$Example, function (idx, item) {
+					codeJsonToTreeTable(jttBody, codeJson.$TypeScript, [], idx, item);
+				});
+			} else {
+				codeJsonToTreeTable(jttBody, codeJson.$TypeScript, [], 0, codeJson.$Example);
+			}
+			if (Object.keys(jttBody).length > 0) {
+				$("#Jtt-" + rnd).html(jttBody.html).treetable({ expandable: true });
+				$("#Jtt-" + rnd).show();
 			} else {
 				$("#Jtt-" + rnd).remove();
 			}
