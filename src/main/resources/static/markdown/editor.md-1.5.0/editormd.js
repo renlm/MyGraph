@@ -4283,8 +4283,10 @@
     // Custom Json5 load url.
     editormd.json5URL  = {
         jsonViewerCss : "json-editor/json-viewer",
-        json5Js  : "json-editor/json5.min",
-        jsonEditorJs  : "json-editor/json-editor.min"
+        json5Js : "json-editor/json5.min",
+        jsonEditorJs : "json-editor/json-editor.min",
+        jqueryTreeTableCss : "jquery-treetable/2.3.1/src/stylesheets/jquery.treeTable",
+        jqueryTreeTableJs : "jquery-treetable/2.3.1/src/javascripts/jquery.treeTable"
     };
     
     editormd.json5Loaded = false;
@@ -4300,7 +4302,11 @@
     editormd.loadJson5 = function (loadPath, callback) {
         editormd.loadCSS(loadPath + editormd.json5URL.jsonViewerCss, function(){
             editormd.loadScript(loadPath + editormd.json5URL.json5Js, function(){
-				editormd.loadScript(loadPath + editormd.json5URL.jsonEditorJs, callback || function(){});
+				editormd.loadCSS(loadPath + editormd.json5URL.jqueryTreeTableCss, function(){
+		            editormd.loadScript(loadPath + editormd.json5URL.jqueryTreeTableJs, function(){
+						editormd.loadScript(loadPath + editormd.json5URL.jsonEditorJs, callback || function(){});
+					});
+		        });
 			});
         });
     };
@@ -4321,7 +4327,7 @@
   					defaultCollapsed: false,
   					editable: false
   				}).load(codeJson.$Example);
-			
+			$("#" + rnd).parent().append("<div id=\"Jtt-" + rnd + "\"></div>");
 		} else {
 			new JsonEditor("#" + rnd, 
   				codeJson,
