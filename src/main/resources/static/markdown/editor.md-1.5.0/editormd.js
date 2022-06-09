@@ -4350,6 +4350,9 @@
 	     * @param {json}
 	  	 */
 		function $JsonToTreeTable ($fields, ts, pids, pfields, json) {
+			if (json === null) {
+				return;
+			}
 			if (typeof json == "object") {
 				var keys = Object.keys(json);
 				if (keys.length > 0) {
