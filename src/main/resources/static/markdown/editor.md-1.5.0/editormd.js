@@ -4319,6 +4319,74 @@
 			});
         });
     };
+
+	/**
+     * 解析Json5 数据结构
+     * 
+     * @param {json}
+     * @returns [{id,pid,className,field,pfields,type,required,explain}] 
+  	 */
+        
+    editormd.json5Parse = function(json, ts) {
+		var $fields = [];
+		var $ts = ts || {};
+		if (Array.isArray(json)) {
+			$.each(json, function ($i, $item) {
+				if ($i == 0) {
+					$JsonToTreeTable($fields, $ts, [$i + 1], [], $item);
+				}
+			});
+		} else {
+			$JsonToTreeTable($fields, $ts, [1], [], json);
+		}
+		
+		/**
+	     * Json对象转树形表格（递归结构）
+	     * 
+	     * @param {$fields}
+	     * @param {ts}
+	     * @param {pids}
+	     * @param {pfields}
+	     * @param {json}
+	  	 */
+		function $JsonToTreeTable ($fields, ts, pids, pfields, json) {
+			if (typeof json == "object") {
+				var keys = Object.keys(json);
+				if (keys.length > 0) {
+					$.each(keys, function ($i, $key) {
+						var $pids = [];
+						$pids.push(...pids);
+						$pids.push($i + 1);
+						
+						var $pfields = [];
+						$pfields.push(...pfields);
+						
+						var $value = json[$key];
+						var $type = Array.isArray($value) ? "array" : typeof $value;
+						var $class = ($type == "object" || $type == "array") ? "folder" : "file";
+						var $tr = { id: $pids.join('-'), pid: pids.join('-'), className: $class, field: $key, pfields: $pfields.join('.'), type: $type, required: null, explain: null };
+						$tr.fullkey = $tr.pfields ? ($tr.pfields + "." + $tr.field) : $tr.field;
+						$fields.push($tr);
+						$pfields.push($tr.field);
+						if ($type == "object" || $type == "array") {
+							if (Array.isArray($value)) {
+								$.each($value, function ($j, $next) {
+									if ($j == 0) {
+										$JsonToTreeTable($fields, ts, $pids, $pfields, $next);
+									}
+								});
+							} else {
+								$JsonToTreeTable($fields, ts, $pids, $pfields, $value);
+							}
+						}
+					});
+				}
+			}
+		}
+		
+		return $fields;
+	};
+	
         
     /**
      * 解析Json5 Html
@@ -4336,16 +4404,8 @@
 	     * @param {map}
 	     * @param {opts}
 	  	 */
-		function __codeJsonToHtml (map, opts) {
-			if (Array.isArray(opts.$Example)) {
-				$.each(opts.$Example, function ($i, $item) {
-					if ($i == 0) {
-						__codeJsonToTreeTable(map, opts.$TypeScript, [$i + 1], [], $item);
-					}
-				});
-			} else {
-				__codeJsonToTreeTable(map, opts.$TypeScript, [1], [], opts.$Example);
-			}
+		function $JsonToHtml (map, opts) {
+			map.trs = editormd.json5Parse(opts.$Example, opts.$TypeScript);
 			if (map.trs && map.trs.length > 0) {
 				map.html = "<thead><tr><th data-field='field'>字段</th><th data-field='type'>类型</th><th data-field='required'>是否必须</th><th data-field='explain'>说明</th></tr></thead>";
 				map.html+= "<tbody>";
@@ -4368,50 +4428,6 @@
 			}
 		}
 	
-		/**
-	     * Json对象转树形表格（递归结构）
-	     * 
-	     * @param {map}
-	     * @param {ts}
-	     * @param {pids}
-	     * @param {pfields}
-	     * @param {json}
-	  	 */
-		function __codeJsonToTreeTable (map, ts, pids, pfields, json) {
-			if (typeof json == "object") {
-				var keys = Object.keys(json);
-				if (keys.length > 0) {
-					$.each(keys, function ($i, $key) {
-						var $pids = [];
-						$pids.push(...pids);
-						$pids.push($i + 1);
-						
-						var $pfields = [];
-						$pfields.push(...pfields);
-						
-						var $value = json[$key];
-						var $type = Array.isArray($value) ? "array" : typeof $value;
-						var $class = ($type == "object" || $type == "array") ? "folder" : "file";
-						var $tr = { id: $pids.join('-'), pid: pids.join('-'), className: $class, field: $key, pfields: $pfields.join('.'), type: $type, required: null, explain: null };
-						$tr.fullkey = $tr.pfields ? ($tr.pfields + "." + $tr.field) : $tr.field;
-						map.trs.push($tr);
-						$pfields.push($tr.field);
-						if ($type == "object" || $type == "array") {
-							if (Array.isArray($value)) {
-								$.each($value, function ($j, $next) {
-									if ($j == 0) {
-										__codeJsonToTreeTable(map, ts, $pids, $pfields, $next);
-									}
-								});
-							} else {
-								__codeJsonToTreeTable(map, ts, $pids, $pfields, $value);
-							}
-						}
-					});
-				}
-			}
-		}
-	
 	    // 代码区域
         if (codeJson.$Example && codeJson.$TypeScript) {
 			// Json预览
@@ -4423,7 +4439,7 @@
   				}).load(codeJson.$Example);
 			// Json注释
 			var jttBody = { trs: [], html: null };
-			__codeJsonToHtml(jttBody, codeJson);
+			$JsonToHtml(jttBody, codeJson);
 			if (jttBody.html) {
 				$("#Jtt-" + rnd).html(jttBody.html).treetable({ expandable: true, initialState: "expanded" });
 				$("#Jtt-" + rnd).show();
