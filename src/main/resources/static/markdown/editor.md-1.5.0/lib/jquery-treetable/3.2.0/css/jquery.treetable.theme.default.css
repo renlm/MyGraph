@@ -1,8 +1,8 @@
 table.treetable {
-  border: 1px solid #888;
+  /* border: 1px solid #888; */
   border-collapse: collapse;
   font-size: .8em;
-  line-height: 1;
+  /* line-height: 1; */
   margin: .6em 0 1.8em 0;
   width: 100%;
 }
@@ -19,15 +19,15 @@ table.treetable thead {
 }
 
 table.treetable thead tr th {
-  border: 1px solid #888;
-  font-weight: normal;
-  padding: .3em 1em .1em 1em;
+  /* border: 1px solid #888; */
+  /* font-weight: normal; */
+  /* padding: .3em 1em .1em 1em; */
   text-align: left;
 }
 
 table.treetable tbody tr td {
   cursor: default;
-  padding: .3em 1em;
+  /* padding: .3em 1em; */
 }
 
 table.treetable span {
