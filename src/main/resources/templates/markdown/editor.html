@@ -108,8 +108,20 @@
                                 enter: ["确定", function () {
                                 	var $jsonEditorStr = $("#" + $Json5EditorId).val();
                                 	var $jsonEditorData = JSON5.parse($jsonEditorStr);
+                                	var $fields = editormd.json5Parse($jsonEditorData);
                                 	var $codeJson = "```json5\r\n";
-                                		$codeJson+= JSON5.stringify({$TypeScript:{},$Example:$jsonEditorData},(k,v)=>{return v;},4);
+                                		$codeJson+= JSON5.stringify({
+                                				$TypeScript:(function(){
+                                					var $ts = {};
+                                					$.each($fields,function($i,$field){
+                                						$ts[$field.fullkey] = {type:$field.type,required:$field.required,comment:$field.explain};
+                                					});
+                                					return $ts;
+                                				})(),
+                                				$Example:$jsonEditorData
+                                			},
+                                			(k,v)=>{return v;},
+                                			4);
                                 		$codeJson+= "\r\n```";
                                 	cm.replaceSelection($codeJson);
                                 	this.hide().lockScreen(false).hideMask();
