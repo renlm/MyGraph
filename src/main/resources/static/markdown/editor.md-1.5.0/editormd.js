@@ -4321,6 +4321,7 @@
   					defaultCollapsed: false,
   					editable: false
   				}).load(codeJson.$Example);
+			
 		} else {
 			new JsonEditor("#" + rnd, 
   				codeJson,
