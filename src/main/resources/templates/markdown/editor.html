@@ -61,16 +61,19 @@
                 	}
                 	if (toolbarIcons.indexOf("save") < 0) {
                 		toolbarIcons.unshift("|");
+                		toolbarIcons.unshift("Json5");
                     	toolbarIcons.unshift("save");
                 	}
                 	return toolbarIcons;
                 },
                 toolbarIconsClass: {
-                	save: "fa fa-save"
+                	save: "fa fa-save",
+                	Json5: "fa fa-file-excel-o"
                 },
                 lang: {
                     toolbar: {
-                    	save: "保存"
+                    	save: "保存",
+                    	Json5: "Json文档"
                     }
                 },
                 toolbarHandlers: {
@@ -90,6 +93,28 @@
     							layer.msg(resultJson.message ? resultJson.message:"出错了", { icon: 5, shift:6 });
     						}
                 		});
+                	},
+                	Json5: function (cm, icon, cursor, selection) {
+                		this.createDialog({
+                            title: this.lang.toolbar.Json5,
+                            width: 480,
+                            height: 400,
+                            content: "<textarea class='form-control border' style='width: 100%; height: 277px;' id='Json5-editor-" + (new Date()).getTime() + "'></textarea>",
+                            mask: true,
+                            drag: true,
+                            lockScreen: true,
+                            buttons: {
+                                enter: ["确定", function () {
+                                	console.log(this);
+                                	this.hide().lockScreen(false).hideMask();
+                                    return false;
+                                }],
+                                cancel: ["取消", function () {
+                                    this.hide().lockScreen(false).hideMask();
+                                    return false;
+                                }]
+                            }
+                        });
                 	}
                 },
                 onload: function () {
