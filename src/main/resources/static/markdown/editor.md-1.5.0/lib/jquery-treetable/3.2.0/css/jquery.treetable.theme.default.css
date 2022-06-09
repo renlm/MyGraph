@@ -1,4 +1,5 @@
 table.treetable {
+  display: table;
   /* border: 1px solid #888; */
   border-collapse: collapse;
   /* font-size: .8em; */
