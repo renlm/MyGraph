@@ -4352,7 +4352,7 @@
 				$.each(map.trs, function ($i, $tr) {
 					if ($i) { }
 					map.html+= "<tr data-tt-id='" + $tr.id + "'" + ($tr.pid ? (" data-tt-parent-id='" + $tr.pid + "'"):"") + ">";
-					map.html+=     "<td><span class='" + $tr.className + "'> " + ($tr.pfields ? ("<span style='padding: 0;color: #999;'>" + $tr.pfields + ".</span>"): "") + $tr.field + "</span></td>";
+					map.html+=     "<td data-fullkey='" + $tr.fullkey + "'><span class='" + $tr.className + "'> " + ($tr.pfields ? ("<span style='padding: 0;color: #999;'>" + $tr.pfields + ".</span>"): "") + $tr.field + "</span></td>";
 					map.html+=     "<td>" + ($tr.type ? $tr.type : "-") + "</td>";
 					map.html+=     "<td>" + ($tr.required === null ? "-" : ($tr.required ? "是":"否")) + "</td>";
 					map.html+=     "<td>" + ($tr.explain ? $tr.explain : "-") + "</td>";
@@ -4384,12 +4384,13 @@
 						$pfields.push(...pfields);
 						
 						var $value = json[$key];
-						var $type = typeof $value;
-						var $class = $type == "object" ? "folder" : "file";
+						var $type = Array.isArray($value) ? "array" : typeof $value;
+						var $class = ($type == "object" || $type == "array") ? "folder" : "file";
 						var $tr = { id: $pids.join('-'), pid: pids.join('-'), className: $class, field: $key, pfields: $pfields.join('.'), type: $type, required: null, explain: null };
+						$tr.fullkey = $tr.pfields ? ($tr.pfields + "." + $tr.field) : $tr.field;
 						map.trs.push($tr);
 						$pfields.push($tr.field);
-						if ($type == "object") {
+						if ($type == "object" || $type == "array") {
 							if (Array.isArray($value)) {
 								$.each($value, function ($j, $next) {
 									if ($j == 0) {
