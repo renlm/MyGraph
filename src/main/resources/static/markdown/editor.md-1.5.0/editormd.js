@@ -4414,7 +4414,7 @@
 					var $tsOpts = opts.$TypeScript[$tr.fullkey];
 					if ($tsOpts) {
 						$tr.type = $tsOpts.type ? $tsOpts.type : $tr.type;
-						$tr.required = $tsOpts.required ? $tsOpts.required : $tr.required;
+						$tr.required = $tsOpts.required === false ? false : ($tsOpts.required ? $tsOpts.required : $tr.required);
 						$tr.explain = $tsOpts.comment ? $tsOpts.comment : $tr.explain;
 					}
 					map.html+= "<tr data-tt-id='" + $tr.id + "'" + ($tr.pid ? (" data-tt-parent-id='" + $tr.pid + "'"):"") + ">";
