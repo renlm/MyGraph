@@ -4321,13 +4321,49 @@
         
     editormd.json5RenderHtml = function(rnd, codeJson) {
         if (codeJson.$Example && codeJson.$TypeScript) {
+			// Json预览
 			new JsonEditor("#" + rnd, 
   				codeJson.$Example,
   				{
   					defaultCollapsed: false,
   					editable: false
   				}).load(codeJson.$Example);
-			$("#" + rnd).parent().append("<div id=\"Jtt-" + rnd + "\"></div>");
+			// Json注释
+			var JttId = "Jtt-" + rnd;
+			var JttHtml = "<table id=\"" + JttId + "\">";
+				JttHtml+= '<tr data-tt-id="0">';
+		        JttHtml+= '  <td>字段</td>';
+		        JttHtml+= '  <td>类型</td>';
+		        JttHtml+= '  <td>说明</td>';
+		        JttHtml+= '</tr>';
+		        JttHtml+= '<tr data-tt-id="1" data-tt-parent-id="0">';
+		        JttHtml+= '  <td>字段</td>';
+		        JttHtml+= '  <td>类型</td>';
+		        JttHtml+= '  <td>说明</td>';
+		        JttHtml+= '</tr>';
+		        JttHtml+= '<tr data-tt-id="5" data-tt-parent-id="1">';
+		        JttHtml+= '  <td>字段</td>';
+		        JttHtml+= '  <td>类型</td>';
+		        JttHtml+= '  <td>说明</td>';
+		        JttHtml+= '</tr>';
+		        JttHtml+= '<tr data-tt-id="2" data-tt-parent-id="0">';
+		        JttHtml+= '  <td>字段</td>';
+		        JttHtml+= '  <td>类型</td>';
+		        JttHtml+= '  <td>说明</td>';
+		        JttHtml+= '</tr>';
+		        JttHtml+= '<tr data-tt-id="3" data-tt-parent-id="0">';
+		        JttHtml+= '  <td>字段</td>';
+		        JttHtml+= '  <td>类型</td>';
+		        JttHtml+= '  <td>说明</td>';
+		        JttHtml+= '</tr>';
+		        JttHtml+= '<tr data-tt-id="4" data-tt-parent-id="0">';
+		        JttHtml+= '  <td>字段</td>';
+		        JttHtml+= '  <td>类型</td>';
+		        JttHtml+= '  <td>说明</td>';
+		        JttHtml+= '</tr>';
+				JttHtml+= "</table>";
+			$("#" + rnd).parent().append(JttHtml);
+			$("#" + JttId).treetable();
 		} else {
 			new JsonEditor("#" + rnd, 
   				codeJson,
