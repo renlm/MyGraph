@@ -1,38 +1,39 @@
 {
   "name": "treetable",
-  "title": "jQuery treeTable",
+  "title": "jQuery treetable",
   "description": "jQuery plugin for displaying a tree structure in a (HTML) table, i.e. a directory structure or a nested list.",
   "keywords": [
     "explorer",
     "file",
     "table",
-    "tree"
+    "tree",
+    "ui"
   ],
-  "version": "2.3.1",
+  "version": "3.2.0",
   "author": {
     "name": "Ludo van den Boom",
-    "url": "http://ludo.is"
+    "url": "http://ludovandenboom.com"
   },
   "maintainers": [
     {
       "name": "Ludo van den Boom",
-      "url": "http://ludo.is"
+      "url": "http://ludovandenboom.com"
     }
   ],
   "licenses": [
     {
       "type": "GPLv2",
-      "url": "https://github.com/ludo/jquery-treetable/blob/2.3.1/GPL-LICENSE"
+      "url": "https://github.com/ludo/jquery-treetable/blob/3.2.0/GPL-LICENSE.txt"
     },
     {
       "type": "MIT",
-      "url": "https://github.com/ludo/jquery-treetable/blob/2.3.1/MIT-LICENSE"
+      "url": "https://github.com/ludo/jquery-treetable/blob/3.2.0/MIT-LICENSE.txt"
     }
   ],
   "bugs": "https://github.com/ludo/jquery-treetable/issues",
   "homepage": "https://github.com/ludo/jquery-treetable",
-  "docs": "http://ludo.cubicphuse.nl/jquery-plugins/treeTable/doc/",
+  "docs": "http://ludo.cubicphuse.nl/jquery-treetable/",
   "dependencies": {
-    "jquery": ">=1.5"
+    "jquery": ">=1.6"
   }
 }
