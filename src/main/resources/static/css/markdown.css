@@ -16,3 +16,12 @@ html, body {
 	width: 90%;
 	margin: 0 auto;
 }
+
+.layui .layui-elem-quote {
+	margin-bottom: 10px !important;
+	padding: 15px !important;
+	line-height: 1.6 !important;
+	border-left: 5px solid #5FB878 !important;
+	border-radius: 0 2px 2px 0 !important;
+	background-color: #FAFAFA !important;
+}
