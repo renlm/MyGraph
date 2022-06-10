@@ -4218,7 +4218,13 @@ INSERT INTO sys_dict (id,uuid,code,`text`,abbreviation,alias,icon_cls,`level`,so
 
 -- Markdown文档
 INSERT INTO markdown (uuid,name,content,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
-('62410EE609A14EB48EC962D36661E14D','Markdown扩展','### Json文档
+('62410EE609A14EB48EC962D36661E14D','Markdown扩展','# Markdown扩展
+
+在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。  
+___<a href="https://renlm.cn/images/demo/15.png" target="_blank"> 使用示例 </a>___  
+___<a href="https://renlm.cn/images/demo/30.png" target="_blank"> 效果图 </a>___  
+
+### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
 ```json5
 {
@@ -4278,7 +4284,7 @@ INSERT INTO markdown (uuid,name,content,created_at,creator_user_id,creator_nickn
 		}
 	]
 }
-```','2022-06-10 15:18:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-10 16:18:10','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+```','2022-06-10 15:18:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-10 17:28:57','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,('32FBBF6C0D31402881CCF30FAEC19E2F','系统简介','# 简介
 ER模型在线设计与管理，整合一套后台模板，支持Markdown文档在线管理与服务器实时监控。  
 免费开源（木兰宽松许可证, 第2版）  
