@@ -45,7 +45,7 @@ import cn.renlm.plugins.MyUtil.MyXStreamUtil;
 @RequestMapping("/qrtz")
 public class QuartzController {
 
-	private static final JobConfig config = MyXStreamUtil.read(JobConfig.class, "scheduled/Jobs.xml");
+	private static final JobConfig config = MyXStreamUtil.read(JobConfig.class, "Jobs.xml");
 
 	@Resource
 	private RSA rsa;
