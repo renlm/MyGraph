@@ -1533,6 +1533,30 @@
 
             return this;
         },
+
+		/**
+         * 解析Layui
+         * Layui Renderer
+         * 
+         * @returns {editormd}             返回editormd的实例对象
+         */
+        
+        layuiRender : function() {
+
+            return this;
+        },
+
+		/**
+         * 解析Echarts
+         * Echarts Renderer
+         * 
+         * @returns {editormd}             返回editormd的实例对象
+         */
+        
+        echartsRender : function() {
+
+            return this;
+        },
         
         /**
          * 解析和渲染流程图及时序图
@@ -2118,7 +2142,37 @@
                     {
                         this.json5Render();
                     }
-                }            
+                } 
+
+				if (settings.layui)
+                {
+                    if (!editormd.layuiLoaded && settings.autoLoadModules) 
+                    {
+                        editormd.loadLayui(settings.path, function() {
+                            editormd.layuiLoaded = true;
+                            _this.layuiRender();
+                        });
+                    }
+                    else 
+                    {
+                        this.layuiRender();
+                    }
+                }
+
+				if (settings.echarts)
+                {
+                    if (!editormd.echartsLoaded && settings.autoLoadModules) 
+                    {
+                        editormd.loadEcharts(settings.path, function() {
+                            editormd.echartsLoaded = true;
+                            _this.echartsRender();
+                        });
+                    }
+                    else 
+                    {
+                        this.echartsRender();
+                    }
+                }
                 
                 if (settings.flowChart || settings.sequenceDiagram)
                 {
@@ -4118,6 +4172,44 @@
             else
             {
                 json5Handle();
+            }
+        }
+
+		if (settings.layui)
+        {
+			var layuiHandle = function() {
+                
+            };
+
+            if (!editormd.layuiLoaded) 
+            {
+                this.loadLayui(settings.path, function() {
+                    editormd.layuiLoaded = true;
+					layuiHandle();
+                });
+            }
+            else
+            {
+                layuiHandle();
+            }
+        }
+
+		if (settings.echarts)
+        {
+			var echartsHandle = function() {
+                
+            };
+
+            if (!editormd.echartsLoaded) 
+            {
+                this.loadEcharts(settings.path, function() {
+                    editormd.echartsLoaded = true;
+					echartsHandle();
+                });
+            }
+            else
+            {
+                echartsHandle();
             }
         }
         
