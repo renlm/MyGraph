@@ -4075,6 +4075,7 @@
             previewCodeHighlight : true
         };
         
+		var _this = this;
         editormd.$marked  = marked;
 
         var div           = $("#" + id);
@@ -4261,7 +4262,7 @@
                     editormd.json5Loaded = true;
 					if (!editormd.echartsLoaded) 
 		            {
-		                this.loadEcharts(settings.path, function() {
+		                _this.loadEcharts(settings.path, function() {
 		                    editormd.echartsLoaded = true;
 							echartsHandle();
 		                });
