@@ -3785,7 +3785,7 @@
             {
 				var rnd = "echarts-rnd-" + randomId();
                 return "<div class=\"echarts\" data-rnd=\"" + rnd + "\">" + 
-					       "<div id=\"" + rnd + "\" style=\"display: none;width: 600px;height: 400px;\" data-code=\"" + Base64.encodeURI(code) + "\"></div>" +
+					       "<div id=\"" + rnd + "\" style=\"display: none;width: 100%;height: 400px;\" data-code=\"" + Base64.encodeURI(code) + "\"></div>" +
 					   "</div>";
             } 
             else 
@@ -4687,26 +4687,25 @@
 		}
 		
 		var $target = document.getElementById(dom);
-		var $theme = codeJson.$theme;
-		var $width = codeJson.$width ? codeJson.$width : $(dom).width();
-		var $height = codeJson.$height ? codeJson.$height : $(dom).height();
 		$target.style.display = null;
 		var myChart = echarts.init($target, 
-				$theme, 
+				codeJson.$theme, 
 				{
 					renderer: 'svg',
-	    			width: $width,
-	    			height: $height
+	    			width: codeJson.$width ? codeJson.$width : $($target).width(),
+	    			height: codeJson.$height ? codeJson.$height : $($target).height()
 				});
 		myChart.setOption(codeJson, true);
+		$($target).height(myChart._api.getHeight());
 		// 自适应
 		var originFn = window.onresize;
    		window.onresize = function () { 
    			originFn && originFn();
-   			myChart.resize({ 
-   				width: $width,
-    			height: $height
+   			myChart.resize({
+   				width: codeJson.$width ? codeJson.$width : $($target).width(),
+	    		height: codeJson.$height ? codeJson.$height : $($target).height()
 			});
+			$($target).height(myChart._api.getHeight());
    		}
 	};
         
