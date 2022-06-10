@@ -3745,6 +3745,18 @@
 						   "<table id=\"Jtt-" + rnd + "\" style=\"display: none;\"></table>" +
 					   "</div>";
             }
+            else if ( lang === "layui")
+            {
+				var rnd = "layui-rnd-" + randomId();
+                return "<div class=\"layui\" data-rnd=\"" + rnd + "\">" + code + "</div>";
+            } 
+            else if ( lang === "echarts")
+            {
+				var rnd = "echarts-rnd-" + randomId();
+                return "<div class=\"echarts\" data-rnd=\"" + rnd + "\" data-code=\"" + Base64.encodeURI(code) + "\">" + 
+					       "<div id=\"" + rnd + "\" style=\"display: none;\"></div>" +
+					   "</div>";
+            } 
             else 
             {
 
