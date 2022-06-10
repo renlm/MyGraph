@@ -3785,7 +3785,7 @@
             {
 				var rnd = "echarts-rnd-" + randomId();
                 return "<div class=\"echarts\" data-rnd=\"" + rnd + "\">" + 
-					       "<div id=\"" + rnd + "\" style=\"display: none;width: 100%;height: 400px;\" data-code=\"" + Base64.encodeURI(code) + "\"></div>" +
+					       "<div id=\"" + rnd + "\" style=\"display: none;width: 600px;height: 400px;\" data-code=\"" + Base64.encodeURI(code) + "\"></div>" +
 					   "</div>";
             } 
             else 
@@ -4688,8 +4688,8 @@
 		
 		var $target = document.getElementById(dom);
 		var $theme = codeJson.$theme;
-		var $width = codeJson.$width ? codeJson.$width : "100%";
-		var $height = codeJson.$height ? codeJson.$height : "400px";
+		var $width = codeJson.$width ? codeJson.$width : $(dom).width();
+		var $height = codeJson.$height ? codeJson.$height : $(dom).height();
 		$target.style.display = null;
 		var myChart = echarts.init($target, 
 				$theme, 
