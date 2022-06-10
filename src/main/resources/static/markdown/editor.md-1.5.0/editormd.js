@@ -4026,6 +4026,9 @@
             emoji                : false,
             flowChart            : false,
             sequenceDiagram      : false,
+			json5                : true,           // Json5格式化预览
+			layui                : true,           // layui扩展
+			echarts              : true,           // echarts扩展
             previewCodeHighlight : true
         };
         
