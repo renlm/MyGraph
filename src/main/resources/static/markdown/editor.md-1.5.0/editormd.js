@@ -1554,6 +1554,17 @@
          */
         
         echartsRender : function() {
+	
+			this.previewContainer.find(".echarts").each(function(){
+                var rnd  = $(this).data("rnd");
+				if (rnd) {
+	                var code  = $(this).find("#" + rnd).data("code");
+					if (code) {
+						var codeJson = JSON5.parse(Base64.decode(code));
+						editormd.initEcharts(rnd, codeJson);
+					}
+				}
+            });
 
             return this;
         },
@@ -2161,16 +2172,36 @@
 
 				if (settings.echarts)
                 {
-                    if (!editormd.echartsLoaded && settings.autoLoadModules) 
+					if (!editormd.json5Loaded && settings.autoLoadModules) 
                     {
-                        editormd.loadEcharts(settings.path, function() {
-                            editormd.echartsLoaded = true;
-                            _this.echartsRender();
+                        editormd.loadJson5(settings.path, function() {
+                            editormd.json5Loaded = true;
+                            if (!editormd.echartsLoaded && settings.autoLoadModules) 
+		                    {
+		                        editormd.loadEcharts(settings.path, function() {
+		                            editormd.echartsLoaded = true;
+		                            _this.echartsRender();
+		                        });
+		                    }
+		                    else 
+		                    {
+		                        this.echartsRender();
+		                    }
                         });
                     }
                     else 
                     {
-                        this.echartsRender();
+                        if (!editormd.echartsLoaded && settings.autoLoadModules) 
+	                    {
+	                        editormd.loadEcharts(settings.path, function() {
+	                            editormd.echartsLoaded = true;
+	                            _this.echartsRender();
+	                        });
+	                    }
+	                    else 
+	                    {
+	                        this.echartsRender();
+	                    }
                     }
                 }
                 
@@ -3753,8 +3784,8 @@
             else if ( lang === "echarts")
             {
 				var rnd = "echarts-rnd-" + randomId();
-                return "<div class=\"echarts\" data-rnd=\"" + rnd + "\" data-code=\"" + Base64.encodeURI(code) + "\">" + 
-					       "<div id=\"" + rnd + "\" style=\"display: none;\"></div>" +
+                return "<div class=\"echarts\" data-rnd=\"" + rnd + "\">" + 
+					       "<div id=\"" + rnd + "\" style=\"display: none;width: 100%;height: 400px;\" data-code=\"" + Base64.encodeURI(code) + "\"></div>" +
 					   "</div>";
             } 
             else 
@@ -4212,19 +4243,48 @@
 		if (settings.echarts)
         {
 			var echartsHandle = function() {
-                
+                div.find(".echarts").each(function(){
+	                var rnd  = $(this).data("rnd");
+					if (rnd) {
+		                var code  = $(this).find("#" + rnd).data("code");
+						if (code) {
+							var codeJson = JSON5.parse(Base64.decode(code));
+					  		editormd.initEcharts(rnd, codeJson);
+						}
+					}
+	            });
             };
 
-            if (!editormd.echartsLoaded) 
+			if (!editormd.json5Loaded) 
             {
-                this.loadEcharts(settings.path, function() {
-                    editormd.echartsLoaded = true;
-					echartsHandle();
+                this.loadJson5(settings.path, function() {
+                    editormd.json5Loaded = true;
+					if (!editormd.echartsLoaded) 
+		            {
+		                this.loadEcharts(settings.path, function() {
+		                    editormd.echartsLoaded = true;
+							echartsHandle();
+		                });
+		            }
+		            else
+		            {
+		                echartsHandle();
+		            }
                 });
             }
             else
             {
-                echartsHandle();
+                if (!editormd.echartsLoaded) 
+	            {
+	                this.loadEcharts(settings.path, function() {
+	                    editormd.echartsLoaded = true;
+						echartsHandle();
+	                });
+	            }
+	            else
+	            {
+	                echartsHandle();
+	            }
             }
         }
         
@@ -4610,6 +4670,44 @@
     editormd.loadEcharts = function (loadPath, callback) {
         editormd.loadScript(loadPath + editormd.echartsURL.js, callback || function(){});
     };
+        
+    /**
+     * 创建 ECharts 实例
+     * init ECharts
+     * 
+     * @param   {dom}
+     * @param   {codeJson}
+     * @returns {echartsInstance}
+     */
+    
+    editormd.initEcharts = function (dom, codeJson) {
+		if(!dom || !codeJson) {
+			return;
+		}
+		
+		var $target = document.getElementById(dom);
+		var $theme = codeJson.$theme;
+		var $width = codeJson.$width ? codeJson.$width : "100%";
+		var $height = codeJson.$height ? codeJson.$height : "400px";
+		$target.style.display = null;
+		var myChart = echarts.init($target, 
+				$theme, 
+				{
+					renderer: 'svg',
+	    			width: $width,
+	    			height: $height
+				});
+		myChart.setOption(codeJson, true);
+		// 自适应
+		var originFn = window.onresize;
+   		window.onresize = function () { 
+   			originFn && originFn();
+   			myChart.resize({ 
+   				width: $width,
+    			height: $height
+			});
+   		}
+	};
         
     /**
      * 锁屏
