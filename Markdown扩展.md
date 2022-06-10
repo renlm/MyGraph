@@ -9,7 +9,7 @@
 		'data': {type:'object',required:null,comment:'数据项'},
 		'data.uuid': {type:'string',required:true,comment:'uuid'},
 		'data.name': {type:'string',required:true,comment:'名称'},
-		'data.description': {type:'object',required:false,comment:'备注'},
+		'data.description': {type:'string',required:false,comment:'备注'},
 		'success': {type:'boolean',required:true,comment:'是否成功'}
 	},
     $Example: /*样例数据*/
