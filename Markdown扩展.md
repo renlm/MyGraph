@@ -1,3 +1,9 @@
+# Markdown扩展
+
+在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。
+___<a href="https://renlm.cn/images/demo/15.png" target="_blank"> 使用示例 </a>___
+___<a href="https://renlm.cn/images/demo/30.png" target="_blank"> 效果图 </a>___
+
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
 ```json5
