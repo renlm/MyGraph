@@ -4417,6 +4417,7 @@
 					var $tsOpts = opts.$TypeScript[$tr.fullkey];
 					if ($tsOpts) {
 						$tr.type = $tsOpts.type ? $tsOpts.type : $tr.type;
+						$tr.className = ($tr.type == "object" || $tr.type == "array") ? "folder" : "file";
 						$tr.required = $tsOpts.required === false ? false : ($tsOpts.required ? $tsOpts.required : $tr.required);
 						$tr.explain = $tsOpts.comment ? $tsOpts.comment : $tr.explain;
 					}
