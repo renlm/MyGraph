@@ -140,30 +140,6 @@ VALUES ('BA8A2BE8EFE24768942B7BA468CD3440',	'cfgSystemName',					'系统名称',
 	   ('FE4640997D1648FD96835A414B4D6F37',	'cfgEnableRegistration',			'是否启用注册账号',		'否',					5,		'是/否')
 ;
 
--- 图形设计
-DELETE FROM graph;
-INSERT INTO graph (
-	uuid, 
-	name, 
-	category_code,
-	category_name,
-	is_public,
-	created_at,
-	creator_user_id,
-	creator_nickname,
-	updated_at
-) VALUES (
-	'198124BBCF284A40BB24CA315A7B8E36', 
-	'演示DEMO',
-	'ER',
-	'ER模型',
-	1,
-	now(),
-	'ABFEE20BA6AC4783A683C7117763951E',
-	'任黎明',
-	now()
-);
-
 -- 数据字典
 INSERT INTO sys_dict (id,uuid,code,`text`,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1,'4C76946712EF4D22B0006B3CEBCA12E2','RESOURCE_TYPE','资源类型',NULL,NULL,'fa fa-life-ring',1,1,'closed',NULL,'2022-05-15 14:36:17','2022-05-15 14:29:25',0,NULL)
