@@ -4460,6 +4460,47 @@
   				}).load(codeJson);
 		}
     };
+    
+    // Custom Layui load url.
+    editormd.layuiURL  = {
+        css : "layui/2.6.8/css/layui",
+        js : "layui/2.6.8/layui"
+    };
+    
+    editormd.layuiLoaded = false;
+    
+    /**
+     * 加载Layui文件
+     * load Layui files
+     * 
+     * @param {loadPath}
+     * @param {Function} [callback=function()]  加载成功后执行的回调函数
+     */
+    
+    editormd.loadLayui = function (loadPath, callback) {
+        editormd.loadCSS(loadPath + editormd.layuiURL.css, function(){
+            editormd.loadScript(loadPath + editormd.layuiURL.js, callback || function(){});
+        });
+    };
+    
+    // Custom Echarts load url.
+    editormd.echartsURL  = {
+        js : "echarts/5.1.2/echarts.min"
+    };
+    
+    editormd.echartsLoaded = false;
+    
+    /**
+     * 加载Echarts文件
+     * load Echarts files
+     * 
+     * @param {loadPath}
+     * @param {Function} [callback=function()]  加载成功后执行的回调函数
+     */
+    
+    editormd.loadEcharts = function (loadPath, callback) {
+        editormd.loadScript(loadPath + editormd.echartsURL.js, callback || function(){});
+    };
         
     /**
      * 锁屏
