@@ -4692,8 +4692,8 @@
 				codeJson.$theme, 
 				{
 					renderer: 'svg',
-	    			width: codeJson.$width ? codeJson.$width : $($target).width(),
-	    			height: codeJson.$height ? codeJson.$height : $($target).height()
+	    			width: isNaN(codeJson.$width) ? "auto" : (codeJson.$width ? codeJson.$width : $($target).width()),
+	    			height: isNaN(codeJson.$height) ? "auto" : (codeJson.$height ? codeJson.$height : $($target).height())
 				});
 		myChart.setOption(codeJson, true);
 		$($target).height(myChart._api.getHeight());
@@ -4702,8 +4702,8 @@
    		window.onresize = function () { 
    			originFn && originFn();
    			myChart.resize({
-   				width: codeJson.$width ? codeJson.$width : $($target).width(),
-	    		height: codeJson.$height ? codeJson.$height : $($target).height()
+   				width: isNaN(codeJson.$width) ? "auto" : (codeJson.$width ? codeJson.$width : $($target).width()),
+	    		height: isNaN(codeJson.$height) ? "auto" : (codeJson.$height ? codeJson.$height : $($target).height())
 			});
 			$($target).height(myChart._api.getHeight());
    		}
