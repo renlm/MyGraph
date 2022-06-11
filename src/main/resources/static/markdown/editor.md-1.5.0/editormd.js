@@ -3772,7 +3772,7 @@
             {
 				var rnd = "json5-rnd-" + randomId();
                 return "<div class=\"json5\" data-rnd=\"" + rnd + "\">" + 
-					       "<pre id=\"" + rnd + "\" class=\"json-editor-blackbord\" data-code=\"" + Base64.encodeURI(code) + "\"></pre>" +
+					       "<pre id=\"" + rnd + "\" class=\"json-editor-blackbord\" style=\"display: none;\" data-code=\"" + Base64.encodeURI(code) + "\"></pre>" +
 						   "<table id=\"Jtt-" + rnd + "\" style=\"display: none;\"></table>" +
 					   "</div>";
             }
@@ -4570,6 +4570,9 @@
   	 */
         
     editormd.json5RenderHtml = function(rnd, codeJson) {
+		var $Config = codeJson.$Config || { showJson: true, commentColumns: ['type', 'required', 'comment'] };
+		$Config.showJson = $Config.showJson === null ? true : $Config.showJson;
+		$Config.commentColumns = $Config.commentColumns || ['type', 'required', 'comment'];
 	
 		/**
 	     * Json对象转树形表格（Html）
@@ -4580,7 +4583,20 @@
 		function $JsonToHtml (map, opts) {
 			map.trs = editormd.json5Parse(opts.$Example, opts.$TypeScript);
 			if (map.trs && map.trs.length > 0) {
-				map.html = "<thead><tr><th data-field='field'>字段</th><th data-field='type'>类型</th><th data-field='required'>是否必须</th><th data-field='explain'>说明</th></tr></thead>";
+				map.html = "<thead>";
+				map.html+= "    <tr>";
+				map.html+= "        <th data-field='field'>字段</th>";
+				if ($Config.commentColumns.indexOf('type') >= 0) {
+					map.html+= "        <th data-field='type'>类型</th>";
+				}
+				if ($Config.commentColumns.indexOf('required') >= 0) {
+					map.html+= "        <th data-field='required'>是否必须</th>";
+				}
+				if ($Config.commentColumns.indexOf('comment') >= 0) {
+					map.html+= "        <th data-field='explain'>说明</th>";
+				}
+				map.html+= "    </tr>";
+				map.html+= "</thead>";
 				map.html+= "<tbody>";
 				$.each(map.trs, function ($i, $tr) {
 					if ($i) { }
@@ -4593,9 +4609,15 @@
 					}
 					map.html+= "<tr data-tt-id='" + $tr.id + "'" + ($tr.pid ? (" data-tt-parent-id='" + $tr.pid + "'"):"") + ">";
 					map.html+=     "<td data-fullkey='" + $tr.fullkey + "'><span class='" + $tr.className + "'> " + ($tr.pfields ? ("<span style='padding: 0;color: #999;'>" + $tr.pfields + ".</span>"): "") + $tr.field + "</span></td>";
-					map.html+=     "<td>" + ($tr.type ? $tr.type : "-") + "</td>";
-					map.html+=     "<td>" + ($tr.required === null ? "-" : ($tr.required ? "是":"否")) + "</td>";
-					map.html+=     "<td>" + ($tr.explain ? $tr.explain : "-") + "</td>";
+					if ($Config.commentColumns.indexOf('type') >= 0) {
+						map.html+=     "<td>" + ($tr.type ? $tr.type : "-") + "</td>";
+					}
+					if ($Config.commentColumns.indexOf('required') >= 0) {
+						map.html+=     "<td>" + ($tr.required === null ? "-" : ($tr.required ? "是":"否")) + "</td>";
+					}
+					if ($Config.commentColumns.indexOf('comment') >= 0) {
+						map.html+=     "<td>" + ($tr.explain ? $tr.explain : "-") + "</td>";
+					}
 					map.html+= "</tr>";
 				});
 				map.html+= "</tbody>";
@@ -4605,12 +4627,17 @@
 	    // 代码区域
         if (codeJson.$Example && codeJson.$TypeScript) {
 			// Json预览
-			new JsonEditor("#" + rnd, 
-  				codeJson.$Example,
-  				{
-  					defaultCollapsed: false,
-  					editable: false
-  				}).load(codeJson.$Example);
+			if ($Config.showJson) {
+				new JsonEditor("#" + rnd, 
+	  				codeJson.$Example,
+	  				{
+	  					defaultCollapsed: false,
+	  					editable: false
+	  				}).load(codeJson.$Example);
+				$("#" + rnd).show();
+			} else {
+				$("#" + rnd).remove();
+			}
 			// Json注释
 			var jttBody = { trs: [], html: null };
 			$JsonToHtml(jttBody, codeJson);
