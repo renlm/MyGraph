@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8" />
+        <title>预览 - Editor.md examples</title>
+        <link rel="shortcut icon" href="../images/logos/editormd-favicon-32x32.ico" type="image/x-icon" />
+		<!-- Jquery -->
+		<script src="js/jquery.min.js"></script>
+		<!-- Js-base64 -->
+		<script src="../lib/js-base64/2.3.2/base64.min.js"></script>
+		<!-- Editor.md -->
+		<link rel="stylesheet" href="../css/editormd.preview.min.css" />
+		<script src="../lib/marked.min.js"></script>
+		<script src="../lib/prettify.min.js"></script>
+		<script src="../lib/raphael.min.js"></script>
+		<script src="../lib/underscore.min.js"></script>
+		<script src="../lib/sequence-diagram.min.js"></script>
+		<script src="../lib/flowchart.min.js"></script>
+		<script src="../lib/jquery.flowchart.min.js"></script>
+		<script src="../editormd.js"></script>
+		<!-- 样式修正 -->
+		<link rel="stylesheet" href="../../../css/scrollbar.css" />
+		<link rel="stylesheet" href="../../../css/markdown.css" />
+    </head>
+    <body>
+    	<div id="editormd" class="noborder"></div>
+        <script type="text/javascript">
+			$(function () {
+				editormd.markdownToHTML("editormd", {
+					path            : "../lib/",
+	                markdown		: $md,
+	                htmlDecode      : "style,script,iframe|on*", 
+	              	tocm            : true,
+	             	emoji           : false,
+	              	taskList        : true,
+	              	tex             : true,
+	              	flowChart       : true,
+	             	sequenceDiagram : true
+	            });
+			});
+		</script>
+    </body>
+</html>
