@@ -4352,7 +4352,7 @@ ___<a href="https://renlm.cn/images/demo/31.png" target="_blank"> 截图-效果�
 ER模型在线设计与管理，整合一套后台模板，支持Markdown文档在线管理与服务器实时监控。  
 免费开源（木兰宽松许可证, 第2版）  
 ER图例（双击表可查看字段）：___<a href="https://mygraph.renlm.cn/graph/viewer?uuid=198124BBCF284A40BB24CA315A7B8E36&headless=false&fitWindow=false" target="_blank">MyGraph 在线画图</a>___  
-Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___
+Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___ ， ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___
 
 # 系统体验
 地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://mygraph.renlm.cn/</a>  
