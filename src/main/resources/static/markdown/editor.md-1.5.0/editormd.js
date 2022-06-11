@@ -4613,7 +4613,7 @@
 						map.html+=     "<td>" + ($tr.type ? $tr.type : "-") + "</td>";
 					}
 					if ($Config.commentColumns.indexOf('required') >= 0) {
-						map.html+=     "<td>" + ($tr.required === null ? "-" : ($tr.required ? "是":"否")) + "</td>";
+						map.html+=     "<td>" + ($tr.required === null ? "<span style='color: gray;font-style: italic;padding: 0;'>-</span>" : ($tr.required ? "是":"<span style='color: gray;font-style: italic;padding: 0;'>否</span>")) + "</td>";
 					}
 					if ($Config.commentColumns.indexOf('comment') >= 0) {
 						map.html+=     "<td>" + ($tr.explain ? $tr.explain : "-") + "</td>";

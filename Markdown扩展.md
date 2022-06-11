@@ -31,13 +31,13 @@ ___<a href="https://renlm.cn/images/demo/30.png" target="_blank"> 效果图 </a>
      */
     $TypeScript:
 {
-    'statusCode': {type:'number',required:null,comment:''},
-    'message': {type:'string',required:null,comment:''},
-    'data': {type:'object',required:null,comment:''},
-    'data.uuid': {type:'string',required:null,comment:''},
-    'data.name': {type:'string',required:null,comment:''},
-    'data.description': {type:'object',required:null,comment:''},
-    'success': {type:'boolean',required:null,comment:''}
+    'statusCode': {type:'number',required:true,comment:'响应码'},
+    'message': {type:'string',required:true,comment:'消息'},
+    'data': {type:'object',required:null,comment:'数据项'},
+    'data.uuid': {type:'string',required:true,comment:'uuid'},
+    'data.name': {type:'string',required:true,comment:'名称'},
+    'data.description': {type:'string',required:false,comment:'简介'},
+    'success': {type:'boolean',required:true,comment:'是否成功'}
 },
     /**
      * 样例数据
