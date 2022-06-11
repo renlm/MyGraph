@@ -108,6 +108,26 @@
                                 	var $fields = editormd.json5Parse($jsonEditorData);
                                 	var $codeJson = "```json5\r\n";
                                 		$codeJson+= "{\r\n";
+                                		$codeJson+= "    /**\r\n";
+                                		$codeJson+= "     * 配置项\r\n";
+                                		$codeJson+= "     */\r\n";
+                                		$codeJson+= "    $Config:\r\n";
+                                		$codeJson+= "{\r\n";
+                                		$codeJson+= "    /**\r\n";
+                                		$codeJson+= "     * 是否显示Json预览\r\n";
+                                		$codeJson+= "     */\r\n";
+                                		$codeJson+= "    showJson: true,\r\n";
+                                		$codeJson+= "    /**\r\n";
+                                		$codeJson+= "     * 注释表格显示列\r\n";
+                                		$codeJson+= "     * type:类型\r\n";
+                                		$codeJson+= "     * required:是否必须\r\n";
+                                		$codeJson+= "     * comment:说明\r\n";
+                                		$codeJson+= "     */\r\n";
+                                		$codeJson+= "    commentColumns: ['type', 'required', 'comment']\r\n";
+                                		$codeJson+= "},\r\n";
+                                		$codeJson+= "    /**\r\n";
+                                		$codeJson+= "     * 注释表格\r\n";
+                                		$codeJson+= "     */\r\n";
                                 		$codeJson+= "    $TypeScript:\r\n";
                                 		$codeJson+= "{\r\n";
                                 		$.each($fields,function($i,$field){
@@ -119,6 +139,9 @@
                                 			$codeJson+= "\r\n";
                     					});
                                 		$codeJson+= "},\r\n";
+                                		$codeJson+= "    /**\r\n";
+                                		$codeJson+= "     * 样例数据\r\n";
+                                		$codeJson+= "     */\r\n";
                                 		$codeJson+= "    $Example:\r\n";
                                 		$codeJson+= JSON5.stringify($jsonEditorData,(k,v)=>{return v;},4);
                                 		$codeJson+= "\r\n}";
