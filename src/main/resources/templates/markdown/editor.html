@@ -109,16 +109,16 @@
                                 	var $codeJson = "```json5\r\n";
                                 		$codeJson+= "{\r\n";
                                 		$codeJson+= "    /**\r\n";
-                                		$codeJson+= "     * 配置项\r\n";
+                                		$codeJson+= "     * 配置项（可选）\r\n";
                                 		$codeJson+= "     */\r\n";
                                 		$codeJson+= "    $Config:\r\n";
                                 		$codeJson+= "{\r\n";
                                 		$codeJson+= "    /**\r\n";
-                                		$codeJson+= "     * 是否显示Json预览\r\n";
+                                		$codeJson+= "     * 是否显示Json预览（默认显示）\r\n";
                                 		$codeJson+= "     */\r\n";
                                 		$codeJson+= "    showJson: true,\r\n";
                                 		$codeJson+= "    /**\r\n";
-                                		$codeJson+= "     * 注释表格显示列\r\n";
+                                		$codeJson+= "     * 注释表格显示列（默认全部）\r\n";
                                 		$codeJson+= "     * type:类型\r\n";
                                 		$codeJson+= "     * required:是否必须\r\n";
                                 		$codeJson+= "     * comment:说明\r\n";
@@ -127,6 +127,7 @@
                                 		$codeJson+= "},\r\n";
                                 		$codeJson+= "    /**\r\n";
                                 		$codeJson+= "     * 注释表格\r\n";
+                                		$codeJson+= "     * $Example存在时有效，否则预览代码块Json\r\n";
                                 		$codeJson+= "     */\r\n";
                                 		$codeJson+= "    $TypeScript:\r\n";
                                 		$codeJson+= "{\r\n";
@@ -141,6 +142,7 @@
                                 		$codeJson+= "},\r\n";
                                 		$codeJson+= "    /**\r\n";
                                 		$codeJson+= "     * 样例数据\r\n";
+                                		$codeJson+= "     * $TypeScript存在时有效，否则预览代码块Json\r\n";
                                 		$codeJson+= "     */\r\n";
                                 		$codeJson+= "    $Example:\r\n";
                                 		$codeJson+= JSON5.stringify($jsonEditorData,(k,v)=>{return v;},4);

@@ -4655,6 +4655,7 @@
   					defaultCollapsed: false,
   					editable: false
   				}).load(codeJson);
+			$("#" + rnd).show();
 		}
     };
     
