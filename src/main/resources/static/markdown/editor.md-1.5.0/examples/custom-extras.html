@@ -182,17 +182,20 @@ ___<a href="https://renlm.cn/images/demo/31.png" target="_blank"> 效果图 </a>
                     	}
                     	if (toolbarIcons.indexOf("save") < 0) {
                     		toolbarIcons.unshift("|");
+                        	toolbarIcons.unshift("previewLink");
                     		toolbarIcons.unshift("Json5");
                         	toolbarIcons.unshift("save");
                     	}
                     	return toolbarIcons;
                     },
                     toolbarIconsClass: {
+                    	previewLink: "fa fa-unlink",
                     	save: "fa fa-save",
                     	Json5: "fa fa-file-excel-o"
                     },
                     lang: {
                         toolbar: {
+                        	previewLink: "生成预览",
                         	save: "保存",
                         	Json5: "Json文档"
                         }
@@ -274,6 +277,10 @@ ___<a href="https://renlm.cn/images/demo/31.png" target="_blank"> 效果图 </a>
                                     }]
                                 }
                             });
+                    	},
+                    	previewLink: function (cm, icon, cursor, selection) {
+                    		var $mdBase64 = Base64.encodeURI(this.getMarkdown());
+                    		console.log($mdBase64.length);
                     	}
                     },
                     onload: function () {
