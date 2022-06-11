@@ -7,6 +7,22 @@ ___<a href="https://renlm.cn/images/demo/31.png" target="_blank"> 效果图 </a>
 
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
+
+##### 简洁模式（Json格式化展示）
+```json5
+{
+    statusCode: 200,
+    message: 'OK',
+    data: {
+        uuid: '32FBBF6C0D31402881CCF30FAEC19E2F',
+        name: '系统简介',
+        description: null,
+    },
+    success: true,
+}
+```
+
+##### 标准模式（带可配置的注释表格）
 ```json5
 {
     /**
