@@ -259,12 +259,12 @@
 						$.each(data, function (i, item) {
 							if(!OSHI_UID.contains(item.uid)) { OSHI_UID.push(item.uid); OSHI_POOL.push(item); OSHI_IP[item.ip]=item; }
         					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
-        					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
+        					if(OSHI_POOL.length > 12 * 30) { OSHI_POOL.shift(); }
 			   			});
 					} else {
 						if(!OSHI_UID.contains(data.uid)) { OSHI_UID.push(data.uid); OSHI_POOL.push(data); OSHI_IP[data.ip]=data; }
     					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
-    					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
+    					if(OSHI_POOL.length > 12 * 30) { OSHI_POOL.shift(); }
 					}
 				});
     		}
@@ -365,12 +365,12 @@
 	    						$.each(data, function (i, item) {
 	    							if(!OSHI_UID.contains(item.uid)) { OSHI_UID.push(item.uid); OSHI_POOL.push(item); OSHI_IP[item.ip]=item; }
 	            					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
-	            					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
+	            					if(OSHI_POOL.length > 12 * 30) { OSHI_POOL.shift(); }
 	    			   			});
 	    					} else {
 	    						if(!OSHI_UID.contains(data.uid)) { OSHI_UID.push(data.uid); OSHI_POOL.push(data); OSHI_IP[data.ip]=data; }
 	        					if(OSHI_UID.length > 12) { OSHI_UID.shift(); }
-	        					if(OSHI_POOL.length > 12 * 60) { OSHI_POOL.shift(); }
+	        					if(OSHI_POOL.length > 12 * 30) { OSHI_POOL.shift(); }
 	    					}
 	    				});
 	    				// 删除下线服务器
