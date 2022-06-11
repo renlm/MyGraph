@@ -280,7 +280,7 @@ ___<a href="https://renlm.cn/images/demo/31.png" target="_blank"> 效果图 </a>
                     	},
                     	previewLink: function (cm, icon, cursor, selection) {
                     		var $mdBase64 = Base64.encodeURI(this.getMarkdown());
-                    		console.log($mdBase64.length);
+                    		window.open("custom-extras-preview.html?md=" + $mdBase64);
                     	}
                     },
                     onload: function () {
