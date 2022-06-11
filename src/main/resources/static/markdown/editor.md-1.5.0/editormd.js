@@ -580,20 +580,23 @@
                         
                         _this.setToolbar();
 
-                        editormd.loadScript(loadPath + "marked.min", function() {
+                        editormd.loadScript(loadPath + "js-base64/2.3.2/base64.min", function() {
 
-                            editormd.$marked = marked;
-                                
-                            if (settings.previewCodeHighlight) 
-                            {
-                                editormd.loadScript(loadPath + "prettify.min", function() {
-                                    loadFlowChartOrSequenceDiagram();
-                                });
-                            } 
-                            else
-                            {                  
-                                loadFlowChartOrSequenceDiagram();
-                            }
+                            editormd.loadScript(loadPath + "marked.min", function() {
+	
+	                            editormd.$marked = marked;
+	                                
+	                            if (settings.previewCodeHighlight) 
+	                            {
+	                                editormd.loadScript(loadPath + "prettify.min", function() {
+	                                    loadFlowChartOrSequenceDiagram();
+	                                });
+	                            } 
+	                            else
+	                            {                  
+	                                loadFlowChartOrSequenceDiagram();
+	                            }
+	                        });
                         });
                         
                     });
