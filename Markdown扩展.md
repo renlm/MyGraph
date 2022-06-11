@@ -68,37 +68,44 @@ ___<a href="https://renlm.cn/images/demo/30.png" target="_blank"> 效果图 </a>
 扩展语法（echarts）
 ```echarts
 {
-	/**
+    /**
      * 应用的主题
      */
-	$theme: 'dark',
-	/**
+    $theme: 'dark',
+    /**
      * 可显式指定实例宽度，单位为像素
      * 如果传入值为null/undefined/'auto'，则表示自动取 dom（实例容器）的宽度
      */
-	$width: 'auto',
-	/**
+    $width: 'auto',
+    /**
      * 可显式指定实例高度，单位为像素
      * 如果传入值为null/undefined/'auto'，则表示自动取 dom（实例容器）的宽度
      */
-	$height: 400,
-	title: {
-		text: 'ECharts 入门示例'
-	},
-	tooltip: {},
-	legend: {
-		data: ['销量']
-	},
-	xAxis: {
-		data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-	},
-	yAxis: {},
-	series: [
-		{
-			name: '销量',
-			type: 'bar',
-			data: [5, 20, 36, 10, 10, 20]
-		}
-	]
+    $height: 400,
+    title: {
+        left: 30,
+        top: 30,
+        text: 'ECharts 入门示例'
+    },
+    tooltip: {},
+    legend: {
+        top: 30,
+        data: ['销量']
+    },
+    grid: {
+        top: 90,
+        bottom: 50
+    },
+    xAxis: {
+        data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+    },
+    yAxis: {},
+    series: [
+        {
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }
+    ]
 }
 ```
