@@ -4227,6 +4227,22 @@ ___<a href="https://renlm.cn/images/demo/31.png" target="_blank"> 效果图 </a>
 
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
+
+##### 简洁模式（Json格式化展示）
+```json5
+{
+    statusCode: 200,
+    message: ''OK'',
+    data: {
+        uuid: ''32FBBF6C0D31402881CCF30FAEC19E2F'',
+        name: ''系统简介'',
+        description: null,
+    },
+    success: true,
+}
+```
+
+##### 标准模式（带可配置的注释表格）
 ```json5
 {
     /**
@@ -4329,7 +4345,7 @@ ___<a href="https://renlm.cn/images/demo/31.png" target="_blank"> 效果图 </a>
         }
     ]
 }
-```','2022-06-10 15:18:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-11 18:12:13','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+```','2022-06-10 15:18:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-11 18:41:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,('32FBBF6C0D31402881CCF30FAEC19E2F','系统简介','# 简介
 ER模型在线设计与管理，整合一套后台模板，支持Markdown文档在线管理与服务器实时监控。  
 免费开源（木兰宽松许可证, 第2版）  
