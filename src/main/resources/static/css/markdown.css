@@ -18,7 +18,7 @@ html, body {
 }
 
 .json5>pre {
-	border: none;
+	border: none !important;
 }
 
 .layui .layui-elem-quote {

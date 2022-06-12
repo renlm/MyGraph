@@ -105,7 +105,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// 启用csrf
 		http.csrf()
 			.ignoringAntMatchers(APIAntMatcher)
-			.ignoringAntMatchers("/markdown/ajax/upload")
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		// 会话
 		http.sessionManagement()

@@ -1,8 +1,8 @@
 # 简介
 ER模型在线设计与管理，整合一套后台模板，支持Markdown文档在线管理与服务器实时监控。  
 免费开源（木兰宽松许可证, 第2版）  
-ER图例（双击表可查看字段）：___<a href="https://mygraph.renlm.cn/graph/viewer?uuid=198124BBCF284A40BB24CA315A7B8E36&headless=false&fitWindow=false" target="_blank">MyGraph 在线画图</a>___  
-Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___ ， ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___
+ER图例（双击表可查看字段）：___<a href="https://mygraph.renlm.cn/graph/viewer?uuid=198124BBCF284A40BB24CA315A7B8E36&headless=false&fitWindow=false" target="_blank">MyGraph在线画图</a>___  
+Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___，___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___
 
 # 系统体验
 地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://mygraph.renlm.cn/</a>  
@@ -106,8 +106,10 @@ Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-
 ![更多功能](https://renlm.cn/images/demo/21.png "更多功能")
 
 # 主要技术组件
-SpringBoot + MyBatis-plus + MySQL  
-EasyUI + Mxgraph
+SpringBoot + MyBatis-plus + Hutool + My-Plugin  
+MySQL + Redis + Rabbitmq  
+Chrome + Chromedriver  
+EasyUI + Mxgraph + Editor.md
 
 # 本地化部署
 1、数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据），项目默认启动test环境，启动dev环境会重建库。
