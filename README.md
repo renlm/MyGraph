@@ -1,5 +1,5 @@
 # 简介
-ER模型在线设计与管理，整合一套后台模板，支持Markdown文档在线管理与服务器实时监控。  
+ER模型在线设计与管理，整合一套后台模板，支持Markdown在线管理与服务器实时监控。  
 免费开源（木兰宽松许可证, 第2版）  
 ER图例（双击表可查看字段）：___<a href="https://mygraph.renlm.cn/graph/viewer?uuid=198124BBCF284A40BB24CA315A7B8E36&headless=false&fitWindow=false" target="_blank">MyGraph在线画图</a>___  
 Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___，___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___
@@ -18,7 +18,7 @@ Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-
 5、定时任务  
 6、文件管理  
 7、服务器实时监控（两种风格）  
-8、Markdown文档在线编辑管理，并扩展了Markdown语法与工具（Json文档、Layui皮肤、Echarts图表），丰富展现形式。  
+8、Markdown在线编辑管理，并扩展了Markdown语法与工具（Json文档、Layui皮肤、Echarts图表），丰富展现形式。  
 
 # 功能截图
 > ___图形设计-我的___
