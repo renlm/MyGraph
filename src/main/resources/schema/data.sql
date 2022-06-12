@@ -4348,12 +4348,12 @@ ___<a href="https://renlm.cn/images/demo/31.png" target="_blank"> 截图-效果�
         }
     ]
 }
-```','2022-06-10 15:18:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-11 18:41:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+```','2022-06-10 15:18:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-12 12:39:13','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,('32FBBF6C0D31402881CCF30FAEC19E2F','系统简介','# 简介
-ER模型在线设计与管理，整合一套后台模板，支持Markdown文档在线管理与服务器实时监控。  
+ER模型在线设计与管理，整合一套后台模板，支持Markdown在线管理与服务器实时监控。  
 免费开源（木兰宽松许可证, 第2版）  
-ER图例（双击表可查看字段）：___<a href="https://mygraph.renlm.cn/graph/viewer?uuid=198124BBCF284A40BB24CA315A7B8E36&headless=false&fitWindow=false" target="_blank">MyGraph 在线画图</a>___  
-Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___ ， ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___
+ER图例（双击表可查看字段）：___<a href="https://mygraph.renlm.cn/graph/viewer?uuid=198124BBCF284A40BB24CA315A7B8E36&headless=false&fitWindow=false" target="_blank">MyGraph在线画图</a>___  
+Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___，___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___
 
 # 系统体验
 地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://mygraph.renlm.cn/</a>  
@@ -4369,7 +4369,7 @@ Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-
 5、定时任务  
 6、文件管理  
 7、服务器实时监控（两种风格）  
-8、Markdown文档在线编辑管理，并扩展了Markdown语法与工具（Json文档、Layui皮肤、Echarts图表），丰富展现形式。  
+8、Markdown在线编辑管理，并扩展了Markdown语法与工具（Json文档、Layui皮肤、Echarts图表），丰富展现形式。  
 
 # 功能截图
 > ___图形设计-我的___
@@ -4454,10 +4454,12 @@ Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-
 
 > ___更多功能___
 
-![更多功能](https://renlm.cn/images/demo/21.png "更多功能")','2022-06-10 16:17:15','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-10 16:17:15',NULL,NULL,0,NULL)
+![更多功能](https://renlm.cn/images/demo/21.png "更多功能")','2022-06-10 16:17:15','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-12 12:39:53','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,('7A0514F15CEC4530ACF9B3270637531B','项目部署','# 主要技术组件
-SpringBoot + MyBatis-plus + MySQL  
-EasyUI + Mxgraph
+SpringBoot + MyBatis-plus + Hutool + My-Plugin  
+MySQL + Redis + Rabbitmq  
+Chrome + Chromedriver  
+EasyUI + Mxgraph + Editor.md
 
 # 本地化部署
 1、数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据），项目默认启动test环境，启动dev环境会重建库。
@@ -4483,7 +4485,7 @@ EasyUI + Mxgraph
 
 > ___修改自定义参数（服务器监控websocket配置等需要）___
 
-![修改自定义参数](https://renlm.cn/images/demo/101.png "修改自定义参数")','2022-06-10 16:17:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-10 16:17:37',NULL,NULL,0,NULL)
+![修改自定义参数](https://renlm.cn/images/demo/101.png "修改自定义参数")','2022-06-10 16:17:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-12 12:40:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ;
 
 -- 图形设计样例数据
