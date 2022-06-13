@@ -69,7 +69,9 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 		// 人员分页
 		Page<SysUser> pager = iSysUserService.page(page, Wrappers.<SysUser>lambdaQuery().func(wrapper -> {
 			if (ObjectUtil.isNotEmpty(form.getRole())) {
-				wrapper.inSql(SysUser::getUserId, StrUtil.indexedFormat("select dpm.member_user_id from doc_project dp, doc_project_member dpm where dp.id = {0} dp.id = dpm.doc_project_id and dpm.deleted = 0 and dpm.`role` = {1}", docProject.getId().toString(), form.getRole().toString()));
+				wrapper.inSql(SysUser::getUserId, StrUtil.indexedFormat(
+						"select dpm.member_user_id from doc_project dp, doc_project_member dpm where dp.id = {0} dp.id = dpm.doc_project_id and dpm.deleted = 0 and dpm.`role` = {1}",
+						docProject.getId().toString(), form.getRole().toString()));
 			}
 			// 组织机构过滤
 			if (StrUtil.isNotBlank(form.getOrgIds())) {
