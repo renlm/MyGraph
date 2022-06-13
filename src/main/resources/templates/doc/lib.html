@@ -255,7 +255,7 @@
 			if (r) {
 				$.messager.progress({'text': '请求中……'});
 				$.post(ctx + '/doc/project/ajax/del', 
-						{ uuids: uuid }, 
+						{ uuid: uuid }, 
 						function (resultJson) {
 			                $.messager.progress('close');
 							if (resultJson.statusCode == 200) {
