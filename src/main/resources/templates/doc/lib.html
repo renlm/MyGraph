@@ -269,6 +269,35 @@
 			}
 		});
 	}
+	
+	/**
+	 * 成员管理
+	 */
+	function memberDialog (uuid) {
+		var $memberDialog = $('<form id=\'memberDialog\' method=\'post\' class=\'myui\'></form>');
+	    $memberDialog.myuiDialog({
+	        title: '成员管理',
+	        width: 850,
+	        height: 443,
+			collapsible: true,
+			minimizable: false,
+			maximizable: true,
+	        closed: false,
+	        cache: false,
+	        href: ctx + '/doc/projectMember/dialog' + (uuid ? ('?uuid=' + uuid) : ''),
+	        modal: true,
+	        buttons: [{
+	            text: '关闭',
+	            iconCls: 'fa fa-close',
+	            handler: function () {
+	                $memberDialog.dialog('destroy');
+	            }
+	        }],
+			onClose: function () {
+				$memberDialog.dialog('destroy');
+			}
+	    });
+	}
 </script>
 <script type="text/javascript">
 	/**
