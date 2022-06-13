@@ -6,7 +6,7 @@
 		">
 		<table id="userDataGrid" 
 			class="easyui-datagrid"
-		 	data-options="border:false,
+		 	th:data-options="|border:false,
 				fit:true,
 				fitColumns:true,
 				singleSelect:true,
@@ -16,18 +16,17 @@
 				pagination:true,
 				pageSize:20,
 				method:'get',
-				url:ctx+'/sys/authAccess/ajax/getPageUsers',
+				url:ctx+'/doc/projectMember/ajax/authAccessPage',
 		   		onBeforeLoad:function(param){
+		   			param.docProjectUuid = '${uuid}';
 		      		$.pageOnBeforeLoad(param);
 		       		try{
 		         		param.orgIds = $('#orgIds').combo('getValue');
 						param.accessAuth = $('#accessAuth').combo('getValue');
 						param.keywords = $('#keywords').textbox('getValue');
-		             	var selectedRole = $('#treeGrid').treegrid('getSelected');
-		             	if (selectedRole) { param.roleId = selectedRole.roleId; }
 		           	}catch(e){}
 		     	}
-			">
+			|">
 			<thead>
 				<tr>
 		      		<th data-options="field:'userId',title:'用户ID',checkbox:true"></th>

@@ -5,6 +5,7 @@ import static cn.hutool.core.text.StrPool.COMMA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,15 +36,18 @@ public class DocProjectMemberController {
 	/**
 	 * 成员管理
 	 * 
+	 * @param model
+	 * @param uuid
 	 * @return
 	 */
 	@RequestMapping("/dialog")
-	public String dialog() {
+	public String dialog(ModelMap model, String uuid) {
+		model.put("uuid", uuid);
 		return "doc/projectMemberDialog";
 	}
 
 	/**
-	 * 分页列表
+	 * 分页列表（项目授权人员）
 	 * 
 	 * @param authentication
 	 * @param page
