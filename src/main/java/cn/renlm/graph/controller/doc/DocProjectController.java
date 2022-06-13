@@ -44,9 +44,10 @@ public class DocProjectController {
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/page")
-	public Datagrid<DocProject> ajaxPage(Authentication authentication, Page<DocProject> page, DocProjectDto form) {
+	public Datagrid<DocProjectDto> ajaxPage(Authentication authentication, Page<DocProjectDto> page,
+			DocProjectDto form) {
 		User user = (User) authentication.getPrincipal();
-		Page<DocProject> data = iDocProjectService.findPage(page, user, form);
+		Page<DocProjectDto> data = iDocProjectService.findPage(page, user, form);
 		return Datagrid.of(data);
 	}
 

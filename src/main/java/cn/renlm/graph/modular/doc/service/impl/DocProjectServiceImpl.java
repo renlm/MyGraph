@@ -44,18 +44,8 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 	private IDocProjectMemberService iDocProjectMemberService;
 
 	@Override
-	public Page<DocProject> findPage(Page<DocProject> page, User user, DocProjectDto form) {
-		return this.page(page, Wrappers.<DocProject>lambdaQuery().func(wrapper -> {
-			wrapper.eq(DocProject::getCreatorUserId, user.getUserId());
-			wrapper.eq(DocProject::getDeleted, false);
-			wrapper.orderByDesc(DocProject::getUpdatedAt);
-			wrapper.orderByDesc(DocProject::getId);
-			if (StrUtil.isNotBlank(form.getKeywords())) {
-				wrapper.and(item -> {
-					item.or().like(DocProject::getProjectName, form.getKeywords());
-				});
-			}
-		}));
+	public Page<DocProjectDto> findPage(Page<DocProjectDto> page, User user, DocProjectDto form) {
+		return this.baseMapper.findPage(page, user, form);
 	}
 
 	@Override

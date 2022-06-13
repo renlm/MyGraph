@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.renlm.graph.modular.doc.mapper.DocProjectMapper">
-
+	<!-- 分页列表 -->
+	<select id="findPage" resultType="cn.renlm.graph.modular.doc.dto.DocProjectDto">
+		select dp.`id`,
+			dp.`uuid`,
+			dp.`project_name`,
+			dp.`visit_level`,
+			dp.`is_share`,
+			dp.`is_export`,
+			dp.`tags`,
+			dp.`created_at`,
+			dp.`creator_user_id`,
+			dp.`creator_nickname`,
+			dp.`updated_at`,
+			dp.`updator_user_id`,
+			dp.`updator_nickname`,
+			dp.`deleted`,
+			dp.`remark`,
+			max(dpm.`role`) as `role`
+		from doc_project dp
+		left join doc_project_member dpm 
+			on dpm.doc_project_id = dp.id
+				and dpm.deleted = 0
+		<where>
+			dp.deleted = 0
+			and (
+				dp.`visit_level` = 2
+				or
+				dp.`id` is not null
+			)
+			<if test="form.keywords != null and form.keywords != ''">
+				and (
+					dp.`project_name` like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
+					or
+					exists (
+						select dpt.id 
+						from doc_project_tag dpt 
+						where dpt.doc_project_id = dp.`id`
+							and dpt.deleted = 0
+							and dpt.tag_name like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%') 
+					)
+				)
+			</if>
+		</where>
+		group by dp.id 
+		order by dp.updated_at desc, dp.id desc
+	</select>
 </mapper>

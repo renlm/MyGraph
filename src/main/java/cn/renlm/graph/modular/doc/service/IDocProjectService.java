@@ -26,7 +26,7 @@ public interface IDocProjectService extends IService<DocProject> {
 	 * @param form
 	 * @return
 	 */
-	Page<DocProject> findPage(Page<DocProject> page, User user, DocProjectDto form);
+	Page<DocProjectDto> findPage(Page<DocProjectDto> page, User user, DocProjectDto form);
 
 	/**
 	 * 保存（新建|编辑）
