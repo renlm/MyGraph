@@ -185,7 +185,13 @@
 	 * 操作项目
 	 */
 	function projectOperateFormatter (value, row, index) {
-		return '<a href="javascript:projectDialog(\'' + row.uuid + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">编辑</span><span class="l-btn-icon fa fa-pencil"></span></span></a>';
+		var e = '<a href="javascript:projectDialog(\'' + row.uuid + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">编辑</span><span class="l-btn-icon fa fa-pencil"></span></span></a> ';
+		var m = '<a href=\'javascript:memberDialog(' + row.uuid + ');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>成员</span><span class=\'l-btn-icon fa fa-group\'></span></span></a>';
+		if (row.role === 3) {
+			return e + m;
+		} else {
+			return '-';
+		}
 	}
 	
 	/**
