@@ -19,6 +19,77 @@
     </div>
     <div class="myui-row">
         <div class="myui-col-sm12">
+            <label class="myui-form-label">访问级别</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{visitLevel}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+                   		editable:false,
+						valueField:'value',
+						textField:'text',
+                		width:'100%',
+						panelHeight:'auto',
+						data: [
+						    {text:'私有',value:1},
+							{text:'公开',value:2}
+						]
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">标签</label>
+            <div class="myui-input-block">
+            	<input type="text" th:field="*{tags}" 
+					class="easyui-textbox"
+					data-options="required:true,
+						prompt:'标签（多个逗号分隔）',
+						width:'100%'
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">允许分享</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{isShare}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+                   		editable:false,
+						valueField:'value',
+						textField:'text',
+                		width:'100%',
+						panelHeight:'auto',
+						data: [
+						    {text:'是',value:'true'},
+							{text:'否',value:'false'}
+						]
+					"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">允许导出</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{isExport}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+                   		editable:false,
+						valueField:'value',
+						textField:'text',
+                		width:'100%',
+						panelHeight:'auto',
+						data: [
+						    {text:'是',value:'true'},
+							{text:'否',value:'false'}
+						]
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
         	<label class="myui-form-label">备注</label>
             <div class="myui-input-block">
                 <input type="text" th:field="*{remark}" 
