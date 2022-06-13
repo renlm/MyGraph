@@ -1,7 +1,9 @@
 package cn.renlm.graph.modular.doc.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +17,10 @@ import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocProjectDto;
 import cn.renlm.graph.modular.doc.entity.DocProject;
+import cn.renlm.graph.modular.doc.entity.DocProjectTag;
 import cn.renlm.graph.modular.doc.mapper.DocProjectMapper;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
+import cn.renlm.graph.modular.doc.service.IDocProjectTagService;
 import cn.renlm.graph.response.Result;
 
 /**
@@ -29,6 +33,9 @@ import cn.renlm.graph.response.Result;
  */
 @Service
 public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProject> implements IDocProjectService {
+
+	@Autowired
+	private IDocProjectTagService iDocProjectTagService;
 
 	@Override
 	public Page<DocProject> findPage(Page<DocProject> page, User user, DocProjectDto form) {
@@ -49,6 +56,7 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 	@Transactional(rollbackFor = Exception.class)
 	public Result<DocProjectDto> ajaxSave(User user, DocProjectDto form) {
 		if (StrUtil.isBlank(form.getUuid())) {
+			// 插入项目
 			form.setUuid(IdUtil.simpleUUID().toUpperCase());
 			form.setCreatedAt(new Date());
 			form.setCreatorUserId(user.getUserId());
@@ -56,6 +64,7 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 			form.setUpdatedAt(form.getCreatedAt());
 			form.setDeleted(false);
 		} else {
+			// 更新项目
 			DocProject entity = this.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, form.getUuid()));
 			form.setId(entity.getId());
 			form.setCreatedAt(entity.getCreatedAt());
@@ -65,7 +74,40 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 			form.setUpdatorUserId(user.getUserId());
 			form.setUpdatorNickname(user.getNickname());
 			form.setDeleted(entity.getDeleted());
+			// 删除标签
+			iDocProjectTagService.update(Wrappers.<DocProjectTag>lambdaUpdate().func(wrapper -> {
+				wrapper.set(DocProjectTag::getDeleted, true);
+				wrapper.set(DocProjectTag::getUpdatedAt, new Date());
+				wrapper.set(DocProjectTag::getUpdatorUserId, user.getUserId());
+				wrapper.set(DocProjectTag::getUpdatorNickname, user.getNickname());
+				wrapper.eq(DocProjectTag::getDeleted, false);
+				wrapper.eq(DocProjectTag::getDocProjectId, entity.getId());
+			}));
 		}
+		// 保存标签
+		List<DocProjectTag> tags = CollUtil.newArrayList();
+		if (StrUtil.isNotBlank(form.getTags())) {
+			form.setTags(StrUtil.replace(form.getTags(), "，", StrUtil.COMMA));
+			List<String> tagList = StrUtil.splitTrim(form.getTags(), StrUtil.COMMA);
+			if (CollUtil.isNotEmpty(tagList)) {
+				tagList.forEach(tagName -> {
+					DocProjectTag tag = new DocProjectTag();
+					tag.setDocProjectId(form.getId());
+					tag.setUuid(IdUtil.simpleUUID().toUpperCase());
+					tag.setTagName(tagName);
+					tag.setCreatedAt(new Date());
+					tag.setCreatorUserId(user.getUserId());
+					tag.setCreatorNickname(user.getNickname());
+					tag.setUpdatedAt(form.getCreatedAt());
+					tag.setDeleted(false);
+					tags.add(tag);
+				});
+			}
+			if (CollUtil.isNotEmpty(tags)) {
+				iDocProjectTagService.saveBatch(tags);
+			}
+		}
+		// 保存项目
 		this.saveOrUpdate(form);
 		return Result.success(form);
 	}
