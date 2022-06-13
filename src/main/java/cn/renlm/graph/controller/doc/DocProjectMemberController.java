@@ -1,7 +1,6 @@
 package cn.renlm.graph.controller.doc;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -19,7 +18,7 @@ public class DocProjectMemberController {
 	 * 
 	 * @return
 	 */
-	@GetMapping("/dialog")
+	@RequestMapping("/dialog")
 	public String dialog() {
 		return "doc/projectMemberDialog";
 	}
