@@ -4220,8 +4220,8 @@ INSERT INTO sys_dict (id,uuid,code,`text`,abbreviation,alias,icon_cls,`level`,so
 ;
 
 -- Markdown文档
-INSERT INTO markdown (uuid,name,content,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
-('62410EE609A14EB48EC962D36661E14D','Markdown扩展','# Markdown扩展
+INSERT INTO markdown (uuid,name,version,content,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+('62410EE609A14EB48EC962D36661E14D','Markdown扩展',1,'# Markdown扩展
 
 在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___  
@@ -4350,8 +4350,8 @@ ___<a href="https://renlm.cn/images/demo/31.png" target="_blank"> 截图-效果�
         }
     ]
 }
-```','2022-06-10 15:18:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-12 12:39:13','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
-,('32FBBF6C0D31402881CCF30FAEC19E2F','系统简介','# 简介
+```','2022-06-10 15:18:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-13 12:18:26','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+,('32FBBF6C0D31402881CCF30FAEC19E2F','系统简介',1,'# 简介
 ER模型在线设计与管理，整合一套后台模板，支持Markdown在线管理与服务器实时监控。  
 免费开源（木兰宽松许可证, 第2版）  
 ER图例（双击表可查看字段）：___<a href="https://mygraph.renlm.cn/graph/viewer?uuid=198124BBCF284A40BB24CA315A7B8E36&headless=false&fitWindow=false" target="_blank">MyGraph在线画图</a>___  
@@ -4456,8 +4456,8 @@ Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-
 
 > ___更多功能___
 
-![更多功能](https://renlm.cn/images/demo/21.png "更多功能")','2022-06-10 16:17:15','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-12 12:39:53','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
-,('7A0514F15CEC4530ACF9B3270637531B','项目部署','# 主要技术组件
+![更多功能](https://renlm.cn/images/demo/21.png "更多功能")','2022-06-10 16:17:15','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-13 12:18:26','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+,('7A0514F15CEC4530ACF9B3270637531B','项目部署',1,'# 主要技术组件
 SpringBoot + MyBatis-plus + Hutool + My-Plugin  
 MySQL + Redis + Rabbitmq  
 Chrome + Chromedriver  
@@ -4487,8 +4487,11 @@ EasyUI + Mxgraph + Editor.md
 
 > ___修改自定义参数（服务器监控websocket配置等需要）___
 
-![修改自定义参数](https://renlm.cn/images/demo/101.png "修改自定义参数")','2022-06-10 16:17:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-12 12:40:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![修改自定义参数](https://renlm.cn/images/demo/101.png "修改自定义参数")','2022-06-10 16:17:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-06-13 12:18:26','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ;
+
+-- Markdown文档-历史记录
+INSERT INTO markdown_history SELECT * FROM markdown;
 
 -- 图形设计样例数据
 INSERT INTO graph (uuid,name,category_code,category_name,is_public,cover,zoom,dx,dy,grid_enabled,grid_size,grid_color,page_visible,background,connection_arrows_enabled,connectable,guides_enabled,xml,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
