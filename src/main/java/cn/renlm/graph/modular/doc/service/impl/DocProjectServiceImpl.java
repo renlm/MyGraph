@@ -75,6 +75,7 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 			// 更新项目
 			DocProject entity = this.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, form.getUuid()));
 			long members = iDocProjectMemberService.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
+				wrapper.eq(DocProjectMember::getRole, 3);
 				wrapper.eq(DocProjectMember::getDocProjectId, entity.getId());
 				wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
 				wrapper.eq(DocProjectMember::getDeleted, false);
