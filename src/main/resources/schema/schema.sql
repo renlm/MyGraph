@@ -382,6 +382,7 @@ CREATE TABLE markdown (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
     uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
     name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
+    version 					INT								NOT NULL		COMMENT '版本',
     content						LONGTEXT										COMMENT '文档内容',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
@@ -392,6 +393,44 @@ CREATE TABLE markdown (
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
     remark VARCHAR(255) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档';
+
+-- Markdown文档-分享
+DROP TABLE IF EXISTS markdown_share;
+CREATE TABLE markdown_share (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    markdown_uuid       		VARCHAR(32)						NOT NULL		COMMENT 'Markdown文档UUID',
+    deadline					TIMESTAMP										COMMENT '有效截止时间（为空则永久有效）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注',
+    INDEX markdown_uuid(markdown_uuid),
+    INDEX deadline(deadline),
+    INDEX creator_user_id(creator_user_id),
+    INDEX deleted(deleted)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档-分享';
+
+-- Markdown文档-历史记录
+DROP TABLE IF EXISTS markdown_history;
+CREATE TABLE markdown_history (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    markdown_uuid       		VARCHAR(32)						NOT NULL		COMMENT 'Markdown文档UUID',
+    name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
+    version 					INT								NOT NULL		COMMENT '版本',
+    content						LONGTEXT										COMMENT '文档内容',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档-历史记录';
 
 -- 图形设计
 DROP TABLE IF EXISTS graph;
