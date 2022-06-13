@@ -56,7 +56,7 @@ public class DsController {
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/page")
-	public Datagrid<Ds> ajaxList(Authentication authentication, Page<Ds> page, DsDto form) {
+	public Datagrid<Ds> ajaxPage(Authentication authentication, Page<Ds> page, DsDto form) {
 		User user = (User) authentication.getPrincipal();
 		Page<Ds> data = iDsService.findPage(page, user, form);
 		return Datagrid.of(data);
