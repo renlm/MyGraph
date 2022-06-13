@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -83,6 +84,14 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 		} else {
 			// 更新项目
 			DocProject entity = this.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, form.getUuid()));
+			long members = iDocProjectMemberService.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
+				wrapper.eq(DocProjectMember::getDocProjectId, entity.getId());
+				wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
+				wrapper.eq(DocProjectMember::getDeleted, false);
+			}));
+			if (members == 0) {
+				return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能修改");
+			}
 			form.setId(entity.getId());
 			form.setCreatedAt(entity.getCreatedAt());
 			form.setCreatorUserId(entity.getCreatorUserId());
