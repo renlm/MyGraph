@@ -11,6 +11,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Resource;
 import cn.renlm.graph.modular.sys.dto.SysOrgDto;
@@ -74,6 +75,17 @@ public class User extends SysUser implements org.springframework.security.core.u
 					}
 					return false;
 				}).collect(Collectors.toList());
+		CollUtil.sort(list, (o1, o2) -> {
+			if (NumberUtil.equals(o1.getLevel(), o2.getLevel())) {
+				if (NumberUtil.equals(o1.getSort(), o2.getSort())) {
+					return -1;
+				} else {
+					return o1.getSort() - o2.getSort();
+				}
+			} else {
+				return o1.getLevel() - o2.getLevel();
+			}
+		});
 		return list;
 	}
 
