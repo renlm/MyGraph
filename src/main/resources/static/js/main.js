@@ -18,6 +18,18 @@
 (function($) {
 	$.extend({
 		/**
+		 * 文档项目-访问级别
+		 */
+		docVisitLevelFormatter: function (value) {
+			if (value === 1) {
+				return '<span style="text-decoration: underline;font-style: italic;" title=\'只有项目成员才可以访问\'>私有</span>';
+			} else if (value === 2) {
+				return '<span style="text-decoration: underline;font-style: italic;" title=\'可以由任何登录用户访问\'>公开</span>';
+			} else {
+				return value;
+			}
+		},
+		/**
 		 * 打开Markdown文档查看器
 		 * @param params uuid 唯一标识
 		 * @param params title 标题

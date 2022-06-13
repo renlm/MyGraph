@@ -17,7 +17,7 @@
              	">
               	<div title="项目" 
               		data-options="iconCls:'fa fa-deaf'">
-              		<table id="dsDataGrid" 
+              		<table id="projectDataGrid" 
 		            	class="easyui-datagrid"
 		            	data-options="border:false,
         					bodyCls:'border_left',
@@ -26,23 +26,24 @@
 							singleSelect:true,
 							checkOnSelect:false,
 							selectOnCheck:false,
-							toolbar:'#dsDataGridToolbar',
+							toolbar:'#projectDataGridToolbar',
 							pagination:true,
 							pageSize:20,
 							method:'get',
-							url:ctx+'/ds/ajax/page',
+							url:ctx+'/doc/project/ajax/page',
 		                   	onBeforeLoad:$.pageOnBeforeLoad
 		               	">
 		                <thead>
 			                <tr>
 			                	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
-			                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#dsDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
-		                     	<th data-options="field:'name',title:'数据源名称',width:120"></th>
-		                     	<th data-options="field:'url',title:'JDBC链接',width:200"></th>
-		                     	<th data-options="field:'schemaName',title:'Schema',width:80"></th>
+			                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#projectDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+		                     	<th data-options="field:'projectName',title:'项目名称',width:120"></th>
+		                     	<th data-options="field:'visitLevel',title:'访问级别',width:60,formatter:$.docVisitLevelFormatter"></th>
+		                     	<th data-options="field:'tags',title:'标签',width:120"></th>
 		                     	<th data-options="field:'remark',title:'备注',width:120"></th>
+			                    <th data-options="field:'creatorNickname',title:'创建人',width:80,align:'left'"></th>
 			                    <th data-options="field:'updatedAt',title:'更新时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
-		                       	<th data-options="field:'actions',title:'操作',width:80,align:'center',formatter:dsOperateFormatter"></th>
+		                       	<th data-options="field:'actions',title:'操作',width:80,align:'center',formatter:projectOperateFormatter"></th>
 			                </tr>
 		                </thead>
 		            </table>
@@ -212,7 +213,7 @@
     	</div>
     </div>
     <!-- 数据源 工具栏 -->
-    <div id="dsDataGridToolbar" class="myui-toolbar">
+    <div id="projectDataGridToolbar" class="myui-toolbar">
 		<a href="javascript:dsDialog();"
           	class="easyui-menubutton myui-btn-normal myui-btn-green"
          	data-options="iconCls:'fa fa-plus',
@@ -234,9 +235,9 @@
             	">删除
          	</div>
 		</div>
-		<form id="dsDataGridForm" class="search-box">
+		<form id="projectDataGridForm" class="search-box">
 	   		<input type="text" name="keywords"
-	    		id="dsDataGridKeywords" 
+	    		id="projectDataGridKeywords" 
 	   			class="easyui-textbox"
 	        	data-options="prompt:'关键字',
 	        		width:220
@@ -345,10 +346,10 @@
 	 * 查询数据源
 	 */
 	function searchDs () {
-		$('#dsDataGrid').datagrid('unselectAll');
+		$('#projectDataGrid').datagrid('unselectAll');
 		searchEr();
-		$('#dsDataGrid').datagrid('load', {
-			keywords: $('#dsDataGridKeywords').textbox('getValue')
+		$('#projectDataGrid').datagrid('load', {
+			keywords: $('#projectDataGridKeywords').textbox('getValue')
 		});
 	}
 	
@@ -356,14 +357,14 @@
 	 * 重置数据源
 	 */
 	function resetDs () {
-		$('#dsDataGridForm').form('clear');
+		$('#projectDataGridForm').form('clear');
 		searchDs();
 	}
 
 	/**
 	 * 操作数据源
 	 */
-	function dsOperateFormatter (value, row, index) {
+	function projectOperateFormatter (value, row, index) {
 		return '<a href="javascript:dsDialog(\'' + row.uuid + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">编辑</span><span class="l-btn-icon fa fa-pencil"></span></span></a>';
 	}
 	
@@ -403,8 +404,8 @@
 			                if (resultJson.statusCode == 200) {
 			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 			                	$dsDialog.dialog('destroy');
-			                	$('#dsDataGrid').datagrid('unselectAll');
-			                	$('#dsDataGrid').datagrid('reload');
+			                	$('#projectDataGrid').datagrid('unselectAll');
+			                	$('#projectDataGrid').datagrid('reload');
 			            		searchEr();
 			                } else {
 			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
@@ -429,7 +430,7 @@
 	 * 删除数据源
 	 */
 	function delDs () {
-		var checked = $('#dsDataGrid').datagrid('getChecked');
+		var checked = $('#projectDataGrid').datagrid('getChecked');
 		if (!checked || checked.length === 0) {
 			$.messager.myuiAlert('操作提示', '请先选中要删除的数据源！', 'warning');
 			return;
@@ -447,8 +448,8 @@
 				                $.messager.progress('close');
 								if (resultJson.statusCode == 200) {
 									$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-									$('#dsDataGrid').datagrid('unselectAll');
-				                	$('#dsDataGrid').datagrid('reload');
+									$('#projectDataGrid').datagrid('unselectAll');
+				                	$('#projectDataGrid').datagrid('reload');
 				            		searchEr();
 				                } else {
 				                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
