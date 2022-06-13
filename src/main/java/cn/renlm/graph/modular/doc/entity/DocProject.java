@@ -51,6 +51,12 @@ public class DocProject implements Serializable {
     private Integer visitLevel;
 
     /**
+     * 标签（多个逗号分隔）
+     */
+    @TableField("tags")
+    private String tags;
+
+    /**
      * 是否允许分享（默认是，该项目下的文档是否允许分享）
      */
     @TableField("is_share")
