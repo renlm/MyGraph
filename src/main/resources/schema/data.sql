@@ -113,7 +113,7 @@ INSERT INTO sys_role_resource(
 	id,	-- sys_resource_id				
 	null, -- alias	
 	sort, -- sort	
-	default_home_page -- default_home_page
+	CASE WHEN code = 'WELCOME' THEN 0 ELSE default_home_page END -- default_home_page
 FROM sys_resource
 WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '100103', '1002', '100201', '40', '50', '5001', '500101', '500102', '500103')
 ;
@@ -127,7 +127,7 @@ INSERT INTO sys_role_resource(
 	id,	-- sys_resource_id				
 	null, -- alias	
 	sort, -- sort	
-	default_home_page -- default_home_page
+	CASE WHEN code = 'WELCOME' THEN 0 ELSE default_home_page END -- default_home_page
 FROM sys_resource
 WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '100103', '1002', '100201', '40', '50', '5001', '500101', '500102', '500103')
 ;
