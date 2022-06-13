@@ -95,21 +95,12 @@
            		hasDownArrow:false
         	">新增
        	</a>
-   		<a href="javascript:void(0);"
-        	class="easyui-menubutton myui-btn-normal myui-btn-orange"
-         	data-options="menu:'#moreOpsMenu',
-           		iconCls:'fa fa-list',
-           		hasDownArrow:true
-       		">更多
+		<a href="javascript:delProject();"
+          	class="easyui-menubutton myui-btn-normal myui-btn-red"
+         	data-options="iconCls:'fa fa-trash',
+           		hasDownArrow:false
+        	">删除
        	</a>
-       	<div id="moreOpsMenu" class="myui-toolbar">
-        	<div onclick="javascript:delProject();"
-        		class="easyui-menubutton"
-           		data-options="iconCls:'fa fa-trash',
-           			hasDownArrow:false
-            	">删除
-         	</div>
-		</div>
 		<form id="projectDataGridForm" class="search-box">
 	   		<input type="text" name="keywords"
 	    		id="projectDataGridKeywords" 
@@ -205,7 +196,7 @@
 	    $projectDialog.myuiDialog({
 	        title: uuid ? '编辑' : '新增',
 	        width: 850,
-	        height: 443,
+	        height: 445,
 			collapsible: true,
 			minimizable: false,
 			maximizable: true,
