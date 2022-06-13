@@ -17,8 +17,10 @@ import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocProjectDto;
 import cn.renlm.graph.modular.doc.entity.DocProject;
+import cn.renlm.graph.modular.doc.entity.DocProjectMember;
 import cn.renlm.graph.modular.doc.entity.DocProjectTag;
 import cn.renlm.graph.modular.doc.mapper.DocProjectMapper;
+import cn.renlm.graph.modular.doc.service.IDocProjectMemberService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
 import cn.renlm.graph.modular.doc.service.IDocProjectTagService;
 import cn.renlm.graph.response.Result;
@@ -36,6 +38,9 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 
 	@Autowired
 	private IDocProjectTagService iDocProjectTagService;
+
+	@Autowired
+	private IDocProjectMemberService iDocProjectMemberService;
 
 	@Override
 	public Page<DocProject> findPage(Page<DocProject> page, User user, DocProjectDto form) {
@@ -55,6 +60,7 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public Result<DocProjectDto> ajaxSave(User user, DocProjectDto form) {
+		boolean isInsert = StrUtil.isBlank(form.getUuid());
 		// 处理标签
 		List<String> tagNames = CollUtil.newArrayList();
 		if (StrUtil.isNotBlank(form.getTags())) {
@@ -66,7 +72,7 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 			}
 		}
 		form.setTags(StrUtil.join(StrUtil.COMMA, tagNames));
-		if (StrUtil.isBlank(form.getUuid())) {
+		if (isInsert) {
 			// 插入项目
 			form.setUuid(IdUtil.simpleUUID().toUpperCase());
 			form.setCreatedAt(new Date());
@@ -115,6 +121,17 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 			if (CollUtil.isNotEmpty(tags)) {
 				iDocProjectTagService.saveBatch(tags);
 			}
+		}
+		// 设置管理员
+		if (isInsert) {
+			DocProjectMember member = new DocProjectMember();
+			member.setDocProjectId(form.getId());
+			member.setMemberUserId(user.getUserId());
+			member.setRole(3);
+			member.setCreatedAt(new Date());
+			member.setUpdatedAt(form.getCreatedAt());
+			member.setDeleted(false);
+			iDocProjectMemberService.save(member);
 		}
 		return Result.success(form);
 	}
