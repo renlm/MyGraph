@@ -1,661 +1,102 @@
-<!DOCTYPE html>
-<html lang="zh-CN" layout:decorate="~{layout/decorate}">
-<head>
-    <title>角色管理</title>
-</head>
-<body layout:fragment="content" class="myui">
-	<div class="easyui-layout"
-    	data-options="fit:true">
-    	<!-- 左侧 -->
-        <div data-options="region:'center',
-        		split:true,
-        		border:false,
-        		bodyCls:'border_right',
-        		width:'35%'
-        	">
-       		<table id="treeGrid" class="easyui-treegrid"
-          		data-options="border:false,
-					fit:true,
-					fitColumns:true,
-					singleSelect:true,
-					idField:'id',
-			   		treeField:'text',
-					toolbar:'#toolbar',
-					method:'get',
-               		url:'role/ajax/getTree',
-               		onLoadSuccess:function(row,data){
-               			var that = this;
-               			if (row == null) {
-               				$.each(data, function (i, item) {
-               					$(that).treegrid('expand', item.id);
-               				});
-               			}
-               		},
-               		onClickRow:function(row){
-				   		$('#authAccessTreegrid').treegrid('reload');
-				   		$('#userDataGrid').datagrid('reload');
-					}
-              	">
-				<thead>
-               		<tr>
-	                    <th data-options="field:'text',title:'名称',width:100"></th>
-	                    <th data-options="field:'sort',title:'排序',width:25"></th>
-	                    <th data-options="field:'disabled',title:'状态',width:25,formatter:$.disabledFormatter"></th>
-					</tr>
-              	</thead>
-			</table>
-        </div>
-        <!-- 右侧 -->
-        <div data-options="region:'east',
-        		split:true,
-        		border:false,
-        		bodyCls:'border_right',
-        		width:'65%'
-        	">
-          	<div class="easyui-tabs"
-          		id="eastTabs"
-            	data-options="fit:true,
-             		border:true,
-             		bodyCls:'border_right_none'
-             	">
-                <div style="overflow: hidden;"
-                	title="功能权限"
-               		data-options="iconCls:'fa fa-newspaper-o'
-               		">
-               		<table id="authAccessTreegrid" 
-                    	class="easyui-treegrid"
-                    	data-options="border:false,
-							fit:true,
-							fitColumns:false,
-							singleSelect:true,
-							idField:'id',
-					   		treeField:'text',
-                       		animate:false,
-                     		checkbox:true,
-							toolbar:'#authAccessTreegridToolbar',
-							method:'get',
-                       		url:ctx+'/sys/authAccess/ajax/getTree',
-                       		onBeforeLoad:function(row,param){
-		               			var selectedRole = $('#treeGrid').treegrid('getSelected');
-		               			if (selectedRole) {
-		               				param.roleId = selectedRole.roleId;
-		               			}
-		               		},
-		               		onLoadSuccess:function(row,data){
-		               			var that = this;
-		               			$(this).treegrid('expandAll');
-		               			$(this).treegrid('getCheckedNodes').forEach(function(item) {
-			                    	$(that).treegrid('uncheckNode', item.id);
-			               		});
-			               		$('#customTreegrid').treegrid('reload');
-		               		}
-                    	">
-                        <thead>
-	                        <tr>
-	                            <th data-options="field:'text',title:'资源名称',width:250,formatter:$.treeTextFormatter,styler:$.treeIconStyler"></th>
-	                            <th data-options="field:'accessAuth',title:'授权状态',width:80,align:'center',formatter:$.accessAuthFormatter"></th>
-	                            <th data-options="field:'code',title:'编码',width:120"></th>
-                      			<th data-options="field:'resourceTypeCode',title:'资源类别',width:120,align:'center',formatter:$.resourceTypeFormatter"></th>
-	                            <th data-options="field:'opt',
-	                            		title:'操作',
-	                            		width:80,
-	                            		align:'center',
-	                            		formatter:function(value,row,index){
-	                                		if (row.accessAuth) {
-	                                    		return '<span data-role-id=\''+row.roleId+'\' data-resource-id=\''+row.resourceId+'\' data-id=\''+row.id+'\' class=\'singleUnGrant layui-btn layui-btn-xs layui-btn-primary\' onclick=\'singleUnGrantOnclick(this);\'><i class=\'fa fa-times\'></i> 取消</span>';
-	                                		} else {
-	                                    		return '<span data-role-id=\''+row.roleId+'\' data-resource-id=\''+row.resourceId+'\' data-id=\''+row.id+'\' class=\'singleGrant layui-btn layui-btn-xs\' onclick=\'singleGrantOnclick(this);\'><i class=\'fa fa-check\'></i> 授权</span>';
-	                                		}
-	                            		}
-	                            	"></th>
-	                        </tr>
-                        </thead>
-                    </table>
-				</div>
-				<div style="overflow: hidden;"
-                	title="授权人员"
-               		data-options="iconCls:'fa fa-user-md'
-               		">
-               		<table id="userDataGrid" 
-		            	class="easyui-datagrid"
-		            	data-options="border:false,
-							fit:true,
-							fitColumns:true,
-							singleSelect:true,
-							checkOnSelect:false,
-							selectOnCheck:false,
-							toolbar:'#userDataGridToolbar',
-							pagination:true,
-							pageSize:20,
-							method:'get',
-							url:ctx+'/sys/authAccess/ajax/getPageUsers',
-                       		onBeforeLoad:function(param){
-                       			$.pageOnBeforeLoad(param);
-                       			try{
-                       				param.orgIds = $('#orgIds').combo('getValue');
-									param.accessAuth = $('#accessAuth').combo('getValue');
-									param.keywords = $('#keywords').textbox('getValue');
-	                       			var selectedRole = $('#treeGrid').treegrid('getSelected');
-			               			if (selectedRole) { param.roleId = selectedRole.roleId; }
-		               			}catch(e){}
-		               		}
-		               	">
-		                <thead>
-			                <tr>
-			                	<th data-options="field:'userId',title:'用户ID',checkbox:true"></th>
-	                            <th data-options="field:'nickname',title:'昵称',width:120"></th>
-	                            <th data-options="field:'accessAuth',title:'授权状态',width:80,align:'center',formatter:$.accessAuthFormatter"></th>
-	                            <th data-options="field:'username',title:'账号',width:120"></th>
-	                            <th data-options="field:'mobile',title:'手机',width:120"></th>
-	                            <th data-options="field:'email',title:'邮箱',width:250"></th>
-			                </tr>
-		                </thead>
-		            </table>
-				</div>
-				<div style="overflow: hidden;"
-                	title="自定义"
-               		data-options="iconCls:'fa fa-chain'
-               		">
-               		<table id="customTreegrid" 
-                    	class="easyui-treegrid"
-                    	data-options="border:false,
-							fit:true,
-							fitColumns:false,
-							singleSelect:true,
-							idField:'id',
-					   		treeField:'text',
-                       		animate:false,
-                     		checkbox:false,
-							method:'get',
-                       		url:ctx+'/sys/authAccess/ajax/getTree',
-                       		onBeforeLoad:function(row,param){
-                       			param.authAccessed = true;
-		               			var selectedRole = $('#treeGrid').treegrid('getSelected');
-		               			if (selectedRole) {
-		               				param.roleId = selectedRole.roleId;
-		               			}
-		               		},
-		               		onLoadSuccess:function(row,data){
-		               			$(this).treegrid('expandAll');
-		               		},
-							onDblClickRow:function(row){
-								if (!row.editing) {
-									editRow(row.id);
-								}
-							},
-							onBeforeEdit:function(row){
-								row.editing = true;
-								$(this).treegrid('refreshRow',row.id);
-							},
-							onAfterEdit:function(row,changes){
-								row.editing = false;
-								$(this).treegrid('refreshRow',row.id);
-							},
-							onCancelEdit:function(row){
-								row.editing = false;
-								$(this).treegrid('refreshRow',row.id);
-							}
-                    	">
-                        <thead>
-	                        <tr>
-	                            <th data-options="field:'text',title:'资源名称',width:250,formatter:$.treeTextFormatter,styler:$.treeIconStyler"></th>
-                      			<th data-options="field:'resourceTypeCode',title:'资源类别',width:120,align:'center',formatter:$.resourceTypeFormatter"></th>
-	                            <th data-options="field:'alias',title:'别名',width:120,editor:{type:'textbox',options:{required:false,height:30}}"></th>
-	                            <th data-options="field:'sort',title:'排序',width:80,align:'right',editor:{type:'numberspinner',options:{required:true,height:30}}"></th>
-	                            <th data-options="field:'defaultHomePage',
-	                            		title:'默认主页',
-	                            		width:80,
-	                            		align:'center',
-	                            		formatter:$.yesNoFormatter,
-                              			editor:{
-                              				type:'combobox',
-                              				options:{
-                              					required:true,
-                              					textField:'label',
-                              					valueField:'value',
-                              					panelHeight:70,
-                              					data:[
-                              						{label:'是',value:true},
-                              						{label:'否',value:false}
-                              					]
-                              				}
-                              			}"></th>
-	                            <th data-options="field:'actions',
-			                    		title:'操作',
-			                    		width:154,
-			                    		align:'center',
-			                    		formatter:function(value,row,index){
-											if (row.editing) {
-												var s = '<a href=\'javascript:saveRow('+row.id+');\' class=\'l-btn myui-btn-blue l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>保存</span><span class=\'l-btn-icon fa fa-save\'></span></span></a> ';
-												var c = '<a href=\'javascript:cancelRow('+row.id+');\' class=\'l-btn myui-btn-brown l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>撤销</span><span class=\'l-btn-icon fa fa-mail-reply\'></span></span></a>';
-												return s + c;
-											} else {
-												var e = '<a href=\'javascript:editRow('+row.id+');\' class=\'l-btn myui-btn-green l-btn-small l-btn-plain\'><span class=\'l-btn-left l-btn-icon-left\'><span class=\'l-btn-text\'>编辑</span><span class=\'l-btn-icon fa fa-pencil\'></span></span></a>';
-												return e;
-											}
-										}
-									"></th>
-	                        </tr>
-                        </thead>
-                    </table>
-				</div>
-            </div>
-    	</div>
-    </div>
-    <!-- 角色 工具栏 -->
-	<div id="toolbar" class="myui-toolbar">
-		<a href="javascript:void(0);"
-          	class="easyui-menubutton myui-btn-normal myui-btn-green"
-         	data-options="menu:'#moreAddMenu',
-           		iconCls:'fa fa-plus',
-           		hasDownArrow:true
-        	">新增
-       	</a>
-  		<div id="moreAddMenu" class="myui-toolbar" style="width:100px;">
-        	<a href="javascript:roleDialog(1);"
-            	class="easyui-menubutton"
-              	data-options="iconCls:'fa fa-plus',
-           			hasDownArrow:false
-      			">新增根节点
-      		</a>
-     		<a href="javascript:roleDialog(2);"
-             	class="easyui-menubutton"
-              	data-options="iconCls:'fa fa-plus',
-           			hasDownArrow:false
-      			">新增子节点
-      		</a>
-  		</div>
-		<a href="javascript:roleDialog(3);"
-			class="easyui-menubutton myui-btn-normal myui-btn-blue"
-           	data-options="iconCls:'fa fa-pencil',
-           		hasDownArrow:false
-       		">编辑
-   		</a>
-    </div>
-    <!-- 功能权限 工具栏 -->
-  	<div id="authAccessTreegridToolbar" class="myui-toolbar">
-  		<a href="javascript:permissionOnclick();"
-         	class="easyui-menubutton myui-btn-normal myui-btn-green"
-         	data-options="iconCls:'fa fa-plus',
-           		hasDownArrow:false
-          	">批量授权
-   		</a>
-    	<a href="javascript:unPermissionOnclick();"
-        	class="easyui-menubutton myui-btn-normal myui-btn-red"
-        	data-options="iconCls:'fa fa-trash',
-           		hasDownArrow:false
-        	">批量取消
-   		</a>
-	</div>
-    <!-- 授权人员 工具栏 -->
-  	<div id="userDataGridToolbar" class="myui-toolbar">
-  		<a href="javascript:addRoleMember();"
-         	class="easyui-menubutton myui-btn-normal myui-btn-green"
-         	data-options="iconCls:'fa fa-plus',
-           		hasDownArrow:false
-          	">添加成员
-   		</a>
-    	<a href="javascript:removeRoleMember();"
-        	class="easyui-menubutton myui-btn-normal myui-btn-red"
-        	data-options="iconCls:'fa fa-minus',
-           		hasDownArrow:false
-        	">移除成员
-   		</a>
-   		<form id="userDataGridForm" class="search-box">
-	    	<input type="text" name="orgIds"
-	    		id="orgIds"
-          		class="easyui-combotreegrid"
-             	th:data-options="|fitColumns:true,
-					singleSelect:true,
-                 	prompt:'组织机构',
-                 	width:220,
-	                panelWidth:344,
-					idField:'orgId',
-			   		treeField:'text',
-					method:'get',
-                 	url:ctx+'/sys/org/ajax/getTree',
-                  	columns:[[
-                       	{field:'text',title:'组织机构名称',width:100}
-                	]],
-               		onLoadSuccess:function(row,data){
-               			$(this).treegrid('expandAll');
-               		}
-           		|"/>
-           	<input type="text" name="accessAuth" value="true"
-           		id="accessAuth"
-	        	class="easyui-combobox"
-	        	data-options="prompt:'是否授权',
-                  	width:120,
-					panelHeight:120,
-					editable:false,
-                 	valueField:'value',
-					textField:'text',
-					data: [
-					    {text:'全部',value:''},
-					    {text:'已授权',value:'true'},
-						{text:'未授权',value:'false'}
-					]
-				"/>
-	   		<input type="text" name="keywords"
-	    		id="keywords" 
-	   			class="easyui-textbox"
-	        	data-options="prompt:'昵称、账号、手机号',
-		       		width:220
-	        	"/>
-	        <a href="javascript:searchUserDataGrid();" 
-	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
-	       		data-options="iconCls:'fa fa-search'
-	         	">查询
-	    	</a>
-	    	<a href="javascript:resetUserDataGrid();"
-       			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
-       			data-options="iconCls:'fa fa-trash'
-       			">清空
-          	</a>
-		</form>
-	</div>
-    <script type="text/javascript">
-    	/**
-    	 * 弹窗
-         * @param type 1：新增根节点，2：新增子节点，3：编辑
-    	 */
-    	function roleDialog (type) {
-    		var isAdd = true;
-    		var dialogHref = ctx + '/sys/role/dialog';
-    		if (type === 2 || type === 3) {
-        		var selected = $('#treeGrid').treegrid('getSelected');
-        		if (selected) {
-        			if (type === 2) {
-        				dialogHref += '?pid=' + selected.id;
-        			} else if (type === 3) {
-        				isAdd = false;
-        				dialogHref += '?roleId=' + selected.roleId;
-        			}
-        		} else {
-        			$.messager.myuiAlert('操作提示', '请先选择要操作的数据', 'warning');
-        			return;
-        		}
-    		}
-    		var $roleDialog = $('<form id=\'roleDialog\' method=\'get\' class=\'myui\'></form>');
-    	    $roleDialog.myuiDialog({
-    	        title: isAdd ? '新增' : '编辑',
-    	        width: 890,
-    	        height: 440,
-    			collapsible: true,
-    			minimizable: false,
-    			maximizable: true,
-    	        closed: false,
-    	        cache: false,
-    	        href: dialogHref,
-    	        modal: true,
-    	        buttons: [{
-    	            text: isAdd ? '保存' : '更新',
-    	            iconCls: isAdd ? 'fa fa-plus' : 'fa fa-save',
-    	            handler: function () {
-    					$.messager.progress({'text': '请求中……'});
-    			        $roleDialog.form('submit', {
-    			            url: ctx + '/sys/role/ajax/save',
-    			            onSubmit: function () {
-    			                var isValid = $(this).form('validate');
-    			                if (!isValid) {
-    			                    $.messager.progress('close');
-    			                }
-    			                return isValid;
-    			            },
-    			            success: function (result) {
-    							var resultJson = JSON.parse(result);
-    			                if (resultJson.statusCode == 200) {
-    			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-    			                	$roleDialog.dialog('destroy');
-    			                	if (resultJson.data.pid == null) {
-    			                		$('#treeGrid').treegrid('reload');
-    			                	} else {
-    			                		if (!isAdd) {
-    			                			$('#treeGrid').treegrid('remove', resultJson.data.id);
-    			                		}
-    			                		var parentNode = $('#treeGrid').treegrid('find', resultJson.data.pid);
-    			                		parentNode.state = 'closed';
-    			                		$('#treeGrid').treegrid('update', { id: parentNode.id, row: parentNode });
-    			                		$('#treeGrid').treegrid('reload', resultJson.data.pid);
-    			                		$('#treeGrid').treegrid('expandTo', resultJson.data.pid);
-    			                	}
-    			                } else {
-    			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
-    			                }
-    			                $.messager.progress('close');
-    			        	}
-    			 		});
-    				}
-    	        }, {
-    	            text: '关闭',
-    	            iconCls: 'fa fa-close',
-    	            handler: function () {
-    	                $roleDialog.dialog('destroy');
-    	            }
-    	        }],
-    			onClose: function () {
-    				$roleDialog.dialog('destroy');
-    			}
-    	    });
-    	}
-    </script>
-    <script type="text/javascript">
-    	/**
-    	 * 单个添加授权
-    	 */
-    	function singleGrantOnclick (e) {
-    		var roleId = $(e).data('role-id');
-    		var resourceId = $(e).data('resource-id');
-    		sendPermissionRequest(true, roleId, resourceId);
-    	}
-    	
-    	/**
-    	 * 单个取消授权
-    	 */
-		function singleUnGrantOnclick (e) {
-			var roleId = $(e).data('role-id');
-    		var resourceId = $(e).data('resource-id');
-    		sendPermissionRequest(false, roleId, resourceId);
-    	}
-    	
-		/**
-    	 * 批量添加授权
-    	 */
-		function permissionOnclick () {
-    		var checkedNodes = $('#authAccessTreegrid').treegrid('getCheckedNodes');
-    		if (!checkedNodes || checkedNodes.length === 0) {
-    			$.messager.myuiAlert('操作提示', '请勾选资源！', 'warning');
-    			return;
-    		}
-    		$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
-				if (r) {
-		    		var roleId = checkedNodes[0].roleId;
-		    		var resourceIds = [];
-		    		$.each(checkedNodes, function (i, node) {
-		    			resourceIds.push(node.resourceId);
-		    		});
-		    		sendPermissionRequest(true, roleId, resourceIds.join());
-				}
-			});
-    	}
-
-		/**
-    	 * 批量取消授权
-    	 */
-		function unPermissionOnclick () {
-			var checkedNodes = $('#authAccessTreegrid').treegrid('getCheckedNodes');
-    		if (!checkedNodes || checkedNodes.length === 0) {
-    			$.messager.myuiAlert('操作提示', '请勾选资源！', 'warning');
-    			return;
-    		}
-    		$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
-				if (r) {
-		    		var roleId = checkedNodes[0].roleId;
-		    		var resourceIds = [];
-		    		$.each(checkedNodes, function (i, node) {
-		    			resourceIds.push(node.resourceId);
-		    		});
-		    		sendPermissionRequest(false, roleId, resourceIds.join());
-				}
-			});
-    	}
-		
-		/**
-    	 * [添加|取消]授权请求
-    	 */
-		function sendPermissionRequest (isGrant, roleId, resourceIds) {
-			var SCOPE = {
-			    	permissionUrl: ctx + "/sys/authAccess/ajax/grant",
-			        unPermissionUrl: ctx + "/sys/authAccess/ajax/unGrant"
-				};
-		    var MSG = {
-		        	permissionSuccess: "赋予授权成功！",
-		        	permissionFail: "赋予授权失败！",
-		        	unPermissionSuccess: "取消授权成功!",
-		        	unPermissionFail: "取消授权失败！"
-		    	};
-    		$.messager.progress({'text': '请求中……'});
-			$.post(isGrant ? SCOPE.permissionUrl : SCOPE.unPermissionUrl, 
-					{ roleId: roleId, resourceIds: resourceIds }, 
-					function (resultJson) {
-						$.messager.progress('close');
-		                if (resultJson.statusCode == 200) {
-		                	$('#authAccessTreegrid').treegrid('reload');
-		                	$.messager.show({title: '操作提示', msg: isGrant ? MSG.permissionSuccess : MSG.unPermissionSuccess, timeout: 5000, showType: 'slide'});
-		                } else {
-		                	$.messager.myuiAlert("提示", isGrant ? MSG.permissionFail : MSG.unPermissionFail, "error");
-		                }
-		            });
-		}
-    </script>
-    <script type="text/javascript">
-		/**
-		 * 查询授权人员
-		 */
-		function searchUserDataGrid () {
-			var selectedRole = $('#treeGrid').treegrid('getSelected');
-			$('#userDataGrid').datagrid('load', {
-				roleId: selectedRole ? selectedRole.roleId : null,
-				orgIds: $('#orgIds').combo('getValue'),
-				accessAuth: $('#accessAuth').combo('getValue'),
-				keywords: $('#keywords').textbox('getValue')
-			});
-		}
-		
-		/**
-		 * 重置授权人员
-		 */
-		function resetUserDataGrid () {
-			$('#userDataGridForm').form('clear');
-			searchUserDataGrid();
-		}
-		
-		/**
-		 * 添加成员
-		 */
-		function addRoleMember () {
-			var checked = $('#userDataGrid').datagrid('getChecked');
-			if (!checked || checked.length === 0) {
-				$.messager.myuiAlert('操作提示', '请先勾选中要操作的数据前的复选框！', 'warning');
-				return;
-			} else {
-				var userIds = [];
-				$.each(checked, function (i, item) {
-					userIds[i] = item.userId;
-				});
-				var selectedRole = $('#treeGrid').treegrid('getSelected');
-				$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
-					if (r) {
-						$.messager.progress({'text': '请求中……'});
-						$.post(ctx+'/sys/authAccess/ajax/addRoleMember', 
-								{ roleId: selectedRole.roleId, userIds: userIds.join() }, 
-								function (resultJson) {
-					                $.messager.progress('close');
-									if (resultJson.statusCode == 200) {
-										$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-					                	searchUserDataGrid();
-					                } else {
-					                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
-					                }
-								});
-					}
-				});
-			}
-		}
-		
-		/**
-		 * 移除成员
-		 */
-		function removeRoleMember () {
-			var checked = $('#userDataGrid').datagrid('getChecked');
-			if (!checked || checked.length === 0) {
-				$.messager.myuiAlert('操作提示', '请先勾选中要操作的数据前的复选框！', 'warning');
-				return;
-			} else {
-				var userIds = [];
-				$.each(checked, function (i, item) {
-					userIds[i] = item.userId;
-				});
-				var selectedRole = $('#treeGrid').treegrid('getSelected');
-				$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
-					if (r) {
-						$.messager.progress({'text': '请求中……'});
-						$.post(ctx+'/sys/authAccess/ajax/removeRoleMember', 
-								{ roleId: selectedRole.roleId, userIds: userIds.join() }, 
-								function (resultJson) {
-					                $.messager.progress('close');
-									if (resultJson.statusCode == 200) {
-										$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-					                	searchUserDataGrid();
-					                } else {
-					                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
-					                }
-								});
-					}
-				});
-			}
-		}
-	</script>
-    <script type="text/javascript">
-    	/**
-   		 * 编辑行
-   		 */
-		function editRow(id){
-			$('#customTreegrid').treegrid('beginEdit', id);
-		}
-    	
-		/**
-   		 * 保存行
-   		 */
-		function saveRow(id){
-			$.messager.progress({'text': '请求中……'});
-			var rowData = $('#customTreegrid').treegrid('find', id);
-			var edAlias = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'alias' });
-			var edSort = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'sort' });
-			var edDefaultHomePage = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'defaultHomePage' });
-			var alias = $(edAlias.target).textbox('getValue');
-			var sort = $(edSort.target).textbox('getValue');
-			var defaultHomePage = $(edDefaultHomePage.target).combobox('getValue');
-			$.post(ctx + '/sys/resource/ajax/updateRoleCustom',
-					{ roleId: rowData.roleId, resourceId: rowData.resourceId, alias: alias, sort: sort, defaultHomePage: defaultHomePage },
-					function (data) {
-		                $.messager.progress('close');
-						if (data.statusCode == 200) {
-		                	$.messager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
-		                	$('#customTreegrid').treegrid('endEdit', id);
-		                	$('#customTreegrid').treegrid('reload');
-		                } else {
-		                    $.messager.show({title: '我的消息', msg: data.message?data.message:'出错了', timeout: 5000, showType: 'slide'});
-		                }
-					});
-		}
-    	
-		/**
-   		 * 取消编辑
-   		 */
-		function cancelRow(id){
-			$('#customTreegrid').treegrid('cancelEdit', id);
-		}
-    </script>
-</body>
-</html>
+<table id="userDataGrid" 
+	class="easyui-datagrid"
+ 	data-options="border:false,
+		fit:true,
+		fitColumns:true,
+		singleSelect:true,
+		checkOnSelect:false,
+		selectOnCheck:false,
+		toolbar:'#userDataGridToolbar',
+		pagination:true,
+		pageSize:20,
+		method:'get',
+		url:ctx+'/sys/authAccess/ajax/getPageUsers',
+   		onBeforeLoad:function(param){
+      		$.pageOnBeforeLoad(param);
+       		try{
+         		param.orgIds = $('#orgIds').combo('getValue');
+				param.accessAuth = $('#accessAuth').combo('getValue');
+				param.keywords = $('#keywords').textbox('getValue');
+             	var selectedRole = $('#treeGrid').treegrid('getSelected');
+             	if (selectedRole) { param.roleId = selectedRole.roleId; }
+           	}catch(e){}
+     	}
+	">
+	<thead>
+		<tr>
+      		<th data-options="field:'userId',title:'用户ID',checkbox:true"></th>
+            <th data-options="field:'nickname',title:'昵称',width:120"></th>
+            <th data-options="field:'accessAuth',title:'授权状态',width:80,align:'center',formatter:$.accessAuthFormatter"></th>
+            <th data-options="field:'username',title:'账号',width:120"></th>
+            <th data-options="field:'mobile',title:'手机',width:120"></th>
+            <th data-options="field:'email',title:'邮箱',width:250"></th>
+		</tr>
+	</thead>
+</table>
+<!-- 授权人员 工具栏 -->
+<div id="userDataGridToolbar" class="myui-toolbar">
+	<a href="javascript:addRoleMember();"
+    	class="easyui-menubutton myui-btn-normal myui-btn-green"
+    	data-options="iconCls:'fa fa-plus',
+       		hasDownArrow:false
+      	">添加成员
+	</a>
+	<a href="javascript:removeRoleMember();"
+    	class="easyui-menubutton myui-btn-normal myui-btn-red"
+       	data-options="iconCls:'fa fa-minus',
+      		hasDownArrow:false
+       	">移除成员
+	</a>
+	<form id="userDataGridForm" class="search-box">
+   		<input type="text" name="orgIds"
+    		id="orgIds"
+         	class="easyui-combotreegrid"
+         	th:data-options="|fitColumns:true,
+				singleSelect:true,
+            	prompt:'组织机构',
+            	width:220,
+                panelWidth:344,
+				idField:'orgId',
+		   		treeField:'text',
+				method:'get',
+            	url:ctx+'/sys/org/ajax/getTree',
+           		columns:[[
+                	{field:'text',title:'组织机构名称',width:100}
+               	]],
+             	onLoadSuccess:function(row,data){
+            		$(this).treegrid('expandAll');
+            	}
+          	|"/>
+     	<input type="text" name="accessAuth" value="true"
+        	id="accessAuth"
+        	class="easyui-combobox"
+        	data-options="prompt:'是否授权',
+         		width:120,
+				panelHeight:120,
+				editable:false,
+           		valueField:'value',
+				textField:'text',
+				data: [
+				    {text:'全部',value:''},
+				    {text:'已授权',value:'true'},
+					{text:'未授权',value:'false'}
+				]
+			"/>
+   		<input type="text" name="keywords"
+    		id="keywords" 
+   			class="easyui-textbox"
+        	data-options="prompt:'昵称、账号、手机号',
+	       		width:220
+        	"/>
+      	<a href="javascript:searchUserDataGrid();" 
+        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+       		data-options="iconCls:'fa fa-search'
+         	">查询
+    	</a>
+    	<a href="javascript:resetUserDataGrid();"
+      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+      		data-options="iconCls:'fa fa-trash'
+      		">清空
+    	</a>
+	</form>
+</div>
