@@ -18,6 +18,14 @@ public class DocProjectDto extends DocProject {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 文档授权角色，1：浏览者，2：编辑者，3：管理员
+	 */
+	private Integer role;
+
+	/**
+	 * 关键字
+	 */
 	private String keywords;
 
 }

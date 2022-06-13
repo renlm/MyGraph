@@ -28,6 +28,20 @@
 			}
 		},
 		/**
+		 * 文档授权角色，1：浏览者，2：编辑者，3：管理员
+		 */
+		docMemberRoleFormatter: function (value) {
+			if (value === 1) {
+				return '浏览者';
+			} else if (value === 2) {
+				return '编辑者';
+			} else if (value === 3) {
+				return '管理员';
+			} else {
+				return value;
+			}
+		},
+		/**
 		 * 文档项目-访问级别
 		 */
 		docVisitLevelFormatter: function (value) {
