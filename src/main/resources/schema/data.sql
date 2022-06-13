@@ -62,7 +62,7 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(100102, 		'FEA19FB294134CC19C74786577F21CBB',	'100102', 		'公共图库', 		'urlInsidePage', 	'/graph/lib', 												'fa fa-image', 				null, 				null, 			3, 		2, 		'open',		0,					1001,		null)
 	  ,(100103, 		'B7D338D9D1144D8E92A23F1D4B78E348',	'100103', 		'数据源', 		'menu', 			'/ds/list', 												'fa fa-soccer-ball-o', 		null, 				null, 			3, 		3, 		'open',		0,					1001,		null)
 	  ,(1002, 			'9355B539E02A4BBBB0C8B3B0C3CF6F53',	'1002', 		'文档管理', 		'menu', 			null, 														'fa fa-file-word-o', 		null, 				null, 			2, 		2, 		'closed',	0,					10,			null)
-	  ,(100201, 		'FB0C60FA256D4670B62A40D4EF13F59B',	'100201', 		'知识文库', 		'menu', 			'/doc/lib', 												'fa fa-vk', 				null, 				null, 			3, 		1, 		'open',		1,					1002,		null)
+	  ,(100201, 		'FB0C60FA256D4670B62A40D4EF13F59B',	'100201', 		'文档库', 		'menu', 			'/doc/lib', 												'fa fa-vk', 				null, 				null, 			3, 		1, 		'open',		1,					1002,		null)
 	  ,(20, 			'35BD72793CF14E37947D9D0629B242BF',	'20', 			'系统管理', 		'menu', 			null, 														'fa fa-cog', 				null, 				null, 			1, 		2, 		'closed',	0,					null,		null)
 	  ,(2001, 			'F41159ACD09B4DD3B04D0E6EEAE6E875',	'2001', 		'权限管理', 		'menu', 			null, 														'fa fa-cube', 				null, 				null, 			2, 		1, 		'closed',	0,					20,			null)
 	  ,(200101, 		'1A22415278094E2D802A73382B60CDA7',	'200101', 		'用户管理', 		'menu', 			'/sys/user', 												'fa fa-user', 				null, 				null, 			3, 		1, 		'open',		0,					2001,		null)
