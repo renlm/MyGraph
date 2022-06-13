@@ -94,8 +94,6 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 			iDocProjectTagService.update(Wrappers.<DocProjectTag>lambdaUpdate().func(wrapper -> {
 				wrapper.set(DocProjectTag::getDeleted, true);
 				wrapper.set(DocProjectTag::getUpdatedAt, new Date());
-				wrapper.set(DocProjectTag::getUpdatorUserId, user.getUserId());
-				wrapper.set(DocProjectTag::getUpdatorNickname, user.getNickname());
 				wrapper.eq(DocProjectTag::getDeleted, false);
 				wrapper.eq(DocProjectTag::getDocProjectId, entity.getId());
 			}));
@@ -108,11 +106,8 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 			tagNames.forEach(tagName -> {
 				DocProjectTag tag = new DocProjectTag();
 				tag.setDocProjectId(form.getId());
-				tag.setUuid(IdUtil.simpleUUID().toUpperCase());
 				tag.setTagName(tagName);
 				tag.setCreatedAt(new Date());
-				tag.setCreatorUserId(user.getUserId());
-				tag.setCreatorNickname(user.getNickname());
 				tag.setUpdatedAt(form.getCreatedAt());
 				tag.setDeleted(false);
 				tags.add(tag);

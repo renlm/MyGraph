@@ -39,7 +39,25 @@ public class MarkdownShare implements Serializable {
     private String markdownUuid;
 
     /**
-     * 有效截止时间（为空则永久有效）
+     * 分享类型，1：公开，2：密码查看
+     */
+    @TableField("share_type")
+    private Integer shareType;
+
+    /**
+     * 访问密码
+     */
+    @TableField("password")
+    private String password;
+
+    /**
+     * 有效期类型（-1，永久，7:七天，30：三十天）
+     */
+    @TableField("effective_type")
+    private Integer effectiveType;
+
+    /**
+     * 有效截止时间
      */
     @TableField("deadline")
     private Date deadline;
@@ -79,6 +97,12 @@ public class MarkdownShare implements Serializable {
      */
     @TableField("updator_nickname")
     private String updatorNickname;
+
+    /**
+     * 是否禁用（默认否）
+     */
+    @TableField("disabled")
+    private Boolean disabled;
 
     /**
      * 是否删除（默认否）

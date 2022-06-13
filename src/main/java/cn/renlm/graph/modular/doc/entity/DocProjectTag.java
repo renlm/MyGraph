@@ -39,12 +39,6 @@ public class DocProjectTag implements Serializable {
     private Long docProjectId;
 
     /**
-     * UUID
-     */
-    @TableField("uuid")
-    private String uuid;
-
-    /**
      * 标签名称
      */
     @TableField("tag_name")
@@ -57,46 +51,16 @@ public class DocProjectTag implements Serializable {
     private Date createdAt;
 
     /**
-     * 创建人（用户ID）
-     */
-    @TableField("creator_user_id")
-    private String creatorUserId;
-
-    /**
-     * 创建人（昵称）
-     */
-    @TableField("creator_nickname")
-    private String creatorNickname;
-
-    /**
      * 更新时间
      */
     @TableField("updated_at")
     private Date updatedAt;
 
     /**
-     * 更新人（用户ID）
-     */
-    @TableField("updator_user_id")
-    private String updatorUserId;
-
-    /**
-     * 更新人（昵称）
-     */
-    @TableField("updator_nickname")
-    private String updatorNickname;
-
-    /**
      * 是否删除（默认否）
      */
     @TableField("deleted")
     private Boolean deleted;
-
-    /**
-     * 备注
-     */
-    @TableField("remark")
-    private String remark;
 
 
 }

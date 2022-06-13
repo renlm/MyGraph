@@ -322,7 +322,6 @@ CREATE TABLE doc_project_tag (
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
     INDEX doc_project_id(doc_project_id),
-    INDEX creator_user_id(creator_user_id),
     INDEX deleted(deleted)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '文档项目-标签';
 
@@ -394,9 +393,10 @@ DROP TABLE IF EXISTS markdown_share;
 CREATE TABLE markdown_share (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
     markdown_uuid       		VARCHAR(32)						NOT NULL		COMMENT 'Markdown文档UUID',
-    share_type					INT				DEFAULT 1		NOT NULL		COMMENT '有效期类型（-1，永久，1：一天，7:七天，30：三十天）',
-    deadline					TIMESTAMP										COMMENT '有效截止时间（为空则永久有效）',
-    password					VARCHAR(255) 									COMMENT '访问密码（为空则不验证）',
+    share_type					INT				DEFAULT 1		NOT NULL		COMMENT '分享类型，1：公开，2：密码查看',
+    password					VARCHAR(255) 									COMMENT '访问密码',
+    effective_type				INT				DEFAULT -1		NOT NULL		COMMENT '有效期类型（-1，永久，7:七天，30：三十天）',
+    deadline					TIMESTAMP										COMMENT '有效截止时间',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
     creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
