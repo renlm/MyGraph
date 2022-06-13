@@ -19,6 +19,21 @@ public class DocProjectMemberDto extends DocProjectMember {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * 搜索关键词
+	 */
+	private String keywords;
+
+	/**
+	 * 组织机构ID集
+	 */
+	private String orgIds;
+
+	/**
+	 * 文档项目Uuid
+	 */
+	private String docProjectUuid;
+
+	/**
 	 * 账号
 	 */
 	private String username;

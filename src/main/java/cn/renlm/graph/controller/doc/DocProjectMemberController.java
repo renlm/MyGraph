@@ -15,6 +15,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocProjectMemberDto;
 import cn.renlm.graph.modular.doc.service.IDocProjectMemberService;
+import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
 
@@ -51,8 +52,8 @@ public class DocProjectMemberController {
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/authAccessPage")
-	public Datagrid<DocProjectMemberDto> ajaxAuthAccessPage(Authentication authentication,
-			Page<DocProjectMemberDto> page, DocProjectMemberDto form) {
+	public Datagrid<DocProjectMemberDto> ajaxAuthAccessPage(Authentication authentication, Page<SysUser> page,
+			DocProjectMemberDto form) {
 		User user = (User) authentication.getPrincipal();
 		Page<DocProjectMemberDto> data = iDocProjectMemberService.findAuthAccessPage(page, user, form);
 		return Datagrid.of(data);

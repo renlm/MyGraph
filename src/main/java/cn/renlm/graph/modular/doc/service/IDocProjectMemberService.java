@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocProjectMemberDto;
 import cn.renlm.graph.modular.doc.entity.DocProjectMember;
+import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.response.Result;
 
 /**
@@ -28,7 +29,7 @@ public interface IDocProjectMemberService extends IService<DocProjectMember> {
 	 * @param form
 	 * @return
 	 */
-	Page<DocProjectMemberDto> findAuthAccessPage(Page<DocProjectMemberDto> page, User user, DocProjectMemberDto form);
+	Page<DocProjectMemberDto> findAuthAccessPage(Page<SysUser> page, User user, DocProjectMemberDto form);
 
 	/**
 	 * 添加项目授权人员
