@@ -21,8 +21,8 @@
 		 * 标记title
 		 */
 		spanWithTitleFormatter: function (value) {
-			if (value === null) {
-				return '';
+			if (value === null || value === '') {
+				return '<span style="color: gray;">-</span>';
 			} else {
 				return '<span title="' + value + '">' + value + '</span>';
 			}
