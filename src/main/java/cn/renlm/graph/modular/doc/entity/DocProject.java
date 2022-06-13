@@ -45,7 +45,7 @@ public class DocProject implements Serializable {
     private String projectName;
 
     /**
-     * 访问级别，1：私有（默认，只能是项目成员才可以访问），2：公开（可以由任何登录用户访问）
+     * 访问级别，1：私有（默认，只有项目成员才可以访问），2：公开（可以由任何登录用户访问）
      */
     @TableField("visit_level")
     private Integer visitLevel;
