@@ -1,0 +1,41 @@
+package cn.renlm.graph.modular.doc.dto;
+
+import cn.renlm.graph.modular.doc.entity.DocProjectMember;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+/**
+ * 文档项目-成员
+ * 
+ * @author Renlm
+ *
+ */
+@Data
+@Accessors(chain = true)
+@EqualsAndHashCode(callSuper = true)
+public class DocProjectMemberDto extends DocProjectMember {
+
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 账号
+	 */
+	private String username;
+
+	/**
+	 * 昵称
+	 */
+	private String nickname;
+
+	/**
+	 * 手机号码
+	 */
+	private String mobile;
+
+	/**
+	 * 邮箱地址
+	 */
+	private String email;
+
+}

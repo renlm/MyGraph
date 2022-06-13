@@ -1,7 +1,14 @@
 package cn.renlm.graph.modular.doc.service;
 
-import cn.renlm.graph.modular.doc.entity.DocProjectMember;
+import java.util.List;
+
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.doc.dto.DocProjectMemberDto;
+import cn.renlm.graph.modular.doc.entity.DocProjectMember;
+import cn.renlm.graph.response.Result;
 
 /**
  * <p>
@@ -12,5 +19,36 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-06-13
  */
 public interface IDocProjectMemberService extends IService<DocProjectMember> {
+
+	/**
+	 * 分页列表（项目授权人员）
+	 * 
+	 * @param page
+	 * @param user
+	 * @param form
+	 * @return
+	 */
+	Page<DocProjectMemberDto> findAuthAccessPage(Page<DocProjectMemberDto> page, User user, DocProjectMemberDto form);
+
+	/**
+	 * 添加项目授权人员
+	 * 
+	 * @param user
+	 * @param role
+	 * @param docProjectUuid
+	 * @param userIds
+	 * @return
+	 */
+	Result<?> addRoleMember(User user, Integer role, String docProjectUuid, List<String> userIds);
+
+	/**
+	 * 移除项目授权人员
+	 * 
+	 * @param user
+	 * @param docProjectUuid
+	 * @param userIds
+	 * @return
+	 */
+	Result<?> removeRoleMember(User user, String docProjectUuid, List<String> userIds);
 
 }
