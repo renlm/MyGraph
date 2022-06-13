@@ -103,8 +103,8 @@
 	 */
 	function projectOperateFormatter (value, row, index) {
 		var e = '<a href="javascript:projectDialog(\'' + row.uuid + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">编辑</span><span class="l-btn-icon fa fa-pencil"></span></span></a> ';
-		var d = '<a href="javascript:delProject(\'' + row.uuid + '\');" class="l-btn myui-btn-red l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">删除</span><span class="l-btn-icon fa fa-trash"></span></span></a> ';
-		var m = '<a href="javascript:memberDialog(\'' + row.uuid + '\');" class="l-btn myui-btn-blue l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">成员</span><span class="l-btn-icon fa fa-group"></span></span></a> ';
+		var d = '<a href="javascript:delProject(\'' + row.uuid + '\',\'' + row.projectName + '\');" class="l-btn myui-btn-red l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">删除</span><span class="l-btn-icon fa fa-trash"></span></span></a> ';
+		var m = '<a href="javascript:memberDialog(\'' + row.uuid + '\',\'' + row.projectName + '\');" class="l-btn myui-btn-blue l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">成员</span><span class="l-btn-icon fa fa-group"></span></span></a> ';
 		if (row.role === 3) {
 			return e + d + m;
 		} else {
@@ -172,8 +172,8 @@
 	/**
 	 * 删除项目
 	 */
-	function delProject (uuid) {
-		$.messager.myuiConfirm('操作提示', '您确定要删除选中的项目吗？', function (r) {
+	function delProject (uuid, projectName) {
+		$.messager.myuiConfirm('操作提示', '您确定要删除 <span style="font-style: italic;color: #ff8c00;">' + projectName + '</span> 吗？', function (r) {
 			if (r) {
 				$.messager.progress({'text': '请求中……'});
 				$.post(ctx + '/doc/project/ajax/del', 
@@ -195,10 +195,10 @@
 	/**
 	 * 成员管理
 	 */
-	function memberDialog (uuid) {
+	function memberDialog (uuid, projectName) {
 		var $memberDialog = $('<form id=\'memberDialog\' method=\'post\' class=\'myui\'></form>');
 	    $memberDialog.myuiDialog({
-	        title: '成员管理',
+	        title: '成员管理<span style="font-style: italic;color: #ff8c00;padding-left: 1em;">' + projectName + '</span>',
 	        width: 850,
 	        height: 443,
 			collapsible: true,
