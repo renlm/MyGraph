@@ -290,6 +290,92 @@ CREATE TABLE er_field_lib (
     remark VARCHAR(255) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'ER模型-我的字段库';
 
+-- 文档项目
+DROP TABLE IF EXISTS doc_project;
+CREATE TABLE doc_project (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
+    project_name       			VARCHAR(255)					NOT NULL		COMMENT '项目名称',
+    visit_level       			INT				DEFAULT 1		NOT NULL		COMMENT '访问级别，1：私有（默认，只能是项目成员才可以访问），2：公开（可以由任何登录用户访问）',
+    is_share       				TINYINT(1)		DEFAULT 1		NOT NULL		COMMENT '是否允许分享（默认是，该项目下的文档是否允许分享）',
+    is_export       			TINYINT(1)		DEFAULT 1		NOT NULL		COMMENT '是否允许导出（默认是，该项目下的文档是否允许导出）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注',
+    INDEX creator_user_id(creator_user_id),
+    INDEX deleted(deleted)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '文档项目';
+
+-- 文档项目-标签
+DROP TABLE IF EXISTS doc_project_tag;
+CREATE TABLE doc_project_tag (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    doc_project_id				BIGINT							NOT NULL		COMMENT '文档项目ID',
+    uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
+    tag_name       				VARCHAR(255)					NOT NULL		COMMENT '标签名称',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注',
+    INDEX doc_project_id(doc_project_id),
+    INDEX creator_user_id(creator_user_id),
+    INDEX deleted(deleted)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '文档项目-标签';
+
+-- 文档项目-成员
+DROP TABLE IF EXISTS doc_project_member;
+CREATE TABLE doc_project_member (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    doc_project_id				BIGINT							NOT NULL		COMMENT '文档项目ID',
+    member_user_id 				VARCHAR(32) 									COMMENT '成员（用户ID）',
+    role						INT				DEFAULT 1		NOT NULL		COMMENT '角色，1：浏览者，2：编辑者，3：管理员',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    INDEX doc_project_id(doc_project_id),
+    INDEX member_user_id(member_user_id),
+    INDEX deleted(deleted)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '文档项目-成员';
+
+-- 文档分类
+DROP TABLE IF EXISTS doc_category;
+CREATE TABLE doc_category (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    doc_project_id				BIGINT							NOT NULL		COMMENT '文档项目ID',
+    uuid     					VARCHAR(32)   	UNIQUE			NOT NULL 		COMMENT 'UUID',
+    code     					VARCHAR(20)   					NOT NULL 		COMMENT '代码',
+    text     					VARCHAR(255)   					NOT NULL 		COMMENT '名称',
+    icon_cls           			VARCHAR(255)     								COMMENT '图标',
+    level      					INT             				NOT NULL 		COMMENT '层级',
+    sort            			INT             								COMMENT '排序',
+    state						VARCHAR(20)						NOT NULL		COMMENT '展开状态，open：无子节点、closed：有子节点',
+    pid           				BIGINT      									COMMENT '父级ID',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注',
+    INDEX doc_project_id(doc_project_id),
+    INDEX code(code),
+    INDEX level(level),
+    INDEX sort(sort),
+    INDEX pid(pid),
+    INDEX creator_user_id(creator_user_id),
+    INDEX deleted(deleted)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '文档分类';
+
 -- Markdown文档
 DROP TABLE IF EXISTS markdown;
 CREATE TABLE markdown (
