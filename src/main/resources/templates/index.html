@@ -193,7 +193,7 @@
 	    	data-options="region:'center',border:false">
 	        <div id="indexTabs" class="easyui-tabs" style="width: 100%;height: 100%;">
 	        	<th:block th:each="r,iterStat : ${homePages}">
-		        	<div th:data-options="|id:'${r.resourceId}',
+		        	<div th:data-options="|id:'${r.level == 1 ? r.resourceId : r.id}',
 		        			title:'${r.text}',
 		        			iconCls:'${r.iconCls}',
 		        			closable:false,
