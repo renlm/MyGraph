@@ -76,14 +76,10 @@ public class User extends SysUser implements org.springframework.security.core.u
 					return false;
 				}).collect(Collectors.toList());
 		CollUtil.sort(list, (o1, o2) -> {
-			if (NumberUtil.equals(o1.getLevel(), o2.getLevel())) {
-				if (NumberUtil.equals(o1.getSort(), o2.getSort())) {
-					return -1;
-				} else {
-					return o1.getSort() - o2.getSort();
-				}
+			if (NumberUtil.equals(o1.getSort(), o2.getSort())) {
+				return -1;
 			} else {
-				return o1.getLevel() - o2.getLevel();
+				return o1.getSort() - o2.getSort();
 			}
 		});
 		return list;
