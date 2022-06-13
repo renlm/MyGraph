@@ -18,6 +18,16 @@
 (function($) {
 	$.extend({
 		/**
+		 * 标记title
+		 */
+		spanWithTitleFormatter: function (value) {
+			if (value === null) {
+				return '';
+			} else {
+				return '<span title="' + value + '">' + value + '</span>';
+			}
+		},
+		/**
 		 * 文档项目-访问级别
 		 */
 		docVisitLevelFormatter: function (value) {
