@@ -18,7 +18,7 @@
 			dp.`updator_nickname`,
 			dp.`deleted`,
 			dp.`remark`,
-			max(dpm.`role`) as `role`
+			ifnull(max(dpm.`role`), 1) as `role`
 		from doc_project dp
 		left join doc_project_member dpm 
 			on dpm.doc_project_id = dp.id
