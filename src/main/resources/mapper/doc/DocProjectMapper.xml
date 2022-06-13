@@ -23,12 +23,13 @@
 		left join doc_project_member dpm 
 			on dpm.doc_project_id = dp.id
 				and dpm.deleted = 0
+				and dpm.`member_user_id` = #{user.userId,jdbcType=VARCHAR}
 		<where>
 			dp.deleted = 0
 			and (
 				dp.`visit_level` = 2
 				or
-				dp.`id` is not null
+				dpm.`id` is not null
 			)
 			<if test="form.keywords != null and form.keywords != ''">
 				and (
