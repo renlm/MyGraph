@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-06-08
+ * @since 2022-06-13
  */
 @Getter
 @Setter
@@ -43,6 +43,12 @@ public class Markdown implements Serializable {
      */
     @TableField("name")
     private String name;
+
+    /**
+     * 版本
+     */
+    @TableField("version")
+    private Integer version;
 
     /**
      * 文档内容

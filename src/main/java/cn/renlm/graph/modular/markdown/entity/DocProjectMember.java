@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.sys.entity;
+package cn.renlm.graph.modular.markdown.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 用户角色关系
+ * 文档项目-成员
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("sys_user_role")
-public class SysUserRole implements Serializable {
+@TableName("doc_project_member")
+public class DocProjectMember implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,16 +33,22 @@ public class SysUserRole implements Serializable {
     private Long id;
 
     /**
-     * 用户表（主键ID）
+     * 文档项目ID
      */
-    @TableField("sys_user_id")
-    private Long sysUserId;
+    @TableField("doc_project_id")
+    private Long docProjectId;
 
     /**
-     * 角色表（主键ID）
+     * 成员（用户ID）
      */
-    @TableField("sys_role_id")
-    private Long sysRoleId;
+    @TableField("member_user_id")
+    private String memberUserId;
+
+    /**
+     * 角色，1：浏览者，2：编辑者，3：管理员
+     */
+    @TableField("role")
+    private Integer role;
 
     /**
      * 创建时间

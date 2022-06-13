@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.er.entity;
+package cn.renlm.graph.modular.markdown.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * ER模型
+ * 文档项目-标签
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("er")
-public class Er implements Serializable {
+@TableName("doc_project_tag")
+public class DocProjectTag implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,22 +33,22 @@ public class Er implements Serializable {
     private Long id;
 
     /**
+     * 文档项目ID
+     */
+    @TableField("doc_project_id")
+    private Long docProjectId;
+
+    /**
      * UUID
      */
     @TableField("uuid")
     private String uuid;
 
     /**
-     * 表名
+     * 标签名称
      */
-    @TableField("table_name")
-    private String tableName;
-
-    /**
-     * 注释
-     */
-    @TableField("comment")
-    private String comment;
+    @TableField("tag_name")
+    private String tagName;
 
     /**
      * 创建时间

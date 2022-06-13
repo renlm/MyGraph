@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.sys.entity;
+package cn.renlm.graph.modular.markdown.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 数据字典
+ * 文档分类
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("sys_dict")
-public class SysDict implements Serializable {
+@TableName("doc_category")
+public class DocCategory implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,6 +31,12 @@ public class SysDict implements Serializable {
      */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
+
+    /**
+     * 文档项目ID
+     */
+    @TableField("doc_project_id")
+    private Long docProjectId;
 
     /**
      * UUID
@@ -49,18 +55,6 @@ public class SysDict implements Serializable {
      */
     @TableField("text")
     private String text;
-
-    /**
-     * 简称
-     */
-    @TableField("abbreviation")
-    private String abbreviation;
-
-    /**
-     * 别名
-     */
-    @TableField("alias")
-    private String alias;
 
     /**
      * 图标
@@ -99,16 +93,40 @@ public class SysDict implements Serializable {
     private Date createdAt;
 
     /**
+     * 创建人（用户ID）
+     */
+    @TableField("creator_user_id")
+    private String creatorUserId;
+
+    /**
+     * 创建人（昵称）
+     */
+    @TableField("creator_nickname")
+    private String creatorNickname;
+
+    /**
      * 更新时间
      */
     @TableField("updated_at")
     private Date updatedAt;
 
     /**
-     * 是否禁用（默认否）
+     * 更新人（用户ID）
      */
-    @TableField("disabled")
-    private Boolean disabled;
+    @TableField("updator_user_id")
+    private String updatorUserId;
+
+    /**
+     * 更新人（昵称）
+     */
+    @TableField("updator_nickname")
+    private String updatorNickname;
+
+    /**
+     * 是否删除（默认否）
+     */
+    @TableField("deleted")
+    private Boolean deleted;
 
     /**
      * 备注

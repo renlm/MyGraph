@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.sys.entity;
+package cn.renlm.graph.modular.markdown.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 用户角色关系
+ * Markdown文档-分享
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("sys_user_role")
-public class SysUserRole implements Serializable {
+@TableName("markdown_share")
+public class MarkdownShare implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,16 +33,16 @@ public class SysUserRole implements Serializable {
     private Long id;
 
     /**
-     * 用户表（主键ID）
+     * Markdown文档UUID
      */
-    @TableField("sys_user_id")
-    private Long sysUserId;
+    @TableField("markdown_uuid")
+    private String markdownUuid;
 
     /**
-     * 角色表（主键ID）
+     * 有效截止时间（为空则永久有效）
      */
-    @TableField("sys_role_id")
-    private Long sysRoleId;
+    @TableField("deadline")
+    private Date deadline;
 
     /**
      * 创建时间
@@ -51,16 +51,46 @@ public class SysUserRole implements Serializable {
     private Date createdAt;
 
     /**
+     * 创建人（用户ID）
+     */
+    @TableField("creator_user_id")
+    private String creatorUserId;
+
+    /**
+     * 创建人（昵称）
+     */
+    @TableField("creator_nickname")
+    private String creatorNickname;
+
+    /**
      * 更新时间
      */
     @TableField("updated_at")
     private Date updatedAt;
 
     /**
+     * 更新人（用户ID）
+     */
+    @TableField("updator_user_id")
+    private String updatorUserId;
+
+    /**
+     * 更新人（昵称）
+     */
+    @TableField("updator_nickname")
+    private String updatorNickname;
+
+    /**
      * 是否删除（默认否）
      */
     @TableField("deleted")
     private Boolean deleted;
+
+    /**
+     * 备注
+     */
+    @TableField("remark")
+    private String remark;
 
 
 }

@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.er.entity;
+package cn.renlm.graph.modular.markdown.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * ER模型
+ * 文档项目
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("er")
-public class Er implements Serializable {
+@TableName("doc_project")
+public class DocProject implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -39,16 +39,28 @@ public class Er implements Serializable {
     private String uuid;
 
     /**
-     * 表名
+     * 项目名称
      */
-    @TableField("table_name")
-    private String tableName;
+    @TableField("project_name")
+    private String projectName;
 
     /**
-     * 注释
+     * 访问级别，1：私有（默认，只能是项目成员才可以访问），2：公开（可以由任何登录用户访问）
      */
-    @TableField("comment")
-    private String comment;
+    @TableField("visit_level")
+    private Integer visitLevel;
+
+    /**
+     * 是否允许分享（默认是，该项目下的文档是否允许分享）
+     */
+    @TableField("is_share")
+    private Boolean isShare;
+
+    /**
+     * 是否允许导出（默认是，该项目下的文档是否允许导出）
+     */
+    @TableField("is_export")
+    private Boolean isExport;
 
     /**
      * 创建时间
