@@ -46,6 +46,11 @@ div.south-border-left-bottom_none + div.layout-split-proxy-h + div.layout-split-
 	margin-right: 25px;
 }
 
+.mlr30center>div.myui-row {
+	margin-left: -30px;
+	margin-right: 30px;
+}
+
 #personalDialog .textbox textarea.textbox-text {
     padding: 4px;
     height: 78px !important;
