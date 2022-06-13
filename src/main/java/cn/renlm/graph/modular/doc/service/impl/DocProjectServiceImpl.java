@@ -55,6 +55,17 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public Result<DocProjectDto> ajaxSave(User user, DocProjectDto form) {
+		// 处理标签
+		List<String> tagNames = CollUtil.newArrayList();
+		if (StrUtil.isNotBlank(form.getTags())) {
+			form.setTags(StrUtil.replace(form.getTags(), "，", StrUtil.COMMA));
+			List<String> list = StrUtil.splitTrim(form.getTags(), StrUtil.COMMA);
+			if (CollUtil.isNotEmpty(list)) {
+				CollUtil.removeBlank(list);
+				tagNames.addAll(list);
+			}
+		}
+		form.setTags(StrUtil.join(StrUtil.COMMA, tagNames));
 		if (StrUtil.isBlank(form.getUuid())) {
 			// 插入项目
 			form.setUuid(IdUtil.simpleUUID().toUpperCase());
@@ -84,31 +95,27 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 				wrapper.eq(DocProjectTag::getDocProjectId, entity.getId());
 			}));
 		}
+		// 保存项目
+		this.saveOrUpdate(form);
 		// 保存标签
 		List<DocProjectTag> tags = CollUtil.newArrayList();
-		if (StrUtil.isNotBlank(form.getTags())) {
-			form.setTags(StrUtil.replace(form.getTags(), "，", StrUtil.COMMA));
-			List<String> tagList = StrUtil.splitTrim(form.getTags(), StrUtil.COMMA);
-			if (CollUtil.isNotEmpty(tagList)) {
-				tagList.forEach(tagName -> {
-					DocProjectTag tag = new DocProjectTag();
-					tag.setDocProjectId(form.getId());
-					tag.setUuid(IdUtil.simpleUUID().toUpperCase());
-					tag.setTagName(tagName);
-					tag.setCreatedAt(new Date());
-					tag.setCreatorUserId(user.getUserId());
-					tag.setCreatorNickname(user.getNickname());
-					tag.setUpdatedAt(form.getCreatedAt());
-					tag.setDeleted(false);
-					tags.add(tag);
-				});
-			}
+		if (CollUtil.isNotEmpty(tagNames)) {
+			tagNames.forEach(tagName -> {
+				DocProjectTag tag = new DocProjectTag();
+				tag.setDocProjectId(form.getId());
+				tag.setUuid(IdUtil.simpleUUID().toUpperCase());
+				tag.setTagName(tagName);
+				tag.setCreatedAt(new Date());
+				tag.setCreatorUserId(user.getUserId());
+				tag.setCreatorNickname(user.getNickname());
+				tag.setUpdatedAt(form.getCreatedAt());
+				tag.setDeleted(false);
+				tags.add(tag);
+			});
 			if (CollUtil.isNotEmpty(tags)) {
 				iDocProjectTagService.saveBatch(tags);
 			}
 		}
-		// 保存项目
-		this.saveOrUpdate(form);
 		return Result.success(form);
 	}
 
