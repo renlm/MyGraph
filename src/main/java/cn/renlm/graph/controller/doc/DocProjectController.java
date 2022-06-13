@@ -96,17 +96,15 @@ public class DocProjectController {
 	 * 删除
 	 * 
 	 * @param authentication
-	 * @param uuids
+	 * @param uuid
 	 * @return
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/del")
-	public Result<?> ajaxDel(Authentication authentication, String uuids) {
+	public Result<?> ajaxDel(Authentication authentication, String uuid) {
 		try {
 			User user = (User) authentication.getPrincipal();
-			String[] uuidArray = StrUtil.splitToArray(uuids, StrUtil.COMMA);
-			iDocProjectService.delByUuids(user, uuidArray);
-			return Result.success();
+			return iDocProjectService.delByUuid(user, uuid);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");

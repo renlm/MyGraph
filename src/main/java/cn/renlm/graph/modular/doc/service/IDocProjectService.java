@@ -38,11 +38,11 @@ public interface IDocProjectService extends IService<DocProject> {
 	Result<DocProjectDto> ajaxSave(User user, DocProjectDto form);
 
 	/**
-	 * 根据Uuid批量删除
+	 * 根据Uuid删除
 	 * 
 	 * @param user
-	 * @param uuids
+	 * @param uuid
 	 */
-	void delByUuids(User user, String... uuids);
+	Result<?> delByUuid(User user, String uuid);
 
 }

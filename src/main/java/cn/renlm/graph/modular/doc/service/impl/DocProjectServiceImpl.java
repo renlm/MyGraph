@@ -133,14 +133,25 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void delByUuids(User user, String... uuids) {
+	public Result<?> delByUuid(User user, String uuid) {
+		DocProject entity = this.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, uuid));
+		long members = iDocProjectMemberService.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
+			wrapper.eq(DocProjectMember::getRole, 3);
+			wrapper.eq(DocProjectMember::getDocProjectId, entity.getId());
+			wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
+			wrapper.eq(DocProjectMember::getDeleted, false);
+		}));
+		if (members == 0) {
+			return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能删除");
+		}
 		this.update(Wrappers.<DocProject>lambdaUpdate().func(wrapper -> {
 			wrapper.set(DocProject::getDeleted, true);
 			wrapper.set(DocProject::getUpdatedAt, new Date());
 			wrapper.set(DocProject::getUpdatorUserId, user.getUserId());
 			wrapper.set(DocProject::getUpdatorNickname, user.getNickname());
 			wrapper.eq(DocProject::getDeleted, false);
-			wrapper.in(DocProject::getUuid, CollUtil.newArrayList(uuids));
+			wrapper.eq(DocProject::getUuid, uuid);
 		}));
+		return Result.success();
 	}
 }
