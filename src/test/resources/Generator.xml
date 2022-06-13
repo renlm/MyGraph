@@ -35,11 +35,14 @@
 		<table author="Renlm" name="er_field_lib" entity="true" />
 	</module>
 
-	<module name="markdown" package="cn.renlm.graph.modular">
+	<module name="doc" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="doc_project" entity="true" />
 		<table author="Renlm" name="doc_project_tag" entity="true" />
 		<table author="Renlm" name="doc_project_member" entity="true" />
 		<table author="Renlm" name="doc_category" entity="true" />
+	</module>
+
+	<module name="markdown" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="markdown" entity="true" />
 		<table author="Renlm" name="markdown_history" entity="true" />
 		<table author="Renlm" name="markdown_share" entity="true" />
