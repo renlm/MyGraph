@@ -199,14 +199,14 @@
 		var $memberDialog = $('<form id=\'memberDialog\' method=\'post\' class=\'myui\'></form>');
 	    $memberDialog.myuiDialog({
 	        title: '成员管理<span style="font-style: italic;color: #ff8c00;padding-left: 1em;">' + projectName + '</span>',
-	        width: 850,
-	        height: 443,
+	        width: 900,
+	        height: 512,
 			collapsible: true,
 			minimizable: false,
 			maximizable: true,
 	        closed: false,
 	        cache: false,
-			maximized: true,
+			maximized: false,
 	        href: ctx + '/doc/projectMember/dialog?uuid=' + uuid,
 	        modal: true,
 	        buttons: [{

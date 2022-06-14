@@ -73,7 +73,7 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 		Page<SysUser> pager = iSysUserService.page(page, Wrappers.<SysUser>lambdaQuery().func(wrapper -> {
 			// 授权筛选
 			String accessAuthSql = StrUtil.indexedFormat(
-					"select dpm.member_user_id from doc_project dp, doc_project_member dpm where dp.id = {0} dp.id = dpm.doc_project_id and dpm.deleted = 0 and dpm.`role` in (1, 2, 3)",
+					"select dpm.member_user_id from doc_project dp, doc_project_member dpm where dp.id = {0} and dp.id = dpm.doc_project_id and dpm.deleted = 0 and dpm.`role` in (1, 2, 3)",
 					docProject.getId().toString());
 			if (BooleanUtil.isTrue(form.getAccessAuth())) {
 				wrapper.inSql(SysUser::getUserId, accessAuthSql);
@@ -134,6 +134,9 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 						item.setRole(Math.max(item.getRole(), member.getRole()));
 					}
 				}
+			});
+			list.forEach(item -> {
+				item.setAccessAuth(item.getRole() != null);
 			});
 		}
 		// 封装结果
