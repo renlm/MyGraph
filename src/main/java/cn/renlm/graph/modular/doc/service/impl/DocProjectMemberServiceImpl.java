@@ -113,24 +113,23 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 			wrapper.orderByDesc(SysUser::getId);
 		}));
 		// 数据集
-		Map<Long, DocProjectMemberDto> map = new LinkedHashMap<>();
+		Map<String, DocProjectMemberDto> map = new LinkedHashMap<>();
 		List<DocProjectMemberDto> list = pager.getRecords().stream().filter(Objects::nonNull).map(obj -> {
 			DocProjectMemberDto data = BeanUtil.copyProperties(obj, DocProjectMemberDto.class);
 			data.setDocProjectId(docProject.getId());
 			data.setDocProjectUuid(docProject.getUuid());
 			data.setMemberUserId(obj.getUserId());
-			map.put(data.getDocProjectId(), data);
+			map.put(data.getMemberUserId(), data);
 			return data;
 		}).collect(Collectors.toList());
 		// 获取文档项目授权角色
 		if (CollUtil.isNotEmpty(list)) {
 			List<DocProjectMember> members = this.list(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
-				wrapper.in(DocProjectMember::getDocProjectId, map.keySet());
-				wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
+				wrapper.eq(DocProjectMember::getDocProjectId, docProject.getId());
 				wrapper.eq(DocProjectMember::getDeleted, false);
 			}));
 			members.forEach(member -> {
-				DocProjectMemberDto item = map.get(member.getDocProjectId());
+				DocProjectMemberDto item = map.get(member.getMemberUserId());
 				if (ObjectUtil.isNotEmpty(item)) {
 					if (item.getRole() == null) {
 						item.setRole(member.getRole());
