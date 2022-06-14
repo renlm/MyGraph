@@ -82,7 +82,7 @@ var FullScreen = function () {
  */
 function initIndexTabs () {
 	// 选项卡
-	$('#' + indexTabsId).tabs({
+	var $tabs = $('#' + indexTabsId).tabs({
    		fit: true,
         tools: [{
             iconCls: 'fa fa-home',
@@ -122,6 +122,12 @@ function initIndexTabs () {
                 }).data('tabTitle', title);
             }
         }
+	}).tabs('tabs');
+	// 利用初始类样式，处理display: none与visibility: hidden转换
+	$.each($tabs, function ($i, $tab) {
+		$tab.panel('options').tab.on('click', function () {
+			$('.indexTabBody').eq($i).removeClass('initTab');
+		});
 	});
 	
 	// tab右键菜单

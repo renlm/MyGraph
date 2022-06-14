@@ -6,7 +6,7 @@
 	display: none;
 }
 
-.initTabHidden {
+.initTab:not(:first-child) {
 	display: block !important;
 	visibility: hidden;
 }

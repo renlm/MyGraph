@@ -196,7 +196,7 @@
 		        	<div th:data-options="|id:'${r.level == 1 ? r.resourceId : r.id}',
 		        			title:'${r.text}',
 		        			iconCls:'${r.iconCls}',
-		        			cls:'${iterStat.index == 0 ? 'initTabDefault' : 'initTabHidden'}',
+		        			cls:'initTab indexTabBody',
 		        			closable:false,
 	            			content:'<iframe src=\'@{${r.url}}\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'
 	            		|">
