@@ -2,7 +2,9 @@ package cn.renlm.graph.modular.doc.service.impl;
 
 import static cn.hutool.core.text.StrPool.COMMA;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -16,6 +18,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
@@ -68,10 +71,14 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 		}
 		// 人员分页
 		Page<SysUser> pager = iSysUserService.page(page, Wrappers.<SysUser>lambdaQuery().func(wrapper -> {
-			if (ObjectUtil.isNotEmpty(form.getRole())) {
-				wrapper.inSql(SysUser::getUserId, StrUtil.indexedFormat(
-						"select dpm.member_user_id from doc_project dp, doc_project_member dpm where dp.id = {0} dp.id = dpm.doc_project_id and dpm.deleted = 0 and dpm.`role` = {1}",
-						docProject.getId().toString(), form.getRole().toString()));
+			// 授权筛选
+			String accessAuthSql = StrUtil.indexedFormat(
+					"select dpm.member_user_id from doc_project dp, doc_project_member dpm where dp.id = {0} dp.id = dpm.doc_project_id and dpm.deleted = 0 and dpm.`role` in (1, 2, 3)",
+					docProject.getId().toString());
+			if (BooleanUtil.isTrue(form.getAccessAuth())) {
+				wrapper.inSql(SysUser::getUserId, accessAuthSql);
+			} else {
+				wrapper.notIn(SysUser::getUserId, accessAuthSql);
 			}
 			// 组织机构过滤
 			if (StrUtil.isNotBlank(form.getOrgIds())) {
@@ -102,13 +109,35 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 			}
 			wrapper.orderByDesc(SysUser::getId);
 		}));
-		// 封装结果
-		return result.setRecords(pager.getRecords().stream().filter(Objects::nonNull).map(obj -> {
+		// 数据集
+		Map<Long, DocProjectMemberDto> map = new LinkedHashMap<>();
+		List<DocProjectMemberDto> list = pager.getRecords().stream().filter(Objects::nonNull).map(obj -> {
 			DocProjectMemberDto data = BeanUtil.copyProperties(obj, DocProjectMemberDto.class);
 			data.setDocProjectId(docProject.getId());
 			data.setDocProjectUuid(docProject.getUuid());
+			map.put(data.getDocProjectId(), data);
 			return data;
-		}).collect(Collectors.toList()));
+		}).collect(Collectors.toList());
+		// 获取文档项目授权角色
+		if (CollUtil.isNotEmpty(list)) {
+			List<DocProjectMember> members = this.list(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
+				wrapper.in(DocProjectMember::getDocProjectId, map.keySet());
+				wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
+				wrapper.eq(DocProjectMember::getDeleted, false);
+			}));
+			members.forEach(member -> {
+				DocProjectMemberDto item = map.get(member.getDocProjectId());
+				if (ObjectUtil.isNotEmpty(item)) {
+					if (item.getRole() == null) {
+						item.setRole(member.getRole());
+					} else {
+						item.setRole(Math.max(item.getRole(), member.getRole()));
+					}
+				}
+			});
+		}
+		// 封装结果
+		return result.setRecords(list);
 	}
 
 	@Override

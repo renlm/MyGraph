@@ -24,6 +24,11 @@ public class DocProjectMemberDto extends DocProjectMember {
 	private String keywords;
 
 	/**
+	 * 是否授权
+	 */
+	private Boolean accessAuth;
+
+	/**
 	 * 组织机构ID集
 	 */
 	private String orgIds;
