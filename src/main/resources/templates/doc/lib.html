@@ -104,7 +104,7 @@
 	function projectOperateFormatter (value, row, index) {
 		var e = '<a href="javascript:projectDialog(\'' + row.uuid + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">编辑</span><span class="l-btn-icon fa fa-pencil"></span></span></a> ';
 		var d = '<a href="javascript:delProject(\'' + row.uuid + '\',\'' + row.projectName + '\');" class="l-btn myui-btn-red l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">删除</span><span class="l-btn-icon fa fa-trash"></span></span></a> ';
-		var m = '<a href="javascript:memberDialog(\'' + row.uuid + '\',\'' + row.projectName + '\');" class="l-btn myui-btn-black l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">成员</span><span class="l-btn-icon fa fa-group"></span></span></a> ';
+		var m = '<a href="javascript:memberDialog(\'' + row.uuid + '\',\'' + row.projectName + '\');" class="l-btn myui-btn-black l-btn-small l-btn-plain"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text">成员管理</span><span class="l-btn-icon fa fa-group"></span></span></a> ';
 		if (row.role === 3) {
 			return e + d + m;
 		} else {
