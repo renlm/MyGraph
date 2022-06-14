@@ -118,6 +118,7 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 			DocProjectMemberDto data = BeanUtil.copyProperties(obj, DocProjectMemberDto.class);
 			data.setDocProjectId(docProject.getId());
 			data.setDocProjectUuid(docProject.getUuid());
+			data.setMemberUserId(obj.getUserId());
 			map.put(data.getDocProjectId(), data);
 			return data;
 		}).collect(Collectors.toList());
@@ -197,7 +198,7 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 		}
 		if (CollUtil.isNotEmpty(userIds)) {
 			this.update(Wrappers.<DocProjectMember>lambdaUpdate().func(wrapper -> {
-				wrapper.set(DocProjectMember::getDeleted, false);
+				wrapper.set(DocProjectMember::getDeleted, true);
 				wrapper.set(DocProjectMember::getUpdatedAt, new Date());
 				wrapper.eq(DocProjectMember::getDocProjectId, docProject.getId());
 				wrapper.in(DocProjectMember::getMemberUserId, userIds);

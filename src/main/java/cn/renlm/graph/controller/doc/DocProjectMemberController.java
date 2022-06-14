@@ -98,7 +98,7 @@ public class DocProjectMemberController {
 	public Result<?> removeRoleMember(Authentication authentication, String docProjectUuid, String userIds) {
 		try {
 			User user = (User) authentication.getPrincipal();
-			return iDocProjectMemberService.removeRoleMember(user, userIds, StrUtil.splitTrim(userIds, COMMA));
+			return iDocProjectMemberService.removeRoleMember(user, docProjectUuid, StrUtil.splitTrim(userIds, COMMA));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");

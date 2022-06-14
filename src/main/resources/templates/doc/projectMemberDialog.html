@@ -29,7 +29,7 @@
 			|">
 			<thead>
 				<tr>
-		      		<th data-options="field:'userId',title:'用户ID',checkbox:true"></th>
+		      		<th data-options="field:'memberUserId',title:'用户ID',checkbox:true"></th>
 		            <th data-options="field:'nickname',title:'昵称',width:120"></th>
 		            <th data-options="field:'role',title:'权限',width:80,formatter:$.docMemberRoleFormatter"></th>
 		            <th data-options="field:'username',title:'账号',width:120"></th>
@@ -92,7 +92,7 @@
    		<input type="text" name="keywords"
     		id="userDataGridForm-keywords" 
    			class="easyui-textbox"
-        	data-options="prompt:'昵称、账号、手机号',
+        	data-options="prompt:'昵称、账号、手机号、邮箱',
 	       		width:220
         	"/>
       	<a href="javascript:searchUserDataGrid();" 
@@ -138,14 +138,13 @@
 		} else {
 			var userIds = [];
 			$.each(checked, function (i, item) {
-				userIds[i] = item.userId;
+				userIds[i] = item.memberUserId;
 			});
-			var selectedRole = $('#treeGrid').treegrid('getSelected');
 			$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
 				if (r) {
 					$.messager.progress({'text': '请求中……'});
-					$.post(ctx+'/sys/authAccess/ajax/addRoleMember', 
-							{ roleId: selectedRole.roleId, userIds: userIds.join() }, 
+					$.post(ctx+'/doc/projectMember/ajax/addRoleMember', 
+							{ docProjectUuid: '[(${uuid})]', userIds: userIds.join() }, 
 							function (resultJson) {
 				                $.messager.progress('close');
 								if (resultJson.statusCode == 200) {
@@ -171,14 +170,13 @@
 		} else {
 			var userIds = [];
 			$.each(checked, function (i, item) {
-				userIds[i] = item.userId;
+				userIds[i] = item.memberUserId;
 			});
-			var selectedRole = $('#treeGrid').treegrid('getSelected');
 			$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
 				if (r) {
 					$.messager.progress({'text': '请求中……'});
-					$.post(ctx+'/sys/authAccess/ajax/removeRoleMember', 
-							{ roleId: selectedRole.roleId, userIds: userIds.join() }, 
+					$.post(ctx+'/doc/projectMember/ajax/removeRoleMember', 
+							{ docProjectUuid: '[(${uuid})]', userIds: userIds.join() }, 
 							function (resultJson) {
 				                $.messager.progress('close');
 								if (resultJson.statusCode == 200) {
