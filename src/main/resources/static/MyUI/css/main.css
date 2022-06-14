@@ -6,6 +6,15 @@
 	display: none;
 }
 
+.checkbox, .radiobutton {
+    border: 0.5px solid #d9d9d9;
+    cursor: pointer;
+}
+
+.checkbox-checked, .radiobutton-inner {
+    background-color: #1890ff;
+}
+
 .myui input.easyui-color + span.textbox input {
 	border-radius: 0px;
 }

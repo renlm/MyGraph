@@ -161,8 +161,6 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 		if (members == 0) {
 			return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能修改");
 		}
-		// 删除原有关系
-		this.removeRoleMember(user, docProjectUuid, userIds);
 		// 添加新关联关系
 		if (CollUtil.isNotEmpty(userIds)) {
 			List<DocProjectMember> list = CollUtil.newArrayList();
