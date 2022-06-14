@@ -224,7 +224,7 @@
 	            text: '确定',
 	            iconCls: 'fa fa-save',
 	            handler: function () {
-	            	var $selectRole = $("input[name='selectRole'][checked]").val();
+	            	var $selectRole = $('#selectRoleDialog').find("input[name='selectRole']:checked").val();
 	            	if (callback) {
 	            		callback($selectRole);
 	            	}
