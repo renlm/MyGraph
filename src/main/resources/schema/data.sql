@@ -100,7 +100,7 @@ INSERT INTO sys_role_resource(
 	id,	-- sys_resource_id				
 	null, -- alias	
 	sort, -- sort
-	CASE WHEN code = '100201' THEN 0 ELSE default_home_page END -- default_home_page
+	default_home_page -- default_home_page
 FROM sys_resource
 ;
 INSERT INTO sys_role_resource(
