@@ -37,6 +37,8 @@
 				return '编辑者';
 			} else if (value === 3) {
 				return '管理员';
+			} else if (value === null) {
+				return '<span style="color: gray;">-</span>';
 			} else {
 				return value;
 			}

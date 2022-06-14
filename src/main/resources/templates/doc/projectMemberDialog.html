@@ -16,22 +16,22 @@
 				pagination:true,
 				pageSize:20,
 				method:'get',
-				url:ctx+'/doc/projectMember/ajax/authAccessPage',
+				url:ctx+'/doc/projectMember/ajax/authAccessPage?docProjectUuid=${uuid}',
 		   		onBeforeLoad:function(param){
-		   			param.docProjectUuid = '${uuid}';
-		      		$.pageOnBeforeLoad(param);
 		       		try{
-		         		param.orgIds = $('#orgIds').combo('getValue');
-						param.accessAuth = $('#accessAuth').combo('getValue');
-						param.keywords = $('#keywords').textbox('getValue');
-		           	}catch(e){}
+		      			$.pageOnBeforeLoad(param);
+		         		param.orgIds = $('#userDataGridForm-orgIds').combo('getValue');
+						param.accessAuth = $('#userDataGridForm-accessAuth').combo('getValue');
+						param.keywords = $('#userDataGridForm-keywords').textbox('getValue');
+		           	}catch(e){
+		           	}
 		     	}
 			|">
 			<thead>
 				<tr>
 		      		<th data-options="field:'userId',title:'用户ID',checkbox:true"></th>
 		            <th data-options="field:'nickname',title:'昵称',width:120"></th>
-		            <th data-options="field:'accessAuth',title:'授权状态',width:80,align:'center',formatter:$.accessAuthFormatter"></th>
+		            <th data-options="field:'role',title:'权限',width:80,formatter:$.docMemberRoleFormatter"></th>
 		            <th data-options="field:'username',title:'账号',width:120"></th>
 		            <th data-options="field:'mobile',title:'手机',width:120"></th>
 		            <th data-options="field:'email',title:'邮箱',width:250"></th>
@@ -56,7 +56,7 @@
 	</a>
 	<form id="userDataGridForm" class="search-box">
    		<input type="text" name="orgIds"
-    		id="orgIds"
+    		id="userDataGridForm-orgIds"
          	class="easyui-combotreegrid"
          	th:data-options="|fitColumns:true,
 				singleSelect:true,
@@ -75,7 +75,7 @@
             	}
           	|"/>
      	<input type="text" name="accessAuth" value="true"
-        	id="accessAuth"
+        	id="userDataGridForm-accessAuth"
         	class="easyui-combobox"
         	data-options="prompt:'是否授权',
          		width:120,
@@ -90,7 +90,7 @@
 				]
 			"/>
    		<input type="text" name="keywords"
-    		id="keywords" 
+    		id="userDataGridForm-keywords" 
    			class="easyui-textbox"
         	data-options="prompt:'昵称、账号、手机号',
 	       		width:220
@@ -112,12 +112,10 @@
 	 * 查询授权人员
 	 */
 	function searchUserDataGrid () {
-		var selectedRole = $('#treeGrid').treegrid('getSelected');
 		$('#userDataGrid').datagrid('load', {
-			roleId: selectedRole ? selectedRole.roleId : null,
-			orgIds: $('#orgIds').combo('getValue'),
-			accessAuth: $('#accessAuth').combo('getValue'),
-			keywords: $('#keywords').textbox('getValue')
+			orgIds: $('#userDataGridForm-orgIds').combo('getValue'),
+			accessAuth: $('#userDataGridForm-accessAuth').combo('getValue'),
+			keywords: $('#userDataGridForm-keywords').textbox('getValue')
 		});
 	}
 	
