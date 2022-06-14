@@ -539,20 +539,6 @@ function modifyPersonal () {
     });
 }
 
-/***
- * 修改密码
- */
-function modifyPwd () {
-	window.editPwdLayerIndex = layer.open({
-		type: 2, 
-		title: '修改密码',
-		offset: '200px',
-		area: ['500px', '250px'],
-		skin: 'layui-layer-rim',
-		content: [ctx + '/modifyPwd', 'no']
-	});
-}
-
 /**
  * 初始化
  */
@@ -627,7 +613,6 @@ exports.version = version;
 exports.getMenuTree = getMenuTree;
 exports.addIndexTab = addIndexTab;
 exports.modifyPersonal = modifyPersonal;
-exports.modifyPwd = modifyPwd;
 exports.init = init;
 
 Object.defineProperty(exports, '__esModule', { value: true });

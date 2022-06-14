@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/doc}">
 <head>
-	<title>文档项目</title>
+	<title th:text="${docProject?.projectName}">文档项目</title>
 </head>
 <body layout:fragment="content">
 	<!-- 禁用IE -->
@@ -12,22 +12,12 @@
 		<div class="header">
 			<div class="logo">
 				<img alt="logo" th:src="@{/static/images/logo.png}" />
-				<a th:href="@{/}">文档项目</a>
+				<a th:href="@{/}">管理后台</a>
 			</div>
 			<ul class="layui-tab-title layui-nav left">
 				<li class="layui-nav-item layui-this">
 					<a href="javascript:void(0);">
-						<i class="layui-icon layui-icon-read"></i> 接口文档
-					</a>
-				</li>
-				<li class="layui-nav-item">
-					<a href="javascript:void(0);">
-						<i class="layui-icon layui-icon-read"></i> Swagger
-					</a>
-				</li>
-				<li class="layui-nav-item">
-					<a href="javascript:void(0);">
-						<i class="fa fa-file-word-o"></i> 开发规范
+						<i class="layui-icon layui-icon-read"></i> [(${docProject?.projectName})]
 					</a>
 				</li>
 			</ul>
@@ -38,7 +28,7 @@
 					</a>
 					<dl class="layui-nav-child">
 						<dd>
-							<a onclick="$.editPwd();">修改密码</a>
+							<a onclick="$.modifyPwd();">修改密码</a>
 						</dd>
 						<dd>
 							<form class="loginout" method="post" 
@@ -54,13 +44,7 @@
 		<!-- 中部开始 -->
 		<div class="iframer layui-tab-content">
 			<div class="layui-tab-item layui-show">
-				<iframe frameborder="0" scrolling="yes" th:src="@{/workbench}"></iframe>
-			</div>
-			<div class="layui-tab-item">
-				<iframe frameborder="0" scrolling="yes" th:src="@{/swagger-ui/index.html}"></iframe>
-			</div>
-			<div class="layui-tab-item">
-				<iframe frameborder="0" scrolling="yes" th:src="@{/static/editor.md/index.html}"></iframe>
+				<iframe frameborder="0" scrolling="yes" th:src="@{/home/welcome}"></iframe>
 			</div>
 		</div>
 		<!-- 中部结束 -->
@@ -70,13 +54,5 @@
 		</div>
 		<!-- 底部结束 -->
 	</div>
-	<script type="text/javascript">
-		/**
-		 * 监听Tab切换
-		 */
-		layui.element.on("tab(TabIframe)", function (data) {
-			
-		});
-	</script>
 </body>
 </html>

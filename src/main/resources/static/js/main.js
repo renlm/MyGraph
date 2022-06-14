@@ -17,6 +17,19 @@
  */
 (function($) {
 	$.extend({
+		/***
+		 * 修改密码
+		 */
+		modifyPwd: function () {
+			window.editPwdLayerIndex = layer.open({
+				type: 2, 
+				title: '修改密码',
+				offset: '200px',
+				area: ['500px', '250px'],
+				skin: 'layui-layer-rim',
+				content: [ctx + '/modifyPwd', 'no']
+			});
+		},
 		/**
 		 * 文档项目名称
 		 */
@@ -28,7 +41,7 @@
 		 * 打开文档项目
 		 */
 		openDocProjectIndex: function (uuid) {
-			top.window.open(ctx + '/doc/project/index?uuid=' + uuid);
+			top.window.location.href = (ctx + '/doc/project/index?uuid=' + uuid);
 		},
 		/**
 		 * 标记title
