@@ -77,8 +77,8 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 					docProject.getId().toString());
 			if (BooleanUtil.isTrue(form.getAccessAuth())) {
 				wrapper.inSql(SysUser::getUserId, accessAuthSql);
-			} else {
-				wrapper.notIn(SysUser::getUserId, accessAuthSql);
+			} else if (BooleanUtil.isFalse(form.getAccessAuth())) {
+				wrapper.notInSql(SysUser::getUserId, accessAuthSql);
 			}
 			// 组织机构过滤
 			if (StrUtil.isNotBlank(form.getOrgIds())) {
