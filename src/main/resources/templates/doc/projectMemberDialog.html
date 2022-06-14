@@ -140,7 +140,7 @@
 			$.each(checked, function (i, item) {
 				userIds[i] = item.memberUserId;
 			});
-			selectRoleDialog(function (role) {
+			selectRoleDialog(function (role, callback) {
 				$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
 					if (r) {
 						$.messager.progress({'text': '请求中……'});
@@ -149,6 +149,7 @@
 								function (resultJson) {
 					                $.messager.progress('close');
 									if (resultJson.statusCode == 200) {
+										callback();
 										$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 					                	searchUserDataGrid();
 					                } else {
@@ -226,7 +227,9 @@
 	            handler: function () {
 	            	var $selectRole = $('#selectRoleDialog').find("input[name='selectRole']:checked").val();
 	            	if (callback) {
-	            		callback($selectRole);
+	            		callback($selectRole, function () {
+			                $selectRoleDialog.dialog('destroy');
+	            		});
 	            	}
 				}
 	        }, {
