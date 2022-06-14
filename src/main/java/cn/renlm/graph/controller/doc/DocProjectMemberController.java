@@ -77,7 +77,7 @@ public class DocProjectMemberController {
 	public Result<?> addRoleMember(Authentication authentication, Integer role, String docProjectUuid, String userIds) {
 		try {
 			User user = (User) authentication.getPrincipal();
-			return iDocProjectMemberService.addRoleMember(user, role, docProjectUuid,
+			return iDocProjectMemberService.addRoleMember(true, user, role, docProjectUuid,
 					StrUtil.splitTrim(userIds, COMMA));
 		} catch (Exception e) {
 			e.printStackTrace();

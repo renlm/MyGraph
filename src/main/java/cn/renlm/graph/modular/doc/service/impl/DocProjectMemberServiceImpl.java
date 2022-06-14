@@ -148,17 +148,20 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public Result<?> addRoleMember(User user, Integer role, String docProjectUuid, List<String> userIds) {
+	public Result<?> addRoleMember(boolean verify, User user, Integer role, String docProjectUuid,
+			List<String> userIds) {
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
-		long members = this.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
-			wrapper.eq(DocProjectMember::getRole, 3);
-			wrapper.eq(DocProjectMember::getDocProjectId, docProject.getId());
-			wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
-			wrapper.eq(DocProjectMember::getDeleted, false);
-		}));
-		if (members == 0) {
-			return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能修改");
+		if (verify) {
+			long members = this.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
+				wrapper.eq(DocProjectMember::getRole, 3);
+				wrapper.eq(DocProjectMember::getDocProjectId, docProject.getId());
+				wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
+				wrapper.eq(DocProjectMember::getDeleted, false);
+			}));
+			if (members == 0) {
+				return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能修改");
+			}
 		}
 		// 添加新关联关系
 		if (CollUtil.isNotEmpty(userIds)) {
@@ -184,7 +187,7 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 	public Result<?> editRole(User user, Integer role, String docProjectUuid, List<String> userIds) {
 		Result<?> result1 = this.removeRoleMember(user, docProjectUuid, userIds);
 		if (result1.isSuccess()) {
-			return this.addRoleMember(user, role, docProjectUuid, userIds);
+			return this.addRoleMember(false, user, role, docProjectUuid, userIds);
 		} else {
 			return result1;
 		}
