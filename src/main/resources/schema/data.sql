@@ -55,7 +55,7 @@ VALUES (1,				30, 		'高级软件开发工程师'),
 DELETE FROM sys_resource;
 INSERT INTO sys_resource 
 	   (id,				resource_id, 						code, 			text, 			resource_type_code, url, 														icon_cls, 					icon_cls_colour, 	text_colour, 	level, 	sort,	state,		default_home_page,	pid,		remark)
-VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 		'permission', 		'/home/welcome', 											'fa fa-home', 				null, 				null, 			1, 		0, 		'open',		1,					null,		null)
+VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 		'permission', 		'/home/welcome', 											'fa fa-home', 				null, 				null, 			1, 		0, 		'open',		0,					null,		null)
 	  ,(10, 			'FF784D818217460DB745C5013EE0C2B5',	'10', 			'工作台', 		'menu', 			null, 														'fa fa-windows', 			null, 				null, 			1, 		1, 		'closed',	0,					null,		null)
 	  ,(1001, 			'BFD547E1E8B241EF8B19E94B997FBBB6',	'1001', 		'图形设计', 		'menu', 			null, 														'fa fa-xing', 				null, 				null, 			2, 		1, 		'closed',	0,					10,			null)
 	  ,(100101, 		'1A2288C7B39D43D7B27CD7BD71A9EF44',	'100101', 		'我的', 			'menu', 			'/graph/mine', 												'fa fa-user-plus', 			null, 				null, 			3, 		1, 		'open',		0,					1001,		null)
@@ -113,7 +113,7 @@ INSERT INTO sys_role_resource(
 	id,	-- sys_resource_id				
 	null, -- alias	
 	sort, -- sort	
-	CASE WHEN code = 'WELCOME' THEN 0 ELSE default_home_page END -- default_home_page
+	default_home_page -- default_home_page
 FROM sys_resource
 WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '100103', '1002', '100201', '40', '50', '5001', '500101', '500102', '500103')
 ;
@@ -127,7 +127,7 @@ INSERT INTO sys_role_resource(
 	id,	-- sys_resource_id				
 	null, -- alias	
 	sort, -- sort	
-	CASE WHEN code = 'WELCOME' THEN 0 ELSE default_home_page END -- default_home_page
+	default_home_page -- default_home_page
 FROM sys_resource
 WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '100103', '1002', '100201', '40', '50', '5001', '500101', '500102', '500103')
 ;
