@@ -86,6 +86,27 @@ public class DocProjectMemberController {
 	}
 
 	/**
+	 * 修改授权角色
+	 * 
+	 * @param authentication
+	 * @param role
+	 * @param docProjectUuid
+	 * @param userIds
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/ajax/editRole")
+	public Result<?> editRole(Authentication authentication, Integer role, String docProjectUuid, String userIds) {
+		try {
+			User user = (User) authentication.getPrincipal();
+			return iDocProjectMemberService.editRole(user, role, docProjectUuid, StrUtil.splitTrim(userIds, COMMA));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("出错了");
+		}
+	}
+
+	/**
 	 * 移除项目授权人员
 	 * 
 	 * @param authentication

@@ -43,6 +43,17 @@ public interface IDocProjectMemberService extends IService<DocProjectMember> {
 	Result<?> addRoleMember(User user, Integer role, String docProjectUuid, List<String> userIds);
 
 	/**
+	 * 修改授权角色
+	 * 
+	 * @param user
+	 * @param role
+	 * @param docProjectUuid
+	 * @param userIds
+	 * @return
+	 */
+	Result<?> editRole(User user, Integer role, String docProjectUuid, List<String> userIds);
+
+	/**
 	 * 移除项目授权人员
 	 * 
 	 * @param user

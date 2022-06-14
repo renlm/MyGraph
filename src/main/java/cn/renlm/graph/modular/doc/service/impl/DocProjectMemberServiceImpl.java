@@ -181,6 +181,17 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
+	public Result<?> editRole(User user, Integer role, String docProjectUuid, List<String> userIds) {
+		Result<?> result1 = this.removeRoleMember(user, docProjectUuid, userIds);
+		if (result1.isSuccess()) {
+			return this.addRoleMember(user, role, docProjectUuid, userIds);
+		} else {
+			return result1;
+		}
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public Result<?> removeRoleMember(User user, String docProjectUuid, List<String> userIds) {
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
