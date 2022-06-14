@@ -9,6 +9,7 @@
 .initTab:not(:first-child) {
 	display: block !important;
 	visibility: hidden;
+	position: absolute;
 }
 
 .checkbox, .radiobutton {
