@@ -291,27 +291,33 @@
 	 * 保存行
 	 */
 	function saveRow (index) {
+		var isValid = true;
 		var rowDatas = $('#userDataGrid').datagrid('getRows');
-		var rowData = rowDatas[index];
-		var edRole = $('#userDataGrid').datagrid('getEditor', { index: index, field: 'role' });
-		if (!$(edRole.target).textbox('isValid')) {
-			$(edRole.target).textbox('textbox').focus();
-			return;
+		var editors = $('#userDataGrid').datagrid('getEditors', index);
+		$.each(editors, function (j, e) {
+			if (j) {}
+			if (isValid && !$(e.target).textbox('isValid')) {
+				isValid = false;
+				$(e.target).textbox('textbox').focus();
+				return;
+			}
+		});
+		if (isValid) {
+			var rowData = rowDatas[index];
+			$.messager.progress({'text': '请求中……'});
+			$.post(ctx+'/doc/projectMember/ajax/addRoleMember', 
+					{ role: rowData.role, docProjectUuid: '[(${uuid})]', userIds: rowData.memberUserId }, 
+					function (resultJson) {
+		                $.messager.progress('close');
+						if (resultJson.statusCode == 200) {
+							$('#userDataGrid').datagrid('endEdit', index);
+							$('#userDataGrid').datagrid('updateRow', { index: index, row: { role: parseInt(rowData.role) } });
+							$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+		                } else {
+		                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+		                }
+					});
 		}
-		rowData.role = $(edRole.target).combobox('getValue');
-		$.messager.progress({'text': '请求中……'});
-		$.post(ctx+'/doc/projectMember/ajax/addRoleMember', 
-				{ role: rowData.role, docProjectUuid: '[(${uuid})]', userIds: rowData.memberUserId }, 
-				function (resultJson) {
-	                $.messager.progress('close');
-					if (resultJson.statusCode == 200) {
-						$('#userDataGrid').datagrid('endEdit', index);
-						$('#userDataGrid').datagrid('updateRow', { index: index, row: { role: rowData.role } });
-						$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-	                } else {
-	                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
-	                }
-				});
 	}
 	  	
 	/**
