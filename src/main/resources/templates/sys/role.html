@@ -628,26 +628,38 @@
    		 * 保存行
    		 */
 		function saveRow(id){
-			$.messager.progress({'text': '请求中……'});
+			var isValid = true;
 			var rowData = $('#customTreegrid').treegrid('find', id);
-			var edAlias = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'alias' });
-			var edSort = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'sort' });
-			var edDefaultHomePage = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'defaultHomePage' });
-			var alias = $(edAlias.target).textbox('getValue');
-			var sort = $(edSort.target).textbox('getValue');
-			var defaultHomePage = $(edDefaultHomePage.target).combobox('getValue');
-			$.post(ctx + '/sys/resource/ajax/updateRoleCustom',
-					{ roleId: rowData.roleId, resourceId: rowData.resourceId, alias: alias, sort: sort, defaultHomePage: defaultHomePage },
-					function (data) {
-		                $.messager.progress('close');
-						if (data.statusCode == 200) {
-		                	$.messager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
-		                	$('#customTreegrid').treegrid('endEdit', id);
-		                	$('#customTreegrid').treegrid('reload');
-		                } else {
-		                    $.messager.show({title: '我的消息', msg: data.message?data.message:'出错了', timeout: 5000, showType: 'slide'});
-		                }
-					});
+			var editors = $('#customTreegrid').treegrid('getEditors', id);
+			$.each(editors, function (j, e) {
+				if (j) {}
+				if (isValid && !$(e.target).textbox('isValid')) {
+					isValid = false;
+					$(e.target).textbox('textbox').focus();
+					return;
+				}
+			});
+			if (isValid) {
+				var edAlias = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'alias' });
+				var edSort = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'sort' });
+				var edDefaultHomePage = $('#customTreegrid').treegrid('getEditor', { id: id, field: 'defaultHomePage' });
+				var alias = $(edAlias.target).textbox('getValue');
+				var sort = $(edSort.target).textbox('getValue');
+				var defaultHomePage = $(edDefaultHomePage.target).combobox('getValue');
+				$.messager.progress({'text': '请求中……'});
+				$.post(ctx + '/sys/resource/ajax/updateRoleCustom',
+						{ roleId: rowData.roleId, resourceId: rowData.resourceId, alias: alias, sort: sort, defaultHomePage: defaultHomePage },
+						function (data) {
+			                $.messager.progress('close');
+							if (data.statusCode == 200) {
+			                	$.messager.show({title: '我的消息', msg: data.message?data.message:'操作成功', timeout: 5000, showType: 'slide'});
+			                	$('#customTreegrid').treegrid('endEdit', id);
+			                	$('#customTreegrid').treegrid('reload');
+			                } else {
+			                    $.messager.show({title: '我的消息', msg: data.message?data.message:'出错了', timeout: 5000, showType: 'slide'});
+			                }
+						});
+			}
 		}
     	
 		/**
