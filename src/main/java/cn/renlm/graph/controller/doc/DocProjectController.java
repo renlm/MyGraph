@@ -35,6 +35,16 @@ public class DocProjectController {
 	private IDocProjectService iDocProjectService;
 
 	/**
+	 * 主页
+	 * 
+	 * @return
+	 */
+	@GetMapping("/index")
+	public String list() {
+		return "doc/projectIndex";
+	}
+
+	/**
 	 * 分页列表
 	 * 
 	 * @param authentication

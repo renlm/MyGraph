@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN" layout:decorate="~{layout/default}">
+<head>
+	<title>文档项目</title>
+</head>
+<body layout:fragment="content">
+	<!-- 禁用IE -->
+	<div th:replace="fragments/ie-warn :: info"></div>
+	<!-- 页面主体 -->
+	<div class="container layui-tab" lay-filter="TabIframe">
+		<!-- 头部开始 -->
+		<div class="header">
+			<div class="logo">
+				<img alt="logo" th:src="@{/static/images/logo.png}" />
+				<a th:href="@{/}">文档项目</a>
+			</div>
+			<ul class="layui-tab-title layui-nav left">
+				<li class="layui-nav-item layui-this">
+					<a href="javascript:void(0);">
+						<i class="layui-icon layui-icon-read"></i> 接口文档
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);">
+						<i class="layui-icon layui-icon-read"></i> Swagger
+					</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);">
+						<i class="fa fa-file-word-o"></i> 开发规范
+					</a>
+				</li>
+			</ul>
+			<ul class="layui-nav right">
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);"
+						sec:authentication="principal.username">
+					</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a onclick="$.editPwd();">修改密码</a>
+						</dd>
+						<dd>
+							<form class="loginout" method="post" 
+								th:action="@{/logout}"
+								onclick="this.submit();">退出
+							</form>
+						</dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<!-- 头部结束 -->
+		<!-- 中部开始 -->
+		<div class="iframer layui-tab-content">
+			<div class="layui-tab-item layui-show">
+				<iframe frameborder="0" scrolling="yes" th:src="@{/workbench}"></iframe>
+			</div>
+			<div class="layui-tab-item">
+				<iframe frameborder="0" scrolling="yes" th:src="@{/swagger-ui/index.html}"></iframe>
+			</div>
+			<div class="layui-tab-item">
+				<iframe frameborder="0" scrolling="yes" th:src="@{/static/editor.md/index.html}"></iframe>
+			</div>
+		</div>
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<div class="footer">
+			<div class="copyright">© 2021 Renlm 京ICP备2021000671号</div>
+		</div>
+		<!-- 底部结束 -->
+	</div>
+	<script type="text/javascript">
+		/**
+		 * 监听Tab切换
+		 */
+		layui.element.on("tab(TabIframe)", function (data) {
+			
+		});
+	</script>
+</body>
+</html>
