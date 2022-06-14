@@ -140,21 +140,23 @@
 			$.each(checked, function (i, item) {
 				userIds[i] = item.memberUserId;
 			});
-			$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
-				if (r) {
-					$.messager.progress({'text': '请求中……'});
-					$.post(ctx+'/doc/projectMember/ajax/addRoleMember', 
-							{ docProjectUuid: '[(${uuid})]', userIds: userIds.join() }, 
-							function (resultJson) {
-				                $.messager.progress('close');
-								if (resultJson.statusCode == 200) {
-									$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-				                	searchUserDataGrid();
-				                } else {
-				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
-				                }
-							});
-				}
+			selectRoleDialog(function (role) {
+				$.messager.myuiConfirm('确认提示', '确定要执行该操作吗？', function (r) {
+					if (r) {
+						$.messager.progress({'text': '请求中……'});
+						$.post(ctx+'/doc/projectMember/ajax/addRoleMember', 
+								{ role: role, docProjectUuid: '[(${uuid})]', userIds: userIds.join() }, 
+								function (resultJson) {
+					                $.messager.progress('close');
+									if (resultJson.statusCode == 200) {
+										$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+					                	searchUserDataGrid();
+					                } else {
+					                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+					                }
+								});
+					}
+				});
 			});
 		}
 	}
@@ -189,5 +191,41 @@
 				}
 			});
 		}
+	}
+	
+	/**
+	 * 项目弹窗（新增|编辑）
+	 */
+	function selectRoleDialog (callback) {
+		var $selectRoleDialog = $('<form id="selectRoleDialog" class="myui" style="overflow-x: hidden;"></form>');
+	    $selectRoleDialog.myuiDialog({
+	        title: "授权角色",
+	        width: 890,
+	        height: 483,
+			collapsible: true,
+			minimizable: false,
+			maximizable: true,
+	        closed: false,
+	        cache: false,
+			maximized: false,
+			modal: true,
+            content: 'x',
+	        buttons: [{
+	            text: '确定',
+	            iconCls: 'fa fa-save',
+	            handler: function () {
+					
+				}
+	        }, {
+	            text: '关闭',
+	            iconCls: 'fa fa-close',
+	            handler: function () {
+	                $selectRoleDialog.dialog('destroy');
+	            }
+	        }],
+			onClose: function () {
+				$selectRoleDialog.dialog('destroy');
+			}
+	    });
 	}
 </script>
