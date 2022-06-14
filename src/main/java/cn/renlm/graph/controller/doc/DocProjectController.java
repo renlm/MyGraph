@@ -37,10 +37,15 @@ public class DocProjectController {
 	/**
 	 * 主页
 	 * 
+	 * @param model
+	 * @param uuid
 	 * @return
 	 */
 	@GetMapping("/index")
-	public String list() {
+	public String index(ModelMap model, String uuid) {
+		DocProject docProject = iDocProjectService
+				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, uuid));
+		model.put("docProject", docProject);
 		return "doc/projectIndex";
 	}
 
