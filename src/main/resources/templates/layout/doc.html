@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>文档项目</title>
+	<meta charset="UTF-8" />
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<!-- Ico -->
+    <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
+	<!-- 字体图标 -->
+	<link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet" />
+	<!-- Layui -->
+	<link th:href="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/css/layui.css}" rel="stylesheet" />
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/layui.js}"></script>
+	<!-- 主体样式 -->
+	<link th:href="@{/static/css/doc.css}" rel="stylesheet" />
+	<!-- Vue -->
+	<script th:src="@{/webjars/vue/vue.min.js}"></script>
+	<!-- Jquery -->
+	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+	<!-- Js-base64 -->
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/js-base64/2.3.2/base64.min.js}"></script>
+	<!-- 全局设置 -->
+    <script type="text/javascript">
+    	window.CTX = window.ctx = "[(@{/})]".substr(0, "[(@{/})]".length - 1);
+    	$(document).ajaxSend(function(event, jqxhr, settings) { 
+    		jqxhr.setRequestHeader("[(${_csrf.headerName})]", "[(${_csrf.token})]");
+    	});
+    </script>
+	<!-- 主体框架Js -->
+	<script th:src="@{/static/js/main.js}"></script>
+	<!--[if lt IE 9]>
+    <script th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+    <script th:src="@{/webjars/respond/dest/respond.min.js}"></script>
+    <![endif]-->
+</head>
+<body>
+	<div layout:fragment="content"></div>
+</body>
+</html>
