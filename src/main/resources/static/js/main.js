@@ -18,6 +18,13 @@
 (function($) {
 	$.extend({
 		/**
+		 * 打开文档项目
+		 */
+		openDocProjectFormatter: function (value, row, index) {
+			if (value || index) {}
+			return '<a href=\'javascript:void(0);\' style=\'color:blue;font-style: italic;\'>' + row.projectName + '</a>';
+		},
+		/**
 		 * 标记title
 		 */
 		spanWithTitleFormatter: function (value) {
@@ -48,9 +55,9 @@
 		 */
 		docVisitLevelFormatter: function (value) {
 			if (value === 1) {
-				return '<span style="text-decoration: underline;font-style: italic;" title=\'只有项目成员才可以访问\'>私有</span>';
+				return '<span title=\'只有项目成员才可以访问\'>私有</span>';
 			} else if (value === 2) {
-				return '<span style="text-decoration: underline;font-style: italic;" title=\'可以由任何登录用户访问\'>公开</span>';
+				return '<span title=\'可以由任何登录用户访问\'>公开</span>';
 			} else {
 				return value;
 			}
@@ -190,7 +197,8 @@
 		 * 打开图形
 		 */
 		openGraphEditorFormatter: function (value, row, index) {
-			return '<a href=\'javascript:void(0);\' style=\'text-decoration:underline;color:blue;\' data-value="' + value + '" data-index="' + index + '" onclick="$.openGraphEditor(\'' + row.uuid + '\', \'' + row.name + '\')">' + row.name + '</a>';
+			if (value || index) {}
+			return '<a href=\'javascript:void(0);\' style=\'color:blue;font-style: italic;\' onclick="$.openGraphEditor(\'' + row.uuid + '\', \'' + row.name + '\')">' + row.name + '</a>';
 		},
 		/**
 		 * 打开图形预览
