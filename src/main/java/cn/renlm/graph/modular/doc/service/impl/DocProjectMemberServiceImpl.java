@@ -2,6 +2,7 @@ package cn.renlm.graph.modular.doc.service.impl;
 
 import static cn.hutool.core.text.StrPool.COMMA;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -144,12 +147,63 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public Result<?> addRoleMember(User user, Integer role, String docProjectUuid, List<String> userIds) {
-		return null;
+		DocProject docProject = iDocProjectService
+				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
+		long members = this.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
+			wrapper.eq(DocProjectMember::getRole, 3);
+			wrapper.eq(DocProjectMember::getDocProjectId, docProject.getId());
+			wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
+			wrapper.eq(DocProjectMember::getDeleted, false);
+		}));
+		if (members == 0) {
+			return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能修改");
+		}
+		// 删除原有关系
+		this.removeRoleMember(user, docProjectUuid, userIds);
+		// 添加新关联关系
+		if (CollUtil.isNotEmpty(userIds)) {
+			List<DocProjectMember> list = CollUtil.newArrayList();
+			userIds.forEach(userId -> {
+				DocProjectMember data = new DocProjectMember();
+				data.setDocProjectId(docProject.getId());
+				data.setMemberUserId(userId);
+				data.setRole(role);
+				data.setCreatedAt(new Date());
+				data.setDeleted(false);
+				list.add(data);
+			});
+			if (CollUtil.isNotEmpty(list)) {
+				this.saveBatch(list);
+			}
+		}
+		return Result.success();
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public Result<?> removeRoleMember(User user, String docProjectUuid, List<String> userIds) {
-		return null;
+		DocProject docProject = iDocProjectService
+				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
+		long members = this.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
+			wrapper.eq(DocProjectMember::getRole, 3);
+			wrapper.eq(DocProjectMember::getDocProjectId, docProject.getId());
+			wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
+			wrapper.eq(DocProjectMember::getDeleted, false);
+		}));
+		if (members == 0) {
+			return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能修改");
+		}
+		if (CollUtil.isNotEmpty(userIds)) {
+			this.update(Wrappers.<DocProjectMember>lambdaUpdate().func(wrapper -> {
+				wrapper.set(DocProjectMember::getDeleted, false);
+				wrapper.set(DocProjectMember::getUpdatedAt, new Date());
+				wrapper.eq(DocProjectMember::getDocProjectId, docProject.getId());
+				wrapper.in(DocProjectMember::getMemberUserId, userIds);
+				wrapper.eq(DocProjectMember::getDeleted, false);
+			}));
+		}
+		return Result.success();
 	}
 }
