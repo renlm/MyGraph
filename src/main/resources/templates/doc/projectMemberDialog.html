@@ -200,21 +200,34 @@
 		var $selectRoleDialog = $('<form id="selectRoleDialog" class="myui" style="overflow-x: hidden;"></form>');
 	    $selectRoleDialog.myuiDialog({
 	        title: "授权角色",
-	        width: 890,
-	        height: 483,
+	        width: 450,
+	        height: 243,
 			collapsible: true,
 			minimizable: false,
-			maximizable: true,
+			maximizable: false,
 	        closed: false,
 	        cache: false,
 			maximized: false,
 			modal: true,
-            content: 'x',
+            content: `
+           		<div class="myui-fluid" style="margin: 60px 0 0 60px;">
+	            	<div class="myui-row">
+	                	<div class="myui-col-sm12">
+		               		<input name="selectRole" class="easyui-radiobutton" data-options="value:'1',label:'浏览者',labelPosition:'after',checked:'true'" />
+		                  	<input name="selectRole" class="easyui-radiobutton" data-options="value:'2',label:'编辑者',labelPosition:'after'" />
+		                 	<input name="selectRole" class="easyui-radiobutton" data-options="value:'3',label:'管理员',labelPosition:'after'" />
+	                 	</div>
+	            	</div>
+	       		</div>
+            `,
 	        buttons: [{
 	            text: '确定',
 	            iconCls: 'fa fa-save',
 	            handler: function () {
-					
+	            	var $selectRole = $("input[name='selectRole'][checked]").val();
+	            	if (callback) {
+	            		callback($selectRole);
+	            	}
 				}
 	        }, {
 	            text: '关闭',
