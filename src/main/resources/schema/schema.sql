@@ -329,7 +329,7 @@ DROP TABLE IF EXISTS doc_project_member;
 CREATE TABLE doc_project_member (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
     doc_project_id				BIGINT							NOT NULL		COMMENT '文档项目ID',
-    member_user_id 				VARCHAR(32) 									COMMENT '成员（用户ID）',
+    member_user_id 				VARCHAR(32) 					NOT NULL		COMMENT '成员（用户ID）',
     role						INT				DEFAULT 1		NOT NULL		COMMENT '角色，1：浏览者，2：编辑者，3：管理员',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -366,6 +366,20 @@ CREATE TABLE doc_category (
     INDEX creator_user_id(creator_user_id),
     INDEX deleted(deleted)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '文档分类';
+
+-- 文档分类-收藏
+DROP TABLE IF EXISTS doc_category_collect;
+CREATE TABLE doc_category_collect (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    doc_category_id				BIGINT							NOT NULL		COMMENT '文档分类ID',
+    member_user_id 				VARCHAR(32) 					NOT NULL		COMMENT '收藏人（用户ID）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    INDEX doc_category_id(doc_category_id),
+    INDEX member_user_id(member_user_id),
+    INDEX deleted(deleted)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '文档分类-收藏';
 
 -- Markdown文档
 DROP TABLE IF EXISTS markdown;
