@@ -57,7 +57,9 @@ html, body {
 	padding: 2px 0;
 }
 
-.md-header .nickname, .md-header .time {
+.md-header .nickname, 
+.md-header .time, 
+.md-header .version {
 	color: #31708f;
 	font-style: italic;
 }
