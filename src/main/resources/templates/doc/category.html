@@ -25,7 +25,7 @@
                		url:'category/ajax/getTree?docProjectUuid=${docProject.uuid}',
                		onLoadSuccess:function(row,data){
                			var that = this;
-               			if (row == null) {
+               			if (data && data.length > 0) {
                				$.each(data, function (i, item) {
                					$(that).treegrid('expandAll', item.id);
                				});
