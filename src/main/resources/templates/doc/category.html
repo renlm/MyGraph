@@ -101,7 +101,7 @@
     	 */
     	function categoryDialog (type) {
     		var isAdd = true;
-    		var dialogHref = ctx + '/doc/category/dialog?docProjectUuid=[(docProject.uuid)]';
+    		var dialogHref = ctx + '/doc/category/dialog?docProjectUuid=[(${docProject.uuid})]';
     		if (type === 2 || type === 3) {
         		var selected = $('#treeGrid').treegrid('getSelected');
         		if (selected) {
@@ -134,7 +134,7 @@
     	            handler: function () {
     					$.messager.progress({'text': '请求中……'});
     			        $categoryDialog.form('submit', {
-    			            url: ctx + '/sys/org/ajax/save',
+    			            url: ctx + '/doc/category/ajax/save',
     			            onSubmit: function () {
     			                var isValid = $(this).form('validate');
     			                if (!isValid) {

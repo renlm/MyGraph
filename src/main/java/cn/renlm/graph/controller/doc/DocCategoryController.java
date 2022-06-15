@@ -106,7 +106,7 @@ public class DocCategoryController {
 	@RequestMapping("/dialog")
 	public String dialog(ModelMap model, String docProjectUuid, Long pid, String uuid) {
 		DocProject docProject = iDocProjectService
-				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, uuid));
+				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
 		DocCategory docCategory = new DocCategory();
 		docCategory.setDocProjectId(docProject.getId());
 		docCategory.setPid(pid);
