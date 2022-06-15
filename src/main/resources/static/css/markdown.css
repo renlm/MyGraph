@@ -33,3 +33,39 @@ html, body {
 .echarts div {
 	border-radius: 4px;
 }
+
+.md-header {
+	padding: 5px 0 0 10px;
+	font-family: "Microsoft YaHei","MicrosoftJhengHei",STHeiti,MingLiu;
+}
+
+.md-header .view-page-title {
+	font-weight: bold;
+}
+
+.md-header .view-page-path {
+	font-size: 12px;
+	padding: 2px 0;
+}
+
+.md-header .view-page-path a {
+	color: #31708f;
+}
+
+.md-header .view-page-time {
+	font-size: 12px;
+	padding: 2px 0;
+}
+
+.md-header .nickname {
+	color: #31708f;
+}
+
+.md-header .layui-btn-container {
+	text-align: right;
+	padding-top: 5px;
+}
+
+.md-header .layui-btn-container button:last-child {
+	margin-right: 0;
+}
