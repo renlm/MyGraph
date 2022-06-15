@@ -8,6 +8,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 	<!-- Ico -->
     <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
+	<!-- 全局设置 -->
+    <script type="text/javascript">
+    	window.CTX = window.ctx = "[(@{/})]".substr(0, "[(@{/})]".length - 1);
+    </script>
 	<!-- Jquery -->
 	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
 	<!-- Js-base64 -->
@@ -40,7 +44,7 @@
 				</p>
 				<p class="view-page-time">
 	          		<i class="fa fa-calendar"></i>
-	             	被<span class="nickname" th:text="${docCategory?.creatorNickname}"></span> 创建于 <span class="time" th:text="${#calendars.format(docCategory?.createdAt,'yyyy/MM/dd HH:mm:ss')}"></span>
+	             	被<span class="nickname" th:text="${docCategory.creatorNickname}"></span> 创建于 <span class="time" th:text="${#calendars.format(docCategory.createdAt,'yyyy/MM/dd HH:mm:ss')}"></span>
 	        		<th:block th:if="${!#strings.isEmpty(markdown?.updatorNickname)}">
 	        			，被<span class="nickname" th:text="${markdown?.updatorNickname}"></span> 最后更新于 <span class="time" th:text="${#calendars.format(markdown?.createdAt,'yyyy/MM/dd HH:mm:ss')}"></span>
 	        		</th:block>
@@ -48,9 +52,18 @@
 			</div>
 			<div class="layui-col-md4">
 				<div class="layui-btn-container">
-					<button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon layui-icon-edit"></i> 编辑</button>
-					<button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon layui-icon-star"></i> 收藏</button>
-					<button type="button" class="layui-btn layui-btn-primary"><i class="layui-icon layui-icon-share"></i> 分享</button>
+					<button type="button" class="layui-btn layui-btn-primary" 
+						th:data-uuid="${docCategory.uuid}" 
+						th:data-title="${docCategory.text}"
+						onclick="$.openMarkdownEditor($(this).data('uuid'), $(this).data('title'));">
+						<i class="layui-icon layui-icon-edit"></i> 编辑
+					</button>
+					<button type="button" class="layui-btn layui-btn-primary">
+						<i class="layui-icon layui-icon-star"></i> 收藏
+					</button>
+					<button type="button" class="layui-btn layui-btn-primary">
+						<i class="layui-icon layui-icon-share"></i> 分享
+					</button>
 				</div>
 			</div>
 		</div>
@@ -61,6 +74,7 @@
 		</div>
 	</div>
 	<textarea id="markdown" class="layui-hide" th:text="${markdown?.content}"></textarea>
+	<script th:src="@{/static/js/main.js}"></script>
 	<script type="text/javascript">
 		$(function () {
 			editormd.markdownToHTML("editormd", {
