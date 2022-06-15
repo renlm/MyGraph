@@ -127,6 +127,27 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 	@Transactional(rollbackFor = Exception.class)
 	public Result<DocCategory> ajaxSave(User user, String docProjectUuid, DocCategory docCategory) {
 		boolean isInsert = StrUtil.isBlank(docCategory.getUuid());
+		if (isInsert) {
+			// 插入
+			docCategory.setUuid(IdUtil.simpleUUID().toUpperCase());
+			docCategory.setCreatedAt(new Date());
+			docCategory.setCreatorUserId(user.getUserId());
+			docCategory.setCreatorNickname(user.getNickname());
+			docCategory.setUpdatedAt(docCategory.getCreatedAt());
+			docCategory.setDeleted(false);
+		} else {
+			// 更新
+			DocCategory entity = this
+					.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, docCategory.getUuid()));
+			docCategory.setId(entity.getId());
+			docCategory.setCreatedAt(entity.getCreatedAt());
+			docCategory.setCreatorUserId(entity.getCreatorUserId());
+			docCategory.setCreatorNickname(entity.getCreatorNickname());
+			docCategory.setUpdatedAt(new Date());
+			docCategory.setUpdatorUserId(user.getUserId());
+			docCategory.setUpdatorNickname(user.getNickname());
+			docCategory.setDeleted(entity.getDeleted());
+		}
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
 		docCategory.setDocProjectId(docProject.getId());
@@ -153,27 +174,6 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 				parent.setUpdatedAt(new Date());
 				this.updateById(parent);
 			}
-		}
-		if (isInsert) {
-			// 插入
-			docCategory.setUuid(IdUtil.simpleUUID().toUpperCase());
-			docCategory.setCreatedAt(new Date());
-			docCategory.setCreatorUserId(user.getUserId());
-			docCategory.setCreatorNickname(user.getNickname());
-			docCategory.setUpdatedAt(docCategory.getCreatedAt());
-			docCategory.setDeleted(false);
-		} else {
-			// 更新
-			DocCategory entity = this
-					.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, docCategory.getUuid()));
-			docCategory.setId(entity.getId());
-			docCategory.setCreatedAt(entity.getCreatedAt());
-			docCategory.setCreatorUserId(entity.getCreatorUserId());
-			docCategory.setCreatorNickname(entity.getCreatorNickname());
-			docCategory.setUpdatedAt(new Date());
-			docCategory.setUpdatorUserId(user.getUserId());
-			docCategory.setUpdatorNickname(user.getNickname());
-			docCategory.setDeleted(entity.getDeleted());
 		}
 		this.saveOrUpdate(docCategory);
 		return Result.success(docCategory);
