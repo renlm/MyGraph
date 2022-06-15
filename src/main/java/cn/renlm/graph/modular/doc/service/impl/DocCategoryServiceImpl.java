@@ -2,6 +2,8 @@ package cn.renlm.graph.modular.doc.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -175,6 +177,15 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 				this.updateById(parent);
 			}
 		}
+		// 排序
+		if (docCategory.getSort() == null) {
+			List<DocCategory> childs = this.findListByPid(docProjectUuid, docCategory.getPid());
+			OptionalInt max = childs.stream().filter(Objects::nonNull).mapToInt(DocCategory::getSort).max();
+			if (max.isPresent()) {
+				docCategory.setSort(ObjectUtil.defaultIfNull(docCategory.getSort(), 1));
+			}
+		}
+		docCategory.setSort(ObjectUtil.defaultIfNull(docCategory.getSort(), 1));
 		this.saveOrUpdate(docCategory);
 		return Result.success(docCategory);
 	}
