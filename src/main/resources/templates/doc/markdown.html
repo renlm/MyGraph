@@ -123,7 +123,7 @@
 		 */
 		function optCollect (e) {
 			layer.load(2);
-			var type = $(e).data('iscollected') === 'false'? 1 : 0;
+			var type = ($(e).data('iscollected') + '') === 'false'? 1 : 0;
 			$.post(ctx + '/doc/categoryCollect/ajax/optCollect', 
 					{ 
 						type: type,
