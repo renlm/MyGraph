@@ -7,11 +7,11 @@
 	<div class="easyui-layout"
     	data-options="fit:true">
     	<!-- 左侧 -->
-        <div data-options="region:'center',
+        <div data-options="region:'west',
         		split:true,
         		border:false,
         		bodyCls:'border_right',
-        		width:'25%'
+        		width:260
         	">
        		<table id="treeGrid" class="easyui-treegrid"
           		th:data-options="|border:false,
@@ -49,11 +49,10 @@
 			</table>
         </div>
         <!-- 右侧 -->
-        <div data-options="region:'east',
+        <div data-options="region:'center',
         		split:true,
         		border:false,
-        		bodyCls:'border_right',
-        		width:'75%'
+        		bodyCls:'border_right'
         	">
           	<div class="easyui-tabs"
           		id="eastTabs"
