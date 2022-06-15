@@ -14,7 +14,7 @@
         		width:'25%'
         	">
        		<table id="treeGrid" class="easyui-treegrid"
-          		data-options="border:false,
+          		th:data-options="|border:false,
 					fit:true,
 					fitColumns:true,
 					singleSelect:true,
@@ -22,7 +22,7 @@
 			   		treeField:'text',
 					toolbar:'#toolbar',
 					method:'get',
-               		url:'category/ajax/getTree',
+               		url:'category/ajax/getTree?docProjectUuid=${docProject.uuid}',
                		onLoadSuccess:function(row,data){
                			var that = this;
                			if (row == null) {
@@ -42,7 +42,7 @@
 				     		tabIframe.contentWindow.location.href = url;
 				     	}
 					}
-              	">
+              	|">
 				<thead>
                		<tr>
 	                    <th data-options="field:'text',title:'名称'"></th>

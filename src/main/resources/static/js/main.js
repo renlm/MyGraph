@@ -41,7 +41,7 @@
 		 * 打开文档项目
 		 */
 		openDocProject: function (uuid) {
-			top.window.location.href = (ctx + '/doc/project?docProjectUuid=' + uuid);
+			top.window.location.href = (ctx + '/doc/project?uuid=' + uuid);
 		},
 		/**
 		 * 标记title
