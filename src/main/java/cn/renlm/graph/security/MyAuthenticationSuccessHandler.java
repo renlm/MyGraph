@@ -30,7 +30,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		this.sysLoginLog(request, authentication);
-		super.setAlwaysUseDefaultTargetUrl(true);
+		super.setAlwaysUseDefaultTargetUrl(false);
 		super.onAuthenticationSuccess(request, response, authentication);
 	}
 
