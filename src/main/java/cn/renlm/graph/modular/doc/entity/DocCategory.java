@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-06-13
+ * @since 2022-06-15
  */
 @Getter
 @Setter
@@ -43,12 +43,6 @@ public class DocCategory implements Serializable {
      */
     @TableField("uuid")
     private String uuid;
-
-    /**
-     * 代码
-     */
-    @TableField("code")
-    private String code;
 
     /**
      * 名称
