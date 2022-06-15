@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title th:text="${markdown.name}">Markdown文档</title>
+	<meta charset="UTF-8" />
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<!-- Ico -->
+    <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
+	<!-- Jquery -->
+	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+	<!-- Js-base64 -->
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/js-base64/2.3.2/base64.min.js}"></script>
+	<!-- Editor.md -->
+	<link rel="stylesheet" th:href="@{/static/markdown/editor.md-1.5.0/css/editormd.preview.min.css}" />
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/marked.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/prettify.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/raphael.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/underscore.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/sequence-diagram.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/flowchart.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/jquery.flowchart.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/editormd.js}"></script>
+	<!-- 样式修正 -->
+	<link rel="stylesheet" th:href="@{/static/css/scrollbar.css}" />
+	<link rel="stylesheet" th:href="@{/static/css/markdown.css}" />
+</head>
+<body>
+	<div id="editormd" class="noborder"></div>
+	<textarea id="markdown" style="display: none;" th:text="${markdown.content}"></textarea>
+	<script type="text/javascript">
+		$(function () {
+			editormd.markdownToHTML("editormd", {
+				path            : "[(@{/static/markdown/editor.md-1.5.0/lib/})]",
+                markdown		: $("#markdown").val(),
+                htmlDecode      : "style,script,iframe|on*", 
+              	tocm            : true,
+             	emoji           : false,
+              	taskList        : true,
+              	tex             : true,
+              	flowChart       : true,
+             	sequenceDiagram : true
+            });
+		});
+	</script>
+</body>
+</html>
