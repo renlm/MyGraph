@@ -73,6 +73,6 @@ html, body {
 	margin-right: 0;
 }
 
-.md-body.editing {
+.md-body.md-hide {
 	display: none !important;
 }
