@@ -97,14 +97,14 @@
 		 * @param params index 当前层索引
 		 */
 		function onOpenEditor (layero, index) {
-			console.log(1);
+			$(".md-body").addClass("editing");
 		}
 		
 		/**
 		 * 关闭Markdown文档编辑器（事件）
 		 */
 		function onCloseEditor () {
-			console.log(2);
+			$(".md-body").removeClass("editing");
 		}
 	</script>
 </body>

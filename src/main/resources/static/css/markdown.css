@@ -70,3 +70,7 @@ html, body {
 .md-header .layui-btn-container button:last-child {
 	margin-right: 0;
 }
+
+.md-body.editing {
+	display: none !important;
+}
