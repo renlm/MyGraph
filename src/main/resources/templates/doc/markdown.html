@@ -64,8 +64,9 @@
 						onclick="$.openMarkdownEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
 						<i class="layui-icon layui-icon-edit"></i> 编辑
 					</button>
-					<button type="button" class="layui-btn layui-btn-primary">
-						<i class="layui-icon layui-icon-star"></i> 收藏
+					<button type="button" class="layui-btn layui-btn-primary" th:data-iscollected="${isCollected}" onclick="optCollect(this);">
+						<i th:class="|layui-icon ${isCollected?'layui-icon-star-fill':'layui-icon-star'}|"></i> 
+						<span>[(${isCollected?'取消':'收藏'})]</span>
 					</button>
 					<button type="button" class="layui-btn layui-btn-primary">
 						<i class="layui-icon layui-icon-share"></i> 分享
@@ -112,6 +113,39 @@
 		function onCloseEditor () {
 			$(".md-body").removeClass("md-hide");
 			window.location.reload();
+		}
+		
+		/**
+		 * 添加收藏/取消收藏
+		 */
+		function optCollect (e) {
+			layer.load(2);
+			var type = $(e).data('iscollected') === 'false'? 1 : 0;
+			$.post(ctx + '/doc/categoryCollect/ajax/optCollect', 
+					{ 
+						type: type,
+						docProjectUuid: '[(${docProject.uuid})]',
+						docCategoryUuid: '[(${docCategory.uuid})]' 
+					}, 
+					function (resultJson) {
+						layer.closeAll();
+						if (resultJson.statusCode == 200) {
+							$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+							if (type === 0) {
+								$(e).data('iscollected', 'false');
+								$(e).find('span').html('收藏');
+								$(e).find('i.layui-icon').removeClass('layui-icon-star-fill');
+								$(e).find('i.layui-icon').addClass('layui-icon-star');
+							} else {
+								$(e).data('iscollected', 'true');
+								$(e).find('span').html('取消');
+								$(e).find('i.layui-icon').removeClass('layui-icon-star');
+								$(e).find('i.layui-icon').addClass('layui-icon-star-fill');
+							}
+		                } else {
+		                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
+		                }
+					});
 		}
 	</script>
 </body>

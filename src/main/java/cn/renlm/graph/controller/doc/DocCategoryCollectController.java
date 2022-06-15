@@ -34,7 +34,7 @@ public class DocCategoryCollectController {
 	 * @return
 	 */
 	@ResponseBody
-	@PostMapping("/ajax/save")
+	@PostMapping("/ajax/optCollect")
 	public Result<?> optCollect(int type, Authentication authentication, String docProjectUuid,
 			String docCategoryUuid) {
 		try {

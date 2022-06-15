@@ -68,7 +68,7 @@ public class DocController {
 		User user = (User) authentication.getPrincipal();
 		Markdown markdown = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
 		DocProject docProject = iDocProjectService
-				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, uuid));
+				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
 		DocCategory docCategory = iDocCategoryService
 				.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, uuid));
 		List<DocCategory> fathers = iDocCategoryService.findFathers(docProjectUuid, docCategory.getId());
