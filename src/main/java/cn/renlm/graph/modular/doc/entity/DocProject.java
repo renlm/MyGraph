@@ -57,12 +57,6 @@ public class DocProject implements Serializable {
     private Boolean isShare;
 
     /**
-     * 是否允许导出（默认是，该项目下的文档是否允许导出）
-     */
-    @TableField("is_export")
-    private Boolean isExport;
-
-    /**
      * 标签（多个逗号分隔）
      */
     @TableField("tags")

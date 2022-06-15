@@ -298,7 +298,6 @@ CREATE TABLE doc_project (
     project_name       			VARCHAR(255)					NOT NULL		COMMENT '项目名称',
     visit_level       			INT				DEFAULT 1		NOT NULL		COMMENT '访问级别，1：私有（默认，只有项目成员才可以访问），2：公开（可以由任何登录用户访问）',
     is_share       				TINYINT(1)		DEFAULT 1		NOT NULL		COMMENT '是否允许分享（默认是，该项目下的文档是否允许分享）',
-    is_export       			TINYINT(1)		DEFAULT 1		NOT NULL		COMMENT '是否允许导出（默认是，该项目下的文档是否允许导出）',
     tags       					VARCHAR(255)					                COMMENT '标签（多个逗号分隔）',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',

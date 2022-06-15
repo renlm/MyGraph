@@ -84,7 +84,6 @@ public class DocProjectController {
 		DocProject docProject = new DocProject();
 		docProject.setVisitLevel(1);
 		docProject.setIsShare(true);
-		docProject.setIsExport(true);
 		if (StrUtil.isNotBlank(uuid)) {
 			DocProject entity = iDocProjectService
 					.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, uuid));

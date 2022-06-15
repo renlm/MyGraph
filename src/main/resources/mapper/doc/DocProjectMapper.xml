@@ -8,7 +8,6 @@
 			dp.`project_name`,
 			dp.`visit_level`,
 			dp.`is_share`,
-			dp.`is_export`,
 			dp.`tags`,
 			dp.`created_at`,
 			dp.`creator_user_id`,
