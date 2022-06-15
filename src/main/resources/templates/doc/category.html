@@ -33,11 +33,7 @@
                		},
                		onClickRow:function(row){
 				   		var url = ctx + '/doc/markdown?docProjectUuid=${docProject.uuid}&uuid=' + row.uuid;
-				     	var pp = $('#eastTabs').tabs('getSelected');
-				       	var tabIframe = pp.find('iframe')[0];
-				     	if (tabIframe) {
-				     		tabIframe.contentWindow.location.href = url;
-				     	}
+				     	$('#Iframe')[0].contentWindow.location.href = url;
 					}
               	|">
 				<thead>
@@ -52,21 +48,17 @@
         <div data-options="region:'center',
         		split:true,
         		border:false,
-        		bodyCls:'border_right'
+        		bodyCls:'border_left'
         	">
-          	<div class="easyui-tabs"
-          		id="eastTabs"
-            	data-options="fit:true,
-             		border:true,
-             		bodyCls:'border_right_none'
-             	">
-                <div style="overflow: hidden;"
-                	title="在线文档"
-               		th:data-options="|iconCls:'fa fa-file-word-o',
-						content:'<iframe src=\'@{/home/welcome}\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'
-					|">
-				</div>
-            </div>
+          	<div class="easyui-layout"
+	    		data-options="fit:true">
+	    		<div data-options="region:'center',
+		        		split:true,
+		        		border:false
+		        	">
+		          	<iframe id="Iframe" th:src="@{/home/welcome}" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>
+		    	</div>
+	    	</div>
     	</div>
     </div>
 	<div id="toolbar" class="myui-toolbar">
