@@ -55,7 +55,7 @@
 					<button type="button" class="layui-btn layui-btn-primary" 
 						th:data-uuid="${docCategory.uuid}" 
 						th:data-title="${docCategory.text}"
-						onclick="$.openMarkdownEditor($(this).data('uuid'), $(this).data('title'));">
+						onclick="$.openMarkdownEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
 						<i class="layui-icon layui-icon-edit"></i> 编辑
 					</button>
 					<button type="button" class="layui-btn layui-btn-primary">
@@ -89,6 +89,23 @@
              	sequenceDiagram : true
             });
 		});
+	</script>
+	<script type="text/javascript">
+		/**
+		 * 打开Markdown文档编辑器（事件）
+		 * @param params layero 当前层DOM
+		 * @param params index 当前层索引
+		 */
+		function onOpenEditor (layero, index) {
+			console.log(1);
+		}
+		
+		/**
+		 * 关闭Markdown文档编辑器（事件）
+		 */
+		function onCloseEditor () {
+			console.log(2);
+		}
 	</script>
 </body>
 </html>
