@@ -182,7 +182,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			List<DocCategory> childs = this.findListByPid(docProjectUuid, docCategory.getPid());
 			OptionalInt max = childs.stream().filter(Objects::nonNull).mapToInt(DocCategory::getSort).max();
 			if (max.isPresent()) {
-				docCategory.setSort(ObjectUtil.defaultIfNull(docCategory.getSort(), 1));
+				docCategory.setSort(max.getAsInt() + 1);
 			}
 		}
 		docCategory.setSort(ObjectUtil.defaultIfNull(docCategory.getSort(), 1));
