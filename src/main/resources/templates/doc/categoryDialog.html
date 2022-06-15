@@ -39,7 +39,7 @@
                        				}
                        			});
                        		} else {
-                       			$.get('org/ajax/findFathers?docProjectUuid=${docProject.uuid}', { id: *{pid} }, function (fathers) {
+                       			$.get('category/ajax/findFathers?docProjectUuid=${docProject.uuid}', { id: *{pid} }, function (fathers) {
                        				var fatherIds = [];
                        				$.each(fathers, function (i, father) {
                        					fatherIds.push(father.id);
@@ -66,7 +66,8 @@
                 	class="easyui-textbox"
                 	data-options="required:true,
                    		prompt:'必填',
-                   		width:'100%'
+                   		width:'100%',
+						validType:'maxLength[255]'
                 	"/>
             </div>
         </div>
@@ -75,7 +76,7 @@
         <legend>其它信息</legend>
     </fieldset>
     <div class="myui-row">
-        <div class="myui-col-sm6">
+        <div class="myui-col-sm12">
             <label class="myui-form-label">图标</label>
             <div class="myui-input-block">
                 <input type="text" th:field="*{iconCls}" 
@@ -84,6 +85,27 @@
                 		width:'100%',
                    		panelHeight:200
                 	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">是否有子节点</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{state}"
+              		class="easyui-combobox"
+                   	data-options="required:true,
+                   		editable:false,
+                   		prompt:'必选',
+						valueField:'value',
+						textField:'text',
+                		width:'100%',
+						panelHeight:'auto',
+						data: [
+						    {text:'有',value:'closed'},
+							{text:'无',value:'open'}
+						]
+					"/>
             </div>
         </div>
         <div class="myui-col-sm6">
@@ -99,26 +121,6 @@
         </div>
     </div>
     <div class="myui-row">
-        <div class="myui-col-sm6">
-            <label class="myui-form-label">是否有子节点</label>
-            <div class="myui-input-block">
-                <input type="text" th:field="*{state}"
-              		class="easyui-combobox"
-                   	data-options="required:true,
-                   		prompt:'必选',
-						valueField:'value',
-						textField:'text',
-                		width:'100%',
-						panelHeight:'auto',
-						data: [
-						    {text:'有',value:'closed'},
-							{text:'无',value:'open'}
-						]
-					"/>
-            </div>
-        </div>
-    </div>
-    <div class="myui-row">
         <div class="myui-col-sm12">
         	<label class="myui-form-label">备注</label>
             <div class="myui-input-block">
@@ -126,7 +128,8 @@
                 	class="easyui-textbox"
                    	data-options="width:'100%',
                    		height:100,
-                   		multiline:true
+                   		multiline:true,
+						validType:'maxLength[255]'
                    	"/>
             </div>
         </div>
