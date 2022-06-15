@@ -32,7 +32,12 @@
                			}
                		},
                		onClickRow:function(row){
-				   		
+				   		var url = ctx + '/markdown/viewer?uuid=' + row.uuid;
+				     	var pp = $('#eastTabs').tabs('getSelected');
+				       	var tabIframe = pp.find('iframe')[0];
+				     	if (tabIframe) {
+				     		tabIframe.contentWindow.location.href = url;
+				     	}
 					}
               	|">
 				<thead>
@@ -58,9 +63,9 @@
              	">
                 <div style="overflow: hidden;"
                 	title="在线文档"
-               		data-options="iconCls:'fa fa-file-word-o',
-						content:'<div><div class=\'welcome-bg\'></div><div id=\'editormd\'></div></div>'
-					">
+               		th:data-options="|iconCls:'fa fa-file-word-o',
+						content:'<iframe src=\'@{/home/welcome}\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'
+					|">
 				</div>
             </div>
     	</div>
