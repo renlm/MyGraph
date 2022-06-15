@@ -57,8 +57,9 @@ html, body {
 	padding: 2px 0;
 }
 
-.md-header .nickname {
+.md-header .nickname, .md-header .time {
 	color: #31708f;
+	font-style: italic;
 }
 
 .md-header .layui-btn-container {

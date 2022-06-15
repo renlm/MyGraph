@@ -40,7 +40,10 @@
 				</p>
 				<p class="view-page-time">
 	          		<i class="fa fa-calendar"></i>
-	             	被 <span class="nickname" th:text="${markdown?.creatorNickname}"></span> 创建于 <span th:text="${#calendars.format(markdown?.createdAt,'yyyy/MM/dd HH:mm:ss')}"></span>
+	             	被<span class="nickname" th:text="${docCategory?.creatorNickname}"></span> 创建于 <span class="time" th:text="${#calendars.format(docCategory?.createdAt,'yyyy/MM/dd HH:mm:ss')}"></span>
+	        		<th:block th:if="${!#strings.isEmpty(markdown?.updatorNickname)}">
+	        			，被<span class="nickname" th:text="${markdown?.updatorNickname}"></span> 最后更新于 <span class="time" th:text="${#calendars.format(markdown?.createdAt,'yyyy/MM/dd HH:mm:ss')}"></span>
+	        		</th:block>
 	        	</p>
 			</div>
 			<div class="layui-col-md4">
