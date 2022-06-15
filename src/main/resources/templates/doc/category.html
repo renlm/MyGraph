@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-    <title>组织机构</title>
+    <title>文档分类</title>
 </head>
 <body layout:fragment="content" class="myui">
 	<div class="easyui-layout"
@@ -11,7 +11,7 @@
         		split:true,
         		border:false,
         		bodyCls:'border_right',
-        		width:'35%'
+        		width:'25%'
         	">
        		<table id="treeGrid" class="easyui-treegrid"
           		data-options="border:false,
@@ -22,7 +22,7 @@
 			   		treeField:'text',
 					toolbar:'#toolbar',
 					method:'get',
-               		url:'org/ajax/getTree',
+               		url:'category/ajax/getTree',
                		onLoadSuccess:function(row,data){
                			var that = this;
                			if (row == null) {
@@ -46,9 +46,7 @@
 				<thead>
                		<tr>
 	                    <th data-options="field:'text',title:'名称'"></th>
-	                    <th data-options="field:'orgTypeCode',title:'类型',formatter:$.orgTypeFormatter"></th>
-	                    <th data-options="field:'level',title:'层级'"></th>
-	               		<th data-options="field:'disabled',title:'状态',width:100,formatter:$.disabledFormatter"></th>
+	               		<th data-options="field:'creatorNickname',title:'创建人',align:'left'"></th>
 					</tr>
               	</thead>
 			</table>
@@ -58,7 +56,7 @@
         		split:true,
         		border:false,
         		bodyCls:'border_right',
-        		width:'65%'
+        		width:'75%'
         	">
           	<div class="easyui-tabs"
           		id="eastTabs"
@@ -69,7 +67,7 @@
                 <div style="overflow: hidden;"
                 	title="组织机构树"
                		data-options="iconCls:'fa fa-sitemap',
-						content:'<iframe src=\'org/chart\' scrolling=\'auto\' frameborder=\'0\' style=\'width:100%;height:100%;\'></iframe>'
+						content:'<div class=\'welcome-bg\'></div>'
 					">
 				</div>
             </div>
