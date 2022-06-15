@@ -4679,9 +4679,15 @@
      */
     
     editormd.loadLayui = function (loadPath, callback) {
-        editormd.loadCSS(loadPath + editormd.layuiURL.css, function(){
-            editormd.loadScript(loadPath + editormd.layuiURL.js, callback || function(){});
-        });
+        if (layui && layui.v) {
+			if (callback) {
+				callback();
+			}
+		} else {
+			editormd.loadCSS(loadPath + editormd.layuiURL.css, function(){
+	            editormd.loadScript(loadPath + editormd.layuiURL.js, callback || function(){});
+	        });
+		}
     };
     
     // Custom Echarts load url.
