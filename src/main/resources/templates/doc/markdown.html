@@ -8,12 +8,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 	<!-- Ico -->
     <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
+	<!-- Jquery -->
+	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
 	<!-- 全局设置 -->
     <script type="text/javascript">
     	window.CTX = window.ctx = "[(@{/})]".substr(0, "[(@{/})]".length - 1);
+    	$(document).ajaxSend(function(event, jqxhr, settings) { 
+    		jqxhr.setRequestHeader("[(${_csrf.headerName})]", "[(${_csrf.token})]");
+    	});
     </script>
-	<!-- Jquery -->
-	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
 	<!-- Layui -->
 	<link th:href="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/css/layui.css}" rel="stylesheet" />
 	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/layui.js}"></script>
@@ -130,7 +133,6 @@
 					function (resultJson) {
 						layer.closeAll();
 						if (resultJson.statusCode == 200) {
-							$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 							if (type === 0) {
 								$(e).data('iscollected', 'false');
 								$(e).find('span').html('收藏');
@@ -143,7 +145,7 @@
 								$(e).find('i.layui-icon').addClass('layui-icon-star-fill');
 							}
 		                } else {
-		                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
+		                	layer.msg(resultJson.message ? resultJson.message : '出错了', { icon: 5, shift:6 });
 		                }
 					});
 		}
