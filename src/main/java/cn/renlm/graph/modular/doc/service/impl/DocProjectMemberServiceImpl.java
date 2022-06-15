@@ -160,7 +160,7 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 				wrapper.eq(DocProjectMember::getDeleted, false);
 			}));
 			if (members == 0) {
-				return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能修改");
+				return Result.of(HttpStatus.FORBIDDEN, "非管理员，无操作权限");
 			}
 		}
 		// 添加新关联关系
@@ -205,7 +205,7 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 			wrapper.eq(DocProjectMember::getDeleted, false);
 		}));
 		if (members == 0) {
-			return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能修改");
+			return Result.of(HttpStatus.FORBIDDEN, "非管理员，无操作权限");
 		}
 		if (CollUtil.isNotEmpty(userIds)) {
 			this.update(Wrappers.<DocProjectMember>lambdaUpdate().func(wrapper -> {

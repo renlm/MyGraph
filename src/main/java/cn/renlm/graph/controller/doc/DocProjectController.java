@@ -1,6 +1,7 @@
 package cn.renlm.graph.controller.doc;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +18,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocProjectDto;
 import cn.renlm.graph.modular.doc.entity.DocProject;
+import cn.renlm.graph.modular.doc.entity.DocProjectMember;
+import cn.renlm.graph.modular.doc.service.IDocProjectMemberService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
 import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
@@ -33,6 +36,9 @@ public class DocProjectController {
 
 	@Autowired
 	private IDocProjectService iDocProjectService;
+
+	@Autowired
+	private IDocProjectMemberService iDocProjectMemberService;
 
 	/**
 	 * 主页
@@ -117,8 +123,18 @@ public class DocProjectController {
 	@ResponseBody
 	@PostMapping("/ajax/del")
 	public Result<?> ajaxDel(Authentication authentication, String uuid) {
+		User user = (User) authentication.getPrincipal();
+		DocProject entity = iDocProjectService.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, uuid));
+		long members = iDocProjectMemberService.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
+			wrapper.eq(DocProjectMember::getRole, 3);
+			wrapper.eq(DocProjectMember::getDocProjectId, entity.getId());
+			wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
+			wrapper.eq(DocProjectMember::getDeleted, false);
+		}));
+		if (members == 0) {
+			return Result.of(HttpStatus.FORBIDDEN, "非管理员，无操作权限");
+		}
 		try {
-			User user = (User) authentication.getPrincipal();
 			return iDocProjectService.delByUuid(user, uuid);
 		} catch (Exception e) {
 			e.printStackTrace();
