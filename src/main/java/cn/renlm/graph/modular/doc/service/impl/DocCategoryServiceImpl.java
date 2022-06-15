@@ -32,6 +32,8 @@ import cn.renlm.graph.modular.doc.mapper.DocCategoryMapper;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocProjectMemberService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
+import cn.renlm.graph.modular.markdown.entity.Markdown;
+import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.TreeExtraUtil;
 
@@ -45,6 +47,9 @@ import cn.renlm.graph.util.TreeExtraUtil;
  */
 @Service
 public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCategory> implements IDocCategoryService {
+
+	@Autowired
+	private IMarkdownService iMarkdownService;
 
 	@Autowired
 	private IDocProjectService iDocProjectService;
@@ -204,9 +209,17 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 		if (members == 0) {
 			return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能删除");
 		}
+		// 获取全部子节点
 		List<Tree<Long>> tree = this.getTree(docProject.getUuid(), true, entity.getId());
-		List<Tree<Long>> list = TreeExtraUtil.getAllNodes(tree);
-		List<Long> ids = list.stream().map(it -> it.getId()).collect(Collectors.toList());
+		List<Long> ids = CollUtil.newArrayList();
+		List<String> uuids = CollUtil.newArrayList();
+		TreeExtraUtil.getAllNodes(tree).stream().map(obj -> {
+			DocCategory node = BeanUtil.copyProperties(obj, DocCategory.class);
+			ids.add(node.getId());
+			uuids.add(node.getUuid());
+			return node;
+		}).collect(Collectors.toList());
+		// 删除分类
 		this.update(Wrappers.<DocCategory>lambdaUpdate().func(wrapper -> {
 			wrapper.set(DocCategory::getDeleted, true);
 			wrapper.set(DocCategory::getUpdatedAt, new Date());
@@ -214,6 +227,15 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			wrapper.set(DocCategory::getUpdatorNickname, user.getNickname());
 			wrapper.eq(DocCategory::getDeleted, false);
 			wrapper.in(DocCategory::getId, ids);
+		}));
+		// 删除文档
+		iMarkdownService.update(Wrappers.<Markdown>lambdaUpdate().func(wrapper -> {
+			wrapper.set(Markdown::getDeleted, true);
+			wrapper.set(Markdown::getUpdatedAt, new Date());
+			wrapper.set(Markdown::getUpdatorUserId, user.getUserId());
+			wrapper.set(Markdown::getUpdatorNickname, user.getNickname());
+			wrapper.eq(Markdown::getDeleted, false);
+			wrapper.in(Markdown::getUuid, uuids);
 		}));
 		return Result.success();
 	}
