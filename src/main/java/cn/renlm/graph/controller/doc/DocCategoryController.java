@@ -117,6 +117,7 @@ public class DocCategoryController {
 			}));
 			BeanUtil.copyProperties(entity, docCategory);
 		}
+		model.put("docProject", docProject);
 		model.put("docCategory", docCategory);
 		return "doc/categoryDialog";
 	}
