@@ -2,13 +2,13 @@ package cn.renlm.graph.modular.markdown.service.impl;
 
 import java.util.Date;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
@@ -31,16 +31,12 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 	@Transactional(rollbackFor = Exception.class)
 	public Result<Markdown> ajaxSave(User user, Markdown form) {
 		if (StrUtil.isBlank(form.getUuid())) {
-			form.setUuid(IdUtil.simpleUUID().toUpperCase());
-			form.setCreatedAt(new Date());
-			form.setCreatorUserId(user.getUserId());
-			form.setCreatorNickname(user.getNickname());
-			form.setUpdatedAt(form.getCreatedAt());
-			form.setDeleted(false);
+			return Result.of(HttpStatus.BAD_REQUEST, "参数不全");
 		} else {
 			Markdown entity = this.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, form.getUuid()));
 			if (entity == null) {
 				form.setUuid(form.getUuid());
+				form.setVersion(1);
 				form.setCreatedAt(new Date());
 				form.setCreatorUserId(user.getUserId());
 				form.setCreatorNickname(user.getNickname());
@@ -48,6 +44,7 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 				form.setDeleted(false);
 			} else {
 				form.setId(entity.getId());
+				form.setVersion(entity.getVersion() + 1);
 				form.setCreatedAt(entity.getCreatedAt());
 				form.setCreatorUserId(entity.getCreatorUserId());
 				form.setCreatorNickname(entity.getCreatorNickname());
