@@ -11,7 +11,7 @@
         		split:true,
         		border:false,
         		bodyCls:'border_right',
-        		width:260
+        		width:280
         	">
        		<table id="treeGrid" class="easyui-treegrid"
           		th:data-options="|border:false,
@@ -27,7 +27,7 @@
                			var that = this;
                			if (row == null) {
                				$.each(data, function (i, item) {
-               					$(that).treegrid('expand', item.id);
+               					$(that).treegrid('expandAll', item.id);
                				});
                			}
                		},
