@@ -25,8 +25,9 @@
                           	}
                       	}],
                    		columns:[[
-                        	{field:'text',title:'名称'},
-                        	{creatorNickname',title:'创建人'}
+                        	{field:'text',title:'组织机构名称',width:100},
+                        	{field:'code',title:'代码',width:100},
+                        	{field:'disabled',title:'状态',width:25,formatter:$.disabledFormatter}
                        	]],
                        	onLoadSuccess:function(row,data){
                        		var that = this;
@@ -38,7 +39,7 @@
                        				}
                        			});
                        		} else {
-                       			$.get('category/ajax/findFathers?docProjectUuid=${docProject.uuid}', { id: *{pid} }, function (fathers) {
+                       			$.get('org/ajax/findFathers?docProjectUuid=${docProject.uuid}', { id: *{pid} }, function (fathers) {
                        				var fatherIds = [];
                        				$.each(fathers, function (i, father) {
                        					fatherIds.push(father.id);
