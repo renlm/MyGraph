@@ -57,4 +57,12 @@ public interface IDocCategoryService extends IService<DocCategory> {
 	 */
 	Result<DocCategory> ajaxSave(User user, String docProjectUuid, DocCategory docCategory);
 
+	/**
+	 * 根据Uuid删除
+	 * 
+	 * @param user
+	 * @param uuid
+	 */
+	Result<?> delByUuid(User user, String uuid);
+
 }

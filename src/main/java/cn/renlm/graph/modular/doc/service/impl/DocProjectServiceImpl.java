@@ -142,7 +142,7 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 			wrapper.eq(DocProjectMember::getDeleted, false);
 		}));
 		if (members == 0) {
-			return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能删除");
+			return Result.of(HttpStatus.FORBIDDEN, "非管理员，无操作权限");
 		}
 		this.update(Wrappers.<DocProject>lambdaUpdate().func(wrapper -> {
 			wrapper.set(DocProject::getDeleted, true);

@@ -189,4 +189,32 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 		this.saveOrUpdate(docCategory);
 		return Result.success(docCategory);
 	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public Result<?> delByUuid(User user, String uuid) {
+		DocCategory entity = this.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, uuid));
+		DocProject docProject = iDocProjectService.getById(entity.getDocProjectId());
+		long members = iDocProjectMemberService.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
+			wrapper.eq(DocProjectMember::getRole, 3);
+			wrapper.eq(DocProjectMember::getDocProjectId, entity.getDocProjectId());
+			wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
+			wrapper.eq(DocProjectMember::getDeleted, false);
+		}));
+		if (members == 0) {
+			return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能删除");
+		}
+		List<Tree<Long>> tree = this.getTree(docProject.getUuid(), true, entity.getId());
+		List<Tree<Long>> list = TreeExtraUtil.getAllNodes(tree);
+		List<Long> ids = list.stream().map(it -> it.getId()).collect(Collectors.toList());
+		this.update(Wrappers.<DocCategory>lambdaUpdate().func(wrapper -> {
+			wrapper.set(DocCategory::getDeleted, true);
+			wrapper.set(DocCategory::getUpdatedAt, new Date());
+			wrapper.set(DocCategory::getUpdatorUserId, user.getUserId());
+			wrapper.set(DocCategory::getUpdatorNickname, user.getNickname());
+			wrapper.eq(DocCategory::getDeleted, false);
+			wrapper.in(DocCategory::getId, ids);
+		}));
+		return Result.success();
+	}
 }

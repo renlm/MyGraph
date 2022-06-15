@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -136,6 +137,25 @@ public class DocCategoryController {
 		try {
 			User user = (User) authentication.getPrincipal();
 			return iDocCategoryService.ajaxSave(user, docProjectUuid, docCategory);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("出错了");
+		}
+	}
+
+	/**
+	 * 删除
+	 * 
+	 * @param authentication
+	 * @param uuid
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/ajax/del")
+	public Result<?> ajaxDel(Authentication authentication, String uuid) {
+		User user = (User) authentication.getPrincipal();
+		try {
+			return iDocCategoryService.delByUuid(user, uuid);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");

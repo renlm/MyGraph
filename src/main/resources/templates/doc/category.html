@@ -109,7 +109,22 @@
 	            } else if (item.id === 'mm-edit') {
 	            	categoryDialog (3, row.id);
 	            } else if (item.id === 'mm-del') {
-	            	
+	            	$.messager.myuiConfirm('操作提示', '您确定要删除 <span style="font-style: italic;color: #ff8c00;">' + row.text + '</span> 吗？', function (r) {
+	        			if (r) {
+	        				$.messager.progress({'text': '请求中……'});
+	        				$.post(ctx + '/doc/category/ajax/del', 
+	        						{ uuid: row.uuid }, 
+	        						function (resultJson) {
+	        			                $.messager.progress('close');
+	        							if (resultJson.statusCode == 200) {
+	        								$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+	        								$('#treeGrid').treegrid('remove', row.id);
+	        			                } else {
+	        			                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
+	        			                }
+	        						});
+	        			}
+	        		});
 	            }
 	        }
 	    });
