@@ -6,6 +6,12 @@
 	display: none;
 }
 
+.welcome-bg {
+	width: 100%;
+    height: 400px;
+    background: url(../../images/welcome.png) no-repeat center center;
+}
+
 .initTab:not(:first-child) {
 	display: block !important;
 	visibility: hidden;
