@@ -2,6 +2,7 @@ package cn.renlm.graph.modular.markdown.service.impl;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,10 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
+import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
 import cn.renlm.graph.modular.markdown.mapper.MarkdownMapper;
+import cn.renlm.graph.modular.markdown.service.IMarkdownHistoryService;
 import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 import cn.renlm.graph.response.Result;
 
@@ -26,6 +30,9 @@ import cn.renlm.graph.response.Result;
  */
 @Service
 public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> implements IMarkdownService {
+
+	@Autowired
+	private IMarkdownHistoryService iMarkdownHistoryService;
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)
@@ -43,6 +50,11 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 				form.setUpdatedAt(form.getCreatedAt());
 				form.setDeleted(false);
 			} else {
+				if (form.getVersion() == null) {
+					return Result.of(HttpStatus.BAD_REQUEST, "缺失版本号");
+				} else if (form.getVersion().intValue() < entity.getVersion().intValue()) {
+					return Result.of(HttpStatus.BAD_REQUEST, "版本错误，请获取最新数据");
+				}
 				form.setId(entity.getId());
 				form.setVersion(entity.getVersion() + 1);
 				form.setCreatedAt(entity.getCreatedAt());
@@ -55,6 +67,11 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 			}
 		}
 		this.saveOrUpdate(form);
+		// 历史记录
+		MarkdownHistory history = BeanUtil.copyProperties(form, MarkdownHistory.class);
+		history.setId(null);
+		history.setMarkdownUuid(form.getUuid());
+		iMarkdownHistoryService.save(history);
 		return Result.success(form);
 	}
 }
