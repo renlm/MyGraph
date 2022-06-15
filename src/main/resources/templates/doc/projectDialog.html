@@ -10,7 +10,7 @@
             	<input type="text" th:field="*{projectName}" 
 					class="easyui-textbox"
 					data-options="required:true,
-						prompt:'项目名称',
+						prompt:'必填',
 						width:'100%',
 						validType:'maxLength[255]'
 					"/>
@@ -97,6 +97,7 @@
                 	class="easyui-textbox"
                    	data-options="width:'100%',
                    		height:180,
+						prompt:'备注',
                    		multiline:true,
 						validType:'maxLength[255]'
                    	"/>
