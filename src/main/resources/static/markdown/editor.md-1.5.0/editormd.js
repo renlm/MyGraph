@@ -4679,14 +4679,12 @@
      */
     
     editormd.loadLayui = function (loadPath, callback) {
-        if (layui && layui.v) {
-			if (callback) {
-				callback();
-			}
-		} else {
+        if (typeof layui === 'undefined') {
 			editormd.loadCSS(loadPath + editormd.layuiURL.css, function(){
 	            editormd.loadScript(loadPath + editormd.layuiURL.js, callback || function(){});
 	        });
+		} else if (callback) {
+			callback();
 		}
     };
     
