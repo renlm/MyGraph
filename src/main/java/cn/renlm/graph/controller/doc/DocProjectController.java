@@ -47,12 +47,12 @@ public class DocProjectController {
 	 * @param uuid
 	 * @return
 	 */
-	@GetMapping("/index")
+	@GetMapping
 	public String index(ModelMap model, String uuid) {
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, uuid));
 		model.put("docProject", docProject);
-		return "doc/projectIndex";
+		return "doc/project";
 	}
 
 	/**

@@ -35,13 +35,13 @@
 		 */
 		openDocProjectFormatter: function (value, row, index) {
 			if (value || index) {}
-			return '<a href=\'javascript:void(0);\' onclick="$.openDocProjectIndex(\'' + row.uuid + '\')" style=\'color:blue;font-style: italic;\'>' + row.projectName + '</a>';
+			return '<a href=\'javascript:void(0);\' onclick="$.openDocProject(\'' + row.uuid + '\')" style=\'color:blue;font-style: italic;\'>' + row.projectName + '</a>';
 		},
 		/**
 		 * 打开文档项目
 		 */
-		openDocProjectIndex: function (uuid) {
-			top.window.location.href = (ctx + '/doc/project/index?uuid=' + uuid);
+		openDocProject: function (uuid) {
+			top.window.location.href = (ctx + '/doc/project?uuid=' + uuid);
 		},
 		/**
 		 * 标记title
