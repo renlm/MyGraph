@@ -47,6 +47,9 @@ public class DocCategoryController {
 	 */
 	@GetMapping
 	public String index(ModelMap model, String docProjectUuid) {
+		DocProject docProject = iDocProjectService
+				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
+		model.put("docProject", docProject);
 		return "doc/category";
 	}
 
