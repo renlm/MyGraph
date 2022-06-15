@@ -27,8 +27,37 @@
 	<link rel="stylesheet" th:href="@{/static/css/markdown.css}" />
 </head>
 <body>
-	<div id="editormd" class="noborder"></div>
-	<textarea id="markdown" style="display: none;" th:text="${markdown?.content}"></textarea>
+	<div class="layui-fluid">
+		<div class="layui-row md-header">
+			<div class="layui-col-md8">
+				<h3 class="view-page-title" th:text="${docCategory.text}"></h3>
+				<p class="view-page-path">
+					<i class="fa fa-folder"></i>
+					<th:strong th:each="father,iterStat : ${fathers}">
+						<a th:text="${father.text}"></a>
+						<th:block th:if="${iterStat.index < #lists.size(fathers) - 1}">/</th:block>
+					</th:strong>
+				</p>
+				<p class="view-page-time">
+	          		<i class="fa fa-calendar"></i>
+	             	被 <span th:text="${markdown.creatorNickname}"></span> 创建于 2022/05/27 20:20:17
+	        	</p>
+			</div>
+			<div class="layui-col-md4">
+				<div class="layui-btn-container">
+					<button type="button" class="layui-btn layui-btn-sm layui-btn-primary"><i class="layui-icon layui-icon-edit"></i> 编辑</button>
+					<button type="button" class="layui-btn layui-btn-sm layui-btn-primary"><i class="layui-icon layui-icon-star"></i> 收藏</button>
+					<button type="button" class="layui-btn layui-btn-sm layui-btn-primary"><i class="layui-icon layui-icon-share"></i> 分享</button>
+				</div>
+			</div>
+		</div>
+		<hr/>
+		<div class="md-body">
+			<div class="md-catalog"></div>
+			<div id="editormd" class="md-content"></div>
+		</div>
+	</div>
+	<textarea id="markdown" class="layui-hide" th:text="${markdown?.content}"></textarea>
 	<script type="text/javascript">
 		$(function () {
 			editormd.markdownToHTML("editormd", {
