@@ -18,7 +18,7 @@ import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
 public interface IMarkdownHistoryService extends IService<MarkdownHistory> {
 
 	/**
-	 * 分页列表
+	 * 分页列表（文档）
 	 * 
 	 * @param page
 	 * @param user
