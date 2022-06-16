@@ -56,7 +56,7 @@ public class MarkdownHistoryServiceImpl extends ServiceImpl<MarkdownHistoryMappe
 			treeMap.put(project.getUuid(), tree);
 		});
 		// 分页数据
-		Page<MarkdownHistoryDto> result = this.baseMapper.findDocPage(page, user, projectIds, form);
+		Page<MarkdownHistoryDto> result = this.baseMapper.findDocPage(page, projectIds, form);
 		// 处理附加信息
 		result.getRecords().forEach(history -> {
 			List<Tree<Long>> tree = treeMap.get(history.getDocProjectUuid());
