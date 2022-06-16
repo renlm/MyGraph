@@ -52,7 +52,7 @@ public class DocProjectController {
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, form.getUuid()));
 		Page<DocProjectDto> allDocProjects = iDocProjectService.findPage(page, user, form);
 		model.put("docProject", docProject);
-		model.put("allDocProjects", allDocProjects);
+		model.put("allDocProjects", allDocProjects.getRecords());
 		return "doc/project";
 	}
 
