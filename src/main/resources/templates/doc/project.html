@@ -63,8 +63,9 @@
 	<!-- 头部搜索框模板 -->
 	<div class="layui-hide" id="elemComponentSelect">
 		<select lay-search lay-filter="component">
+			<option value="">切换项目</option>
 			<th:block th:each="p,iterStat : ${allDocProjects}">
-				<option th:value="${p.uuid}" th:text="${p.projectName}" th:selected="${p.uuid==docProject.uuid}"></option>
+				<option th:value="${p.uuid}" th:text="${p.projectName}"></option>
 			</th:block>
 		</select>
 		<i class="layui-icon layui-icon-search"></i>
