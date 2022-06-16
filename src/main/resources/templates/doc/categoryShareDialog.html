@@ -1,6 +1,5 @@
 <div class="myui-fluid mlr15center" th:object="${docCategoryShare}">
     <div class="myui-row">
-    	<input type="hidden" th:field="*{uuid}" />
     	<input type="hidden" name="docCategoryUuid" th:value="${docCategoryUuid}" />
     	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     </div>

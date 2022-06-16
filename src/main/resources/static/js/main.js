@@ -17,6 +17,60 @@
  */
 (function($) {
 	$.extend({
+		/**
+		 * 文档分享
+		 */
+		docShareDialog: function (docCategoryUuid) {
+			var $docShareDialog = $('<form id=\'docShareDialog\' method=\'post\' class=\'myui\'></form>');
+		    $docShareDialog.myuiDialog({
+		        title: '文档分享',
+		        width: 850,
+		        height: 443,
+				collapsible: true,
+				minimizable: false,
+				maximizable: true,
+		        closed: false,
+		        cache: false,
+		        href: ctx + '/doc/categoryShare/dialog?docCategoryUuid=' + docCategoryUuid,
+		        modal: true,
+		        buttons: [{
+		            text: '获取链接',
+		            iconCls: 'fa fa-plus',
+		            handler: function () {
+						$.messager.progress({'text': '请求中……'});
+				        $docShareDialog.form('submit', {
+				            url: ctx + '/doc/categoryShare/ajax/save',
+				            onSubmit: function () {
+				                var isValid = $(this).form('validate');
+				                if (!isValid) {
+				                    $.messager.progress('close');
+				                }
+				                return isValid;
+				            },
+				            success: function (result) {
+								var resultJson = JSON.parse(result);
+				                $.messager.progress('close');
+				                if (resultJson.statusCode == 200) {
+				                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+				                	$docShareDialog.dialog('destroy');
+				                } else {
+				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+				                }
+				        	}
+				 		});
+					}
+		        }, {
+		            text: '关闭',
+		            iconCls: 'fa fa-close',
+		            handler: function () {
+		                $docShareDialog.dialog('destroy');
+		            }
+		        }],
+				onClose: function () {
+					$docShareDialog.dialog('destroy');
+				}
+		    });
+		},
 		/***
 		 * 修改密码
 		 */
