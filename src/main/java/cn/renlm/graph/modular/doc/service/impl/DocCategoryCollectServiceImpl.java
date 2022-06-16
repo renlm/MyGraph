@@ -3,6 +3,7 @@ package cn.renlm.graph.modular.doc.service.impl;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +11,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.util.BooleanUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocCategoryCollectDto;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
@@ -53,10 +55,16 @@ public class DocCategoryCollectServiceImpl extends ServiceImpl<DocCategoryCollec
 	public Result<?> optCollect(int type, User user, String docProjectUuid, String docCategoryUuid) {
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
+		if (!BooleanUtil.isFalse(docProject.getDeleted())) {
+			return Result.of(HttpStatus.FORBIDDEN, "项目已被删除");
+		}
 		DocCategory docCategory = iDocCategoryService.getOne(Wrappers.<DocCategory>lambdaQuery().func(wrapper -> {
 			wrapper.eq(DocCategory::getDocProjectId, docProject.getId());
 			wrapper.eq(DocCategory::getUuid, docCategoryUuid);
 		}));
+		if (!BooleanUtil.isFalse(docCategory.getDeleted())) {
+			return Result.of(HttpStatus.FORBIDDEN, "数据已被删除");
+		}
 		// 取消收藏
 		this.update(Wrappers.<DocCategoryCollect>lambdaUpdate().func(wrapper -> {
 			wrapper.set(DocCategoryCollect::getDeleted, true);

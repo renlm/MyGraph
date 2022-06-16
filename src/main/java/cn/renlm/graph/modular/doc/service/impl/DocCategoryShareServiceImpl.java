@@ -64,10 +64,16 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 		if (ObjectUtil.isEmpty(docProject) || !BooleanUtil.isTrue(docProject.getIsShare())) {
 			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
 		}
+		if (!BooleanUtil.isFalse(docProject.getDeleted())) {
+			return Result.of(HttpStatus.FORBIDDEN, "项目已被删除");
+		}
 		DocCategory docCategory = iDocCategoryService
 				.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, form.getDocCategoryUuid()));
 		if (ObjectUtil.isEmpty(docCategory)) {
 			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
+		}
+		if (!BooleanUtil.isFalse(docCategory.getDeleted())) {
+			return Result.of(HttpStatus.FORBIDDEN, "数据已被删除");
 		}
 		Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
 		if (role == null) {
