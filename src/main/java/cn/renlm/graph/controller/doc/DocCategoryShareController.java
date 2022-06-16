@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
+import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocCategoryShare;
+import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryShareService;
 import cn.renlm.graph.response.Result;
 
@@ -25,6 +29,9 @@ import cn.renlm.graph.response.Result;
 public class DocCategoryShareController {
 
 	@Autowired
+	private IDocCategoryService iDocCategoryService;
+
+	@Autowired
 	private IDocCategoryShareService iDocCategoryShareService;
 
 	/**
@@ -36,10 +43,13 @@ public class DocCategoryShareController {
 	 */
 	@RequestMapping("/dialog")
 	public String dialog(ModelMap model, String docCategoryUuid) {
+		DocCategory docCategory = iDocCategoryService
+				.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, docCategoryUuid));
 		DocCategoryShare docCategoryShare = new DocCategoryShare();
 		docCategoryShare.setShareType(1);
 		docCategoryShare.setEffectiveType(-1);
 		model.put("docCategoryUuid", docCategoryUuid);
+		model.put("docCategory", docCategory);
 		model.put("docCategoryShare", docCategoryShare);
 		return "doc/categoryShareDialog";
 	}
