@@ -28,4 +28,9 @@ public class DocCategoryCollectDto extends DocCategoryCollect {
 	 */
 	private String docCategoryUuid;
 
+	/**
+	 * 关键字
+	 */
+	private String keywords;
+
 }

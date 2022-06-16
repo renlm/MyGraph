@@ -28,4 +28,9 @@ public class DocCategoryShareDto extends DocCategoryShare {
 	 */
 	private String docCategoryUuid;
 
+	/**
+	 * 关键字
+	 */
+	private String keywords;
+
 }
