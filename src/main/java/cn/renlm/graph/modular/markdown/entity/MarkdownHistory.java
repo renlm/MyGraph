@@ -33,12 +33,6 @@ public class MarkdownHistory implements Serializable {
     private Long id;
 
     /**
-     * 来源（1：系统资源，2：文档项目，3：文档分类）
-     */
-    @TableField("source")
-    private Integer source;
-
-    /**
      * 变更说明
      */
     @TableField("change_label")
@@ -49,6 +43,12 @@ public class MarkdownHistory implements Serializable {
      */
     @TableField("markdown_uuid")
     private String markdownUuid;
+
+    /**
+     * 来源（1：系统资源，2：文档项目，3：文档分类）
+     */
+    @TableField("source")
+    private Integer source;
 
     /**
      * 文档名称

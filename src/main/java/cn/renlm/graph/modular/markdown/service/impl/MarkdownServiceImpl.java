@@ -61,6 +61,9 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 			}
 			Markdown entity = this.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, form.getUuid()));
 			if (entity == null) {
+				if (form.getSource() == null || !ArrayUtil.contains(new Integer[] { 1, 2, 3 }, form.getSource())) {
+					return Result.of(HttpStatus.BAD_REQUEST, "来源不明");
+				}
 				form.setUuid(form.getUuid());
 				form.setVersion(1);
 				form.setCreatedAt(new Date());
@@ -75,6 +78,7 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 					return Result.of(HttpStatus.BAD_REQUEST, "版本错误，请获取最新数据");
 				}
 				form.setId(entity.getId());
+				form.setSource(entity.getSource());
 				form.setVersion(entity.getVersion() + 1);
 				form.setCreatedAt(entity.getCreatedAt());
 				form.setCreatorUserId(entity.getCreatorUserId());
