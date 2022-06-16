@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.doc.dto.DocCategoryCollectDto;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocCategoryCollect;
 import cn.renlm.graph.modular.doc.entity.DocProject;
@@ -75,5 +77,11 @@ public class DocCategoryCollectServiceImpl extends ServiceImpl<DocCategoryCollec
 			this.save(docCategoryCollect);
 		}
 		return Result.success();
+	}
+
+	@Override
+	public Page<DocCategoryCollectDto> findPage(Page<DocCategoryCollectDto> page, User user,
+			DocCategoryCollectDto form) {
+		return null;
 	}
 }

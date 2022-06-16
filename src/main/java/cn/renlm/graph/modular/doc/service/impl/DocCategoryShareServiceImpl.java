@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.date.DateUtil;
@@ -52,6 +53,11 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 	private IDocCategoryService iDocCategoryService;
 
 	@Override
+	public Result<?> closeShare(User user, String docProjectUuid, String docCategoryUuid) {
+		return null;
+	}
+
+	@Override
 	public Result<?> ajaxSave(User user, DocCategoryShareDto form) {
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, form.getDocProjectUuid()));
@@ -91,5 +97,10 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 		form.setDeleted(false);
 		this.save(form);
 		return Result.success(form.getUuid());
+	}
+
+	@Override
+	public Page<DocCategoryShareDto> findPage(Page<DocCategoryShareDto> page, User user, DocCategoryShareDto form) {
+		return null;
 	}
 }

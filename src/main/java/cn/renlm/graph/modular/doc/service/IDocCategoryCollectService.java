@@ -1,8 +1,10 @@
 package cn.renlm.graph.modular.doc.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.doc.dto.DocCategoryCollectDto;
 import cn.renlm.graph.modular.doc.entity.DocCategoryCollect;
 import cn.renlm.graph.response.Result;
 
@@ -35,5 +37,15 @@ public interface IDocCategoryCollectService extends IService<DocCategoryCollect>
 	 * @return
 	 */
 	Result<?> optCollect(int type, User user, String docProjectUuid, String docCategoryUuid);
+
+	/**
+	 * 分页列表
+	 * 
+	 * @param page
+	 * @param user
+	 * @param form
+	 * @return
+	 */
+	Page<DocCategoryCollectDto> findPage(Page<DocCategoryCollectDto> page, User user, DocCategoryCollectDto form);
 
 }

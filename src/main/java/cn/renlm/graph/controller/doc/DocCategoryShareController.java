@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
@@ -25,6 +27,7 @@ import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocCategoryShare;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryShareService;
+import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.MyConfigProperties;
 
@@ -49,6 +52,26 @@ public class DocCategoryShareController {
 
 	@Autowired
 	private IDocCategoryShareService iDocCategoryShareService;
+
+	/**
+	 * 关闭分享
+	 * 
+	 * @param authentication
+	 * @param docProjectUuid
+	 * @param docCategoryUuid
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/ajax/closeShare")
+	public Result<?> closeShare(Authentication authentication, String docProjectUuid, String docCategoryUuid) {
+		try {
+			User user = (User) authentication.getPrincipal();
+			return iDocCategoryShareService.closeShare(user, docProjectUuid, docCategoryUuid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("出错了");
+		}
+	}
 
 	/**
 	 * 分享地址展示
@@ -111,5 +134,22 @@ public class DocCategoryShareController {
 			e.printStackTrace();
 			return Result.error("出错了");
 		}
+	}
+
+	/**
+	 * 分页列表
+	 * 
+	 * @param authentication
+	 * @param page
+	 * @param form
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/ajax/page")
+	public Datagrid<DocCategoryShareDto> ajaxPage(Authentication authentication, Page<DocCategoryShareDto> page,
+			DocCategoryShareDto form) {
+		User user = (User) authentication.getPrincipal();
+		Page<DocCategoryShareDto> data = iDocCategoryShareService.findPage(page, user, form);
+		return Datagrid.of(data);
 	}
 }

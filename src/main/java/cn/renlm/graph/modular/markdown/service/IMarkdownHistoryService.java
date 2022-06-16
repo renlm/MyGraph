@@ -1,7 +1,11 @@
 package cn.renlm.graph.modular.markdown.service;
 
-import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.markdown.dto.MarkdownHistoryDto;
+import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
 
 /**
  * <p>
@@ -12,5 +16,15 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-06-13
  */
 public interface IMarkdownHistoryService extends IService<MarkdownHistory> {
+
+	/**
+	 * 分页列表
+	 * 
+	 * @param page
+	 * @param user
+	 * @param form
+	 * @return
+	 */
+	Page<MarkdownHistoryDto> findPage(Page<MarkdownHistoryDto> page, User user, MarkdownHistoryDto form);
 
 }
