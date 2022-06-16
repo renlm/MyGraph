@@ -74,9 +74,9 @@
 					</button>
 					<button type="button" class="layui-btn layui-btn-primary"
 						th:if="${docProject.isShare != null and docProject.isShare}"
-						th:data-uuid="${docCategory.uuid}" 
-						th:data-title="${docCategory.text}"
-						onclick="parent.$.docShareDialog($(this).data('uuid'));">
+						th:data-puuid="${docProject.uuid}" 
+						th:data-cuuid="${docCategory.uuid}" 
+						onclick="parent.$.docShareDialog($(this).data('puuid'), $(this).data('cuuid'));">
 						<i class="layui-icon layui-icon-share"></i> 分享
 					</button>
 				</div>

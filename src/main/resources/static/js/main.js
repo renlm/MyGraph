@@ -20,7 +20,7 @@
 		/**
 		 * 文档分享
 		 */
-		docShareDialog: function (docCategoryUuid) {
+		docShareDialog: function (docProjectUuid, docCategoryUuid) {
 			var $docShareDialog = $('<form id=\'docShareDialog\' method=\'post\' class=\'myui\'></form>');
 		    $docShareDialog.myuiDialog({
 		        title: '文档分享',
@@ -31,7 +31,7 @@
 				maximizable: true,
 		        closed: false,
 		        cache: false,
-		        href: ctx + '/doc/categoryShare/dialog?docCategoryUuid=' + docCategoryUuid,
+		        href: ctx + '/doc/categoryShare/dialog?docProjectUuid=' + docProjectUuid + '&docCategoryUuid=' + docCategoryUuid,
 		        modal: true,
 		        buttons: [{
 		            text: '获取链接',
@@ -51,7 +51,7 @@
 								var resultJson = JSON.parse(result);
 				                $.messager.progress('close');
 				                if (resultJson.statusCode == 200) {
-				                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+				                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 15000, showType: 'slide'});
 				                	$docShareDialog.dialog('destroy');
 				                } else {
 				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});

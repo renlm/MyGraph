@@ -19,6 +19,11 @@ public class DocCategoryShareDto extends DocCategoryShare {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * 项目Uuid
+	 */
+	private String docProjectUuid;
+
+	/**
 	 * 分类Uuid
 	 */
 	private String docCategoryUuid;

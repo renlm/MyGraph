@@ -1,5 +1,8 @@
 package cn.renlm.graph.controller.doc;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
+import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
@@ -38,18 +42,22 @@ public class DocCategoryShareController {
 	 * 弹窗（新建）
 	 * 
 	 * @param model
+	 * @param docProjectUuid
 	 * @param docCategoryUuid
 	 * @return
 	 */
 	@RequestMapping("/dialog")
-	public String dialog(ModelMap model, String docCategoryUuid) {
+	public String dialog(ModelMap model, String docProjectUuid, String docCategoryUuid) {
 		DocCategory docCategory = iDocCategoryService
 				.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, docCategoryUuid));
+		List<DocCategory> fathers = iDocCategoryService.findFathers(docProjectUuid, docCategory.getId());
 		DocCategoryShare docCategoryShare = new DocCategoryShare();
 		docCategoryShare.setShareType(1);
 		docCategoryShare.setEffectiveType(-1);
+		model.put("docProjectUuid", docProjectUuid);
 		model.put("docCategoryUuid", docCategoryUuid);
-		model.put("docCategory", docCategory);
+		model.put("docCategoryName",
+				fathers.stream().map(DocCategory::getText).collect(Collectors.joining(StrUtil.SLASH)));
 		model.put("docCategoryShare", docCategoryShare);
 		return "doc/categoryShareDialog";
 	}
