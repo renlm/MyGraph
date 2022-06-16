@@ -13,14 +13,14 @@
 		  		<div class="layui-colla-item">
 		    		<h2 class="layui-colla-title" style="text-align: left;">链接地址</h2>
 		    		<div class="layui-colla-content layui-show" style="text-align: left;">
-		      			<a th:href="${link}" target="_blank" th:text="${link}"></a>
+		      			<span th:text="${link}" style="font-style: italic;"></span>
 		    		</div>
 		  		</div>
 		  		<div class="layui-colla-item"
 					th:if="${docCategoryShare.shareType == 2}">
 		    		<h2 class="layui-colla-title" style="text-align: left;">访问密码</h2>
 		    		<div class="layui-colla-content layui-show" style="text-align: left;">
-		      			<span th:text="${password}"></span>
+		      			<span th:text="${password}" style="font-style: italic;"></span>
 		    		</div>
 		  		</div>
 			</div>
