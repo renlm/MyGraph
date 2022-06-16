@@ -75,14 +75,47 @@
 }
 
 .layui-form.component.search-input {
-    height: 45px;
-	line-height: 45px;
-	padding-top: 3px;
+	padding-left: 0px;
+	margin-top: 9px;
+}
+
+.layui-form.component.search-input .layui-input {
+    height: 30px;
+    padding-left: 32px;
+    padding-right: 10px;
+    background-color: #424652;
+    background-color: rgba(255,255,255,.05);
+    border: none 0;
+    color: #fff;
+    color: rgba(255,255,255,.5);
+    font-size: 12px;
+}
+
+.layui-form.component.search-input .layui-form-select .layui-edge {
+    display: none;
+    border-top-color: #999;
+}
+
+.layui-form.component.search-input .layui-form-select dl {
+    top: 36px;
+    background-color: rgba(255,255,255,.9);
+}
+
+.layui-form.component.search-input > .layui-icon {
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    font-size: 12px;
+    color: rgba(255,255,255,.5);
 }
 
 .layui-form.component.search-input .layui-anim.layui-anim-upbit {
-    color: black;
+    color: rgba(0,0,0,.85);
 	text-align: left;
+}
+
+.layui-form.component.search-input .layui-anim.layui-anim-upbit .layui-this::after {
+    background-color: white;
 }
 
 .header .left {
