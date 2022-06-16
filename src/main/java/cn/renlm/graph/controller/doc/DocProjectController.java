@@ -38,14 +38,21 @@ public class DocProjectController {
 	 * 主页
 	 * 
 	 * @param model
-	 * @param uuid
+	 * @param authentication
+	 * @param page
+	 * @param form
 	 * @return
 	 */
 	@GetMapping
-	public String index(ModelMap model, String uuid) {
+	public String index(ModelMap model, Authentication authentication, Page<DocProjectDto> page, DocProjectDto form) {
+		page.setCurrent(1);
+		page.setTotal(Integer.MAX_VALUE);
+		User user = (User) authentication.getPrincipal();
 		DocProject docProject = iDocProjectService
-				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, uuid));
+				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, form.getUuid()));
+		Page<DocProjectDto> allDocProjects = iDocProjectService.findPage(page, user, form);
 		model.put("docProject", docProject);
+		model.put("allDocProjects", allDocProjects);
 		return "doc/project";
 	}
 
