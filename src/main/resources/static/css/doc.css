@@ -74,6 +74,17 @@
 	line-height: 45px;
 }
 
+.layui-form.component.search-input {
+    height: 45px;
+	line-height: 45px;
+	padding-top: 3px;
+}
+
+.layui-form.component.search-input .layui-anim.layui-anim-upbit{
+    color: black;
+	text-align: left;
+}
+
 .header .left {
 	background-color: rgba(0, 0, 0, 0);
 	float: left;
