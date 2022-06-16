@@ -63,7 +63,7 @@ public class DocCategoryShare implements Serializable {
     private Integer effectiveType;
 
     /**
-     * 有效截止时间
+     * 有效截止日期
      */
     @TableField("deadline")
     private Date deadline;
