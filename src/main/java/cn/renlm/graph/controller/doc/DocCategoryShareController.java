@@ -39,6 +39,21 @@ public class DocCategoryShareController {
 	private IDocCategoryShareService iDocCategoryShareService;
 
 	/**
+	 * 分享地址展示
+	 * 
+	 * @param model
+	 * @param uuid
+	 * @return
+	 */
+	@RequestMapping("/show")
+	public String show(ModelMap model, String uuid) {
+		DocCategoryShare docCategoryShare = iDocCategoryShareService
+				.getOne(Wrappers.<DocCategoryShare>lambdaQuery().eq(DocCategoryShare::getUuid, uuid));
+		model.put("docCategoryShare", docCategoryShare);
+		return "doc/categoryShareShow";
+	}
+
+	/**
 	 * 弹窗（新建）
 	 * 
 	 * @param model

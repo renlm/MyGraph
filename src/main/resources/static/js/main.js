@@ -51,10 +51,10 @@
 								var resultJson = JSON.parse(result);
 				                $.messager.progress('close');
 				                if (resultJson.statusCode == 200) {
-				                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 15000, showType: 'slide'});
 				                	$docShareDialog.dialog('destroy');
+									layer.open({ type: 2, title: '分享链接', offset: '200px', area: ['500px', '250px'], skin: 'layui-layer-rim', content: [ctx + '/doc/categoryShare/show?uuid=' + resultJson.data, 'no'] });
 				                } else {
-				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+									layer.msg(resultJson.message ? resultJson.message : '出错了', { icon: 5, shift:6 });
 				                }
 				        	}
 				 		});

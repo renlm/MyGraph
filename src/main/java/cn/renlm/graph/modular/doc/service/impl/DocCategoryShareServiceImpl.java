@@ -28,7 +28,6 @@ import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryShareService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
 import cn.renlm.graph.response.Result;
-import cn.renlm.graph.util.MyConfigProperties;
 
 /**
  * <p>
@@ -44,9 +43,6 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 
 	@Resource
 	private RSA rsa;
-
-	@Autowired
-	private MyConfigProperties myConfigProperties;
 
 	@Autowired
 	private IDocProjectService iDocProjectService;
@@ -81,19 +77,13 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			form.setPassword(rsa.encryptBase64(password, KeyType.PrivateKey));
 		}
 		form.setDocCategoryId(docCategory.getId());
-		form.setUuid(IdUtil.getSnowflakeNextIdStr() + IdUtil.simpleUUID().toUpperCase());
+		form.setUuid(IdUtil.simpleUUID().toUpperCase());
 		form.setCreatedAt(new Date());
 		form.setCreatorUserId(user.getUserId());
 		form.setCreatorNickname(user.getNickname());
 		form.setUpdatedAt(docCategory.getCreatedAt());
 		form.setDeleted(false);
 		this.save(form);
-		if (NumberUtil.equals(form.getShareType(), 1)) {
-			return Result.success().setMessage(
-					StrUtil.indexedFormat("访问链接：{0}/pub/doc/s/{1}", myConfigProperties.getCtx(), form.getUuid()));
-		} else {
-			return Result.success().setMessage(StrUtil.indexedFormat("访问链接：{0}/pub/doc/s/{1}\r\n访问密码：{2}",
-					myConfigProperties.getCtx(), form.getUuid(), password));
-		}
+		return Result.success(form.getUuid());
 	}
 }
