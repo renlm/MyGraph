@@ -390,7 +390,7 @@ CREATE TABLE doc_category_share (
     doc_category_id				BIGINT							NOT NULL		COMMENT '文档分类ID',
     uuid     					VARCHAR(32)   	UNIQUE			NOT NULL 		COMMENT 'UUID',
     share_type					INT				DEFAULT 1		NOT NULL		COMMENT '分享类型，1：公开，2：密码查看',
-    password					VARCHAR(255) 									COMMENT '访问密码',
+    password					TEXT 											COMMENT '访问密码',
     effective_type				INT				DEFAULT -1		NOT NULL		COMMENT '有效期类型（-1，永久，7:七天，30：三十天）',
     deadline					DATE											COMMENT '有效截止日期',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
