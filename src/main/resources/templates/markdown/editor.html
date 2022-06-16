@@ -81,6 +81,7 @@
                 		layer.load(2);
                 		$.post("[(@{/markdown/ajax/save})]", {
                 			"[(${_csrf.parameterName})]": "[(${_csrf.token})]",
+                			source: "[(${markdown.source})]",
                 			uuid: "[(${markdown.uuid})]",
                 			name: "[(${markdown.name})]",
                 			version: $("#version").val(),

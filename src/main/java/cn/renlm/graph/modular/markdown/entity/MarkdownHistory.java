@@ -45,7 +45,7 @@ public class MarkdownHistory implements Serializable {
     private String markdownUuid;
 
     /**
-     * 来源（1：系统资源，2：文档项目，3：文档分类）
+     * 来源（1：系统资源，2：文档项目（预留，未启用），3：文档分类）
      */
     @TableField("source")
     private Integer source;

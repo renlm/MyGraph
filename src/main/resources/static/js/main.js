@@ -160,19 +160,20 @@
 		},
 		/**
 		 * 打开Markdown文档编辑器
+		 * @param params source 来源（1：系统资源，2：文档项目（预留，未启用），3：文档分类）
 		 * @param params uuid 唯一标识
 		 * @param params title 标题
 		 * @param params success 弹出后的成功回调
 		 * @param params cancel 关闭后的回调
 		 */
-		openMarkdownEditor: function (uuid, title, success, cancel) {
+		openMarkdownEditor: function (source, uuid, title, success, cancel) {
 			layer.open({
 				type: 2,
 			  	title: title,
 			  	shadeClose: true,
   				shade: 0.8,
 			  	area: ['100%', '100%'],
-			  	content: ctx + '/markdown/editor?uuid=' + uuid + '&name=' + title,
+			  	content: ctx + '/markdown/editor?source=' + source + '&uuid=' + uuid + '&name=' + title,
 			  	success: function (layero, index) {
 			    	if(success) {
 						success(layero, index);
@@ -425,7 +426,7 @@
 		    } else if(value == 'permission') {
 		        return '权限';
 		    } else if(value == 'markdown') {
-				return '<a href="javascript:$.openMarkdownEditor(\'' + row.resourceId + '\',\'' + row.text + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain" style="width: 100px;"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text" style="margin: 0px;">Markdown文档</span></span></a>';
+				return '<a href="javascript:$.openMarkdownEditor(1,\'' + row.resourceId + '\',\'' + row.text + '\');" class="l-btn myui-btn-green l-btn-small l-btn-plain" style="width: 100px;"><span class="l-btn-left l-btn-icon-left"><span class="l-btn-text" style="margin: 0px;">Markdown文档</span></span></a>';
 			} else {
 		        return value;
 		    }

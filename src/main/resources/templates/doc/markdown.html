@@ -65,7 +65,7 @@
 						th:if="${role != null and (role == 2 or role == 3)}"
 						th:data-uuid="${docCategory.uuid}" 
 						th:data-title="${docCategory.text}"
-						onclick="$.openMarkdownEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
+						onclick="$.openMarkdownEditor(3,$(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
 						<i class="layui-icon layui-icon-edit"></i> 编辑
 					</button>
 					<button type="button" class="layui-btn layui-btn-primary" th:data-iscollected="${isCollected}" onclick="optCollect(this);">

@@ -413,7 +413,7 @@ DROP TABLE IF EXISTS markdown;
 CREATE TABLE markdown (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
     uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
-    source 						INT								NOT NULL		COMMENT '来源（1：系统资源，2：文档项目，3：文档分类）',
+    source 						INT								NOT NULL		COMMENT '来源（1：系统资源，2：文档项目（预留，未启用），3：文档分类）',
     name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
     version 					INT								NOT NULL		COMMENT '版本',
     content						LONGTEXT										COMMENT '文档内容',
@@ -434,7 +434,7 @@ CREATE TABLE markdown_history (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
     change_label 				VARCHAR(255)					NOT NULL		COMMENT '变更说明',
     markdown_uuid       		VARCHAR(32)						NOT NULL		COMMENT 'Markdown文档UUID',
-    source 						INT								NOT NULL		COMMENT '来源（1：系统资源，2：文档项目，3：文档分类）',
+    source 						INT								NOT NULL		COMMENT '来源（1：系统资源，2：文档项目（预留，未启用），3：文档分类）',
     name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
     version 					INT								NOT NULL		COMMENT '版本',
     content						LONGTEXT										COMMENT '文档内容',
