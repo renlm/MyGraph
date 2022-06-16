@@ -60,10 +60,11 @@
 		</div>
 		<!-- 底部结束 -->
 	</div>
+	<!-- 头部搜索框模板 -->
 	<div class="layui-hide" id="elemComponentSelect">
 		<select lay-search lay-filter="component">
 			<th:block th:each="p,iterStat : ${allDocProjects}">
-				<option th:value="${p.uuid}" th:text="${p.projectName}"></option>
+				<option th:value="${p.uuid}" th:text="${p.projectName}" th:selected="${p.uuid==docProject.uuid}"></option>
 			</th:block>
 		</select>
 		<i class="layui-icon layui-icon-search"></i>
