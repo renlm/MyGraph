@@ -386,11 +386,11 @@ DROP TABLE IF EXISTS doc_category_share;
 CREATE TABLE doc_category_share (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
     doc_category_id				BIGINT							NOT NULL		COMMENT '文档分类ID',
-    uuid     					VARCHAR(64)   	UNIQUE			NOT NULL 		COMMENT 'UUID',
+    uuid     					VARCHAR(32)   	UNIQUE			NOT NULL 		COMMENT 'UUID',
     share_type					INT				DEFAULT 1		NOT NULL		COMMENT '分享类型，1：公开，2：密码查看',
     password					VARCHAR(255) 									COMMENT '访问密码',
     effective_type				INT				DEFAULT -1		NOT NULL		COMMENT '有效期类型（-1，永久，7:七天，30：三十天）',
-    deadline					TIMESTAMP										COMMENT '有效截止时间',
+    deadline					DATETIME										COMMENT '有效截止日期',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
     creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
@@ -76,12 +77,16 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			}
 			form.setPassword(rsa.encryptBase64(password, KeyType.PrivateKey));
 		}
+		if (!NumberUtil.equals(form.getEffectiveType(), -1)) {
+			form.setDeadline(DateUtil.offsetDay(new Date(), form.getEffectiveType()));
+		}
 		form.setDocCategoryId(docCategory.getId());
 		form.setUuid(IdUtil.simpleUUID().toUpperCase());
 		form.setCreatedAt(new Date());
 		form.setCreatorUserId(user.getUserId());
 		form.setCreatorNickname(user.getNickname());
 		form.setUpdatedAt(docCategory.getCreatedAt());
+		form.setDisabled(false);
 		form.setDeleted(false);
 		this.save(form);
 		return Result.success(form.getUuid());
