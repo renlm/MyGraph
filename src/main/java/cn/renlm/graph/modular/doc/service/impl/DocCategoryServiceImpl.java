@@ -32,6 +32,8 @@ import cn.renlm.graph.modular.doc.mapper.DocCategoryMapper;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
+import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
+import cn.renlm.graph.modular.markdown.service.IMarkdownHistoryService;
 import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.TreeExtraUtil;
@@ -49,6 +51,9 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 
 	@Autowired
 	private IMarkdownService iMarkdownService;
+
+	@Autowired
+	private IMarkdownHistoryService iMarkdownHistoryService;
 
 	@Autowired
 	private IDocProjectService iDocProjectService;
@@ -206,23 +211,42 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			return node;
 		}).collect(Collectors.toList());
 		// 删除分类
+		Date time = new Date();
 		this.update(Wrappers.<DocCategory>lambdaUpdate().func(wrapper -> {
 			wrapper.set(DocCategory::getDeleted, true);
-			wrapper.set(DocCategory::getUpdatedAt, new Date());
+			wrapper.set(DocCategory::getUpdatedAt, time);
 			wrapper.set(DocCategory::getUpdatorUserId, user.getUserId());
 			wrapper.set(DocCategory::getUpdatorNickname, user.getNickname());
 			wrapper.eq(DocCategory::getDeleted, false);
 			wrapper.in(DocCategory::getId, ids);
 		}));
 		// 删除文档
+		List<MarkdownHistory> histories = CollUtil.newArrayList();
+		List<Markdown> markdowns = iMarkdownService.list(Wrappers.<Markdown>lambdaQuery().func(wrapper -> {
+			wrapper.eq(Markdown::getDeleted, false);
+			wrapper.in(Markdown::getUuid, uuids);
+		}));
+		markdowns.forEach(md -> {
+			MarkdownHistory history = BeanUtil.copyProperties(md, MarkdownHistory.class);
+			history.setChangeLabel("删除");
+			history.setMarkdownId(md.getId());
+			history.setMarkdownUuid(md.getUuid());
+			history.setDeleted(true);
+			history.setUpdatedAt(time);
+			history.setUpdatorUserId(user.getUserId());
+			history.setUpdatorNickname(user.getNickname());
+			histories.add(history);
+		});
 		iMarkdownService.update(Wrappers.<Markdown>lambdaUpdate().func(wrapper -> {
 			wrapper.set(Markdown::getDeleted, true);
-			wrapper.set(Markdown::getUpdatedAt, new Date());
+			wrapper.set(Markdown::getUpdatedAt, time);
 			wrapper.set(Markdown::getUpdatorUserId, user.getUserId());
 			wrapper.set(Markdown::getUpdatorNickname, user.getNickname());
 			wrapper.eq(Markdown::getDeleted, false);
 			wrapper.in(Markdown::getUuid, uuids);
 		}));
+		// 保存历史记录
+		iMarkdownHistoryService.saveBatch(histories);
 		return Result.success();
 	}
 }
