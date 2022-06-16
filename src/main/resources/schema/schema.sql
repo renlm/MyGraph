@@ -381,6 +381,30 @@ CREATE TABLE doc_category_collect (
     INDEX deleted(deleted)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '文档分类-收藏';
 
+-- 文档分类-分享
+DROP TABLE IF EXISTS doc_category_share;
+CREATE TABLE doc_category_share (
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    doc_category_id				BIGINT							NOT NULL		COMMENT '文档分类ID',
+    share_type					INT				DEFAULT 1		NOT NULL		COMMENT '分享类型，1：公开，2：密码查看',
+    password					VARCHAR(255) 									COMMENT '访问密码',
+    effective_type				INT				DEFAULT -1		NOT NULL		COMMENT '有效期类型（-1，永久，7:七天，30：三十天）',
+    deadline					TIMESTAMP										COMMENT '有效截止时间',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    disabled TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否禁用（默认否）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注',
+    INDEX doc_category_id(doc_category_id),
+    INDEX deadline(deadline),
+    INDEX creator_user_id(creator_user_id),
+    INDEX deleted(deleted)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '文档分类-分享';
+
 -- Markdown文档
 DROP TABLE IF EXISTS markdown;
 CREATE TABLE markdown (
@@ -398,30 +422,6 @@ CREATE TABLE markdown (
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
     remark VARCHAR(255) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档';
-
--- Markdown文档-分享
-DROP TABLE IF EXISTS markdown_share;
-CREATE TABLE markdown_share (
-    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
-    markdown_uuid       		VARCHAR(32)						NOT NULL		COMMENT 'Markdown文档UUID',
-    share_type					INT				DEFAULT 1		NOT NULL		COMMENT '分享类型，1：公开，2：密码查看',
-    password					VARCHAR(255) 									COMMENT '访问密码',
-    effective_type				INT				DEFAULT -1		NOT NULL		COMMENT '有效期类型（-1，永久，7:七天，30：三十天）',
-    deadline					TIMESTAMP										COMMENT '有效截止时间',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
-    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
-    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
-    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
-    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
-    disabled TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否禁用（默认否）',
-    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
-    remark VARCHAR(255) COMMENT '备注',
-    INDEX markdown_uuid(markdown_uuid),
-    INDEX deadline(deadline),
-    INDEX creator_user_id(creator_user_id),
-    INDEX deleted(deleted)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档-分享';
 
 -- Markdown文档-历史记录
 DROP TABLE IF EXISTS markdown_history;

@@ -41,12 +41,12 @@
 		<table author="Renlm" name="doc_project_member" entity="true" />
 		<table author="Renlm" name="doc_category" entity="true" />
 		<table author="Renlm" name="doc_category_collect" entity="true" />
+		<table author="Renlm" name="doc_category_share" entity="true" />
 	</module>
 
 	<module name="markdown" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="markdown" entity="true" />
 		<table author="Renlm" name="markdown_history" entity="true" />
-		<table author="Renlm" name="markdown_share" entity="true" />
 	</module>
 
 	<module name="graph" package="cn.renlm.graph.modular">
