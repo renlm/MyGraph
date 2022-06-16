@@ -371,6 +371,7 @@ CREATE TABLE doc_category (
 DROP TABLE IF EXISTS doc_category_collect;
 CREATE TABLE doc_category_collect (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    doc_project_id				BIGINT							NOT NULL		COMMENT '文档项目ID',
     doc_category_id				BIGINT							NOT NULL		COMMENT '文档分类ID',
     member_user_id 				VARCHAR(32) 					NOT NULL		COMMENT '收藏人（用户ID）',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
@@ -385,6 +386,7 @@ CREATE TABLE doc_category_collect (
 DROP TABLE IF EXISTS doc_category_share;
 CREATE TABLE doc_category_share (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    doc_project_id				BIGINT							NOT NULL		COMMENT '文档项目ID',
     doc_category_id				BIGINT							NOT NULL		COMMENT '文档分类ID',
     uuid     					VARCHAR(32)   	UNIQUE			NOT NULL 		COMMENT 'UUID',
     share_type					INT				DEFAULT 1		NOT NULL		COMMENT '分享类型，1：公开，2：密码查看',
