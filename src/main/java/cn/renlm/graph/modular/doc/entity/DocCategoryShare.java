@@ -39,6 +39,12 @@ public class DocCategoryShare implements Serializable {
     private Long docCategoryId;
 
     /**
+     * UUID
+     */
+    @TableField("uuid")
+    private String uuid;
+
+    /**
      * 分享类型，1：公开，2：密码查看
      */
     @TableField("share_type")
