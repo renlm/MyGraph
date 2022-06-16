@@ -114,6 +114,11 @@
 	text-align: left;
 }
 
+.layui-form.component.search-input .layui-anim.layui-anim-upbit dd:first-child
+	{
+	display: none;
+}
+
 .layui-form.component.search-input .layui-anim.layui-anim-upbit .layui-this::after
 	{
 	background-color: white;

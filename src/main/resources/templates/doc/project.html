@@ -80,7 +80,9 @@
 	    	// 搜索项目
 	    	layui.form.on('select(component)', function(data){
 	      		var value = data.value;
-	      		location.href = /^\//.test(value) ? value : (ctx+'/doc/project?uuid='+ value);
+	      		if (value) {
+	      			location.href = /^\//.test(value) ? value : (ctx+'/doc/project?uuid='+ value);
+	      		} 
 	    	});
 	  }();
 	</script>
