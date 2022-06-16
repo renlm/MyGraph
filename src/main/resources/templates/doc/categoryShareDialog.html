@@ -36,7 +36,16 @@
 						data: [
 						    {text:'公开',value:1},
 							{text:'密码查看',value:2}
-						]
+						],
+						onChange:function(newValue,oldValue){
+							var $target = $('#visit-passwd');
+							if(newValue===1){
+								$target.textbox({required:false,disabled:true});
+								$target.textbox('clear');
+							} else if(newValue===2){
+								$target.textbox({required:true,disabled:false});
+							}
+						}
 					"/>
             </div>
         </div>
@@ -46,9 +55,11 @@
             <label class="myui-form-label">访问密码</label>
             <div class="myui-input-block">
                 <input type="text" th:field="*{password}"
+                	id="visit-passwd"
                 	class="easyui-passwordbox"
                 	data-options="width:'100%',
-						validType:'maxLength[12]'
+                		disabled:true,
+                		validType:['alphaNum','maxLength[12]']
                    	"/>
             </div>
         </div>
