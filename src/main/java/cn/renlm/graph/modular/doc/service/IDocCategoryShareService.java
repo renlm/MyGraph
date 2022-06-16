@@ -24,6 +24,6 @@ public interface IDocCategoryShareService extends IService<DocCategoryShare> {
 	 * @param form
 	 * @return
 	 */
-	Result<DocCategoryShareDto> ajaxSave(User user, DocCategoryShareDto form);
+	Result<?> ajaxSave(User user, DocCategoryShareDto form);
 
 }

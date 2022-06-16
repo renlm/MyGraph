@@ -71,7 +71,7 @@ public class DocCategoryShareController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/save")
-	public Result<DocCategoryShareDto> ajaxSave(Authentication authentication, DocCategoryShareDto form) {
+	public Result<?> ajaxSave(Authentication authentication, DocCategoryShareDto form) {
 		try {
 			User user = (User) authentication.getPrincipal();
 			return iDocCategoryShareService.ajaxSave(user, form);

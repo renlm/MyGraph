@@ -28,6 +28,7 @@ import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryShareService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.util.MyConfigProperties;
 
 /**
  * <p>
@@ -45,13 +46,16 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 	private RSA rsa;
 
 	@Autowired
+	private MyConfigProperties myConfigProperties;
+
+	@Autowired
 	private IDocProjectService iDocProjectService;
 
 	@Autowired
 	private IDocCategoryService iDocCategoryService;
 
 	@Override
-	public Result<DocCategoryShareDto> ajaxSave(User user, DocCategoryShareDto form) {
+	public Result<?> ajaxSave(User user, DocCategoryShareDto form) {
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, form.getDocProjectUuid()));
 		if (ObjectUtil.isEmpty(docProject) || !BooleanUtil.isTrue(docProject.getIsShare())) {
@@ -67,13 +71,14 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
 		}
 		// 保存分享信息
+		String password = form.getPassword();
 		if (NumberUtil.equals(form.getShareType(), 1)) {
 			form.setPassword(null);
 		} else {
-			if (StrUtil.isBlank(form.getPassword())) {
+			if (StrUtil.isBlank(password)) {
 				return Result.of(HttpStatus.BAD_REQUEST, "访问密码缺失");
 			}
-			form.setPassword(rsa.encryptBase64(form.getPassword(), KeyType.PrivateKey));
+			form.setPassword(rsa.encryptBase64(password, KeyType.PrivateKey));
 		}
 		form.setUuid(IdUtil.getSnowflakeNextIdStr() + IdUtil.simpleUUID().toUpperCase());
 		form.setCreatedAt(new Date());
@@ -82,6 +87,8 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 		form.setUpdatedAt(docCategory.getCreatedAt());
 		form.setDeleted(false);
 		this.save(form);
-		return Result.success(form);
+		String message = StrUtil.indexedFormat("访问链接：{0}/pub/doc/s/{1}\r\n访问密码：{2}", myConfigProperties.getCtx(),
+				form.getUuid(), password);
+		return Result.success().setMessage(message);
 	}
 }
