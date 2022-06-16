@@ -4,7 +4,7 @@
     <title>文档分类</title>
 </head>
 <body layout:fragment="content" class="myui">
-	<div id="mm" class="submenubutton" style="width: 140px;">
+	<div id="mm" class="submenubutton" style="width: 140px;display: none;">
 	    <div id="mm-addSub" iconCls="fa fa-plus">新增子级</div>
 	    <div class="menu-sep"></div>
 	    <div id="mm-edit" iconCls="fa fa-edit">编辑</div>
@@ -43,11 +43,18 @@
 				     	$('#Iframe')[0].contentWindow.location.href = url;
 					},
 			        onContextMenu: function (e, row) {
-			            e.preventDefault();
-			            $('#mm').menu('show', {
-			           		left: e.pageX,
-			             	top: e.pageY
-			         	}).data('id', row.id);
+			        	var $role = ${role};
+			        	var $mflg = $role === 2;
+			        	if ($role === 3) {
+			        		$mflg = true;
+			        	}
+			        	if ($mflg) {
+			        		e.preventDefault();
+				            $('#mm').menu('show', {
+				           		left: e.pageX,
+				             	top: e.pageY
+				         	}).data('id', row.id);
+			        	}
 			        }
               	|">
 				<thead>
@@ -70,7 +77,8 @@
 	    	</div>
     	</div>
     </div>
-	<div id="toolbar" class="myui-toolbar">
+	<div id="toolbar" class="myui-toolbar"
+		th:if="${role != null and (role == 2 or role == 3)}">
 		<a href="javascript:void(0);"
           	class="easyui-menubutton myui-btn-normal myui-btn-green"
          	data-options="menu:'#moreAddMenu',
@@ -99,8 +107,8 @@
        		">编辑
    		</a>
     </div>
-    <script type="text/javascript">
-	    $('#mm').menu({
+    <script type="text/javascript" th:if="${role != null and (role == 2 or role == 3)}">
+	    $('#mm').show().menu({
 	        onClick: function (item) {
 	        	var id = $(this).data('id');
 	        	var row = $('#treeGrid').treegrid('find', id);
