@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 文档分类
+ * 文档分类-分享
  * </p>
  *
  * @author Renlm
@@ -21,8 +21,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("doc_category")
-public class DocCategory implements Serializable {
+@TableName("doc_category_share")
+public class DocCategoryShare implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,52 +33,34 @@ public class DocCategory implements Serializable {
     private Long id;
 
     /**
-     * 文档项目ID
+     * 文档分类ID
      */
-    @TableField("doc_project_id")
-    private Long docProjectId;
+    @TableField("doc_category_id")
+    private Long docCategoryId;
 
     /**
-     * UUID
+     * 分享类型，1：公开，2：密码查看
      */
-    @TableField("uuid")
-    private String uuid;
+    @TableField("share_type")
+    private Integer shareType;
 
     /**
-     * 名称
+     * 访问密码
      */
-    @TableField("text")
-    private String text;
+    @TableField("password")
+    private String password;
 
     /**
-     * 图标
+     * 有效期类型（-1，永久，7:七天，30：三十天）
      */
-    @TableField("icon_cls")
-    private String iconCls;
+    @TableField("effective_type")
+    private Integer effectiveType;
 
     /**
-     * 层级
+     * 有效截止时间
      */
-    @TableField("level")
-    private Integer level;
-
-    /**
-     * 排序
-     */
-    @TableField("sort")
-    private Integer sort;
-
-    /**
-     * 展开状态，open：无子节点、closed：有子节点
-     */
-    @TableField("state")
-    private String state;
-
-    /**
-     * 父级ID
-     */
-    @TableField("pid")
-    private Long pid;
+    @TableField("deadline")
+    private Date deadline;
 
     /**
      * 创建时间
@@ -115,6 +97,12 @@ public class DocCategory implements Serializable {
      */
     @TableField("updator_nickname")
     private String updatorNickname;
+
+    /**
+     * 是否禁用（默认否）
+     */
+    @TableField("disabled")
+    private Boolean disabled;
 
     /**
      * 是否删除（默认否）
