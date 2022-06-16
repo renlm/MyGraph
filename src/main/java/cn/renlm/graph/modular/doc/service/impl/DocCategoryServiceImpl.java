@@ -18,6 +18,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
@@ -27,10 +28,8 @@ import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocProject;
-import cn.renlm.graph.modular.doc.entity.DocProjectMember;
 import cn.renlm.graph.modular.doc.mapper.DocCategoryMapper;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
-import cn.renlm.graph.modular.doc.service.IDocProjectMemberService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
 import cn.renlm.graph.modular.markdown.service.IMarkdownService;
@@ -53,9 +52,6 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 
 	@Autowired
 	private IDocProjectService iDocProjectService;
-
-	@Autowired
-	private IDocProjectMemberService iDocProjectMemberService;
 
 	@Override
 	public List<DocCategory> findListByPid(String docProjectUuid, Long pid) {
@@ -158,13 +154,8 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
 		docCategory.setDocProjectId(docProject.getId());
-		long members = iDocProjectMemberService.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
-			wrapper.in(DocProjectMember::getRole, 2, 3);
-			wrapper.eq(DocProjectMember::getDocProjectId, docProject.getId());
-			wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
-			wrapper.eq(DocProjectMember::getDeleted, false);
-		}));
-		if (members == 0) {
+		Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
+		if (role == null || !ArrayUtil.contains(new Integer[] { 2, 3 }, role.intValue())) {
 			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
 		}
 		if (docCategory.getPid() == null) {
@@ -200,14 +191,9 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 	public Result<?> delByUuid(User user, String uuid) {
 		DocCategory entity = this.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, uuid));
 		DocProject docProject = iDocProjectService.getById(entity.getDocProjectId());
-		long members = iDocProjectMemberService.count(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
-			wrapper.eq(DocProjectMember::getRole, 3);
-			wrapper.eq(DocProjectMember::getDocProjectId, entity.getDocProjectId());
-			wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
-			wrapper.eq(DocProjectMember::getDeleted, false);
-		}));
-		if (members == 0) {
-			return Result.of(HttpStatus.FORBIDDEN, "非管理员，无操作权限");
+		Integer role = iDocProjectService.findRole(user, entity.getDocProjectId());
+		if (role == null || !ArrayUtil.contains(new Integer[] { 2, 3 }, role.intValue())) {
+			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
 		}
 		// 获取全部子节点
 		List<Tree<Long>> tree = this.getTree(docProject.getUuid(), true, entity.getId());

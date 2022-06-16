@@ -62,7 +62,7 @@
 			<div class="layui-col-md4">
 				<div class="layui-btn-container">
 					<button type="button" class="layui-btn layui-btn-primary" 
-						th:if="${role != null and role == 3}"
+						th:if="${role != null and (role == 2 or role == 3)}"
 						th:data-uuid="${docCategory.uuid}" 
 						th:data-title="${docCategory.text}"
 						onclick="$.openMarkdownEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">

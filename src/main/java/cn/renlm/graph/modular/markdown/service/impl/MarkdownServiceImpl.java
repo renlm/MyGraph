@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
@@ -54,7 +55,7 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 					.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, form.getUuid()));
 			if (ObjectUtil.isNotEmpty(docCategory)) {
 				Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
-				if (role == null || role.intValue() != 3) {
+				if (role == null || !ArrayUtil.contains(new Integer[] { 2, 3 }, role.intValue())) {
 					return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
 				}
 			}
