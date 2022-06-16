@@ -26,7 +26,6 @@
 		from doc_project dp, doc_category dc, markdown_history mh
 		where dp.id = dc.doc_project_id
 			and dc.uuid = mh.markdown_uuid
-			and dc.deleted = 0
 			and dp.id in 
 			<foreach collection="projectIds" item="projectId" open="(" close=")" separator=",">
 				#{projectId,jdbcType=BIGINT}
