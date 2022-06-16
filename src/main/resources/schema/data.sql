@@ -4493,7 +4493,9 @@ EasyUI + Mxgraph + Editor.md
 ;
 
 -- Markdown文档-历史记录
-INSERT INTO markdown_history SELECT * FROM markdown;
+INSERT INTO markdown_history(`id`, `source`, `change_label`, `markdown_uuid`, `name`, `version`, `content`, `created_at`, `creator_user_id`, `creator_nickname`, `updated_at`, `updator_user_id`, `updator_nickname`, `deleted`, `remark`) 
+SELECT `id`, 1 AS `source`, '保存' AS `change_label`, `uuid` AS `markdown_uuid`, `name`, `version`, `content`, `created_at`, `creator_user_id`, `creator_nickname`, `updated_at`, `updator_user_id`, `updator_nickname`, `deleted`, `remark` FROM markdown
+;
 
 -- 图形设计样例数据
 INSERT INTO graph (uuid,name,category_code,category_name,is_public,cover,zoom,dx,dy,grid_enabled,grid_size,grid_color,page_visible,background,connection_arrows_enabled,connectable,guides_enabled,xml,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
