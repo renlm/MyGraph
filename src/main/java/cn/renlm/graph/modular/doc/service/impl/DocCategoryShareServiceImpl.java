@@ -85,7 +85,7 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 		form.setCreatedAt(new Date());
 		form.setCreatorUserId(user.getUserId());
 		form.setCreatorNickname(user.getNickname());
-		form.setUpdatedAt(docCategory.getCreatedAt());
+		form.setUpdatedAt(form.getCreatedAt());
 		form.setDisabled(false);
 		form.setDeleted(false);
 		this.save(form);
