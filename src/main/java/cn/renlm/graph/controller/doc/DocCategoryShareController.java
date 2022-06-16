@@ -3,6 +3,8 @@ package cn.renlm.graph.controller.doc;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.asymmetric.KeyType;
+import cn.hutool.crypto.asymmetric.RSA;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
@@ -21,6 +26,7 @@ import cn.renlm.graph.modular.doc.entity.DocCategoryShare;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryShareService;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.util.MyConfigProperties;
 
 /**
  * 文档分类-分享
@@ -31,6 +37,12 @@ import cn.renlm.graph.response.Result;
 @Controller
 @RequestMapping("/doc/categoryShare")
 public class DocCategoryShareController {
+
+	@Resource
+	private RSA rsa;
+
+	@Autowired
+	private MyConfigProperties myConfigProperties;
 
 	@Autowired
 	private IDocCategoryService iDocCategoryService;
@@ -49,7 +61,12 @@ public class DocCategoryShareController {
 	public String show(ModelMap model, String uuid) {
 		DocCategoryShare docCategoryShare = iDocCategoryShareService
 				.getOne(Wrappers.<DocCategoryShare>lambdaQuery().eq(DocCategoryShare::getUuid, uuid));
+		model.put("ctx", myConfigProperties.getCtx());
 		model.put("docCategoryShare", docCategoryShare);
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+			String password = rsa.decryptStr(docCategoryShare.getPassword(), KeyType.PublicKey);
+			model.put("password", password);
+		}
 		return "doc/categoryShareShow";
 	}
 

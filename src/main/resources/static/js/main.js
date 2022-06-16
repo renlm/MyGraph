@@ -52,7 +52,7 @@
 				                $.messager.progress('close');
 				                if (resultJson.statusCode == 200) {
 				                	$docShareDialog.dialog('destroy');
-									layer.open({ type: 2, title: '分享链接', offset: '200px', area: ['500px', '250px'], skin: 'layui-layer-rim', content: [ctx + '/doc/categoryShare/show?uuid=' + resultJson.data, 'no'] });
+									layer.open({ type: 2, title: '分享链接', offset: '200px', area: ['750px', '280px'], skin: 'layui-layer-rim', content: [ctx + '/doc/categoryShare/show?uuid=' + resultJson.data, 'no'] });
 				                } else {
 									layer.msg(resultJson.message ? resultJson.message : '出错了', { icon: 5, shift:6 });
 				                }
