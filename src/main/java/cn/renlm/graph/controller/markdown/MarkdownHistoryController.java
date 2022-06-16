@@ -11,7 +11,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.markdown.dto.MarkdownHistoryDto;
-import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
 import cn.renlm.graph.modular.markdown.service.IMarkdownHistoryService;
 import cn.renlm.graph.response.Datagrid;
 
@@ -38,7 +37,7 @@ public class MarkdownHistoryController {
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/docPage")
-	public Datagrid<MarkdownHistoryDto> ajaxDocPage(Authentication authentication, Page<MarkdownHistory> page,
+	public Datagrid<MarkdownHistoryDto> ajaxDocPage(Authentication authentication, Page<MarkdownHistoryDto> page,
 			MarkdownHistoryDto form) {
 		User user = (User) authentication.getPrincipal();
 		Page<MarkdownHistoryDto> data = iMarkdownHistoryService.findDocPage(page, user, form);

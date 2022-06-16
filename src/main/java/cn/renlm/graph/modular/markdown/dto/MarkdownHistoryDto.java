@@ -19,14 +19,29 @@ public class MarkdownHistoryDto extends MarkdownHistory {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * 项目Id
+	 */
+	private Long docProjectId;
+
+	/**
 	 * 项目Uuid
 	 */
 	private String docProjectUuid;
 
 	/**
+	 * 分类Id
+	 */
+	private Long docCategoryId;
+
+	/**
 	 * 分类Uuid
 	 */
 	private String docCategoryUuid;
+
+	/**
+	 * 父级分类全路径名称
+	 */
+	private String parentsDocCategorName;
 
 	/**
 	 * 关键字
