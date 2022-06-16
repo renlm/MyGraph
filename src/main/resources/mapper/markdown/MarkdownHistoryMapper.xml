@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.renlm.graph.modular.markdown.mapper.MarkdownHistoryMapper">
-
+	<!-- 分页列表（文档） -->
+	<select id="findDocPage" resultType="cn.renlm.graph.modular.markdown.dto.MarkdownHistoryDto">
+		select mh.`history_id`,
+			mh.`change_label`,
+			mh.`markdown_id`,
+			mh.`markdown_uuid`,
+			mh.`name`,
+			mh.`version`,
+			mh.`created_at`,
+			mh.`creator_user_id`,
+			mh.`creator_nickname`,
+			mh.`updated_at`,
+			mh.`updator_user_id`,
+			mh.`updator_nickname`,
+			mh. `deleted`,
+			mh.`remark`,
+			dp.id as `docProjectId`,
+			dp.uuid as `docProjectUuid`,
+			dp.project_name as `docProjectName`,
+			dc.id as `docCategoryId`,
+			dc.uuid as `docCategoryUuid`,
+			dc.`text` as `docCategoryName`
+		from doc_project dp, doc_category dc, markdown_history mh
+		where dp.id = dc.doc_project_id
+			and dc.uuid = mh.markdown_uuid
+			and dc.deleted = 0
+			and dp.id in 
+			<foreach collection="projectIds" item="projectId" open="(" close=")" separator=",">
+				#{projectId,jdbcType=BIGINT}
+			</foreach>
+		order by mh.updated_at desc, mh.history_id desc
+	</select>
 </mapper>

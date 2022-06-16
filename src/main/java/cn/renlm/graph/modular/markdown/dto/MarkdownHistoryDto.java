@@ -29,6 +29,11 @@ public class MarkdownHistoryDto extends MarkdownHistory {
 	private String docProjectUuid;
 
 	/**
+	 * 项目名称
+	 */
+	private String docProjectName;
+
+	/**
 	 * 分类Id
 	 */
 	private Long docCategoryId;
@@ -37,6 +42,11 @@ public class MarkdownHistoryDto extends MarkdownHistory {
 	 * 分类Uuid
 	 */
 	private String docCategoryUuid;
+
+	/**
+	 * 分类名称
+	 */
+	private String docCategoryName;
 
 	/**
 	 * 父级分类全路径名称
