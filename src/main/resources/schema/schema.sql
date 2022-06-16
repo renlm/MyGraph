@@ -423,13 +423,16 @@ CREATE TABLE markdown (
     updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
     updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
-    remark VARCHAR(255) COMMENT '备注'
+    remark VARCHAR(255) COMMENT '备注',
+    INDEX version(version)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档';
 
 -- Markdown文档-历史记录
 DROP TABLE IF EXISTS markdown_history;
 CREATE TABLE markdown_history (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    source 						INT								NOT NULL		COMMENT '来源（1：系统资源，2：文档项目，3：文档分类）',
+    change 						VARCHAR(255)					NOT NULL		COMMENT '变更说明',
     markdown_uuid       		VARCHAR(32)						NOT NULL		COMMENT 'Markdown文档UUID',
     name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
     version 					INT								NOT NULL		COMMENT '版本',
@@ -441,7 +444,10 @@ CREATE TABLE markdown_history (
     updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
     updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
-    remark VARCHAR(255) COMMENT '备注'
+    remark VARCHAR(255) COMMENT '备注',
+    INDEX source(source),
+    INDEX markdown_uuid(markdown_uuid),
+    INDEX version(version)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档-历史记录';
 
 -- 图形设计
