@@ -66,8 +66,9 @@ public class DocCategoryCollectServiceImpl extends ServiceImpl<DocCategoryCollec
 		// 添加收藏
 		if (type == 1) {
 			DocCategoryCollect docCategoryCollect = new DocCategoryCollect();
-			docCategoryCollect.setMemberUserId(user.getUserId());
+			docCategoryCollect.setDocProjectId(docCategory.getDocProjectId());
 			docCategoryCollect.setDocCategoryId(docCategory.getId());
+			docCategoryCollect.setMemberUserId(user.getUserId());
 			docCategoryCollect.setCreatedAt(new Date());
 			docCategoryCollect.setUpdatedAt(docCategoryCollect.getCreatedAt());
 			docCategoryCollect.setDeleted(false);

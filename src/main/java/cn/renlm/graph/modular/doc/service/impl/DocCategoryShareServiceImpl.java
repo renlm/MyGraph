@@ -80,6 +80,7 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 		if (!NumberUtil.equals(form.getEffectiveType(), -1)) {
 			form.setDeadline(DateUtil.offsetDay(new Date(), form.getEffectiveType()));
 		}
+		form.setDocProjectId(docCategory.getDocProjectId());
 		form.setDocCategoryId(docCategory.getId());
 		form.setUuid(IdUtil.simpleUUID().toUpperCase());
 		form.setCreatedAt(new Date());

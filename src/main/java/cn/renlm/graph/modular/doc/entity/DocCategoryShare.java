@@ -33,6 +33,12 @@ public class DocCategoryShare implements Serializable {
     private Long id;
 
     /**
+     * 文档项目ID
+     */
+    @TableField("doc_project_id")
+    private Long docProjectId;
+
+    /**
      * 文档分类ID
      */
     @TableField("doc_category_id")
