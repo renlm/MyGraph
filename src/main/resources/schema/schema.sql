@@ -413,7 +413,6 @@ DROP TABLE IF EXISTS markdown;
 CREATE TABLE markdown (
     id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
     uuid       					VARCHAR(32)		UNIQUE 			NOT NULL		COMMENT 'UUID',
-    source 						INT								NOT NULL		COMMENT '来源（1：系统资源，2：文档项目（预留，未启用），3：文档分类）',
     name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
     version 					INT								NOT NULL		COMMENT '版本',
     content						LONGTEXT										COMMENT '文档内容',
@@ -431,10 +430,10 @@ CREATE TABLE markdown (
 -- Markdown文档-历史记录
 DROP TABLE IF EXISTS markdown_history;
 CREATE TABLE markdown_history (
-    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    history_id            		BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '历史记录ID',
     change_label 				VARCHAR(255)					NOT NULL		COMMENT '变更说明',
+    markdown_id       			BIGINT							NOT NULL		COMMENT 'Markdown文档表主键',
     markdown_uuid       		VARCHAR(32)						NOT NULL		COMMENT 'Markdown文档UUID',
-    source 						INT								NOT NULL		COMMENT '来源（1：系统资源，2：文档项目（预留，未启用），3：文档分类）',
     name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
     version 					INT								NOT NULL		COMMENT '版本',
     content						LONGTEXT										COMMENT '文档内容',
@@ -446,7 +445,7 @@ CREATE TABLE markdown_history (
     updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
     remark VARCHAR(255) COMMENT '备注',
-    INDEX source(source),
+    INDEX markdown_id(markdown_id),
     INDEX markdown_uuid(markdown_uuid),
     INDEX version(version)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档-历史记录';

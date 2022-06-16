@@ -58,14 +58,13 @@ public class DocController {
 	 * @param authentication
 	 * @param model
 	 * @param docProjectUuid
-	 * @param source
 	 * @param uuid
 	 * @param name
 	 * @return
 	 */
 	@GetMapping("/markdown")
-	public String markdown(Authentication authentication, ModelMap model, String docProjectUuid, Integer source,
-			String uuid, String name) {
+	public String markdown(Authentication authentication, ModelMap model, String docProjectUuid, String uuid,
+			String name) {
 		User user = (User) authentication.getPrincipal();
 		Markdown markdown = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
 		DocProject docProject = iDocProjectService
@@ -75,7 +74,6 @@ public class DocController {
 		List<DocCategory> fathers = iDocCategoryService.findFathers(docProjectUuid, docCategory.getId());
 		boolean isCollected = iDocCategoryCollectService.isCollected(user, docCategory.getId());
 		Integer role = iDocProjectService.findRole(user, docProject.getId());
-		model.put("source", markdown == null ? source : markdown.getSource());
 		model.put("markdown", markdown);
 		model.put("docProject", docProject);
 		model.put("docCategory", docCategory);

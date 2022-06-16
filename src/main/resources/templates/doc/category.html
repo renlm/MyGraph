@@ -39,7 +39,7 @@
                			}
                		},
                		onClickRow:function(row){
-				   		var url = ctx + '/doc/markdown?source=3&docProjectUuid=${docProject.uuid}&uuid=' + row.uuid;
+				   		var url = ctx + '/doc/markdown?docProjectUuid=${docProject.uuid}&uuid=' + row.uuid;
 				     	$('#Iframe')[0].contentWindow.location.href = url;
 					},
 			        onContextMenu: function (e, row) {
@@ -73,7 +73,7 @@
         	">
           	<div class="easyui-layout"
 	    		data-options="fit:true">
-	    		<iframe id="Iframe" th:src="@{/doc/markdown?source=2&docProjectUuid=${docProject.uuid}&uuid=${docProject.uuid}}" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>
+	    		<iframe id="Iframe" th:src="@{/home/welcome}" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>
 	    	</div>
     	</div>
     </div>

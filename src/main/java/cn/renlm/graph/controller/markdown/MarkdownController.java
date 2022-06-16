@@ -52,15 +52,13 @@ public class MarkdownController {
 	 * 编辑器
 	 * 
 	 * @param model
-	 * @param source
 	 * @param uuid
 	 * @param name
 	 * @return
 	 */
 	@GetMapping("/editor")
-	public String editor(ModelMap model, Integer source, String uuid, String name) {
+	public String editor(ModelMap model, String uuid, String name) {
 		Markdown markdown = new Markdown();
-		markdown.setSource(source);
 		markdown.setUuid(uuid);
 		markdown.setName(name);
 		if (StrUtil.isNotBlank(uuid)) {

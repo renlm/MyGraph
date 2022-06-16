@@ -27,10 +27,10 @@ public class MarkdownHistory implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键ID
+     * 历史记录ID
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    @TableId(value = "history_id", type = IdType.AUTO)
+    private Long historyId;
 
     /**
      * 变更说明
@@ -39,16 +39,16 @@ public class MarkdownHistory implements Serializable {
     private String changeLabel;
 
     /**
+     * Markdown文档表主键
+     */
+    @TableField("markdown_id")
+    private Long markdownId;
+
+    /**
      * Markdown文档UUID
      */
     @TableField("markdown_uuid")
     private String markdownUuid;
-
-    /**
-     * 来源（1：系统资源，2：文档项目（预留，未启用），3：文档分类）
-     */
-    @TableField("source")
-    private Integer source;
 
     /**
      * 文档名称
