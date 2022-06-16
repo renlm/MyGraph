@@ -1,5 +1,7 @@
 package cn.renlm.graph.controller.doc;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -39,20 +41,17 @@ public class DocProjectController {
 	 * 
 	 * @param model
 	 * @param authentication
-	 * @param page
-	 * @param form
+	 * @param uuid
 	 * @return
 	 */
 	@GetMapping
-	public String index(ModelMap model, Authentication authentication, Page<DocProjectDto> page, DocProjectDto form) {
-		page.setCurrent(1);
-		page.setTotal(Integer.MAX_VALUE);
+	public String index(ModelMap model, Authentication authentication, String uuid) {
 		User user = (User) authentication.getPrincipal();
 		DocProject docProject = iDocProjectService
-				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, form.getUuid()));
-		Page<DocProjectDto> allDocProjects = iDocProjectService.findPage(page, user, form);
+				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, uuid));
+		List<DocProjectDto> allDocProjects = iDocProjectService.findAll(user);
 		model.put("docProject", docProject);
-		model.put("allDocProjects", allDocProjects.getRecords());
+		model.put("allDocProjects", allDocProjects);
 		return "doc/project";
 	}
 

@@ -25,6 +25,6 @@ public interface IMarkdownHistoryService extends IService<MarkdownHistory> {
 	 * @param form
 	 * @return
 	 */
-	Page<MarkdownHistoryDto> findPage(Page<MarkdownHistoryDto> page, User user, MarkdownHistoryDto form);
+	Page<MarkdownHistoryDto> findDocPage(Page<MarkdownHistory> page, User user, MarkdownHistoryDto form);
 
 }

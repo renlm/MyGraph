@@ -62,6 +62,13 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 	}
 
 	@Override
+	public List<DocProjectDto> findAll(User user) {
+		Page<DocProjectDto> page = new Page<>(1, Integer.MAX_VALUE);
+		DocProjectDto form = new DocProjectDto();
+		return this.findPage(page, user, form).getRecords();
+	}
+
+	@Override
 	public Page<DocProjectDto> findPage(Page<DocProjectDto> page, User user, DocProjectDto form) {
 		return this.baseMapper.findPage(page, user, form);
 	}
