@@ -73,11 +73,13 @@ public class DocController {
 				.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, uuid));
 		List<DocCategory> fathers = iDocCategoryService.findFathers(docProjectUuid, docCategory.getId());
 		boolean isCollected = iDocCategoryCollectService.isCollected(user, docCategory.getId());
+		Integer role = iDocProjectService.findRole(user, docProject.getId());
 		model.put("markdown", markdown);
 		model.put("docProject", docProject);
 		model.put("docCategory", docCategory);
 		model.put("fathers", fathers);
 		model.put("isCollected", isCollected);
+		model.put("role", role);
 		return "doc/markdown";
 	}
 }

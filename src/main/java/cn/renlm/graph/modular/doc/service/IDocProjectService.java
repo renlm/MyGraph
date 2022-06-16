@@ -19,6 +19,15 @@ import cn.renlm.graph.response.Result;
 public interface IDocProjectService extends IService<DocProject> {
 
 	/**
+	 * 获取用户授权角色
+	 * 
+	 * @param user
+	 * @param docProjectId
+	 * @return 1：浏览者，2：编辑者，3：管理员
+	 */
+	Integer findRole(User user, Long docProjectId);
+
+	/**
 	 * 分页列表
 	 * 
 	 * @param page

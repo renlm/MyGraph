@@ -207,7 +207,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			wrapper.eq(DocProjectMember::getDeleted, false);
 		}));
 		if (members == 0) {
-			return Result.of(HttpStatus.FORBIDDEN, "非管理员，不能删除");
+			return Result.of(HttpStatus.FORBIDDEN, "非管理员，无操作权限");
 		}
 		// 获取全部子节点
 		List<Tree<Long>> tree = this.getTree(docProject.getUuid(), true, entity.getId());

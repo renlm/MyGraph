@@ -2,6 +2,8 @@ package cn.renlm.graph.modular.doc.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.OptionalInt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,6 +44,22 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 
 	@Autowired
 	private IDocProjectMemberService iDocProjectMemberService;
+
+	@Override
+	public Integer findRole(User user, Long docProjectId) {
+		List<DocProjectMember> members = iDocProjectMemberService
+				.list(Wrappers.<DocProjectMember>lambdaQuery().func(wrapper -> {
+					wrapper.eq(DocProjectMember::getDocProjectId, docProjectId);
+					wrapper.eq(DocProjectMember::getMemberUserId, user.getUserId());
+					wrapper.eq(DocProjectMember::getDeleted, false);
+				}));
+		OptionalInt max = members.stream().filter(Objects::nonNull).mapToInt(DocProjectMember::getRole).max();
+		if (max.isPresent()) {
+			return max.getAsInt();
+		} else {
+			return null;
+		}
+	}
 
 	@Override
 	public Page<DocProjectDto> findPage(Page<DocProjectDto> page, User user, DocProjectDto form) {
