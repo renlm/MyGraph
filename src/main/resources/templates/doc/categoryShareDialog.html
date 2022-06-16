@@ -18,6 +18,64 @@
         </div>
     </div>
     <fieldset>
+        <legend>访问控制</legend>
+    </fieldset>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">分享类型</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{shareType}"
+              		class="easyui-combobox"
+                   	data-options="required:true,
+                   		editable:false,
+                   		prompt:'必选',
+						valueField:'value',
+						textField:'text',
+                		width:'100%',
+						panelHeight:'auto',
+						data: [
+						    {text:'公开',value:1},
+							{text:'密码查看',value:2}
+						]
+					"/>
+            </div>
+        </div>
+   	</div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">访问密码</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{password}"
+                	class="easyui-passwordbox"
+                	data-options="width:'100%',
+						validType:'maxLength[12]'
+                   	"/>
+            </div>
+        </div>
+   	</div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">有效期</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{effectiveType}"
+              		class="easyui-combobox"
+                   	data-options="required:true,
+                   		editable:false,
+                   		prompt:'必选',
+						valueField:'value',
+						textField:'text',
+                		width:'100%',
+						panelHeight:'auto',
+						data: [
+						    {text:'七天',value:7},
+							{text:'三十天',value:30},
+							{text:'永久',value:-1}
+						]
+					"/>
+            </div>
+        </div>
+   	</div>
+    <fieldset>
         <legend>其它信息</legend>
     </fieldset>
     <div class="myui-row">
@@ -27,7 +85,7 @@
                 <input type="text" th:field="*{remark}" 
                 	class="easyui-textbox"
                    	data-options="width:'100%',
-                   		height:120,
+                   		height:100,
                 		prompt:'备注',
                    		multiline:true,
 						validType:'maxLength[255]'
