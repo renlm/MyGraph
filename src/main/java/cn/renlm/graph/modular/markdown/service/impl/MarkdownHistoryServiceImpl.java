@@ -87,7 +87,9 @@ public class MarkdownHistoryServiceImpl extends ServiceImpl<MarkdownHistoryMappe
 				List<CharSequence> parents = TreeUtil.getParentsName(node, true);
 				CollUtil.removeBlank(parents);
 				CollUtil.reverse(parents);
-				history.setParentsDocCategorName(StrUtil.join(StrUtil.SLASH, parents));
+				if (CollUtil.isNotEmpty(parents)) {
+					history.setParentsDocCategorName(StrUtil.join(StrUtil.SLASH, parents));
+				}
 			});
 		});
 		return result;
