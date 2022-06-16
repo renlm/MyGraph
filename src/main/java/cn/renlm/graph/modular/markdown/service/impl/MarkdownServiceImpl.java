@@ -11,8 +11,12 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.doc.entity.DocCategory;
+import cn.renlm.graph.modular.doc.service.IDocCategoryService;
+import cn.renlm.graph.modular.doc.service.IDocProjectService;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
 import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
 import cn.renlm.graph.modular.markdown.mapper.MarkdownMapper;
@@ -32,6 +36,12 @@ import cn.renlm.graph.response.Result;
 public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> implements IMarkdownService {
 
 	@Autowired
+	private IDocProjectService iDocProjectService;
+
+	@Autowired
+	private IDocCategoryService iDocCategoryService;
+
+	@Autowired
 	private IMarkdownHistoryService iMarkdownHistoryService;
 
 	@Override
@@ -40,6 +50,14 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 		if (StrUtil.isBlank(form.getUuid())) {
 			return Result.of(HttpStatus.BAD_REQUEST, "参数不全");
 		} else {
+			DocCategory docCategory = iDocCategoryService
+					.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, form.getUuid()));
+			if (ObjectUtil.isNotEmpty(docCategory)) {
+				Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
+				if (role == null || role.intValue() != 3) {
+					return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
+				}
+			}
 			Markdown entity = this.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, form.getUuid()));
 			if (entity == null) {
 				form.setUuid(form.getUuid());
