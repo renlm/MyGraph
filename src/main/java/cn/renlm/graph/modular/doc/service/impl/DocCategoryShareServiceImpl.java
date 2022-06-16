@@ -80,6 +80,7 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			}
 			form.setPassword(rsa.encryptBase64(password, KeyType.PrivateKey));
 		}
+		form.setDocCategoryId(docCategory.getId());
 		form.setUuid(IdUtil.getSnowflakeNextIdStr() + IdUtil.simpleUUID().toUpperCase());
 		form.setCreatedAt(new Date());
 		form.setCreatorUserId(user.getUserId());
@@ -87,8 +88,12 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 		form.setUpdatedAt(docCategory.getCreatedAt());
 		form.setDeleted(false);
 		this.save(form);
-		String message = StrUtil.indexedFormat("访问链接：{0}/pub/doc/s/{1}\r\n访问密码：{2}", myConfigProperties.getCtx(),
-				form.getUuid(), password);
-		return Result.success().setMessage(message);
+		if (NumberUtil.equals(form.getShareType(), 1)) {
+			return Result.success().setMessage(
+					StrUtil.indexedFormat("访问链接：{0}/pub/doc/s/{1}", myConfigProperties.getCtx(), form.getUuid()));
+		} else {
+			return Result.success().setMessage(StrUtil.indexedFormat("访问链接：{0}/pub/doc/s/{1}\r\n访问密码：{2}",
+					myConfigProperties.getCtx(), form.getUuid(), password));
+		}
 	}
 }
