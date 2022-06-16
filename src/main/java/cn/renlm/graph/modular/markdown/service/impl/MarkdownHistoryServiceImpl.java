@@ -62,7 +62,10 @@ public class MarkdownHistoryServiceImpl extends ServiceImpl<MarkdownHistoryMappe
 			List<Tree<Long>> tree = treeMap.get(history.getDocProjectUuid());
 			tree.forEach(top -> {
 				Tree<Long> node = TreeUtil.getNode(top, history.getDocCategoryId());
-				history.setParentsDocCategorName(StrUtil.join(StrUtil.SLASH, TreeUtil.getParentsName(node, true)));
+				List<CharSequence> parents = TreeUtil.getParentsName(node, true);
+				CollUtil.removeBlank(parents);
+				CollUtil.reverse(parents);
+				history.setParentsDocCategorName(StrUtil.join(StrUtil.SLASH, parents));
 			});
 		});
 		return result;
