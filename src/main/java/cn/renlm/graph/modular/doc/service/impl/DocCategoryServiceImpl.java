@@ -221,7 +221,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 				markdownName.append(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName));
 			}
 			iMarkdownService.update(Wrappers.<Markdown>lambdaUpdate().func(wrapper -> {
-				wrapper.set(Markdown::getName, markdownName);
+				wrapper.set(Markdown::getName, markdownName.toString());
 				wrapper.set(Markdown::getUpdatedAt, new Date());
 				wrapper.eq(Markdown::getUuid, docCategory.getUuid());
 			}));
