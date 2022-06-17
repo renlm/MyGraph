@@ -22,11 +22,10 @@ public interface IDocCategoryShareService extends IService<DocCategoryShare> {
 	 * 关闭分享
 	 * 
 	 * @param user
-	 * @param docProjectUuid
-	 * @param docCategoryUuid
+	 * @param uuid
 	 * @return
 	 */
-	Result<?> closeShare(User user, String docProjectUuid, String docCategoryUuid);
+	Result<?> closeShare(User user, String uuid);
 
 	/**
 	 * 保存（新建）

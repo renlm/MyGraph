@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -62,11 +63,21 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 	private IDocCategoryService iDocCategoryService;
 
 	@Override
-	public Result<?> closeShare(User user, String docProjectUuid, String docCategoryUuid) {
-		return null;
+	@Transactional(rollbackFor = Exception.class)
+	public Result<?> closeShare(User user, String uuid) {
+		this.update(Wrappers.<DocCategoryShare>lambdaUpdate().func(wrapper -> {
+			wrapper.set(DocCategoryShare::getDisabled, true);
+			wrapper.set(DocCategoryShare::getUpdatedAt, new Date());
+			wrapper.set(DocCategoryShare::getUpdatorUserId, user.getUserId());
+			wrapper.set(DocCategoryShare::getUpdatorNickname, user.getUsername());
+			wrapper.eq(DocCategoryShare::getUuid, uuid);
+			wrapper.eq(DocCategoryShare::getCreatorUserId, user.getUserId());
+		}));
+		return Result.success();
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public Result<?> ajaxSave(User user, DocCategoryShareDto form) {
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, form.getDocProjectUuid()));

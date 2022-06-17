@@ -57,16 +57,15 @@ public class DocCategoryShareController {
 	 * 关闭分享
 	 * 
 	 * @param authentication
-	 * @param docProjectUuid
-	 * @param docCategoryUuid
+	 * @param uuid
 	 * @return
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/closeShare")
-	public Result<?> closeShare(Authentication authentication, String docProjectUuid, String docCategoryUuid) {
+	public Result<?> closeShare(Authentication authentication, String uuid) {
 		try {
 			User user = (User) authentication.getPrincipal();
-			return iDocCategoryShareService.closeShare(user, docProjectUuid, docCategoryUuid);
+			return iDocCategoryShareService.closeShare(user, uuid);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
