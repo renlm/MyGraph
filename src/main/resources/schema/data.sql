@@ -4493,8 +4493,8 @@ EasyUI + Mxgraph + Editor.md
 ;
 
 -- Markdown文档-历史记录
-INSERT INTO markdown_history(`change_label`, `markdown_id`, `markdown_uuid`, `name`, `version`, `content`, `created_at`, `creator_user_id`, `creator_nickname`, `updated_at`, `updator_user_id`, `updator_nickname`, `deleted`, `remark`) 
-SELECT '保存' AS `change_label`, `id` AS `markdown_id`, `uuid` AS `markdown_uuid`, `name`, `version`, `content`, `created_at`, `creator_user_id`, `creator_nickname`, `updated_at`, `updator_user_id`, `updator_nickname`, `deleted`, `remark` FROM markdown
+INSERT INTO markdown_history(`change_label`, `operate_at`, `operator_user_id`, `operator_nickname`, `markdown_id`, `markdown_uuid`, `name`, `version`, `content`, `created_at`, `creator_user_id`, `creator_nickname`, `updated_at`, `updator_user_id`, `updator_nickname`, `deleted`, `remark`) 
+SELECT '保存' AS `change_label`, `created_at` AS `operate_at`, `creator_user_id` AS `operator_user_id`, `creator_nickname` AS `operator_nickname`, `id` AS `markdown_id`, `uuid` AS `markdown_uuid`, `name`, `version`, `content`, `created_at`, `creator_user_id`, `creator_nickname`, `updated_at`, `updator_user_id`, `updator_nickname`, `deleted`, `remark` FROM markdown
 ;
 
 -- 图形设计样例数据

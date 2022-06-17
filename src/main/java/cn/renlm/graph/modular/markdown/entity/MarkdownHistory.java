@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-06-16
+ * @since 2022-06-17
  */
 @Getter
 @Setter
@@ -37,6 +37,24 @@ public class MarkdownHistory implements Serializable {
      */
     @TableField("change_label")
     private String changeLabel;
+
+    /**
+     * 操作时间
+     */
+    @TableField("operate_at")
+    private Date operateAt;
+
+    /**
+     * 操作人（用户ID）
+     */
+    @TableField("operator_user_id")
+    private String operatorUserId;
+
+    /**
+     * 操作人（昵称）
+     */
+    @TableField("operator_nickname")
+    private String operatorNickname;
 
     /**
      * Markdown文档表主键

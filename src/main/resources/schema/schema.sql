@@ -432,6 +432,9 @@ DROP TABLE IF EXISTS markdown_history;
 CREATE TABLE markdown_history (
     history_id            		BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '历史记录ID',
     change_label 				VARCHAR(255)					NOT NULL		COMMENT '变更说明',
+    operate_at 					TIMESTAMP 						NOT NULL 		COMMENT '操作时间',
+    operator_user_id 			VARCHAR(32) 									COMMENT '操作人（用户ID）',
+    operator_nickname 			VARCHAR(255) 									COMMENT '操作人（昵称）',
     markdown_id       			BIGINT							NOT NULL		COMMENT 'Markdown文档表主键',
     markdown_uuid       		VARCHAR(32)						NOT NULL		COMMENT 'Markdown文档UUID',
     name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
