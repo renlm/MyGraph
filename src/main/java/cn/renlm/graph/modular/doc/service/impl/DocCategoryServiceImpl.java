@@ -207,6 +207,9 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			// 历史记录
 			MarkdownHistory history = BeanUtil.copyProperties(markdown, MarkdownHistory.class);
 			history.setChangeLabel(isInsert ? "新增" : "修改");
+			history.setOperateAt(new Date());
+			history.setOperatorUserId(user.getUserId());
+			history.setOperatorNickname(user.getNickname());
 			history.setMarkdownId(markdown.getId());
 			history.setMarkdownUuid(markdown.getUuid());
 			iMarkdownHistoryService.save(history);
@@ -281,6 +284,9 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 		markdowns.forEach(md -> {
 			MarkdownHistory history = BeanUtil.copyProperties(md, MarkdownHistory.class);
 			history.setChangeLabel("删除");
+			history.setOperateAt(new Date());
+			history.setOperatorUserId(user.getUserId());
+			history.setOperatorNickname(user.getNickname());
 			history.setMarkdownId(md.getId());
 			history.setMarkdownUuid(md.getUuid());
 			history.setDeleted(true);

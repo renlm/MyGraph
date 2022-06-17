@@ -93,6 +93,9 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 		// 历史记录
 		MarkdownHistory history = BeanUtil.copyProperties(form, MarkdownHistory.class);
 		history.setChangeLabel(isInsert ? "新增" : "修改");
+		history.setOperateAt(new Date());
+		history.setOperatorUserId(user.getUserId());
+		history.setOperatorNickname(user.getNickname());
 		history.setMarkdownId(form.getId());
 		history.setMarkdownUuid(form.getUuid());
 		iMarkdownHistoryService.save(history);
