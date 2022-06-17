@@ -120,11 +120,11 @@
 			});
 		},
 		/**
-		 * 文档项目名称
+		 * 文档项目名称（新窗口）
 		 */
 		docProjectNameFormatter: function (value, row, index) {
 			if (value || index) {}
-			return '<a href=\'javascript:void(0);\' onclick="$.openNewWindowDocProject(\'' + row.docProjectUuid + '\')" style=\'color:blue;font-style: italic;\'>' + row.docProjectName + '</a>';
+			return '<a href=\'javascript:void(0);\' onclick="$.openNewWindowDocProject(\'' + row.docProjectUuid + '\', \'' + row.docCategoryUuid + '\')" style=\'color:blue;font-style: italic;\'>' + row.docProjectName + '</a>';
 		},
 		/**
 		 * 文档项目名称
@@ -142,8 +142,8 @@
 		/**
 		 * 打开文档项目（新窗口）
 		 */
-		openNewWindowDocProject: function (uuid) {
-			top.window.open(ctx + '/doc/project?uuid=' + uuid);
+		openNewWindowDocProject: function (uuid, docCategoryUuid) {
+			top.window.open(ctx + '/doc/project?uuid=' + uuid + '&docCategoryUuid=' + docCategoryUuid);
 		},
 		/**
 		 * 标记title
