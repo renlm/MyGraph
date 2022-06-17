@@ -194,7 +194,8 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 				}
 				String fathersName = fathers.stream().map(DocCategory::getText)
 						.collect(Collectors.joining(StrUtil.SLASH));
-				markdown.setName(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName));
+				markdown.setName(
+						StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName, docCategory.getText()));
 			}
 			markdown.setVersion(1);
 			markdown.setCreatedAt(new Date());
@@ -218,7 +219,8 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 				fathers.addAll(this.findFathers(docProjectUuid, docCategory.getPid()));
 				String fathersName = fathers.stream().map(DocCategory::getText)
 						.collect(Collectors.joining(StrUtil.SLASH));
-				markdownName.append(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName));
+				markdownName.append(
+						StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName, docCategory.getText()));
 			}
 			iMarkdownService.update(Wrappers.<Markdown>lambdaUpdate().func(wrapper -> {
 				wrapper.set(Markdown::getName, markdownName.toString());
