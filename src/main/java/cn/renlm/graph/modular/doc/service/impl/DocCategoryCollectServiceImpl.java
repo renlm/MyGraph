@@ -1,6 +1,10 @@
 package cn.renlm.graph.modular.doc.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,9 +15,15 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocCategoryCollectDto;
+import cn.renlm.graph.modular.doc.dto.DocProjectDto;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocCategoryCollect;
 import cn.renlm.graph.modular.doc.entity.DocProject;
@@ -90,6 +100,51 @@ public class DocCategoryCollectServiceImpl extends ServiceImpl<DocCategoryCollec
 	@Override
 	public Page<DocCategoryCollectDto> findPage(Page<DocCategoryCollectDto> page, User user,
 			DocCategoryCollectDto form) {
-		return null;
+		List<DocProjectDto> allDocProjects = iDocProjectService.findAll(user);
+		if (CollUtil.isEmpty(allDocProjects)) {
+			return page;
+		}
+		// 项目分类
+		List<Long> projectIds = CollUtil.newArrayList();
+		Map<Long, List<DocCategory>> docCategoryMap = new LinkedHashMap<>();
+		Map<Long, List<Tree<Long>>> treeMap = new LinkedHashMap<>();
+		allDocProjects.forEach(project -> {
+			projectIds.add(project.getId());
+		});
+		List<DocCategory> list = iDocCategoryService.list(Wrappers.<DocCategory>lambdaQuery().func(wrapper -> {
+			wrapper.in(DocCategory::getDocProjectId, projectIds);
+		}));
+		list.forEach(docCategory -> {
+			if (!docCategoryMap.containsKey(docCategory.getDocProjectId())) {
+				docCategoryMap.put(docCategory.getDocProjectId(), new ArrayList<>());
+			}
+			docCategoryMap.get(docCategory.getDocProjectId()).add(docCategory);
+		});
+		docCategoryMap.forEach((docProjectId, docCategories) -> {
+			List<Tree<Long>> tree = TreeUtil.build(docCategories, null, (object, treeNode) -> {
+				BeanUtil.copyProperties(object, treeNode);
+				treeNode.setId(object.getId());
+				treeNode.setName(object.getText());
+				treeNode.setWeight(object.getSort());
+				treeNode.setParentId(object.getPid());
+			});
+			treeMap.put(docProjectId, tree);
+		});
+		// 分页数据
+		Page<DocCategoryCollectDto> result = this.baseMapper.findDocPage(page, projectIds, form);
+		// 处理附加信息
+		result.getRecords().forEach(history -> {
+			List<Tree<Long>> tree = treeMap.get(history.getDocProjectId());
+			tree.forEach(top -> {
+				Tree<Long> node = TreeUtil.getNode(top, history.getDocCategoryId());
+				List<CharSequence> parents = TreeUtil.getParentsName(node, true);
+				CollUtil.removeBlank(parents);
+				CollUtil.reverse(parents);
+				if (CollUtil.isNotEmpty(parents)) {
+					history.setParentsCategorName(StrUtil.join(StrUtil.SLASH, parents));
+				}
+			});
+		});
+		return result;
 	}
 }
