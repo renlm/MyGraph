@@ -18,6 +18,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.tree.Tree;
@@ -161,17 +162,22 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 		// 分页数据
 		Page<DocCategoryShareDto> result = this.baseMapper.findDocPage(page, user, projectIds, form);
 		// 处理附加信息
-		result.getRecords().forEach(history -> {
-			List<Tree<Long>> tree = treeMap.get(history.getDocProjectId());
+		result.getRecords().forEach(item -> {
+			List<Tree<Long>> tree = treeMap.get(item.getDocProjectId());
 			tree.forEach(top -> {
-				Tree<Long> node = TreeUtil.getNode(top, history.getDocCategoryId());
+				Tree<Long> node = TreeUtil.getNode(top, item.getDocCategoryId());
 				List<CharSequence> parents = TreeUtil.getParentsName(node, true);
 				CollUtil.removeBlank(parents);
 				CollUtil.reverse(parents);
 				if (CollUtil.isNotEmpty(parents)) {
-					history.setParentsCategorName(StrUtil.join(StrUtil.SLASH, parents));
+					item.setParentsCategorName(StrUtil.join(StrUtil.SLASH, parents));
 				}
 			});
+			// 处理分享密码
+			if (StrUtil.isNotBlank(item.getPassword())) {
+				String password = rsa.decryptStr(item.getPassword(), KeyType.PublicKey);
+				item.setPassword(Base64.encodeUrlSafe(password));
+			}
 		});
 		return result;
 	}

@@ -133,15 +133,15 @@ public class DocCategoryCollectServiceImpl extends ServiceImpl<DocCategoryCollec
 		// 分页数据
 		Page<DocCategoryCollectDto> result = this.baseMapper.findDocPage(page, user, projectIds, form);
 		// 处理附加信息
-		result.getRecords().forEach(history -> {
-			List<Tree<Long>> tree = treeMap.get(history.getDocProjectId());
+		result.getRecords().forEach(item -> {
+			List<Tree<Long>> tree = treeMap.get(item.getDocProjectId());
 			tree.forEach(top -> {
-				Tree<Long> node = TreeUtil.getNode(top, history.getDocCategoryId());
+				Tree<Long> node = TreeUtil.getNode(top, item.getDocCategoryId());
 				List<CharSequence> parents = TreeUtil.getParentsName(node, true);
 				CollUtil.removeBlank(parents);
 				CollUtil.reverse(parents);
 				if (CollUtil.isNotEmpty(parents)) {
-					history.setParentsCategorName(StrUtil.join(StrUtil.SLASH, parents));
+					item.setParentsCategorName(StrUtil.join(StrUtil.SLASH, parents));
 				}
 			});
 		});

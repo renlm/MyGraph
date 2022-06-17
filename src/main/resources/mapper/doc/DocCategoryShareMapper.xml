@@ -24,7 +24,11 @@
 			dp.uuid as `docProjectUuid`,
 			dp.project_name as `docProjectName`,
 			dc.uuid as `docCategoryUuid`,
-			dc.`text` as `docCategoryName`
+			dc.`text` as `docCategoryName`,
+			case when dcs.`disabled` = 1 then 2 
+				when dcs.`effective_type` <![CDATA[<>]]> -1 and date_format(now(), '%Y-%m-%d') > date_format(dcs.`deadline`, '%Y-%m-%d') then 3
+				else 1
+			end as `status`
 		from doc_project dp, doc_category dc, doc_category_share dcs
 		where dp.id = dc.doc_project_id
 			and dc.id = dcs.doc_category_id
@@ -45,6 +49,9 @@
 					or
 					dc.`text` like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
 				)
+			</if>
+			<if test="form.status != null">
+				and status = #{form.status,jdbcType=INTEGER}
 			</if>
 		order by dcs.updated_at desc, dcs.id desc
 	</select>

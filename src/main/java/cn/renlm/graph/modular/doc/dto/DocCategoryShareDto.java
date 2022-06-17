@@ -53,4 +53,9 @@ public class DocCategoryShareDto extends DocCategoryShare {
 	 */
 	private String keywords;
 
+	/**
+	 * 状态（1：分享中，2：已关闭，3：已过期）
+	 */
+	private Integer status;
+
 }
