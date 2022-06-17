@@ -160,6 +160,7 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			treeMap.put(docProjectId, tree);
 		});
 		// 分页数据
+		page.setOptimizeCountSql(false);
 		Page<DocCategoryShareDto> result = this.baseMapper.findDocPage(page, user, projectIds, form);
 		// 处理附加信息
 		result.getRecords().forEach(item -> {
