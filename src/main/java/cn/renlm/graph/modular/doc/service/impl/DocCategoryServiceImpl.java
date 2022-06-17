@@ -135,6 +135,10 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 	@Transactional(rollbackFor = Exception.class)
 	public Result<DocCategory> ajaxSave(User user, String docProjectUuid, DocCategory docCategory) {
 		boolean isInsert = StrUtil.isBlank(docCategory.getUuid());
+		DocProject docProject = iDocProjectService
+				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
+		docCategory.setDocProjectId(docProject.getId());
+		final List<DocCategory> fathers = CollUtil.newArrayList();
 		if (isInsert) {
 			// 插入
 			docCategory.setUuid(IdUtil.simpleUUID().toUpperCase());
@@ -156,9 +160,6 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			docCategory.setUpdatorNickname(user.getNickname());
 			docCategory.setDeleted(entity.getDeleted());
 		}
-		DocProject docProject = iDocProjectService
-				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
-		docCategory.setDocProjectId(docProject.getId());
 		Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
 		if (role == null || !ArrayUtil.contains(new Integer[] { 2, 3 }, role.intValue())) {
 			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
@@ -169,7 +170,9 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			DocCategory parent = this.getById(docCategory.getPid());
 			parent.setState(TreeState.closed.name());
 			docCategory.setLevel(parent.getLevel() + 1);
-			List<DocCategory> fathers = this.findFathers(docProjectUuid, parent.getId());
+			if (CollUtil.isEmpty(fathers)) {
+				fathers.addAll(this.findFathers(docProjectUuid, parent.getId()));
+			}
 			List<Long> fatherIds = fathers.stream().map(DocCategory::getId).collect(Collectors.toList());
 			if (fatherIds.contains(docCategory.getId())) {
 				return Result.error("不能选择自身或子节点作为父级");
@@ -177,6 +180,51 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 				parent.setUpdatedAt(new Date());
 				this.updateById(parent);
 			}
+		}
+		// 关联文档处理
+		if (isInsert) {
+			// 初始化文档
+			Markdown markdown = new Markdown();
+			markdown.setUuid(docCategory.getUuid());
+			if (docCategory.getPid() == null) {
+				markdown.setName(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), docCategory.getText()));
+			} else {
+				if (CollUtil.isEmpty(fathers)) {
+					fathers.addAll(this.findFathers(docProjectUuid, docCategory.getPid()));
+				}
+				String fathersName = fathers.stream().map(DocCategory::getText)
+						.collect(Collectors.joining(StrUtil.SLASH));
+				markdown.setName(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName));
+			}
+			markdown.setVersion(1);
+			markdown.setCreatedAt(new Date());
+			markdown.setCreatorUserId(user.getUserId());
+			markdown.setCreatorNickname(user.getNickname());
+			markdown.setUpdatedAt(markdown.getCreatedAt());
+			markdown.setDeleted(false);
+			iMarkdownService.save(markdown);
+			// 历史记录
+			MarkdownHistory history = BeanUtil.copyProperties(markdown, MarkdownHistory.class);
+			history.setChangeLabel(isInsert ? "新增" : "修改");
+			history.setMarkdownId(markdown.getId());
+			history.setMarkdownUuid(markdown.getUuid());
+			iMarkdownHistoryService.save(history);
+		} else {
+			StringBuffer markdownName = new StringBuffer();
+			// 更新文档名称
+			if (docCategory.getPid() == null) {
+				markdownName.append(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), docCategory.getText()));
+			} else {
+				fathers.addAll(this.findFathers(docProjectUuid, docCategory.getPid()));
+				String fathersName = fathers.stream().map(DocCategory::getText)
+						.collect(Collectors.joining(StrUtil.SLASH));
+				markdownName.append(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName));
+			}
+			iMarkdownService.update(Wrappers.<Markdown>lambdaUpdate().func(wrapper -> {
+				wrapper.set(Markdown::getName, markdownName);
+				wrapper.set(Markdown::getUpdatedAt, new Date());
+				wrapper.eq(Markdown::getUuid, docCategory.getUuid());
+			}));
 		}
 		// 排序
 		if (docCategory.getSort() == null) {
