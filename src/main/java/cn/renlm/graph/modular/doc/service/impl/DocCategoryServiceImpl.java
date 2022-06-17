@@ -18,6 +18,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.ArrayUtil;
@@ -227,8 +228,9 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			history.setMarkdownUuid(markdown.getUuid());
 			iMarkdownHistoryService.save(history);
 		} else {
-			Map<String, String> map = new LinkedHashMap<>();
+			Map<String, Object[]> map = new LinkedHashMap<>();
 			List<Tree<Long>> roots = this.getTree(docProjectUuid, true, null);
+			TreeExtraUtil.resetLevel(roots, 1);
 			roots.forEach(root -> {
 				Tree<Long> node = TreeUtil.getNode(root, docCategory.getId());
 				if (ObjectUtil.isNotEmpty(node)) {
@@ -238,15 +240,23 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 						List<CharSequence> parents = TreeUtil.getParentsName(child, true);
 						CollUtil.removeBlank(parents);
 						CollUtil.reverse(parents);
-						map.put(dc.getUuid(), StrUtil.join(StrUtil.SLASH, projectName, parents));
+						String parentsName = StrUtil.join(StrUtil.SLASH, projectName, parents);
+						map.put(dc.getUuid(), new Object[] { parentsName, dc.getLevel() });
 					});
 				}
 			});
-			map.forEach((docCategoryUuid, name) -> {
+			map.forEach((docCategoryUuid, arr) -> {
+				String parentsName = Convert.toStr(arr[0]);
+				int level = Convert.toInt(arr[1]);
 				iMarkdownService.update(Wrappers.<Markdown>lambdaUpdate().func(wrapper -> {
-					wrapper.set(Markdown::getName, name);
+					wrapper.set(Markdown::getName, parentsName);
 					wrapper.set(Markdown::getUpdatedAt, new Date());
 					wrapper.eq(Markdown::getUuid, docCategoryUuid);
+				}));
+				this.update(Wrappers.<DocCategory>lambdaUpdate().func(wrapper -> {
+					wrapper.set(DocCategory::getLevel, level);
+					wrapper.set(DocCategory::getUpdatedAt, new Date());
+					wrapper.eq(DocCategory::getUuid, docCategoryUuid);
 				}));
 			});
 		}
