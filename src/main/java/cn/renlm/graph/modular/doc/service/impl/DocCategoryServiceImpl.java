@@ -91,13 +91,8 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 		}));
 		List<DocCategory> list = CollUtil.newArrayList(docCategory);
 		int level = docCategory.getLevel();
-		while (level-- > 0) {
-			Long pid = CollUtil.getLast(list).getPid();
-			if (pid == null) {
-				level = 0;
-			} else {
-				list.add(this.getById(pid));
-			}
+		while (--level > 0) {
+			list.add(this.getById(CollUtil.getLast(list).getPid()));
 		}
 		return CollUtil.reverse(list);
 	}

@@ -128,13 +128,8 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 		SysResource sysResource = this.getById(id);
 		List<SysResource> list = CollUtil.newArrayList(sysResource);
 		int level = sysResource.getLevel();
-		while (level-- > 0) {
-			Long pid = CollUtil.getLast(list).getPid();
-			if (pid == null) {
-				level = 0;
-			} else {
-				list.add(this.getById(pid));
-			}
+		while (--level > 0) {
+			list.add(this.getById(CollUtil.getLast(list).getPid()));
 		}
 		return CollUtil.reverse(list);
 	}

@@ -73,13 +73,8 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		SysDict sysDict = this.getById(id);
 		List<SysDict> list = CollUtil.newArrayList(sysDict);
 		int level = sysDict.getLevel();
-		while (level-- > 0) {
-			Long pid = CollUtil.getLast(list).getPid();
-			if (pid == null) {
-				level = 0;
-			} else {
-				list.add(this.getById(pid));
-			}
+		while (--level > 0) {
+			list.add(this.getById(CollUtil.getLast(list).getPid()));
 		}
 		return CollUtil.reverse(list);
 	}
