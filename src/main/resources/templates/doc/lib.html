@@ -329,7 +329,6 @@
 	 * 查询我的项目
 	 */
 	function searchProject () {
-		$('#projectDataGrid').datagrid('unselectAll');
 		$('#projectDataGrid').datagrid('load', {
 			keywords: $('#projectDataGridKeywords').textbox('getValue')
 		});
@@ -393,7 +392,6 @@
 			                if (resultJson.statusCode == 200) {
 			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
 			                	$projectDialog.dialog('destroy');
-			                	$('#projectDataGrid').datagrid('unselectAll');
 			                	$('#projectDataGrid').datagrid('reload');
 			                } else {
 			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
@@ -427,7 +425,6 @@
 			                $.messager.progress('close');
 							if (resultJson.statusCode == 200) {
 								$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-								$('#projectDataGrid').datagrid('unselectAll');
 			                	$('#projectDataGrid').datagrid('reload');
 			                } else {
 			                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
