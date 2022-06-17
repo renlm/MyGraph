@@ -1,7 +1,9 @@
 package cn.renlm.graph.modular.doc.service.impl;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.stream.Collectors;
@@ -182,20 +184,21 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			}
 		}
 		// 关联文档处理
+		String docCategoryName = docCategory.getText();
+		String projectName = docProject.getProjectName();
 		if (isInsert) {
 			// 初始化文档
 			Markdown markdown = new Markdown();
 			markdown.setUuid(docCategory.getUuid());
 			if (docCategory.getPid() == null) {
-				markdown.setName(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), docCategory.getText()));
+				markdown.setName(StrUtil.join(StrUtil.SLASH, projectName, docCategoryName));
 			} else {
 				if (CollUtil.isEmpty(fathers)) {
 					fathers.addAll(this.findFathers(docProjectUuid, docCategory.getPid()));
 				}
 				String fathersName = fathers.stream().map(DocCategory::getText)
 						.collect(Collectors.joining(StrUtil.SLASH));
-				markdown.setName(
-						StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName, docCategory.getText()));
+				markdown.setName(StrUtil.join(StrUtil.SLASH, projectName, fathersName, docCategoryName));
 			}
 			markdown.setVersion(1);
 			markdown.setCreatedAt(new Date());
@@ -214,24 +217,28 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			history.setMarkdownUuid(markdown.getUuid());
 			iMarkdownHistoryService.save(history);
 		} else {
-			StringBuffer markdownName = new StringBuffer();
-			// 更新文档名称
-			if (docCategory.getPid() == null) {
-				markdownName.append(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), docCategory.getText()));
-			} else {
-				if (CollUtil.isEmpty(fathers)) {
-					fathers.addAll(this.findFathers(docProjectUuid, docCategory.getPid()));
+			Map<String, String> map = new LinkedHashMap<>();
+			List<Tree<Long>> roots = this.getTree(docProjectUuid, true, null);
+			roots.forEach(root -> {
+				Tree<Long> node = TreeUtil.getNode(root, docCategory.getId());
+				if (ObjectUtil.isNotEmpty(node)) {
+					List<Tree<Long>> childs = TreeExtraUtil.getAllNodes(CollUtil.newArrayList(node));
+					childs.forEach(child -> {
+						DocCategory dc = BeanUtil.copyProperties(child, DocCategory.class);
+						List<CharSequence> parents = TreeUtil.getParentsName(child, true);
+						CollUtil.removeBlank(parents);
+						CollUtil.reverse(parents);
+						map.put(dc.getUuid(), StrUtil.join(StrUtil.SLASH, projectName, parents));
+					});
 				}
-				String fathersName = fathers.stream().map(DocCategory::getText)
-						.collect(Collectors.joining(StrUtil.SLASH));
-				markdownName.append(
-						StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName, docCategory.getText()));
-			}
-			iMarkdownService.update(Wrappers.<Markdown>lambdaUpdate().func(wrapper -> {
-				wrapper.set(Markdown::getName, markdownName.toString());
-				wrapper.set(Markdown::getUpdatedAt, new Date());
-				wrapper.eq(Markdown::getUuid, docCategory.getUuid());
-			}));
+			});
+			map.forEach((docCategoryUuid, name) -> {
+				iMarkdownService.update(Wrappers.<Markdown>lambdaUpdate().func(wrapper -> {
+					wrapper.set(Markdown::getName, name);
+					wrapper.set(Markdown::getUpdatedAt, new Date());
+					wrapper.eq(Markdown::getUuid, docCategoryUuid);
+				}));
+			});
 		}
 		// 排序
 		if (docCategory.getSort() == null) {
