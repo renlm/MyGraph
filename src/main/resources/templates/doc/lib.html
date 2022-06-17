@@ -104,10 +104,9 @@
 		                     	<th data-options="field:'docProjectName',title:'项目名称',width:120,formatter:$.docProjectNameFormatter"></th>
 		                     	<th data-options="field:'parentsCategorName',title:'文档名称',width:180"></th>
 			                    <th data-options="field:'shareType',title:'分享类型',width:80,formatter:$.shareTypeFormatter"></th>
-			                    <th data-options="field:'effectiveType',title:'有效期',width:80,formatter:$.effectiveTypeFormatter"></th>
-			                    <th data-options="field:'deadline',title:'有效截止日期',width:100,formatter:$.deadlineFormatter"></th>
-			                    <th data-options="field:'actions',title:'操作',width:60,align:'center',formatter:optCollectFormatter"></th>
 			                    <th data-options="field:'createdAt',title:'分享时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
+			                    <th data-options="field:'deadline',title:'有效截止日期',width:100,align:'right',formatter:$.deadlineFormatter"></th>
+			                    <th data-options="field:'actions',title:'操作',width:60,align:'center',formatter:optShareFormatter"></th>
 			                </tr>
 		                </thead>
 		            </table>
@@ -518,6 +517,38 @@
 	}
 </script>
 <script type="text/javascript">
+	/**
+	 * 关闭分享
+	 */
+	function optShareFormatter (value, row, index) {
+		var tpl = '<a href="javascript:closeShare(\'' + row.docProjectUuid + '\', \'' + row.docCategoryUuid + '\');" class="l-btn myui-btn-red l-btn-small l-btn-plain">';
+			tpl+= '    <span class="l-btn-left l-btn-icon-left">';
+			tpl+= '    <span class="l-btn-text">关闭</span>';
+			tpl+= '    <span class="l-btn-icon layui-icon layui-icon-star-fill" style="margin-top: -8px !important;"></span>';
+			tpl+= '    </span>';
+			tpl+= '</a>';
+		return tpl;
+	}
+	
+	/**
+	 * 关闭分享
+	 */
+	function closeShare (docProjectUuid, docCategoryUuid) {
+		layer.load(2);
+		$.post(ctx + '/doc/categoryShare/ajax/closeShare', 
+				{ 
+					docProjectUuid: docProjectUuid,
+					docCategoryUuid: docCategoryUuid
+				}, 
+				function (resultJson) {
+					layer.closeAll();
+					if (resultJson.statusCode == 200) {
+						$('#docCategoryShareDataGrid').datagrid('reload');
+	                } else {
+	                	layer.msg(resultJson.message ? resultJson.message : '出错了', { icon: 5, shift:6 });
+	                }
+				});
+	}
 	/**
 	 * 查询分享
 	 */
