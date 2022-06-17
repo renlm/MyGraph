@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
@@ -68,6 +69,8 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 				form.setCreatorNickname(user.getNickname());
 				form.setUpdatedAt(form.getCreatedAt());
 				form.setDeleted(false);
+			} else if (!BooleanUtil.isFalse(entity.getDeleted())) {
+				return Result.of(HttpStatus.FORBIDDEN, "数据已被删除");
 			} else {
 				if (form.getVersion() == null) {
 					return Result.of(HttpStatus.BAD_REQUEST, "缺失版本号");
