@@ -117,6 +117,54 @@
           	</a>
 		</form> 
 	</div>
+    <!-- 历史记录 工具栏 -->
+    <div id="markdownHistoryDataGridToolbar" class="myui-toolbar">
+    	<input type="text" name="operatorUserId"
+        	id="markdownHistoryDataGridOperatorUserId"
+       		class="easyui-combogrid"
+      		data-options="idField:'userId',
+         		textField:'nickname',
+            	prompt:'操作人',
+            	width:220,
+            	panelWidth:444,
+           		pagination:true,
+           		fitColumns:true,
+           		pageSize:10,
+           		mode:'remote',
+           		method:'get',
+           		url:ctx+'/sys/user/ajax/page',
+              	onBeforeLoad:$.pageOnBeforeLoad,
+              	columns:[[
+              		{field:'username',title:'账号',width:100},
+                 	{field:'nickname',title:'昵称',width:100},
+                	{field:'mobile',title:'手机号码',width:100}
+             	]]
+        	"/>
+     	<input type="text" name="startDate"
+        	id="markdownHistoryDataGridStartDate" 
+        	class="easyui-datebox" 
+        	data-options="prompt:'起始时间',
+             	editable:false,
+        		width:220
+        	"/>
+     	<input type="text" name="endDate"
+        	id="markdownHistoryDataGridEndDate" 
+        	class="easyui-datebox" 
+        	data-options="prompt:'结束时间',
+             	editable:false,
+        		width:220
+        	"/>
+        <a href="javascript:searchMarkdownHistory();" 
+        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+       		data-options="iconCls:'fa fa-search'
+         	">查询
+    	</a>
+    	<a href="javascript:resetMarkdownHistory();"
+      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+      		data-options="iconCls:'fa fa-trash'
+      		">清空
+    	</a>
+    </div>
 <script type="text/javascript">
 	/**
 	 * 查询项目
@@ -258,6 +306,29 @@
 				$memberDialog.dialog('destroy');
 			}
 	    });
+	}
+</script>
+<script type="text/javascript">
+	/**
+	 * 查询历史记录
+	 */
+	function searchMarkdownHistory () {
+		$('#markdownHistoryDataGrid').datagrid('unselectAll');
+		$('#markdownHistoryDataGrid').datagrid('load', {
+			operatorUserId: $('#markdownHistoryDataGridOperatorUserId').combogrid('getValue'),
+			startDate: $('#markdownHistoryDataGridStartDate').datebox('getValue'),
+			endDate: $('#markdownHistoryDataGridEndDate').datebox('getValue')
+		});
+	}
+	
+	/**
+	 * 清空历史记录
+	 */
+	function resetMarkdownHistory () {
+		$('#markdownHistoryDataGridOperatorUserId').combogrid('clear');
+		$('#markdownHistoryDataGridStartDate').datebox('clear');
+		$('#markdownHistoryDataGridEndDate').datebox('clear');
+		searchMarkdownHistory();
 	}
 </script>
 </body>
