@@ -216,7 +216,9 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			if (docCategory.getPid() == null) {
 				markdownName.append(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), docCategory.getText()));
 			} else {
-				fathers.addAll(this.findFathers(docProjectUuid, docCategory.getPid()));
+				if (CollUtil.isEmpty(fathers)) {
+					fathers.addAll(this.findFathers(docProjectUuid, docCategory.getPid()));
+				}
 				String fathersName = fathers.stream().map(DocCategory::getText)
 						.collect(Collectors.joining(StrUtil.SLASH));
 				markdownName.append(
