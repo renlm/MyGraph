@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
 import cn.renlm.graph.modular.doc.entity.DocCategoryShare;
 
@@ -24,11 +25,12 @@ public interface DocCategoryShareMapper extends BaseMapper<DocCategoryShare> {
 	 * 分页列表
 	 * 
 	 * @param page
+	 * @param user
 	 * @param projectIds
 	 * @param form
 	 * @return
 	 */
-	Page<DocCategoryShareDto> findDocPage(Page<DocCategoryShareDto> page, @Param("projectIds") List<Long> projectIds,
-			@Param("form") DocCategoryShareDto form);
+	Page<DocCategoryShareDto> findDocPage(Page<DocCategoryShareDto> page, @Param("user") User user,
+			@Param("projectIds") List<Long> projectIds, @Param("form") DocCategoryShareDto form);
 
 }

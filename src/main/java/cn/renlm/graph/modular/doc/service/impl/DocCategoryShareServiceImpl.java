@@ -147,7 +147,7 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			treeMap.put(docProjectId, tree);
 		});
 		// 分页数据
-		Page<DocCategoryShareDto> result = this.baseMapper.findDocPage(page, projectIds, form);
+		Page<DocCategoryShareDto> result = this.baseMapper.findDocPage(page, user, projectIds, form);
 		// 处理附加信息
 		result.getRecords().forEach(history -> {
 			List<Tree<Long>> tree = treeMap.get(history.getDocProjectId());

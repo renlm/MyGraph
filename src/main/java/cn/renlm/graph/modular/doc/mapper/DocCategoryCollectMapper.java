@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocCategoryCollectDto;
 import cn.renlm.graph.modular.doc.entity.DocCategoryCollect;
 
@@ -24,11 +25,12 @@ public interface DocCategoryCollectMapper extends BaseMapper<DocCategoryCollect>
 	 * 分页列表
 	 * 
 	 * @param page
+	 * @param user
 	 * @param projectIds
 	 * @param form
 	 * @return
 	 */
-	Page<DocCategoryCollectDto> findDocPage(Page<DocCategoryCollectDto> page,
+	Page<DocCategoryCollectDto> findDocPage(Page<DocCategoryCollectDto> page, @Param("user") User user,
 			@Param("projectIds") List<Long> projectIds, @Param("form") DocCategoryCollectDto form);
 
 }

@@ -131,7 +131,7 @@ public class DocCategoryCollectServiceImpl extends ServiceImpl<DocCategoryCollec
 			treeMap.put(docProjectId, tree);
 		});
 		// 分页数据
-		Page<DocCategoryCollectDto> result = this.baseMapper.findDocPage(page, projectIds, form);
+		Page<DocCategoryCollectDto> result = this.baseMapper.findDocPage(page, user, projectIds, form);
 		// 处理附加信息
 		result.getRecords().forEach(history -> {
 			List<Tree<Long>> tree = treeMap.get(history.getDocProjectId());

@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.renlm.graph.modular.doc.mapper.DocCategoryCollectMapper">
-
+	<!-- 分页列表 -->
+	<select id="findDocPage" resultType="cn.renlm.graph.modular.doc.dto.DocCategoryCollectDto">
+		select dcc.`id`,
+			dcc.`doc_project_id`,
+			dcc.`doc_category_id`,
+			dcc.`member_user_id`,
+			dcc.`created_at`,
+			dcc.`updated_at`,
+			dcc.`deleted`,
+			dp.id as `docProjectId`,
+			dp.uuid as `docProjectUuid`,
+			dp.project_name as `docProjectName`,
+			dc.id as `docCategoryId`,
+			dc.uuid as `docCategoryUuid`,
+			dc.`text` as `docCategoryName`
+		from doc_project dp, doc_category dc, doc_category_collect dcc
+		where dp.id = dc.doc_project_id
+			and dc.id = dcc.doc_category_id
+			and dp.deleted = 0 
+			and dc.deleted = 0
+			and dcc.deleted = 0
+			and dp.id in 
+			<foreach collection="projectIds" item="projectId" open="(" close=")" separator=",">
+				#{projectId,jdbcType=BIGINT}
+			</foreach>
+		order by dcc.updated_at desc, dcc.id desc
+	</select>
 </mapper>
