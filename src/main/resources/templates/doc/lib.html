@@ -176,30 +176,111 @@
 	</div>
     <!-- 收藏 工具栏 -->
     <div id="docCategoryCollectDataGridToolbar" class="myui-toolbar">
-        <a href="javascript:void(0);"
-	      	class="easyui-menubutton myui-btn-normal"
-	     	data-options="iconCls:'fa fa-search',
-	        	hasDownArrow:false
-	    	">高级筛选
-		</a>
+		<form id="docCategoryCollectDataGridForm" class="search-box" style="float: initial;">
+	    	<input type="text" name="docProjectUuid"
+	        	id="docCategoryCollectDataGridDocProjectUuid"
+	       		class="easyui-combogrid"
+	      		data-options="idField:'uuid',
+	         		textField:'projectName',
+	            	prompt:'项目',
+	            	width:220,
+	            	panelWidth:444,
+	           		pagination:true,
+	           		fitColumns:true,
+	           		pageSize:10,
+	           		mode:'remote',
+	           		method:'get',
+	           		url:ctx+'/doc/project/ajax/page',
+	              	onBeforeLoad:$.pageOnBeforeLoad,
+	              	columns:[[
+	              		{field:'projectName',title:'项目名称',width:120},
+	                 	{field:'visitLevel',title:'访问级别',width:60,formatter:$.docVisitLevelFormatter},
+	                	{field:'role',title:'权限',width:60,formatter:$.docMemberRoleFormatter}
+	             	]]
+	        	"/>
+	        <a href="javascript:searchDocCategoryCollect();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:resetDocCategoryCollect();"
+	      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+	      		data-options="iconCls:'fa fa-trash'
+	      		">清空
+	    	</a>
+	    </form>
     </div>
     <!-- 分享 工具栏 -->
     <div id="docCategoryShareDataGridToolbar" class="myui-toolbar">
-        <a href="javascript:void(0);"
-	      	class="easyui-menubutton myui-btn-normal"
-	     	data-options="iconCls:'fa fa-search',
-	        	hasDownArrow:false
-	    	">高级筛选
-		</a>
+        <form id="docCategoryShareDataGridForm" class="search-box" style="float: initial;">
+	    	<input type="text" name="docProjectUuid"
+	        	id="docCategoryShareDataGridDocProjectUuid"
+	       		class="easyui-combogrid"
+	      		data-options="idField:'uuid',
+	         		textField:'projectName',
+	            	prompt:'项目',
+	            	width:220,
+	            	panelWidth:444,
+	           		pagination:true,
+	           		fitColumns:true,
+	           		pageSize:10,
+	           		mode:'remote',
+	           		method:'get',
+	           		url:ctx+'/doc/project/ajax/page',
+	              	onBeforeLoad:$.pageOnBeforeLoad,
+	              	columns:[[
+	              		{field:'projectName',title:'项目名称',width:120},
+	                 	{field:'visitLevel',title:'访问级别',width:60,formatter:$.docVisitLevelFormatter},
+	                	{field:'role',title:'权限',width:60,formatter:$.docMemberRoleFormatter}
+	             	]]
+	        	"/>
+	        <a href="javascript:searchDocCategoryShareDataGrid();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:resetDocCategoryShareDataGrid();"
+	      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+	      		data-options="iconCls:'fa fa-trash'
+	      		">清空
+	    	</a>
+	    </form>
     </div>
     <!-- 历史记录 工具栏 -->
     <div id="markdownHistoryDataGridToolbar" class="myui-toolbar">
-        <a href="javascript:void(0);"
-	      	class="easyui-menubutton myui-btn-normal"
-	     	data-options="iconCls:'fa fa-search',
-	        	hasDownArrow:false
-	    	">高级筛选
-		</a>
+        <form id="markdownHistoryDataGridForm" class="search-box" style="float: initial;">
+	    	<input type="text" name="docProjectUuid"
+	        	id="markdownHistoryDataGridDocProjectUuid"
+	       		class="easyui-combogrid"
+	      		data-options="idField:'uuid',
+	         		textField:'projectName',
+	            	prompt:'项目',
+	            	width:220,
+	            	panelWidth:444,
+	           		pagination:true,
+	           		fitColumns:true,
+	           		pageSize:10,
+	           		mode:'remote',
+	           		method:'get',
+	           		url:ctx+'/doc/project/ajax/page',
+	              	onBeforeLoad:$.pageOnBeforeLoad,
+	              	columns:[[
+	              		{field:'projectName',title:'项目名称',width:120},
+	                 	{field:'visitLevel',title:'访问级别',width:60,formatter:$.docVisitLevelFormatter},
+	                	{field:'role',title:'权限',width:60,formatter:$.docMemberRoleFormatter}
+	             	]]
+	        	"/>
+	        <a href="javascript:searchMarkdownHistoryDataGrid();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:resetMarkdownHistoryDataGrid();"
+	      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+	      		data-options="iconCls:'fa fa-trash'
+	      		">清空
+	    	</a>
+	    </form>
     </div>
 <script type="text/javascript">
 	/**
@@ -342,6 +423,60 @@
 				$memberDialog.dialog('destroy');
 			}
 	    });
+	}
+</script>
+<script type="text/javascript">
+	/**
+	 * 查询收藏
+	 */
+	function searchDocCategoryCollect () {
+		$('#docCategoryCollectDataGrid').datagrid('load', {
+			docProjectUuid: $('#docCategoryCollectDataGridDocProjectUuid').combogrid('getValue')
+		});
+	}
+	
+	/**
+	 * 清空收藏
+	 */
+	function resetDocCategoryCollect () {
+		$('#docCategoryCollectDataGridForm').form('clear');
+		searchDocCategoryCollect();
+	}
+</script>
+<script type="text/javascript">
+	/**
+	 * 查询分享
+	 */
+	function searchDocCategoryShareDataGrid () {
+		$('#docCategoryShareDataGrid').datagrid('load', {
+			docProjectUuid: $('#docCategoryShareDataGridDocProjectUuid').combogrid('getValue')
+		});
+	}
+	
+	/**
+	 * 清空分享
+	 */
+	function resetDocCategoryShareDataGrid () {
+		$('#docCategoryShareDataGridForm').form('clear');
+		searchDocCategoryShareDataGrid();
+	}
+</script>
+<script type="text/javascript">
+	/**
+	 * 查询历史记录
+	 */
+	function searchMarkdownHistoryDataGrid () {
+		$('#markdownHistoryDataGrid').datagrid('load', {
+			docProjectUuid: $('#markdownHistoryDataGridDocProjectUuid').combogrid('getValue')
+		});
+	}
+	
+	/**
+	 * 清空历史记录
+	 */
+	function resetMarkdownHistoryDataGrid () {
+		$('#markdownHistoryDataGridForm').form('clear');
+		searchMarkdownHistoryDataGrid();
 	}
 </script>
 </body>
