@@ -13,7 +13,6 @@
 			dp.id as `docProjectId`,
 			dp.uuid as `docProjectUuid`,
 			dp.project_name as `docProjectName`,
-			dc.id as `docCategoryId`,
 			dc.uuid as `docCategoryUuid`,
 			dc.`text` as `docCategoryName`
 		from doc_project dp, doc_category dc, doc_category_collect dcc
@@ -22,6 +21,7 @@
 			and dp.deleted = 0 
 			and dc.deleted = 0
 			and dcc.deleted = 0
+			and dcc.member_user_id = #{userId,jdbcType=VARCHAR}
 			and dp.id in 
 			<foreach collection="projectIds" item="projectId" open="(" close=")" separator=",">
 				#{projectId,jdbcType=BIGINT}

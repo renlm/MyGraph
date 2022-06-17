@@ -34,11 +34,6 @@ public class DocCategoryShareDto extends DocCategoryShare {
 	private String docProjectName;
 
 	/**
-	 * 分类Id
-	 */
-	private Long docCategoryId;
-
-	/**
 	 * 分类Uuid
 	 */
 	private String docCategoryUuid;
