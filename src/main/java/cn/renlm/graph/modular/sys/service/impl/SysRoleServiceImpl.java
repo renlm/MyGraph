@@ -74,8 +74,13 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 		SysRole sysRole = this.getById(id);
 		List<SysRole> list = CollUtil.newArrayList(sysRole);
 		int level = sysRole.getLevel();
-		while (--level > 0) {
-			list.add(this.getById(CollUtil.getLast(list).getPid()));
+		while (level-- > 0) {
+			Long pid = CollUtil.getLast(list).getPid();
+			if (pid == null) {
+				level = 0;
+			} else {
+				list.add(this.getById(pid));
+			}
 		}
 		return CollUtil.reverse(list);
 	}

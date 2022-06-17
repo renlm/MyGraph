@@ -74,8 +74,13 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 		SysOrg sysOrg = this.getById(id);
 		List<SysOrg> list = CollUtil.newArrayList(sysOrg);
 		int level = sysOrg.getLevel();
-		while (--level > 0) {
-			list.add(this.getById(CollUtil.getLast(list).getPid()));
+		while (level-- > 0) {
+			Long pid = CollUtil.getLast(list).getPid();
+			if (pid == null) {
+				level = 0;
+			} else {
+				list.add(this.getById(pid));
+			}
 		}
 		return CollUtil.reverse(list);
 	}
