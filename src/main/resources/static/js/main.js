@@ -122,6 +122,13 @@
 		/**
 		 * 文档项目名称
 		 */
+		docProjectNameFormatter: function (value, row, index) {
+			if (value || index) {}
+			return '<a href=\'javascript:void(0);\' onclick="$.openNewWindowDocProject(\'' + row.docProjectUuid + '\')" style=\'color:blue;font-style: italic;\'>' + row.docProjectName + '</a>';
+		},
+		/**
+		 * 文档项目名称
+		 */
 		openDocProjectFormatter: function (value, row, index) {
 			if (value || index) {}
 			return '<a href=\'javascript:void(0);\' onclick="$.openDocProject(\'' + row.uuid + '\')" style=\'color:blue;font-style: italic;\'>' + row.projectName + '</a>';
@@ -131,6 +138,12 @@
 		 */
 		openDocProject: function (uuid) {
 			top.window.location.href = (ctx + '/doc/project?uuid=' + uuid);
+		},
+		/**
+		 * 打开文档项目（新窗口）
+		 */
+		openNewWindowDocProject: function (uuid) {
+			top.window.open(ctx + '/doc/project?uuid=' + uuid);
 		},
 		/**
 		 * 标记title
