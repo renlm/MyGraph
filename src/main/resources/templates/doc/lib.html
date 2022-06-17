@@ -147,8 +147,14 @@
         	</div>
     	</div>
     </div>
-    <!-- 项目 工具栏 -->
+    <!-- 我的项目 工具栏 -->
     <div id="projectDataGridToolbar" class="myui-toolbar">
+		<a href="javascript:void(0);"
+	      	class="easyui-menubutton myui-btn-normal"
+	     	data-options="iconCls:'fa fa-table',
+	        	hasDownArrow:false
+	    	">我的项目
+		</a>
 		<a href="javascript:projectDialog();"
           	class="easyui-menubutton myui-btn-normal myui-btn-green"
          	data-options="iconCls:'fa fa-plus',
@@ -320,7 +326,7 @@
     </div>
 <script type="text/javascript">
 	/**
-	 * 查询项目
+	 * 查询我的项目
 	 */
 	function searchProject () {
 		$('#projectDataGrid').datagrid('unselectAll');
@@ -330,7 +336,7 @@
 	}
 	
 	/**
-	 * 重置项目
+	 * 重置我的项目
 	 */
 	function resetProject () {
 		$('#projectDataGridForm').form('clear');
