@@ -521,7 +521,10 @@
 	 * 关闭分享
 	 */
 	function optShareFormatter (value, row, index) {
-		var tpl = '<a href="javascript:closeShare(\'' + row.docProjectUuid + '\', \'' + row.docCategoryUuid + '\');" class="l-btn myui-btn-red l-btn-small l-btn-plain">';
+		if (row.disabled) {
+			return '<span style="color: gray;font-style: italic;">已关闭</span>';			
+		}
+		var tpl = '<a href="javascript:closeShare(\'' + row.uuid + '\');" class="l-btn myui-btn-red l-btn-small l-btn-plain">';
 			tpl+= '    <span class="l-btn-left l-btn-icon-left">';
 			tpl+= '    <span class="l-btn-text">关闭</span>';
 			tpl+= '    <span class="l-btn-icon fa fa-close"></span>';
@@ -533,13 +536,10 @@
 	/**
 	 * 关闭分享
 	 */
-	function closeShare (docProjectUuid, docCategoryUuid) {
+	function closeShare (uuid) {
 		layer.load(2);
 		$.post(ctx + '/doc/categoryShare/ajax/closeShare', 
-				{ 
-					docProjectUuid: docProjectUuid,
-					docCategoryUuid: docCategoryUuid
-				}, 
+				{ uuid: uuid }, 
 				function (resultJson) {
 					layer.closeAll();
 					if (resultJson.statusCode == 200) {
