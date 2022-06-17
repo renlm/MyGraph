@@ -41,6 +41,8 @@
 					dp.project_name like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
 					or
 					dc.`text` like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
+					or
+					mh.`name` like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
 				)
 			</if>
 		order by mh.`operate_at` desc, mh.history_id desc

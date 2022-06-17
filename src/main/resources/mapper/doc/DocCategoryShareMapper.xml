@@ -51,7 +51,7 @@
 				)
 			</if>
 			<if test="form.status != null">
-				and status = #{form.status,jdbcType=INTEGER}
+				having `status` = #{form.status,jdbcType=INTEGER}
 			</if>
 		order by dcs.updated_at desc, dcs.id desc
 	</select>

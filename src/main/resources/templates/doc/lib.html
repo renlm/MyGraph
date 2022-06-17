@@ -106,6 +106,7 @@
 			                    <th data-options="field:'shareType',title:'分享类型',width:80,formatter:$.shareTypeFormatter"></th>
 			                    <th data-options="field:'createdAt',title:'分享时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
 			                    <th data-options="field:'deadline',title:'有效截止日期',width:100,align:'right',formatter:$.deadlineFormatter"></th>
+		                     	<th data-options="field:'remark',title:'备注',formatter:$.spanWithTitleFormatter"></th>
 			                    <th data-options="field:'actions',title:'操作',width:60,align:'center',formatter:optShareFormatter"></th>
 			                </tr>
 		                </thead>
@@ -263,6 +264,22 @@
 	        	data-options="prompt:'关键词',
 	        		width:220
 	        	"/>
+	        <input type="text" name="status"
+	    		id="docCategoryShareDataGridStatus" 
+           		class="easyui-combobox"
+                   	data-options="required:false,
+                   		editable:false,
+                   		prompt:'状态',
+						valueField:'value',
+						textField:'text',
+                		width:120,
+						panelHeight:'auto',
+						data: [
+						    {text:'分享中',value:1},
+							{text:'已关闭',value:2},
+							{text:'已过期',value:3}
+						]
+					"/>
 	        <a href="javascript:searchDocCategoryShareDataGrid();" 
 	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
 	       		data-options="iconCls:'fa fa-search'
@@ -521,8 +538,10 @@
 	 * 关闭分享
 	 */
 	function optShareFormatter (value, row, index) {
-		if (row.disabled) {
+		if (row.status === 2) {
 			return '<span style="color: gray;font-style: italic;">已关闭</span>';			
+		} else if (row.status === 3) {
+			return '<span style="color: gray;font-style: italic;">已过期</span>';			
 		}
 		var tpl = '<a href="javascript:closeShare(\'' + row.uuid + '\');" class="l-btn myui-btn-red l-btn-small l-btn-plain">';
 			tpl+= '    <span class="l-btn-left l-btn-icon-left">';
@@ -555,7 +574,8 @@
 	function searchDocCategoryShareDataGrid () {
 		$('#docCategoryShareDataGrid').datagrid('load', {
 			docProjectUuid: $('#docCategoryShareDataGridDocProjectUuid').combogrid('getValue'),
-			keywords: $('#docCategoryShareDataGridKeywords').textbox('getValue')
+			keywords: $('#docCategoryShareDataGridKeywords').textbox('getValue'),
+			status: $('#docCategoryShareDataGridStatus').combobox('getValue')
 		});
 	}
 	
