@@ -18,6 +18,41 @@
 (function($) {
 	$.extend({
 		/**
+		 * 分享类型格式化
+		 */
+		shareTypeFormatter: function (value) {
+			if(value === 1) {
+				return '公开';
+			} else if(value === 2) {
+				return '密码查看';
+			} else {
+				return value;
+			}
+		},
+		/**
+		 * 有效期类型格式化
+		 */
+		effectiveTypeFormatter: function (value) {
+			if(value === -1) {
+				return '永久';
+			} else if(value === 7) {
+				return '七天';
+			} else if(value === 30) {
+				return '三十天';
+			} else {
+				return value;
+			}
+		},
+		/**
+		 * 截止日期格式化
+		 */
+		deadlineFormatter: function (value) {
+			if(!value) {
+				return '<span style="color: gray;">-</span>';
+			}
+			return layui.util.toDateString(value, "yyyy/MM/dd");
+		},
+		/**
 		 * 文档分享
 		 */
 		docShareDialog: function (docProjectUuid, docCategoryUuid) {
