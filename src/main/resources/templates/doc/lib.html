@@ -51,9 +51,67 @@
         		</div>
         		<div title="收藏" 
               		data-options="iconCls:'fa fa-star'">
+              		<table id="docCategoryCollectDataGrid" 
+		            	class="easyui-datagrid"
+		            	data-options="border:false,
+        					bodyCls:'border_left',
+							fit:true,
+							fitColumns:true,
+							singleSelect:true,
+							checkOnSelect:false,
+							selectOnCheck:false,
+							toolbar:'#docCategoryCollectDataGridToolbar',
+							pagination:true,
+							pageSize:20,
+							method:'get',
+							url:ctx+'/markdownHistory/ajax/docPage',
+		                   	onBeforeLoad:$.pageOnBeforeLoad
+		               	">
+		                <thead>
+			                <tr>
+			                	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+			                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#docCategoryCollectDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+		                     	<th data-options="field:'docProjectName',title:'项目名称',width:120"></th>
+		                     	<th data-options="field:'parentsDocCategorName',title:'文档路径',width:180"></th>
+		                     	<th data-options="field:'version',title:'版本',width:80,align:'right'"></th>
+		                     	<th data-options="field:'changeLabel',title:'变更说明',width:80"></th>
+			                    <th data-options="field:'updatorNickname',title:'操作人',width:80,align:'left',formatter:function(value,row,index){if(row.updatorNickname){return row.updatorNickname;}else{return row.creatorNickname;}}"></th>
+			                    <th data-options="field:'updatedAt',title:'操作时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
+			                </tr>
+		                </thead>
+		            </table>
               	</div>
         		<div title="分享" 
               		data-options="iconCls:'fa fa-share-alt-square'">
+              		<table id="docCategoryShareDataGrid" 
+		            	class="easyui-datagrid"
+		            	data-options="border:false,
+        					bodyCls:'border_left',
+							fit:true,
+							fitColumns:true,
+							singleSelect:true,
+							checkOnSelect:false,
+							selectOnCheck:false,
+							toolbar:'#docCategoryShareDataGridToolbar',
+							pagination:true,
+							pageSize:20,
+							method:'get',
+							url:ctx+'/markdownHistory/ajax/docPage',
+		                   	onBeforeLoad:$.pageOnBeforeLoad
+		               	">
+		                <thead>
+			                <tr>
+			                	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
+			                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#docCategoryShareDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+		                     	<th data-options="field:'docProjectName',title:'项目名称',width:120"></th>
+		                     	<th data-options="field:'parentsDocCategorName',title:'文档路径',width:180"></th>
+		                     	<th data-options="field:'version',title:'版本',width:80,align:'right'"></th>
+		                     	<th data-options="field:'changeLabel',title:'变更说明',width:80"></th>
+			                    <th data-options="field:'updatorNickname',title:'操作人',width:80,align:'left',formatter:function(value,row,index){if(row.updatorNickname){return row.updatorNickname;}else{return row.creatorNickname;}}"></th>
+			                    <th data-options="field:'updatedAt',title:'操作时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
+			                </tr>
+		                </thead>
+		            </table>
               	</div>
         		<div title="历史记录" 
               		data-options="iconCls:'fa fa-history'">
@@ -117,53 +175,32 @@
           	</a>
 		</form> 
 	</div>
+    <!-- 收藏 工具栏 -->
+    <div id="docCategoryCollectDataGridToolbar" class="myui-toolbar">
+        <a href="javascript:void(0);"
+	      	class="easyui-menubutton myui-btn-normal"
+	     	data-options="iconCls:'fa fa-search',
+	        	hasDownArrow:false
+	    	">高级筛选
+		</a>
+    </div>
+    <!-- 分享 工具栏 -->
+    <div id="docCategoryShareDataGridToolbar" class="myui-toolbar">
+        <a href="javascript:void(0);"
+	      	class="easyui-menubutton myui-btn-normal"
+	     	data-options="iconCls:'fa fa-search',
+	        	hasDownArrow:false
+	    	">高级筛选
+		</a>
+    </div>
     <!-- 历史记录 工具栏 -->
     <div id="markdownHistoryDataGridToolbar" class="myui-toolbar">
-    	<input type="text" name="operatorUserId"
-        	id="markdownHistoryDataGridOperatorUserId"
-       		class="easyui-combogrid"
-      		data-options="idField:'userId',
-         		textField:'nickname',
-            	prompt:'操作人',
-            	width:220,
-            	panelWidth:444,
-           		pagination:true,
-           		fitColumns:true,
-           		pageSize:10,
-           		mode:'remote',
-           		method:'get',
-           		url:ctx+'/sys/user/ajax/page',
-              	onBeforeLoad:$.pageOnBeforeLoad,
-              	columns:[[
-              		{field:'username',title:'账号',width:100},
-                 	{field:'nickname',title:'昵称',width:100},
-                	{field:'mobile',title:'手机号码',width:100}
-             	]]
-        	"/>
-     	<input type="text" name="startDate"
-        	id="markdownHistoryDataGridStartDate" 
-        	class="easyui-datebox" 
-        	data-options="prompt:'起始时间',
-             	editable:false,
-        		width:220
-        	"/>
-     	<input type="text" name="endDate"
-        	id="markdownHistoryDataGridEndDate" 
-        	class="easyui-datebox" 
-        	data-options="prompt:'结束时间',
-             	editable:false,
-        		width:220
-        	"/>
-        <a href="javascript:searchMarkdownHistory();" 
-        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
-       		data-options="iconCls:'fa fa-search'
-         	">查询
-    	</a>
-    	<a href="javascript:resetMarkdownHistory();"
-      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
-      		data-options="iconCls:'fa fa-trash'
-      		">清空
-    	</a>
+        <a href="javascript:void(0);"
+	      	class="easyui-menubutton myui-btn-normal"
+	     	data-options="iconCls:'fa fa-search',
+	        	hasDownArrow:false
+	    	">高级筛选
+		</a>
     </div>
 <script type="text/javascript">
 	/**
@@ -306,29 +343,6 @@
 				$memberDialog.dialog('destroy');
 			}
 	    });
-	}
-</script>
-<script type="text/javascript">
-	/**
-	 * 查询历史记录
-	 */
-	function searchMarkdownHistory () {
-		$('#markdownHistoryDataGrid').datagrid('unselectAll');
-		$('#markdownHistoryDataGrid').datagrid('load', {
-			operatorUserId: $('#markdownHistoryDataGridOperatorUserId').combogrid('getValue'),
-			startDate: $('#markdownHistoryDataGridStartDate').datebox('getValue'),
-			endDate: $('#markdownHistoryDataGridEndDate').datebox('getValue')
-		});
-	}
-	
-	/**
-	 * 清空历史记录
-	 */
-	function resetMarkdownHistory () {
-		$('#markdownHistoryDataGridOperatorUserId').combogrid('clear');
-		$('#markdownHistoryDataGridStartDate').datebox('clear');
-		$('#markdownHistoryDataGridEndDate').datebox('clear');
-		searchMarkdownHistory();
 	}
 </script>
 </body>
