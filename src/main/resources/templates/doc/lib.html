@@ -159,7 +159,7 @@
 	   		<input type="text" name="keywords"
 	    		id="projectDataGridKeywords" 
 	   			class="easyui-textbox"
-	        	data-options="prompt:'项目名称、标签',
+	        	data-options="prompt:'关键词',
 	        		width:220
 	        	"/>
 	        <a href="javascript:searchProject();" 
@@ -176,7 +176,13 @@
 	</div>
     <!-- 收藏 工具栏 -->
     <div id="docCategoryCollectDataGridToolbar" class="myui-toolbar">
-		<form id="docCategoryCollectDataGridForm" class="search-box" style="float: initial;">
+		<a href="javascript:void(0);"
+	      	class="easyui-menubutton myui-btn-normal"
+	     	data-options="iconCls:'fa fa-table',
+	        	hasDownArrow:false
+	    	">收藏
+		</a>
+		<form id="docCategoryCollectDataGridForm" class="search-box">
 	    	<input type="text" name="docProjectUuid"
 	        	id="docCategoryCollectDataGridDocProjectUuid"
 	       		class="easyui-combogrid"
@@ -198,6 +204,12 @@
 	                	{field:'role',title:'权限',width:60,formatter:$.docMemberRoleFormatter}
 	             	]]
 	        	"/>
+	   		<input type="text" name="keywords"
+	    		id="docCategoryCollectDataGridKeywords" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'关键词',
+	        		width:220
+	        	"/>
 	        <a href="javascript:searchDocCategoryCollect();" 
 	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
 	       		data-options="iconCls:'fa fa-search'
@@ -212,7 +224,13 @@
     </div>
     <!-- 分享 工具栏 -->
     <div id="docCategoryShareDataGridToolbar" class="myui-toolbar">
-        <form id="docCategoryShareDataGridForm" class="search-box" style="float: initial;">
+		<a href="javascript:void(0);"
+	      	class="easyui-menubutton myui-btn-normal"
+	     	data-options="iconCls:'fa fa-table',
+	        	hasDownArrow:false
+	    	">分享
+		</a>
+        <form id="docCategoryShareDataGridForm" class="search-box">
 	    	<input type="text" name="docProjectUuid"
 	        	id="docCategoryShareDataGridDocProjectUuid"
 	       		class="easyui-combogrid"
@@ -234,6 +252,12 @@
 	                	{field:'role',title:'权限',width:60,formatter:$.docMemberRoleFormatter}
 	             	]]
 	        	"/>
+	   		<input type="text" name="keywords"
+	    		id="docCategoryShareDataGridKeywords" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'关键词',
+	        		width:220
+	        	"/>
 	        <a href="javascript:searchDocCategoryShareDataGrid();" 
 	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
 	       		data-options="iconCls:'fa fa-search'
@@ -248,7 +272,13 @@
     </div>
     <!-- 历史记录 工具栏 -->
     <div id="markdownHistoryDataGridToolbar" class="myui-toolbar">
-        <form id="markdownHistoryDataGridForm" class="search-box" style="float: initial;">
+		<a href="javascript:void(0);"
+	      	class="easyui-menubutton myui-btn-normal"
+	     	data-options="iconCls:'fa fa-table',
+	        	hasDownArrow:false
+	    	">历史记录
+		</a>
+        <form id="markdownHistoryDataGridForm" class="search-box">
 	    	<input type="text" name="docProjectUuid"
 	        	id="markdownHistoryDataGridDocProjectUuid"
 	       		class="easyui-combogrid"
@@ -269,6 +299,12 @@
 	                 	{field:'visitLevel',title:'访问级别',width:60,formatter:$.docVisitLevelFormatter},
 	                	{field:'role',title:'权限',width:60,formatter:$.docMemberRoleFormatter}
 	             	]]
+	        	"/>
+	   		<input type="text" name="keywords"
+	    		id="markdownHistoryDataGridKeywords" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'关键词',
+	        		width:220
 	        	"/>
 	        <a href="javascript:searchMarkdownHistoryDataGrid();" 
 	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
@@ -431,7 +467,8 @@
 	 */
 	function searchDocCategoryCollect () {
 		$('#docCategoryCollectDataGrid').datagrid('load', {
-			docProjectUuid: $('#docCategoryCollectDataGridDocProjectUuid').combogrid('getValue')
+			docProjectUuid: $('#docCategoryCollectDataGridDocProjectUuid').combogrid('getValue'),
+			keywords: $('#docCategoryCollectDataGridKeywords').textbox('getValue')
 		});
 	}
 	
@@ -449,7 +486,8 @@
 	 */
 	function searchDocCategoryShareDataGrid () {
 		$('#docCategoryShareDataGrid').datagrid('load', {
-			docProjectUuid: $('#docCategoryShareDataGridDocProjectUuid').combogrid('getValue')
+			docProjectUuid: $('#docCategoryShareDataGridDocProjectUuid').combogrid('getValue'),
+			keywords: $('#docCategoryShareDataGridKeywords').textbox('getValue')
 		});
 	}
 	
@@ -467,7 +505,8 @@
 	 */
 	function searchMarkdownHistoryDataGrid () {
 		$('#markdownHistoryDataGrid').datagrid('load', {
-			docProjectUuid: $('#markdownHistoryDataGridDocProjectUuid').combogrid('getValue')
+			docProjectUuid: $('#markdownHistoryDataGridDocProjectUuid').combogrid('getValue'),
+			keywords: $('#markdownHistoryDataGridKeywords').textbox('getValue')
 		});
 	}
 	
