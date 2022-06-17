@@ -31,7 +31,7 @@
 			and dp.deleted = 0 
 			and dc.deleted = 0
 			and dcs.deleted = 0
-			and dcs.creator_user_id = #{userId,jdbcType=VARCHAR}
+			and dcs.creator_user_id = #{user.userId,jdbcType=VARCHAR}
 			and dp.id in 
 			<foreach collection="projectIds" item="projectId" open="(" close=")" separator=",">
 				#{projectId,jdbcType=BIGINT}
