@@ -1,6 +1,8 @@
 package cn.renlm.graph.modular.markdown.service.impl;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
+import cn.renlm.graph.modular.doc.entity.DocProject;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
@@ -58,6 +61,14 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 				Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
 				if (role == null || !ArrayUtil.contains(new Integer[] { 2, 3 }, role.intValue())) {
 					return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
+				} else {
+					DocProject docProject = iDocProjectService.getById(docCategory.getDocProjectId());
+					List<DocCategory> fathers = iDocCategoryService.findFathers(docProject.getUuid(),
+							docCategory.getId());
+					String fathersName = fathers.stream().map(DocCategory::getText)
+							.collect(Collectors.joining(StrUtil.SLASH));
+					form.setName(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName,
+							docCategory.getText()));
 				}
 			}
 			Markdown entity = this.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, form.getUuid()));
