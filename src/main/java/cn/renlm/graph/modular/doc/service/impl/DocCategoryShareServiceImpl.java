@@ -72,6 +72,7 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			wrapper.set(DocCategoryShare::getUpdatorNickname, user.getUsername());
 			wrapper.eq(DocCategoryShare::getUuid, uuid);
 			wrapper.eq(DocCategoryShare::getCreatorUserId, user.getUserId());
+			wrapper.eq(DocCategoryShare::getDeleted, false);
 		}));
 		return Result.success();
 	}

@@ -36,6 +36,16 @@
 			<foreach collection="projectIds" item="projectId" open="(" close=")" separator=",">
 				#{projectId,jdbcType=BIGINT}
 			</foreach>
+			<if test="form.docProjectUuid != null and form.docProjectUuid != ''">
+				and dp.uuid = #{form.docProjectUuid,jdbcType=VARCHAR}
+			</if>
+			<if test="form.keywords != null and form.keywords != ''">
+				and (
+					dp.project_name like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
+					or
+					dc.`text` like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
+				)
+			</if>
 		order by dcs.updated_at desc, dcs.id desc
 	</select>
 </mapper>
