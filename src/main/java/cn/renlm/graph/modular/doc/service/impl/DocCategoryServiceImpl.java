@@ -183,6 +183,16 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 				this.updateById(parent);
 			}
 		}
+		// 排序
+		if (docCategory.getSort() == null) {
+			List<DocCategory> childs = this.findListByPid(docProjectUuid, docCategory.getPid());
+			OptionalInt max = childs.stream().filter(Objects::nonNull).mapToInt(DocCategory::getSort).max();
+			if (max.isPresent()) {
+				docCategory.setSort(max.getAsInt() + 1);
+			}
+		}
+		docCategory.setSort(ObjectUtil.defaultIfNull(docCategory.getSort(), 1));
+		this.saveOrUpdate(docCategory);
 		// 关联文档处理
 		String docCategoryName = docCategory.getText();
 		String projectName = docProject.getProjectName();
@@ -240,16 +250,6 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 				}));
 			});
 		}
-		// 排序
-		if (docCategory.getSort() == null) {
-			List<DocCategory> childs = this.findListByPid(docProjectUuid, docCategory.getPid());
-			OptionalInt max = childs.stream().filter(Objects::nonNull).mapToInt(DocCategory::getSort).max();
-			if (max.isPresent()) {
-				docCategory.setSort(max.getAsInt() + 1);
-			}
-		}
-		docCategory.setSort(ObjectUtil.defaultIfNull(docCategory.getSort(), 1));
-		this.saveOrUpdate(docCategory);
 		return Result.success(docCategory);
 	}
 
