@@ -5,6 +5,9 @@
 	<select id="findDocPage" resultType="cn.renlm.graph.modular.markdown.dto.MarkdownHistoryDto">
 		select mh.`history_id`,
 			mh.`change_label`,
+			mh.`operate_at`,
+		  	mh.`operator_user_id`,
+		  	mh.`operator_nickname`,
 			mh.`markdown_id`,
 			mh.`markdown_uuid`,
 			mh.`name`,
@@ -30,6 +33,6 @@
 			<foreach collection="projectIds" item="projectId" open="(" close=")" separator=",">
 				#{projectId,jdbcType=BIGINT}
 			</foreach>
-		order by mh.updated_at desc, mh.history_id desc
+		order by mh.`operate_at` desc, mh.history_id desc
 	</select>
 </mapper>
