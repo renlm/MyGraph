@@ -84,10 +84,8 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(500103, 		'62410EE609A14EB48EC962D36661E14D',	'500103', 		'Markdown', 	'markdown', 		null, 														null, 						null, 				null, 			3, 		3, 		'open',		0,					5001,		null)
 	  ,(60, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'60', 			'更多功能', 		'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		6, 		'closed',	0,					null,		null)
 	  ,(6001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'6001', 		'在线调试', 		'urlInsidePage', 	'/compile', 												'fa fa-code', 				'rebeccapurple', 	null, 			2, 		1, 		'open',		0,					60,			null)
-	  ,(6002, 			'E19E12B18E0343A9AD679C633B60BE6D',	'6002', 		'mxGraph', 		'urlNewWindows', 	'https://jgraph.github.io/mxgraph', 						'fa fa-object-group', 		null, 				null, 			2, 		2, 		'open',		0,					60,			null)
-	  ,(6003, 			'466FA46CA81B44A0B286294B6149007F',	'6003', 		'Editor.md', 	'urlNewWindows', 	'/static/markdown/editor.md-1.5.0/examples/index.html', 	'fa fa-file-word-o', 		null, 				null, 			2, 		3, 		'open',		0,					60,			null)
-	  ,(6004, 			'3DF8F2C0B4FD4B37923AD4524B9BA259',	'6004', 		'Echarts图表', 	'urlNewWindows', 	'https://echarts.apache.org', 								'fa fa-area-chart', 		null, 				null, 			2, 		4, 		'open',		0,					60,			null)
-	  ,(6005, 			'674BB526D3BE4231A81C2311E5E14AB0',	'6005', 		'EasyUI中文站', 	'urlNewWindows', 	'http://www.jeasyui.cn/?from=demo', 						'fa fa-link', 				null, 				null, 			2, 		5, 		'open',		0,					60,			null)
+	  ,(6002, 			'466FA46CA81B44A0B286294B6149007F',	'6002', 		'Editor.md', 	'urlNewWindows', 	'/static/markdown/editor.md-1.5.0/examples/index.html', 	'fa fa-file-word-o', 		null, 				null, 			2, 		2, 		'open',		0,					60,			null)
+	  ,(6003, 			'674BB526D3BE4231A81C2311E5E14AB0',	'6003', 		'EasyUI中文站', 	'urlNewWindows', 	'http://www.jeasyui.cn/?from=demo', 						'fa fa-link', 				null, 				null, 			2, 		3, 		'open',		0,					60,			null)
 ;
 
 -- 角色资源关系
