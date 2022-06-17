@@ -67,8 +67,7 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 							docCategory.getId());
 					String fathersName = fathers.stream().map(DocCategory::getText)
 							.collect(Collectors.joining(StrUtil.SLASH));
-					form.setName(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName,
-							docCategory.getText()));
+					form.setName(StrUtil.join(StrUtil.SLASH, docProject.getProjectName(), fathersName));
 				}
 			}
 			Markdown entity = this.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, form.getUuid()));
