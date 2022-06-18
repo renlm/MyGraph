@@ -45,16 +45,22 @@ public class DocCategoryController {
 	 * @param model
 	 * @param authentication
 	 * @param docProjectUuid
+	 * @param docCategoryUuid
 	 * @return
 	 */
 	@GetMapping
-	public String index(ModelMap model, Authentication authentication, String docProjectUuid) {
+	public String index(ModelMap model, Authentication authentication, String docProjectUuid, String docCategoryUuid) {
 		User user = (User) authentication.getPrincipal();
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
 		Integer role = iDocProjectService.findRole(user, docProject.getId());
 		model.put("docProject", docProject);
 		model.put("role", role);
+		if (StrUtil.isNotBlank(docCategoryUuid)) {
+			DocCategory docCategory = iDocCategoryService
+					.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, docProjectUuid));
+			model.put("docCategory", docCategory);
+		}
 		return "doc/category";
 	}
 

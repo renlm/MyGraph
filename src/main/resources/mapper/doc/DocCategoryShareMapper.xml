@@ -53,6 +53,6 @@
 			<if test="form.status != null">
 				having `status` = #{form.status,jdbcType=INTEGER}
 			</if>
-		order by dcs.updated_at desc, dcs.id desc
+		order by dcs.id desc
 	</select>
 </mapper>

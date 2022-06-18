@@ -47,7 +47,8 @@
 		<!-- 中部开始 -->
 		<div class="iframer layui-tab-content">
 			<div class="layui-tab-item layui-show">
-				<iframe frameborder="0" scrolling="yes" th:src="@{'/doc/category?docProjectUuid='+${docProject.uuid}}"></iframe>
+				<iframe th:if="${#strings.isEmpty(docCategoryUuid)}" frameborder="0" scrolling="yes" th:src="@{'/doc/category?docProjectUuid='+${docProject.uuid}}"></iframe>
+				<iframe th:if="${!#strings.isEmpty(docCategoryUuid)}" frameborder="0" scrolling="yes" th:src="@{'/doc/category?docProjectUuid='+${docProject.uuid}+'&docCategoryUuid='+${docCategoryUuid}}"></iframe>
 			</div>
 		</div>
 		<!-- 中部结束 -->
