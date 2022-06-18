@@ -101,10 +101,8 @@
 			                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#docCategoryShareDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
 		                     	<th data-options="field:'docProjectName',title:'项目名称',width:120,formatter:$.docProjectNameFormatter"></th>
 		                     	<th data-options="field:'parentsCategorName',title:'文档名称',width:180"></th>
-			                    <th data-options="field:'shareType',title:'分享类型',width:80,formatter:$.shareTypeFormatter"></th>
-			                    <th data-options="field:'createdAt',title:'分享时间',width:120,align:'right',formatter:$.updatedAtFormatter"></th>
-			                    <th data-options="field:'deadline',title:'有效截止日期',width:100,align:'right',formatter:$.deadlineFormatter"></th>
-		                     	<th data-options="field:'remark',title:'备注',formatter:$.spanWithTitleFormatter"></th>
+			                    <th data-options="field:'shareType',title:'分享类型',width:60,formatter:$.shareTypeFormatter"></th>
+		                     	<th data-options="field:'remark',title:'备注',width:120,formatter:$.docCategoryShareRemarkFormatter,styler:$.remarkStyler"></th>
 			                    <th data-options="field:'actions',title:'操作',width:60,align:'center',formatter:optShareFormatter"></th>
 			                </tr>
 		                </thead>

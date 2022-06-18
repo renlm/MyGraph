@@ -18,6 +18,22 @@
 (function($) {
 	$.extend({
 		/**
+		 * 备注格式化（文档分享）
+		 */
+		docCategoryShareRemarkFormatter: function (value, row, index) {
+			var tpl = '';
+			if (value) {
+				tpl = '<span title="' + value + '">备注：' + value + '</span>';
+			} else {
+				tpl = '<span>备注：-</span>';
+			}
+			tpl+='<div data-index="' + index + '">';
+			tpl+='    <p style="color: #31708f;">有效截止日期：' + $.deadlineFormatter(row.deadline) + '</p>';
+			tpl+='    <p style="color: #31708f;">分享时间：' + $.createdAtFormatter(row.createdAt) + '</p>';
+			tpl+='</div>';
+			return tpl;
+		},
+		/**
 		 * 备注格式化
 		 */
 		remarkFormatter: function (value, row, index) {
