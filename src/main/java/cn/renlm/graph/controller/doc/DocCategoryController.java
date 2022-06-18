@@ -58,7 +58,7 @@ public class DocCategoryController {
 		model.put("role", role);
 		if (StrUtil.isNotBlank(docCategoryUuid)) {
 			DocCategory docCategory = iDocCategoryService
-					.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, docProjectUuid));
+					.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, docCategoryUuid));
 			model.put("docCategory", docCategory);
 		}
 		return "doc/category";
