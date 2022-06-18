@@ -3,6 +3,7 @@ package cn.renlm.graph.controller.markdown;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +27,19 @@ public class MarkdownHistoryController {
 
 	@Autowired
 	private IMarkdownHistoryService iMarkdownHistoryService;
+
+	/**
+	 * 历史版本
+	 * 
+	 * @param model
+	 * @param markdownUuid
+	 * @return
+	 */
+	@RequestMapping("/versionsDialog")
+	public String versionsDialog(ModelMap model, String markdownUuid) {
+		model.put("markdownUuid", markdownUuid);
+		return "markdown/versionsDialog";
+	}
 
 	/**
 	 * 分页列表（文档）
