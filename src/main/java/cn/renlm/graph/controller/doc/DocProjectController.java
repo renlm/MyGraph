@@ -42,16 +42,18 @@ public class DocProjectController {
 	 * @param model
 	 * @param authentication
 	 * @param uuid
+	 * @param docCategoryUuid
 	 * @return
 	 */
 	@GetMapping
-	public String index(ModelMap model, Authentication authentication, String uuid) {
+	public String index(ModelMap model, Authentication authentication, String uuid, String docCategoryUuid) {
 		User user = (User) authentication.getPrincipal();
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, uuid));
 		List<DocProjectDto> allDocProjects = iDocProjectService.findAll(user);
 		model.put("docProject", docProject);
 		model.put("allDocProjects", allDocProjects);
+		model.put("docCategoryUuid", docCategoryUuid);
 		return "doc/project";
 	}
 
