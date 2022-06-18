@@ -315,7 +315,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			histories.add(history);
 		});
 		// 删除文档
-		iMarkdownService.saveBatch(markdowns);
+		iMarkdownService.updateBatchById(markdowns);
 		// 保存历史记录
 		iMarkdownHistoryService.saveBatch(histories);
 		return Result.success();
