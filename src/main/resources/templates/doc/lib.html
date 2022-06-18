@@ -484,7 +484,13 @@
 	 * 取消收藏
 	 */
 	function optCollectFormatter (value, row, index) {
-		var tpl = '<a href="javascript:optCollect(\'' + row.docProjectUuid + '\', \'' + row.docCategoryUuid + '\');" class="l-btn myui-btn-red l-btn-small l-btn-plain">';
+		var tpl = '<a href="javascript:$.docVersionsDialog(\'' + row.docProjectUuid + '\', \'' + row.docCategoryUuid + '\');" class="l-btn myui-btn-purple l-btn-small l-btn-plain">';
+			tpl+= '    <span class="l-btn-left l-btn-icon-left">';
+			tpl+= '    <span class="l-btn-text">历史</span>';
+			tpl+= '    <span class="l-btn-icon fa fa-history"></span>';
+			tpl+= '    </span>';
+			tpl+= '</a> ';
+		    tpl+= '<a href="javascript:optCollect(\'' + row.docProjectUuid + '\', \'' + row.docCategoryUuid + '\');" class="l-btn myui-btn-red l-btn-small l-btn-plain">';
 			tpl+= '    <span class="l-btn-left l-btn-icon-left">';
 			tpl+= '    <span class="l-btn-text">取消</span>';
 			tpl+= '    <span class="l-btn-icon layui-icon layui-icon-star-fill" style="margin-top: -8px !important;"></span>';
