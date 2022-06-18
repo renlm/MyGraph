@@ -67,7 +67,7 @@
 		    $docVersionsDialog.myuiDialog({
 		        title: '历史记录',
 		        width: 850,
-		        height: 443,
+		        height: 505,
 				collapsible: true,
 				minimizable: false,
 				maximizable: true,
