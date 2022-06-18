@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.hutool.core.lang.tree.Tree;
+import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
 import cn.renlm.graph.service.PubDocService;
 
 /**
@@ -35,6 +36,8 @@ public class PubDocController {
 	 */
 	@GetMapping("/s/{shareUuid}")
 	public String docShare(ModelMap model, @PathVariable String shareUuid) {
+		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("docCategoryShare", docCategoryShare);
 		return "pub/docShare";
 	}
 
@@ -47,6 +50,8 @@ public class PubDocController {
 	 */
 	@GetMapping("/c/{shareUuid}")
 	public String docShareCategory(ModelMap model, @PathVariable String shareUuid) {
+		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("docCategoryShare", docCategoryShare);
 		return "pub/docShareCategory";
 	}
 
@@ -73,6 +78,8 @@ public class PubDocController {
 	 */
 	@GetMapping("/m/{shareUuid}")
 	public String docShareMarkdown(ModelMap model, @PathVariable String shareUuid, String docCategoryUuid) {
+		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("docCategoryShare", docCategoryShare);
 		return "pub/docShareMarkdown";
 	}
 }
