@@ -5,6 +5,7 @@
 </head>
 <body layout:fragment="content">
 	<div class="layui-container" style="height: 188px;line-height: 188px;text-align: center;"
+		th:if="${docCategoryShare != null}"
 		th:object="${docCategoryShare}"
 		th:with="path=@{${'/pub/doc/s/' + docCategoryShare.uuid}}">
 		<div style="display: inline-block;vertical-align: middle;"

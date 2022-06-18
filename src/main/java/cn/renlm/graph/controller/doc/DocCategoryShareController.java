@@ -18,6 +18,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
@@ -88,11 +89,13 @@ public class DocCategoryShareController {
 					wrapper.eq(DocCategoryShare::getUuid, uuid);
 					wrapper.eq(DocCategoryShare::getCreatorUserId, user.getUserId());
 				}));
-		model.put("ctx", myConfigProperties.getCtx());
-		model.put("docCategoryShare", docCategoryShare);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
-			String password = rsa.decryptStr(docCategoryShare.getPassword(), KeyType.PublicKey);
-			model.put("password", password);
+		if (ObjectUtil.isNotEmpty(docCategoryShare)) {
+			model.put("ctx", myConfigProperties.getCtx());
+			model.put("docCategoryShare", docCategoryShare);
+			if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+				String password = rsa.decryptStr(docCategoryShare.getPassword(), KeyType.PublicKey);
+				model.put("password", password);
+			}
 		}
 		return "doc/categoryShareShow";
 	}
