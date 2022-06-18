@@ -57,8 +57,10 @@ public class DocCategoryController {
 		model.put("docProject", docProject);
 		model.put("role", role);
 		if (StrUtil.isNotBlank(docCategoryUuid)) {
-			DocCategory docCategory = iDocCategoryService
-					.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, docCategoryUuid));
+			DocCategory docCategory = iDocCategoryService.getOne(Wrappers.<DocCategory>lambdaQuery().func(wrapper -> {
+				wrapper.eq(DocCategory::getUuid, docCategoryUuid);
+				wrapper.eq(DocCategory::getDeleted, false);
+			}));
 			model.put("docCategory", docCategory);
 		}
 		return "doc/category";
