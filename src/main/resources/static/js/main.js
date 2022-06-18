@@ -249,7 +249,7 @@
 		openMarkdownHistoryVersion: function (uuid, version, title) {
 			layer.open({
 				type: 2,
-			  	title: 'V'+ version + ' ' + title,
+			  	title: 'V'+ version + ' - ' + title,
 			  	shadeClose: true,
   				shade: 0.8,
 			  	area: ['100%', '100%'],
