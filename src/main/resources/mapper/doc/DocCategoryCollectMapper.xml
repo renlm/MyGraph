@@ -34,6 +34,8 @@
 					dp.project_name like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
 					or
 					dc.`text` like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
+					or
+					dc.`fullname` like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
 				)
 			</if>
 		order by dcc.updated_at desc, dcc.id desc
