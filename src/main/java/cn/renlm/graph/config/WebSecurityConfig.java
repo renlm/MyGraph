@@ -68,6 +68,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public static final String APIAntMatcher = "/api/**";
 
 	/**
+	 * 开放网页匹配路径
+	 */
+	public static final String PubAntMatcher = "/pub/**";
+
+	/**
 	 * 白名单
 	 */
 	public static final String[] WHITE_LIST = {  
@@ -77,6 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			"/register",
 			"/doRegister",
 			APIAntMatcher,
+			PubAntMatcher,
 			LoginPage, 
 			logoutUrl, 
 			LoginProcessingUrl 
@@ -105,6 +111,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// 启用csrf
 		http.csrf()
 			.ignoringAntMatchers(APIAntMatcher)
+			.ignoringAntMatchers(PubAntMatcher)
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		// 会话
 		http.sessionManagement()

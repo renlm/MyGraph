@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title th:text="${markdown?.name}">Markdown文档</title>
+	<meta charset="UTF-8" />
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<!-- Ico -->
+    <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
+	<!-- Jquery -->
+	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+	<!-- 全局设置 -->
+    <script type="text/javascript">
+    	window.CTX = window.ctx = "[(@{/})]".substr(0, "[(@{/})]".length - 1);
+    	$(document).ajaxSend(function(event, jqxhr, settings) { 
+    		jqxhr.setRequestHeader("[(${_csrf.headerName})]", "[(${_csrf.token})]");
+    	});
+    </script>
+	<!-- Layui -->
+	<link th:href="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/css/layui.css}" rel="stylesheet" />
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/layui.js}"></script>
+	<!-- Js-base64 -->
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/js-base64/2.3.2/base64.min.js}"></script>
+	<!-- Editor.md -->
+	<link rel="stylesheet" th:href="@{/static/markdown/editor.md-1.5.0/css/editormd.preview.min.css}" />
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/marked.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/prettify.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/raphael.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/underscore.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/sequence-diagram.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/flowchart.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/jquery.flowchart.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/editormd.js}"></script>
+	<!-- 样式修正 -->
+	<link rel="stylesheet" th:href="@{/static/css/scrollbar.css}" />
+	<link rel="stylesheet" th:href="@{/static/css/markdown.css}" />
+</head>
+<body>
+	<div class="layui-fluid">
+		<div class="layui-row md-header">
+			<div class="layui-col-md8">
+				<h1 class="view-page-title" th:text="${docCategory.text}"></h1>
+				<p class="view-page-path">
+					<i class="fa fa-folder"></i>
+					<strong th:each="father,iterStat : ${fathers}">
+						<a th:text="${father.text}"></a>
+						<th:block th:if="${iterStat.index < #lists.size(fathers) - 1}">/</th:block>
+					</strong>
+				</p>
+				<p class="view-page-time">
+	          		<i class="fa fa-calendar"></i>
+	             	被<span class="nickname" th:text="${docCategory.creatorNickname}"></span> 创建于 <span class="time" th:text="${#calendars.format(docCategory.createdAt,'yyyy/MM/dd HH:mm:ss')}"></span>
+	        		<th:block th:if="${!#strings.isEmpty(markdown?.updatorNickname)}">
+	        			，被<span class="nickname" th:text="${markdown?.updatorNickname}"></span> 最后更新于 <span class="time" th:text="${#calendars.format(markdown?.updatedAt,'yyyy/MM/dd HH:mm:ss')}"></span>
+	        		</th:block>
+	        		<th:block th:if="${markdown?.version != null}">
+	        			，<a class="version" href="javascript:void(0);"
+	        						th:data-puuid="${docProject.uuid}" 
+									th:data-cuuid="${docCategory.uuid}" 
+									onclick="parent.$.docVersionsDialog($(this).data('puuid'), $(this).data('cuuid'));"
+	        						th:text="${'当前版本：'+markdown.version}">
+	        					</a>
+	        		</th:block>
+	        	</p>
+			</div>
+			<div class="layui-col-md4">
+				<div class="layui-btn-container">
+					<button type="button" class="layui-btn layui-btn-primary" 
+						th:if="${role != null and (role == 2 or role == 3)}"
+						th:data-uuid="${docCategory.uuid}" 
+						th:data-title="${docCategory.text}"
+						onclick="$.openMarkdownEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
+						<i class="layui-icon layui-icon-edit"></i> 编辑
+					</button>
+					<button type="button" class="layui-btn layui-btn-primary" th:data-iscollected="${isCollected}" onclick="optCollect(this);">
+						<i th:class="|layui-icon ${isCollected?'layui-icon-star-fill':'layui-icon-star'}|"></i> 
+						<span>[(${isCollected?'取消':'收藏'})]</span>
+					</button>
+					<button type="button" class="layui-btn layui-btn-primary"
+						th:if="${docProject.isShare != null and docProject.isShare}"
+						th:data-puuid="${docProject.uuid}" 
+						th:data-cuuid="${docCategory.uuid}" 
+						onclick="parent.$.docShareDialog($(this).data('puuid'), $(this).data('cuuid'));">
+						<i class="layui-icon layui-icon-share"></i> 分享
+					</button>
+				</div>
+			</div>
+		</div>
+		<hr/>
+		<div class="md-body">
+			<div class="md-catalog"></div>
+			<div id="editormd" class="md-content"></div>
+			<textarea id="markdown" class="layui-hide" th:text="${markdown?.content}"></textarea>
+		</div>
+	</div>
+	<script th:src="@{/static/js/main.js}"></script>
+	<script type="text/javascript">
+		$(function () {
+			editormd.markdownToHTML("editormd", {
+				path            : "[(@{/static/markdown/editor.md-1.5.0/lib/})]",
+                markdown		: $("#markdown").val(),
+                htmlDecode      : "style,script,iframe|on*", 
+              	tocm            : true,
+             	emoji           : false,
+              	taskList        : true,
+              	tex             : true,
+              	flowChart       : true,
+             	sequenceDiagram : true
+            });
+		});
+	</script>
+	<script type="text/javascript">
+		/**
+		 * 打开Markdown文档编辑器（事件）
+		 * @param params layero 当前层DOM
+		 * @param params index 当前层索引
+		 */
+		function onOpenEditor (layero, index) {
+			$(".md-body").addClass("md-hide");
+		}
+		
+		/**
+		 * 关闭Markdown文档编辑器（事件）
+		 */
+		function onCloseEditor () {
+			$(".md-body").removeClass("md-hide");
+			window.location.reload();
+		}
+		
+		/**
+		 * 添加收藏/取消收藏
+		 */
+		function optCollect (e) {
+			layer.load(2);
+			var type = ($(e).data('iscollected') + '') === 'false'? 1 : 0;
+			$.post(ctx + '/doc/categoryCollect/ajax/optCollect', 
+					{ 
+						type: type,
+						docProjectUuid: '[(${docProject.uuid})]',
+						docCategoryUuid: '[(${docCategory.uuid})]' 
+					}, 
+					function (resultJson) {
+						layer.closeAll();
+						if (resultJson.statusCode == 200) {
+							if (type === 0) {
+								$(e).data('iscollected', 'false');
+								$(e).find('span').html('收藏');
+								$(e).find('i.layui-icon').removeClass('layui-icon-star-fill');
+								$(e).find('i.layui-icon').addClass('layui-icon-star');
+							} else {
+								$(e).data('iscollected', 'true');
+								$(e).find('span').html('取消');
+								$(e).find('i.layui-icon').removeClass('layui-icon-star');
+								$(e).find('i.layui-icon').addClass('layui-icon-star-fill');
+							}
+		                } else {
+		                	layer.msg(resultJson.message ? resultJson.message : '出错了', { icon: 5, shift:6 });
+		                }
+					});
+		}
+	</script>
+</body>
+</html>

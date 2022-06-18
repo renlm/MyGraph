@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN" layout:decorate="~{layout/doc}">
+<head>
+	<title th:text="${docProject?.projectName}">文档项目</title>
+</head>
+<body layout:fragment="content">
+	<!-- 禁用IE -->
+	<div th:replace="fragments/ie-warn :: info"></div>
+	<!-- 页面主体 -->
+	<div class="container layui-tab" lay-filter="TabIframe">
+		<!-- 头部开始 -->
+		<div class="header">
+			<div class="logo">
+				<img alt="logo" th:src="@{/static/images/logo.png}" />
+				<a th:href="@{/}">管理后台</a>
+			</div>
+			<ul class="layui-tab-title layui-nav left">
+				<li class="layui-nav-item layui-this">
+					<a href="javascript:void(0);">
+						<i class="layui-icon layui-icon-read"></i> [(${docProject?.projectName})]
+					</a>
+				</li>
+			</ul>
+			<div class="layui-nav left layui-form layui-hide-xs component search-input" 
+				lay-filter="LAY-site-header-component">
+			</div>
+			<ul class="layui-nav right">
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);"
+						sec:authentication="principal.username">
+					</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a onclick="$.modifyPwd();">修改密码</a>
+						</dd>
+						<dd>
+							<form class="loginout" method="post" 
+								th:action="@{/logout}"
+								onclick="this.submit();">退出
+							</form>
+						</dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+		<!-- 头部结束 -->
+		<!-- 中部开始 -->
+		<div class="iframer layui-tab-content">
+			<div class="layui-tab-item layui-show">
+				<iframe th:if="${#strings.isEmpty(docCategoryUuid)}" frameborder="0" scrolling="yes" th:src="@{'/doc/category?docProjectUuid='+${docProject.uuid}}"></iframe>
+				<iframe th:if="${!#strings.isEmpty(docCategoryUuid)}" frameborder="0" scrolling="yes" th:src="@{'/doc/category?docProjectUuid='+${docProject.uuid}+'&docCategoryUuid='+${docCategoryUuid}}"></iframe>
+			</div>
+		</div>
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<div class="footer">
+			<div class="copyright">
+				版权所有 © 2022 Renlm 
+	            <a href="https://beian.miit.gov.cn" target="_blank" style="text-decoration: underline;color: #fff;">[(${#ConstUtil.getValue('cfgSiteBeian')})]</a>
+			</div>
+		</div>
+		<!-- 底部结束 -->
+	</div>
+	<!-- 头部搜索框模板 -->
+	<div class="layui-hide" id="elemComponentSelect">
+		<select lay-search lay-filter="component">
+			<option value="">切换项目</option>
+			<th:block th:each="p,iterStat : ${allDocProjects}">
+				<option th:value="${p.uuid}" th:text="${p.projectName}"></option>
+			</th:block>
+		</select>
+		<i class="layui-icon layui-icon-search"></i>
+	</div>
+	<script type="text/javascript">
+		//	头部搜索
+	  	;!function(){
+	    	var elemComponentSelect = $('#elemComponentSelect').html();
+	    	$('.component.search-input').append(elemComponentSelect);
+	    	layui.form.render('select', 'LAY-site-header-component');
+
+	    	// 搜索项目
+	    	layui.form.on('select(component)', function(data){
+	      		var value = data.value;
+	      		if (value) {
+	      			location.href = /^\//.test(value) ? value : (ctx+'/doc/project?uuid='+ value);
+	      		} 
+	    	});
+	  }();
+	</script>
+</body>
+</html>
