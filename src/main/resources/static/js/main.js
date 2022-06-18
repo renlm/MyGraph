@@ -21,6 +21,8 @@
 		 * 备注格式化（文档分享）
 		 */
 		docCategoryShareRemarkFormatter: function (value, row, index) {
+			var $effectiveTypeMap = { '-1': '永久', '7': '七天', '30': '三十天' };
+			var $effectiveTypeStr = $effectiveTypeMap[row.effectiveType.toString()];
 			var tpl = '';
 			if (value) {
 				tpl = '<span title="' + value + '">备注：' + value + '</span>';
@@ -28,7 +30,10 @@
 				tpl = '<span>备注：-</span>';
 			}
 			tpl+='<div data-index="' + index + '">';
-			tpl+='    <p style="color: #31708f;">有效截止日期：' + $.deadlineFormatter(row.deadline) + '</p>';
+			tpl+='    <p style="color: #31708f;">有效期：' + $effectiveTypeStr + '</p>';
+			if (row.deadline) {
+				tpl+='<p style="color: #31708f;">截止日期：' + $.deadlineFormatter(row.deadline) + '</p>';
+			}
 			tpl+='    <p style="color: #31708f;">分享时间：' + $.createdAtFormatter(row.createdAt) + '</p>';
 			tpl+='</div>';
 			return tpl;
