@@ -36,6 +36,9 @@
 			<if test="form.docProjectUuid != null and form.docProjectUuid != ''">
 				and dp.uuid = #{form.docProjectUuid,jdbcType=VARCHAR}
 			</if>
+			<if test="form.docCategoryUuid != null and form.docCategoryUuid != ''">
+				and dc.uuid = #{form.docCategoryUuid,jdbcType=VARCHAR}
+			</if>
 			<if test="form.keywords != null and form.keywords != ''">
 				and (
 					dp.project_name like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
