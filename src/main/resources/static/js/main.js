@@ -22,7 +22,7 @@
 		 */
 		markdownHistoryVersionFormatter: function (value, row, index) {
 			if (value || index) {}
-			return '<a href=\'javascript:void(0);\' onclick="$.openMarkdownHistoryVersion(\'' + row.markdownUuid + '\', ' + row.version + ', \'' + row.name + '\')" style=\'color: darkblue;font-style: italic;text-decoration: underline;\'>' + row.version + '</a>';
+			return '<a href=\'javascript:void(0);\' onclick="$.openMarkdownHistoryVersion(\'' + row.markdownUuid + '\', ' + row.version + ', \'' + row.name + '\')" style=\'color: #31708f;font-style: italic;text-decoration: underline;\'>' + row.version + '</a>';
 		},
 		/**
 		 * 分享类型格式化
