@@ -18,6 +18,13 @@
 (function($) {
 	$.extend({
 		/**
+		 * 文档历史版本格式化
+		 */
+		markdownHistoryVersionFormatter: function (value, row, index) {
+			if (value || index) {}
+			return '<a href=\'javascript:void(0);\' onclick="$.openMarkdownHistoryVersion(\'' + row.markdownUuid + '\', ' + row.version + ', \'' + row.name + '\')" style=\'color: darkblue;font-style: italic;text-decoration: underline;\'>' + row.version + '</a>';
+		},
+		/**
 		 * 分享类型格式化
 		 */
 		shareTypeFormatter: function (value) {
@@ -124,14 +131,14 @@
 		 */
 		docProjectNameFormatter: function (value, row, index) {
 			if (value || index) {}
-			return '<a href=\'javascript:void(0);\' onclick="$.openNewWindowDocProject(\'' + row.docProjectUuid + '\', \'' + row.docCategoryUuid + '\')" style=\'color:blue;font-style: italic;\'>' + row.docProjectName + '</a>';
+			return '<a href=\'javascript:void(0);\' onclick="$.openNewWindowDocProject(\'' + row.docProjectUuid + '\', \'' + row.docCategoryUuid + '\')" style=\'color: blue;font-style: italic;\'>' + row.docProjectName + '</a>';
 		},
 		/**
 		 * 文档项目名称
 		 */
 		openDocProjectFormatter: function (value, row, index) {
 			if (value || index) {}
-			return '<a href=\'javascript:void(0);\' onclick="$.openDocProject(\'' + row.uuid + '\')" style=\'color:blue;font-style: italic;\'>' + row.projectName + '</a>';
+			return '<a href=\'javascript:void(0);\' onclick="$.openDocProject(\'' + row.uuid + '\')" style=\'color: blue;font-style: italic;\'>' + row.projectName + '</a>';
 		},
 		/**
 		 * 打开文档项目
@@ -231,6 +238,22 @@
 						cancel();
 					}
 				}
+			});
+		},
+		/**
+		 * 打开Markdown文档历史版本
+		 * @param params uuid 唯一标识
+		 * @param params version 版本
+		 * @param params title 标题
+		 */
+		openMarkdownHistoryVersion: function (uuid, version, title) {
+			layer.open({
+				type: 2,
+			  	title: 'V'+ version + ' ' + title,
+			  	shadeClose: true,
+  				shade: 0.8,
+			  	area: ['100%', '100%'],
+			  	content: ctx + '/markdown/viewer?uuid=' + uuid + '&version=' + version + '&name=' + title
 			});
 		},
 		/***
