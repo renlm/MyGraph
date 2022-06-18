@@ -37,6 +37,12 @@
                					$(that).treegrid('expandAll', item.id);
                				});
                			}
+               			if (row == null) {
+               				var $selectedId = ${docCategory?.id};
+               				if (!($selectedId === null)) {
+               					$(that).treegrid('select', $selectedId);
+               				}
+               			}
                		},
                		onClickRow:function(row){
 				   		var url = ctx + '/doc/markdown?docProjectUuid=${docProject.uuid}&uuid=' + row.uuid;
