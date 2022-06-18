@@ -97,13 +97,15 @@ public class MarkdownController {
 					BeanUtil.copyProperties(entity, markdown);
 				}
 			} else {
-				MarkdownHistory entity = iMarkdownHistoryService
+				MarkdownHistory history = iMarkdownHistoryService
 						.getOne(Wrappers.<MarkdownHistory>lambdaQuery().func(wrapper -> {
 							wrapper.eq(MarkdownHistory::getMarkdownUuid, uuid);
 							wrapper.eq(MarkdownHistory::getVersion, version);
 						}));
-				if (ObjectUtil.isNotEmpty(entity)) {
-					BeanUtil.copyProperties(entity, markdown);
+				if (ObjectUtil.isNotEmpty(history)) {
+					BeanUtil.copyProperties(history, markdown);
+					markdown.setId(history.getMarkdownId());
+					markdown.setUuid(history.getMarkdownUuid());
 				}
 			}
 		}
