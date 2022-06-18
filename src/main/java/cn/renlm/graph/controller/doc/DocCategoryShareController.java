@@ -75,14 +75,19 @@ public class DocCategoryShareController {
 	/**
 	 * 分享地址展示
 	 * 
+	 * @param authentication
 	 * @param model
 	 * @param uuid
 	 * @return
 	 */
 	@RequestMapping("/show")
-	public String show(ModelMap model, String uuid) {
+	public String show(Authentication authentication, ModelMap model, String uuid) {
+		User user = (User) authentication.getPrincipal();
 		DocCategoryShare docCategoryShare = iDocCategoryShareService
-				.getOne(Wrappers.<DocCategoryShare>lambdaQuery().eq(DocCategoryShare::getUuid, uuid));
+				.getOne(Wrappers.<DocCategoryShare>lambdaQuery().func(wrapper -> {
+					wrapper.eq(DocCategoryShare::getUuid, uuid);
+					wrapper.eq(DocCategoryShare::getCreatorUserId, user.getUserId());
+				}));
 		model.put("ctx", myConfigProperties.getCtx());
 		model.put("docCategoryShare", docCategoryShare);
 		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {

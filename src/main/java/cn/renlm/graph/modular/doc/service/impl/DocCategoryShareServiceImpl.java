@@ -18,7 +18,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.tree.Tree;
@@ -174,11 +173,6 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 					item.setParentsCategorName(StrUtil.join(StrUtil.SLASH, parents));
 				}
 			});
-			// 处理分享密码
-			if (StrUtil.isNotBlank(item.getPassword())) {
-				String password = rsa.decryptStr(item.getPassword(), KeyType.PublicKey);
-				item.setPassword(Base64.encodeUrlSafe(password));
-			}
 		});
 		return result;
 	}

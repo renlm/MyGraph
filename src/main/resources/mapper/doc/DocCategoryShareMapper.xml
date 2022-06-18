@@ -8,7 +8,7 @@
 			dcs.`doc_category_id`,
 			dcs.`uuid`,
 			dcs.`share_type`,
-			dcs.`password`,
+			<!-- dcs.`password`, -->
 			dcs.`effective_type`,
 			dcs.`deadline`,
 			dcs.`created_at`,
@@ -43,6 +43,9 @@
 			<if test="form.docProjectUuid != null and form.docProjectUuid != ''">
 				and dp.uuid = #{form.docProjectUuid,jdbcType=VARCHAR}
 			</if>
+			<if test="form.status != null">
+				and `status` = #{form.status,jdbcType=INTEGER}
+			</if>
 			<if test="form.keywords != null and form.keywords != ''">
 				and (
 					dp.project_name like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
@@ -51,9 +54,6 @@
 					or
 					dc.`fullname` like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
 				)
-			</if>
-			<if test="form.status != null">
-				having `status` = #{form.status,jdbcType=INTEGER}
 			</if>
 		order by dcs.id desc
 	</select>
