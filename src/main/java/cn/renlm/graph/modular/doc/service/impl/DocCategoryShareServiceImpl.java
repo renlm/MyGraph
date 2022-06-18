@@ -98,7 +98,7 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			return Result.of(HttpStatus.FORBIDDEN, "数据已被删除");
 		}
 		Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
-		if (role == null) {
+		if (NumberUtil.equals(docProject.getVisitLevel(), 1) && role == null) {
 			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
 		}
 		// 保存分享信息
