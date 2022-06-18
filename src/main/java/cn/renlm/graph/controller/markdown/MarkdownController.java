@@ -23,6 +23,8 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
+import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
+import cn.renlm.graph.modular.markdown.service.IMarkdownHistoryService;
 import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
@@ -47,6 +49,9 @@ public class MarkdownController {
 
 	@Autowired
 	private IMarkdownService iMarkdownService;
+
+	@Autowired
+	private IMarkdownHistoryService iMarkdownHistoryService;
 
 	/**
 	 * 编辑器
@@ -76,18 +81,30 @@ public class MarkdownController {
 	 * 
 	 * @param model
 	 * @param uuid
+	 * @param version
 	 * @param name
 	 * @return
 	 */
 	@GetMapping("/viewer")
-	public String viewer(ModelMap model, String uuid, String name) {
+	public String viewer(ModelMap model, String uuid, Integer version, String name) {
 		Markdown markdown = new Markdown();
 		markdown.setUuid(uuid);
 		markdown.setName(name);
 		if (StrUtil.isNotBlank(uuid)) {
-			Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
-			if (ObjectUtil.isNotEmpty(entity)) {
-				BeanUtil.copyProperties(entity, markdown);
+			if (version == null) {
+				Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
+				if (ObjectUtil.isNotEmpty(entity)) {
+					BeanUtil.copyProperties(entity, markdown);
+				}
+			} else {
+				MarkdownHistory entity = iMarkdownHistoryService
+						.getOne(Wrappers.<MarkdownHistory>lambdaQuery().func(wrapper -> {
+							wrapper.eq(MarkdownHistory::getMarkdownUuid, uuid);
+							wrapper.eq(MarkdownHistory::getVersion, version);
+						}));
+				if (ObjectUtil.isNotEmpty(entity)) {
+					BeanUtil.copyProperties(entity, markdown);
+				}
 			}
 		}
 		model.put("markdown", markdown);
