@@ -292,13 +292,19 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			wrapper.eq(DocCategory::getDeleted, false);
 			wrapper.in(DocCategory::getId, ids);
 		}));
-		// 删除文档
+		// 获取文档
 		List<MarkdownHistory> histories = CollUtil.newArrayList();
 		List<Markdown> markdowns = iMarkdownService.list(Wrappers.<Markdown>lambdaQuery().func(wrapper -> {
 			wrapper.eq(Markdown::getDeleted, false);
 			wrapper.in(Markdown::getUuid, uuids);
 		}));
 		markdowns.forEach(md -> {
+			md.setVersion(md.getVersion() + 1);
+			md.setDeleted(true);
+			md.setUpdatedAt(time);
+			md.setUpdatorUserId(user.getUserId());
+			md.setUpdatorNickname(user.getNickname());
+			// 历史记录
 			MarkdownHistory history = BeanUtil.copyProperties(md, MarkdownHistory.class);
 			history.setChangeLabel("删除");
 			history.setOperateAt(new Date());
@@ -306,20 +312,10 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			history.setOperatorNickname(user.getNickname());
 			history.setMarkdownId(md.getId());
 			history.setMarkdownUuid(md.getUuid());
-			history.setDeleted(true);
-			history.setUpdatedAt(time);
-			history.setUpdatorUserId(user.getUserId());
-			history.setUpdatorNickname(user.getNickname());
 			histories.add(history);
 		});
-		iMarkdownService.update(Wrappers.<Markdown>lambdaUpdate().func(wrapper -> {
-			wrapper.set(Markdown::getDeleted, true);
-			wrapper.set(Markdown::getUpdatedAt, time);
-			wrapper.set(Markdown::getUpdatorUserId, user.getUserId());
-			wrapper.set(Markdown::getUpdatorNickname, user.getNickname());
-			wrapper.eq(Markdown::getDeleted, false);
-			wrapper.in(Markdown::getUuid, uuids);
-		}));
+		// 删除文档
+		iMarkdownService.saveBatch(markdowns);
 		// 保存历史记录
 		iMarkdownHistoryService.saveBatch(histories);
 		return Result.success();
