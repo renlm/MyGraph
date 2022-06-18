@@ -168,6 +168,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
 		}
 		if (docCategory.getPid() == null) {
+			docCategory.setFullname(docCategory.getText());
 			docCategory.setLevel(1);
 		} else {
 			DocCategory parent = this.getById(docCategory.getPid());
@@ -177,6 +178,8 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 				fathers.addAll(this.findFathers(docProjectUuid, parent.getId()));
 			}
 			List<Long> fatherIds = fathers.stream().map(DocCategory::getId).collect(Collectors.toList());
+			List<String> fathersName = fathers.stream().map(DocCategory::getText).collect(Collectors.toList());
+			docCategory.setFullname(StrUtil.join(StrUtil.SLASH, fathersName, docCategory.getText()));
 			if (fatherIds.contains(docCategory.getId())) {
 				return Result.error("不能选择自身或子节点作为父级");
 			} else {
@@ -254,6 +257,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 					wrapper.eq(Markdown::getUuid, docCategoryUuid);
 				}));
 				this.update(Wrappers.<DocCategory>lambdaUpdate().func(wrapper -> {
+					wrapper.set(DocCategory::getFullname, parentsName);
 					wrapper.set(DocCategory::getLevel, level);
 					wrapper.set(DocCategory::getUpdatedAt, new Date());
 					wrapper.eq(DocCategory::getUuid, docCategoryUuid);
