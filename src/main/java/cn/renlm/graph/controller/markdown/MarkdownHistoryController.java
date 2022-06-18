@@ -29,16 +29,16 @@ public class MarkdownHistoryController {
 	private IMarkdownHistoryService iMarkdownHistoryService;
 
 	/**
-	 * 历史版本
+	 * 历史版本（文档）
 	 * 
 	 * @param model
 	 * @param markdownUuid
 	 * @return
 	 */
-	@RequestMapping("/versionsDialog")
-	public String versionsDialog(ModelMap model, String markdownUuid) {
+	@RequestMapping("/docVersionsDialog")
+	public String docVersionsDialog(ModelMap model, String markdownUuid) {
 		model.put("markdownUuid", markdownUuid);
-		return "markdown/versionsDialog";
+		return "markdown/docVersionsDialog";
 	}
 
 	/**

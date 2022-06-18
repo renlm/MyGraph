@@ -60,6 +60,34 @@
 			return layui.util.toDateString(value, "yyyy/MM/dd");
 		},
 		/**
+		 * 文档历史记录
+		 */
+		docVersionsDialog: function (docProjectUuid, docCategoryUuid) {
+			var $docVersionsDialog = $('<form id=\'docVersionsDialog\' method=\'post\' class=\'myui\'></form>');
+		    $docVersionsDialog.myuiDialog({
+		        title: '历史记录',
+		        width: 850,
+		        height: 443,
+				collapsible: true,
+				minimizable: false,
+				maximizable: true,
+		        closed: false,
+		        cache: false,
+		        href: ctx + '/markdownHistory/docVersionsDialog?docProjectUuid=' + docProjectUuid + '&docCategoryUuid=' + docCategoryUuid,
+		        modal: true,
+		        buttons: [, {
+		            text: '关闭',
+		            iconCls: 'fa fa-close',
+		            handler: function () {
+		                $docVersionsDialog.dialog('destroy');
+		            }
+		        }],
+				onClose: function () {
+					$docVersionsDialog.dialog('destroy');
+				}
+		    });
+		},
+		/**
 		 * 文档分享
 		 */
 		docShareDialog: function (docProjectUuid, docCategoryUuid) {
