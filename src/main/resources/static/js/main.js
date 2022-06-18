@@ -75,7 +75,7 @@
 		        cache: false,
 		        href: ctx + '/markdownHistory/docVersionsDialog?docProjectUuid=' + docProjectUuid + '&docCategoryUuid=' + docCategoryUuid,
 		        modal: true,
-		        buttons: [, {
+		        buttons: [{
 		            text: '关闭',
 		            iconCls: 'fa fa-close',
 		            handler: function () {

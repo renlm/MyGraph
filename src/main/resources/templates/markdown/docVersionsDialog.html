@@ -6,7 +6,7 @@
 		">
     	<table id="markdownHistoryDataGrid" 
       		class="easyui-datagrid"
-           	data-options="border:false,
+           	th:data-options="|border:false,
      			bodyCls:'border_left',
 				fit:true,
 				fitColumns:true,
@@ -17,9 +17,9 @@
 				pagination:true,
 				pageSize:20,
 				method:'get',
-				url:ctx+'/markdownHistory/ajax/docPage',
+				url:ctx+'/markdownHistory/ajax/docPage?docProjectUuid=${docProjectUuid}&docCategoryUuid=${docCategoryUuid}',
          		onBeforeLoad:$.pageOnBeforeLoad
-        	">
+        	|">
          	<thead>
            		<tr>
                 	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
@@ -36,9 +36,10 @@
 <div id="markdownHistoryDataGridToolbar" class="myui-toolbar">
 	<a href="javascript:void(0);"
       	class="easyui-menubutton myui-btn-normal"
+      	th:text="${docCategoryName}"
      	data-options="iconCls:'fa fa-table',
         	hasDownArrow:false
-    	">版本列表
+    	">
 	</a>
  	<form id="markdownHistoryDataGridForm" class="search-box">
    		<input type="text" name="keywords"
