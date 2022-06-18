@@ -4,7 +4,7 @@
 			split:true,
 			border:false
 		">
-    	<table id="markdownHistoryDataGrid" 
+    	<table id="markdownHistoryDialogDataGrid" 
       		class="easyui-datagrid"
            	th:data-options="|border:false,
      			bodyCls:'border_left',
@@ -13,7 +13,7 @@
 				singleSelect:true,
 				checkOnSelect:false,
 				selectOnCheck:false,
-				toolbar:'#markdownHistoryDataGridToolbar',
+				toolbar:'#markdownHistoryDialogDataGridToolbar',
 				pagination:true,
 				pageSize:10,
 				method:'get',
@@ -23,7 +23,7 @@
          	<thead>
            		<tr>
                 	<th data-options="field:'uuid',title:'UUID',checkbox:true"></th>
-                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#markdownHistoryDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#markdownHistoryDialogDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
                   	<th data-options="field:'version',title:'版本',width:60,align:'right',formatter:$.markdownHistoryVersionFormatter"></th>
                   	<th data-options="field:'changeLabel',title:'变更说明',width:80"></th>
                     <th data-options="field:'operatorNickname',title:'操作人',width:80"></th>
@@ -33,7 +33,7 @@
 		</table>
 	</div>
 </div>
-<div id="markdownHistoryDataGridToolbar" class="myui-toolbar">
+<div id="markdownHistoryDialogDataGridToolbar" class="myui-toolbar">
 	<a href="javascript:void(0);"
       	class="easyui-menubutton myui-btn-normal"
       	th:text="${docCategoryName}"
