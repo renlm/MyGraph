@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-06-17
+ * @since 2022-06-18
  */
 @Getter
 @Setter
@@ -49,6 +49,12 @@ public class DocCategory implements Serializable {
      */
     @TableField("text")
     private String text;
+
+    /**
+     * 全路径名称
+     */
+    @TableField("fullname")
+    private String fullname;
 
     /**
      * 图标

@@ -346,6 +346,7 @@ CREATE TABLE doc_category (
     doc_project_id				BIGINT							NOT NULL		COMMENT '文档项目ID',
     uuid     					VARCHAR(32)   	UNIQUE			NOT NULL 		COMMENT 'UUID',
     text     					VARCHAR(255)   					NOT NULL 		COMMENT '名称',
+    fullname     				TEXT   											COMMENT '全路径名称',
     icon_cls           			VARCHAR(255)     								COMMENT '图标',
     level      					INT             				NOT NULL 		COMMENT '层级',
     sort            			INT             								COMMENT '排序',
