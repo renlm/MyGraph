@@ -55,11 +55,11 @@
 	        			，被<span class="nickname" th:text="${markdown?.updatorNickname}"></span> 最后更新于 <span class="time" th:text="${#calendars.format(markdown?.updatedAt,'yyyy/MM/dd HH:mm:ss')}"></span>
 	        		</th:block>
 	        		<th:block th:if="${markdown?.version != null}">
-	        			，当前版本：<a class="version" href="javascript:void(0);"
+	        			，<a class="version" href="javascript:void(0);"
 	        						th:data-puuid="${docProject.uuid}" 
 									th:data-cuuid="${docCategory.uuid}" 
 									onclick="parent.$.docVersionsDialog($(this).data('puuid'), $(this).data('cuuid'));"
-	        						th:text="${markdown.version}">
+	        						th:text="${'当前版本：'+markdown.version}">
 	        					</a>
 	        		</th:block>
 	        	</p>

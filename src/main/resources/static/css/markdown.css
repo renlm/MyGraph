@@ -58,10 +58,15 @@ html, body {
 }
 
 .md-header .nickname, 
-.md-header .time, 
+.md-header .time {
+	color: #31708f;
+	font-style: italic;
+}
+
 .md-header .version {
 	color: #31708f;
 	font-style: italic;
+	text-decoration: underline;
 }
 
 .md-header .layui-btn-container {
