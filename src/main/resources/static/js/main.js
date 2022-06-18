@@ -18,6 +18,18 @@
 (function($) {
 	$.extend({
 		/**
+		 * 备注格式化
+		 */
+		remarkFormatter: function (value, row, index) {
+			if (value || index) {}
+			var tpl ='<div style="padding: 4px 0;">';
+				tpl+='    <p>备注：' + $.spanWithTitleFormatter(row.remark) + '</p>';
+				tpl+='    <p style="color: gray;font-style: italic;">创建人：' + row.creatorNickname + '</p>';
+				tpl+='    <p style="color: gray;font-style: italic;">更新时间：' + $.updatedAtFormatter(row.updatedAt) + '</p>';
+				tpl+='</div>';
+			return tpl;
+		},
+		/**
 		 * 文档历史版本格式化
 		 */
 		markdownHistoryVersionFormatter: function (value, row, index) {
