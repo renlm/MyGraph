@@ -50,14 +50,20 @@
 		/**
 		 * 分享类型格式化
 		 */
-		shareTypeFormatter: function (value) {
+		shareTypeFormatter: function (value, row) {
 			if(value === 1) {
-				return '公开';
+				return '<a href=\'javascript:void(0);\' onclick="$.openCategoryShareShowDialog(\'' + row.uuid + '\')" style=\'color: #31708f;font-style: italic;text-decoration: underline;\'>公开</a>';
 			} else if(value === 2) {
-				return '密码查看';
+				return '<a href=\'javascript:void(0);\' onclick="$.openCategoryShareShowDialog(\'' + row.uuid + '\')" style=\'color: #31708f;font-style: italic;text-decoration: underline;\'>密码查看</a>';
 			} else {
 				return value;
 			}
+		},
+		/**
+		 * 打开分享链接展示页
+		 */
+		openCategoryShareShowDialog: function (uuid) {
+			layer.open({ type: 2, title: '分享链接', offset: '200px', area: ['750px', '280px'], skin: 'layui-layer-rim', content: [ctx + '/doc/categoryShare/show?uuid=' + uuid, 'no'] });
 		},
 		/**
 		 * 有效期类型格式化
