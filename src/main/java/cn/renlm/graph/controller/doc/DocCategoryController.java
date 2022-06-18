@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocProject;
@@ -123,6 +124,7 @@ public class DocCategoryController {
 		DocCategory docCategory = new DocCategory();
 		docCategory.setDocProjectId(docProject.getId());
 		docCategory.setPid(pid);
+		docCategory.setState(TreeState.open.name());
 		if (StrUtil.isNotBlank(uuid)) {
 			DocCategory entity = iDocCategoryService.getOne(Wrappers.<DocCategory>lambdaQuery().func(wrapper -> {
 				wrapper.eq(DocCategory::getDocProjectId, docProject.getId());
