@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title th:text="${#ConstUtil.getValue('cfgSystemName')}"></title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+    <link rel="shortcut icon" th:href="@{/static/favicon.ico}" type="image/x-icon" />
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/webjars/font-awesome/css/font-awesome.min.css}" rel="stylesheet" />
+	<link th:href="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/css/layui.css}" rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{static/css/login/trendy.css}" />
+	<script th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+	<!--[if lt IE 9]>
+    <script th:src="@{/webjars/html5shiv/html5shiv.min.js}"></script>
+    <script th:src="@{/webjars/respond/dest/respond.min.js}"></script>
+    <![endif]-->
+</head>
+<body>
+	<!-- 禁用IE -->
+	<div th:replace="fragments/ie-warn :: info"></div>
+	<!-- 页面主体 -->
+	<div class="layui-container">
+		<!-- 粒子特效背景 -->
+		<div class="particle"></div>
+		<!-- 登录框 -->
+		<div class="admin-login-background">
+			<div class="layui-form login-form">
+				<form id="form" method="post" class="layui-form" th:action="@{/dologin}">
+					<div class="layui-form-item logo-title">
+						<h1 th:text="${#ConstUtil.getValue('cfgSystemName')}"></h1>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-icon layui-icon-username" for="username"></label>
+						<input type="text" 
+							name="username" 
+							lay-verify="required"
+							placeholder="用户名" 
+							autocomplete="off" 
+							class="layui-input"
+							/>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-icon layui-icon-password" for="password"></label>
+						<input type="password" 
+							name="password"
+							lay-verify="required" 
+							placeholder="密码"
+							autocomplete="new-password"
+							class="layui-input"
+							/>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-icon layui-icon-vercode" for="captcha"></label>
+						<input type="text" 
+							name="captcha" 
+							lay-verify="required"
+							placeholder="图形验证码"
+							autocomplete="off"
+							class="layui-input verification captcha" 
+							/>
+						<div class="captcha-img">
+							<img id="captchaPic" 
+								th:src="@{/captcha}" 
+								alt="验证码"
+								class="codeImg captcha" 
+								title="单击图片刷新！"
+								onclick="this.src=this.src.split('?')[0]+'?'+new Date().getTime();" 
+								/>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<button id="dologin" class="layui-btn layui-btn layui-btn-normal layui-btn-fluid">登 录</button>
+					</div>
+					<div class="layui-form-item">
+						<div class="remind">
+				      		<div class="browser">
+				            	<img th:src="@{/static/images/remind.png}" /> 
+				          		<span>推荐使用谷歌浏览器</span>
+				        	</div>
+				           	<div class="register">
+				           		<a href="javascript:void(0);" onclick="register();">注册账号</a>
+				           	</div>
+			       		</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+    	版权所有 © 2022 Renlm <a href="https://beian.miit.gov.cn" target="_blank">[(${#ConstUtil.getValue('cfgSiteBeian')})]</a>
+    </div>
+	<input id="errMsg" type="hidden" th:value="${session.SPRING_SECURITY_LAST_EXCEPTION?.message}" />
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<span class="text-danger"><i class="fa fa-warning"></i> <span id="alertMsg">用户名或密码错误，请重试！</span></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/layui.js}"></script>
+	<script th:src="@{/webjars/JParticles/jparticles.all.js}"></script>
+	<script type="text/javascript">
+		// 初始化
+		$(document).ready(function() {
+			// 错误提示
+			var errMsg = $("#errMsg").val(); 
+			if(errMsg) { alertMsg(errMsg); }
+			// 粒子线条背景
+			new JParticles.particle(".particle", {
+				color : "#25bfff",
+				lineShape : "cube",
+				range : 2000,
+				proximity : 100,
+				parallax : false
+			});
+		});
+		
+		// 禁止嵌入
+		if(self != top) top.location.href = self.location.href;
+		
+		// 回车键
+		document.onkeydown = function(event){
+			if (event.keyCode == "13") document.getElementById("dologin").click();
+		}
+		
+		// 提示消息
+		function alertMsg(message) {
+			$("#alertMsg").html(message);
+	        $("#myModal").modal();
+		}
+		
+		// 登录
+		$("#dologin").click(function(e) {
+			e.preventDefault();
+			var form = document.getElementById("form");
+			if(!form.username.value) {
+				alertMsg("用户名错误");
+			} else if(!form.password.value) {
+				alertMsg("密码错误");
+			} else if(!form.captcha.value) {
+				alertMsg("验证码错误");
+			} else {
+				document.getElementById("form").submit();
+			}
+		});
+		
+		// 注册账号
+		function register() {
+			window.editPwdLayerIndex = layer.open({
+				type: 2, 
+				title: '注册账号',
+				offset: '200px',
+				area: ['500px', '300px'],
+				skin: "layui-layer-rim",
+				content: ['[(@{/register})]', 'no']
+			});
+		}
+	</script>
+</body>
+</html>
