@@ -50,15 +50,15 @@ public class PubDocController {
 	 * 
 	 * @param request
 	 * @param model
-	 * @param username
+	 * @param shareUuid
 	 * @param password
 	 * @return
 	 */
 	@RequestMapping("/verifyPassword")
-	public String verifyPassword(HttpServletRequest request, ModelMap model, String username, String password) {
-		Result<?> result = DocShareUser.verifyPassword(request, model, username, password);
+	public String verifyPassword(HttpServletRequest request, ModelMap model, String shareUuid, String password) {
+		Result<?> result = DocShareUser.verifyPassword(request, model, shareUuid, password);
 		if (result.isSuccess()) {
-			return "redirect:/pub/doc/s/" + username;
+			return "redirect:/pub/doc/s/" + shareUuid;
 		} else {
 			model.put("result", result);
 			return "pub/docSharePasswd";

@@ -31,7 +31,7 @@
 		<div class="admin-login-background">
 			<div class="layui-form login-form">
 				<form id="form" method="post" class="layui-form" th:action="@{/pub/doc/verifyPassword}">
-					<input type="hidden" name="username" th:value="${shareUuid}" />
+					<input type="hidden" name="shareUuid" th:value="${shareUuid}" />
 					<div class="layui-form-item logo-title">
 						<h1 th:text="${docCategoryShare.docCategoryName}"></h1>
 					</div>
