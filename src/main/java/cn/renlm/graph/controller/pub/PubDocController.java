@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.DocShareUser;
 import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
@@ -77,8 +78,13 @@ public class PubDocController {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
 		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request, shareUuid) == null) {
-			return "pub/docSharePasswd";
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
+			if (user == null) {
+				return "pub/docSharePasswd";
+			} else if (!StrUtil.equals(shareUuid, user.getShareUuid())) {
+				throw new RuntimeException("行为异常");
+			}
 		}
 		return "pub/docShare";
 	}
@@ -96,8 +102,13 @@ public class PubDocController {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
 		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request, shareUuid) == null) {
-			return "pub/docSharePasswd";
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
+			if (user == null) {
+				return "pub/docSharePasswd";
+			} else if (!StrUtil.equals(shareUuid, user.getShareUuid())) {
+				throw new RuntimeException("行为异常");
+			}
 		}
 		return "pub/docShareCategory";
 	}
@@ -130,8 +141,13 @@ public class PubDocController {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
 		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request, shareUuid) == null) {
-			return "pub/docSharePasswd";
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
+			if (user == null) {
+				return "pub/docSharePasswd";
+			} else if (!StrUtil.equals(shareUuid, user.getShareUuid())) {
+				throw new RuntimeException("行为异常");
+			}
 		}
 		Markdown markdown = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
 		DocCategory docCategory = iDocCategoryService
