@@ -76,8 +76,8 @@ public class PubDocController {
 	 * @return
 	 */
 	@ResponseBody
-	@GetMapping("/ajax/getTree")
-	public List<Tree<Long>> getTree(String shareUuid) {
+	@GetMapping("/ajax/{shareUuid}/getTree")
+	public List<Tree<Long>> getTree(@PathVariable String shareUuid) {
 		List<Tree<Long>> tree = pubDocService.getTree(shareUuid);
 		return tree;
 	}
@@ -87,18 +87,17 @@ public class PubDocController {
 	 * 
 	 * @param model
 	 * @param shareUuid
-	 * @param docCategoryUuid
+	 * @param uuid
 	 * @return
 	 */
 	@GetMapping("/m/{shareUuid}")
-	public String docShareMarkdown(ModelMap model, @PathVariable String shareUuid, String docCategoryUuid) {
-		Markdown markdown = iMarkdownService
-				.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, docCategoryUuid));
+	public String docShareMarkdown(ModelMap model, @PathVariable String shareUuid, String uuid) {
+		Markdown markdown = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
-		DocCategory docCategory = iDocCategoryService.getOne(
-				Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, docCategoryShare.getDocCategoryUuid()));
+		DocCategory docCategory = iDocCategoryService
+				.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, uuid));
 		List<DocCategory> fathers = iDocCategoryService.findFathers(docCategoryShare.getDocProjectUuid(),
-				docCategoryShare.getDocCategoryId());
+				docCategory.getId());
 		model.put("shareUuid", shareUuid);
 		model.put("markdown", markdown);
 		model.put("docCategoryShare", docCategoryShare);
