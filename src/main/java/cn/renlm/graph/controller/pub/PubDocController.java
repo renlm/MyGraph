@@ -69,11 +69,11 @@ public class PubDocController {
 	@GetMapping("/s/{shareUuid}")
 	public String docShare(HttpServletRequest request, ModelMap model, @PathVariable String shareUuid) {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("shareUuid", shareUuid);
+		model.put("docCategoryShare", docCategoryShare);
 		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request, shareUuid) == null) {
 			return "pub/docSharePasswd";
 		}
-		model.put("shareUuid", shareUuid);
-		model.put("docCategoryShare", docCategoryShare);
 		return "pub/docShare";
 	}
 
@@ -88,11 +88,11 @@ public class PubDocController {
 	@GetMapping("/c/{shareUuid}")
 	public String docShareCategory(HttpServletRequest request, ModelMap model, @PathVariable String shareUuid) {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("shareUuid", shareUuid);
+		model.put("docCategoryShare", docCategoryShare);
 		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request, shareUuid) == null) {
 			return "pub/docSharePasswd";
 		}
-		model.put("shareUuid", shareUuid);
-		model.put("docCategoryShare", docCategoryShare);
 		return "pub/docShareCategory";
 	}
 
@@ -122,6 +122,8 @@ public class PubDocController {
 	public String docShareMarkdown(HttpServletRequest request, ModelMap model, @PathVariable String shareUuid,
 			String uuid) {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("shareUuid", shareUuid);
+		model.put("docCategoryShare", docCategoryShare);
 		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request, shareUuid) == null) {
 			return "pub/docSharePasswd";
 		}
@@ -130,9 +132,7 @@ public class PubDocController {
 				.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, uuid));
 		List<DocCategory> fathers = iDocCategoryService.findFathers(docCategoryShare.getDocProjectUuid(),
 				docCategory.getId());
-		model.put("shareUuid", shareUuid);
 		model.put("markdown", markdown);
-		model.put("docCategoryShare", docCategoryShare);
 		model.put("docCategory", docCategory);
 		model.put("fathers", fathers);
 		return "pub/docShareMarkdown";
