@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,14 +47,21 @@ public class PubDocController {
 	/**
 	 * 验证密码
 	 * 
+	 * @param request
+	 * @param model
 	 * @param shareUuid
 	 * @param password
 	 * @return
 	 */
-	@ResponseBody
-	@PostMapping("/verifyPassword")
-	public Result<?> verifyPassword(HttpServletRequest request, String shareUuid, String password) {
-		return DocShareUser.verifyPassword(request, shareUuid, password);
+	@RequestMapping("/verifyPassword")
+	public String verifyPassword(HttpServletRequest request, ModelMap model, String shareUuid, String password) {
+		Result<?> result = DocShareUser.verifyPassword(request, shareUuid, password);
+		if (result.isSuccess()) {
+			return "redirect:/pub/doc/s/" + shareUuid;
+		} else {
+			model.put("result", result);
+			return "pub/docSharePasswd";
+		}
 	}
 
 	/**

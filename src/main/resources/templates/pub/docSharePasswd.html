@@ -54,7 +54,7 @@
 	<div class="footer">
     	版权所有 © 2022 Renlm <a href="https://beian.miit.gov.cn" target="_blank">[(${#ConstUtil.getValue('cfgSiteBeian')})]</a>
     </div>
-	<input id="errMsg" type="hidden" th:value="${session.SPRING_SECURITY_LAST_EXCEPTION?.message}" />
+	<input id="errMsg" type="hidden" th:value="${result?.message}" />
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
