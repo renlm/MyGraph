@@ -10,13 +10,6 @@
     <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
 	<!-- Jquery -->
 	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
-	<!-- 全局设置 -->
-    <script type="text/javascript">
-    	window.CTX = window.ctx = "[(@{/})]".substr(0, "[(@{/})]".length - 1);
-    	$(document).ajaxSend(function(event, jqxhr, settings) { 
-    		jqxhr.setRequestHeader("[(${_csrf.headerName})]", "[(${_csrf.token})]");
-    	});
-    </script>
 	<!-- Layui -->
 	<link th:href="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/css/layui.css}" rel="stylesheet" />
 	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/layui.js}"></script>
@@ -56,35 +49,13 @@
 	        		</th:block>
 	        		<th:block th:if="${markdown?.version != null}">
 	        			，<a class="version" href="javascript:void(0);"
-	        						th:data-puuid="${docProject.uuid}" 
+	        						th:data-puuid="${docCategoryShare.docProjectUuid}" 
 									th:data-cuuid="${docCategory.uuid}" 
 									onclick="parent.$.docVersionsDialog($(this).data('puuid'), $(this).data('cuuid'));"
 	        						th:text="${'当前版本：'+markdown.version}">
 	        					</a>
 	        		</th:block>
 	        	</p>
-			</div>
-			<div class="layui-col-md4">
-				<div class="layui-btn-container">
-					<button type="button" class="layui-btn layui-btn-primary" 
-						th:if="${role != null and (role == 2 or role == 3)}"
-						th:data-uuid="${docCategory.uuid}" 
-						th:data-title="${docCategory.text}"
-						onclick="$.openMarkdownEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
-						<i class="layui-icon layui-icon-edit"></i> 编辑
-					</button>
-					<button type="button" class="layui-btn layui-btn-primary" th:data-iscollected="${isCollected}" onclick="optCollect(this);">
-						<i th:class="|layui-icon ${isCollected?'layui-icon-star-fill':'layui-icon-star'}|"></i> 
-						<span>[(${isCollected?'取消':'收藏'})]</span>
-					</button>
-					<button type="button" class="layui-btn layui-btn-primary"
-						th:if="${docProject.isShare != null and docProject.isShare}"
-						th:data-puuid="${docProject.uuid}" 
-						th:data-cuuid="${docCategory.uuid}" 
-						onclick="parent.$.docShareDialog($(this).data('puuid'), $(this).data('cuuid'));">
-						<i class="layui-icon layui-icon-share"></i> 分享
-					</button>
-				</div>
 			</div>
 		</div>
 		<hr/>
@@ -109,56 +80,6 @@
              	sequenceDiagram : true
             });
 		});
-	</script>
-	<script type="text/javascript">
-		/**
-		 * 打开Markdown文档编辑器（事件）
-		 * @param params layero 当前层DOM
-		 * @param params index 当前层索引
-		 */
-		function onOpenEditor (layero, index) {
-			$(".md-body").addClass("md-hide");
-		}
-		
-		/**
-		 * 关闭Markdown文档编辑器（事件）
-		 */
-		function onCloseEditor () {
-			$(".md-body").removeClass("md-hide");
-			window.location.reload();
-		}
-		
-		/**
-		 * 添加收藏/取消收藏
-		 */
-		function optCollect (e) {
-			layer.load(2);
-			var type = ($(e).data('iscollected') + '') === 'false'? 1 : 0;
-			$.post(ctx + '/doc/categoryCollect/ajax/optCollect', 
-					{ 
-						type: type,
-						docProjectUuid: '[(${docProject.uuid})]',
-						docCategoryUuid: '[(${docCategory.uuid})]' 
-					}, 
-					function (resultJson) {
-						layer.closeAll();
-						if (resultJson.statusCode == 200) {
-							if (type === 0) {
-								$(e).data('iscollected', 'false');
-								$(e).find('span').html('收藏');
-								$(e).find('i.layui-icon').removeClass('layui-icon-star-fill');
-								$(e).find('i.layui-icon').addClass('layui-icon-star');
-							} else {
-								$(e).data('iscollected', 'true');
-								$(e).find('span').html('取消');
-								$(e).find('i.layui-icon').removeClass('layui-icon-star');
-								$(e).find('i.layui-icon').addClass('layui-icon-star-fill');
-							}
-		                } else {
-		                	layer.msg(resultJson.message ? resultJson.message : '出错了', { icon: 5, shift:6 });
-		                }
-					});
-		}
 	</script>
 </body>
 </html>
