@@ -116,13 +116,14 @@ public class PubDocController {
 	/**
 	 * 获取树形结构
 	 * 
+	 * @param request
 	 * @param shareUuid
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/{shareUuid}/getTree")
-	public List<Tree<Long>> getTree(@PathVariable String shareUuid) {
-		List<Tree<Long>> tree = pubDocService.getTree(shareUuid);
+	public List<Tree<Long>> getTree(HttpServletRequest request, @PathVariable String shareUuid) {
+		List<Tree<Long>> tree = pubDocService.getTree(request, shareUuid);
 		return tree;
 	}
 

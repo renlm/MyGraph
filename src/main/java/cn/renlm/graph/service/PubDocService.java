@@ -3,6 +3,8 @@ package cn.renlm.graph.service;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.dto.DocShareUser;
 import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocCategoryShare;
@@ -80,13 +84,20 @@ public class PubDocService {
 	/**
 	 * 获取树形结构
 	 * 
+	 * @param request
 	 * @param shareUuid
 	 * @return
 	 */
-	public List<Tree<Long>> getTree(String shareUuid) {
+	public List<Tree<Long>> getTree(HttpServletRequest request, String shareUuid) {
 		DocCategoryShareDto docCategoryShare = this.getDocCategoryShare(shareUuid);
 		if (docCategoryShare == null || !NumberUtil.equals(docCategoryShare.getStatus(), 1)) {
 			return CollUtil.newArrayList();
+		}
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
+			if (user == null || !StrUtil.equals(shareUuid, user.getShareUuid())) {
+				return CollUtil.newArrayList();
+			}
 		}
 		String docProjectUuid = docCategoryShare.getDocProjectUuid();
 		Long docCategoryId = docCategoryShare.getDocCategoryId();
