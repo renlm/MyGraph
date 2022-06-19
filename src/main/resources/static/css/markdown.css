@@ -36,7 +36,7 @@ html, body {
 
 .md-header {
 	padding: 5px 0 0 10px;
-	font-family: "Microsoft YaHei","MicrosoftJhengHei",STHeiti,MingLiu;
+	font-family: "Microsoft YaHei", "MicrosoftJhengHei", STHeiti, MingLiu;
 }
 
 .md-header .view-page-title {
@@ -57,8 +57,7 @@ html, body {
 	padding: 2px 0;
 }
 
-.md-header .nickname, 
-.md-header .time {
+.md-header .nickname, .md-header .time {
 	color: #31708f;
 	font-style: italic;
 }
@@ -80,4 +79,46 @@ html, body {
 
 .md-body.md-hide {
 	display: none !important;
+}
+
+.md-body {
+	margin-top: 10px;
+	border-top: 1px solid #dce3e8;
+}
+
+.md-body .md-catalog {
+	position: static;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 10px;
+	float: left;
+	padding-top: 10px;
+	padding-left: 10px;
+	max-width: 200px;
+}
+
+.md-body .md-catalog .catalog.container ul.markdown-toc-list {
+	margin: 0;
+	padding-left: 0;
+}
+
+.md-body .md-catalog .catalog.container ul {
+	margin: 0;
+	padding-left: 16px;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 28px;
+}
+
+.md-body .md-catalog .catalog.container ul li {
+	list-style: initial;
+	list-style-position: inside;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.md-body .md-catalog+.md-content {
+	width: auto !important;
+	border-left: 1px solid #dce3e8;
 }
