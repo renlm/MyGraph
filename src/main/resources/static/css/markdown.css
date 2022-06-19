@@ -122,7 +122,8 @@ html, body {
 	text-overflow: ellipsis;
 }
 
-.md-body .md-catalog .catalog.container ul li.on>a {
+.md-body .md-catalog .catalog.container ul li.on::marker, .md-body .md-catalog .catalog.container ul li.on>a
+	{
 	color: #fe7300;
 	font-weight: 600;
 }
