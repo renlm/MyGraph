@@ -84,7 +84,7 @@ html, body {
 .md-body {
 	margin-top: 10px;
 	margin-left: 10px;
-	border: 1px solid #dce3e8;
+	border-top: 1px solid #dce3e8;
 }
 
 .md-body .md-catalog {
@@ -121,7 +121,7 @@ html, body {
 .md-body .md-content {
 	width: auto !important;
 	min-height: calc(50vh);
-	padding-left: 25px !important;
-	padding-right: 25px !important;
+	padding-left: 20px !important;
+	padding-right: 0px !important;
 	border-left: 1px solid #dce3e8;
 }
