@@ -52,7 +52,10 @@
 		</div>
 		<hr/>
 		<div class="md-body">
-			<div class="md-catalog"></div>
+			<div class="md-catalog">
+				<div class="toggle collapse"></div>
+				<div class="catalog container"></div>
+			</div>
 			<div id="editormd" class="md-content">
 				<textarea id="markdown" class="layui-hide" th:text="${markdown?.content}"></textarea>
 			</div>
@@ -64,6 +67,8 @@
 			editormd.markdownToHTML("editormd", {
 				path            : "[(@{/static/markdown/editor.md-1.5.0/lib/})]",
                 htmlDecode      : "style,script,iframe|on*", 
+                tocContainer    : ".catalog.container",
+                tocDropdown     : false,
               	tocm            : true,
              	emoji           : false,
               	taskList        : true,
