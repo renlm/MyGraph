@@ -81,6 +81,11 @@ html, body {
 	display: none !important;
 }
 
+.md-body.no-header {
+	margin-top: 0;
+	border-top: none;
+}
+
 .md-body {
 	margin-top: 10px;
 	margin-left: 10px;
@@ -99,6 +104,7 @@ html, body {
 	float: left;
 	padding-top: 15px;
 	max-width: 210px;
+	min-width: 210px;
 }
 
 .md-body .md-catalog .catalog.container ul.markdown-toc-list {
