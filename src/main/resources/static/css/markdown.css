@@ -84,7 +84,7 @@ html, body {
 .md-body {
 	margin-top: 10px;
 	margin-left: 10px;
-	border-top: 1px solid #dce3e8;
+	border: 1px solid #dce3e8;
 }
 
 .md-body .md-catalog {
@@ -94,12 +94,12 @@ html, body {
 	top: 5px;
 	float: left;
 	padding-top: 15px;
-	max-width: 200px;
+	max-width: 210px;
 }
 
 .md-body .md-catalog .catalog.container ul.markdown-toc-list {
 	margin: 0;
-	padding-left: 0;
+	padding-left: 10px;
 }
 
 .md-body .md-catalog .catalog.container ul {
@@ -120,7 +120,8 @@ html, body {
 
 .md-body .md-content {
 	width: auto !important;
-	padding-left: 30px !important;
-	padding-right: 10px !important;
+	min-height: calc(50vh);
+	padding-left: 25px !important;
+	padding-right: 25px !important;
 	border-left: 1px solid #dce3e8;
 }
