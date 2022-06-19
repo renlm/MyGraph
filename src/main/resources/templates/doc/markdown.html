@@ -87,7 +87,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="md-body">
+		<div class="md-body catalog-hide">
 			<div class="md-catalog">
 				<div class="toggle collapse"></div>
 				<div class="catalog container"></div>
@@ -112,6 +112,10 @@
               	flowChart       : true,
              	sequenceDiagram : true
             });
+			var $catalogs = $(".md-catalog>.catalog.container>.editormd-markdown-toc>ul.markdown-toc-list>li");
+        	if ($catalogs.length > 0) {
+        		$(".md-body.catalog-hide").removeClass("catalog-hide");
+        	}
 		});
 	</script>
 	<script type="text/javascript">

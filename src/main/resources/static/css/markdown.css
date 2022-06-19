@@ -87,6 +87,10 @@ html, body {
 	border-top: 1px solid #dce3e8;
 }
 
+.md-body.catalog-hide .md-catalog {
+	display: none;
+}
+
 .md-body .md-catalog {
 	position: static;
 	position: -webkit-sticky;
@@ -116,6 +120,10 @@ html, body {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+}
+
+.md-body.catalog-hide .md-content {
+	border-left: none;
 }
 
 .md-body .md-content {
