@@ -90,8 +90,9 @@
 		<hr/>
 		<div class="md-body">
 			<div class="md-catalog"></div>
-			<div id="editormd" class="md-content"></div>
-			<textarea id="markdown" class="layui-hide" th:text="${markdown?.content}"></textarea>
+			<div id="editormd" class="md-content">
+				<textarea id="markdown" class="layui-hide" th:text="${markdown?.content}"></textarea>
+			</div>
 		</div>
 	</div>
 	<script th:src="@{/static/js/main.js}"></script>
@@ -99,7 +100,6 @@
 		$(function () {
 			editormd.markdownToHTML("editormd", {
 				path            : "[(@{/static/markdown/editor.md-1.5.0/lib/})]",
-                markdown		: $("#markdown").val(),
                 htmlDecode      : "style,script,iframe|on*", 
               	tocm            : true,
              	emoji           : false,

@@ -30,13 +30,13 @@
 	<link rel="stylesheet" th:href="@{/static/css/markdown.css}" />
 </head>
 <body>
-	<div id="editormd" class="noborder"></div>
-	<textarea id="markdown" style="display: none;" th:text="${markdown.content}"></textarea>
+	<div id="editormd" class="noborder">
+		<textarea id="markdown" class="layui-hide" th:text="${markdown.content}"></textarea>
+	</div>
 	<script type="text/javascript">
 		$(function () {
 			editormd.markdownToHTML("editormd", {
 				path            : "[(@{/static/markdown/editor.md-1.5.0/lib/})]",
-                markdown		: $("#markdown").val(),
                 htmlDecode      : "style,script,iframe|on*", 
               	tocm            : true,
              	emoji           : false,
