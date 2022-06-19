@@ -21,7 +21,7 @@
 					idField:'id',
 			   		treeField:'text',
 					method:'get',
-               		url:ctx+'/pub/doc/ajax/getTree?shareUuid=${shareUuid}',
+               		url:ctx+'/pub/doc/ajax/${shareUuid}/getTree',
                		onLoadSuccess:function(row,data){
                			var that = this;
                			if (data && data.length > 0) {
@@ -37,7 +37,7 @@
                			}
                		},
                		onClickRow:function(row){
-				   		var url = ctx + '/pub/doc/m/${shareUuid}?docCategoryUuid=' + row.uuid;
+				   		var url = ctx + '/pub/doc/m/${shareUuid}?uuid=' + row.uuid;
 				     	$('#Iframe')[0].contentWindow.location.href = url;
 					}
               	|">
@@ -56,7 +56,7 @@
         	">
           	<div class="easyui-layout"
 	    		data-options="fit:true">
-	    		<iframe id="Iframe" th:src="@{'/pub/doc/m/'+${shareUuid}+'?docCategoryUuid='+${docCategoryShare?.docCategoryUuid}}" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>
+	    		<iframe id="Iframe" th:src="@{'/pub/doc/m/'+${shareUuid}+'?uuid='+${docCategoryShare?.docCategoryUuid}}" scrolling="auto" frameborder="0" style="width:100%;height:100%;"></iframe>
 	    	</div>
     	</div>
     </div>
