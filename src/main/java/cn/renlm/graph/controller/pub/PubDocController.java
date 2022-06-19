@@ -37,6 +37,7 @@ public class PubDocController {
 	@GetMapping("/s/{shareUuid}")
 	public String docShare(ModelMap model, @PathVariable String shareUuid) {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
 		return "pub/docShare";
 	}
@@ -51,6 +52,7 @@ public class PubDocController {
 	@GetMapping("/c/{shareUuid}")
 	public String docShareCategory(ModelMap model, @PathVariable String shareUuid) {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
 		return "pub/docShareCategory";
 	}
@@ -79,6 +81,7 @@ public class PubDocController {
 	@GetMapping("/m/{shareUuid}")
 	public String docShareMarkdown(ModelMap model, @PathVariable String shareUuid, String docCategoryUuid) {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
 		return "pub/docShareMarkdown";
 	}
