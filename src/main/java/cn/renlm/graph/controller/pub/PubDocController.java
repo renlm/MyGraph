@@ -69,7 +69,7 @@ public class PubDocController {
 	@GetMapping("/s/{shareUuid}")
 	public String docShare(HttpServletRequest request, ModelMap model, @PathVariable String shareUuid) {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request) == null) {
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request, shareUuid) == null) {
 			return "pub/docSharePasswd";
 		}
 		model.put("shareUuid", shareUuid);
@@ -88,7 +88,7 @@ public class PubDocController {
 	@GetMapping("/c/{shareUuid}")
 	public String docShareCategory(HttpServletRequest request, ModelMap model, @PathVariable String shareUuid) {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request) == null) {
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request, shareUuid) == null) {
 			return "pub/docSharePasswd";
 		}
 		model.put("shareUuid", shareUuid);
@@ -122,7 +122,7 @@ public class PubDocController {
 	public String docShareMarkdown(HttpServletRequest request, ModelMap model, @PathVariable String shareUuid,
 			String uuid) {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request) == null) {
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2) && DocShareUser.getInfo(request, shareUuid) == null) {
 			return "pub/docSharePasswd";
 		}
 		Markdown markdown = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
