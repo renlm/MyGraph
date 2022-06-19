@@ -55,7 +55,7 @@ public class PubDocController {
 	 */
 	@RequestMapping("/verifyPassword")
 	public String verifyPassword(HttpServletRequest request, ModelMap model, String shareUuid, String password) {
-		Result<?> result = DocShareUser.verifyPassword(request, shareUuid, password);
+		Result<?> result = DocShareUser.verifyPassword(request, model, shareUuid, password);
 		if (result.isSuccess()) {
 			return "redirect:/pub/doc/s/" + shareUuid;
 		} else {

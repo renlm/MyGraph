@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.ModelMap;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
@@ -39,11 +40,13 @@ public class DocShareUser implements Serializable {
 	 * 验证密码
 	 * 
 	 * @param request
+	 * @param model
 	 * @param shareUuid
 	 * @param password
 	 * @return
 	 */
-	public static final Result<?> verifyPassword(HttpServletRequest request, String shareUuid, String password) {
+	public static final Result<?> verifyPassword(HttpServletRequest request, ModelMap model, String shareUuid,
+			String password) {
 		if (StrUtil.isBlank(shareUuid)) {
 			return Result.of(HttpStatus.BAD_REQUEST, "参数缺失");
 		}
@@ -54,6 +57,8 @@ public class DocShareUser implements Serializable {
 		RSA rsa = SpringUtil.getBean(RSA.class);
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
 		String decryptStr = rsa.decryptStr(docCategoryShare.getPassword(), KeyType.PublicKey);
+		model.put("shareUuid", shareUuid);
+		model.put("docCategoryShare", docCategoryShare);
 		if (StrUtil.equals(decryptStr, password)) {
 			DocShareUser docShareUser = new DocShareUser();
 			docShareUser.setShareUuid(shareUuid);
