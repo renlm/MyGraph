@@ -21,6 +21,25 @@
 					</a>
 				</li>
 			</ul>
+			<ul class="layui-nav right"
+				th:if="${!#strings.isEmpty(session?.SPRING_SECURITY_CONTEXT?.authentication?.principal?.username)}">
+				<li class="layui-nav-item">
+					<a href="javascript:void(0);"
+						sec:authentication="principal.username">
+					</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a onclick="$.modifyPwd();">修改密码</a>
+						</dd>
+						<dd>
+							<form class="loginout" method="post" 
+								th:action="@{/logout}"
+								onclick="this.submit();">退出
+							</form>
+						</dd>
+					</dl>
+				</li>
+			</ul>
 		</div>
 		<!-- 头部结束 -->
 		<!-- 中部开始 -->
