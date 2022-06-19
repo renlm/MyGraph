@@ -122,6 +122,11 @@ html, body {
 	text-overflow: ellipsis;
 }
 
+.md-body .md-catalog .catalog.container ul li.on>a {
+	color: #fe7300;
+	font-weight: 600;
+}
+
 .md-body.catalog-hide .md-content {
 	border-left: none;
 }
