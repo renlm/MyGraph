@@ -47,18 +47,18 @@ public class DocShareUser implements Serializable {
 	 */
 	public static final Result<?> verifyPassword(HttpServletRequest request, ModelMap model, String shareUuid,
 			String password) {
-		if (StrUtil.isBlank(shareUuid)) {
-			return Result.of(HttpStatus.BAD_REQUEST, "参数缺失");
-		}
-		if (StrUtil.isBlank(password)) {
-			return Result.of(HttpStatus.BAD_REQUEST, "请输入密码");
-		}
 		PubDocService pubDocService = SpringUtil.getBean(PubDocService.class);
 		RSA rsa = SpringUtil.getBean(RSA.class);
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
 		String decryptStr = rsa.decryptStr(docCategoryShare.getPassword(), KeyType.PublicKey);
 		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
+		if (StrUtil.isBlank(shareUuid)) {
+			return Result.of(HttpStatus.BAD_REQUEST, "参数缺失");
+		}
+		if (StrUtil.isBlank(password)) {
+			return Result.of(HttpStatus.BAD_REQUEST, "请输入密码");
+		}
 		if (StrUtil.equals(decryptStr, password)) {
 			DocShareUser docShareUser = new DocShareUser();
 			docShareUser.setShareUuid(shareUuid);

@@ -31,6 +31,7 @@
 		<div class="admin-login-background">
 			<div class="layui-form login-form">
 				<form id="form" method="post" class="layui-form" th:action="@{/pub/doc/verifyPassword}">
+					<input type="hidden" name="shareUuid" th:value="${shareUuid}" />
 					<div class="layui-form-item logo-title">
 						<h1 th:text="${docCategoryShare.docCategoryName}"></h1>
 					</div>
@@ -102,7 +103,7 @@
 			e.preventDefault();
 			var form = document.getElementById("form");
 			if(!form.password.value) {
-				alertMsg("密码错误");
+				alertMsg("请输入密码");
 			} else {
 				document.getElementById("form").submit();
 			}
