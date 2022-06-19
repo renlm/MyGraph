@@ -147,6 +147,15 @@
 	color: #fff;
 }
 
+.header .layui-nav .layui-nav-item.no-this:after,
+.header .layui-nav .layui-nav-item.no-this:hover {
+	background: none;
+}
+
+.header .layui-nav .layui-nav-item.no-this+.layui-nav-bar {
+	visibility: hidden;
+}
+
 .header .layui-nav-bar {
 	margin-left: 15px;
 }

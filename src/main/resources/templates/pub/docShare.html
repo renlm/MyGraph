@@ -22,6 +22,12 @@
 				</li>
 			</ul>
 			<ul class="layui-nav right"
+				th:if="${#strings.isEmpty(session?.SPRING_SECURITY_CONTEXT?.authentication?.principal?.username)}">
+				<li class="layui-nav-item no-this">
+					<a th:href="@{/}">登录</a>
+				</li>
+			</ul>
+			<ul class="layui-nav right"
 				th:if="${!#strings.isEmpty(session?.SPRING_SECURITY_CONTEXT?.authentication?.principal?.username)}">
 				<li class="layui-nav-item">
 					<a href="javascript:void(0);"
