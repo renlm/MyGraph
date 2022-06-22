@@ -109,6 +109,7 @@
 					if (xml.length < MAX_REQUEST_SIZE) 
 					{
 						var __settings = "&uuid=" + GJSON.uuid;
+						__settings += "&version=" + GJSON.version;
 						__settings += "&zoom=" + UI.editor.graph.view.getScale();
 						__settings += "&dx=" + UI.editor.graph.view.getTranslate().x;
 						__settings += "&dy=" + UI.editor.graph.view.getTranslate().y;
