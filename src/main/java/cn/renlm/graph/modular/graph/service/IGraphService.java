@@ -28,15 +28,6 @@ public interface IGraphService extends IService<Graph> {
 	Page<Graph> findPage(Page<Graph> page, GraphDto form);
 
 	/**
-	 * 保存我的（新建|编辑）
-	 * 
-	 * @param user
-	 * @param form
-	 * @return
-	 */
-	Result<GraphDto> mineAjaxSave(User user, GraphDto form);
-
-	/**
 	 * 保存编辑器
 	 * 
 	 * @param user
