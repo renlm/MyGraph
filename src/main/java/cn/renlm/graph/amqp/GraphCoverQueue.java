@@ -75,7 +75,7 @@ public class GraphCoverQueue {
 		boolean fitWindow = false;
 		log.info("=== 图形封面任务：{}", uuid);
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
-		if (StrUtil.isBlank(graph.getXml())) {
+		if (graph == null || StrUtil.isBlank(graph.getXml())) {
 			return;
 		}
 		// 设置尺寸
