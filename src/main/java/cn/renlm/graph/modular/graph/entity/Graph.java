@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-06-18
+ * @since 2022-06-22
  */
 @Getter
 @Setter
@@ -46,6 +46,12 @@ public class Graph implements Serializable {
     private String name;
 
     /**
+     * 版本
+     */
+    @TableField("version")
+    private Integer version;
+
+    /**
      * 图形分类（编码）
      */
     @TableField("category_code")
@@ -56,12 +62,6 @@ public class Graph implements Serializable {
      */
     @TableField("category_name")
     private String categoryName;
-
-    /**
-     * 是否公开（默认否）
-     */
-    @TableField("is_public")
-    private Boolean isPublic;
 
     /**
      * 封面图片

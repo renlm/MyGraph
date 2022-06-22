@@ -1,10 +1,11 @@
-package cn.renlm.graph.modular.markdown.entity;
+package cn.renlm.graph.modular.graph.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * Markdown文档-历史记录
+ * 图形设计-历史记录
  * </p>
  *
  * @author Renlm
@@ -21,8 +22,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@TableName("markdown_history")
-public class MarkdownHistory implements Serializable {
+@TableName("graph_history")
+public class GraphHistory implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -57,19 +58,19 @@ public class MarkdownHistory implements Serializable {
     private String operatorNickname;
 
     /**
-     * Markdown文档表主键
+     * 图形设计表主键
      */
-    @TableField("markdown_id")
-    private Long markdownId;
+    @TableField("graph_id")
+    private Long graphId;
 
     /**
-     * Markdown文档UUID
+     * 图形设计UUID
      */
-    @TableField("markdown_uuid")
-    private String markdownUuid;
+    @TableField("graph_uuid")
+    private String graphUuid;
 
     /**
-     * 文档名称
+     * 名称
      */
     @TableField("name")
     private String name;
@@ -81,16 +82,94 @@ public class MarkdownHistory implements Serializable {
     private Integer version;
 
     /**
-     * 文档内容
+     * 图形分类（编码）
      */
-    @TableField("content")
-    private String content;
+    @TableField("category_code")
+    private String categoryCode;
 
     /**
-     * 图形设计表主键
+     * 图形分类（名称）
      */
-    @TableField("graph_id")
-    private Long graphId;
+    @TableField("category_name")
+    private String categoryName;
+
+    /**
+     * 封面图片
+     */
+    @TableField("cover")
+    private String cover;
+
+    /**
+     * 缩放比例（默认1）
+     */
+    @TableField("zoom")
+    private BigDecimal zoom;
+
+    /**
+     * 水平偏移量（默认0）
+     */
+    @TableField("dx")
+    private Integer dx;
+
+    /**
+     * 垂直偏移量（默认0）
+     */
+    @TableField("dy")
+    private Integer dy;
+
+    /**
+     * 显示网格（默认是）
+     */
+    @TableField("grid_enabled")
+    private Boolean gridEnabled;
+
+    /**
+     * 网格大小（默认1）
+     */
+    @TableField("grid_size")
+    private Integer gridSize;
+
+    /**
+     * 网格颜色
+     */
+    @TableField("grid_color")
+    private String gridColor;
+
+    /**
+     * 页面视图（默认否）
+     */
+    @TableField("page_visible")
+    private Boolean pageVisible;
+
+    /**
+     * 背景色
+     */
+    @TableField("background")
+    private String background;
+
+    /**
+     * 显示连接箭头（默认否）
+     */
+    @TableField("connection_arrows_enabled")
+    private Boolean connectionArrowsEnabled;
+
+    /**
+     * 显示连接点（默认是）
+     */
+    @TableField("connectable")
+    private Boolean connectable;
+
+    /**
+     * 显示参考线（默认是）
+     */
+    @TableField("guides_enabled")
+    private Boolean guidesEnabled;
+
+    /**
+     * XML文本
+     */
+    @TableField("xml")
+    private String xml;
 
     /**
      * 创建时间

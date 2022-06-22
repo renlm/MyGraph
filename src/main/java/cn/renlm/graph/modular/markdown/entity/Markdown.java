@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-06-18
+ * @since 2022-06-22
  */
 @Getter
 @Setter
@@ -55,6 +55,12 @@ public class Markdown implements Serializable {
      */
     @TableField("content")
     private String content;
+
+    /**
+     * 图形设计表主键
+     */
+    @TableField("graph_id")
+    private Long graphId;
 
     /**
      * 创建时间
