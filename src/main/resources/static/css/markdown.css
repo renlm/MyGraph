@@ -37,7 +37,8 @@ html, body {
 .md-header {
 	font-family: "Microsoft YaHei", "MicrosoftJhengHei", STHeiti, MingLiu;
 	border-bottom: 1px solid #dce3e8;
-	margin: 5px 0 0 10px;
+	margin-left: 10px;
+	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
