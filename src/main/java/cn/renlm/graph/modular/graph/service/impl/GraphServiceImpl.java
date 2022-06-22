@@ -1,6 +1,5 @@
 package cn.renlm.graph.modular.graph.service.impl;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -119,21 +118,15 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 				}
 				form.setId(entity.getId());
 				form.setVersion(entity.getVersion() + 1);
-				form.setZoom(ObjectUtil.defaultIfNull(form.getZoom(), new BigDecimal(1)));
-				form.setDx(ObjectUtil.defaultIfNull(form.getDx(), 0));
-				form.setDy(ObjectUtil.defaultIfNull(form.getDy(), 0));
-				form.setGridEnabled(ObjectUtil.defaultIfNull(form.getGridEnabled(), true));
-				form.setGridSize(ObjectUtil.defaultIfNull(form.getGridSize(), 1));
-				form.setGridColor(form.getGridColor());
-				form.setPageVisible(ObjectUtil.defaultIfNull(form.getPageVisible(), false));
-				form.setBackground(form.getBackground());
-				form.setConnectionArrowsEnabled(ObjectUtil.defaultIfNull(form.getConnectionArrowsEnabled(), false));
-				form.setConnectable(ObjectUtil.defaultIfNull(form.getConnectable(), true));
-				form.setGuidesEnabled(ObjectUtil.defaultIfNull(form.getGuidesEnabled(), true));
+				GraphDto.fillDefault(form);
 				form.setXml(Base64.decodeStr(form.getXml()));
+				form.setCreatedAt(entity.getCreatedAt());
+				form.setCreatorUserId(entity.getCreatorUserId());
+				form.setCreatorNickname(entity.getCreatorNickname());
 				form.setUpdatedAt(new Date());
 				form.setUpdatorUserId(user.getUserId());
 				form.setUpdatorNickname(user.getNickname());
+				form.setDeleted(entity.getDeleted());
 			}
 		}
 		boolean isInsert = form.getId() == null;
