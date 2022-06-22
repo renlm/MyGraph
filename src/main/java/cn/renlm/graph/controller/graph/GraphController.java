@@ -95,6 +95,7 @@ public class GraphController {
 		Graph graph = new Graph();
 		graph.setUuid(uuid);
 		graph.setName(name);
+		graph.setVersion(1);
 		GraphDto.fillDefault(graph);
 		if (StrUtil.isNotBlank(uuid)) {
 			Graph entity = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
