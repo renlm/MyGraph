@@ -378,6 +378,7 @@ CREATE TABLE doc_category_collect (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    INDEX doc_project_id(doc_project_id),
     INDEX doc_category_id(doc_category_id),
     INDEX member_user_id(member_user_id),
     INDEX deleted(deleted)
@@ -403,6 +404,7 @@ CREATE TABLE doc_category_share (
     disabled TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否禁用（默认否）',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
     remark VARCHAR(255) COMMENT '备注',
+    INDEX doc_project_id(doc_project_id),
     INDEX doc_category_id(doc_category_id),
     INDEX deadline(deadline),
     INDEX creator_user_id(creator_user_id),
@@ -460,9 +462,9 @@ CREATE TABLE graph(
     id							BIGINT(20) 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
     uuid       					VARCHAR(32)		UNIQUE NOT NULL				COMMENT 'UUID',
     name       					VARCHAR(255)	NOT NULL					COMMENT '名称',
+    version 					INT				NOT NULL					COMMENT '版本',
     category_code				VARCHAR(50)									COMMENT '图形分类（编码）',
     category_name				VARCHAR(255)								COMMENT '图形分类（名称）',
-    is_public					TINYINT(1) 		NOT NULL DEFAULT 0			COMMENT '是否公开（默认否）',
     cover						VARCHAR(32)									COMMENT '封面图片',
     zoom						DECIMAL(10, 4) 	NOT NULL DEFAULT 1			COMMENT '缩放比例（默认1）',
     dx							INT 			NOT NULL DEFAULT 0			COMMENT '水平偏移量（默认0）',
@@ -483,8 +485,49 @@ CREATE TABLE graph(
     updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
     updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
-    remark VARCHAR(255) COMMENT '备注'
+    remark VARCHAR(255) COMMENT '备注',
+    INDEX version(version)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '图形设计';
+
+-- 图形设计-历史记录
+DROP TABLE IF EXISTS graph_history;
+CREATE TABLE graph_history(
+    history_id            		BIGINT(20) 		PRIMARY KEY AUTO_INCREMENT	COMMENT '历史记录ID',
+    change_label 				VARCHAR(255)	NOT NULL					COMMENT '变更说明',
+    operate_at 					TIMESTAMP 		NOT NULL 					COMMENT '操作时间',
+    operator_user_id 			VARCHAR(32) 								COMMENT '操作人（用户ID）',
+    operator_nickname 			VARCHAR(255) 								COMMENT '操作人（昵称）',
+    graph_id       				BIGINT			NOT NULL					COMMENT '图形设计表主键',
+    graph_uuid       			VARCHAR(32)		NOT NULL					COMMENT '图形设计UUID',
+    name       					VARCHAR(255)	NOT NULL					COMMENT '名称',
+    version 					INT				NOT NULL					COMMENT '版本',
+    category_code				VARCHAR(50)									COMMENT '图形分类（编码）',
+    category_name				VARCHAR(255)								COMMENT '图形分类（名称）',
+    cover						VARCHAR(32)									COMMENT '封面图片',
+    zoom						DECIMAL(10, 4) 	NOT NULL DEFAULT 1			COMMENT '缩放比例（默认1）',
+    dx							INT 			NOT NULL DEFAULT 0			COMMENT '水平偏移量（默认0）',
+    dy							INT 			NOT NULL DEFAULT 0			COMMENT '垂直偏移量（默认0）',
+    grid_enabled				TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示网格（默认是）',
+    grid_size					INT 			NOT NULL DEFAULT 1			COMMENT '网格大小（默认1）',
+    grid_color					VARCHAR(255)								COMMENT '网格颜色',
+    page_visible				TINYINT(1) 		NOT NULL DEFAULT 0			COMMENT '页面视图（默认否）',
+    background       			VARCHAR(255)								COMMENT '背景色',
+    connection_arrows_enabled	TINYINT(1) 		NOT NULL DEFAULT 0			COMMENT '显示连接箭头（默认否）',
+    connectable					TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示连接点（默认是）',
+    guides_enabled				TINYINT(1) 		NOT NULL DEFAULT 1			COMMENT '显示参考线（默认是）',
+    xml       					LONGTEXT									COMMENT 'XML文本',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注',
+    INDEX graph_id(graph_id),
+    INDEX graph_uuid(graph_uuid),
+    INDEX version(version)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '图形设计-历史记录';
 
 -- 定时任务日志
 DROP TABLE IF EXISTS `QRTZ_LOGS`;
