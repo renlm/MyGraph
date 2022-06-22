@@ -84,7 +84,8 @@
                 			uuid: "[(${markdown.uuid})]",
                 			name: "[(${markdown.name})]",
                 			version: $("#version").val(),
-                			content: that.getMarkdown()
+                			content: that.getMarkdown(),
+                			graphId: "[(${markdown.graphId})]"
                 		}, function (resultJson) {
                 			layer.closeAll();
                 			if(resultJson.statusCode == 200) {
