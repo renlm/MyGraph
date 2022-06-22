@@ -125,6 +125,7 @@
 						req.send();
 						var resJson = JSON.parse(req.request.responseText);
 						if(resJson.statusCode == 200) {
+							GJSON.version = resJson.data.version;
 							layer.msg(resJson.message?resJson.message:"已保存", { icon: 1, time: 1500 });
 						} else {
 							layer.msg(resJson.message?resJson.message:"出错了", { icon: 5, shift:6 });
