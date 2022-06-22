@@ -2,6 +2,8 @@ package cn.renlm.graph.modular.graph.dto;
 
 import java.math.BigDecimal;
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.modular.graph.entity.Graph;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,15 +31,15 @@ public class GraphDto extends Graph {
 	 * @param graph
 	 */
 	public static final void fillDefault(Graph graph) {
-		graph.setZoom(new BigDecimal(1));
-		graph.setDx(0);
-		graph.setDy(0);
-		graph.setGridEnabled(true);
-		graph.setGridSize(1);
-		graph.setPageVisible(false);
-		graph.setBackground(null);
-		graph.setConnectionArrowsEnabled(false);
-		graph.setConnectable(true);
-		graph.setGuidesEnabled(true);
+		graph.setZoom(ObjectUtil.defaultIfNull(graph.getZoom(), new BigDecimal(1)));
+		graph.setDx(ObjectUtil.defaultIfNull(graph.getDx(), 0));
+		graph.setDy(ObjectUtil.defaultIfNull(graph.getDy(), 0));
+		graph.setGridEnabled(ObjectUtil.defaultIfNull(graph.getGridEnabled(), true));
+		graph.setGridSize(ObjectUtil.defaultIfNull(graph.getGridSize(), 1));
+		graph.setPageVisible(ObjectUtil.defaultIfNull(graph.getPageVisible(), false));
+		graph.setBackground(StrUtil.isBlank(graph.getBackground()) ? null : graph.getBackground());
+		graph.setConnectionArrowsEnabled(ObjectUtil.defaultIfNull(graph.getConnectionArrowsEnabled(), false));
+		graph.setConnectable(ObjectUtil.defaultIfNull(graph.getConnectable(), true));
+		graph.setGuidesEnabled(ObjectUtil.defaultIfNull(graph.getGuidesEnabled(), true));
 	}
 }

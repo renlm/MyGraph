@@ -31,6 +31,8 @@ import cn.renlm.graph.modular.graph.entity.GraphHistory;
 import cn.renlm.graph.modular.graph.mapper.GraphMapper;
 import cn.renlm.graph.modular.graph.service.IGraphHistoryService;
 import cn.renlm.graph.modular.graph.service.IGraphService;
+import cn.renlm.graph.modular.markdown.entity.Markdown;
+import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 import cn.renlm.graph.response.Result;
 
 /**
@@ -49,6 +51,9 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 
 	@Autowired
 	private IDocCategoryService iDocCategoryService;
+
+	@Autowired
+	private IMarkdownService iMarkdownService;
 
 	@Autowired
 	private IGraphHistoryService iGraphHistoryService;
@@ -132,7 +137,7 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 		}
 		boolean isInsert = form.getId() == null;
 		this.saveOrUpdate(form);
-		// 历史记录
+		// 历史记录-图形设计
 		GraphHistory history = BeanUtil.copyProperties(form, GraphHistory.class);
 		history.setChangeLabel(isInsert ? "新增" : "修改");
 		history.setOperateAt(new Date());
@@ -141,6 +146,11 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 		history.setGraphId(form.getId());
 		history.setGraphUuid(form.getUuid());
 		iGraphHistoryService.save(history);
+		// 关联文档记录
+		Markdown markdown = iMarkdownService
+				.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, form.getUuid()));
+		markdown.setGraphId(form.getId());
+		iMarkdownService.ajaxSave(user, markdown);
 		return Result.success(form);
 	}
 }
