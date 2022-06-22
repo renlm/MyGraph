@@ -19,7 +19,7 @@ import cn.renlm.graph.response.Result;
 public interface IGraphService extends IService<Graph> {
 
 	/**
-	 * 分页列表
+	 * 分页列表（我的图库）
 	 * 
 	 * @param page
 	 * @param form
