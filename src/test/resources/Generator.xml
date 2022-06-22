@@ -51,6 +51,7 @@
 
 	<module name="graph" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="graph" entity="true" />
+		<table author="Renlm" name="graph_history" entity="true" />
 	</module>
 
 	<module name="qrtz" package="cn.renlm.graph.modular">
