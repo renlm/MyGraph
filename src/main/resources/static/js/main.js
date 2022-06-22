@@ -458,6 +458,33 @@
 			}
 		},
 		/**
+		 * 打开图形编辑器（Layer弹窗）
+		 * @param params uuid 唯一标识
+		 * @param params title 标题
+		 * @param params success 弹出后的成功回调
+		 * @param params cancel 关闭后的回调
+		 */
+		openGraphLayerEditor: function (uuid, title, success, cancel) {
+			layer.open({
+				type: 2,
+			  	title: title,
+			  	shadeClose: true,
+  				shade: 0.8,
+			  	area: ['100%', '100%'],
+			  	content: ctx + '/graph/editor?uuid=' + uuid + '&name=' + title,
+			  	success: function (layero, index) {
+			    	if(success) {
+						success(layero, index);
+					}
+			  	},
+				cancel: function () { 
+			    	if(cancel) {
+						cancel();
+					}
+				}
+			});
+		},
+		/**
 		 * 打开图形编辑器
 		 * @param params uuid 唯一标识
 		 * @param params title 标题

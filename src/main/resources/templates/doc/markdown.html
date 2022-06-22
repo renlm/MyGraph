@@ -49,8 +49,15 @@
 					</strong>
 					<span class="view-page-operate"
 		        		th:if="${role != null and (role == 2 or role == 3)}">
-		        		<a href="javascript:void(0);"><i class="fa fa-image"></i> 图形设计</a>
-		        		<a href="javascript:void(0);"><i class="fa fa-paperclip item"></i> 数据表格</a>
+		        		<a href="javascript:void(0);"
+		        			th:data-uuid="${docCategory.uuid}" 
+							th:data-title="${docCategory.text}"
+							onclick="$.openGraphLayerEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
+							<i class="fa fa-image"></i> 图形设计
+						</a>
+		        		<a href="javascript:void(0);">
+		        			<i class="fa fa-paperclip"></i> 数据表格
+		        		</a>
 		        	</span>
 				</p>
 				<p class="view-page-time">
@@ -147,7 +154,7 @@
 	</script>
 	<script type="text/javascript">
 		/**
-		 * 打开Markdown文档编辑器（事件）
+		 * 打开编辑器（事件）
 		 * @param params layero 当前层DOM
 		 * @param params index 当前层索引
 		 */
@@ -156,7 +163,7 @@
 		}
 		
 		/**
-		 * 关闭Markdown文档编辑器（事件）
+		 * 关闭编辑器（事件）
 		 */
 		function onCloseEditor () {
 			$(".md-body").removeClass("md-hide");
