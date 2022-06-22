@@ -35,8 +35,10 @@ html, body {
 }
 
 .md-header {
-	padding: 5px 0 0 10px;
 	font-family: "Microsoft YaHei", "MicrosoftJhengHei", STHeiti, MingLiu;
+	border-bottom: 1px solid #dce3e8;
+	margin: 5px 0 0 10px;
+	padding-bottom: 10px;
 }
 
 .md-header .view-page-title {
@@ -99,10 +101,8 @@ html, body {
 }
 
 .md-body {
-	margin-top: 10px;
+	margin-top: 0;
 	margin-left: 10px;
-	border-top: 1px solid #dce3e8;
-	border-bottom: 1px solid #dce3e8;
 }
 
 .md-body.catalog-hide .md-catalog {
@@ -161,10 +161,14 @@ html, body {
 .graph-body {
 	width: auto !important;
 	height: 600px;
-	margin-top: 10px !important;
-	margin-left: 10px !important;
-	margin-right: 0px !important;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 0;
 	border: 1px solid #dce3e8;
+}
+
+.md-body+.graph-body {
+	margin-top: 0 !important;
 }
 
 .graph-body.graph-hide {
