@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
@@ -85,11 +87,20 @@ public class GraphController {
 	 * 
 	 * @param model
 	 * @param uuid
+	 * @param name
 	 * @return
 	 */
 	@GetMapping("/editor")
-	public String editor(ModelMap model, String uuid) {
-		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
+	public String editor(ModelMap model, String uuid, String name) {
+		Graph graph = new Graph();
+		graph.setUuid(uuid);
+		graph.setName(name);
+		if (StrUtil.isNotBlank(uuid)) {
+			Graph entity = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
+			if (ObjectUtil.isNotEmpty(entity)) {
+				BeanUtil.copyProperties(entity, graph);
+			}
+		}
 		graph.setXml(StrUtil.isBlank(graph.getXml()) ? null : Base64.encodeUrlSafe(graph.getXml()));
 		model.put("graphJson", JSONUtil.toJsonStr(graph));
 		return "graph/editor";
