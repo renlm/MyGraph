@@ -47,6 +47,11 @@
 						<a th:text="${father.text}"></a>
 						<th:block th:if="${iterStat.index < #lists.size(fathers) - 1}">/</th:block>
 					</strong>
+					<span class="view-page-operate"
+		        		th:if="${role != null and (role == 2 or role == 3)}">
+		        		<a href="javascript:void(0);"><i class="fa fa-image"></i> 图形设计</a>
+		        		<a href="javascript:void(0);"><i class="fa fa-paperclip item"></i> 数据表格</a>
+		        	</span>
 				</p>
 				<p class="view-page-time">
 	          		<i class="fa fa-calendar"></i>

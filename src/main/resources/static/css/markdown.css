@@ -57,6 +57,18 @@ html, body {
 	padding: 2px 0;
 }
 
+.md-header .view-page-operate a {
+	color: #31708f;
+	font-size: 12px;
+	font-style: italic;
+	padding: 2px 0;
+	margin-left: 10px;
+}
+
+.md-header .view-page-operate a:hover {
+	text-decoration: underline;
+}
+
 .md-header .nickname, .md-header .time {
 	color: #31708f;
 	font-style: italic;
