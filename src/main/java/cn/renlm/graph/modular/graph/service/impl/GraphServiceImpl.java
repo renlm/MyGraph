@@ -103,6 +103,7 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 				form.setUuid(form.getUuid());
 				form.setVersion(1);
 				GraphDto.fillDefault(form);
+				form.setXml(Base64.decodeStr(form.getXml()));
 				form.setCreatedAt(new Date());
 				form.setCreatorUserId(user.getUserId());
 				form.setCreatorNickname(user.getNickname());
