@@ -110,7 +110,7 @@
 			</div>
 		</div>
 		<div class="graph-body graph-hide"
-			th:if="${markdown?.graphId != null}">
+			th:if="${markdown?.graphUuid != null}">
 			<iframe th:src="@{'/graph/viewer?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
 		</div>
 	</div>
@@ -155,7 +155,7 @@
                     });
         		}, 1000);
         	}
-        	$(".graph-body").height(document.body.offsetHeight - 126);
+        	$(".graph-body").height(Math.max(document.body.offsetHeight - 126, 600));
         	$(".graph-body").removeClass("graph-hide");
 		});
 	</script>
