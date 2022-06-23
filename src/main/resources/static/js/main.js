@@ -458,11 +458,20 @@
 			}
 		},
 		/**
+		 * 打开新页（数据表格）
+		 * @param params uuid 唯一标识
+		 * @param params version 版本
+		 */
+		openNewDataTable: function (uuid, version) {
+			top.window.open(ctx + '/doc/luckysheet?uuid=' + uuid + (version ? ('&version=' + version) : ''));
+		},
+		/**
 		 * 打开新页（图形预览）
 		 * @param params uuid 唯一标识
+		 * @param params version 版本
 		 */
-		openNewGraph: function (uuid) {
-			top.window.open(ctx + '/graph/viewer?uuid=' + uuid);
+		openNewGraph: function (uuid, version) {
+			top.window.open(ctx + '/graph/viewer?uuid=' + uuid + (version ? ('&version=' + version) : ''));
 		},
 		/**
 		 * 打开图形编辑器（Layer弹窗）

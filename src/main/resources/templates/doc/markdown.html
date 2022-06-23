@@ -56,7 +56,7 @@
 							onclick="$.openGraphLayerEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
 							<i class="fa fa-image"></i> 图形设计
 						</a>
-		        		<a id="data-table" href="javascript:void(0);">
+		        		<a class="data-table" href="javascript:void(0);">
 		        			<i class="fa fa-paperclip"></i> 数据表格
 		        		</a>
 		        	</span>
@@ -139,6 +139,11 @@
 					onclick="$.openNewDataTable($(this).data('uuid'));">
 					<i class="fa fa-share-square-o"></i>
 				</a>
+        		<a href="javascript:void(0);" class="data-table" 
+					title="上传表格"
+		        	th:if="${editPermission}">
+        			<i class="fa fa-paperclip"></i>
+        		</a>
 			</div>
 			<iframe class="loading" th:src="@{'/doc/luckysheet?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
 		</div>
@@ -198,7 +203,7 @@
         	$(".graph-body").removeClass("graph-hide");
 		}
 		function resizeDataTableIframe () {
-			$(".dataTable-body").height(Math.max(document.body.offsetHeight - 126, 600));
+			$(".dataTable-body").height(document.body.offsetHeight - 126);
         	$(".dataTable-body").removeClass("dataTable-hide");
 		}
 	</script>
@@ -254,7 +259,7 @@
 	</script>
 	<script type="text/javascript" th:if="${editPermission}">
 		layui.upload.render({
-	    	elem: "#data-table",
+	    	elem: ".data-table",
 	    	url: ctx + "/markdown/uploadDataTable?uuid=[(${docCategory.uuid})]",
 	    	accept: "file", 
 	    	acceptMime: "application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
