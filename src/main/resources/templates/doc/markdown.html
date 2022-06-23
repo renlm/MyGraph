@@ -130,6 +130,18 @@
 			</div>
 			<iframe class="loading" th:src="@{'/graph/viewer?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
 		</div>
+		<div class="dataTable-body dataTable-hide"
+			th:if="${!#strings.isEmpty(markdown?.dataTable)}">
+			<div class="dataTable-opts">
+				<a href="javascript:void(0);" 
+					title="打开新页"
+					th:data-uuid="${docCategory.uuid}"
+					onclick="$.openNewDataTable($(this).data('uuid'));">
+					<i class="fa fa-share-square-o"></i>
+				</a>
+			</div>
+			<iframe class="loading" th:src="@{'/static/Luckysheet/dist/index.html?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
+		</div>
 	</div>
 	<script th:src="@{/static/js/main.js}"></script>
 	<script type="text/javascript">
@@ -173,15 +185,21 @@
         		}, 1000);
         	}
         	resizeGraphIframe();
+        	resizeDataTableIframe();
     		var originFn = window.onresize;
        		window.onresize = function () { 
        			originFn && originFn();
        			resizeGraphIframe();
+            	resizeDataTableIframe();
        		}
 		});
 		function resizeGraphIframe () {
 			$(".graph-body").height(Math.max(document.body.offsetHeight - 126, 600));
         	$(".graph-body").removeClass("graph-hide");
+		}
+		function resizeDataTableIframe () {
+			$(".dataTable-body").height(Math.max(document.body.offsetHeight - 126, 600));
+        	$(".dataTable-body").removeClass("dataTable-hide");
 		}
 	</script>
 	<script type="text/javascript">
