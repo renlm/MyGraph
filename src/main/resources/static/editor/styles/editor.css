@@ -2,6 +2,25 @@
 
 @import "../../css/scrollbar.css";
 
+.geSprite.geSprite-save {
+	margin-top: 1.5px;
+	font-size: 18px !important;
+	background: none !important;
+}
+
+.geSprite.geSprite-save {
+	display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.geSprite.geSprite-save:before {
+	content: "\f0c7";
+}
+
 body.geEditor.myui * {
   -moz-box-sizing: initial;
   -webkit-box-sizing: initial;
