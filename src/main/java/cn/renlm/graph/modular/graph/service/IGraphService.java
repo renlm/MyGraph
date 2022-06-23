@@ -22,10 +22,11 @@ public interface IGraphService extends IService<Graph> {
 	 * 分页列表（我的图库）
 	 * 
 	 * @param page
+	 * @param user
 	 * @param form
 	 * @return
 	 */
-	Page<Graph> findPage(Page<Graph> page, GraphDto form);
+	Page<GraphDto> findPage(Page<GraphDto> page, User user, GraphDto form);
 
 	/**
 	 * 保存编辑器

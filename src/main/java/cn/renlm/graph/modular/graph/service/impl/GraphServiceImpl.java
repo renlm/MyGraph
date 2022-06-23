@@ -1,7 +1,10 @@
 package cn.renlm.graph.modular.graph.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +18,15 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.tree.Tree;
+import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.doc.dto.DocProjectDto;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocProject;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
@@ -58,22 +65,53 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 	private IGraphHistoryService iGraphHistoryService;
 
 	@Override
-	public Page<Graph> findPage(Page<Graph> page, GraphDto form) {
-		page.setOptimizeCountSql(false);
-		return this.page(page, Wrappers.<Graph>lambdaQuery().func(wrapper -> {
-			wrapper.select(Graph.class, field -> !StrUtil.equals(field.getColumn(), "xml"));
-			wrapper.eq(Graph::getDeleted, false);
-			wrapper.orderByDesc(Graph::getUpdatedAt);
-			wrapper.orderByDesc(Graph::getId);
-			if (StrUtil.isNotBlank(form.getCategoryCode())) {
-				wrapper.eq(Graph::getCategoryCode, form.getCategoryCode());
-			}
-			if (StrUtil.isNotBlank(form.getKeywords())) {
-				wrapper.and(item -> {
-					item.like(Graph::getName, form.getKeywords());
-				});
-			}
+	public Page<GraphDto> findPage(Page<GraphDto> page, User user, GraphDto form) {
+		List<DocProjectDto> allDocProjects = iDocProjectService.findAll(user);
+		if (CollUtil.isEmpty(allDocProjects)) {
+			return page;
+		}
+		// 项目分类
+		List<Long> projectIds = CollUtil.newArrayList();
+		Map<Long, List<DocCategory>> docCategoryMap = new LinkedHashMap<>();
+		Map<Long, List<Tree<Long>>> treeMap = new LinkedHashMap<>();
+		allDocProjects.forEach(project -> {
+			projectIds.add(project.getId());
+		});
+		List<DocCategory> list = iDocCategoryService.list(Wrappers.<DocCategory>lambdaQuery().func(wrapper -> {
+			wrapper.in(DocCategory::getDocProjectId, projectIds);
 		}));
+		list.forEach(docCategory -> {
+			if (!docCategoryMap.containsKey(docCategory.getDocProjectId())) {
+				docCategoryMap.put(docCategory.getDocProjectId(), new ArrayList<>());
+			}
+			docCategoryMap.get(docCategory.getDocProjectId()).add(docCategory);
+		});
+		docCategoryMap.forEach((docProjectId, docCategories) -> {
+			List<Tree<Long>> tree = TreeUtil.build(docCategories, null, (object, treeNode) -> {
+				BeanUtil.copyProperties(object, treeNode);
+				treeNode.setId(object.getId());
+				treeNode.setName(object.getText());
+				treeNode.setWeight(object.getSort());
+				treeNode.setParentId(object.getPid());
+			});
+			treeMap.put(docProjectId, tree);
+		});
+		// 分页数据
+		Page<GraphDto> result = this.baseMapper.findPage(page, user, projectIds, form);
+		// 处理附加信息
+		result.getRecords().forEach(item -> {
+			List<Tree<Long>> tree = treeMap.get(item.getDocProjectId());
+			tree.forEach(top -> {
+				Tree<Long> node = TreeUtil.getNode(top, item.getDocCategoryId());
+				List<CharSequence> parents = TreeUtil.getParentsName(node, true);
+				CollUtil.removeBlank(parents);
+				CollUtil.reverse(parents);
+				if (CollUtil.isNotEmpty(parents)) {
+					item.setParentsCategorName(StrUtil.join(StrUtil.SLASH, parents));
+				}
+			});
+		});
+		return result;
 	}
 
 	@Override

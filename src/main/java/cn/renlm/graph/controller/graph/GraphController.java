@@ -57,14 +57,16 @@ public class GraphController {
 	/**
 	 * 分页列表（我的图库）
 	 * 
+	 * @param authentication
 	 * @param page
 	 * @param form
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/page")
-	public Page<Graph> publicPage(Page<Graph> page, GraphDto form) {
-		return iGraphService.findPage(page, form);
+	public Page<GraphDto> publicPage(Authentication authentication, Page<GraphDto> page, GraphDto form) {
+		User user = (User) authentication.getPrincipal();
+		return iGraphService.findPage(page, user, form);
 	}
 
 	/**

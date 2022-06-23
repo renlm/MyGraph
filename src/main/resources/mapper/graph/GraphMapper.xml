@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.renlm.graph.modular.graph.mapper.GraphMapper">
-
+	<!-- 分页列表 -->
+	<select id="findPage" resultType="cn.renlm.graph.modular.graph.dto.GraphDto">
+		select g.`id`,
+			g.`uuid`,
+			g.`name`,
+			g.`version`,
+			g.`cover`,
+			g.`zoom`,
+			g.`dx`,
+			g.`dy`,
+			g.`grid_enabled`,
+			g.`grid_size`,
+			g.`grid_color`,
+			g.`page_visible`,
+			g.`background`,
+			g.`connection_arrows_enabled`,
+			g.`connectable`,
+			g.`guides_enabled`,
+			g.`created_at`,
+			g.`creator_user_id`,
+			g.`creator_nickname`,
+			g.`updated_at`,
+			g.`updator_user_id`,
+			g.`updator_nickname`,
+			g.`deleted`,
+			g.`remark`,
+			dp.id as `docProjectId`,
+			dp.uuid as `docProjectUuid`,
+			dp.project_name as `docProjectName`,
+			dc.id as `docCategoryId`,
+			dc.uuid as `docCategoryUuid`,
+			dc.`text` as `docCategoryName`
+		from doc_project dp, doc_category dc, graph g
+		where dp.id = dc.doc_project_id
+			and dc.uuid = g.uuid
+			and dp.deleted = 0 
+			and dc.deleted = 0
+			and g.deleted = 0
+			and dp.id in 
+			<foreach collection="projectIds" item="projectId" open="(" close=")" separator=",">
+				#{projectId,jdbcType=BIGINT}
+			</foreach>
+			<if test="form.keywords != null and form.keywords != ''">
+				and (
+					dp.project_name like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
+					or
+					dc.`text` like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
+					or
+					dc.`fullname` like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')
+				)
+			</if>
+		order by g.`updated_at` desc, g.`id` desc
+	</select>
 </mapper>
