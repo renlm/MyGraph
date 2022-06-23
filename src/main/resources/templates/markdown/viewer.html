@@ -10,6 +10,10 @@
     <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
 	<!-- Jquery -->
 	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+	<!-- 全局设置 -->
+    <script type="text/javascript">
+    	window.CTX = window.ctx = "[(@{/})]".substr(0, "[(@{/})]".length - 1);
+    </script>
 	<!-- Layui -->
 	<link th:href="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/css/layui.css}" rel="stylesheet" />
 	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/layui.js}"></script>
@@ -40,7 +44,40 @@
 				<textarea id="markdown" class="layui-hide" th:text="${markdown?.content}"></textarea>
 			</div>
 		</div>
+		<div class="graph-body graph-hide"
+			th:if="${markdown?.graphUuid != null}">
+			<div class="graph-opts">
+				<a href="javascript:void(0);" 
+					title="打开新页"
+					th:data-uuid="${markdown.graphUuid}"
+					th:data-version="${markdown.graphVersion}"
+					onclick="$.openNewGraph($(this).data('uuid'),$(this).data('version'));">
+					<i class="fa fa-share-square-o"></i>
+				</a>
+			</div>
+			<iframe class="loading" th:src="@{'/graph/viewer?uuid='+${markdown.graphUuid}+'&version='+${markdown.graphVersion}}" scrolling="auto" frameborder="0"></iframe>
+		</div>
+		<div class="dataTable-body dataTable-hide"
+			th:if="${!#strings.isEmpty(markdown?.dataTable)}">
+			<div class="dataTable-opts">
+				<a href="javascript:void(0);" 
+					title="打开新页"
+					th:data-uuid="${markdown.uuid}"
+					th:data-version="${markdown.version}"
+					onclick="$.openNewDataTable($(this).data('uuid'),$(this).data('version'));">
+					<i class="fa fa-share-square-o"></i>
+				</a>
+				<a href="javascript:void(0);" 
+					title="下载文件"
+					th:data-uuid="${markdown.dataTable}"
+					onclick="$.downloadDataTable($(this).data('uuid'));">
+					<i class="fa fa-download"></i>
+				</a>
+			</div>
+			<iframe class="loading" th:src="@{'/doc/luckysheet?uuid='+${markdown.uuid}+'&version='+${markdown.version}}" scrolling="auto" frameborder="0"></iframe>
+		</div>
 	</div>
+	<script th:src="@{/static/js/main.js}"></script>
 	<script type="text/javascript">
 		$(function () {
 			editormd.markdownToHTML("editormd", {
@@ -81,7 +118,23 @@
                     });
         		}, 1000);
         	}
+        	resizeGraphIframe();
+        	resizeDataTableIframe();
+    		var originFn = window.onresize;
+       		window.onresize = function () { 
+       			originFn && originFn();
+       			resizeGraphIframe();
+            	resizeDataTableIframe();
+       		}
 		});
+		function resizeGraphIframe () {
+			$(".graph-body").height(Math.max(document.body.offsetHeight - 126, 600));
+        	$(".graph-body").removeClass("graph-hide");
+		}
+		function resizeDataTableIframe () {
+			$(".dataTable-body").height(document.body.offsetHeight - 126);
+        	$(".dataTable-body").removeClass("dataTable-hide");
+		}
 	</script>
 </body>
 </html>
