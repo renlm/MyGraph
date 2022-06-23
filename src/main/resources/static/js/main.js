@@ -466,6 +466,13 @@
 			top.window.open(ctx + '/doc/luckysheet?uuid=' + uuid + (version ? ('&version=' + version) : ''));
 		},
 		/**
+		 * 下载数据表格
+		 * @param params uuid 唯一标识
+		 */
+		downloadDataTable: function (uuid) {
+			top.window.open(ctx + '/sys/file/download/' + uuid);
+		},
+		/**
 		 * 打开新页（图形预览）
 		 * @param params uuid 唯一标识
 		 * @param params version 版本

@@ -133,17 +133,23 @@
 		<div class="dataTable-body dataTable-hide"
 			th:if="${!#strings.isEmpty(markdown?.dataTable)}">
 			<div class="dataTable-opts">
+        		<a href="javascript:void(0);" class="data-table" 
+					title="上传表格"
+		        	th:if="${editPermission}">
+        			<i class="fa fa-paperclip"></i>
+        		</a>
 				<a href="javascript:void(0);" 
 					title="打开新页"
 					th:data-uuid="${docCategory.uuid}"
 					onclick="$.openNewDataTable($(this).data('uuid'));">
 					<i class="fa fa-share-square-o"></i>
 				</a>
-        		<a href="javascript:void(0);" class="data-table" 
-					title="上传表格"
-		        	th:if="${editPermission}">
-        			<i class="fa fa-paperclip"></i>
-        		</a>
+				<a href="javascript:void(0);" 
+					title="下载文件"
+					th:data-uuid="${markdown.dataTable}"
+					onclick="$.downloadDataTable($(this).data('uuid'));">
+					<i class="fa fa-download"></i>
+				</a>
 			</div>
 			<iframe class="loading" th:src="@{'/doc/luckysheet?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
 		</div>
