@@ -18,15 +18,39 @@
 </head>
 <body>
 	<div id="luckysheet" style="margin: 0px; padding: 0px; position: absolute; width: 100%; left: 0px; top: 0px; bottom: 0px;"></div>
+    <script src="https://cdn.jsdelivr.net/npm/luckyexcel/dist/luckyexcel.umd.js"></script>
  	<script type="text/javascript">
-    	$(function () {
-      		luckysheet.create({
-         		container: "luckysheet",
-            	lang: "zh",
-            	showinfobar: false,
-            	showtoolbar: false
-            });
-    	});
+		$(function () {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "[(@{'/sys/file/download/' + ${markdown.dataTable} + '?inline'})]");
+            xhr.responseType = "blob";
+            xhr.onload = () => {
+                let content = xhr.response;
+                let blob = new Blob([content]);
+                let file = new File([blob], '测试excel.xlsx', { type: "excel/xlsx" });
+                LuckyExcel.transformExcelToLucky(
+                    file,
+                    function (exportJson,luckysheetfile) {
+                    	luckysheet.create({
+                     		container: "luckysheet",
+                        	lang: "zh",
+                        	showinfobar: false,
+                        	showtoolbar: false,
+                        	allowEdit: true,
+                        	data: exportJson.sheets,
+                            title: exportJson.info.name,
+                            userInfo: exportJson.info.name.creator
+                        });
+                    },
+                    function (err) {
+                        logger.error('Import failed. Is your fail a valid xlsx?');
+                    }
+                );
+                let formData = new FormData();
+                formData.append('file',file);
+            }
+            xhr.send();
+        });
 	</script>
 </body>
 </html>
