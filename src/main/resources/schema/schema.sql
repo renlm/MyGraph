@@ -419,7 +419,9 @@ CREATE TABLE markdown (
     name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
     version 					INT								NOT NULL		COMMENT '版本',
     content						LONGTEXT										COMMENT '文档内容',
-    graph_id       				BIGINT											COMMENT '图形设计表主键',
+    graph_uuid       			VARCHAR(32)										COMMENT '图形设计UUID',
+    graph_version 				INT												COMMENT '图形设计版本',
+    data_table					VARCHAR(32)										COMMENT '数据表格',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
     creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
@@ -428,7 +430,10 @@ CREATE TABLE markdown (
     updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
     deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
     remark VARCHAR(255) COMMENT '备注',
-    INDEX version(version)
+    INDEX version(version),
+    INDEX graph_uuid(graph_uuid),
+    INDEX graph_version(graph_version),
+    INDEX data_table(data_table)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档';
 
 -- Markdown文档-历史记录
@@ -444,7 +449,9 @@ CREATE TABLE markdown_history (
     name       					VARCHAR(255)					NOT NULL		COMMENT '文档名称',
     version 					INT								NOT NULL		COMMENT '版本',
     content						LONGTEXT										COMMENT '文档内容',
-    graph_id       				BIGINT											COMMENT '图形设计表主键',
+    graph_uuid       			VARCHAR(32)										COMMENT '图形设计UUID',
+    graph_version 				INT												COMMENT '图形设计版本',
+    data_table					VARCHAR(32)										COMMENT '数据表格',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
     creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
@@ -455,7 +462,10 @@ CREATE TABLE markdown_history (
     remark VARCHAR(255) COMMENT '备注',
     INDEX markdown_id(markdown_id),
     INDEX markdown_uuid(markdown_uuid),
-    INDEX version(version)
+    INDEX version(version),
+    INDEX graph_uuid(graph_uuid),
+    INDEX graph_version(graph_version),
+    INDEX data_table(data_table)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档-历史记录';
 
 -- 图形设计
