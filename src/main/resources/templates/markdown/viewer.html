@@ -35,7 +35,8 @@
 </head>
 <body>
 	<div class="layui-fluid">
-		<div class="md-body catalog-hide no-header">
+		<div class="md-body catalog-hide no-header"
+			th:if="${!#strings.isEmpty(markdown?.content)}">
 			<div class="md-catalog">
 				<div class="toggle collapse"></div>
 				<div class="catalog container"></div>
@@ -128,11 +129,11 @@
        		}
 		});
 		function resizeGraphIframe () {
-			$(".graph-body").height(Math.max(document.body.offsetHeight - 126, 600));
+			$(".graph-body").height(document.body.offsetHeight - 20);
         	$(".graph-body").removeClass("graph-hide");
 		}
 		function resizeDataTableIframe () {
-			$(".dataTable-body").height(document.body.offsetHeight - 126);
+			$(".dataTable-body").height(document.body.offsetHeight - 20);
         	$(".dataTable-body").removeClass("dataTable-hide");
 		}
 	</script>
