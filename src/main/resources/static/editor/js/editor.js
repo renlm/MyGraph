@@ -552,11 +552,12 @@
 	        height: 483,
 			collapsible: true,
 			minimizable: false,
-			maximizable: true,
+			maximizable: false,
 	        closed: false,
 	        cache: false,
 			maximized: true,
 			modal: true,
+			cls: "no-border",
             content: "<div class=\"easyui-layout\" data-options=\"fit:true\">" +
 						"<div data-options=\"region:'north'," +
 								"border:false," +
@@ -588,8 +589,7 @@
 					 	"</div>" +
 					 	"<div data-options=\"region:'center'," +
 			        			"fit:false," +
-			        			"border:false," +
-			        			"bodyCls:'border_right'\">" +
+			        			"border:false\">" +
 					 		"<table id='" + myDialogDatagridId + "'></table>" +
 					 	"</div>" +
 					 "</div>",

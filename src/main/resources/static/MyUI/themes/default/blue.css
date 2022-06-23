@@ -1,3 +1,7 @@
+.panel.no-border {
+	border: none !important;
+}
+
 .myui-btn-gray, .myui-btn-gray:hover {
 	color: white;
     background: gray;
