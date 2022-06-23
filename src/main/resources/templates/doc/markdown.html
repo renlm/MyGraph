@@ -262,8 +262,8 @@
 	    	elem: ".data-table",
 	    	url: ctx + "/markdown/uploadDataTable?uuid=[(${docCategory.uuid})]",
 	    	accept: "file", 
-	    	acceptMime: "application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
-	    	size: 30*1024,
+	    	acceptMime: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
+	    	size: 30 * 1024,
 	    	before: function(obj){
 	    		var layui_process = '<div style="margin: 20px 10px;" class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="uploader">';
 	    		layui_process 	 += 	'<div class="layui-progress-bar" lay-percent="0%"><span class="layui-progress-text">0%</span></div>';
