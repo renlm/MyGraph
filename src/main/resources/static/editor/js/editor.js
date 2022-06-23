@@ -557,7 +557,7 @@
 	        cache: false,
 			maximized: true,
 			modal: true,
-			cls: "no-border",
+			cls: "no-border no-border-radius",
             content: "<div class=\"easyui-layout\" data-options=\"fit:true\">" +
 						"<div data-options=\"region:'north'," +
 								"border:false," +

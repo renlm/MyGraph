@@ -2,6 +2,10 @@
 	border: none !important;
 }
 
+.panel.no-border-radius {
+	border-radius: 0 !important;
+}
+
 .myui-btn-gray, .myui-btn-gray:hover {
 	color: white;
     background: gray;
