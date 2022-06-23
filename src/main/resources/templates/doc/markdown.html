@@ -56,7 +56,7 @@
 							onclick="$.openGraphLayerEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
 							<i class="fa fa-image"></i> 图形设计
 						</a>
-		        		<a href="javascript:void(0);">
+		        		<a id="data-table" href="javascript:void(0);">
 		        			<i class="fa fa-paperclip"></i> 数据表格
 		        		</a>
 		        	</span>
@@ -233,6 +233,38 @@
 		                }
 					});
 		}
+	</script>
+	<script type="text/javascript" th:if="${editPermission}">
+		layui.upload.render({
+	    	elem: "#data-table",
+	    	url: ctx + "/markdown/uploadDataTable",
+	    	accept: "file", 
+	    	acceptMime: "application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
+	    	size: 30*1024,
+	    	before: function(obj){
+	    		var layui_process = '<div style="margin: 20px 10px;" class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="uploader">';
+	    		layui_process 	 += 	'<div class="layui-progress-bar" lay-percent="0%"><span class="layui-progress-text">0%</span></div>';
+	    		layui_process    += '</div>';
+	    		window.uploadeindex = layer.open({ type: 1, title: "上传进度", skin: "layui-layer-rim", area: ["420px", "120px"], content: layui_process });
+	    		obj.preview(function(index, file, result){ window.filename = file.name; });
+	    	},
+	    	progress: function(percent) {
+	    		layui.element.progress("uploader", percent + "%");
+			},
+	    	done: function(res, index, upload) {
+	    		setTimeout(function() {
+	    			if(res.statusCode == 200) {
+	    				layer.close(window.uploadeindex);
+	    				onCloseEditor();
+	                } else {
+	                	layer.msg(res.message, { icon: 5, shift:6 });
+	                }
+	            }, 900);
+	        },
+	        error: function(index, upload) { 
+	        	layer.msg("出错了", { icon: 5, shift:6 });
+	        }
+	   	});
 	</script>
 </body>
 </html>

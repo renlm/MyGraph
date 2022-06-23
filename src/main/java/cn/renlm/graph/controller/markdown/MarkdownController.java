@@ -135,6 +135,34 @@ public class MarkdownController {
 	}
 
 	/**
+	 * 上传数据表格
+	 * 
+	 * @param request
+	 * @param authentication
+	 * @param file
+	 * @param uuid
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/uploadDataTable")
+	public Result<?> uploadDataTable(HttpServletRequest request, Authentication authentication, MultipartFile file,
+			String uuid) {
+		User user = (User) authentication.getPrincipal();
+		try {
+			SysFile sysFile = iSysFileService.upload(file.getOriginalFilename(), file.getBytes(), entity -> {
+				entity.setCreatorUserId(user.getUserId());
+				entity.setCreatorNickname(user.getNickname());
+			});
+			Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
+			entity.setDataTable(sysFile.getFileId());
+			return iMarkdownService.ajaxSave(user, entity);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("出错了");
+		}
+	}
+
+	/**
 	 * 文件上传
 	 * 
 	 * @param request
@@ -143,8 +171,8 @@ public class MarkdownController {
 	 * @return
 	 */
 	@ResponseBody
-	@PostMapping("/ajax/upload")
-	public Map<?, Object> page(HttpServletRequest request, Authentication authentication,
+	@PostMapping("/uploadFile")
+	public Map<?, Object> uploadFile(HttpServletRequest request, Authentication authentication,
 			@RequestPart("editormd-image-file") MultipartFile file) {
 		User user = (User) authentication.getPrincipal();
 		try {

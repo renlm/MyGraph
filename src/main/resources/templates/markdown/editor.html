@@ -46,7 +46,7 @@
                 sequenceDiagram: true,
                 imageUpload: true,
                 imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                imageUploadURL: "[(@{/markdown/ajax/upload})]?[(${_csrf.parameterName})]=[(${_csrf.token})]",
+                imageUploadURL: "[(@{/markdown/uploadFile})]?[(${_csrf.parameterName})]=[(${_csrf.token})]",
                 toolbarIcons: function () {
                 	var toolbarIcons = editormd.toolbarModes.full;
                 	if (toolbarIcons.indexOf("emoji") >= 0) {
