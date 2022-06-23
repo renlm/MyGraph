@@ -237,7 +237,7 @@
 	<script type="text/javascript" th:if="${editPermission}">
 		layui.upload.render({
 	    	elem: "#data-table",
-	    	url: ctx + "/markdown/uploadDataTable",
+	    	url: ctx + "/markdown/uploadDataTable?uuid=[(${docCategory.uuid})]",
 	    	accept: "file", 
 	    	acceptMime: "application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
 	    	size: 30*1024,
