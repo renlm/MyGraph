@@ -96,59 +96,62 @@
 			};
 			
 			// 重写保存方法
-			UI.actions.actions.save.funct = function () {
-				if (UI.editor.graph.isEditing()) 
-				{
-					UI.editor.graph.stopEditing();
-				}
-				
-				try 
-				{
-					var layerIndex = layer.load(2);
-					var xml = mxUtils.getXml(UI.editor.getGraphXml());
-					if (xml.length < MAX_REQUEST_SIZE) 
+			if (UI.editor.graph.isEnabled()) {
+				UI.toolbar.addItems(['-', 'save']);
+				UI.saveFile = function () {
+					if (UI.editor.graph.isEditing()) 
 					{
-						var __settings = "&uuid=" + GJSON.uuid;
-						__settings += "&version=" + GJSON.version;
-						__settings += "&zoom=" + UI.editor.graph.view.getScale();
-						__settings += "&dx=" + UI.editor.graph.view.getTranslate().x;
-						__settings += "&dy=" + UI.editor.graph.view.getTranslate().y;
-						__settings += "&gridEnabled=" + UI.editor.graph.gridEnabled;
-						__settings += "&gridSize=" + UI.editor.graph.gridSize;
-						__settings += "&gridColor=" + UI.editor.graph.view.gridColor;
-						__settings += "&pageVisible=" + UI.editor.graph.pageVisible;
-						__settings += "&background=" + UI.editor.graph.background;
-						__settings += "&connectable=" + UI.editor.graph.isConnectable();
-						__settings += "&guidesEnabled=" + UI.editor.graph.graphHandler.guidesEnabled;
-						__settings += "&connectionArrowsEnabled=" + UI.editor.graph.connectionArrowsEnabled;
-						var req = new mxXmlRequest(SAVE_URL, UI.__CSRF + __settings + '&xml=' + Base64.encodeURI(xml), 'POST', false);
-						req.send();
-						var resJson = JSON.parse(req.request.responseText);
-						if(resJson.statusCode == 200) {
-							GJSON.version = resJson.data.version;
-							layer.msg(resJson.message?resJson.message:"已保存", { icon: 1, time: 1500 });
-						} else {
-							layer.msg(resJson.message?resJson.message:"出错了", { icon: 5, shift:6 });
-						}
-					} 
-					else 
-					{
-						mxUtils.alert(mxResources.get('drawingTooLarge'));
-						mxUtils.popup(xml);
-						return;
+						UI.editor.graph.stopEditing();
 					}
-			
-					UI.editor.setModified(false);
-				} 
-				catch (e) 
-				{
-					UI.editor.setStatus(mxUtils.htmlEntities(mxResources.get('errorSaving')));
-				} 
-				finally 
-				{
-					layer.close(layerIndex);
-				}
-			};
+					
+					try 
+					{
+						var layerIndex = layer.load(2);
+						var xml = mxUtils.getXml(UI.editor.getGraphXml());
+						if (xml.length < MAX_REQUEST_SIZE) 
+						{
+							var __settings = "&uuid=" + GJSON.uuid;
+							__settings += "&version=" + GJSON.version;
+							__settings += "&zoom=" + UI.editor.graph.view.getScale();
+							__settings += "&dx=" + UI.editor.graph.view.getTranslate().x;
+							__settings += "&dy=" + UI.editor.graph.view.getTranslate().y;
+							__settings += "&gridEnabled=" + UI.editor.graph.gridEnabled;
+							__settings += "&gridSize=" + UI.editor.graph.gridSize;
+							__settings += "&gridColor=" + UI.editor.graph.view.gridColor;
+							__settings += "&pageVisible=" + UI.editor.graph.pageVisible;
+							__settings += "&background=" + UI.editor.graph.background;
+							__settings += "&connectable=" + UI.editor.graph.isConnectable();
+							__settings += "&guidesEnabled=" + UI.editor.graph.graphHandler.guidesEnabled;
+							__settings += "&connectionArrowsEnabled=" + UI.editor.graph.connectionArrowsEnabled;
+							var req = new mxXmlRequest(SAVE_URL, UI.__CSRF + __settings + '&xml=' + Base64.encodeURI(xml), 'POST', false);
+							req.send();
+							var resJson = JSON.parse(req.request.responseText);
+							if(resJson.statusCode == 200) {
+								GJSON.version = resJson.data.version;
+								layer.msg(resJson.message?resJson.message:"已保存", { icon: 1, time: 1500 });
+							} else {
+								layer.msg(resJson.message?resJson.message:"出错了", { icon: 5, shift:6 });
+							}
+						} 
+						else 
+						{
+							mxUtils.alert(mxResources.get('drawingTooLarge'));
+							mxUtils.popup(xml);
+							return;
+						}
+				
+						UI.editor.setModified(false);
+					} 
+					catch (e) 
+					{
+						UI.editor.setStatus(mxUtils.htmlEntities(mxResources.get('errorSaving')));
+					} 
+					finally 
+					{
+						layer.close(layerIndex);
+					}
+				};
+			}
 			
 			// 重写双击事件
 			var graphDblClick = UI.editor.graph.dblClick;
