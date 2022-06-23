@@ -9,47 +9,32 @@
 	<!-- Ico -->
     <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
     <!-- Luckysheet -->
-    <link rel="stylesheet" type="text/css" th:href="@{/static/Luckysheet/dist/plugins/css/pluginsCss.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/static/Luckysheet/dist/plugins/plugins.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/static/Luckysheet/dist/css/luckysheet.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/static/Luckysheet/dist/assets/iconfont/iconfont.css}">
-    <script type="text/javascript" th:src="@{/static/Luckysheet/dist/plugins/js/plugin.js}"></script>
-    <script type="text/javascript" th:src="@{/static/Luckysheet/dist/luckysheet.umd.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/LuckyexcelDemo-gh-pages/luckysheet/plugins/css/pluginsCss.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/LuckyexcelDemo-gh-pages/luckysheet/plugins/plugins.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/LuckyexcelDemo-gh-pages/luckysheet/css/luckysheet.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/LuckyexcelDemo-gh-pages/luckysheet/assets/iconfont/iconfont.css}">
+    <script type="text/javascript" th:src="@{/static/LuckyexcelDemo-gh-pages/luckysheet/plugins/js/plugin.js}"></script>
+    <script type="text/javascript" th:src="@{/static/LuckyexcelDemo-gh-pages/luckysheet/luckysheet.umd.js}"></script>
 </head>
 <body>
 	<div id="luckysheet" style="margin: 0px; padding: 0px; position: absolute; width: 100%; left: 0px; top: 0px; bottom: 0px;"></div>
-    <script src="https://cdn.jsdelivr.net/npm/luckyexcel/dist/luckyexcel.umd.js"></script>
+    <script type="text/javascript" th:src="@{/static/LuckyexcelDemo-gh-pages/luckyexcel.umd.js}"></script>
  	<script type="text/javascript">
 		$(function () {
-            let xhr = new XMLHttpRequest();
-            xhr.open("GET", "[(@{'/sys/file/download/' + ${markdown.dataTable} + '?inline'})]");
-            xhr.responseType = "blob";
-            xhr.onload = () => {
-                let content = xhr.response;
-                let blob = new Blob([content]);
-                let file = new File([blob], '测试excel.xlsx', { type: "excel/xlsx" });
-                LuckyExcel.transformExcelToLucky(
-                    file,
-                    function (exportJson,luckysheetfile) {
-                    	luckysheet.create({
-                     		container: "luckysheet",
-                        	lang: "zh",
-                        	showinfobar: false,
-                        	showtoolbar: false,
-                        	allowEdit: true,
-                        	data: exportJson.sheets,
-                            title: exportJson.info.name,
-                            userInfo: exportJson.info.name.creator
-                        });
-                    },
-                    function (err) {
-                        logger.error('Import failed. Is your fail a valid xlsx?');
-                    }
-                );
-                let formData = new FormData();
-                formData.append('file',file);
-            }
-            xhr.send();
+			var url = "[(@{'/sys/file/download/' + ${markdown.dataTable} + '?inline'})]";
+			var name = "[(${markdown.name})]";
+			LuckyExcel.transformExcelToLuckyByUrl(url, name, function (exportJson, luckysheetfile) {
+	       			window.luckysheet.create({
+	              			container: "luckysheet",
+	                       	lang: "zh",
+	                       	showinfobar: false,
+	                       	showtoolbar: false,
+	                       	allowEdit: false,
+	                       	data: exportJson.sheets,
+	                    	title: exportJson.info.name,
+	                    	userInfo: exportJson.info.name.creator
+	                  	});
+        		});
         });
 	</script>
 </body>
