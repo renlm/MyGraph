@@ -111,7 +111,7 @@
 		</div>
 		<div class="graph-body graph-hide"
 			th:if="${markdown?.graphUuid != null}">
-			<iframe th:src="@{'/graph/viewer?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
+			<iframe class="loading" th:src="@{'/graph/viewer?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
 		</div>
 	</div>
 	<script th:src="@{/static/js/main.js}"></script>
