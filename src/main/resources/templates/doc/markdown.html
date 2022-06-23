@@ -111,6 +111,21 @@
 		</div>
 		<div class="graph-body graph-hide"
 			th:if="${markdown?.graphUuid != null}">
+			<div class="graph-opts">
+				<a href="javascript:void(0);" 
+					title="打开新页"
+					th:data-uuid="${docCategory.uuid}"
+					onclick="$.openNewGraph($(this).data('uuid'));">
+					<i class="fa fa-share-square-o"></i>
+				</a>
+				<a href="javascript:void(0);"
+					title="画图"
+        			th:data-uuid="${docCategory.uuid}" 
+					th:data-title="${docCategory.text}"
+					onclick="$.openGraphLayerEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
+					<i class="fa fa-image"></i>
+				</a>
+			</div>
 			<iframe class="loading" th:src="@{'/graph/viewer?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
 		</div>
 	</div>

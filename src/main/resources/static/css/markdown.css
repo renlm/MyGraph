@@ -176,6 +176,17 @@ html, body {
 	visibility: hidden;
 }
 
+.graph-body .graph-opts {
+	position: absolute;
+	right: 30px;
+	margin-top: 6px;
+}
+
+.graph-body .graph-opts a {
+	font-size: 18px;
+	margin: 0 0 0 10px;
+}
+
 .graph-body iframe {
 	width: 100%;
 	height: 100%;

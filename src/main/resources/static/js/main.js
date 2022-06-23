@@ -458,6 +458,13 @@
 			}
 		},
 		/**
+		 * 打开新页（图形预览）
+		 * @param params uuid 唯一标识
+		 */
+		openNewGraph: function (uuid) {
+			top.window.open(ctx + '/graph/viewer?uuid=' + uuid);
+		},
+		/**
 		 * 打开图形编辑器（Layer弹窗）
 		 * @param params uuid 唯一标识
 		 * @param params title 标题
