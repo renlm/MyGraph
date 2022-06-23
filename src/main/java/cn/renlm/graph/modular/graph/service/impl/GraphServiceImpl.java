@@ -143,7 +143,8 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 		// 关联文档记录
 		Markdown markdown = iMarkdownService
 				.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, form.getUuid()));
-		markdown.setGraphId(form.getId());
+		markdown.setGraphUuid(form.getUuid());
+		markdown.setGraphVersion(form.getVersion());
 		iMarkdownService.ajaxSave(user, markdown);
 		return Result.success(form);
 	}
