@@ -23,6 +23,8 @@ import cn.renlm.graph.amqp.GraphCoverQueue;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
+import cn.renlm.graph.modular.graph.entity.GraphHistory;
+import cn.renlm.graph.modular.graph.service.IGraphHistoryService;
 import cn.renlm.graph.modular.graph.service.IGraphService;
 import cn.renlm.graph.response.Result;
 
@@ -38,6 +40,9 @@ public class GraphController {
 
 	@Resource
 	private IGraphService iGraphService;
+
+	@Resource
+	private IGraphHistoryService iGraphHistoryService;
 
 	/**
 	 * 我的图库
@@ -113,11 +118,35 @@ public class GraphController {
 	 * 
 	 * @param model
 	 * @param uuid
+	 * @param version
+	 * @param name
 	 * @return
 	 */
 	@GetMapping("/viewer")
-	public String viewer(ModelMap model, String uuid) {
-		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
+	public String viewer(ModelMap model, String uuid, Integer version, String name) {
+		Graph graph = new Graph();
+		graph.setUuid(uuid);
+		graph.setName(name);
+		graph.setVersion(version);
+		if (StrUtil.isNotBlank(uuid)) {
+			if (version == null) {
+				Graph entity = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
+				if (ObjectUtil.isNotEmpty(entity)) {
+					BeanUtil.copyProperties(entity, graph);
+				}
+			} else {
+				GraphHistory history = iGraphHistoryService
+						.getOne(Wrappers.<GraphHistory>lambdaQuery().func(wrapper -> {
+							wrapper.eq(GraphHistory::getGraphUuid, uuid);
+							wrapper.eq(GraphHistory::getVersion, version);
+						}));
+				if (ObjectUtil.isNotEmpty(history)) {
+					BeanUtil.copyProperties(history, graph);
+					graph.setId(history.getGraphId());
+					graph.setUuid(history.getGraphUuid());
+				}
+			}
+		}
 		graph.setXml(StrUtil.isBlank(graph.getXml()) ? null : Base64.encodeUrlSafe(graph.getXml()));
 		model.put("graphJson", JSONUtil.toJsonStr(graph));
 		return "graph/viewer";

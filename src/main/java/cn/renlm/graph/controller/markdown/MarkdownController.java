@@ -91,6 +91,7 @@ public class MarkdownController {
 		Markdown markdown = new Markdown();
 		markdown.setUuid(uuid);
 		markdown.setName(name);
+		markdown.setVersion(version);
 		if (StrUtil.isNotBlank(uuid)) {
 			if (version == null) {
 				Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
