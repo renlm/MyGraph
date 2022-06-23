@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title th:text="${markdown.name}">数据表格</title>
+	<meta charset="UTF-8" />
+	<meta name="renderer" content="webkit" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<!-- Ico -->
+    <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
+    <!-- Luckysheet -->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/Luckysheet/dist/plugins/css/pluginsCss.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/Luckysheet/dist/plugins/plugins.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/Luckysheet/dist/css/luckysheet.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/Luckysheet/dist/assets/iconfont/iconfont.css}">
+    <script type="text/javascript" th:src="@{/static/Luckysheet/dist/plugins/js/plugin.js}"></script>
+    <script type="text/javascript" th:src="@{/static/Luckysheet/dist/luckysheet.umd.js}"></script>
+</head>
+<body>
+	<div id="luckysheet" style="margin: 0px; padding: 0px; position: absolute; width: 100%; left: 0px; top: 0px; bottom: 0px;"></div>
+ 	<script type="text/javascript">
+    	$(function () {
+      		luckysheet.create({
+         		container: "luckysheet",
+            	lang: "zh",
+            	showinfobar: false,
+            	showtoolbar: false
+            });
+    	});
+	</script>
+</body>
+</html>

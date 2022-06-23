@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocProject;
@@ -18,6 +21,8 @@ import cn.renlm.graph.modular.doc.service.IDocCategoryCollectService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
+import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
+import cn.renlm.graph.modular.markdown.service.IMarkdownHistoryService;
 import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 
 /**
@@ -32,6 +37,9 @@ public class DocController {
 
 	@Autowired
 	private IMarkdownService iMarkdownService;
+
+	@Autowired
+	private IMarkdownHistoryService iMarkdownHistoryService;
 
 	@Autowired
 	private IDocProjectService iDocProjectService;
@@ -81,5 +89,43 @@ public class DocController {
 		model.put("isCollected", isCollected);
 		model.put("role", role);
 		return "doc/markdown";
+	}
+
+	/**
+	 * 数据表格
+	 * 
+	 * @param model
+	 * @param uuid
+	 * @param version
+	 * @param name
+	 * @return
+	 */
+	@RequestMapping("/luckysheet")
+	public String luckysheet(ModelMap model, String uuid, Integer version, String name) {
+		Markdown markdown = new Markdown();
+		markdown.setUuid(uuid);
+		markdown.setName(name);
+		markdown.setVersion(version);
+		if (StrUtil.isNotBlank(uuid)) {
+			if (version == null) {
+				Markdown entity = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
+				if (ObjectUtil.isNotEmpty(entity)) {
+					BeanUtil.copyProperties(entity, markdown);
+				}
+			} else {
+				MarkdownHistory history = iMarkdownHistoryService
+						.getOne(Wrappers.<MarkdownHistory>lambdaQuery().func(wrapper -> {
+							wrapper.eq(MarkdownHistory::getMarkdownUuid, uuid);
+							wrapper.eq(MarkdownHistory::getVersion, version);
+						}));
+				if (ObjectUtil.isNotEmpty(history)) {
+					BeanUtil.copyProperties(history, markdown);
+					markdown.setId(history.getMarkdownId());
+					markdown.setUuid(history.getMarkdownUuid());
+				}
+			}
+		}
+		model.put("markdown", markdown);
+		return "doc/luckysheet";
 	}
 }

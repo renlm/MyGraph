@@ -140,7 +140,7 @@
 					<i class="fa fa-share-square-o"></i>
 				</a>
 			</div>
-			<iframe class="loading" th:src="@{'/static/Luckysheet/dist/index.html?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
+			<iframe class="loading" th:src="@{'/doc/luckysheet?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
 		</div>
 	</div>
 	<script th:src="@{/static/js/main.js}"></script>
