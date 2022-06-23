@@ -36,7 +36,8 @@
 	<link rel="stylesheet" th:href="@{/static/css/scrollbar.css}" />
 	<link rel="stylesheet" th:href="@{/static/css/markdown.css}" />
 </head>
-<body>
+<body 
+	th:with="editPermission=${role != null and (role == 2 or role == 3)}">
 	<div class="layui-fluid">
 		<div class="layui-row md-header">
 			<div class="layui-col-md8">
@@ -48,7 +49,7 @@
 						<th:block th:if="${iterStat.index < #lists.size(fathers) - 1}">/</th:block>
 					</strong>
 					<span class="view-page-operate"
-		        		th:if="${role != null and (role == 2 or role == 3)}">
+		        		th:if="${editPermission}">
 		        		<a href="javascript:void(0);"
 		        			th:data-uuid="${docCategory.uuid}" 
 							th:data-title="${docCategory.text}"
@@ -79,7 +80,7 @@
 			<div class="layui-col-md4">
 				<div class="layui-btn-container">
 					<button type="button" class="layui-btn layui-btn-primary" 
-						th:if="${role != null and (role == 2 or role == 3)}"
+						th:if="${editPermission}"
 						th:data-uuid="${docCategory.uuid}" 
 						th:data-title="${docCategory.text}"
 						onclick="$.openMarkdownEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
@@ -120,7 +121,7 @@
 				</a>
 				<a href="javascript:void(0);"
 					title="画图"
-		        	th:if="${role != null and (role == 2 or role == 3)}"
+		        	th:if="${editPermission}"
         			th:data-uuid="${docCategory.uuid}" 
 					th:data-title="${docCategory.text}"
 					onclick="$.openGraphLayerEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
@@ -183,8 +184,7 @@
         	$(".graph-body").removeClass("graph-hide");
 		}
 	</script>
-	<script type="text/javascript"
-		th:if="${role != null and (role == 2 or role == 3)}">
+	<script type="text/javascript">
 		/**
 		 * 打开编辑器（事件）
 		 * @param params layero 当前层DOM
