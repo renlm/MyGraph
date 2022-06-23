@@ -120,6 +120,7 @@
 				</a>
 				<a href="javascript:void(0);"
 					title="画图"
+		        	th:if="${role != null and (role == 2 or role == 3)}"
         			th:data-uuid="${docCategory.uuid}" 
 					th:data-title="${docCategory.text}"
 					onclick="$.openGraphLayerEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
@@ -170,11 +171,20 @@
                     });
         		}, 1000);
         	}
-        	$(".graph-body").height(Math.max(document.body.offsetHeight - 126, 600));
-        	$(".graph-body").removeClass("graph-hide");
+        	resizeGraphIframe();
+    		var originFn = window.onresize;
+       		window.onresize = function () { 
+       			originFn && originFn();
+       			resizeGraphIframe();
+       		}
 		});
+		function resizeGraphIframe () {
+			$(".graph-body").height(Math.max(document.body.offsetHeight - 126, 600));
+        	$(".graph-body").removeClass("graph-hide");
+		}
 	</script>
-	<script type="text/javascript">
+	<script type="text/javascript"
+		th:if="${role != null and (role == 2 or role == 3)}">
 		/**
 		 * 打开编辑器（事件）
 		 * @param params layero 当前层DOM
