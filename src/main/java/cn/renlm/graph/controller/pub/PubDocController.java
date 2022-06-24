@@ -1,8 +1,13 @@
 package cn.renlm.graph.controller.pub;
 
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,15 +19,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.dto.DocShareUser;
 import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
+import cn.renlm.graph.modular.graph.entity.Graph;
+import cn.renlm.graph.modular.graph.service.IGraphService;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
 import cn.renlm.graph.modular.markdown.service.IMarkdownService;
+import cn.renlm.graph.modular.sys.entity.SysFile;
+import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.service.PubDocService;
 
@@ -44,6 +55,12 @@ public class PubDocController {
 
 	@Autowired
 	private IDocCategoryService iDocCategoryService;
+
+	@Resource
+	private IGraphService iGraphService;
+
+	@Autowired
+	private ISysFileService iSysFileService;
 
 	/**
 	 * 验证密码
@@ -159,5 +176,85 @@ public class PubDocController {
 		model.put("docCategory", docCategory);
 		model.put("fathers", fathers);
 		return "pub/docShareMarkdown";
+	}
+
+	/**
+	 * 图形预览
+	 * 
+	 * @param request
+	 * @param model
+	 * @param shareUuid
+	 * @param uuid
+	 * @return
+	 */
+	@GetMapping("/g/{shareUuid}")
+	public String docShareGraph(HttpServletRequest request, ModelMap model, @PathVariable String shareUuid,
+			String uuid) {
+		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("shareUuid", shareUuid);
+		model.put("docCategoryShare", docCategoryShare);
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
+			if (user == null) {
+				return "pub/docSharePasswd";
+			} else if (!StrUtil.equals(shareUuid, user.getShareUuid())) {
+				throw new RuntimeException("行为异常");
+			}
+		}
+		Markdown markdown = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
+		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, markdown.getGraphUuid()));
+		graph.setXml(StrUtil.isBlank(graph.getXml()) ? null : Base64.encodeUrlSafe(graph.getXml()));
+		model.put("graphJson", JSONUtil.toJsonStr(graph));
+		return "graph/viewer";
+	}
+
+	/**
+	 * 数据表格
+	 * 
+	 * @param request
+	 * @param model
+	 * @param shareUuid
+	 * @param uuid
+	 * @return
+	 */
+	@GetMapping("/dt/{shareUuid}")
+	public String docShareDataTable(HttpServletRequest request, ModelMap model, @PathVariable String shareUuid,
+			String uuid) {
+		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		model.put("shareUuid", shareUuid);
+		model.put("docCategoryShare", docCategoryShare);
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
+			if (user == null) {
+				return "pub/docSharePasswd";
+			} else if (!StrUtil.equals(shareUuid, user.getShareUuid())) {
+				throw new RuntimeException("行为异常");
+			}
+		}
+		Markdown markdown = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
+		model.put("markdown", markdown);
+		return "doc/luckysheet";
+	}
+
+	/**
+	 * 下载（带参inline为预览）
+	 * 
+	 * @param request
+	 * @param response
+	 * @param fileId
+	 * @throws IOException
+	 */
+	@GetMapping("/f/{fileId}")
+	public void download(HttpServletRequest request, HttpServletResponse response, @PathVariable String fileId)
+			throws IOException {
+		boolean inline = request.getParameterMap().containsKey("inline");
+		String openStyle = inline ? "inline" : "attachment";
+		SysFile file = iSysFileService.getOne(Wrappers.<SysFile>lambdaQuery().eq(SysFile::getFileId, fileId));
+		String filename = URLEncoder.encode(file.getOriginalFilename(), "UTF-8");
+		response.setHeader("Content-Type", file.getFileType());
+		response.setHeader("Content-Disposition", openStyle + ";fileName=" + filename);
+		try (ServletOutputStream os = response.getOutputStream()) {
+			os.write(file.getFileContent());
+		}
 	}
 }

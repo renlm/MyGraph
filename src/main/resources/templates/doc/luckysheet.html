@@ -21,7 +21,7 @@
     <script type="text/javascript" th:src="@{/static/LuckyexcelDemo-gh-pages/luckyexcel.umd.js}"></script>
  	<script type="text/javascript">
 		$(function () {
-			var url = "[(@{'/sys/file/download/' + ${markdown.dataTable} + '?inline'})]";
+			var url = "[(@{'/pub/doc/f/' + ${markdown.dataTable} + '?inline'})]";
 			var name = "[(${markdown.name})]";
 			LuckyExcel.transformExcelToLuckyByUrl(url, name, function (exportJson, luckysheetfile) {
 	       			window.luckysheet.create({

@@ -10,6 +10,10 @@
     <link th:href="@{/static/favicon.ico}" rel="shortcut icon" />
 	<!-- Jquery -->
 	<script type="text/javascript" th:src="@{/webjars/jquery/dist/jquery.min.js}"></script>
+	<!-- 全局设置 -->
+    <script type="text/javascript">
+    	window.CTX = window.ctx = "[(@{/})]".substr(0, "[(@{/})]".length - 1);
+    </script>
 	<!-- Layui -->
 	<link th:href="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/css/layui.css}" rel="stylesheet" />
 	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/layui/2.6.8/layui.js}"></script>
@@ -50,7 +54,8 @@
 	        	</p>
 			</div>
 		</div>
-		<div class="md-body catalog-hide">
+		<div class="md-body catalog-hide"
+			th:if="${!#strings.isEmpty(markdown?.content)}">
 			<div class="md-catalog">
 				<div class="toggle collapse"></div>
 				<div class="catalog container"></div>
@@ -58,6 +63,38 @@
 			<div id="editormd" class="md-content">
 				<textarea id="markdown" class="layui-hide" th:text="${markdown?.content}"></textarea>
 			</div>
+		</div>
+		<div class="graph-body graph-hide"
+			th:if="${!#strings.isEmpty(markdown?.graphUuid)}">
+			<div class="graph-opts">
+				<a href="javascript:void(0);" 
+					title="打开新页"
+					th:data-suuid="${shareUuid}"
+					th:data-muuid="${markdown?.uuid}"
+					onclick="$.openNewGraphPub($(this).data('suuid'),$(this).data('muuid'));">
+					<i class="fa fa-share-square-o"></i>
+				</a>
+			</div>
+			<iframe class="loading" th:src="@{'/pub/doc/g/'+${shareUuid}+'?uuid='+${markdown?.uuid}}" scrolling="auto" frameborder="0"></iframe>
+		</div>
+		<div class="dataTable-body dataTable-hide"
+			th:if="${!#strings.isEmpty(markdown?.dataTable)}">
+			<div class="dataTable-opts">
+				<a href="javascript:void(0);" 
+					title="打开新页"
+					th:data-suuid="${shareUuid}"
+					th:data-muuid="${markdown?.uuid}"
+					onclick="$.openNewDataTablePub($(this).data('suuid'),$(this).data('muuid'));">
+					<i class="fa fa-share-square-o"></i>
+				</a>
+				<a href="javascript:void(0);" 
+					title="下载文件"
+					th:data-uuid="${markdown?.dataTable}"
+					onclick="$.downloadDataTablePub($(this).data('uuid'));">
+					<i class="fa fa-download"></i>
+				</a>
+			</div>
+			<iframe class="loading" th:src="@{'/pub/doc/dt/'+${shareUuid}+'?uuid='+${markdown?.uuid}}" scrolling="auto" frameborder="0"></iframe>
 		</div>
 	</div>
 	<script th:src="@{/static/js/main.js}"></script>
@@ -101,7 +138,23 @@
                     });
         		}, 1000);
         	}
+        	resizeGraphIframe();
+        	resizeDataTableIframe();
+    		var originFn = window.onresize;
+       		window.onresize = function () { 
+       			originFn && originFn();
+       			resizeGraphIframe();
+            	resizeDataTableIframe();
+       		}
 		});
+		function resizeGraphIframe () {
+			$(".graph-body").height(document.body.offsetHeight - 126);
+        	$(".graph-body").removeClass("graph-hide");
+		}
+		function resizeDataTableIframe () {
+			$(".dataTable-body").height(document.body.offsetHeight - 126);
+        	$(".dataTable-body").removeClass("dataTable-hide");
+		}
 	</script>
 </body>
 </html>

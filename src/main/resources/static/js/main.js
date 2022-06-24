@@ -466,11 +466,26 @@
 			top.window.open(ctx + '/doc/luckysheet?uuid=' + uuid + (version ? ('&version=' + version) : ''));
 		},
 		/**
+		 * 打开新页（数据表格-公开访问）
+		 * @param params shareUuid 分享Uuid
+		 * @param params uuid 唯一标识
+		 */
+		openNewDataTablePub: function (shareUuid, uuid) {
+			top.window.open(ctx + '/pub/doc/dt/' + shareUuid + '?uuid=' + uuid);
+		},
+		/**
 		 * 下载数据表格
 		 * @param params uuid 唯一标识
 		 */
 		downloadDataTable: function (uuid) {
 			top.window.open(ctx + '/sys/file/download/' + uuid);
+		},
+		/**
+		 * 下载数据表格（公开访问）
+		 * @param params uuid 唯一标识
+		 */
+		downloadDataTablePub: function (uuid) {
+			top.window.open(ctx + '/pub/doc/f/' + uuid);
 		},
 		/**
 		 * 打开新页（图形预览）
@@ -479,6 +494,14 @@
 		 */
 		openNewGraph: function (uuid, version) {
 			top.window.open(ctx + '/graph/viewer?uuid=' + uuid + (version ? ('&version=' + version) : ''));
+		},
+		/**
+		 * 打开新页（图形预览-公开访问）
+		 * @param params shareUuid 分享Uuid
+		 * @param params uuid 唯一标识
+		 */
+		openNewGraphPub: function (shareUuid, uuid) {
+			top.window.open(ctx + '/pub/doc/g/' + shareUuid + '?uuid=' + uuid);
 		},
 		/**
 		 * 打开图形编辑器（Layer弹窗）
