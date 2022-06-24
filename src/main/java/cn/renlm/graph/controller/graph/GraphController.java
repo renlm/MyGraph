@@ -82,9 +82,10 @@ public class GraphController {
 	 * @return
 	 */
 	@RequestMapping("/dialog")
-	public String mineDialog(ModelMap model, String uuid) {
+	public String mineDialog(ModelMap model, String uuid, String categoryCode) {
 		Graph graph = new Graph();
 		graph.setUuid(uuid);
+		graph.setCategoryCode(categoryCode);
 		if (StrUtil.isNotBlank(uuid)) {
 			Graph entity = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
 			if (ObjectUtil.isNotEmpty(entity)) {
