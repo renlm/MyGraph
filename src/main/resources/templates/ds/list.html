@@ -490,27 +490,68 @@
 			return;
 		} else {
 			var uuids = [];
-			$.each(checked, function (i, item) {
-				uuids[i] = item.uuid;
-			});
-			parent.layer.prompt({
-				title: '新建ER设计图',
-				formType: 0, 
-				value: null,
-				skin: 'layui-layer-rim layui-layer-prompt custom-layui-btn-center'
-			}, function (name, index) {
-				parent.layer.closeAll();
-   				$.messager.progress({'text':'正在生成……'});
-   				$.post(ctx + '/er/ajax/createGraph', { name: name, uuids: uuids.join() }, function (resultJson) {
-   					$.messager.progress('close');
-					if (resultJson.statusCode == 200) {
-						$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-	                } else {
-	                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
-	                }
-				});
-			});
+			$.each(checked, function (i, item) { uuids[i] = item.uuid; });
+			var erUuids = uuids.join();
+			graphDialog(erUuids);
 		}
+	}
+	
+	/**
+	 * 生成ER图（弹窗）
+	 */
+	function graphDialog (erUuids) {
+		var $graphDialog = $('<form id=\'graphDialog\' method=\'get\' class=\'myui\'></form>');
+	    $graphDialog.myuiDialog({
+	        title: '新增',
+	        width: 790,
+	        height: 383,
+			collapsible: true,
+			minimizable: false,
+			maximizable: true,
+	        closed: false,
+	        cache: false,
+	        href: ctx + '/graph/dialog',
+	        modal: true,
+	        buttons: [{
+	            text: '保存',
+	            iconCls: 'fa fa-plus',
+	            handler: function () {
+					$.messager.progress({'text': '请求中……'});
+			        $graphDialog.form('submit', {
+			            url: ctx + '/er/ajax/createGraph',
+			            onSubmit: function () {
+			                var isValid = $(this).form('validate');
+			                if (!isValid) {
+			                    $.messager.progress('close');
+			                }
+			                return isValid;
+			            },
+			            success: function (result) {
+							var resultJson = JSON.parse(result);
+			                $.messager.progress('close');
+			                if (resultJson.statusCode == 200) {
+			                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+			                	$graphDialog.dialog('destroy');
+			                } else {
+			                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
+			                }
+			        	}
+			 		});
+				}
+	        }, {
+	            text: '关闭',
+	            iconCls: 'fa fa-close',
+	            handler: function () {
+	                $graphDialog.dialog('destroy');
+	            }
+	        }],
+	        onLoad: function () {
+	        	$('#_erUuids').attr('value', erUuids);
+	        },
+			onClose: function () {
+				$graphDialog.dialog('destroy');
+			}
+	    });
 	}
 </script>
 <script type="text/javascript">

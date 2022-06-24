@@ -1,5 +1,6 @@
 <div class="myui-fluid mlr25center" th:object="${graph}">
 	<div class="myui-row">
+    	<input type="hidden" id="_erUuids" name="erUuids" />
     	<input type="hidden" th:field="*{uuid}" />
     	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     </div>
@@ -14,27 +15,6 @@
                    		width:'100%',
 						validType:'maxLength[255]'
                 	"/>
-            </div>
-        </div>
-    </div>
-    <div class="myui-row">
-        <div class="myui-col-sm12">
-            <label class="myui-form-label">是否公开</label>
-            <div class="myui-input-block">
-                <input type="text" th:field="*{isPublic}"
-              		class="easyui-combobox"
-                   	data-options="required:true,
-                		prompt:'必选',
-                   		width:'100%',
-						panelHeight:'auto',
-						editable:false,
-						valueField:'value',
-						textField:'text',
-						data: [
-						    {text:'是',value:'true'},
-							{text:'否',value:'false'}
-						]
-					"/>
             </div>
         </div>
     </div>
