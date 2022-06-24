@@ -70,6 +70,7 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 
 	@Override
 	public Page<DocProjectDto> findPage(Page<DocProjectDto> page, User user, DocProjectDto form) {
+		page.setOptimizeCountSql(false);
 		return this.baseMapper.findPage(page, user, form);
 	}
 

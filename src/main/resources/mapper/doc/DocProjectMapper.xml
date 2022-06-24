@@ -45,6 +45,12 @@
 			</if>
 		</where>
 		group by dp.id 
+		<if test="form.roles != null and form.roles.size > 0">
+			having `role` in 
+				<foreach collection="form.roles" item="role" open="(" close=")" separator=",">
+					#{role,jdbcType=INTEGER}
+				</foreach>
+		</if>
 		order by dp.updated_at desc, dp.id desc
 	</select>
 </mapper>

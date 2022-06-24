@@ -1,5 +1,7 @@
 package cn.renlm.graph.modular.doc.dto;
 
+import java.util.List;
+
 import cn.renlm.graph.modular.doc.entity.DocProject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,6 +24,11 @@ public class DocProjectDto extends DocProject {
 	 * 文档授权角色，1：浏览者，2：编辑者，3：管理员
 	 */
 	private Integer role;
+
+	/**
+	 * 查询条件，文档授权角色，1：浏览者，2：编辑者，3：管理员
+	 */
+	private List<Integer> roles;
 
 	/**
 	 * 关键字

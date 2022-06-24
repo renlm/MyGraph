@@ -100,6 +100,9 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 
 	@Override
 	public List<Tree<Long>> getTree(String docProjectUuid, boolean root, Long pid) {
+		if (StrUtil.isBlank(docProjectUuid)) {
+			return CollUtil.newArrayList();
+		}
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
 		List<DocCategory> list = this.list(Wrappers.<DocCategory>lambdaQuery().func(wrapper -> {
