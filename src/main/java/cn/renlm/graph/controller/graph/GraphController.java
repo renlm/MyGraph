@@ -167,7 +167,7 @@ public class GraphController {
 	 * @return
 	 */
 	@ResponseBody
-	@PostMapping("/ajax/saveEditor")
+	@PostMapping("/ajax/updateBaseInfo")
 	public Result<?> updateBaseInfo(Authentication authentication, GraphDto form) {
 		User user = (User) authentication.getPrincipal();
 		try {
