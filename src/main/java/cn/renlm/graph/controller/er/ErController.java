@@ -1,6 +1,9 @@
 package cn.renlm.graph.controller.er;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.amqp.AmqpUtil;
+import cn.renlm.graph.amqp.GraphCoverQueue;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErDto;
 import cn.renlm.graph.modular.er.entity.Er;
@@ -19,6 +25,7 @@ import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.mxgraph.ERModelParser;
 import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.util.RedisUtil;
 
 /**
  * ER模型
@@ -67,6 +74,10 @@ public class ErController {
 		try {
 			Result<?> result = eRModelParser.create(user, StrUtil.splitTrim(erUuids, StrUtil.COMMA), form);
 			if (result.isSuccess()) {
+				String key = GraphCoverQueue.QUEUE + IdUtil.simpleUUID().toUpperCase();
+				RedisTemplate<String, String> edisTemplate = RedisUtil.getRedisTemplate();
+				edisTemplate.opsForValue().set(key, form.getUuid(), 30, TimeUnit.DAYS);
+				AmqpUtil.createQueue(GraphCoverQueue.EXCHANGE, GraphCoverQueue.ROUTINGKEY, key);
 				return Result.success().setMessage("ER图已生成，请到归属文档中查看");
 			}
 			return result;

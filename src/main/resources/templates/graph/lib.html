@@ -22,7 +22,7 @@
 								/> 
 								<i class="graph-iconfont clear-search-input"
 									:style="{display:clearSearchShow?'block':'none'}"
-									@click="clearSearch">
+									@click="clearSearch">
 								</i> 
 								<a class="fl box-btn" @click="searchData">
 									<i class="graph-iconfont iconfont-search"></i>
@@ -114,6 +114,7 @@
 		    	clearSearch() {
 		    		this.keywords = null;
 		    		this.clearSearchShow = false;
+		    		this.searchData();
 		    	},
 		    	selectSeekStyle() {
 		    		this.seekShow = true;

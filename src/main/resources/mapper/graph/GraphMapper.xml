@@ -7,6 +7,8 @@
 			g.`uuid`,
 			g.`name`,
 			g.`version`,
+			g.`category_code`,
+			g.`category_name`,
 			g.`cover`,
 			g.`zoom`,
 			g.`dx`,
@@ -43,6 +45,9 @@
 			<foreach collection="projectIds" item="projectId" open="(" close=")" separator=",">
 				#{projectId,jdbcType=BIGINT}
 			</foreach>
+			<if test="form.categoryCode != null and form.categoryCode != ''">
+				and g.`category_code` = #{form.categoryCode,jdbcType=VARCHAR}
+			</if>
 			<if test="form.keywords != null and form.keywords != ''">
 				and (
 					dp.project_name like concat('%', #{form.keywords,jdbcType=VARCHAR}, '%')

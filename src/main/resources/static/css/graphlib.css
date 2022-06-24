@@ -150,6 +150,10 @@ input, textarea, select, button {
     line-height: 40px;
 }
 
+.clear-search-input:before {
+	content: "\f00d";
+}
+
 .box-btn {
 	position: absolute;
 	right: 0;
