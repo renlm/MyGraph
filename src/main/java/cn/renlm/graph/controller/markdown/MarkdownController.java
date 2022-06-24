@@ -180,7 +180,7 @@ public class MarkdownController {
 				entity.setCreatorUserId(user.getUserId());
 				entity.setCreatorNickname(user.getNickname());
 			});
-			String uri = myConfigProperties.getCtx() + "/sys/file/download/" + sysFile.getFileId() + "?inline";
+			String uri = myConfigProperties.getCtx() + "/pub/doc/f/" + sysFile.getFileId() + "?inline";
 			return MapUtil.builder().put("success", 1).put("message", "成功").put("url", uri).build();
 		} catch (Exception e) {
 			e.printStackTrace();
