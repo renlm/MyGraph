@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
@@ -36,6 +37,7 @@ import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.service.PubDocService;
+import cn.renlm.graph.util.TreeExtraUtil;
 
 /**
  * 公共文档
@@ -127,6 +129,10 @@ public class PubDocController {
 				throw new RuntimeException("行为异常");
 			}
 		}
+		List<Tree<Long>> tree = pubDocService.getTree(request, shareUuid);
+		List<Tree<Long>> nodes = TreeExtraUtil.getAllNodes(tree);
+		model.put("tree", tree);
+		model.put("nodes", CollUtil.size(nodes));
 		return "pub/docShareCategory";
 	}
 

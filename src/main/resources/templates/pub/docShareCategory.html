@@ -7,7 +7,8 @@
 	<div class="easyui-layout"
     	data-options="fit:true">
     	<!-- 左侧 -->
-        <div data-options="region:'west',
+        <div th:if="${nodes > 1}"
+        	data-options="region:'west',
         		split:true,
         		border:false,
         		bodyCls:'border_right',
