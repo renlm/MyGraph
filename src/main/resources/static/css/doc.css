@@ -176,6 +176,10 @@
 	color: #333;
 }
 
+.no-footer .iframer {
+	bottom: 0;
+}
+
 .iframer {
 	position: absolute;
 	top: 45px;
@@ -192,6 +196,10 @@
 	width: 100%;
 	background: #EFEEF0 0 0 no-repeat;
 	margin: 0px;
+}
+
+.no-footer .footer {
+	display: none;
 }
 
 .footer {
