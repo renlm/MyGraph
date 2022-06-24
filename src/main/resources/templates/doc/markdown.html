@@ -51,12 +51,15 @@
 					<span class="view-page-operate"
 		        		th:if="${editPermission}">
 		        		<a href="javascript:void(0);"
+		        			th:if="${#strings.isEmpty(markdown?.content) and #strings.isEmpty(markdown?.dataTable)}"
 		        			th:data-uuid="${docCategory.uuid}" 
 							th:data-title="${docCategory.text}"
 							onclick="$.openGraphLayerEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
 							<i class="fa fa-image"></i> 图形设计
 						</a>
-		        		<a class="data-table" href="javascript:void(0);">
+		        		<a class="data-table" 
+		        			th:if="${#strings.isEmpty(markdown?.content) and #strings.isEmpty(markdown?.graphUuid)}"
+		        			href="javascript:void(0);">
 		        			<i class="fa fa-paperclip"></i> 数据表格
 		        		</a>
 		        	</span>
@@ -80,7 +83,7 @@
 			<div class="layui-col-md4">
 				<div class="layui-btn-container">
 					<button type="button" class="layui-btn layui-btn-primary" 
-						th:if="${editPermission}"
+						th:if="${editPermission and #strings.isEmpty(markdown?.graphUuid) and #strings.isEmpty(markdown?.dataTable)}"
 						th:data-uuid="${docCategory.uuid}" 
 						th:data-title="${docCategory.text}"
 						onclick="$.openMarkdownEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
@@ -111,7 +114,7 @@
 			</div>
 		</div>
 		<div class="graph-body graph-hide"
-			th:if="${markdown?.graphUuid != null}">
+			th:if="${!#strings.isEmpty(markdown?.graphUuid)}">
 			<div class="graph-opts">
 				<a href="javascript:void(0);" 
 					title="打开新页"
