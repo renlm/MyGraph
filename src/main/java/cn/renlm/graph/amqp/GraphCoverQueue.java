@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
@@ -32,6 +33,7 @@ import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.mxgraph.ERModelParser;
 import cn.renlm.graph.util.MyConfigProperties;
+import cn.renlm.graph.util.RedisUtil;
 import cn.renlm.plugins.MyCrawlerUtil;
 import cn.renlm.plugins.MyCrawler.MySite;
 import cn.renlm.plugins.MyCrawler.MySpider;
@@ -71,9 +73,14 @@ public class GraphCoverQueue {
 	 */
 	@RabbitListener(bindings = {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
-	public void receiveMessage(String uuid) {
+	public void receiveMessage(String key) {
 		boolean fitWindow = false;
+		RedisTemplate<String, String> edisTemplate = RedisUtil.getRedisTemplate();
+		String uuid = edisTemplate.opsForValue().get(key);
 		log.info("=== 图形封面任务：{}", uuid);
+		if (StrUtil.isBlank(uuid)) {
+			return;
+		}
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
 		if (graph == null || StrUtil.isBlank(graph.getXml())) {
 			return;

@@ -192,10 +192,10 @@ public class GraphController {
 		User user = (User) authentication.getPrincipal();
 		try {
 			Result<Graph> result = iGraphService.saveEditor(user, form);
-			String uuid = GraphCoverQueue.QUEUE + IdUtil.simpleUUID().toUpperCase();
+			String key = GraphCoverQueue.QUEUE + IdUtil.simpleUUID().toUpperCase();
 			RedisTemplate<String, String> edisTemplate = RedisUtil.getRedisTemplate();
-			edisTemplate.opsForValue().set(uuid, form.getUuid(), 30, TimeUnit.DAYS);
-			AmqpUtil.createQueue(GraphCoverQueue.EXCHANGE, GraphCoverQueue.ROUTINGKEY, uuid);
+			edisTemplate.opsForValue().set(key, form.getUuid(), 30, TimeUnit.DAYS);
+			AmqpUtil.createQueue(GraphCoverQueue.EXCHANGE, GraphCoverQueue.ROUTINGKEY, key);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
