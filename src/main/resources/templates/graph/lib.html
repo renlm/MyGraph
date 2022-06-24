@@ -8,7 +8,7 @@
 </head>
 <body layout:fragment="content">
 	<div id="vue-app" class="wrap" v-cloak>
-		<div class="navi navi-black">
+		<div class="navi navi-black no-category-search">
 			<div class="nav">
 				<ul class="nav-lists">
 					<li class="nav_search_top_box">
@@ -73,7 +73,7 @@
 				</div>
 				<p class="title">
 					<span class="category">{{category[graph.categoryCode]}}</span>
-					<span class="name">{{graph.name}}</span>
+					<span class="name" :title="graph.name">{{graph.name}}</span>
 				</p>
 			</div>
 	    </div>
