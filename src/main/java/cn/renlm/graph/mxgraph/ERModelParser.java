@@ -186,6 +186,7 @@ public class ERModelParser {
 		docCategory.setPid(parent.getId());
 		docCategory.setText(form.getName());
 		docCategory.setState(TreeState.open.name());
+		docCategory.setRemark(form.getRemark());
 		Result<DocCategory> result = iDocCategoryService.ajaxSave(user, form.getDocProjectUuid(), docCategory);
 		if (BooleanUtil.isFalse(result.isSuccess())) {
 			return result;
@@ -193,7 +194,7 @@ public class ERModelParser {
 		List<ErDto> ers = iErService.findListWithFields(erUuids);
 		form.setUuid(docCategory.getUuid());
 		MxGraphModel mxGraphModel = this.initMxGraphModel(form, ers);
-		form.setXml(this.convertMxGraphModelToXml(mxGraphModel));
+		form.setXml(Base64.encodeUrlSafe(this.convertMxGraphModelToXml(mxGraphModel)));
 		form.setCategoryCode(Mxgraph.ER.name());
 		form.setCategoryName(Mxgraph.ER.getText());
 		return iGraphService.saveEditor(user, form);
