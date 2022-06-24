@@ -29,6 +29,15 @@ public interface IGraphService extends IService<Graph> {
 	Page<GraphDto> findPage(Page<GraphDto> page, User user, GraphDto form);
 
 	/**
+	 * 更新基本信息
+	 * 
+	 * @param user
+	 * @param form
+	 * @return
+	 */
+	Result<?> updateBaseInfo(User user, GraphDto form);
+
+	/**
 	 * 保存编辑器
 	 * 
 	 * @param user

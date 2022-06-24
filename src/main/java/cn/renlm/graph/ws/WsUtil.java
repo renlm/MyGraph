@@ -29,6 +29,7 @@ import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.util.RedisUtil;
 import cn.renlm.graph.ws.WsMessage.WsType;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -88,7 +89,7 @@ public class WsUtil {
 		String userId = user.getUserId();
 
 		// 维护在线状态
-		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+		RedisTemplate<String, String> redisTemplate = RedisUtil.getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 		Long expTime = DateUtil.current() + validityMillis;
 		zops.add(key, userId, expTime);
@@ -115,7 +116,7 @@ public class WsUtil {
 		// 维护在线状态
 		if (ObjectUtil.isNotEmpty(user)) {
 			String userId = user.getUserId();
-			RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+			RedisTemplate<String, String> redisTemplate = RedisUtil.getRedisTemplate();
 			ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 			zops.remove(userId, wsKey);
 			long userConnections = WsUtil.getUserConnections(userId);
@@ -162,7 +163,7 @@ public class WsUtil {
 	 */
 	public static final void userOnlineStatusHeartbeat() {
 		log.debug("=== 在线状态心跳监测，当前机器连接数：" + WS_USER_REL.size());
-		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+		RedisTemplate<String, String> redisTemplate = RedisUtil.getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 		for (Map.Entry<String, User> entry : WS_USER_REL.entrySet()) {
 			String wsKey = entry.getKey();
@@ -183,7 +184,7 @@ public class WsUtil {
 	 * @return
 	 */
 	public static final long getOnlineUserNumber() {
-		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+		RedisTemplate<String, String> redisTemplate = RedisUtil.getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 		Long min = DateUtil.current();
 		Long max = min + validityMillis;
@@ -197,7 +198,7 @@ public class WsUtil {
 	 * @return
 	 */
 	public static final long getUserConnections(String userId) {
-		RedisTemplate<String, String> redisTemplate = getRedisTemplate();
+		RedisTemplate<String, String> redisTemplate = RedisUtil.getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
 		Long min = DateUtil.current();
 		Long max = min + validityMillis;
@@ -255,16 +256,5 @@ public class WsUtil {
 		}
 		User user = (User) authentication.getPrincipal();
 		return user;
-	}
-
-	/**
-	 * 获取Redis操作工具
-	 * 
-	 * @param <K>
-	 * @param <V>
-	 * @return
-	 */
-	private static final <K, V> RedisTemplate<K, V> getRedisTemplate() {
-		return SpringUtil.getBean(StrUtil.lowerFirst(RedisTemplate.class.getSimpleName()));
 	}
 }

@@ -25,6 +25,7 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.Mxgraph;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocProjectDto;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
@@ -112,6 +113,20 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 			});
 		});
 		return result;
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public Result<?> updateBaseInfo(User user, GraphDto form) {
+		Graph entity = this.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, form.getUuid()));
+		entity.setCategoryCode(form.getCategoryCode());
+		entity.setCategoryName(Mxgraph.valueOf(form.getCategoryCode()).getText());
+		entity.setRemark(form.getRemark());
+		entity.setUpdatedAt(new Date());
+		entity.setUpdatorUserId(user.getUserId());
+		entity.setUpdatorNickname(user.getNickname());
+		this.updateById(entity);
+		return Result.success();
 	}
 
 	@Override

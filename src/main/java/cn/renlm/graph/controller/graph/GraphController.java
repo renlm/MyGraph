@@ -1,7 +1,10 @@
 package cn.renlm.graph.controller.graph;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.annotation.Resource;
 
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +18,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
@@ -27,6 +31,7 @@ import cn.renlm.graph.modular.graph.entity.GraphHistory;
 import cn.renlm.graph.modular.graph.service.IGraphHistoryService;
 import cn.renlm.graph.modular.graph.service.IGraphService;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.util.RedisUtil;
 
 /**
  * 图形设计
@@ -155,6 +160,26 @@ public class GraphController {
 	}
 
 	/**
+	 * 更新基本信息
+	 * 
+	 * @param authentication
+	 * @param form
+	 * @return
+	 */
+	@ResponseBody
+	@PostMapping("/ajax/saveEditor")
+	public Result<?> updateBaseInfo(Authentication authentication, GraphDto form) {
+		User user = (User) authentication.getPrincipal();
+		try {
+			Result<?> result = iGraphService.updateBaseInfo(user, form);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("出错了");
+		}
+	}
+
+	/**
 	 * 保存编辑器
 	 * 
 	 * @param authentication
@@ -167,7 +192,10 @@ public class GraphController {
 		User user = (User) authentication.getPrincipal();
 		try {
 			Result<Graph> result = iGraphService.saveEditor(user, form);
-			AmqpUtil.createQueue(GraphCoverQueue.EXCHANGE, GraphCoverQueue.ROUTINGKEY, form.getUuid());
+			String uuid = GraphCoverQueue.QUEUE + IdUtil.simpleUUID().toUpperCase();
+			RedisTemplate<String, String> edisTemplate = RedisUtil.getRedisTemplate();
+			edisTemplate.opsForValue().set(uuid, form.getUuid(), 30, TimeUnit.DAYS);
+			AmqpUtil.createQueue(GraphCoverQueue.EXCHANGE, GraphCoverQueue.ROUTINGKEY, uuid);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
