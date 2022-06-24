@@ -1,7 +1,5 @@
 package cn.renlm.graph.controller.er;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -12,12 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErDto;
 import cn.renlm.graph.modular.er.entity.Er;
 import cn.renlm.graph.modular.er.service.IErService;
+import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.mxgraph.ERModelParser;
 import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
@@ -57,26 +55,21 @@ public class ErController {
 	/**
 	 * 创建ER模型图
 	 * 
-	 * @param request
-	 * @param name
-	 * @param uuids
+	 * @param authentication
+	 * @param erUuids
+	 * @param form
 	 * @return
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/createGraph")
-	public Result<?> createGraph(Authentication authentication, String name, String uuids) {
+	public Result<?> createGraph(Authentication authentication, String erUuids, GraphDto form) {
+		User user = (User) authentication.getPrincipal();
 		try {
-			if (StrUtil.isBlank(name)) {
-				return Result.error("名称缺失");
+			Result<?> result = eRModelParser.create(user, StrUtil.splitTrim(erUuids, StrUtil.COMMA), form);
+			if (result.isSuccess()) {
+				return Result.success().setMessage("ER图已生成，请到归属文档中查看");
 			}
-			User user = (User) authentication.getPrincipal();
-			List<String> uuidList = StrUtil.splitTrim(uuids, StrUtil.COMMA);
-			if (CollUtil.isEmpty(uuidList)) {
-				return Result.error("请选择要生成ER图的表");
-			}
-			List<ErDto> ers = iErService.findListWithFields(uuidList);
-			eRModelParser.create(user, name, ers);
-			return Result.success().setMessage("ER图已生成，请到[图形设计->我的]中查看");
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");

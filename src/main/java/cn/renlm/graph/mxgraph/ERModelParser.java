@@ -1,7 +1,6 @@
 package cn.renlm.graph.mxgraph;
 
 import java.awt.Rectangle;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -16,14 +16,20 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.Mxgraph;
+import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.doc.entity.DocCategory;
+import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.er.dto.ErDto;
 import cn.renlm.graph.modular.er.entity.ErField;
+import cn.renlm.graph.modular.er.service.IErService;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
 import cn.renlm.graph.modular.graph.service.IGraphService;
@@ -32,6 +38,7 @@ import cn.renlm.graph.mxgraph.model.MxGeometry;
 import cn.renlm.graph.mxgraph.model.MxGraphModel;
 import cn.renlm.graph.mxgraph.model.Root;
 import cn.renlm.graph.mxgraph.model.UserObject;
+import cn.renlm.graph.response.Result;
 
 /**
  * ER图形解析器
@@ -41,9 +48,6 @@ import cn.renlm.graph.mxgraph.model.UserObject;
  */
 @Component
 public class ERModelParser {
-
-	@Autowired
-	private IGraphService iGraphService;
 
 	/**
 	 * 固定宽度
@@ -69,6 +73,15 @@ public class ERModelParser {
 	 * 元点位置
 	 */
 	public static final int[] xy = { 200, -80 };
+
+	@Autowired
+	private IErService iErService;
+
+	@Autowired
+	private IGraphService iGraphService;
+
+	@Autowired
+	private IDocCategoryService iDocCategoryService;
 
 	/**
 	 * 获取图形尺寸
@@ -153,26 +166,37 @@ public class ERModelParser {
 	 * 根据ER模型创建图形
 	 * 
 	 * @param user
-	 * @param name
-	 * @param ers
+	 * @param erUuids
+	 * @param form
 	 * @return
 	 */
-	public Graph create(User user, String name, List<ErDto> ers) {
-		Graph graph = new Graph();
-		graph.setUuid(IdUtil.simpleUUID().toUpperCase());
-		MxGraphModel mxGraphModel = this.initMxGraphModel(graph, ers);
-		graph.setXml(this.convertMxGraphModelToXml(mxGraphModel));
-		graph.setName(name);
-		graph.setCategoryCode(Mxgraph.ER.name());
-		graph.setCategoryName(Mxgraph.ER.getText());
-		GraphDto.fillDefault(graph);
-		graph.setCreatedAt(new Date());
-		graph.setCreatorUserId(user.getUserId());
-		graph.setCreatorNickname(user.getNickname());
-		graph.setUpdatedAt(graph.getCreatedAt());
-		graph.setDeleted(false);
-		iGraphService.save(graph);
-		return graph;
+	@Transactional(rollbackFor = Exception.class)
+	public Result<?> create(User user, List<String> erUuids, GraphDto form) {
+		if (CollUtil.isEmpty(erUuids)) {
+			return Result.error("请选择要生成ER图的表");
+		}
+		if (StrUtil.isBlank(form.getDocProjectUuid())) {
+			return Result.error("请选择文档项目");
+		}
+		if (form.getDocCategoryId() == null) {
+			return Result.error("请选择归属分类");
+		}
+		DocCategory parent = iDocCategoryService.getById(form.getDocCategoryId());
+		DocCategory docCategory = new DocCategory();
+		docCategory.setPid(parent.getId());
+		docCategory.setText(form.getName());
+		docCategory.setState(TreeState.open.name());
+		Result<DocCategory> result = iDocCategoryService.ajaxSave(user, form.getDocProjectUuid(), docCategory);
+		if (BooleanUtil.isFalse(result.isSuccess())) {
+			return result;
+		}
+		List<ErDto> ers = iErService.findListWithFields(erUuids);
+		form.setUuid(docCategory.getUuid());
+		MxGraphModel mxGraphModel = this.initMxGraphModel(form, ers);
+		form.setXml(this.convertMxGraphModelToXml(mxGraphModel));
+		form.setCategoryCode(Mxgraph.ER.name());
+		form.setCategoryName(Mxgraph.ER.getText());
+		return iGraphService.saveEditor(user, form);
 	}
 
 	/**
