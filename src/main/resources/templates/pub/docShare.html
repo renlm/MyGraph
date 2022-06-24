@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/doc}">
 <head>
-	<title th:text="${docCategoryShare.docProjectName}">文档分享</title>
+	<title th:text="${docCategoryShare.docCategoryName}">文档分享</title>
 </head>
 <body layout:fragment="content">
 	<!-- 禁用IE -->
@@ -17,7 +17,7 @@
 			<ul class="layui-tab-title layui-nav left">
 				<li class="layui-nav-item layui-this">
 					<a href="javascript:void(0);">
-						<i class="layui-icon layui-icon-read"></i> [(${docCategoryShare.docProjectName})]
+						<i class="layui-icon layui-icon-read"></i> [(${docCategoryShare.docCategoryName})]
 					</a>
 				</li>
 			</ul>
