@@ -75,6 +75,27 @@ public class GraphController {
 	}
 
 	/**
+	 * 我的弹窗（新建|编辑）
+	 * 
+	 * @param model
+	 * @param uuid
+	 * @return
+	 */
+	@RequestMapping("/dialog")
+	public String mineDialog(ModelMap model, String uuid) {
+		Graph graph = new Graph();
+		graph.setUuid(uuid);
+		if (StrUtil.isNotBlank(uuid)) {
+			Graph entity = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
+			if (ObjectUtil.isNotEmpty(entity)) {
+				BeanUtil.copyProperties(entity, graph);
+			}
+		}
+		model.put("graph", graph);
+		return "graph/dialog";
+	}
+
+	/**
 	 * 选择器（数据库表）
 	 * 
 	 * @return
