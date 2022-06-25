@@ -18,6 +18,18 @@
 (function($) {
 	$.extend({
 		/**
+		 * ER模型DDL下载
+		 */
+		downloadERDDL: function (uuid) {
+			top.window.open(ctx + '/graph/downloadERDDL?uuid=' + uuid);
+		},
+		/**
+		 * ER模型DDL下载（公开访问）
+		 */
+		downloadShareERDDL: function (shareUuid, uuid) {
+			top.window.open(ctx + '/pub/doc/ger/' + shareUuid + '?uuid=' + uuid);
+		},
+		/**
 		 * 备注格式化（文档分享）
 		 */
 		docCategoryShareRemarkFormatter: function (value, row, index) {

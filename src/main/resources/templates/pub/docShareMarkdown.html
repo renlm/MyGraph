@@ -77,8 +77,9 @@
 				<a href="javascript:void(0);" 
 					th:class="|downloadERDDL${graph?.categoryCode == 'ER' ? '' : ' layui-hide'}|"
 					title="DDL下载"
-					th:data-uuid="${graph?.uuid}"
-					onclick="$.downloadERDDL($(this).data('uuid'));">
+					th:data-suuid="${shareUuid}"
+					th:data-guuid="${graph?.uuid}"
+					onclick="$.downloadShareERDDL($(this).data('suuid'),$(this).data('guuid'));">
 					<i class="fa fa-download"></i>
 				</a>
 				<span class="categoryName" 
