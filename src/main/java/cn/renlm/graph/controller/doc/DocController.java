@@ -2,6 +2,8 @@ package cn.renlm.graph.controller.doc;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -14,12 +16,15 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.Mxgraph;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocProject;
 import cn.renlm.graph.modular.doc.service.IDocCategoryCollectService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
+import cn.renlm.graph.modular.graph.entity.Graph;
+import cn.renlm.graph.modular.graph.service.IGraphService;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
 import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
 import cn.renlm.graph.modular.markdown.service.IMarkdownHistoryService;
@@ -49,6 +54,9 @@ public class DocController {
 
 	@Autowired
 	private IDocCategoryCollectService iDocCategoryCollectService;
+
+	@Resource
+	private IGraphService iGraphService;
 
 	/**
 	 * 知识文库
@@ -88,6 +96,14 @@ public class DocController {
 		model.put("fathers", fathers);
 		model.put("isCollected", isCollected);
 		model.put("role", role);
+		if (ObjectUtil.isNotEmpty(markdown) && StrUtil.isNotBlank(markdown.getGraphUuid())) {
+			model.put("Mxgraph", Mxgraph.values());
+			model.put("graph", iGraphService.getOne(Wrappers.<Graph>lambdaQuery().func(wrapper -> {
+				wrapper.select(Graph::getUuid, Graph::getCategoryCode);
+				wrapper.eq(Graph::getUuid, markdown.getGraphUuid());
+				wrapper.eq(Graph::getVersion, markdown.getGraphVersion());
+			})));
+		}
 		return "doc/markdown";
 	}
 

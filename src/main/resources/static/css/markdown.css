@@ -189,6 +189,20 @@ iframe.loading {
 	margin-top: 6px;
 }
 
+.graph-body .layui-form.graph-opts .layui-form-select {
+	float: left;
+	margin-top: -6px;
+}
+
+.graph-body .layui-form.graph-opts .layui-form-select>dl {
+	max-height: 375px;
+}
+
+.graph-body .layui-form.graph-opts .layui-form-select .layui-select-title input
+	{
+	height: 39px;
+}
+
 .graph-body .graph-opts a {
 	font-size: 18px;
 	margin: 0 0 0 10px;

@@ -115,7 +115,17 @@
 		</div>
 		<div class="graph-body graph-hide"
 			th:if="${!#strings.isEmpty(markdown?.graphUuid)}">
-			<div class="graph-opts">
+			<div class="layui-form graph-opts" 
+				lay-filter="LAY-category-component">
+				<select lay-filter="component" 
+					th:disabled="${!editPermission}">
+					<option>-- 图形分类 --</option>
+					<option th:each="mx,iterStat : ${Mxgraph}" 
+						th:value="${mx.name}" 
+						th:text="${mx.text}" 
+						th:selected="${graph?.categoryCode == mx.name}">
+					</option>
+				</select>
 				<a href="javascript:void(0);" 
 					title="打开新页"
 					th:data-uuid="${docCategory.uuid}"
@@ -297,6 +307,25 @@
 	        	layer.msg("出错了", { icon: 5, shift:6 });
 	        }
 	   	});
+		
+		// 图形分类
+	  	;!function(){
+	    	layui.form.render('select', 'LAY-category-component');
+	    	layui.form.on('select(component)', function (data) {
+	    		if (data.value && "[(${editPermission})]" === "true") {
+	    			var $layerIndex = layer.load(2);
+	    			$.post("[(@{/graph/ajax/updateBaseInfo})]", 
+		      				{ uuid: "[(${graph?.uuid})]", categoryCode: data.value },
+		      				function (response) {
+		      					if(response.statusCode === 200) {
+		    						layer.close($layerIndex);
+		    					} else {
+		    						layer.msg(response.message, { icon: 5, shift:6, time: 1200, offset: '0px' });
+		    					}
+		      				});
+	    		}
+	    	});
+		}();
 	</script>
 </body>
 </html>
