@@ -1,6 +1,8 @@
 package cn.renlm.graph.mxgraph;
 
 import java.awt.Rectangle;
+import java.io.File;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,17 +12,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.thoughtworks.xstream.XStream;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.ZipUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.Mxgraph;
 import cn.renlm.graph.common.TreeState;
@@ -170,7 +179,33 @@ public class ERModelParser {
 	 * @return
 	 */
 	public SysFile generateDDL(String graphUuid) {
-		return null;
+		SysFile sysFile = new SysFile();
+		// 获取图形信息
+		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, graphUuid));
+		String fileName = CollUtil.getLast(StrUtil.splitTrim(graph.getName(), StrUtil.SLASH));
+		String date = DateUtil.format(new Date(), DatePattern.NORM_DATETIME_MINUTE_PATTERN);
+		sysFile.setOriginalFilename(FileNameUtil.cleanInvalid(fileName + date + ".zip"));
+		// 创建临时目录
+		File temp = FileUtil.createTempFile("DDL", IdUtil.getSnowflakeNextIdStr(), true);
+		String tempPath = temp.getAbsolutePath();
+		temp.delete();
+		File tempFolder = FileUtil.newFile(tempPath);
+		// 生成DDL
+		List<ErDto> ers = CollUtil.newArrayList();
+		if (StrUtil.isNotBlank(graph.getXml())) {
+			List<String> strs = ReUtil.findAllGroup1("<div class='ermodel-json'[^>]*?>([^<>]*?)</div>", graph.getXml());
+			strs.forEach(str -> {
+				String decodeStr = Base64.decodeStr(str);
+				if (JSONUtil.isTypeJSONObject(decodeStr)) {
+					ers.add(JSONUtil.toBean(decodeStr, ErDto.class));
+				}
+			});
+		}
+		// 压缩文件夹
+		File zip = ZipUtil.zip(tempFolder);
+		sysFile.setFileContent(FileUtil.readBytes(zip));
+		tempFolder.delete();
+		return sysFile;
 	}
 
 	/**
