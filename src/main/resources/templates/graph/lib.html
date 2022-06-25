@@ -74,7 +74,7 @@
 				<p class="title"
 					@click="$.openNewWindowDocProject(graph.docProjectUuid,graph.docCategoryUuid)">
 					<span class="category">{{category[graph.categoryCode]}}</span>
-					<span class="name" :title="graph.name">{{graph.name}}</span>
+					<span class="name" :title="graph.docProjectName+'/'+graph.parentsCategorName">{{graph.docProjectName}}/{{graph.parentsCategorName}}</span>
 				</p>
 			</div>
 	    </div>

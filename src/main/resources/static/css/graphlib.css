@@ -181,14 +181,6 @@ input, textarea, select, button {
 	text-decoration: none;
 }
 
-.no-category-search .seek-head-select {
-	display: none;
-}
-
-.no-category-search .nav .banner-seek .box-text {
-    padding-left: 50px;
-}
-
 .seek-head-select {
 	width: 96px;
 	box-sizing: border-box;
