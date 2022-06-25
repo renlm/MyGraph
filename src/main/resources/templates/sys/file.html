@@ -130,7 +130,7 @@
 	 */
 	function search () {
 		$("#dataGrid").datagrid("load", {
-			creatorUserId: $("#creatorUserId").combogrid("getValue"),
+			creatorUserId: $("#creatorUserId").length > 0 ? $("#creatorUserId").combogrid("getValue") : null,
 			createdAt: $("#createdAt").textbox("getValue"),
 			originalFilename: $("#originalFilename").textbox("getValue")
 		});
