@@ -60,8 +60,7 @@ public class ConstVal {
 	 */
 	public enum Sys {
 
-		cfgSystemName("系统名称"), cfgSystemVersion("系统版本"), cfgSystemVersionPublishDate("发布日期"), cfgSiteBeian("网站备案号"),
-		cfgEnableRegistration("是否启用注册账号");
+		cfgSystemName("系统名称"), cfgSystemVersion("系统版本"), cfgSystemVersionPublishDate("发布日期"), cfgSiteBeian("网站备案号");
 
 		@Getter
 		private final String text;

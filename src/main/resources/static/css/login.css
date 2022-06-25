@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-@import "../scrollbar.css";
+@import "scrollbar.css";
 
-@import "../ie-warn.css";
+@import "ie-warn.css";
 
 html, body {
 	height: 100%;
@@ -16,7 +16,7 @@ body {
 }
 
 .box {
-	background: url("../../images/login-bg.jpg") no-repeat 80% center;
+	background: url("../images/login-bg.jpg") no-repeat 80% center;
 	background-size: cover;
 	margin: 0 auto;
 	position: relative;

@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysUser;
-import cn.renlm.graph.modular.sys.service.ISysConstService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
 import cn.renlm.graph.response.Result;
 
@@ -37,9 +34,6 @@ public class LoginController {
 	@Autowired
 	private ISysUserService iSysUserService;
 
-	@Autowired
-	private ISysConstService iSysConstService;
-
 	/**
 	 * 登录页
 	 * 
@@ -47,56 +41,7 @@ public class LoginController {
 	 */
 	@GetMapping("/login")
 	public String login() {
-		if (iSysConstService.getCfgEnableRegistration()) {
-			return "login/trendy";
-		}
-		return "login/classic";
-	}
-
-	/**
-	 * 注册页
-	 * 
-	 * @return
-	 */
-	@GetMapping("/register")
-	public String register() {
-		return "register";
-	}
-
-	/**
-	 * 注册账号
-	 * 
-	 * @param form
-	 * @param confirmpwd
-	 * @return
-	 */
-	@ResponseBody
-	@PostMapping("/doRegister")
-	public Result<?> doRegister(User form, String confirmpwd) {
-		try {
-			SysUser user = iSysUserService.getOne(Wrappers.<SysUser>lambdaQuery().func(wrapper -> {
-				wrapper.eq(SysUser::getUsername, form.getUsername());
-			}));
-			if (user != null) {
-				return Result.error("账号已存在");
-			}
-			if (!StrUtil.equals(form.getPassword(), confirmpwd)) {
-				return Result.error("两次输入的密码不一致");
-			}
-			if (!ReUtil.isMatch(ConstVal.password_reg, form.getPassword())) {
-				return Result.error(ConstVal.password_msg);
-			}
-			form.setUserId(IdUtil.simpleUUID().toUpperCase());
-			form.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
-			form.setNickname(ObjectUtil.defaultIfBlank(form.getNickname(), form.getUsername()));
-			form.setCreatedAt(new Date());
-			form.setEnabled(true);
-			iSysUserService.save(form);
-			return Result.success();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return Result.error("系统异常");
-		}
+		return "login";
 	}
 
 	/**

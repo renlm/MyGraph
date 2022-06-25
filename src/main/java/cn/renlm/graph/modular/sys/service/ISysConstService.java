@@ -1,7 +1,8 @@
 package cn.renlm.graph.modular.sys.service;
 
-import cn.renlm.graph.modular.sys.entity.SysConst;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import cn.renlm.graph.modular.sys.entity.SysConst;
 
 /**
  * <p>
@@ -20,12 +21,5 @@ public interface ISysConstService extends IService<SysConst> {
 	 * @return
 	 */
 	String getValue(String code);
-
-	/**
-	 * 是否启用账号注册
-	 * 
-	 * @return
-	 */
-	Boolean getCfgEnableRegistration();
 
 }
