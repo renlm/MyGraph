@@ -203,6 +203,14 @@ iframe.loading {
 	height: 39px;
 }
 
+.graph-body .graph-opts span.categoryName {
+	background: linear-gradient(135deg, #ffe6b6 0, #f26849 100%);
+	border-radius: 2px;
+	color: #6c4400;
+	vertical-align: top;
+	margin-left: 10px;
+}
+
 .graph-body .graph-opts a {
 	font-size: 18px;
 	margin: 0 0 0 10px;

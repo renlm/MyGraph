@@ -99,7 +99,7 @@ public class DocController {
 		if (ObjectUtil.isNotEmpty(markdown) && StrUtil.isNotBlank(markdown.getGraphUuid())) {
 			model.put("Mxgraph", Mxgraph.values());
 			model.put("graph", iGraphService.getOne(Wrappers.<Graph>lambdaQuery().func(wrapper -> {
-				wrapper.select(Graph::getUuid, Graph::getCategoryCode);
+				wrapper.select(Graph::getUuid, Graph::getCategoryCode, Graph::getCategoryName);
 				wrapper.eq(Graph::getUuid, markdown.getGraphUuid());
 				wrapper.eq(Graph::getVersion, markdown.getGraphVersion());
 			})));

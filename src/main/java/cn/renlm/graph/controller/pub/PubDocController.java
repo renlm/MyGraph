@@ -24,6 +24,7 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.dto.DocShareUser;
@@ -183,6 +184,13 @@ public class PubDocController {
 		model.put("markdown", markdown);
 		model.put("docCategory", docCategory);
 		model.put("fathers", fathers);
+		if (ObjectUtil.isNotEmpty(markdown) && StrUtil.isNotBlank(markdown.getGraphUuid())) {
+			model.put("graph", iGraphService.getOne(Wrappers.<Graph>lambdaQuery().func(wrapper -> {
+				wrapper.select(Graph::getUuid, Graph::getCategoryCode, Graph::getCategoryName);
+				wrapper.eq(Graph::getUuid, markdown.getGraphUuid());
+				wrapper.eq(Graph::getVersion, markdown.getGraphVersion());
+			})));
+		}
 		return "pub/docShareMarkdown";
 	}
 

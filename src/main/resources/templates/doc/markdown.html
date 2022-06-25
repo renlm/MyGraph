@@ -118,6 +118,7 @@
 			<div class="layui-form graph-opts" 
 				lay-filter="LAY-category-component">
 				<select lay-filter="component" 
+					th:if="${editPermission}"
 					th:disabled="${!editPermission}">
 					<option th:each="mx,iterStat : ${Mxgraph}" 
 						th:value="${mx.name}" 
@@ -139,6 +140,10 @@
 					onclick="$.openGraphLayerEditor($(this).data('uuid'), $(this).data('title'), onOpenEditor, onCloseEditor);">
 					<i class="fa fa-image"></i>
 				</a>
+				<span class="categoryName" 
+					th:if="${!#strings.isEmpty(graph?.categoryName) and !editPermission}" 
+					th:text="${graph?.categoryName}">
+				</span>
 			</div>
 			<iframe class="loading" th:src="@{'/graph/viewer?uuid='+${docCategory.uuid}}" scrolling="auto" frameborder="0"></iframe>
 		</div>

@@ -74,6 +74,10 @@
 					onclick="$.openNewGraphPub($(this).data('suuid'),$(this).data('muuid'));">
 					<i class="fa fa-share-square-o"></i>
 				</a>
+				<span class="categoryName" 
+					th:if="${!#strings.isEmpty(graph?.categoryName)}" 
+					th:text="${graph?.categoryName}">
+				</span>
 			</div>
 			<iframe class="loading" th:src="@{'/pub/doc/g/'+${shareUuid}+'?uuid='+${markdown?.uuid}}" scrolling="auto" frameborder="0"></iframe>
 		</div>
