@@ -55,6 +55,10 @@
 					onclick="$.openNewGraph($(this).data('uuid'),$(this).data('version'));">
 					<i class="fa fa-share-square-o"></i>
 				</a>
+				<span class="categoryName" 
+					th:if="${!#strings.isEmpty(graph?.categoryName)}" 
+					th:text="${graph?.categoryName}">
+				</span>
 			</div>
 			<iframe class="loading" th:src="@{'/graph/viewer?uuid='+${markdown.graphUuid}+'&version='+${markdown.graphVersion}}" scrolling="auto" frameborder="0"></iframe>
 		</div>
