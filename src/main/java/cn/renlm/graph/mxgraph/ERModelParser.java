@@ -207,6 +207,9 @@ public class ERModelParser {
 		// MySQL
 		String MySQL = FreemarkerUtil.read("ftl/MySQL.DDL.ftl", "ers", ers);
 		FileUtil.writeUtf8String(MySQL, folder + File.separator + "MySQL.sql");
+		// PostgreSQL
+		String PostgreSQL = FreemarkerUtil.read("ftl/PostgreSQL.DDL.ftl", "ers", ers);
+		FileUtil.writeUtf8String(PostgreSQL, folder + File.separator + "PostgreSQL.sql");
 		// 压缩文件夹
 		File zip = ZipUtil.zip(temp);
 		sysFile.setFileContent(FileUtil.readBytes(zip));
