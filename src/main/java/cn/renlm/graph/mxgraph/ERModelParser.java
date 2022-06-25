@@ -30,6 +30,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
+import cn.hutool.http.HtmlUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.common.Mxgraph;
 import cn.renlm.graph.common.TreeState;
@@ -49,6 +50,7 @@ import cn.renlm.graph.mxgraph.model.MxGraphModel;
 import cn.renlm.graph.mxgraph.model.Root;
 import cn.renlm.graph.mxgraph.model.UserObject;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.util.FreemarkerUtil;
 
 /**
  * ER图形解析器
@@ -184,16 +186,17 @@ public class ERModelParser {
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, graphUuid));
 		String fileName = CollUtil.getLast(StrUtil.splitTrim(graph.getName(), StrUtil.SLASH));
 		String date = DateUtil.format(new Date(), DatePattern.NORM_DATETIME_MINUTE_PATTERN);
-		sysFile.setOriginalFilename(FileNameUtil.cleanInvalid(fileName + date + ".zip"));
+		sysFile.setOriginalFilename(FileNameUtil.cleanInvalid(fileName + StrUtil.DOT + date + ".zip"));
 		// 创建临时目录
 		File temp = FileUtil.createTempFile("DDL", IdUtil.getSnowflakeNextIdStr(), true);
-		String tempPath = temp.getAbsolutePath();
 		temp.delete();
-		File tempFolder = FileUtil.newFile(tempPath);
+		temp.mkdir();
+		String folder = FileUtil.normalize(temp.getAbsolutePath());
 		// 生成DDL
 		List<ErDto> ers = CollUtil.newArrayList();
 		if (StrUtil.isNotBlank(graph.getXml())) {
-			List<String> strs = ReUtil.findAllGroup1("<div class='ermodel-json'[^>]*?>([^<>]*?)</div>", graph.getXml());
+			String unescape = HtmlUtil.unescape(graph.getXml());
+			List<String> strs = ReUtil.findAllGroup1("<div class='ermodel-json'[^>]*?>([^<>]*?)</div>", unescape);
 			strs.forEach(str -> {
 				String decodeStr = Base64.decodeStr(str);
 				if (JSONUtil.isTypeJSONObject(decodeStr)) {
@@ -201,10 +204,13 @@ public class ERModelParser {
 				}
 			});
 		}
+		// MySQL
+		String MySQL = FreemarkerUtil.read("ftl/MySQL.DDL.ftl", "ers", ers);
+		FileUtil.writeUtf8String(MySQL, folder + File.separator + "MySQL.sql");
 		// 压缩文件夹
-		File zip = ZipUtil.zip(tempFolder);
+		File zip = ZipUtil.zip(temp);
 		sysFile.setFileContent(FileUtil.readBytes(zip));
-		tempFolder.delete();
+		temp.delete();
 		return sysFile;
 	}
 
