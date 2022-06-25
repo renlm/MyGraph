@@ -132,6 +132,13 @@
 					onclick="$.openNewGraph($(this).data('uuid'));">
 					<i class="fa fa-share-square-o"></i>
 				</a>
+				<a href="javascript:void(0);" 
+					th:class="|downloadERDDL${graph?.categoryCode == 'ER' ? '' : ' layui-hide'}|"
+					title="DDL下载"
+					th:data-uuid="${graph?.uuid}"
+					onclick="$.downloadERDDL($(this).data('uuid'));">
+					<i class="fa fa-download"></i>
+				</a>
 				<a href="javascript:void(0);"
 					title="画图"
 		        	th:if="${editPermission}"
@@ -323,6 +330,11 @@
 		      				function (response) {
 		      					if(response.statusCode === 200) {
 		    						layer.close($layerIndex);
+		    						if (data.value === "ER") {
+		    							$(".downloadERDDL").removeClass("layui-hide");
+		    						} else {
+		    							$(".downloadERDDL").addClass("layui-hide");
+		    						}
 		    					} else {
 		    						layer.msg(response.message, { icon: 5, shift:6, time: 1200, offset: '0px' });
 		    					}

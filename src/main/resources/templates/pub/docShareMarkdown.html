@@ -74,6 +74,13 @@
 					onclick="$.openNewGraphPub($(this).data('suuid'),$(this).data('muuid'));">
 					<i class="fa fa-share-square-o"></i>
 				</a>
+				<a href="javascript:void(0);" 
+					th:class="|downloadERDDL${graph?.categoryCode == 'ER' ? '' : ' layui-hide'}|"
+					title="DDL下载"
+					th:data-uuid="${graph?.uuid}"
+					onclick="$.downloadERDDL($(this).data('uuid'));">
+					<i class="fa fa-download"></i>
+				</a>
 				<span class="categoryName" 
 					th:if="${!#strings.isEmpty(graph?.categoryName)}" 
 					th:text="${graph?.categoryName}">
