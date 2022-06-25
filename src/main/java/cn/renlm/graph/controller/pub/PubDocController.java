@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,6 +38,7 @@ import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.service.PubDocService;
+import cn.renlm.graph.util.RedisUtil;
 import cn.renlm.graph.util.TreeExtraUtil;
 
 /**
@@ -209,6 +211,24 @@ public class PubDocController {
 		}
 		Markdown markdown = iMarkdownService.getOne(Wrappers.<Markdown>lambdaQuery().eq(Markdown::getUuid, uuid));
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, markdown.getGraphUuid()));
+		graph.setXml(StrUtil.isBlank(graph.getXml()) ? null : Base64.encodeUrlSafe(graph.getXml()));
+		model.put("graphJson", JSONUtil.toJsonStr(graph));
+		return "graph/viewer";
+	}
+
+	/**
+	 * 图形预览（封面任务）
+	 * 
+	 * @param request
+	 * @param model
+	 * @param key
+	 * @return
+	 */
+	@GetMapping("/gtv/{key}")
+	public String graphTempView(HttpServletRequest request, ModelMap model, @PathVariable String key) {
+		RedisTemplate<String, String> edisTemplate = RedisUtil.getRedisTemplate();
+		String uuid = edisTemplate.opsForValue().get(key);
+		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, uuid));
 		graph.setXml(StrUtil.isBlank(graph.getXml()) ? null : Base64.encodeUrlSafe(graph.getXml()));
 		model.put("graphJson", JSONUtil.toJsonStr(graph));
 		return "graph/viewer";

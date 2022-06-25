@@ -116,8 +116,7 @@ public class GraphCoverQueue {
 				wrapper.in(Graph::getUuid, uuid);
 			}));
 		});
-		spider.addUrl(
-				myConfigProperties.getCtx() + "/graph/viewer?headless=true&fitWindow=" + fitWindow + "&uuid=" + uuid);
+		spider.addUrl(myConfigProperties.getCtx() + "/pub/doc/gtv/" + key + "?headless=true&fitWindow=" + fitWindow);
 		spider.run();
 	}
 

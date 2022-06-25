@@ -216,7 +216,7 @@ public class GraphController {
 			Result<Graph> result = iGraphService.saveEditor(user, form);
 			String key = GraphCoverQueue.QUEUE + IdUtil.simpleUUID().toUpperCase();
 			RedisTemplate<String, String> edisTemplate = RedisUtil.getRedisTemplate();
-			edisTemplate.opsForValue().set(key, form.getUuid(), 30, TimeUnit.DAYS);
+			edisTemplate.opsForValue().set(key, form.getUuid(), 7, TimeUnit.DAYS);
 			AmqpUtil.createQueue(GraphCoverQueue.EXCHANGE, GraphCoverQueue.ROUTINGKEY, key);
 			return result;
 		} catch (Exception e) {

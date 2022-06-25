@@ -76,7 +76,7 @@ public class ErController {
 			if (result.isSuccess()) {
 				String key = GraphCoverQueue.QUEUE + IdUtil.simpleUUID().toUpperCase();
 				RedisTemplate<String, String> edisTemplate = RedisUtil.getRedisTemplate();
-				edisTemplate.opsForValue().set(key, form.getUuid(), 30, TimeUnit.DAYS);
+				edisTemplate.opsForValue().set(key, form.getUuid(), 7, TimeUnit.DAYS);
 				AmqpUtil.createQueue(GraphCoverQueue.EXCHANGE, GraphCoverQueue.ROUTINGKEY, key);
 				return Result.success().setMessage("ER图已生成，请到归属文档中查看");
 			}
