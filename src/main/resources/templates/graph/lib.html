@@ -62,16 +62,17 @@
 	        <div class="masonry__column"></div>
 	        <div class="masonry__item"
 	        	v-for="(graph,index) in response.records" 
-				v-bind:data-id="graph.id"
-				@click="$.openGraphViewer(graph.uuid,graph.name)">
-				<div class="min-img">
+				v-bind:data-id="graph.id">
+				<div class="min-img"
+					@click="$.openGraphViewer(graph.uuid,graph.name)">
 					<img :alt="graph.text"
-						:title="'创作者：'+graph.creatorNickname"
+						:title="'作者：'+graph.creatorNickname"
 						:src="graph.cover?(ctx+'/sys/file/download/'+graph.cover+'?inline'):defaultImgSrc"
 						@error="nofind($event)"
 					/>
 				</div>
-				<p class="title">
+				<p class="title"
+					@click="$.openNewWindowDocProject(graph.docProjectUuid,graph.docCategoryUuid)">
 					<span class="category">{{category[graph.categoryCode]}}</span>
 					<span class="name" :title="graph.name">{{graph.name}}</span>
 				</p>
