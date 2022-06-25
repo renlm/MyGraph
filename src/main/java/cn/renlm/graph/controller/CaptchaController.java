@@ -1,6 +1,5 @@
 package cn.renlm.graph.controller;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -15,10 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.code.kaptcha.Producer;
 
-import cn.hutool.captcha.CaptchaUtil;
-import cn.hutool.captcha.LineCaptcha;
-import cn.hutool.core.img.ImgUtil;
-import cn.hutool.core.util.RandomUtil;
 import cn.renlm.graph.common.ConstVal;
 import lombok.Cleanup;
 import lombok.SneakyThrows;
@@ -35,25 +30,6 @@ public class CaptchaController {
 
 	@Autowired
 	private Producer producer;
-
-	/**
-	 * 图片
-	 * 
-	 * @param request
-	 * @param response
-	 */
-	@SneakyThrows
-	@GetMapping("/captcha")
-	public void captcha(HttpServletRequest request, HttpServletResponse response) {
-		int codeCount = 3;
-		String code = RandomUtil.randomNumbers(codeCount);
-		LineCaptcha captcha = CaptchaUtil.createLineCaptcha(108, 38, codeCount, 24);
-		Image image = captcha.createImage(code);
-		request.getSession().setAttribute(ConstVal.CAPTCHA_SESSION_KEY, code);
-		@Cleanup
-		ServletOutputStream out = response.getOutputStream();
-		ImgUtil.write(image, ImgUtil.IMAGE_TYPE_PNG, out);
-	}
 
 	/**
 	 * 图片
