@@ -1,9 +1,15 @@
 package cn.renlm.graph.controller.graph;
 
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -30,6 +36,8 @@ import cn.renlm.graph.modular.graph.entity.Graph;
 import cn.renlm.graph.modular.graph.entity.GraphHistory;
 import cn.renlm.graph.modular.graph.service.IGraphHistoryService;
 import cn.renlm.graph.modular.graph.service.IGraphService;
+import cn.renlm.graph.modular.sys.entity.SysFile;
+import cn.renlm.graph.mxgraph.ERModelParser;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.RedisUtil;
 
@@ -42,6 +50,9 @@ import cn.renlm.graph.util.RedisUtil;
 @Controller
 @RequestMapping("/graph")
 public class GraphController {
+
+	@Autowired
+	private ERModelParser eRModelParser;
 
 	@Resource
 	private IGraphService iGraphService;
@@ -222,6 +233,26 @@ public class GraphController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
+		}
+	}
+
+	/**
+	 * ER模型DDL下载
+	 * 
+	 * @param request
+	 * @param response
+	 * @param uuid
+	 * @throws IOException
+	 */
+	@GetMapping("/downloadERDDL")
+	public void downloadERDDL(HttpServletRequest request, HttpServletResponse response, String uuid)
+			throws IOException {
+		SysFile file = eRModelParser.generateDDL(uuid);
+		String filename = URLEncoder.encode(file.getOriginalFilename(), "UTF-8");
+		response.setHeader("Content-Type", file.getFileType());
+		response.setHeader("Content-Disposition", "attachment;fileName=" + filename);
+		try (ServletOutputStream os = response.getOutputStream()) {
+			os.write(file.getFileContent());
 		}
 	}
 }

@@ -33,6 +33,7 @@ import cn.renlm.graph.modular.er.service.IErService;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
 import cn.renlm.graph.modular.graph.service.IGraphService;
+import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.mxgraph.model.MxCell;
 import cn.renlm.graph.mxgraph.model.MxGeometry;
 import cn.renlm.graph.mxgraph.model.MxGraphModel;
@@ -160,6 +161,16 @@ public class ERModelParser {
 		int _ex = ex == null ? 0 : Convert.toInt(ex > 0 ? Math.ceil(ex) : Math.floor(ex));
 		int _ey = ey == null ? 0 : Convert.toInt(ey > 0 ? Math.ceil(ey) : Math.floor(ey));
 		return new Rectangle(_ix, _iy, _ex - _ix, _ey - _iy);
+	}
+
+	/**
+	 * 根据ER模型生成DDL
+	 * 
+	 * @param graphUuid
+	 * @return
+	 */
+	public SysFile generateDDL(String graphUuid) {
+		return null;
 	}
 
 	/**

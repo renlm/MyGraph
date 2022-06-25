@@ -37,6 +37,7 @@ import cn.renlm.graph.modular.markdown.entity.Markdown;
 import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
+import cn.renlm.graph.mxgraph.ERModelParser;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.service.PubDocService;
 import cn.renlm.graph.util.RedisUtil;
@@ -66,6 +67,9 @@ public class PubDocController {
 
 	@Autowired
 	private ISysFileService iSysFileService;
+
+	@Autowired
+	private ERModelParser eRModelParser;
 
 	/**
 	 * 验证密码
@@ -240,6 +244,34 @@ public class PubDocController {
 		graph.setXml(StrUtil.isBlank(graph.getXml()) ? null : Base64.encodeUrlSafe(graph.getXml()));
 		model.put("graphJson", JSONUtil.toJsonStr(graph));
 		return "graph/viewer";
+	}
+
+	/**
+	 * ER模型DDL下载
+	 * 
+	 * @param request
+	 * @param response
+	 * @param shareUuid
+	 * @param uuid
+	 * @throws IOException
+	 */
+	@GetMapping("/ger/{shareUuid}")
+	public void downloadERDDL(HttpServletRequest request, HttpServletResponse response, @PathVariable String shareUuid,
+			String uuid) throws IOException {
+		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
+		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
+			if (user == null || !StrUtil.equals(shareUuid, user.getShareUuid())) {
+				throw new RuntimeException("行为异常");
+			}
+		}
+		SysFile file = eRModelParser.generateDDL(uuid);
+		String filename = URLEncoder.encode(file.getOriginalFilename(), "UTF-8");
+		response.setHeader("Content-Type", file.getFileType());
+		response.setHeader("Content-Disposition", "attachment;fileName=" + filename);
+		try (ServletOutputStream os = response.getOutputStream()) {
+			os.write(file.getFileContent());
+		}
 	}
 
 	/**
