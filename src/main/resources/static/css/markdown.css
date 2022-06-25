@@ -192,6 +192,7 @@ iframe.loading {
 .graph-body .layui-form.graph-opts .layui-form-select {
 	float: left;
 	margin-top: -6px;
+	opacity: 0.75;
 }
 
 .graph-body .layui-form.graph-opts .layui-form-select>dl {
