@@ -13,8 +13,7 @@ INSERT INTO sys_role
 VALUES (10,  	'F536D20F2ED04A5A9BA07EB4EFF1ABB4',	'PLATFORM',				'平台管理', 	1, 		1, 		'closed', 	null),
 	   (1001,  	'286DCAA350354F1796D2B579D7D056E3',	'SUPER', 				'超级管理员', 	2, 		1, 		'open', 	10),
 	   (20,  	'B8BA2320FBD945448B7192C461D209EF',	'COMMON',				'通用权限', 	1, 		2, 		'closed', 	null),
-	   (2001,  	'D82CB5F509EE42578065B35699266FA3',	'GENERAL', 				'普通用户', 	2, 		1, 		'open', 	20),
-	   (2002,  	'A50FEAE499214D1EB2CAC5074DC878DE',	'SELF', 				'自主注册', 	2, 		2, 		'open', 	20)
+	   (2001,  	'D82CB5F509EE42578065B35699266FA3',	'GENERAL', 				'普通用户', 	2, 		1, 		'open', 	20)
 ;
 
 -- 组织机构
@@ -116,20 +115,6 @@ INSERT INTO sys_role_resource(
 FROM sys_resource
 WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '1002', '100201', '40', '50', '5001', '500101', '500102', '500103')
 ;
-INSERT INTO sys_role_resource(
-	sys_role_id,
-	sys_resource_id,	
-	alias,	
-	sort,	
-	default_home_page
-) SELECT 2002, -- sys_role_id	
-	id,	-- sys_resource_id				
-	null, -- alias	
-	sort, -- sort	
-	default_home_page -- default_home_page
-FROM sys_resource
-WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '1002', '100201', '40', '50', '5001', '500101', '500102', '500103')
-;
 
 -- 系统常量
 DELETE FROM sys_const;
@@ -138,8 +123,7 @@ INSERT INTO sys_const
 VALUES ('BA8A2BE8EFE24768942B7BA468CD3440',	'cfgSystemName',					'系统名称',			'MyGraph 在线画图',		1,		'系统名称'),
 	   ('1E358EC8EB6F4C9391EF59AC99326ABB',	'cfgSystemVersion',					'系统版本',			'v1.0.1',				2,		'系统当前上线版本'),
 	   ('1199F98DB51143B7B4825ADB91759E56',	'cfgSystemVersionPublishDate',		'发布日期',			'2022-04-29',			3,		'系统当前上线版本的发布日期'),
-	   ('828E0187483F4F768571C1A749DD63EF',	'cfgSiteBeian',						'网站备案号',			'京ICP备2021000671号',	4,		'网站上显示的备案号'),
-	   ('FE4640997D1648FD96835A414B4D6F37',	'cfgEnableRegistration',			'是否启用注册账号',		'否',					5,		'是/否')
+	   ('828E0187483F4F768571C1A749DD63EF',	'cfgSiteBeian',						'网站备案号',			'京ICP备2021000671号',	4,		'网站上显示的备案号')
 ;
 
 -- 数据字典
