@@ -17,6 +17,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.renlm.graph.common.CacheKey;
+import cn.renlm.graph.common.Role;
 import cn.renlm.graph.modular.sys.entity.SysConst;
 import cn.renlm.graph.modular.sys.service.ISysConstService;
 import cn.renlm.graph.response.Datagrid;
@@ -75,7 +76,7 @@ public class SysConstController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/save")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<?> ajaxSave(String constId, String val, Integer sort, String remark) {
 		try {
 			SysConst entity = iSysConstService.getById(constId);

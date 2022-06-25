@@ -24,6 +24,7 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
+import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysDict;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
@@ -115,7 +116,7 @@ public class SysDictController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/imp")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<List<String>> imp(Authentication authentication, MultipartFile file) {
 		try {
 			User user = (User) authentication.getPrincipal();
@@ -156,7 +157,7 @@ public class SysDictController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<SysDict> ajaxSave(HttpServletRequest request, SysDict sysDict) {
 		try {
 			return iSysDictService.ajaxSave(sysDict);

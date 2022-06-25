@@ -18,6 +18,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.Role;
 import cn.renlm.graph.modular.sys.dto.SysUserDto;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.response.Datagrid;
@@ -61,7 +62,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/grant")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<?> grant(String roleId, String resourceIds) {
 		try {
 			sysAuthAccessService.grant(roleId, StrUtil.splitTrim(resourceIds, COMMA));
@@ -81,7 +82,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/unGrant")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<?> unGrant(String roleId, String resourceIds) {
 		try {
 			sysAuthAccessService.unGrant(roleId, StrUtil.splitTrim(resourceIds, COMMA));
@@ -117,7 +118,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/addRoleMember")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<?> addRoleMember(HttpServletRequest request, String roleId, String userIds) {
 		try {
 			sysAuthAccessService.addRoleMember(roleId, StrUtil.splitTrim(userIds, COMMA));
@@ -138,7 +139,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/removeRoleMember")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<?> removeRoleMember(HttpServletRequest request, String roleId, String userIds) {
 		try {
 			sysAuthAccessService.removeRoleMember(roleId, StrUtil.splitTrim(userIds, COMMA));

@@ -17,6 +17,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.Role;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
 import cn.renlm.graph.modular.sys.service.ISysOrgService;
 import cn.renlm.graph.response.Result;
@@ -126,7 +127,7 @@ public class SysOrgController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<SysOrg> ajaxSave(HttpServletRequest request, SysOrg sysOrg) {
 		try {
 			return iSysOrgService.ajaxSave(sysOrg);

@@ -25,6 +25,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.dto.SysOrgDto;
 import cn.renlm.graph.modular.sys.dto.SysUserDto;
@@ -117,7 +118,7 @@ public class SysUserController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/resetPassword")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<String> resetPassword(HttpServletRequest request, String userIds) {
 		try {
 			if (StrUtil.isBlank(userIds)) {
@@ -171,7 +172,7 @@ public class SysUserController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<SysUserDto> ajaxSave(HttpServletRequest request, SysUserDto form) {
 		try {
 			return iSysUserService.ajaxSave(form);

@@ -18,6 +18,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.entity.SysRole;
@@ -145,7 +146,7 @@ public class SysResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<SysResource> ajaxSave(HttpServletRequest request, SysResource sysResource) {
 		try {
 			return iSysResourceService.ajaxSave(sysResource);
@@ -168,7 +169,7 @@ public class SysResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/updateRoleCustom")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<?> updateRoleCustom(HttpServletRequest request, String roleId, String resourceId, String alias,
 			Integer sort, Boolean defaultHomePage) {
 		try {

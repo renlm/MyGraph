@@ -24,6 +24,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
 import cn.hutool.json.JSONUtil;
+import cn.renlm.graph.common.Role;
 import cn.renlm.graph.modular.qrtz.JobBean;
 import cn.renlm.graph.modular.qrtz.JobConfig;
 import cn.renlm.graph.modular.qrtz.JobConfig.JobItem;
@@ -104,7 +105,7 @@ public class QuartzController {
 	 */
 	@ResponseBody
 	@PostMapping("/job/ajax/resume")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<?> jobAjaxResume(String triggerName) {
 		try {
 			iQrtzTriggersService.resume(triggerName);
@@ -123,7 +124,7 @@ public class QuartzController {
 	 */
 	@ResponseBody
 	@PostMapping("/job/ajax/pause")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<?> jobAjaxPause(String triggerName) {
 		try {
 			iQrtzTriggersService.pause(triggerName);
@@ -142,7 +143,7 @@ public class QuartzController {
 	 */
 	@ResponseBody
 	@PostMapping("/job/ajax/run")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<?> jobAjaxRun(String triggerName) {
 		try {
 			iQrtzTriggersService.run(triggerName);
@@ -184,7 +185,7 @@ public class QuartzController {
 	 */
 	@ResponseBody
 	@RequestMapping("/job/ajax/save")
-	@PreAuthorize("hasRole('SUPER')")
+	@PreAuthorize(Role.AdminSpEL)
 	public Result<?> jobAdd(String triggerName, String jobName, String jobClassName, String cronExpression,
 			String description, String jobDataMapJson) {
 		try {
