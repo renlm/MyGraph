@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -112,6 +113,7 @@ public class SysRoleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<SysRole> ajaxSave(HttpServletRequest request, SysRole sysRole) {
 		try {
 			return iSysRoleService.ajaxSave(sysRole);

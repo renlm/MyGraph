@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,6 +61,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/grant")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<?> grant(String roleId, String resourceIds) {
 		try {
 			sysAuthAccessService.grant(roleId, StrUtil.splitTrim(resourceIds, COMMA));
@@ -79,6 +81,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/unGrant")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<?> unGrant(String roleId, String resourceIds) {
 		try {
 			sysAuthAccessService.unGrant(roleId, StrUtil.splitTrim(resourceIds, COMMA));
@@ -114,6 +117,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/addRoleMember")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<?> addRoleMember(HttpServletRequest request, String roleId, String userIds) {
 		try {
 			sysAuthAccessService.addRoleMember(roleId, StrUtil.splitTrim(userIds, COMMA));
@@ -134,6 +138,7 @@ public class SysAuthAccessController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/removeRoleMember")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<?> removeRoleMember(HttpServletRequest request, String roleId, String userIds) {
 		try {
 			sysAuthAccessService.removeRoleMember(roleId, StrUtil.splitTrim(userIds, COMMA));

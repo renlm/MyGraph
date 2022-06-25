@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -114,6 +115,7 @@ public class SysDictController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/imp")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<List<String>> imp(Authentication authentication, MultipartFile file) {
 		try {
 			User user = (User) authentication.getPrincipal();
@@ -154,6 +156,7 @@ public class SysDictController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<SysDict> ajaxSave(HttpServletRequest request, SysDict sysDict) {
 		try {
 			return iSysDictService.ajaxSave(sysDict);

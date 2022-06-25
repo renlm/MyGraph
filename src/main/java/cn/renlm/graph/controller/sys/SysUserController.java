@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -116,6 +117,7 @@ public class SysUserController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/resetPassword")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<String> resetPassword(HttpServletRequest request, String userIds) {
 		try {
 			if (StrUtil.isBlank(userIds)) {
@@ -169,6 +171,7 @@ public class SysUserController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<SysUserDto> ajaxSave(HttpServletRequest request, SysUserDto form) {
 		try {
 			return iSysUserService.ajaxSave(form);

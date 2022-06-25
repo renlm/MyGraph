@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -144,6 +145,7 @@ public class SysResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/save")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<SysResource> ajaxSave(HttpServletRequest request, SysResource sysResource) {
 		try {
 			return iSysResourceService.ajaxSave(sysResource);
@@ -166,6 +168,7 @@ public class SysResourceController {
 	 */
 	@ResponseBody
 	@RequestMapping("/ajax/updateRoleCustom")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<?> updateRoleCustom(HttpServletRequest request, String roleId, String resourceId, String alias,
 			Integer sort, Boolean defaultHomePage) {
 		try {

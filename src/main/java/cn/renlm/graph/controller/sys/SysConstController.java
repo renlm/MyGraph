@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,6 +75,7 @@ public class SysConstController {
 	 */
 	@ResponseBody
 	@PostMapping("/ajax/save")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<?> ajaxSave(String constId, String val, Integer sort, String remark) {
 		try {
 			SysConst entity = iSysConstService.getById(constId);

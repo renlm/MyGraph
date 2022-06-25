@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.quartz.CronExpression;
 import org.quartz.JobDataMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -103,6 +104,7 @@ public class QuartzController {
 	 */
 	@ResponseBody
 	@PostMapping("/job/ajax/resume")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<?> jobAjaxResume(String triggerName) {
 		try {
 			iQrtzTriggersService.resume(triggerName);
@@ -121,6 +123,7 @@ public class QuartzController {
 	 */
 	@ResponseBody
 	@PostMapping("/job/ajax/pause")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<?> jobAjaxPause(String triggerName) {
 		try {
 			iQrtzTriggersService.pause(triggerName);
@@ -139,6 +142,7 @@ public class QuartzController {
 	 */
 	@ResponseBody
 	@PostMapping("/job/ajax/run")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<?> jobAjaxRun(String triggerName) {
 		try {
 			iQrtzTriggersService.run(triggerName);
@@ -180,6 +184,7 @@ public class QuartzController {
 	 */
 	@ResponseBody
 	@RequestMapping("/job/ajax/save")
+	@PreAuthorize("hasRole('SUPER')")
 	public Result<?> jobAdd(String triggerName, String jobName, String jobClassName, String cronExpression,
 			String description, String jobDataMapJson) {
 		try {
