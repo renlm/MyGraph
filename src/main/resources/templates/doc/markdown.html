@@ -119,7 +119,6 @@
 				lay-filter="LAY-category-component">
 				<select lay-filter="component" 
 					th:disabled="${!editPermission}">
-					<option>-- 图形分类 --</option>
 					<option th:each="mx,iterStat : ${Mxgraph}" 
 						th:value="${mx.name}" 
 						th:text="${mx.text}" 

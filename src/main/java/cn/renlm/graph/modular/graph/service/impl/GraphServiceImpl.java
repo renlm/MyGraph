@@ -182,6 +182,10 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 				form.setDeleted(entity.getDeleted());
 			}
 		}
+		if (StrUtil.isBlank(form.getCategoryCode())) {
+			form.setCategoryCode(Mxgraph.OTHER.name());
+			form.setCategoryName(Mxgraph.OTHER.getText());
+		}
 		boolean isInsert = form.getId() == null;
 		this.saveOrUpdate(form);
 		// 历史记录-图形设计
