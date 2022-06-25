@@ -192,11 +192,16 @@ iframe.loading {
 .graph-body .layui-form.graph-opts .layui-form-select {
 	float: left;
 	margin-top: -6px;
+}
+
+.graph-body .layui-form.graph-opts .layui-form-select>.layui-select-title
+	{
 	opacity: 0.75;
 }
 
 .graph-body .layui-form.graph-opts .layui-form-select>dl {
 	max-height: 375px;
+	opacity: 0.85;
 }
 
 .graph-body .layui-form.graph-opts .layui-form-select .layui-select-title input
