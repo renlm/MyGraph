@@ -23,7 +23,15 @@
 		<link rel="stylesheet" href="../../../css/markdown.css" />
     </head>
     <body>
-    	<div id="editormd" class="noborder"></div>
+    	<div class="layui-fluid">
+			<div class="md-body catalog-hide no-header">
+				<div class="md-catalog">
+					<div class="toggle collapse"></div>
+					<div class="catalog container"></div>
+				</div>
+				<div id="editormd" class="md-content"></div>
+			</div>
+		</div>
         <script type="text/javascript">
 	        function getQueryVariable(variable)
 	        {
@@ -55,6 +63,8 @@
 							path            : "../lib/",
 			                markdown		: $md,
 			                htmlDecode      : "style,script,iframe|on*", 
+			                tocContainer    : ".catalog.container",
+			                tocDropdown     : false,
 			              	tocm            : true,
 			             	emoji           : false,
 			              	taskList        : true,
@@ -62,6 +72,32 @@
 			              	flowChart       : true,
 			             	sequenceDiagram : true
 			            });
+						var $catalogs = $(".md-catalog>.catalog.container>.editormd-markdown-toc>ul.markdown-toc-list");
+						var $nav = $catalogs.find("li");
+			        	if ($nav.length > 0) {
+			        		$(".md-body.catalog-hide").removeClass("catalog-hide");
+			        		setTimeout(function () {
+			            		var $pos = [];
+			            		$nav.each(function (i, e) {
+			            			var $href = $(e).find("a").attr("href");
+			            			if ($href && $href.substr(0, 1) === "#") {
+			            				var $name = $href.substring(1);
+			            				var $reference = $("a.reference-link[name='" + $name + "']");
+			            				$pos[i] = $reference.offset().top;
+			            			}
+			            		});
+			                    $nav.eq(0).addClass("on");
+			            		$(window).scroll(function () {
+			                        var $top = $(document).scrollTop();
+			                        for (var i = 0; i < $pos.length; i++) {
+			                          if ($top > $pos[i] - 10) {
+			                              $catalogs.find("li.on").removeClass("on");
+			                              $nav.eq(i).addClass("on");
+			                          }
+			                        }
+			                    });
+			        		}, 1000);
+			        	}
 					}
 				}
 			});
