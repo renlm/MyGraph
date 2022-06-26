@@ -24,6 +24,7 @@
 	<input id="version" type="hidden" th:value="${markdown.version}"/>
 	<textarea id="markdown" style="display: none;" th:text="${markdown.content}"></textarea>
 	<div id="upload-drag" style="display: none;"></div>
+	<script th:src="@{/static/js/main.js}"></script>
 	<script type="text/javascript">
 		$(function () {
 			editormd("editormd", {
@@ -171,10 +172,11 @@
                         });
                 	},
                 	attachment: function (cm, icon, cursor, selection) {
-                		window.attachmentUploadCallback = function (originalFilename, url) {
+                		window.attachmentUploadCallback = function (originalFilename, size, url) {
                 			var $attachment = "\r\n```layui";
                 				$attachment+= "\r\n<a class='attachments' href='" + url + "' target='_blank'>";
                 			    $attachment+= "\r\n    <i class='fa fa-paperclip'></i> " + originalFilename;
+                			    $attachment+= "\r\n    <span>" + $.formatBytes(size) + "</span>";
                 			    $attachment+= "\r\n</a>";
                 			    $attachment+= "\r\n```\r\n";
                 			cm.replaceSelection($attachment);
@@ -216,7 +218,7 @@
 			done: function(res, index, upload) {
 				setTimeout(function() {
 	    			if(res.success === 1) {
-	    				window.attachmentUploadCallback(res.originalFilename, res.url);
+	    				window.attachmentUploadCallback(res.originalFilename, res.size, res.url);
 	    				layer.close(window.uploadeindex);
 	                } else {
 	                	layer.msg(res.message, { icon: 5, shift:6 });
