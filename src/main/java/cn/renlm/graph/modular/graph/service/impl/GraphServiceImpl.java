@@ -172,6 +172,8 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 				form.setId(entity.getId());
 				form.setVersion(entity.getVersion() + 1);
 				GraphDto.fillDefault(form);
+				form.setCategoryCode(entity.getCategoryCode());
+				form.setCategoryName(entity.getCategoryName());
 				form.setXml(Base64.decodeStr(form.getXml()));
 				form.setCreatedAt(entity.getCreatedAt());
 				form.setCreatorUserId(entity.getCreatorUserId());
