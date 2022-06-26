@@ -3,7 +3,9 @@ package cn.renlm.graph.modular.sys.service.impl;
 import static cn.hutool.core.text.StrPool.COMMA;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.stream.Collectors;
@@ -177,6 +179,27 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 		}
 		sysOrg.setSort(ObjectUtil.defaultIfNull(sysOrg.getSort(), 1));
 		this.saveOrUpdate(sysOrg);
+		// 子节点更新
+		Map<String, Integer> map = new LinkedHashMap<>();
+		List<Tree<Long>> roots = this.getTree(true, null);
+		TreeExtraUtil.resetLevel(roots, 1);
+		roots.forEach(root -> {
+			Tree<Long> node = TreeUtil.getNode(root, sysOrg.getId());
+			if (ObjectUtil.isNotEmpty(node)) {
+				List<Tree<Long>> childs = TreeExtraUtil.getAllNodes(CollUtil.newArrayList(node));
+				childs.forEach(child -> {
+					SysOrg so = BeanUtil.copyProperties(child, SysOrg.class);
+					map.put(so.getOrgId(), so.getLevel());
+				});
+			}
+		});
+		map.forEach((orgId, level) -> {
+			this.update(Wrappers.<SysOrg>lambdaUpdate().func(wrapper -> {
+				wrapper.set(SysOrg::getLevel, level);
+				wrapper.set(SysOrg::getUpdatedAt, new Date());
+				wrapper.eq(SysOrg::getOrgId, orgId);
+			}));
+		});
 		return Result.success(sysOrg);
 	}
 }

@@ -1,7 +1,9 @@
 package cn.renlm.graph.modular.sys.service.impl;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.stream.Collectors;
@@ -160,6 +162,27 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 		}
 		sysRole.setSort(ObjectUtil.defaultIfNull(sysRole.getSort(), 1));
 		this.saveOrUpdate(sysRole);
+		// 子节点更新
+		Map<String, Integer> map = new LinkedHashMap<>();
+		List<Tree<Long>> roots = this.getTree(true, null);
+		TreeExtraUtil.resetLevel(roots, 1);
+		roots.forEach(root -> {
+			Tree<Long> node = TreeUtil.getNode(root, sysRole.getId());
+			if (ObjectUtil.isNotEmpty(node)) {
+				List<Tree<Long>> childs = TreeExtraUtil.getAllNodes(CollUtil.newArrayList(node));
+				childs.forEach(child -> {
+					SysRole sr = BeanUtil.copyProperties(child, SysRole.class);
+					map.put(sr.getRoleId(), sr.getLevel());
+				});
+			}
+		});
+		map.forEach((roleId, level) -> {
+			this.update(Wrappers.<SysRole>lambdaUpdate().func(wrapper -> {
+				wrapper.set(SysRole::getLevel, level);
+				wrapper.set(SysRole::getUpdatedAt, new Date());
+				wrapper.eq(SysRole::getRoleId, roleId);
+			}));
+		});
 		return Result.success(sysRole);
 	}
 }

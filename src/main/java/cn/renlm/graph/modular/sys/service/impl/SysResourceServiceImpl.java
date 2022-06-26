@@ -220,6 +220,27 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 		}
 		sysResource.setSort(ObjectUtil.defaultIfNull(sysResource.getSort(), 1));
 		this.saveOrUpdate(sysResource);
+		// 子节点更新
+		Map<String, Integer> map = new LinkedHashMap<>();
+		List<Tree<Long>> roots = this.getTree(true, null, true);
+		TreeExtraUtil.resetLevel(roots, 1);
+		roots.forEach(root -> {
+			Tree<Long> node = TreeUtil.getNode(root, sysResource.getId());
+			if (ObjectUtil.isNotEmpty(node)) {
+				List<Tree<Long>> childs = TreeExtraUtil.getAllNodes(CollUtil.newArrayList(node));
+				childs.forEach(child -> {
+					SysResource sr = BeanUtil.copyProperties(child, SysResource.class);
+					map.put(sr.getResourceId(), sr.getLevel());
+				});
+			}
+		});
+		map.forEach((resourceId, level) -> {
+			this.update(Wrappers.<SysResource>lambdaUpdate().func(wrapper -> {
+				wrapper.set(SysResource::getLevel, level);
+				wrapper.set(SysResource::getUpdatedAt, new Date());
+				wrapper.eq(SysResource::getResourceId, resourceId);
+			}));
+		});
 		DynamicFilterInvocationSecurityMetadataSource.allConfigAttributes.clear();
 		return Result.success(sysResource);
 	}

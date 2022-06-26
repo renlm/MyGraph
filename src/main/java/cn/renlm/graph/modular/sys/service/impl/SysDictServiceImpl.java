@@ -3,7 +3,9 @@ package cn.renlm.graph.modular.sys.service.impl;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.OptionalInt;
 import java.util.concurrent.atomic.AtomicLong;
@@ -163,6 +165,27 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		}
 		sysDict.setSort(ObjectUtil.defaultIfNull(sysDict.getSort(), 1));
 		this.saveOrUpdate(sysDict);
+		// 子节点更新
+		Map<String, Integer> map = new LinkedHashMap<>();
+		List<Tree<Long>> roots = this.getTree();
+		TreeExtraUtil.resetLevel(roots, 1);
+		roots.forEach(root -> {
+			Tree<Long> node = TreeUtil.getNode(root, sysDict.getId());
+			if (ObjectUtil.isNotEmpty(node)) {
+				List<Tree<Long>> childs = TreeExtraUtil.getAllNodes(CollUtil.newArrayList(node));
+				childs.forEach(child -> {
+					SysDict sd = BeanUtil.copyProperties(child, SysDict.class);
+					map.put(sd.getUuid(), sd.getLevel());
+				});
+			}
+		});
+		map.forEach((uuid, level) -> {
+			this.update(Wrappers.<SysDict>lambdaUpdate().func(wrapper -> {
+				wrapper.set(SysDict::getLevel, level);
+				wrapper.set(SysDict::getUpdatedAt, new Date());
+				wrapper.eq(SysDict::getUuid, uuid);
+			}));
+		});
 		return Result.success(sysDict);
 	}
 
