@@ -43,12 +43,12 @@ spring:
     timeout: 6000
     password: K7^rr8df1702K8_^0l@GR_^Yhscl@GR12tcs.d^m89
     database: 2
-    client-name: mygraphtest
+    client-name: test
   rabbitmq:
-    virtual-host: /mygraphtest
+    virtual-host: /test
     host: renlm.cn
     port: 5672
-    username: mygraphtest
+    username: test
     password: MR1tMQdf1Q@7^_^02Kit8Rabb2K8bbiG70l@cs^_^YhmRa
     listener:
       direct:
@@ -59,8 +59,8 @@ spring:
       strict: true
       datasource:
         master:
-          url: jdbc:mysql://renlm.cn:3306/mygraphtest?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
-          username: mygraphtest
+          url: jdbc:mysql://renlm.cn:3306/test?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+          username: test
           password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
           driver-class-name: com.mysql.cj.jdbc.Driver
   quartz:
