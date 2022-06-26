@@ -30,6 +30,12 @@ html, body {
 	background-color: #FAFAFA !important;
 }
 
+.layui span.attachment-size {
+	font-size: 12px;
+    font-style: italic;
+    padding-left: 5px;
+}
+
 .echarts div {
 	border-radius: 4px;
 }

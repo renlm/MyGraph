@@ -174,10 +174,10 @@
                 	attachment: function (cm, icon, cursor, selection) {
                 		window.attachmentUploadCallback = function (originalFilename, size, url) {
                 			var $attachment = "\r\n```layui";
-                				$attachment+= "\r\n<a class='attachments' href='" + url + "' target='_blank'>";
+                				$attachment+= "\r\n<a class='attachment' href='" + url + "' target='_blank'>";
                 			    $attachment+= "\r\n    <i class='fa fa-paperclip'></i> " + originalFilename;
-                			    $attachment+= "\r\n    <span>" + $.formatBytes(size) + "</span>";
                 			    $attachment+= "\r\n</a>";
+                			    $attachment+= "\r\n<span class='attachment-size'>" + $.formatBytes(size) + "</span>";
                 			    $attachment+= "\r\n```\r\n";
                 			cm.replaceSelection($attachment);
                 		};
