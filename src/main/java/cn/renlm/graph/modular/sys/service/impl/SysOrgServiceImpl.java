@@ -4,6 +4,8 @@ import static cn.hutool.core.text.StrPool.COMMA;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -165,6 +167,15 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 				this.updateById(parent);
 			}
 		}
+		// 排序
+		if (sysOrg.getSort() == null) {
+			List<SysOrg> childs = this.findListByPid(sysOrg.getPid());
+			OptionalInt max = childs.stream().filter(Objects::nonNull).mapToInt(SysOrg::getSort).max();
+			if (max.isPresent()) {
+				sysOrg.setSort(max.getAsInt() + 1);
+			}
+		}
+		sysOrg.setSort(ObjectUtil.defaultIfNull(sysOrg.getSort(), 1));
 		this.saveOrUpdate(sysOrg);
 		return Result.success(sysOrg);
 	}

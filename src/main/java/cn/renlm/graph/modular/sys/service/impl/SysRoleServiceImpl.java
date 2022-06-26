@@ -2,6 +2,8 @@ package cn.renlm.graph.modular.sys.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -148,6 +150,15 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 				this.updateById(parent);
 			}
 		}
+		// 排序
+		if (sysRole.getSort() == null) {
+			List<SysRole> childs = this.findListByPid(sysRole.getPid());
+			OptionalInt max = childs.stream().filter(Objects::nonNull).mapToInt(SysRole::getSort).max();
+			if (max.isPresent()) {
+				sysRole.setSort(max.getAsInt() + 1);
+			}
+		}
+		sysRole.setSort(ObjectUtil.defaultIfNull(sysRole.getSort(), 1));
 		this.saveOrUpdate(sysRole);
 		return Result.success(sysRole);
 	}

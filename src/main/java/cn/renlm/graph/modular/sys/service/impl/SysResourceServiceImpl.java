@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -209,6 +210,15 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 				this.updateById(parent);
 			}
 		}
+		// 排序
+		if (sysResource.getSort() == null) {
+			List<SysResource> childs = this.findListByPid(sysResource.getPid());
+			OptionalInt max = childs.stream().filter(Objects::nonNull).mapToInt(SysResource::getSort).max();
+			if (max.isPresent()) {
+				sysResource.setSort(max.getAsInt() + 1);
+			}
+		}
+		sysResource.setSort(ObjectUtil.defaultIfNull(sysResource.getSort(), 1));
 		this.saveOrUpdate(sysResource);
 		DynamicFilterInvocationSecurityMetadataSource.allConfigAttributes.clear();
 		return Result.success(sysResource);

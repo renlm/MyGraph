@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.OptionalInt;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,7 @@ import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.dto.User;
@@ -150,6 +153,15 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 				this.updateById(parent);
 			}
 		}
+		// 排序
+		if (sysDict.getSort() == null) {
+			List<SysDict> childs = this.findListByPid(sysDict.getPid());
+			OptionalInt max = childs.stream().filter(Objects::nonNull).mapToInt(SysDict::getSort).max();
+			if (max.isPresent()) {
+				sysDict.setSort(max.getAsInt() + 1);
+			}
+		}
+		sysDict.setSort(ObjectUtil.defaultIfNull(sysDict.getSort(), 1));
 		this.saveOrUpdate(sysDict);
 		return Result.success(sysDict);
 	}
