@@ -23,6 +23,7 @@
 	<div id="editormd" class="noborder"></div>
 	<input id="version" type="hidden" th:value="${markdown.version}"/>
 	<textarea id="markdown" style="display: none;" th:text="${markdown.content}"></textarea>
+	<div id="upload-drag" style="display: none;"></div>
 	<script type="text/javascript">
 		$(function () {
 			editormd("editormd", {
@@ -62,17 +63,20 @@
                 		toolbarIcons.unshift("|");
                 		toolbarIcons.unshift("Json5");
                     	toolbarIcons.unshift("save");
+                    	toolbarIcons.splice(toolbarIcons.indexOf("image") + 1, 0, "attachment");
                 	}
                 	return toolbarIcons;
                 },
                 toolbarIconsClass: {
                 	save: "fa fa-save",
-                	Json5: "fa fa-file-excel-o"
+                	Json5: "fa fa-file-excel-o",
+                	attachment: "fa fa-paperclip"
                 },
                 lang: {
                     toolbar: {
                     	save: "保存",
-                    	Json5: "Json文档"
+                    	Json5: "Json文档",
+                    	attachment: "附件"
                     }
                 },
                 toolbarHandlers: {
@@ -165,6 +169,9 @@
                                 }]
                             }
                         });
+                	},
+                	attachment: function (cm, icon, cursor, selection) {
+                		$("#upload-drag").click();
                 	}
                 },
                 onload: function () {
@@ -176,6 +183,40 @@
     	       		}
                 }
             });
+		});
+	</script>
+	<script type="text/javascript">
+		/**
+		 * 绑定附件上传事件
+		 */
+		layui.upload.render({
+			elem: "#upload-drag",
+			url: "[(@{/sys/file/upload})]?[(${_csrf.parameterName})]=[(${_csrf.token})]",
+			accept: "file",
+	    	size: 30 * 1024,
+			before: function(obj) {
+	            var layui_process = '<div style="margin: 20px 10px;" class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="uploader">';
+	    		layui_process 	 += 	'<div class="layui-progress-bar" lay-percent="0%"><span class="layui-progress-text">0%</span></div>';
+	    		layui_process    += '</div>';
+	    		window.uploadeindex = layer.open({ type: 1, title: "上传进度", skin: "layui-layer-rim", area: ["420px", "120px"], content: layui_process });
+	    		obj.preview(function(index, file, result){ window.filename = file.name; });
+			},
+	    	progress: function(percent) {
+	    		layui.element.progress("uploader", percent + "%");
+			},
+			done: function(res, index, upload) {
+				setTimeout(function() {
+	    			if(res.statusCode == 200) {
+	    				layer.close(window.uploadeindex);
+	    				console.log(res);
+	                } else {
+	                	layer.msg(res.message, { icon: 5, shift:6 });
+	                }
+	            }, 900);
+		    },
+		    error: function(index, upload) {
+		    	layer.msg("出错了", { icon: 5, shift:6 });
+		    }
 		});
 	</script>
 </body>

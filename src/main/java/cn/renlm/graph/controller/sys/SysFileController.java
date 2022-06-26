@@ -110,6 +110,7 @@ public class SysFileController {
 				entity.setCreatorUserId(user.getUserId());
 				entity.setCreatorNickname(user.getNickname());
 			});
+			sysFile.setFileContent(null);
 			return Result.success(sysFile);
 		} catch (Exception e) {
 			e.printStackTrace();

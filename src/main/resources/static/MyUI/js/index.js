@@ -507,6 +507,7 @@ function modifyPersonal () {
 					url: ctx + "/sys/file/upload",
 					accept: "images",
 				   	acceptMime: "image/*",
+	    			size: 30 * 1024,
 					before: function(obj) {
 						if (obj) {
 							window.uploadeindex = layer.load(2);
