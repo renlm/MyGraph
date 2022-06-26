@@ -194,10 +194,13 @@ public class MarkdownController {
 				entity.setCreatorNickname(user.getNickname());
 			});
 			String uri = myConfigProperties.getCtx() + "/pub/doc/f/" + sysFile.getFileId() + "?inline";
-			return MapUtil.builder().put("success", 1).put("message", "成功").put("url", uri).build();
+			return MapUtil.builder().put("success", 1).put("message", "成功")
+					.put("originalFilename", sysFile.getOriginalFilename()).put("size", sysFile.getSize())
+					.put("url", uri).build();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return MapUtil.builder().put("success", 0).put("message", "出错了").put("url", null).build();
+			return MapUtil.builder().put("success", 0).put("message", "出错了").put("originalFilename", null)
+					.put("size", null).put("url", null).build();
 		}
 	}
 }

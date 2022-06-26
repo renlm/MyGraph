@@ -171,6 +171,14 @@
                         });
                 	},
                 	attachment: function (cm, icon, cursor, selection) {
+                		window.attachmentUploadCallback = function (originalFilename, url) {
+                			var $attachment = "\r\n```layui";
+                				$attachment+= "\r\n<a class='attachments' href='" + url + "' target='_blank'>";
+                			    $attachment+= "\r\n    <i class='fa fa-paperclip'></i> " + originalFilename;
+                			    $attachment+= "\r\n</a>";
+                			    $attachment+= "\r\n```\r\n";
+                			cm.replaceSelection($attachment);
+                		};
                 		$("#upload-drag").click();
                 	}
                 },
@@ -191,7 +199,8 @@
 		 */
 		layui.upload.render({
 			elem: "#upload-drag",
-			url: "[(@{/sys/file/upload})]?[(${_csrf.parameterName})]=[(${_csrf.token})]",
+			url: "[(@{/markdown/uploadFile})]?[(${_csrf.parameterName})]=[(${_csrf.token})]",
+			field: "editormd-image-file",
 			accept: "file",
 	    	size: 30 * 1024,
 			before: function(obj) {
@@ -206,9 +215,9 @@
 			},
 			done: function(res, index, upload) {
 				setTimeout(function() {
-	    			if(res.statusCode == 200) {
+	    			if(res.success === 1) {
+	    				window.attachmentUploadCallback(res.originalFilename, res.url);
 	    				layer.close(window.uploadeindex);
-	    				console.log(res);
 	                } else {
 	                	layer.msg(res.message, { icon: 5, shift:6 });
 	                }
