@@ -372,9 +372,9 @@
 	        	var id = $(this).data('id');
 	        	var row = $('#treeGrid').treegrid('find', id);
 	            if (item.id === 'mm-addSub') {
-	            	
+	            	roleDialog(2, row.id);
 	            } else if (item.id === 'mm-edit') {
-	            	
+	            	roleDialog(3, row.id);
 	            }
 	        }
 	    });
@@ -382,12 +382,13 @@
     	/**
     	 * 弹窗
          * @param type 1：新增根节点，2：新增子节点，3：编辑
+         * @param selectedId 已选中的节点id
     	 */
-    	function roleDialog (type) {
+    	function roleDialog (type, selectedId) {
     		var isAdd = true;
     		var dialogHref = ctx + '/sys/role/dialog';
     		if (type === 2 || type === 3) {
-        		var selected = $('#treeGrid').treegrid('getSelected');
+    			var selected = (typeof selectedId === 'undefined') ? $('#treeGrid').treegrid('getSelected') : $('#treeGrid').treegrid('find', selectedId);
         		if (selected) {
         			if (type === 2) {
         				dialogHref += '?pid=' + selected.id;
