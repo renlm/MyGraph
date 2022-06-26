@@ -246,7 +246,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 						List<CharSequence> parents = TreeUtil.getParentsName(child, true);
 						CollUtil.removeBlank(parents);
 						CollUtil.reverse(parents);
-						String parentsName = StrUtil.join(StrUtil.SLASH, projectName, parents);
+						String parentsName = StrUtil.join(StrUtil.SLASH, parents);
 						map.put(dc.getUuid(), new Object[] { parentsName, dc.getLevel() });
 					});
 				}
@@ -255,7 +255,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 				String parentsName = Convert.toStr(arr[0]);
 				int level = Convert.toInt(arr[1]);
 				iMarkdownService.update(Wrappers.<Markdown>lambdaUpdate().func(wrapper -> {
-					wrapper.set(Markdown::getName, parentsName);
+					wrapper.set(Markdown::getName, StrUtil.join(StrUtil.SLASH, projectName, parentsName));
 					wrapper.set(Markdown::getUpdatedAt, new Date());
 					wrapper.eq(Markdown::getUuid, docCategoryUuid);
 				}));
