@@ -314,6 +314,10 @@ p.title .category {
 	color: #6c4400;
 }
 
+p.title .category+span:hover {
+	text-decoration: underline;
+}
+
 .wrap .layui-table-page {
 	margin-top: 20px;
 	margin-bottom: 15px;
