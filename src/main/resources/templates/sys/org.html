@@ -4,6 +4,11 @@
     <title>组织机构</title>
 </head>
 <body layout:fragment="content" class="myui">
+	<div id="mm" class="submenubutton" style="width: 140px;display: none;">
+	    <div id="mm-addSub" iconCls="fa fa-plus">新增子级</div>
+	    <div class="menu-sep"></div>
+	    <div id="mm-edit" iconCls="fa fa-edit">编辑</div>
+	</div>
 	<div class="easyui-layout"
     	data-options="fit:true">
     	<!-- 左侧 -->
@@ -41,7 +46,14 @@
 				     	if (tabIframe) {
 				     		tabIframe.contentWindow.location.href = url;
 				     	}
-					}
+					},
+			        onContextMenu: function (e, row) {
+			        	e.preventDefault();
+			            $('#mm').menu('show', {
+			           		left: e.pageX,
+			             	top: e.pageY
+			         	}).data('id', row.id);
+			        }
               	">
 				<thead>
                		<tr>
@@ -105,6 +117,18 @@
    		</a>
     </div>
     <script type="text/javascript">
+	    $('#mm').menu({
+	        onClick: function (item) {
+	        	var id = $(this).data('id');
+	        	var row = $('#treeGrid').treegrid('find', id);
+	            if (item.id === 'mm-addSub') {
+	            	
+	            } else if (item.id === 'mm-edit') {
+	            	
+	            }
+	        }
+	    });
+    
     	/**
     	 * 弹窗
          * @param type 1：新增根节点，2：新增子节点，3：编辑
