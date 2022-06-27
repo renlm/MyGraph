@@ -174,6 +174,7 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 				GraphDto.fillDefault(form);
 				form.setCategoryCode(entity.getCategoryCode());
 				form.setCategoryName(entity.getCategoryName());
+				form.setCover(entity.getCover());
 				form.setXml(Base64.decodeStr(form.getXml()));
 				form.setCreatedAt(entity.getCreatedAt());
 				form.setCreatorUserId(entity.getCreatorUserId());
@@ -182,6 +183,7 @@ public class GraphServiceImpl extends ServiceImpl<GraphMapper, Graph> implements
 				form.setUpdatorUserId(user.getUserId());
 				form.setUpdatorNickname(user.getNickname());
 				form.setDeleted(entity.getDeleted());
+				form.setRemark(entity.getRemark());
 			}
 		}
 		if (StrUtil.isBlank(form.getCategoryCode())) {
