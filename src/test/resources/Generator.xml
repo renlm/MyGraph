@@ -5,7 +5,7 @@
 
 	<url>jdbc:mysql://renlm.cn:3306/dev</url>
 	<username>dev</username>
-	<password>Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504</password>
+	<password>K86erp7ssdi^_fyIMYmf4Kwt^tn50jl4bn</password>
 
 	<module name="sys" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="sys_org" entity="true" />
