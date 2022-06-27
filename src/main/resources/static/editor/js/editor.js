@@ -69,6 +69,7 @@
 					dbTableSelector({ id: 'dbTableSelector', width: 850, height: 512 }, 
 						function (checkedErs) {
 							var __selectionCells = null;
+							checkedErs.reverse();
 							checkedErs.forEach(function(item, index) {
 								var __col = Math.ceil(index % __cols);
 			           			var __demo = $.FormatERModel(UI.sidebar, false, item);
