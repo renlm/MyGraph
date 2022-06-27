@@ -39,17 +39,17 @@ spring:
       WRITE_DATES_AS_TIMESTAMPS: true
   redis:
     host: renlm.cn
-    port: 6379
+    port: 6479
     timeout: 6000
-    password: K7^rr8df1702K8_^0l@GR_^Yhscl@GR12tcs.d^m89
+    password: K86erp7ssdi^_fyIMYmf4Kwt^tn50jl4bn
     database: 1
     client-name: dev
   rabbitmq:
-    virtual-host: /dev
+    virtual-host: dev
     host: renlm.cn
     port: 5672
     username: dev
-    password: MR1tMQdf1Q@7^_^02Kit8Rabb2K8bbiG70l@cs^_^YhmRa
+    password: K86erp7ssdi^_fyIMYmf4Kwt^tn50jl4bn
     listener:
       direct:
         missing-queues-fatal: false
@@ -61,7 +61,7 @@ spring:
         master:
           url: jdbc:mysql://renlm.cn:3306/dev?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
           username: dev
-          password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
+          password: K86erp7ssdi^_fyIMYmf4Kwt^tn50jl4bn
           driver-class-name: com.mysql.cj.jdbc.Driver
           init:
             schema: classpath:schema/schema.sql

@@ -43,7 +43,7 @@ spring:
     host: redis
     port: 6379
     timeout: 6000
-    password: K7^rr8df1702K8_^0l@GR_^Yhscl@GR12tcs.d^m89
+    password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
     database: 3
     client-name: mygraph
   rabbitmq:
@@ -51,7 +51,7 @@ spring:
     host: rabbitmq
     port: 5672
     username: mygraph
-    password: MR1tMQdf1Q@7^_^02Kit8Rabb2K8bbiG70l@cs^_^YhmRa
+    password: Kusbnjlsdi^df4K_fywm86erp7IMYt^tn504
     listener:
       direct:
         missing-queues-fatal: false
