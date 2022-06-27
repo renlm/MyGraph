@@ -44,8 +44,6 @@ ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/in
 ![Markdown文档](https://renlm.cn/images/demo/100201101.png "Markdown文档")
 ###### 文档-图形设计
 ![图形设计](https://renlm.cn/images/demo/100201102.png "图形设计")
-###### 文档-数据表格
-![数据表格](https://renlm.cn/images/demo/100201103.png "数据表格")
 ###### 收藏
 ![收藏](https://renlm.cn/images/demo/100202.png "收藏")
 ###### 分享
