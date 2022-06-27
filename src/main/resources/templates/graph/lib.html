@@ -64,7 +64,7 @@
 	        	v-for="(graph,index) in response.records" 
 				v-bind:data-id="graph.id">
 				<div class="min-img"
-					@click="$.openGraphViewer(graph.uuid,graph.name)">
+					@click="$.openGraphViewer(graph.uuid,graph.docCategoryName)">
 					<img :alt="graph.text"
 						:title="'作者：'+graph.creatorNickname"
 						:src="graph.cover?(ctx+'/sys/file/download/'+graph.cover+'?inline'):defaultImgSrc"
