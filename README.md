@@ -1,138 +1,112 @@
-# 简介
-ER模型在线设计与管理，整合一套后台模板，支持Markdown在线管理与服务器实时监控。  
-免费开源（木兰宽松许可证, 第2版）  
-ER图例（双击表可查看字段）：___<a href="https://mygraph.renlm.cn/graph/viewer?uuid=198124BBCF284A40BB24CA315A7B8E36&headless=false&fitWindow=false" target="_blank">MyGraph在线画图</a>___  
-Markdown扩展：___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___，___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___
+## 简介
+MyGraph 在线文档，集成语法增强版Markdown、在线画图、数据库设计、在线数据表格，由一套完整的权限模型控制，支持团队协作、版本控制与分享。  
 
-# 系统体验
-地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
+## 产品体验
+体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
 账号：S-renyy  
 密码（每5分钟重置一次）：Aac^123654.  
-项目部署相关请在体验系统查看详细文档
+<a href="https://mygraph.renlm.cn/pub/doc/s/7297BE3A11B64D1A8940E92ECBBCC873" target="_blank">系统手册</a>  
 
-# 功能特色
-1、支持从数据库生成ER图，新建、删除表，自由拖动连线，增、删、改、查、拖动排序字段，简洁操作加必要校验  
-2、自动计算图形尺寸，生成封面图片  
-3、用户管理、组织机构、角色管理（功能权限、授权人员、自定义）、登录日志  
-4、通用字典、系统常量、资源管理  
-5、定时任务  
-6、文件管理  
-7、服务器实时监控（两种风格）  
-8、Markdown在线编辑管理，并扩展了Markdown语法与工具（Json文档、Layui皮肤、Echarts图表），丰富展现形式。  
+## 功能清单
+### Markdown文档
+对语法和功能进行了增强扩展，新增独有的Json文档，扩展了Layui皮肤、Echarts图表、附件上传等功能。  
+___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___  
+___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___  
+### 在线画图
+支持流程图、UML、思维导图等常见图形。  
+自动计算图形尺寸，生成封面图片。  
+### 数据库设计
+支持从数据源选择表生成ER图，导出DDL语句。  
+无论是新系统的设计，还是梳理老项目的数据结构，都是十分犀利的工具。  
+目前支持MySQL、PostgreSQL，可轻松扩展其它类型的数据库支持。  
+自动计算图形尺寸，生成封面图片。  
+### 在线数据表格
+支持xlsx格式的Excel文件。  
+### 权限管理
+完整的后台权限设计，对数据安全的进行了增强。  
+### 服务器实时监控
+提供两种风格的服务器运行状态的实时监控。  
+### 团队协作
+支持团队协作、版本控制与分享，分享可以选择设置有效期和密码。  
 
-# 功能截图
-> ___图形设计-我的___
+## 功能截图
+### 工作台
+#### 在线画图
+##### 图形设计
+![图形设计](https://renlm.cn/images/demo/100101.png "图形设计")
+##### 数据源
+![数据源](https://renlm.cn/images/demo/100102.png "数据源")
+#### 文档管理
+##### 知识文库
+###### 我的项目
+![我的项目](https://renlm.cn/images/demo/100201.png "我的项目")
+###### 文档-Markdown
+![Markdown文档](https://renlm.cn/images/demo/100201101.png "Markdown文档")
+###### 文档-图形设计
+![图形设计](https://renlm.cn/images/demo/100201102.png "图形设计")
+###### 文档-数据表格
+![数据表格](https://renlm.cn/images/demo/100201103.png "数据表格")
+###### 收藏
+![收藏](https://renlm.cn/images/demo/100202.png "收藏")
+###### 分享
+![分享](https://renlm.cn/images/demo/100203.png "分享")
+###### 历史记录
+![历史记录](https://renlm.cn/images/demo/100204.png "历史记录")
+### 系统管理
+#### 权限管理
+##### 用户管理
+![用户管理](https://renlm.cn/images/demo/200101.png "用户管理")
+##### 组织机构
+![组织机构](https://renlm.cn/images/demo/200102.png "组织机构")
+##### 角色管理
+![角色管理](https://renlm.cn/images/demo/200103.png "角色管理")
+##### 登录日志
+![登录日志](https://renlm.cn/images/demo/200104.png "登录日志")
+#### 数据字典
+##### 通用字典
+![通用字典](https://renlm.cn/images/demo/200201.png "通用字典")
+##### 系统常量
+![系统常量](https://renlm.cn/images/demo/200202.png "系统常量")
+##### 资源管理
+![资源管理](https://renlm.cn/images/demo/200203.png "资源管理")
+#### 定时任务
+##### 任务列表
+![任务列表](https://renlm.cn/images/demo/200301.png "任务列表")
+##### 任务日志
+![任务日志](https://renlm.cn/images/demo/200302.png "任务日志")
+### 文件管理
+![文件管理](https://renlm.cn/images/demo/file.png "文件管理")
+### 服务器监控
+#### 风格一
+![风格一](https://renlm.cn/images/demo/300101.png "风格一")
+#### 风格二
+![风格二](https://renlm.cn/images/demo/300102.png "风格二")
+### 更多功能
+![更多功能](https://renlm.cn/images/demo/400101.png "更多功能")
 
-![图形设计-我的](https://renlm.cn/images/demo/1.png "图形设计-我的")
-
-> ___图形设计-公共图库___
-
-![图形设计-公共图库](https://renlm.cn/images/demo/2.png "图形设计-公共图库")
-
-> ___图形设计-数据源___
-
-![图形设计-数据源](https://renlm.cn/images/demo/3.png "图形设计-数据源")
-
-> ___编辑ER图（Ctrl + S 保存）___
-
-![编辑ER图（Ctrl + S 保存）](https://renlm.cn/images/demo/4.png "编辑ER图（Ctrl + S 保存）")
-
-> ___编辑表___
-
-![编辑表](https://renlm.cn/images/demo/5.png "编辑表")
-
-> ___选择表___
-
-![选择表](https://renlm.cn/images/demo/6.png "选择表")
-
-> ___我的字段库___
-
-![我的字段库](https://renlm.cn/images/demo/7.png "我的字段库")
-
-> ___系统管理-权限管理-用户管理___
-
-![系统管理-权限管理-用户管理](https://renlm.cn/images/demo/8.png "系统管理-权限管理-用户管理")
-
-> ___系统管理-权限管理-组织机构___
-
-![系统管理-权限管理-组织机构](https://renlm.cn/images/demo/9.png "系统管理-权限管理-组织机构")
-
-> ___系统管理-权限管理-角色管理___
-
-![系统管理-权限管理-角色管理](https://renlm.cn/images/demo/10.png "系统管理-权限管理-角色管理")
-
-> ___系统管理-权限管理-登录日志___
-
-![系统管理-权限管理-登录日志](https://renlm.cn/images/demo/11.png "系统管理-权限管理-登录日志")
-
-> ___系统管理-数据字典-通用字典___
-
-![系统管理-数据字典-通用字典](https://renlm.cn/images/demo/12.png "系统管理-数据字典-通用字典")
-
-> ___系统管理-数据字典-系统常量___
-
-![系统管理-数据字典-系统常量](https://renlm.cn/images/demo/13.png "系统管理-数据字典-系统常量")
-
-> ___系统管理-数据字典-资源管理___
-
-![系统管理-数据字典-资源管理](https://renlm.cn/images/demo/14.png "系统管理-数据字典-资源管理")
-
-> ___系统管理-数据字典-文档编辑___
-
-![系统管理-数据字典-文档编辑](https://renlm.cn/images/demo/15.png "系统管理-数据字典-文档编辑")
-
-> ___系统管理-定时任务-任务管理___
-
-![系统管理-定时任务-任务管理](https://renlm.cn/images/demo/16.png "系统管理-定时任务-任务管理")
-
-> ___服务器实时监控-风格1___
-
-![服务器实时监控-风格1](https://renlm.cn/images/demo/17.png "服务器实时监控-风格1")
-
-> ___服务器实时监控-风格2___
-
-![服务器实时监控-风格2](https://renlm.cn/images/demo/18.png "服务器实时监控-风格2")
-
-> ___文件管理___
-
-![文件管理](https://renlm.cn/images/demo/19.png "文件管理")
-
-> ___帮助文档___
-
-![帮助文档](https://renlm.cn/images/demo/20.png "帮助文档")
-
-> ___更多功能___
-
-![更多功能](https://renlm.cn/images/demo/21.png "更多功能")
-
-# 主要技术组件
-SpringBoot + MyBatis-plus + Hutool + My-Plugin  
+## 主要技术组件
+SpringBoot + MyBatis-plus + My-Plugin  
 MySQL + Redis + Rabbitmq  
 Chrome + Chromedriver  
-EasyUI + Mxgraph + Editor.md
+EasyUI + Mxgraph + Editor.md  
 
-# 本地化部署
-1、数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据），项目默认启动test环境，启动dev环境会重建库。
+## 本地化部署
+### 初始账号
 ```
-<1>.初始账号（超级管理员）：S-linghc，密码：Aac^123654.
-<2>.初始账号（普通用户）：S-renyy，密码：Aac^123654.
+超级管理员：S-linghc，密码：Aac^123654.
+普通用户：S-renyy，密码：Aac^123654.
 ```
-2、本地化部署请修改redis、mq队列、数据库的地址账号及密码  
-3、生成封面用到了谷歌浏览器驱动，请修改驱动地址  
-4、配置文件中的自定义参数请修改为自己的项目地址  
-
-> ___数据库初始脚本___
-
+### 数据库初始脚本
+数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据）。  
+项目默认启动test环境，启动dev环境会重建库。  
 ![数据库初始脚本](https://renlm.cn/images/demo/100.png "数据库初始脚本")
-
-> ___redis、mq队列、数据库___
-
-![redis、mq队列、数据库](https://renlm.cn/images/demo/102.png "redis、mq队列、数据库")
-
-> ___谷歌浏览器驱动___
-
-![谷歌浏览器驱动](https://renlm.cn/images/demo/103.png "谷歌浏览器驱动")
-
-> ___修改自定义参数（服务器监控websocket配置等需要）___
-
-![修改自定义参数](https://renlm.cn/images/demo/101.png "修改自定义参数")
+### Redis、Rabbitmq队列、数据库
+本地化部署请修改Redis、Rabbitmq队列、数据库的地址账号及密码  
+![redis、mq队列、数据库](https://renlm.cn/images/demo/101.png "redis、mq队列、数据库")
+### 谷歌浏览器驱动
+生成封面用到了谷歌浏览器驱动，请修改驱动地址  
+![谷歌浏览器驱动](https://renlm.cn/images/demo/102.png "谷歌浏览器驱动")
+### 修改自定义参数
+配置文件中的自定义参数请修改为自己的项目地址  
+服务器监控Websocket配置等需要  
+![修改自定义参数](https://renlm.cn/images/demo/103.png "修改自定义参数")
