@@ -41,7 +41,7 @@ spring:
     host: renlm.cn
     port: 6479
     timeout: 6000
-    password: MYKtp41ust^eeerpn5wK4m^_87sfy6wlflq7diI
+    password: K86erp7ssdi^_fyIMYmf4Kwt^tn50jl4bn
     database: 2
     client-name: test
   rabbitmq:
