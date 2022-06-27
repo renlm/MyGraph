@@ -5,7 +5,7 @@ MyGraph 在线文档，集成语法增强版Markdown、在线画图、数据库�
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
 账号：S-renyy  
 密码（每5分钟重置一次）：Aac^123654.  
-<a href="https://mygraph.renlm.cn/pub/doc/s/7297BE3A11B64D1A8940E92ECBBCC873" target="_blank">系统手册</a>  
+<a href="https://mygraph.renlm.cn/pub/doc/s/E42FB06DEC2545D6AC2947C5BF3DC750" target="_blank">系统手册</a>  
 
 ## 功能清单
 ### Markdown文档
