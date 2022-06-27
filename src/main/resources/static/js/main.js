@@ -210,8 +210,8 @@
 			window.editPwdLayerIndex = layer.open({
 				type: 2, 
 				title: '修改密码',
-				offset: '200px',
-				area: ['500px', '303px'],
+				offset: '160px',
+				area: ['500px', '300px'],
 				skin: 'layui-layer-rim',
 				content: [ctx + '/modifyPwd', 'no']
 			});
