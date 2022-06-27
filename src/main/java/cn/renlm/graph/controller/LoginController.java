@@ -58,13 +58,14 @@ public class LoginController {
 	 * 修改密码
 	 * 
 	 * @param authentication
+	 * @param _password
 	 * @param password
 	 * @param confirmpwd
 	 * @return
 	 */
 	@ResponseBody
 	@PostMapping("/doModifyPwd")
-	public Result<?> doModifyPwd(Authentication authentication, String password, String confirmpwd) {
+	public Result<?> doModifyPwd(Authentication authentication, String _password, String password, String confirmpwd) {
 		User user = (User) authentication.getPrincipal();
 		try {
 			if (!StrUtil.equals(password, confirmpwd)) {

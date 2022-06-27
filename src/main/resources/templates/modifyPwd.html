@@ -9,6 +9,18 @@
 			<div class="layui-col-md12">
 				<form class="layui-form">
 					<div class="layui-form-item">
+						<label class="layui-form-label">旧密码</label>
+						<div class="layui-input-block">
+							<input type="password" 
+								name="_password"
+								lay-verify="required" 
+								placeholder="请输入旧密码" 
+								autocomplete="new-password"
+								class="layui-input" 
+								/>
+						</div>
+					</div>
+					<div class="layui-form-item">
 						<label class="layui-form-label">新密码</label>
 						<div class="layui-input-block">
 							<input type="password" 
@@ -53,7 +65,7 @@
 			}
 			
 			$.post(ctx + "/doModifyPwd", 
-				{ password: data.field.password, confirmpwd: data.field.confirmpwd }, 
+				{ _password: data.field._password, password: data.field.password, confirmpwd: data.field.confirmpwd }, 
 				function(response) {
 					if(response.statusCode === 200) {
 						parent.layer.close(parent.window.editPwdLayerIndex);

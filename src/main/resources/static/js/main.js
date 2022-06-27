@@ -211,7 +211,7 @@
 				type: 2, 
 				title: '修改密码',
 				offset: '200px',
-				area: ['500px', '250px'],
+				area: ['500px', '303px'],
 				skin: 'layui-layer-rim',
 				content: [ctx + '/modifyPwd', 'no']
 			});
