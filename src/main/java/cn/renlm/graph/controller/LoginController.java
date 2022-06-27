@@ -67,7 +67,11 @@ public class LoginController {
 	@PostMapping("/doModifyPwd")
 	public Result<?> doModifyPwd(Authentication authentication, String _password, String password, String confirmpwd) {
 		User user = (User) authentication.getPrincipal();
+		User userDetails = iSysUserService.loadUserByUsername(user.getUsername());
 		try {
+			if (new BCryptPasswordEncoder().matches(_password, userDetails.getPassword())) {
+				return Result.error("密码错误");
+			}
 			if (!StrUtil.equals(password, confirmpwd)) {
 				return Result.error("两次输入的密码不一致");
 			}
