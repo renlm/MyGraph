@@ -170,15 +170,17 @@ public class GatewayConfig {
 
 		@Override
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
+			String accessKey = proxy.getAccessKey();
+			String secretKey = proxy.getSecretKey();
 			HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
-			rewrittenHeaders.set(HEADER_AccessKey, proxy.getAccessKey());
+			rewrittenHeaders.set(HEADER_AccessKey, accessKey);
 			String SESSION = ReUtil.getGroup1("SESSION=(.*?)(;|$)", rewrittenHeaders.getFirst(COOKIE));
 			SysUser user = getUserInfo(SESSION);
 			String userInfo = new StringBuffer(encodeUrlSafe(user == null ? EMPTY : toJsonStr(user))).toString();
 			String timeStamp = String.valueOf(DateUtil.current());
 			rewrittenHeaders.set(HEADER_UserInfo, userInfo);
 			rewrittenHeaders.set(HEADER_TimeStamp, timeStamp);
-			rewrittenHeaders.set(HEADER_TimeStamp, DigestUtil.sha256Hex(proxy.getSecretKey() + timeStamp + userInfo));
+			rewrittenHeaders.set(HEADER_Sha256Hex, DigestUtil.sha256Hex(secretKey + timeStamp + userInfo));
 			request.setHeaders(rewrittenHeaders);
 			HttpResponse response = execution.execute(request);
 			return response;
