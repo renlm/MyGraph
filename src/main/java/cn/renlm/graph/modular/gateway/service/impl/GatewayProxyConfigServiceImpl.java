@@ -1,5 +1,8 @@
 package cn.renlm.graph.modular.gateway.service.impl;
 
+import static cn.hutool.core.text.StrPool.COMMA;
+import static cn.hutool.core.text.StrPool.SLASH;
+import static cn.renlm.graph.config.GatewayConfig.proxyPath;
 import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.requestMapping;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RegexRequestPathRewriterConfigurer.regexRequestPathRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestServerNameRewriterConfigurer.requestServerNameRewriter;
@@ -14,7 +17,6 @@ import com.github.mkopylec.charon.configuration.CharonConfigurer;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.graph.config.GatewayConfig;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.mapper.GatewayProxyConfigMapper;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
@@ -39,18 +41,18 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 		}));
 		configs.forEach(config -> {
 			String path = config.getPath();
-			while (StrUtil.startWith(path, StrUtil.SLASH)) {
-				path = StrUtil.removePrefix(path, StrUtil.SLASH);
+			while (StrUtil.startWith(path, SLASH)) {
+				path = StrUtil.removePrefix(path, SLASH);
 			}
-			while (StrUtil.endWith(path, StrUtil.SLASH)) {
-				path = StrUtil.removeSuffix(path, StrUtil.SLASH);
+			while (StrUtil.endWith(path, SLASH)) {
+				path = StrUtil.removeSuffix(path, SLASH);
 			}
-			List<String> outgoingServers = StrUtil.splitTrim(config.getOutgoingServers(), StrUtil.DOT);
+			List<String> outgoingServers = StrUtil.splitTrim(config.getOutgoingServers(), COMMA);
 			CollUtil.removeBlank(outgoingServers);
 			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
 				configurer.add(
 						requestMapping(path)
-							.pathRegex(GatewayConfig.proxyPath + path + "/.*")
+							.pathRegex(proxyPath + path + "/.*")
 							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
 							.set(regexRequestPathRewriter().paths("/" + path + "/(?<path>.*)", "/<path>"))
 							);
