@@ -4,8 +4,10 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
@@ -41,19 +43,17 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	private LocaleChangeInterceptor localeChangeInterceptor;
 
 	@Bean
-	public CorsFilter corsFilter() {
+	public FilterRegistrationBean<CorsFilter> corsFilter() {
 		CorsConfiguration config = new CorsConfiguration();
-		config.addAllowedOrigin("*");
+		config.addAllowedOriginPattern("*");
 		config.addAllowedHeader("*");
-		config.addExposedHeader("*");
-		config.addAllowedMethod("GET");
-		config.addAllowedMethod("PUT");
-		config.addAllowedMethod("POST");
-		config.addAllowedMethod("DELETE");
+		config.addAllowedMethod("*");
 		config.setAllowCredentials(true);
 		UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
 		corsConfigurationSource.registerCorsConfiguration(GatewayConfig.proxyPath + "**", config);
-		return new CorsFilter(corsConfigurationSource);
+		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource));
+		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		return bean;
 	}
 
 	@Override
