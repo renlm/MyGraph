@@ -126,7 +126,7 @@
 		<dependency>
 			<groupId>cn.renlm.plugins</groupId>
 			<artifactId>My-Plugin</artifactId>
-			<version>2.4.3</version>
+			<version>2.4.4</version>
 		</dependency>
 
 		<dependency>
@@ -285,6 +285,9 @@
 			<properties>
 				<profiles.active>properties/dev</profiles.active>
 			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 		</profile>
 		<profile>
 			<id>prod</id>
@@ -297,9 +300,6 @@
 			<properties>
 				<profiles.active>properties/test</profiles.active>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 		</profile>
 	</profiles>
 
