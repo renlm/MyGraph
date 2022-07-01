@@ -574,3 +574,26 @@ CREATE TABLE sys_login_log(
     INDEX user_id(user_id),
     INDEX login_time(login_time)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = '系统登录日志';
+
+-- 网关代理配置
+DROP TABLE IF EXISTS gateway_proxy_config;
+CREATE TABLE gateway_proxy_config(
+    id							BIGINT(20) 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
+    path       					VARCHAR(255)	UNIQUE 			NOT NULL	COMMENT '代理路径',
+    name       					VARCHAR(255)					NOT NULL	COMMENT '名称',
+    outgoing_servers			VARCHAR(255)					NOT NULL	COMMENT '代理服务器地址',	
+    access_key       			VARCHAR(32)		UNIQUE 			NOT NULL	COMMENT 'Access Key',
+   	secret_key					VARCHAR(32)						NOT NULL	COMMENT 'Secret Key',
+    enabled                  	TINYINT(1)      DEFAULT 1  		NOT NULL  	COMMENT '是否启用（默认启用）',
+    connection_timeout			INT				DEFAULT 1 		NOT NULL	COMMENT '连接超时时间（秒）',
+    read_timeout				INT				DEFAULT 600 	NOT NULL	COMMENT '读超时时间（秒）',
+    write_timeout				INT				DEFAULT 600 	NOT NULL	COMMENT '写超时时间（秒）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
+    creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
+    updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    remark VARCHAR(255) COMMENT '备注'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '网关代理配置';
