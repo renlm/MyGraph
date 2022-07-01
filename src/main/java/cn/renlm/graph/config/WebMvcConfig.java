@@ -4,11 +4,14 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -37,13 +40,20 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Autowired
 	private LocaleChangeInterceptor localeChangeInterceptor;
 
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping(GatewayConfig.proxyPath + "**")
-			.allowCredentials(true)
-			.allowedHeaders("*")
-			.allowedMethods("GET", "POST", "PUT", "DELETE")
-			.allowedOriginPatterns("*");
+	@Bean
+	public CorsFilter corsFilter() {
+		CorsConfiguration config = new CorsConfiguration();
+		config.addAllowedOrigin("*");
+		config.addAllowedHeader("*");
+		config.addExposedHeader("*");
+		config.addAllowedMethod("GET");
+		config.addAllowedMethod("PUT");
+		config.addAllowedMethod("POST");
+		config.addAllowedMethod("DELETE");
+		config.setAllowCredentials(true);
+		UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
+		corsConfigurationSource.registerCorsConfiguration(GatewayConfig.proxyPath + "**", config);
+		return new CorsFilter(corsConfigurationSource);
 	}
 
 	@Override
