@@ -22,6 +22,7 @@ import static java.time.Duration.ofSeconds;
 import static org.springframework.http.HttpHeaders.COOKIE;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.annotation.Bean;
@@ -45,6 +46,7 @@ import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInter
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
@@ -68,6 +70,11 @@ public class GatewayConfig {
 	 * 网关代理路径
 	 */
 	public static final String proxyPath = "/proxy/";
+
+	/**
+	 * Cookie会话正则
+	 */
+	public static final String sessionIdRegex = "SESSION=(.*?)(;|$)";
 
 	/**
 	 * 初始化
@@ -163,18 +170,14 @@ public class GatewayConfig {
 			List<String> cookies = rewrittenHeaders.get(COOKIE);
 			StringBuffer userInfo = new StringBuffer();
 			String timeStamp = String.valueOf(DateUtil.current());
-			cookies.forEach(cookie -> {
-				String regex = "SESSION=(.*?)(;|$)";
-				String SESSION = ReUtil.getGroup1(regex, cookie);
-				if (StrUtil.isNotBlank(SESSION)) {
-					User user = getUserInfo(SESSION);
-					if (user == null) {
-						return;
-					} else {
-						userInfo.append(Base64.encodeUrlSafe(JSONUtil.toJsonStr(user)));
-					}
+			Optional<String> sessionId = cookies.stream().map(c -> ReUtil.getGroup1(sessionIdRegex, c))
+					.filter(c -> StrUtil.isNotBlank(c)).findFirst();
+			if (sessionId.isPresent()) {
+				User user = getUserInfo(sessionId.get());
+				if (ObjectUtil.isNotEmpty(user)) {
+					userInfo.append(Base64.encodeUrlSafe(JSONUtil.toJsonStr(user)));
 				}
-			});
+			}
 			rewrittenHeaders.set("User-Info", userInfo.toString());
 			rewrittenHeaders.set("Time-Stamp", timeStamp);
 			rewrittenHeaders.set("Sha256-Hex", DigestUtil.sha256Hex(proxy.getSecretKey() + timeStamp + userInfo));
