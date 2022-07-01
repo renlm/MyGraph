@@ -1,7 +1,10 @@
 package cn.renlm.graph.config;
 
+import static cn.hutool.core.codec.Base64.encodeUrlSafe;
+import static cn.hutool.core.text.CharSequenceUtil.EMPTY;
 import static cn.hutool.core.text.StrPool.COMMA;
 import static cn.hutool.core.text.StrPool.SLASH;
+import static cn.hutool.json.JSONUtil.toJsonStr;
 import static com.github.mkopylec.charon.configuration.CharonConfigurer.charonConfiguration;
 import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.requestMapping;
 import static com.github.mkopylec.charon.forwarding.RestTemplateConfigurer.restTemplate;
@@ -22,7 +25,6 @@ import static java.time.Duration.ofSeconds;
 import static org.springframework.http.HttpHeaders.COOKIE;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.annotation.Bean;
@@ -43,18 +45,18 @@ import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInter
 import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorConfigurer;
 import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
-import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
+import cn.renlm.graph.modular.sys.entity.SysUser;
 import lombok.AllArgsConstructor;
 
 /**
@@ -74,7 +76,7 @@ public class GatewayConfig {
 	/**
 	 * Cookie会话正则
 	 */
-	public static final String sessionIdRegex = "SESSION=(.*?)(;|$)";
+	public static final String SESSIONRegex = "SESSION=(.*?)(;|$)";
 
 	/**
 	 * 初始化
@@ -167,18 +169,11 @@ public class GatewayConfig {
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
 			HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
 			rewrittenHeaders.set("Access-Key", proxy.getAccessKey());
-			List<String> cookies = rewrittenHeaders.get(COOKIE);
-			StringBuffer userInfo = new StringBuffer();
+			String SESSION = ReUtil.getGroup1(SESSIONRegex, rewrittenHeaders.getFirst(COOKIE));
+			SysUser user = getUserInfo(SESSION);
+			String userInfo = new StringBuffer(encodeUrlSafe(user == null ? EMPTY : toJsonStr(user))).toString();
 			String timeStamp = String.valueOf(DateUtil.current());
-			Optional<String> sessionId = cookies.stream().map(c -> ReUtil.getGroup1(sessionIdRegex, c))
-					.filter(c -> StrUtil.isNotBlank(c)).findFirst();
-			if (sessionId.isPresent()) {
-				User user = getUserInfo(sessionId.get());
-				if (ObjectUtil.isNotEmpty(user)) {
-					userInfo.append(Base64.encodeUrlSafe(JSONUtil.toJsonStr(user)));
-				}
-			}
-			rewrittenHeaders.set("User-Info", userInfo.toString());
+			rewrittenHeaders.set("User-Info", userInfo);
 			rewrittenHeaders.set("Time-Stamp", timeStamp);
 			rewrittenHeaders.set("Sha256-Hex", DigestUtil.sha256Hex(proxy.getSecretKey() + timeStamp + userInfo));
 			request.setHeaders(rewrittenHeaders);
@@ -198,12 +193,13 @@ public class GatewayConfig {
 	 * @param SESSION
 	 * @return
 	 */
-	public static final User getUserInfo(String SESSION) {
-		if (StrUtil.isBlank(SESSION)) {
+	public static final SysUser getUserInfo(String SESSION) {
+		String sessionId = Base64.decodeStr(SESSION);
+		if (StrUtil.isBlank(sessionId)) {
 			return null;
 		}
 		RedisIndexedSessionRepository sessionRepository = SpringUtil.getBean(RedisIndexedSessionRepository.class);
-		Session session = sessionRepository.findById(SESSION);
+		Session session = sessionRepository.findById(sessionId);
 		if (session == null || session.isExpired()) {
 			return null;
 		}
@@ -217,6 +213,6 @@ public class GatewayConfig {
 			return null;
 		}
 		User user = (User) authentication.getPrincipal();
-		return user;
+		return BeanUtil.copyProperties(user, SysUser.class, "password");
 	}
 }
