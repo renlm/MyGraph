@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.renlm.graph.config.GatewayConfig;
+
 /**
  * 网关代理配置
  * 
@@ -21,6 +23,7 @@ public class GatewayProxyConfigController {
 	 */
 	@GetMapping
 	public String index() {
+		GatewayConfig.reload();
 		return "gateway/proxyConfig";
 	}
 }

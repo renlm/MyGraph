@@ -18,6 +18,7 @@ import com.github.mkopylec.charon.configuration.CharonConfigurer;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
 
@@ -45,7 +46,17 @@ public class GatewayConfig {
 	@Bean
 	CharonConfigurer charonConfigurer(ServerProperties serverProperties,
 			IGatewayProxyConfigService iGatewayProxyConfigService) {
-		return configurer(charonConfiguration(), serverProperties, iGatewayProxyConfigService);
+		return configurers(charonConfiguration(), serverProperties, iGatewayProxyConfigService);
+	}
+
+	/**
+	 * 重载配置
+	 */
+	public static final void reload() {
+		CharonConfigurer configurer = SpringUtil.getBean(CharonConfigurer.class);
+		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
+		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
+		configurers(configurer, serverProperties, iGatewayProxyConfigService);
 	}
 
 	/**
@@ -56,7 +67,7 @@ public class GatewayConfig {
 	 * @param iGatewayProxyConfigService
 	 * @return
 	 */
-	CharonConfigurer configurer(CharonConfigurer configurer, ServerProperties serverProperties,
+	private static final CharonConfigurer configurers(CharonConfigurer configurer, ServerProperties serverProperties,
 			IGatewayProxyConfigService iGatewayProxyConfigService) {
 		String contextPath = serverProperties.getServlet().getContextPath();
 		List<GatewayProxyConfig> configs = iGatewayProxyConfigService
