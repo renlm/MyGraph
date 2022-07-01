@@ -1,7 +1,9 @@
 package cn.renlm.graph.modular.gateway.service;
 
-import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.github.mkopylec.charon.configuration.CharonConfigurer;
+
+import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 
 /**
  * <p>
@@ -12,5 +14,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-07-01
  */
 public interface IGatewayProxyConfigService extends IService<GatewayProxyConfig> {
+
+	/**
+	 * 加载配置
+	 * 
+	 * @param configurer
+	 * @return
+	 */
+	CharonConfigurer loadCofig(CharonConfigurer configurer);
 
 }

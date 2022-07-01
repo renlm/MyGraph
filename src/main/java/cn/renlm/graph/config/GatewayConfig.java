@@ -7,8 +7,10 @@ import org.springframework.context.annotation.Configuration;
 
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
 
+import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
+
 /**
- * 代理配置
+ * 网关代理配置
  * 
  * @author Renlm
  *
@@ -17,7 +19,7 @@ import com.github.mkopylec.charon.configuration.CharonConfigurer;
 class CharonConfiguration {
 
 	@Bean
-	CharonConfigurer charonConfigurer() {
-		return charonConfiguration();
+	CharonConfigurer charonConfigurer(IGatewayProxyConfigService iGatewayProxyConfigService) {
+		return iGatewayProxyConfigService.loadCofig(charonConfiguration());
 	}
 }
