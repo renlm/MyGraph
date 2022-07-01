@@ -7,7 +7,11 @@ import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.
 import static com.github.mkopylec.charon.forwarding.RestTemplateConfigurer.restTemplate;
 import static com.github.mkopylec.charon.forwarding.TimeoutConfigurer.timeout;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RegexRequestPathRewriterConfigurer.regexRequestPathRewriter;
+import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestHostHeaderRewriterConfigurer.requestHostHeaderRewriter;
+import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestProtocolHeadersRewriterConfigurer.requestProtocolHeadersRewriter;
+import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestProxyHeadersRewriterConfigurer.requestProxyHeadersRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestServerNameRewriterConfigurer.requestServerNameRewriter;
+import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.ResponseProtocolHeadersRewriterConfigurer.responseProtocolHeadersRewriter;
 import static java.time.Duration.ofSeconds;
 
 import java.util.List;
@@ -91,13 +95,10 @@ public class GatewayConfig {
 							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
 							.set(restTemplate().set(timeout().connection(ofSeconds(config.getConnectionTimeout())).read(ofSeconds(config.getReadTimeout())).write(ofSeconds(config.getWriteTimeout()))))
 							.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
-					)
-					.update(path, requestMappingConfigurer -> 
-						requestMappingConfigurer
-							.pathRegex(pathRegex.toString())
-							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
-							.set(restTemplate().set(timeout().connection(ofSeconds(config.getConnectionTimeout())).read(ofSeconds(config.getReadTimeout())).write(ofSeconds(config.getWriteTimeout()))))
-							.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
+							.set(requestHostHeaderRewriter())
+							.set(requestProtocolHeadersRewriter())
+							.set(requestProxyHeadersRewriter())
+							.set(responseProtocolHeadersRewriter())
 					);
 			}
 		});
