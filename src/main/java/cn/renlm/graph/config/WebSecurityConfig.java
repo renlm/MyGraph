@@ -75,12 +75,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public static final String PubAntMatcher = "/pub/**";
 
 	/**
+	 * 网关代理匹配路径
+	 */
+	public static final String GwAntMatcher = GatewayConfig.proxyPath + "**";
+
+	/**
 	 * 白名单
 	 */
 	public static final String[] WHITE_LIST = {  
 			"/kaptcha",
 			APIAntMatcher,
 			PubAntMatcher,
+			GwAntMatcher,
 			LoginPage, 
 			logoutUrl, 
 			LoginProcessingUrl 
@@ -110,6 +116,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf()
 			.ignoringAntMatchers(APIAntMatcher)
 			.ignoringAntMatchers(PubAntMatcher)
+			.ignoringAntMatchers(GwAntMatcher)
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		// 会话
 		http.sessionManagement()

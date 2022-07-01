@@ -16,7 +16,12 @@ import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
  *
  */
 @Configuration
-class CharonConfiguration {
+public class GatewayConfig {
+
+	/**
+	 * 网关代理路径
+	 */
+	public static final String proxyPath = "/gw/";
 
 	@Bean
 	CharonConfigurer charonConfigurer(IGatewayProxyConfigService iGatewayProxyConfigService) {

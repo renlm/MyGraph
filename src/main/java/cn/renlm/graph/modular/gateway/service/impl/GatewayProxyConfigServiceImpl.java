@@ -1,5 +1,8 @@
 package cn.renlm.graph.modular.gateway.service.impl;
 
+import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.requestMapping;
+import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RegexRequestPathRewriterConfigurer.regexRequestPathRewriter;
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +11,8 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
 
+import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.config.GatewayConfig;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.mapper.GatewayProxyConfigMapper;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
@@ -32,7 +37,15 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 			wrapper.orderByAsc(GatewayProxyConfig::getId);
 		}));
 		configs.forEach(config -> {
-
+			String path = config.getPath();
+			while (StrUtil.startWith(path, StrUtil.SLASH)) {
+				path = StrUtil.removePrefix(path, StrUtil.SLASH);
+			}
+			while (StrUtil.endWith(path, StrUtil.SLASH)) {
+				path = StrUtil.removeSuffix(path, StrUtil.SLASH);
+			}
+			configurer.add(requestMapping(path).pathRegex(GatewayConfig.proxyPath + path + "/.*")
+					.set(regexRequestPathRewriter().paths("/" + path + "/(?<path>.*)", "/<path>")));
 		});
 		return configurer;
 	}
