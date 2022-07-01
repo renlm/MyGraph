@@ -74,9 +74,12 @@ public class GatewayConfig {
 	public static final String proxyPath = "/proxy/";
 
 	/**
-	 * Cookie会话正则
+	 * 扩展代理请求头
 	 */
-	public static final String SESSIONRegex = "SESSION=(.*?)(;|$)";
+	public static final String HEADER_AccessKey = "Access-Key";
+	public static final String HEADER_UserInfo = "User-Info";
+	public static final String HEADER_TimeStamp = "Time-Stamp";
+	public static final String HEADER_Sha256Hex = "Sha256-Hex";
 
 	/**
 	 * 初始化
@@ -152,7 +155,7 @@ public class GatewayConfig {
 		});
 		return configurer;
 	}
-	
+
 	static class MyRequestForwardingInterceptorConfigurer
 			extends RequestForwardingInterceptorConfigurer<MyRequestForwardingInterceptor> {
 		MyRequestForwardingInterceptorConfigurer(GatewayProxyConfig proxy) {
@@ -168,14 +171,14 @@ public class GatewayConfig {
 		@Override
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
 			HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
-			rewrittenHeaders.set("Access-Key", proxy.getAccessKey());
-			String SESSION = ReUtil.getGroup1(SESSIONRegex, rewrittenHeaders.getFirst(COOKIE));
+			rewrittenHeaders.set(HEADER_AccessKey, proxy.getAccessKey());
+			String SESSION = ReUtil.getGroup1("SESSION=(.*?)(;|$)", rewrittenHeaders.getFirst(COOKIE));
 			SysUser user = getUserInfo(SESSION);
 			String userInfo = new StringBuffer(encodeUrlSafe(user == null ? EMPTY : toJsonStr(user))).toString();
 			String timeStamp = String.valueOf(DateUtil.current());
-			rewrittenHeaders.set("User-Info", userInfo);
-			rewrittenHeaders.set("Time-Stamp", timeStamp);
-			rewrittenHeaders.set("Sha256-Hex", DigestUtil.sha256Hex(proxy.getSecretKey() + timeStamp + userInfo));
+			rewrittenHeaders.set(HEADER_UserInfo, userInfo);
+			rewrittenHeaders.set(HEADER_TimeStamp, timeStamp);
+			rewrittenHeaders.set(HEADER_TimeStamp, DigestUtil.sha256Hex(proxy.getSecretKey() + timeStamp + userInfo));
 			request.setHeaders(rewrittenHeaders);
 			HttpResponse response = execution.execute(request);
 			return response;
