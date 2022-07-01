@@ -6,6 +6,10 @@ import static com.github.mkopylec.charon.configuration.CharonConfigurer.charonCo
 import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.requestMapping;
 import static com.github.mkopylec.charon.forwarding.RestTemplateConfigurer.restTemplate;
 import static com.github.mkopylec.charon.forwarding.TimeoutConfigurer.timeout;
+import static com.github.mkopylec.charon.forwarding.interceptors.log.ForwardingLoggerConfigurer.forwardingLogger;
+import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.DEBUG;
+import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.ERROR;
+import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.INFO;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RegexRequestPathRewriterConfigurer.regexRequestPathRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestHostHeaderRewriterConfigurer.requestHostHeaderRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestProtocolHeadersRewriterConfigurer.requestProtocolHeadersRewriter;
@@ -92,13 +96,24 @@ public class GatewayConfig {
 				configurer.add(
 						requestMapping(path)
 							.pathRegex(pathRegex.toString())
-							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
-							.set(restTemplate().set(timeout().connection(ofSeconds(config.getConnectionTimeout())).read(ofSeconds(config.getReadTimeout())).write(ofSeconds(config.getWriteTimeout()))))
-							.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
+							.set(requestServerNameRewriter()
+									.outgoingServers(outgoingServers))
+							.set(restTemplate()
+									.set(timeout()
+											.connection(ofSeconds(config.getConnectionTimeout()))
+											.read(ofSeconds(config.getReadTimeout()))
+											.write(ofSeconds(config.getWriteTimeout()))))
+							.set(regexRequestPathRewriter()
+									.paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
 							.set(requestHostHeaderRewriter())
 							.set(requestProtocolHeadersRewriter())
 							.set(requestProxyHeadersRewriter())
 							.set(responseProtocolHeadersRewriter())
+							.set(forwardingLogger()
+			                        .successLogLevel(DEBUG)
+			                        .clientErrorLogLevel(INFO)
+			                        .serverErrorLogLevel(ERROR)
+			                        .unexpectedErrorLogLevel(ERROR))
 					);
 			}
 		});
