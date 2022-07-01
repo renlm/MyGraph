@@ -46,7 +46,6 @@ import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInter
 import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorConfigurer;
 import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
@@ -54,9 +53,9 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
-import cn.renlm.graph.modular.sys.entity.SysUser;
 import lombok.AllArgsConstructor;
 
 /**
@@ -173,7 +172,7 @@ public class GatewayConfig {
 			String accessKey = proxy.getAccessKey();
 			String secretKey = proxy.getSecretKey();
 			HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
-			SysUser user = getUserInfo(getGroup1("SESSION=(.*?)(;|$)", rewrittenHeaders.getFirst(COOKIE)));
+			UserBase user = getUserInfo(getGroup1("SESSION=(.*?)(;|$)", rewrittenHeaders.getFirst(COOKIE)));
 			String userInfo = new StringBuffer(encodeUrlSafe(user == null ? EMPTY : toJsonStr(user))).toString();
 			String timeStamp = String.valueOf(DateUtil.current());
 			rewrittenHeaders.set(HEADER_AccessKey, accessKey);
@@ -197,7 +196,7 @@ public class GatewayConfig {
 	 * @param SESSION
 	 * @return
 	 */
-	public static final SysUser getUserInfo(String SESSION) {
+	public static final UserBase getUserInfo(String SESSION) {
 		String sessionId = Base64.decodeStr(SESSION);
 		if (StrUtil.isBlank(sessionId)) {
 			return null;
@@ -217,6 +216,6 @@ public class GatewayConfig {
 			return null;
 		}
 		User user = (User) authentication.getPrincipal();
-		return BeanUtil.copyProperties(user, SysUser.class, "password");
+		return UserBase.of(user, SESSION);
 	}
 }
