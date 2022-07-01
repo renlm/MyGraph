@@ -86,19 +86,19 @@ public class GatewayConfig {
 				final String incomingRequestPathRegex = "/" + path + "/(?<path>.*)";
 				final String outgoingRequestPathTemplate = "/<path>";
 				configurer.add(
-							requestMapping(path)
-								.pathRegex(pathRegex.toString())
-								.set(requestServerNameRewriter().outgoingServers(outgoingServers))
-								.set(restTemplate().set(timeout().connection(ofSeconds(config.getConnectionTimeout())).read(ofSeconds(config.getReadTimeout())).write(ofSeconds(config.getWriteTimeout()))))
-								.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
-						)
-						.update(path, requestMappingConfigurer -> 
-							requestMappingConfigurer
-								.pathRegex(pathRegex.toString())
-								.set(requestServerNameRewriter().outgoingServers(outgoingServers))
-								.set(restTemplate().set(timeout().connection(ofSeconds(config.getConnectionTimeout())).read(ofSeconds(config.getReadTimeout())).write(ofSeconds(config.getWriteTimeout()))))
-								.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
-						);
+						requestMapping(path)
+							.pathRegex(pathRegex.toString())
+							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
+							.set(restTemplate().set(timeout().connection(ofSeconds(config.getConnectionTimeout())).read(ofSeconds(config.getReadTimeout())).write(ofSeconds(config.getWriteTimeout()))))
+							.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
+					)
+					.update(path, requestMappingConfigurer -> 
+						requestMappingConfigurer
+							.pathRegex(pathRegex.toString())
+							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
+							.set(restTemplate().set(timeout().connection(ofSeconds(config.getConnectionTimeout())).read(ofSeconds(config.getReadTimeout())).write(ofSeconds(config.getWriteTimeout()))))
+							.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
+					);
 			}
 		});
 		return configurer;
