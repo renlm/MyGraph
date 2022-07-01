@@ -94,17 +94,17 @@ public class GatewayConfig {
 				final String incomingRequestPathRegex = "/" + path + "/(?<path>.*)";
 				final String outgoingRequestPathTemplate = "/<path>";
 				configurer.add(
-						requestMapping(path)
-							.pathRegex(pathRegex.toString())
-							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
-							.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
-							);
-				configurer.update(path, requestMappingConfigurer -> {
-					requestMappingConfigurer
-							.pathRegex(pathRegex.toString())
-							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
-							.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate));
-				});
+							requestMapping(path)
+								.pathRegex(pathRegex.toString())
+								.set(requestServerNameRewriter().outgoingServers(outgoingServers))
+								.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
+						)
+						.update(path, requestMappingConfigurer -> 
+							requestMappingConfigurer
+								.pathRegex(pathRegex.toString())
+								.set(requestServerNameRewriter().outgoingServers(outgoingServers))
+								.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
+						);
 			}
 		});
 		return configurer;
