@@ -4,8 +4,11 @@ import static cn.hutool.core.text.StrPool.COMMA;
 import static cn.hutool.core.text.StrPool.SLASH;
 import static com.github.mkopylec.charon.configuration.CharonConfigurer.charonConfiguration;
 import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.requestMapping;
+import static com.github.mkopylec.charon.forwarding.RestTemplateConfigurer.restTemplate;
+import static com.github.mkopylec.charon.forwarding.TimeoutConfigurer.timeout;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RegexRequestPathRewriterConfigurer.regexRequestPathRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestServerNameRewriterConfigurer.requestServerNameRewriter;
+import static java.time.Duration.ofSeconds;
 
 import java.util.List;
 
@@ -18,7 +21,6 @@ import com.github.mkopylec.charon.configuration.CharonConfigurer;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
 
@@ -47,16 +49,6 @@ public class GatewayConfig {
 	CharonConfigurer charonConfigurer(ServerProperties serverProperties,
 			IGatewayProxyConfigService iGatewayProxyConfigService) {
 		return configurers(charonConfiguration(), serverProperties, iGatewayProxyConfigService);
-	}
-
-	/**
-	 * 重载配置
-	 */
-	public static final void reload() {
-		CharonConfigurer configurer = SpringUtil.getBean(CharonConfigurer.class);
-		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
-		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
-		configurers(configurer, serverProperties, iGatewayProxyConfigService);
 	}
 
 	/**
@@ -97,12 +89,14 @@ public class GatewayConfig {
 							requestMapping(path)
 								.pathRegex(pathRegex.toString())
 								.set(requestServerNameRewriter().outgoingServers(outgoingServers))
+								.set(restTemplate().set(timeout().connection(ofSeconds(config.getConnectionTimeout())).read(ofSeconds(config.getReadTimeout())).write(ofSeconds(config.getWriteTimeout()))))
 								.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
 						)
 						.update(path, requestMappingConfigurer -> 
 							requestMappingConfigurer
 								.pathRegex(pathRegex.toString())
 								.set(requestServerNameRewriter().outgoingServers(outgoingServers))
+								.set(restTemplate().set(timeout().connection(ofSeconds(config.getConnectionTimeout())).read(ofSeconds(config.getReadTimeout())).write(ofSeconds(config.getWriteTimeout()))))
 								.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
 						);
 			}
