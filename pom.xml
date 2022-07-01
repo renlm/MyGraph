@@ -15,9 +15,9 @@
 
 	<groupId>cn.renlm.graph</groupId>
 	<artifactId>mygraph</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<name>MyGraph</name>
-	<description>ER模型在线设计与管理</description>
+	<description>MyGraph 在线文档，集成语法增强版Markdown、在线画图、数据库设计、在线数据表格，由一套完整的权限模型控制，支持团队协作、版本控制与分享。</description>
 	<url>https://github.com/renlm/MyGraph</url>
 
 	<properties>
