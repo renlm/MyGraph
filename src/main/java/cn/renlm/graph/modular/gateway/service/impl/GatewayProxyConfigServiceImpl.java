@@ -2,6 +2,7 @@ package cn.renlm.graph.modular.gateway.service.impl;
 
 import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.requestMapping;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RegexRequestPathRewriterConfigurer.regexRequestPathRewriter;
+import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestServerNameRewriterConfigurer.requestServerNameRewriter;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.config.GatewayConfig;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
@@ -43,10 +45,16 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 			while (StrUtil.endWith(path, StrUtil.SLASH)) {
 				path = StrUtil.removeSuffix(path, StrUtil.SLASH);
 			}
-			configurer.add(
-					requestMapping(path)
-						.pathRegex(GatewayConfig.proxyPath + path + "/.*")
-						.set(regexRequestPathRewriter().paths("/" + path + "/(?<path>.*)", "/<path>")));
+			List<String> outgoingServers = StrUtil.splitTrim(config.getOutgoingServers(), StrUtil.DOT);
+			CollUtil.removeBlank(outgoingServers);
+			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
+				configurer.add(
+						requestMapping(path)
+							.pathRegex(GatewayConfig.proxyPath + path + "/.*")
+							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
+							.set(regexRequestPathRewriter().paths("/" + path + "/(?<path>.*)", "/<path>"))
+							);
+			}
 		});
 		return configurer;
 	}
