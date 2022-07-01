@@ -1,5 +1,7 @@
 package cn.renlm.graph.controller.api;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -28,12 +30,13 @@ public class UserApiController {
 	/**
 	 * 获取用户信息
 	 * 
+	 * @param request
 	 * @param authentication
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/getInfo")
-	public Result<User> getInfo(Authentication authentication) {
+	public Result<User> getInfo(HttpServletRequest request, Authentication authentication) {
 		if (authentication == null) {
 			return Result.of(HttpStatus.UNAUTHORIZED);
 		}
