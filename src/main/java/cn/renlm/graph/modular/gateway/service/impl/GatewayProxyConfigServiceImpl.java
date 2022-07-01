@@ -33,7 +33,6 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 	public CharonConfigurer loadCofig(CharonConfigurer configurer) {
 		List<GatewayProxyConfig> configs = this.list(Wrappers.<GatewayProxyConfig>lambdaQuery().func(wrapper -> {
 			wrapper.eq(GatewayProxyConfig::getEnabled, true);
-			wrapper.eq(GatewayProxyConfig::getDeleted, false);
 			wrapper.orderByAsc(GatewayProxyConfig::getId);
 		}));
 		configs.forEach(config -> {
@@ -44,8 +43,10 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 			while (StrUtil.endWith(path, StrUtil.SLASH)) {
 				path = StrUtil.removeSuffix(path, StrUtil.SLASH);
 			}
-			configurer.add(requestMapping(path).pathRegex(GatewayConfig.proxyPath + path + "/.*")
-					.set(regexRequestPathRewriter().paths("/" + path + "/(?<path>.*)", "/<path>")));
+			configurer.add(
+					requestMapping(path)
+						.pathRegex(GatewayConfig.proxyPath + path + "/.*")
+						.set(regexRequestPathRewriter().paths("/" + path + "/(?<path>.*)", "/<path>")));
 		});
 		return configurer;
 	}

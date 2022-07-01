@@ -33,7 +33,7 @@ public class GatewayProxyConfig implements Serializable {
     private Long id;
 
     /**
-     * 代理路径
+     * 代理路径（/path/）
      */
     @TableField("path")
     private String path;
@@ -45,7 +45,7 @@ public class GatewayProxyConfig implements Serializable {
     private String name;
 
     /**
-     * 代理服务器地址
+     * 代理服务器地址（多个逗号拼接）
      */
     @TableField("outgoing_servers")
     private String outgoingServers;
@@ -121,12 +121,6 @@ public class GatewayProxyConfig implements Serializable {
      */
     @TableField("updator_nickname")
     private String updatorNickname;
-
-    /**
-     * 是否删除（默认否）
-     */
-    @TableField("deleted")
-    private Boolean deleted;
 
     /**
      * 备注

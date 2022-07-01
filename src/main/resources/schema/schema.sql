@@ -579,9 +579,9 @@ CREATE TABLE sys_login_log(
 DROP TABLE IF EXISTS gateway_proxy_config;
 CREATE TABLE gateway_proxy_config(
     id							BIGINT(20) 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
-    path       					VARCHAR(255)	UNIQUE 			NOT NULL	COMMENT '代理路径',
+    path       					VARCHAR(255)	UNIQUE 			NOT NULL	COMMENT '代理路径（/path/）',
     name       					VARCHAR(255)					NOT NULL	COMMENT '名称',
-    outgoing_servers			VARCHAR(255)					NOT NULL	COMMENT '代理服务器地址',	
+    outgoing_servers			VARCHAR(255)					NOT NULL	COMMENT '代理服务器地址（多个逗号拼接）',	
     access_key       			VARCHAR(32)		UNIQUE 			NOT NULL	COMMENT 'Access Key',
    	secret_key					VARCHAR(32)						NOT NULL	COMMENT 'Secret Key',
     enabled                  	TINYINT(1)      DEFAULT 1  		NOT NULL  	COMMENT '是否启用（默认启用）',
@@ -594,6 +594,5 @@ CREATE TABLE gateway_proxy_config(
     updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     updator_user_id 			VARCHAR(32) 								COMMENT '更新人（用户ID）',
     updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
-    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
     remark VARCHAR(255) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '网关代理配置';
