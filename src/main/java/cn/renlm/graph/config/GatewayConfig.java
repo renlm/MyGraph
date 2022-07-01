@@ -86,16 +86,25 @@ public class GatewayConfig {
 			List<String> outgoingServers = StrUtil.splitTrim(config.getOutgoingServers(), COMMA);
 			CollUtil.removeBlank(outgoingServers);
 			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
-				String pathRegex = proxyPath + path + "/.*";
+				final StringBuffer pathRegex = new StringBuffer();
 				if (StrUtil.isNotBlank(contextPath) && !StrUtil.equals(contextPath, SLASH)) {
-					pathRegex = contextPath + pathRegex;
+					pathRegex.append(contextPath);
 				}
+				pathRegex.append(proxyPath + path + "/.*");
+				final String incomingRequestPathRegex = "/" + path + "/(?<path>.*)";
+				final String outgoingRequestPathTemplate = "/<path>";
 				configurer.add(
 						requestMapping(path)
-							.pathRegex(pathRegex)
+							.pathRegex(pathRegex.toString())
 							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
-							.set(regexRequestPathRewriter().paths("/" + path + "/(?<path>.*)", "/<path>"))
+							.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
 							);
+				configurer.update(path, requestMappingConfigurer -> {
+					requestMappingConfigurer
+							.pathRegex(pathRegex.toString())
+							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
+							.set(regexRequestPathRewriter().paths(incomingRequestPathRegex, outgoingRequestPathTemplate));
+				});
 			}
 		});
 		return configurer;
