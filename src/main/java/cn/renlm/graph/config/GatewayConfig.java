@@ -83,7 +83,8 @@ public class GatewayConfig {
 						requestMapping(path)
 							.pathRegex(pathRegex)
 							.set(requestServerNameRewriter().outgoingServers(outgoingServers))
-							.set(regexRequestPathRewriter().paths("/" + path + "/(?<path>.*)", "/<path>")));
+							.set(regexRequestPathRewriter().paths("/" + path + "/(?<path>.*)", "/<path>"))
+							);
 			}
 		});
 		return configurer;
