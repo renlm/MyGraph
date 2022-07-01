@@ -19,6 +19,7 @@ import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.Request
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestServerNameRewriterConfigurer.requestServerNameRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.ResponseProtocolHeadersRewriterConfigurer.responseProtocolHeadersRewriter;
 import static java.time.Duration.ofSeconds;
+import static org.springframework.http.HttpHeaders.COOKIE;
 
 import java.util.List;
 
@@ -26,6 +27,11 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.session.Session;
+import org.springframework.session.data.redis.RedisIndexedSessionRepository;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
@@ -36,9 +42,15 @@ import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInter
 import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorConfigurer;
 import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.digest.DigestUtil;
+import cn.hutool.extra.spring.SpringUtil;
+import cn.hutool.json.JSONUtil;
+import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
 import lombok.AllArgsConstructor;
@@ -148,7 +160,24 @@ public class GatewayConfig {
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
 			HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
 			rewrittenHeaders.set("Access-Key", proxy.getAccessKey());
-			rewrittenHeaders.set("Time-Stamp", String.valueOf(DateUtil.current()));
+			List<String> cookies = rewrittenHeaders.get(COOKIE);
+			StringBuffer userInfo = new StringBuffer();
+			String timeStamp = String.valueOf(DateUtil.current());
+			cookies.forEach(cookie -> {
+				String regex = "SESSION=(.*?)(;|$)";
+				String SESSION = ReUtil.getGroup1(regex, cookie);
+				if (StrUtil.isNotBlank(SESSION)) {
+					User user = getUserInfo(SESSION);
+					if (user == null) {
+						return;
+					} else {
+						userInfo.append(Base64.encodeUrlSafe(JSONUtil.toJsonStr(user)));
+					}
+				}
+			});
+			rewrittenHeaders.set("User-Info", userInfo.toString());
+			rewrittenHeaders.set("Time-Stamp", timeStamp);
+			rewrittenHeaders.set("Sha256-Hex", DigestUtil.sha256Hex(proxy.getSecretKey() + timeStamp + userInfo));
 			request.setHeaders(rewrittenHeaders);
 			HttpResponse response = execution.execute(request);
 			return response;
@@ -158,5 +187,33 @@ public class GatewayConfig {
 		public RequestForwardingInterceptorType getType() {
 			return LATENCY_METER;
 		}
+	}
+
+	/**
+	 * 获取用户信息
+	 * 
+	 * @param SESSION
+	 * @return
+	 */
+	public static final User getUserInfo(String SESSION) {
+		if (StrUtil.isBlank(SESSION)) {
+			return null;
+		}
+		RedisIndexedSessionRepository sessionRepository = SpringUtil.getBean(RedisIndexedSessionRepository.class);
+		Session session = sessionRepository.findById(SESSION);
+		if (session == null || session.isExpired()) {
+			return null;
+		}
+		SecurityContext securityContext = session
+				.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
+		if (securityContext == null) {
+			return null;
+		}
+		Authentication authentication = securityContext.getAuthentication();
+		if (authentication == null) {
+			return null;
+		}
+		User user = (User) authentication.getPrincipal();
+		return user;
 	}
 }
