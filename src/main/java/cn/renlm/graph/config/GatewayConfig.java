@@ -16,6 +16,8 @@ import static com.github.mkopylec.charon.forwarding.interceptors.log.ForwardingL
 import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.DEBUG;
 import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.ERROR;
 import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.INFO;
+import static com.github.mkopylec.charon.forwarding.interceptors.metrics.LatencyMeterConfigurer.latencyMeter;
+import static com.github.mkopylec.charon.forwarding.interceptors.metrics.RateMeterConfigurer.rateMeter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RegexRequestPathRewriterConfigurer.regexRequestPathRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestHostHeaderRewriterConfigurer.requestHostHeaderRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestProtocolHeadersRewriterConfigurer.requestProtocolHeadersRewriter;
@@ -56,6 +58,7 @@ import cn.renlm.graph.dto.User;
 import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
+import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
 import lombok.AllArgsConstructor;
 
 /**
@@ -137,6 +140,10 @@ public class GatewayConfig {
 							.set(new MyRequestForwardingInterceptorConfigurer(config))
 							.set(requestServerNameRewriter()
 									.outgoingServers(outgoingServers))
+							.set(latencyMeter()
+			                        .meterRegistry(new LoggingMeterRegistry()))
+							.set(rateMeter()
+			                        .meterRegistry(new LoggingMeterRegistry()))
 							.set(regexRequestPathRewriter()
 									.paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
 							.set(restTemplate()
