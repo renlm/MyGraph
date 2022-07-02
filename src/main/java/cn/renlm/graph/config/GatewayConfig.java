@@ -77,7 +77,7 @@ import lombok.AllArgsConstructor;
 public class GatewayConfig {
 
 	/**
-	 * 配置
+	 * 配置对象
 	 */
 	private static final CharonConfigurer charonConfigurer = charonConfiguration();
 
@@ -104,18 +104,17 @@ public class GatewayConfig {
 	@Bean
 	CharonConfigurer charonConfigurer(ServerProperties serverProperties,
 			IGatewayProxyConfigService iGatewayProxyConfigService) {
-		return configurers(charonConfigurer, serverProperties, iGatewayProxyConfigService);
+		return configurers(serverProperties, iGatewayProxyConfigService);
 	}
 
 	/**
 	 * 加载数据库配置
 	 * 
-	 * @param configurer
 	 * @param serverProperties
 	 * @param iGatewayProxyConfigService
 	 * @return
 	 */
-	private static final CharonConfigurer configurers(CharonConfigurer configurer, ServerProperties serverProperties,
+	private static final CharonConfigurer configurers(ServerProperties serverProperties,
 			IGatewayProxyConfigService iGatewayProxyConfigService) {
 		String contextPath = serverProperties.getServlet().getContextPath();
 		List<GatewayProxyConfig> configs = iGatewayProxyConfigService
@@ -143,18 +142,39 @@ public class GatewayConfig {
 				pathRegex.append(proxyPath + path + "/.*");
 				final String incomingRequestPathRegex = "/" + path + "/(?<path>.*)";
 				final String outgoingRequestPathTemplate = "/<path>";
-				configurer
-						.add(requestMappingConfigurer(requestMapping(path), config, pathRegex, outgoingServers,
-								incomingRequestPathRegex, outgoingRequestPathTemplate))
+				charonConfigurer
+						.add(requestMappingConfigurer(
+								requestMapping(path), 
+								config, 
+								pathRegex, 
+								outgoingServers,
+								incomingRequestPathRegex, 
+								outgoingRequestPathTemplate))
 						.update(path,
-								requestMappingConfigurerUpdate -> requestMappingConfigurer(
-										requestMappingConfigurerUpdate, config, pathRegex, outgoingServers,
-										incomingRequestPathRegex, outgoingRequestPathTemplate));
+								requestMappingConfigurerUpdate -> 
+									requestMappingConfigurer(
+										requestMappingConfigurerUpdate, 
+										config, 
+										pathRegex, 
+										outgoingServers,
+										incomingRequestPathRegex, 
+										outgoingRequestPathTemplate));
 			}
 		});
-		return configurer;
+		return charonConfigurer;
 	}
 
+	/**
+	 * 代理配置
+	 * 
+	 * @param requestMappingConfigurer
+	 * @param config
+	 * @param pathRegex
+	 * @param outgoingServers
+	 * @param incomingRequestPathRegex
+	 * @param outgoingRequestPathTemplate
+	 * @return
+	 */
 	private static final RequestMappingConfigurer requestMappingConfigurer(
 			RequestMappingConfigurer requestMappingConfigurer, GatewayProxyConfig config, StringBuffer pathRegex,
 			List<String> outgoingServers, String incomingRequestPathRegex, String outgoingRequestPathTemplate) {
@@ -192,6 +212,9 @@ public class GatewayConfig {
 				;
 	}
 
+	/**
+	 * 自定义请求配置
+	 */
 	private static class MyRequestForwardingInterceptorConfigurer
 			extends RequestForwardingInterceptorConfigurer<MyRequestForwardingInterceptor> {
 		MyRequestForwardingInterceptorConfigurer(GatewayProxyConfig proxy) {
@@ -199,6 +222,9 @@ public class GatewayConfig {
 		}
 	}
 
+	/**
+	 * 自定义请求拦截器
+	 */
 	@AllArgsConstructor
 	private static class MyRequestForwardingInterceptor implements RequestForwardingInterceptor {
 
