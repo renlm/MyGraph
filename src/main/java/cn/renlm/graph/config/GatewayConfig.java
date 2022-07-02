@@ -18,12 +18,15 @@ import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.ER
 import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.INFO;
 import static com.github.mkopylec.charon.forwarding.interceptors.metrics.LatencyMeterConfigurer.latencyMeter;
 import static com.github.mkopylec.charon.forwarding.interceptors.metrics.RateMeterConfigurer.rateMeter;
+import static com.github.mkopylec.charon.forwarding.interceptors.resilience.RateLimiterConfigurer.rateLimiter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RegexRequestPathRewriterConfigurer.regexRequestPathRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestHostHeaderRewriterConfigurer.requestHostHeaderRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestProtocolHeadersRewriterConfigurer.requestProtocolHeadersRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestProxyHeadersRewriterConfigurer.requestProxyHeadersRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestServerNameRewriterConfigurer.requestServerNameRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.ResponseProtocolHeadersRewriterConfigurer.responseProtocolHeadersRewriter;
+import static io.github.resilience4j.ratelimiter.RateLimiterConfig.custom;
+import static java.time.Duration.ZERO;
 import static java.time.Duration.ofSeconds;
 import static org.springframework.http.HttpHeaders.COOKIE;
 
@@ -143,17 +146,23 @@ public class GatewayConfig {
 							.set(new MyRequestForwardingInterceptorConfigurer(config))
 							.set(requestServerNameRewriter()
 									.outgoingServers(outgoingServers))
+							.set(restTemplate()
+									.set(timeout()
+											.connection(ofSeconds(config.getConnectionTimeout()))
+											.read(ofSeconds(config.getReadTimeout()))
+											.write(ofSeconds(config.getWriteTimeout()))))
+							.set(rateLimiter()
+			                        .configuration(custom()
+			                        		.timeoutDuration(ZERO)
+			                        		.limitRefreshPeriod(ofSeconds(1))
+			                        		.limitForPeriod(100))
+			                        .meterRegistry(new LoggingMeterRegistry()))
 							.set(latencyMeter()
 			                        .meterRegistry(new LoggingMeterRegistry()))
 							.set(rateMeter()
 			                        .meterRegistry(new LoggingMeterRegistry()))
 							.set(regexRequestPathRewriter()
 									.paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
-							.set(restTemplate()
-									.set(timeout()
-											.connection(ofSeconds(config.getConnectionTimeout()))
-											.read(ofSeconds(config.getReadTimeout()))
-											.write(ofSeconds(config.getWriteTimeout()))))
 							.set(forwardingLogger()
 			                        .successLogLevel(DEBUG)
 			                        .clientErrorLogLevel(INFO)
