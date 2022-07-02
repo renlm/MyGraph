@@ -51,6 +51,7 @@ import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInter
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
@@ -124,8 +125,10 @@ public class GatewayConfig {
 			CollUtil.removeBlank(outgoingServers);
 			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
 				final StringBuffer pathRegex = new StringBuffer();
-				if (StrUtil.isNotBlank(contextPath) && !StrUtil.equals(contextPath, SLASH)) {
-					pathRegex.append(contextPath);
+				if (StrUtil.isNotBlank(contextPath)) {
+					if (BooleanUtil.isFalse(StrUtil.equals(contextPath, SLASH))) {
+						pathRegex.append(contextPath);
+					}
 				}
 				pathRegex.append(proxyPath + path + "/.*");
 				final String incomingRequestPathRegex = "/" + path + "/(?<path>.*)";
