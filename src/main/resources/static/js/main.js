@@ -55,14 +55,15 @@
 		 */
 		remarkFormatter: function (value, row, index) {
 			var tpl = '';
+			var upf = $.updatedAtFormatter(row.updatedAt);
 			if (value) {
 				tpl = '<span title="' + value + '">备注：' + value + '</span>';
 			} else {
 				tpl = '<span>备注：-</span>';
 			}
 			tpl+='<div data-index="' + index + '">';
-			tpl+='    <p style="color: #31708f;">创建人：' + row.creatorNickname + '</p>';
-			tpl+='    <p style="color: #31708f;">更新时间：' + $.updatedAtFormatter(row.updatedAt) + '</p>';
+			tpl+='    <p style="color: #31708f;">创建人：' + (row.creatorNickname ? row.creatorNickname : '-') + '</p>';
+			tpl+='    <p style="color: #31708f;">更新时间：' + (upf ? upf : '-') + '</p>';
 			tpl+='</div>';
 			return tpl;
 		},
@@ -663,6 +664,16 @@
 			} else {
 		        return value;
 		    }
+		},
+		/**
+		 * 启用状态格式化
+		 */
+		enabledFormatter: function (value) {
+			if(value) {
+				return '<span style=\'color:green;\'>启用</span>';
+			} else {
+				return '<span style=\'color:red;\'>禁用</span>';
+			}
 		},
 		/**
 		 * 禁用状态格式化
