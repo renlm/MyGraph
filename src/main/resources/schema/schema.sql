@@ -588,6 +588,7 @@ CREATE TABLE gateway_proxy_config(
     connection_timeout			INT				DEFAULT 1 		NOT NULL	COMMENT '连接超时时间（秒）',
     read_timeout				INT				DEFAULT 600 	NOT NULL	COMMENT '读超时时间（秒）',
     write_timeout				INT				DEFAULT 600 	NOT NULL	COMMENT '写超时时间（秒）',
+    limit_for_second			INT				DEFAULT 10000 	NOT NULL	COMMENT '单服务限速（次/秒，默认1万）',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
     creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',

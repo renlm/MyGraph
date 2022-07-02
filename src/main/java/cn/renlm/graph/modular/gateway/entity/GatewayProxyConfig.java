@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-07-01
+ * @since 2022-07-02
  */
 @Getter
 @Setter
@@ -85,6 +85,12 @@ public class GatewayProxyConfig implements Serializable {
      */
     @TableField("write_timeout")
     private Integer writeTimeout;
+
+    /**
+     * 单服务限速（次/秒，默认1万）
+     */
+    @TableField("limit_for_second")
+    private Integer limitForSecond;
 
     /**
      * 创建时间
