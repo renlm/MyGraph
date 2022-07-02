@@ -1,13 +1,13 @@
-<div class="myui-fluid mlr25center" th:object="${erFieldLib}">
+<div class="myui-fluid mlr25center" th:object="${gatewayProxyConfig}">
     <div class="myui-row">
     	<input type="hidden" th:field="*{uuid}" />
     	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     </div>
     <div class="myui-row">
         <div class="myui-col-sm6">
-            <label class="myui-form-label">列名</label>
+            <label class="myui-form-label">代理路径</label>
             <div class="myui-input-block">
-                <input type="text" th:field="*{name}" 
+                <input type="text" th:field="*{path}" 
                 	class="easyui-textbox" 
                 	data-options="required:true,
                 		prompt:'必填',
@@ -17,104 +17,12 @@
             </div>
         </div>
         <div class="myui-col-sm6">
-            <label class="myui-form-label">数据类型</label>
+            <label class="myui-form-label">名称</label>
             <div class="myui-input-block">
-                <input type="text" th:field="*{sqlType}"
-                 	class="easyui-combobox"
-                 	data-options="required:true,
-                   		editable:false,
-                   		prompt:'必选',
-                		width:'100%',
-                   		panelHeight:250,
-						method:'get',
-                   		url:ctx+'/sys/dict/ajax/getTree?codePaths=JDBC_TYPE',
-                    	valueField:'code',
-                    	textField:'text'
-              		"/>
-            </div>
-        </div>
-    </div>
-    <div class="myui-row">
-        <div class="myui-col-sm12">
-            <label class="myui-form-label">注释</label>
-            <div class="myui-input-block">
-                <input type="text" th:field="*{comment}" 
+                <input type="text" th:field="*{name}" 
                 	class="easyui-textbox" 
                 	data-options="required:true,
                 		prompt:'必填',
-                		width:'100%',
-						validType:'maxLength[500]'
-                	"/>
-            </div>
-        </div>
-    </div>
-    <div class="myui-row">
-        <div class="myui-col-sm6">
-            <label class="myui-form-label">长度</label>
-            <div class="myui-input-block">
-                <input type="text" th:field="*{size}"
-               		class="easyui-numberspinner"
-                   	data-options="prompt:'长度',
-                		width:'100%'
-                	"/>
-            </div>
-        </div>
-        <div class="myui-col-sm6">
-            <label class="myui-form-label">精度</label>
-            <div class="myui-input-block">
-                <input type="text" th:field="*{digit}"
-               		class="easyui-numberspinner"
-                   	data-options="prompt:'精度',
-                		width:'100%'
-                	"/>
-            </div>
-        </div>
-    </div>
-    <div class="myui-row">
-        <div class="myui-col-sm6">
-            <label class="myui-form-label">是否可为空</label>
-            <div class="myui-input-block">
-                <input type="text" th:field="*{isNullable}"
-                	class="easyui-combobox"
-                  	data-options="required:true,
-                   		editable:false,
-						valueField:'value',
-						textField:'text',
-                		width:'100%',
-						panelHeight:'auto',
-						data: [
-						    {text:'是',value:'true'},
-							{text:'否',value:'false'}
-						]
-					"/>
-            </div>
-        </div>
-        <div class="myui-col-sm6">
-            <label class="myui-form-label">是否自增</label>
-            <div class="myui-input-block">
-                <input type="text" th:field="*{autoIncrement}"
-                	class="easyui-combobox"
-                  	data-options="required:true,
-                   		editable:false,
-						valueField:'value',
-						textField:'text',
-                		width:'100%',
-						panelHeight:'auto',
-						data: [
-						    {text:'是',value:'true'},
-							{text:'否',value:'false'}
-						]
-					"/>
-            </div>
-        </div>
-    </div>
-    <div class="myui-row">
-        <div class="myui-col-sm12">
-            <label class="myui-form-label">字段默认值</label>
-            <div class="myui-input-block">
-                <input type="text" th:field="*{columnDef}" 
-                	class="easyui-textbox" 
-                	data-options="prompt:'字段默认值',
                 		width:'100%',
 						validType:'maxLength[255]'
                 	"/>

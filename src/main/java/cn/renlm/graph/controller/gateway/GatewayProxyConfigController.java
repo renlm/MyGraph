@@ -72,7 +72,7 @@ public class GatewayProxyConfigController {
 	 * @param uuid
 	 * @return
 	 */
-	@GetMapping("/dialog")
+	@RequestMapping("/dialog")
 	@PreAuthorize(Role.AdminSpEL)
 	public String dialog(ModelMap model, String uuid) {
 		GatewayProxyConfig gatewayProxyConfig = new GatewayProxyConfig();
