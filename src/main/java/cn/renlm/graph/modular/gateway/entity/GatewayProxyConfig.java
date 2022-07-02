@@ -33,6 +33,12 @@ public class GatewayProxyConfig implements Serializable {
     private Long id;
 
     /**
+     * UUID
+     */
+    @TableField("uuid")
+    private String uuid;
+
+    /**
      * 代理路径（/path/）
      */
     @TableField("path")
