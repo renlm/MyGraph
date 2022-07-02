@@ -44,6 +44,7 @@ import org.springframework.session.data.redis.RedisIndexedSessionRepository;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
+import com.github.mkopylec.charon.configuration.RequestMappingConfigurer;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequest;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequestExecution;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpResponse;
@@ -76,6 +77,11 @@ import lombok.AllArgsConstructor;
 public class GatewayConfig {
 
 	/**
+	 * 配置
+	 */
+	private static final CharonConfigurer charonConfigurer = charonConfiguration();
+
+	/**
 	 * 网关代理路径
 	 */
 	public static final String proxyPath = "/proxy/";
@@ -98,7 +104,7 @@ public class GatewayConfig {
 	@Bean
 	CharonConfigurer charonConfigurer(ServerProperties serverProperties,
 			IGatewayProxyConfigService iGatewayProxyConfigService) {
-		return configurers(charonConfiguration(), serverProperties, iGatewayProxyConfigService);
+		return configurers(charonConfigurer, serverProperties, iGatewayProxyConfigService);
 	}
 
 	/**
@@ -137,45 +143,56 @@ public class GatewayConfig {
 				pathRegex.append(proxyPath + path + "/.*");
 				final String incomingRequestPathRegex = "/" + path + "/(?<path>.*)";
 				final String outgoingRequestPathTemplate = "/<path>";
-				configurer.add(
-						requestMapping(path)
-							.pathRegex(pathRegex.toString())
-							.set(requestHostHeaderRewriter())
-							.set(requestProtocolHeadersRewriter())
-							.set(requestProxyHeadersRewriter())
-							.set(responseProtocolHeadersRewriter())
-							.set(new MyRequestForwardingInterceptorConfigurer(config))
-							.set(requestServerNameRewriter()
-									.outgoingServers(outgoingServers))
-							.set(restTemplate()
-									.set(timeout()
-											.connection(ofSeconds(config.getConnectionTimeout()))
-											.read(ofSeconds(config.getReadTimeout()))
-											.write(ofSeconds(config.getWriteTimeout()))))
-							.set(rateLimiter()
-			                        .configuration(custom()
-			                        		.timeoutDuration(ZERO)
-			                        		.limitRefreshPeriod(ofSeconds(1))
-			                        		.limitForPeriod(ObjectUtil.defaultIfNull(config.getLimitForSecond(), 10000)))
-			                        .meterRegistry(new LoggingMeterRegistry()))
-							.set(latencyMeter()
-			                        .meterRegistry(new LoggingMeterRegistry()))
-							.set(rateMeter()
-			                        .meterRegistry(new LoggingMeterRegistry()))
-							.set(regexRequestPathRewriter()
-									.paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
-							.set(forwardingLogger()
-			                        .successLogLevel(DEBUG)
-			                        .clientErrorLogLevel(INFO)
-			                        .serverErrorLogLevel(ERROR)
-			                        .unexpectedErrorLogLevel(ERROR))
-					);
+				configurer
+						.add(requestMappingConfigurer(requestMapping(path), config, pathRegex, outgoingServers,
+								incomingRequestPathRegex, outgoingRequestPathTemplate))
+						.update(path,
+								requestMappingConfigurerUpdate -> requestMappingConfigurer(
+										requestMappingConfigurerUpdate, config, pathRegex, outgoingServers,
+										incomingRequestPathRegex, outgoingRequestPathTemplate));
 			}
 		});
 		return configurer;
 	}
 
-	static class MyRequestForwardingInterceptorConfigurer
+	private static final RequestMappingConfigurer requestMappingConfigurer(
+			RequestMappingConfigurer requestMappingConfigurer, GatewayProxyConfig config, StringBuffer pathRegex,
+			List<String> outgoingServers, String incomingRequestPathRegex, String outgoingRequestPathTemplate) {
+		return requestMappingConfigurer
+				.pathRegex(pathRegex.toString())
+				.set(requestHostHeaderRewriter())
+				.set(requestProtocolHeadersRewriter())
+				.set(requestProxyHeadersRewriter())
+				.set(responseProtocolHeadersRewriter())
+				.set(new MyRequestForwardingInterceptorConfigurer(config))
+				.set(requestServerNameRewriter()
+						.outgoingServers(outgoingServers))
+				.set(restTemplate()
+						.set(timeout()
+								.connection(ofSeconds(config.getConnectionTimeout()))
+								.read(ofSeconds(config.getReadTimeout()))
+								.write(ofSeconds(config.getWriteTimeout()))))
+				.set(rateLimiter()
+                        .configuration(custom()
+                        		.timeoutDuration(ZERO)
+                        		.limitRefreshPeriod(ofSeconds(1))
+                        		.limitForPeriod(ObjectUtil.defaultIfNull(config.getLimitForSecond(), 10000)))
+                        .meterRegistry(new LoggingMeterRegistry()))
+				.set(latencyMeter()
+                        .meterRegistry(new LoggingMeterRegistry()))
+				.set(rateMeter()
+                        .meterRegistry(new LoggingMeterRegistry()))
+				.set(regexRequestPathRewriter()
+						.paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
+				.set(forwardingLogger()
+                        .successLogLevel(DEBUG)
+                        .clientErrorLogLevel(INFO)
+                        .serverErrorLogLevel(ERROR)
+                        .unexpectedErrorLogLevel(ERROR))
+				;
+	}
+
+	private static class MyRequestForwardingInterceptorConfigurer
 			extends RequestForwardingInterceptorConfigurer<MyRequestForwardingInterceptor> {
 		MyRequestForwardingInterceptorConfigurer(GatewayProxyConfig proxy) {
 			super(new MyRequestForwardingInterceptor(proxy));
@@ -183,7 +200,7 @@ public class GatewayConfig {
 	}
 
 	@AllArgsConstructor
-	static class MyRequestForwardingInterceptor implements RequestForwardingInterceptor {
+	private static class MyRequestForwardingInterceptor implements RequestForwardingInterceptor {
 
 		private final GatewayProxyConfig proxy;
 
