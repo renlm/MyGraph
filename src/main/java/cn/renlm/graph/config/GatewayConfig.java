@@ -55,6 +55,7 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
@@ -155,7 +156,7 @@ public class GatewayConfig {
 			                        .configuration(custom()
 			                        		.timeoutDuration(ZERO)
 			                        		.limitRefreshPeriod(ofSeconds(1))
-			                        		.limitForPeriod(100))
+			                        		.limitForPeriod(ObjectUtil.defaultIfNull(config.getLimitForSecond(), 10000)))
 			                        .meterRegistry(new LoggingMeterRegistry()))
 							.set(latencyMeter()
 			                        .meterRegistry(new LoggingMeterRegistry()))
