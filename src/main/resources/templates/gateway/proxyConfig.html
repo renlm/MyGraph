@@ -27,8 +27,8 @@
 	                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#dataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
                       	<th data-options="field:'path',title:'代理路径',width:40"></th>
 	                    <th data-options="field:'name',title:'名称',width:60"></th>
-	                    <th data-options="field:'accessKey',title:'Access Key',width:100,hidden:true"></th>
-	                    <th data-options="field:'outgoingServers',title:'代理服务器地址',width:120"></th>
+	                    <th data-options="field:'accessKey',title:'Access Key',width:120"></th>
+	                    <th data-options="field:'outgoingServers',title:'代理服务器地址',width:100"></th>
 	                    <th data-options="field:'enabled',title:'是否启用',width:40,formatter:$.enabledFormatter"></th>
 		            	<th data-options="field:'remark',title:'备注',width:100,formatter:$.remarkFormatter,styler:$.remarkStyler"></th>
 		            	<th data-options="field:'actions',title:'操作',width:40,align:'center',formatter:proxyConfigOperateFormatter"></th>
@@ -96,8 +96,8 @@
 			var $proxyConfigDialog = $('<form id=\'proxyConfigDialog\' method=\'post\' class=\'myui\'></form>');
 		    $proxyConfigDialog.myuiDialog({
 		        title: uuid ? '编辑' : '新增',
-		        width: 850,
-		        height: 443,
+		        width: 890,
+		        height: 463,
 				collapsible: true,
 				minimizable: false,
 				maximizable: true,

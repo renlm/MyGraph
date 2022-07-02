@@ -1,4 +1,4 @@
-<div class="myui-fluid mlr25center" th:object="${gatewayProxyConfig}">
+<div class="myui-fluid mlr15center" th:object="${gatewayProxyConfig}">
     <div class="myui-row">
     	<input type="hidden" th:field="*{uuid}" />
     	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
@@ -17,6 +17,26 @@
             </div>
         </div>
         <div class="myui-col-sm6">
+            <label class="myui-form-label">启用状态</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{enabled}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+                   		editable:false,
+						valueField:'value',
+						textField:'text',
+                		width:'100%',
+						panelHeight:'auto',
+						data: [
+							{text:'启用',value:'true'},
+						    {text:'禁用',value:'false'}
+						]
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
             <label class="myui-form-label">名称</label>
             <div class="myui-input-block">
                 <input type="text" th:field="*{name}" 
@@ -25,6 +45,82 @@
                 		prompt:'必填',
                 		width:'100%',
 						validType:'maxLength[255]'
+                	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">代理服务器地址</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{outgoingServers}" 
+                	class="easyui-textbox" 
+                	data-options="required:true,
+                		prompt:'必填',
+                		width:'100%',
+						validType:'maxLength[255]'
+                	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">Secret Key</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{secretKey}" 
+                	class="easyui-textbox" 
+                	data-options="required:false,
+                		prompt:'Secret Key',
+                		width:'100%',
+						validType:'maxLength[32]'
+                	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">限速（次/秒）</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{limitForSecond}"
+               		class="easyui-numberspinner"
+                   	data-options="required:false,
+                		prompt:'必填',
+                		width:'100%'
+                	"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">连接超时（秒）</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{connectionTimeout}"
+               		class="easyui-numberspinner"
+                   	data-options="required:false,
+                		prompt:'必填',
+                		width:'100%'
+                	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">读超时（秒）</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{readTimeout}"
+               		class="easyui-numberspinner"
+                   	data-options="required:false,
+                		prompt:'必填',
+                		width:'100%'
+                	"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">写超时（秒）</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{writeTimeout}"
+               		class="easyui-numberspinner"
+                   	data-options="required:false,
+                		prompt:'必填',
+                		width:'100%'
                 	"/>
             </div>
         </div>
