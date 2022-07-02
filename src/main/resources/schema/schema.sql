@@ -580,7 +580,7 @@ DROP TABLE IF EXISTS gateway_proxy_config;
 CREATE TABLE gateway_proxy_config(
     id							BIGINT(20) 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
     uuid       					VARCHAR(32)		UNIQUE NOT NULL				COMMENT 'UUID',
-    path       					VARCHAR(255)	UNIQUE 			NOT NULL	COMMENT '代理路径（/path/）',
+    path       					VARCHAR(20)		UNIQUE 			NOT NULL	COMMENT '代理路径（/path/）',
     name       					VARCHAR(255)					NOT NULL	COMMENT '名称',
     outgoing_servers			VARCHAR(255)					NOT NULL	COMMENT '代理服务器地址（多个逗号拼接）',	
     access_key       			VARCHAR(32)		UNIQUE 			NOT NULL	COMMENT 'Access Key',
