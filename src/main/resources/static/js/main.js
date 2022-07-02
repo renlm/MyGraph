@@ -824,12 +824,12 @@
             }, message: "请输入有效的电话号码"
         }, maxLength: {
             validator: function (a, b) {
-                return a.length < b[0]
-            }, message: "输入内容长度必须小于{0}"
+                return a.length <= b[0]
+            }, message: "输入内容长度不能大于{0}"
         }, minLength: {
             validator: function (a, b) {
-                return a.length > b[0]
-            }, message: "输入内容长度必须大于{0}"
+                return a.length >= b[0]
+            }, message: "输入内容长度不能小于{0}"
         }, idCard: {
             validator: function (a) {
                 return /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/.test(a)
