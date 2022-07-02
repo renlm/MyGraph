@@ -33,7 +33,7 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 
 	@Override
 	public Page<GatewayProxyConfig> findPage(Page<GatewayProxyConfig> page, User user, GatewayProxyConfigDto form) {
-		return this.page(page, Wrappers.<GatewayProxyConfig>lambdaQuery().func(wrapper -> {
+		Page<GatewayProxyConfig> result = this.page(page, Wrappers.<GatewayProxyConfig>lambdaQuery().func(wrapper -> {
 			if (StrUtil.isNotBlank(form.getKeywords())) {
 				wrapper.and(item -> {
 					item.or().like(GatewayProxyConfig::getPath, form.getKeywords());
@@ -45,6 +45,10 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 			wrapper.orderByDesc(GatewayProxyConfig::getUpdatedAt);
 			wrapper.orderByDesc(GatewayProxyConfig::getId);
 		}));
+		result.getRecords().forEach(item -> {
+			item.setSecretKey(StrUtil.EMPTY);
+		});
+		return result;
 	}
 
 	@Override
@@ -77,7 +81,7 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 					.getOne(Wrappers.<GatewayProxyConfig>lambdaQuery().eq(GatewayProxyConfig::getUuid, form.getUuid()));
 			form.setId(entity.getId());
 			form.setAccessKey(entity.getAccessKey());
-			form.setSecretKey(ObjectUtil.defaultIfBlank(form.getSecretKey(), entity.getSecretKey()));
+			form.setSecretKey(entity.getSecretKey());
 			form.setCreatedAt(entity.getCreatedAt());
 			form.setCreatorUserId(entity.getCreatorUserId());
 			form.setCreatorNickname(entity.getCreatorNickname());
