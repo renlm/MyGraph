@@ -123,6 +123,8 @@ INSERT INTO sys_role_resource(
 	default_home_page -- default_home_page
 FROM sys_resource
 WHERE code IN ('WELCOME', '10', '1001', '100101', '100102', '1002', '100201', '40')
+	OR 
+	code LIKE '50%'
 ;
 
 -- 系统常量
