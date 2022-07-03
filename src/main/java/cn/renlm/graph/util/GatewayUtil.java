@@ -99,10 +99,11 @@ public class GatewayUtil {
 	 * @param uuids
 	 */
 	public static final void reload(String... uuids) {
+		MyConfigProperties myConfigProperties = SpringUtil.getBean(MyConfigProperties.class);
 		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
 		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
 		ReverseProxyFilter reverseProxyFilter = SpringUtil.getBean(ReverseProxyFilter.class);
-		configurers(serverProperties, iGatewayProxyConfigService, uuids);
+		configurers(myConfigProperties, serverProperties, iGatewayProxyConfigService, uuids);
 		ReflectUtil.invoke(charonConfigurer, "configure");
 		Object restTemplateProvider = ReflectUtil.getFieldValue(reverseProxyFilter, "restTemplateProvider");
 		ConcurrentMap<?, ?> restTemplates = (ConcurrentMap<?, ?>) ReflectUtil.getFieldValue(restTemplateProvider, "restTemplates");
@@ -112,13 +113,14 @@ public class GatewayUtil {
 	/**
 	 * 加载数据库配置
 	 * 
+	 * @param myConfigProperties
 	 * @param serverProperties
 	 * @param iGatewayProxyConfigService
 	 * @param uuids
 	 * @return
 	 */
-	public static final CharonConfigurer configurers(ServerProperties serverProperties,
-			IGatewayProxyConfigService iGatewayProxyConfigService, String... uuids) {
+	public static final CharonConfigurer configurers(MyConfigProperties myConfigProperties,
+			ServerProperties serverProperties, IGatewayProxyConfigService iGatewayProxyConfigService, String... uuids) {
 		String contextPath = serverProperties.getServlet().getContextPath();
 		List<GatewayProxyConfig> configs = iGatewayProxyConfigService
 				.list(Wrappers.<GatewayProxyConfig>lambdaQuery().func(wrapper -> {
@@ -133,6 +135,7 @@ public class GatewayUtil {
 			CollUtil.removeBlank(outgoingServers);
 			if (!BooleanUtil.isTrue(config.getEnabled())) {
 				outgoingServers.clear();
+				outgoingServers.add(myConfigProperties.getCtx());
 			}
 			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
 				final StringBuffer pathRegex = new StringBuffer();
