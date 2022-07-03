@@ -28,6 +28,7 @@ import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.Respons
 import static io.github.resilience4j.ratelimiter.RateLimiterConfig.custom;
 import static java.time.Duration.ZERO;
 import static java.time.Duration.ofSeconds;
+import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 import static org.springframework.core.Ordered.LOWEST_PRECEDENCE;
 import static org.springframework.http.HttpHeaders.COOKIE;
 
@@ -37,6 +38,7 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.github.mkopylec.charon.forwarding.ReverseProxyFilter;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequest;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequestExecution;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpResponse;
@@ -50,6 +52,7 @@ import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
@@ -74,16 +77,27 @@ public class CharonUtil {
 	/**
 	 * 扩展代理请求头
 	 */
-	public static final String HEADER_AccessKey = "GW-Access-Key";
-	public static final String HEADER_UserInfo = "GW-User-Info";
-	public static final String HEADER_TimeStamp = "GW-Time-Stamp";
-	public static final String HEADER_Sha256Hex = "GW-Sha256-Hex";
+	public static final String HEADER_AccessKey = "GW-AccessKey";
+	public static final String HEADER_UserInfo = "GW-UserInfo";
+	public static final String HEADER_TimeStamp = "GW-Timestamp";
+	public static final String HEADER_Sha256Hex = "GW-Sha256Hex";
 
 	/**
 	 * 重载配置
 	 */
 	public static final void reload() {
-
+		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
+		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
+		// 配置
+		CharonConfigurer charonConfigurer = configurers(serverProperties, iGatewayProxyConfigService);
+		CharonConfiguration configuration = charonConfigurer.configure();
+		int filterOrder = configuration.getFilterOrder();
+		List<RequestMappingConfiguration> rmcs = configuration.getRequestMappingConfigurations();
+		// 注册
+		ReverseProxyFilter reverseProxyFilter = new ReverseProxyFilter(filterOrder, rmcs);
+		String beanName = StrUtil.lowerFirst(ReverseProxyFilter.class.getSimpleName());
+		SpringUtil.unregisterBean(beanName);
+		SpringUtil.registerBean(beanName, reverseProxyFilter);
 	}
 
 	/**
@@ -96,6 +110,7 @@ public class CharonUtil {
 	public static final CharonConfigurer configurers(ServerProperties serverProperties,
 			IGatewayProxyConfigService iGatewayProxyConfigService) {
 		CharonConfigurer charonConfigurer = charonConfiguration();
+		charonConfigurer.filterOrder(HIGHEST_PRECEDENCE + 100);
 		String contextPath = serverProperties.getServlet().getContextPath();
 		List<GatewayProxyConfig> configs = iGatewayProxyConfigService
 				.list(Wrappers.<GatewayProxyConfig>lambdaQuery().func(wrapper -> {
@@ -125,13 +140,13 @@ public class CharonUtil {
 				charonConfigurer.add(
 						requestMapping(path)
 							.pathRegex(pathRegex.toString())
-							.set(regexRequestPathRewriter()
-									.paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
 							.set(requestHostHeaderRewriter())
 							.set(requestProtocolHeadersRewriter())
 							.set(requestProxyHeadersRewriter())
 							.set(responseProtocolHeadersRewriter())
 							.set(new MyRequestForwardingInterceptorConfigurer(config))
+							.set(regexRequestPathRewriter()
+									.paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
 							.set(requestServerNameRewriter()
 									.outgoingServers(outgoingServers))
 							.set(restTemplate()
@@ -188,11 +203,11 @@ public class CharonUtil {
 			HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
 			UserBase user = getUserInfo(getGroup1("SESSION=(.*?)(;|$)", rewrittenHeaders.getFirst(COOKIE)));
 			String userInfo = new StringBuffer(encodeUrlSafe(user == null ? EMPTY : toJsonStr(user))).toString();
-			String timeStamp = String.valueOf(DateUtil.current());
+			String timestamp = String.valueOf(DateUtil.current());
 			rewrittenHeaders.set(HEADER_AccessKey, accessKey);
 			rewrittenHeaders.set(HEADER_UserInfo, userInfo);
-			rewrittenHeaders.set(HEADER_TimeStamp, timeStamp);
-			rewrittenHeaders.set(HEADER_Sha256Hex, DigestUtil.sha256Hex(secretKey + timeStamp + userInfo));
+			rewrittenHeaders.set(HEADER_TimeStamp, timestamp);
+			rewrittenHeaders.set(HEADER_Sha256Hex, DigestUtil.sha256Hex(secretKey + timestamp + userInfo));
 			request.setHeaders(rewrittenHeaders);
 			HttpResponse response = execution.execute(request);
 			return response;
