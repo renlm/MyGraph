@@ -49,6 +49,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
@@ -58,6 +59,7 @@ import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
 import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
 import lombok.AllArgsConstructor;
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 网关工具
@@ -65,6 +67,7 @@ import lombok.experimental.UtilityClass;
  * @author Renlm
  *
  */
+@Slf4j
 @UtilityClass
 public class GatewayUtil {
 
@@ -93,6 +96,8 @@ public class GatewayUtil {
 		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
 		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
 		configurers(serverProperties, iGatewayProxyConfigService);
+		ReflectUtil.invoke(charonConfigurer, "configure");
+		log.info("=== 重载网关代理配置");
 	}
 
 	/**
