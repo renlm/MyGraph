@@ -31,6 +31,8 @@ import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.Session;
 import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
+import com.github.mkopylec.charon.configuration.CharonUtil;
+
 import cn.renlm.graph.security.DynamicAccessDecisionVoter;
 import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
 import cn.renlm.graph.security.MyAuthenticationSuccessHandler;
@@ -77,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
 	 * 网关代理匹配路径
 	 */
-	public static final String GwAntMatcher = GatewayConfig.proxyPath + "**";
+	public static final String GwAntMatcher = CharonUtil.proxyPath + "**";
 
 	/**
 	 * 白名单

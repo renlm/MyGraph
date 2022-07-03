@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.mkopylec.charon.configuration.CharonUtil;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Role;
-import cn.renlm.graph.config.GatewayConfig;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.gateway.dto.GatewayProxyConfigDto;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
@@ -106,7 +106,7 @@ public class GatewayProxyConfigController {
 			User user = (User) authentication.getPrincipal();
 			Result<GatewayProxyConfigDto> result = iGatewayProxyConfigService.ajaxSave(user, form);
 			if (result.isSuccess()) {
-				GatewayConfig.reload();
+				CharonUtil.reload();
 			}
 			return result;
 		} catch (Exception e) {
