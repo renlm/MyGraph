@@ -80,6 +80,7 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 			GatewayProxyConfig entity = this
 					.getOne(Wrappers.<GatewayProxyConfig>lambdaQuery().eq(GatewayProxyConfig::getUuid, form.getUuid()));
 			form.setId(entity.getId());
+			form.setPath(entity.getPath());
 			form.setAccessKey(entity.getAccessKey());
 			form.setSecretKey(entity.getSecretKey());
 			form.setCreatedAt(entity.getCreatedAt());

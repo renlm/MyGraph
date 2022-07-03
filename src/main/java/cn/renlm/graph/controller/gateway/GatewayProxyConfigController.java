@@ -106,7 +106,7 @@ public class GatewayProxyConfigController {
 			User user = (User) authentication.getPrincipal();
 			Result<GatewayProxyConfigDto> result = iGatewayProxyConfigService.ajaxSave(user, form);
 			if (result.isSuccess()) {
-				GatewayUtil.reload();
+				GatewayUtil.reload(result.getData().getUuid());
 			}
 			return result;
 		} catch (Exception e) {

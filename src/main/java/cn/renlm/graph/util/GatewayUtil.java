@@ -91,11 +91,13 @@ public class GatewayUtil {
 
 	/**
 	 * 重载配置
+	 * 
+	 * @param uuids
 	 */
-	public static final void reload() {
+	public static final void reload(String... uuids) {
 		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
 		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
-		configurers(serverProperties, iGatewayProxyConfigService);
+		configurers(serverProperties, iGatewayProxyConfigService, uuids);
 	}
 
 	/**

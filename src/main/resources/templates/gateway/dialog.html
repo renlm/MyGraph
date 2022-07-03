@@ -9,11 +9,12 @@
             <div class="myui-input-block">
                 <input type="text" th:field="*{path}" 
                 	class="easyui-textbox" 
-                	data-options="required:true,
+                	th:data-options="|required:true,
+                		disabled:${!#strings.isEmpty(gatewayProxyConfig.uuid)},
                 		prompt:'必填',
                 		width:'100%',
 						validType:['alphaDash','maxLength[20]']
-                	"/>
+                	|"/>
             </div>
         </div>
         <div class="myui-col-sm6">
