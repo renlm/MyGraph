@@ -1,4 +1,4 @@
-package com.github.mkopylec.charon.configuration;
+package cn.renlm.graph.util;
 
 import static cn.hutool.core.codec.Base64.encodeUrlSafe;
 import static cn.hutool.core.text.CharSequenceUtil.EMPTY;
@@ -28,7 +28,6 @@ import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.Respons
 import static io.github.resilience4j.ratelimiter.RateLimiterConfig.custom;
 import static java.time.Duration.ZERO;
 import static java.time.Duration.ofSeconds;
-import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 import static org.springframework.core.Ordered.LOWEST_PRECEDENCE;
 import static org.springframework.http.HttpHeaders.COOKIE;
 
@@ -38,7 +37,7 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.github.mkopylec.charon.forwarding.ReverseProxyFilter;
+import com.github.mkopylec.charon.configuration.CharonConfigurer;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequest;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequestExecution;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpResponse;
@@ -69,6 +68,8 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class CharonUtil {
 
+	private static final CharonConfigurer charonConfigurer = charonConfiguration();
+
 	/**
 	 * 网关代理路径
 	 */
@@ -88,16 +89,7 @@ public class CharonUtil {
 	public static final void reload() {
 		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
 		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
-		// 配置
-		CharonConfigurer charonConfigurer = configurers(serverProperties, iGatewayProxyConfigService);
-		CharonConfiguration configuration = charonConfigurer.configure();
-		int filterOrder = configuration.getFilterOrder();
-		List<RequestMappingConfiguration> rmcs = configuration.getRequestMappingConfigurations();
-		// 注册
-		ReverseProxyFilter reverseProxyFilter = new ReverseProxyFilter(filterOrder, rmcs);
-		String beanName = StrUtil.lowerFirst(ReverseProxyFilter.class.getSimpleName());
-		SpringUtil.unregisterBean(beanName);
-		SpringUtil.registerBean(beanName, reverseProxyFilter);
+		configurers(serverProperties, iGatewayProxyConfigService);
 	}
 
 	/**
@@ -109,8 +101,6 @@ public class CharonUtil {
 	 */
 	public static final CharonConfigurer configurers(ServerProperties serverProperties,
 			IGatewayProxyConfigService iGatewayProxyConfigService) {
-		CharonConfigurer charonConfigurer = charonConfiguration();
-		charonConfigurer.filterOrder(HIGHEST_PRECEDENCE + 100);
 		String contextPath = serverProperties.getServlet().getContextPath();
 		List<GatewayProxyConfig> configs = iGatewayProxyConfigService
 				.list(Wrappers.<GatewayProxyConfig>lambdaQuery().func(wrapper -> {

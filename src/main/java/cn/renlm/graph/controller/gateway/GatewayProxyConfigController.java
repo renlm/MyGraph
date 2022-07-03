@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.github.mkopylec.charon.configuration.CharonUtil;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
@@ -23,6 +22,7 @@ import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
 import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.util.CharonUtil;
 
 /**
  * 网关代理配置

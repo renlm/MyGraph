@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
-import com.github.mkopylec.charon.configuration.CharonUtil;
 
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
+import cn.renlm.graph.util.CharonUtil;
 
 /**
  * 网关代理配置
