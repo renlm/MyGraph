@@ -12,6 +12,21 @@ import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.
 import static com.github.mkopylec.charon.forwarding.RestTemplateConfigurer.restTemplate;
 import static com.github.mkopylec.charon.forwarding.TimeoutConfigurer.timeout;
 import static com.github.mkopylec.charon.forwarding.Utils.copyHeaders;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.ASYNCHRONOUS_FORWARDING_HANDLER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.AUTHENTICATOR;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.CIRCUIT_BREAKER_HANDLER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.FORWARDING_LOGGER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.LATENCY_METER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.RATE_LIMITING_HANDLER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.RATE_METER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.REQUEST_HOST_HEADER_REWRITER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.REQUEST_PATH_REWRITER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.REQUEST_PROTOCOL_HEADERS_REWRITER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.REQUEST_PROXY_HEADERS_REWRITER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.REQUEST_SERVER_NAME_REWRITER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.RESPONSE_COOKIE_REWRITER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.RESPONSE_PROTOCOL_HEADERS_REWRITER;
+import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.RETRYING_HANDLER;
 import static com.github.mkopylec.charon.forwarding.interceptors.log.ForwardingLoggerConfigurer.forwardingLogger;
 import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.DEBUG;
 import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.ERROR;
@@ -152,14 +167,31 @@ public class GatewayUtil {
 				} else {
 					charonConfigurer
 						.update(path,
-							requestMappingConfigurerUpdate -> 
-								requestMappingConfigurer(
-									requestMappingConfigurerUpdate,
-									config, 
-									pathRegex, 
-									outgoingServers, 
-									incomingRequestPathRegex,
-									outgoingRequestPathTemplate));
+							requestMappingConfigurerUpdate -> {
+									requestMappingConfigurerUpdate.unset(FORWARDING_LOGGER);
+								    requestMappingConfigurerUpdate.unset(ASYNCHRONOUS_FORWARDING_HANDLER);
+								    requestMappingConfigurerUpdate.unset(RATE_METER);
+								    requestMappingConfigurerUpdate.unset(AUTHENTICATOR);
+								    requestMappingConfigurerUpdate.unset(REQUEST_PROTOCOL_HEADERS_REWRITER);
+								    requestMappingConfigurerUpdate.unset(REQUEST_PROXY_HEADERS_REWRITER);
+								    requestMappingConfigurerUpdate.unset(REQUEST_SERVER_NAME_REWRITER);
+								    requestMappingConfigurerUpdate.unset(REQUEST_HOST_HEADER_REWRITER);
+								    requestMappingConfigurerUpdate.unset(REQUEST_PATH_REWRITER);
+								    requestMappingConfigurerUpdate.unset(RESPONSE_PROTOCOL_HEADERS_REWRITER);
+								    requestMappingConfigurerUpdate.unset(RESPONSE_COOKIE_REWRITER);
+								    requestMappingConfigurerUpdate.unset(CIRCUIT_BREAKER_HANDLER);
+								    requestMappingConfigurerUpdate.unset(RETRYING_HANDLER);
+								    requestMappingConfigurerUpdate.unset(RATE_LIMITING_HANDLER);
+								    requestMappingConfigurerUpdate.unset(LATENCY_METER);
+								    requestMappingConfigurerUpdate.unset(MyRequestForwardingInterceptor.TYPE);
+									requestMappingConfigurer(
+										requestMappingConfigurerUpdate,
+										config, 
+										pathRegex, 
+										outgoingServers, 
+										incomingRequestPathRegex,
+										outgoingRequestPathTemplate);
+								});
 				}
 				log.info("==> 加载网关代理配置：{}", path);
 			}
@@ -233,9 +265,9 @@ public class GatewayUtil {
 	@AllArgsConstructor
 	static class MyRequestForwardingInterceptor implements RequestForwardingInterceptor {
 
-		final GatewayProxyConfig proxy;
+		private final GatewayProxyConfig proxy;
 
-		final RequestForwardingInterceptorType TYPE = new RequestForwardingInterceptorType(LOWEST_PRECEDENCE - 100);
+		static final RequestForwardingInterceptorType TYPE = new RequestForwardingInterceptorType(LOWEST_PRECEDENCE - 100);
 
 		@Override
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
