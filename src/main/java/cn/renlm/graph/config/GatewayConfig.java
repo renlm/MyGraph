@@ -106,6 +106,15 @@ public class GatewayConfig {
 			IGatewayProxyConfigService iGatewayProxyConfigService) {
 		return configurers(serverProperties, iGatewayProxyConfigService);
 	}
+	
+	/**
+	 * 重载配置
+	 */
+	public static final void reload() {
+		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
+		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
+		configurers(serverProperties, iGatewayProxyConfigService);
+	}
 
 	/**
 	 * 加载数据库配置

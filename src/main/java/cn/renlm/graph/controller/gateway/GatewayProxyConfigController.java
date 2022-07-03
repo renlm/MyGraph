@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Role;
+import cn.renlm.graph.config.GatewayConfig;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.gateway.dto.GatewayProxyConfigDto;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
@@ -103,7 +104,11 @@ public class GatewayProxyConfigController {
 	public Result<GatewayProxyConfigDto> ajaxSave(Authentication authentication, GatewayProxyConfigDto form) {
 		try {
 			User user = (User) authentication.getPrincipal();
-			return iGatewayProxyConfigService.ajaxSave(user, form);
+			Result<GatewayProxyConfigDto> result = iGatewayProxyConfigService.ajaxSave(user, form);
+			if (result.isSuccess()) {
+				GatewayConfig.reload();
+			}
+			return result;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return Result.error("出错了");
