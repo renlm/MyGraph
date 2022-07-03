@@ -131,6 +131,9 @@ public class GatewayUtil {
 			String path = config.getPath();
 			List<String> outgoingServers = StrUtil.splitTrim(config.getOutgoingServers(), COMMA);
 			CollUtil.removeBlank(outgoingServers);
+			if (!BooleanUtil.isTrue(config.getEnabled())) {
+				outgoingServers.clear();
+			}
 			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
 				final StringBuffer pathRegex = new StringBuffer();
 				if (StrUtil.isNotBlank(contextPath) && BooleanUtil.isFalse(StrUtil.equals(contextPath, SLASH))) {
