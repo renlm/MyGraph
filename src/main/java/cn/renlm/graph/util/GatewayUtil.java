@@ -99,7 +99,6 @@ public class GatewayUtil {
 		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
 		configurers(serverProperties, iGatewayProxyConfigService);
 		ReflectUtil.invoke(charonConfigurer, "configure");
-		log.info("==> 重载网关代理配置");
 	}
 
 	/**
@@ -140,7 +139,7 @@ public class GatewayUtil {
 				CharonConfiguration configuredObject = (CharonConfiguration) ReflectUtil
 						.getFieldValue(charonConfigurer, "configuredObject");
 				RequestMappingConfigurer requestMappingConfigurer = (RequestMappingConfigurer) ReflectUtil
-						.getFieldValue(configuredObject, "getRequestMappingConfigurer");
+						.invoke(configuredObject, "getRequestMappingConfigurer", path);
 				if (ObjectUtil.isNull(requestMappingConfigurer)) {
 					charonConfigurer
 						.add(requestMappingConfigurer(
@@ -162,6 +161,7 @@ public class GatewayUtil {
 									incomingRequestPathRegex,
 									outgoingRequestPathTemplate));
 				}
+				log.info("==> 加载网关代理配置：{}", path);
 			}
 		});
 		return charonConfigurer;
