@@ -133,18 +133,17 @@ public class GatewayUtil {
 			String path = config.getPath();
 			List<String> outgoingServers = StrUtil.splitTrim(config.getOutgoingServers(), COMMA);
 			CollUtil.removeBlank(outgoingServers);
-			if (!BooleanUtil.isTrue(config.getEnabled())) {
+			boolean disabled = !BooleanUtil.isTrue(config.getEnabled());
+			if (disabled) {
 				outgoingServers.clear();
 				outgoingServers.add(myConfigProperties.getCtx());
 			}
 			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
-				final StringBuffer pathRegex = new StringBuffer();
-				if (StrUtil.isNotBlank(contextPath) && BooleanUtil.isFalse(StrUtil.equals(contextPath, SLASH))) {
-					pathRegex.append(contextPath);
-				}
+				final String root = StrUtil.isNotBlank(contextPath) && BooleanUtil.isFalse(StrUtil.equals(contextPath, SLASH)) ? contextPath : EMPTY;
+				final StringBuffer pathRegex = new StringBuffer(root);
 				pathRegex.append(proxyPath + path + "/.*");
-				final String incomingRequestPathRegex = "/" + path + "/(?<path>.*)";
-				final String outgoingRequestPathTemplate = "/<path>";
+				final String incomingRequestPathRegex = root + proxyPath + path + "/(?<path>.*)";
+				final String outgoingRequestPathTemplate = disabled ? (root + "/_<path>_") : "/<path>";
 				charonConfigurer
 					.add(requestMapping(path)
 							.pathRegex(pathRegex.toString())
