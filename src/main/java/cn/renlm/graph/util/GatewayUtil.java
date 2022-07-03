@@ -32,12 +32,14 @@ import static org.springframework.core.Ordered.LOWEST_PRECEDENCE;
 import static org.springframework.http.HttpHeaders.COOKIE;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
+import com.github.mkopylec.charon.forwarding.ReverseProxyFilter;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequest;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequestExecution;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpResponse;
@@ -98,8 +100,12 @@ public class GatewayUtil {
 	public static final void reload(String... uuids) {
 		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
 		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
+		ReverseProxyFilter reverseProxyFilter = SpringUtil.getBean(ReverseProxyFilter.class);
 		configurers(serverProperties, iGatewayProxyConfigService, uuids);
 		ReflectUtil.invoke(charonConfigurer, "configure");
+		Object restTemplateProvider = ReflectUtil.getFieldValue(reverseProxyFilter, "restTemplateProvider");
+		ConcurrentMap<?, ?> restTemplates = (ConcurrentMap<?, ?>) ReflectUtil.getFieldValue(restTemplateProvider, "restTemplates");
+		restTemplates.clear();
 	}
 
 	/**
