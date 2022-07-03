@@ -137,8 +137,8 @@ public class GatewayUtil {
 				pathRegex.append(proxyPath + path + "/.*");
 				final String incomingRequestPathRegex = "/" + path + "/(?<path>.*)";
 				final String outgoingRequestPathTemplate = "/<path>";
-				CharonConfiguration configuredObject = (CharonConfiguration) ReflectUtil.getFieldValue(charonConfigurer,
-						"configuredObject");
+				CharonConfiguration configuredObject = (CharonConfiguration) ReflectUtil
+						.getFieldValue(charonConfigurer, "configuredObject");
 				RequestMappingConfigurer requestMappingConfigurer = (RequestMappingConfigurer) ReflectUtil
 						.getFieldValue(configuredObject, "getRequestMappingConfigurer");
 				if (ObjectUtil.isNull(requestMappingConfigurer)) {
