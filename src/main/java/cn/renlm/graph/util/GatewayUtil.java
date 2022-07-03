@@ -12,21 +12,6 @@ import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.
 import static com.github.mkopylec.charon.forwarding.RestTemplateConfigurer.restTemplate;
 import static com.github.mkopylec.charon.forwarding.TimeoutConfigurer.timeout;
 import static com.github.mkopylec.charon.forwarding.Utils.copyHeaders;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.ASYNCHRONOUS_FORWARDING_HANDLER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.AUTHENTICATOR;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.CIRCUIT_BREAKER_HANDLER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.FORWARDING_LOGGER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.LATENCY_METER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.RATE_LIMITING_HANDLER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.RATE_METER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.REQUEST_HOST_HEADER_REWRITER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.REQUEST_PATH_REWRITER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.REQUEST_PROTOCOL_HEADERS_REWRITER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.REQUEST_PROXY_HEADERS_REWRITER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.REQUEST_SERVER_NAME_REWRITER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.RESPONSE_COOKIE_REWRITER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.RESPONSE_PROTOCOL_HEADERS_REWRITER;
-import static com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInterceptorType.RETRYING_HANDLER;
 import static com.github.mkopylec.charon.forwarding.interceptors.log.ForwardingLoggerConfigurer.forwardingLogger;
 import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.DEBUG;
 import static com.github.mkopylec.charon.forwarding.interceptors.log.LogLevel.ERROR;
@@ -52,9 +37,7 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.github.mkopylec.charon.configuration.CharonConfiguration;
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
-import com.github.mkopylec.charon.configuration.RequestMappingConfigurer;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequest;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequestExecution;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpResponse;
@@ -64,9 +47,9 @@ import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInter
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
@@ -113,7 +96,6 @@ public class GatewayUtil {
 		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
 		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
 		configurers(serverProperties, iGatewayProxyConfigService);
-		ReflectUtil.invoke(charonConfigurer, "configure");
 	}
 
 	/**
@@ -121,132 +103,70 @@ public class GatewayUtil {
 	 * 
 	 * @param serverProperties
 	 * @param iGatewayProxyConfigService
+	 * @param uuids
 	 * @return
 	 */
 	public static final CharonConfigurer configurers(ServerProperties serverProperties,
-			IGatewayProxyConfigService iGatewayProxyConfigService) {
+			IGatewayProxyConfigService iGatewayProxyConfigService, String... uuids) {
 		String contextPath = serverProperties.getServlet().getContextPath();
 		List<GatewayProxyConfig> configs = iGatewayProxyConfigService
 				.list(Wrappers.<GatewayProxyConfig>lambdaQuery().func(wrapper -> {
-					wrapper.eq(GatewayProxyConfig::getEnabled, true);
+					if (ArrayUtil.isNotEmpty(uuids)) {
+						wrapper.in(GatewayProxyConfig::getUuid, CollUtil.newArrayList(uuids));
+					}
 					wrapper.orderByAsc(GatewayProxyConfig::getId);
 				}));
 		configs.forEach(config -> {
 			String path = config.getPath();
-			while (StrUtil.startWith(path, SLASH)) {
-				path = StrUtil.removePrefix(path, SLASH);
-			}
-			while (StrUtil.endWith(path, SLASH)) {
-				path = StrUtil.removeSuffix(path, SLASH);
-			}
 			List<String> outgoingServers = StrUtil.splitTrim(config.getOutgoingServers(), COMMA);
 			CollUtil.removeBlank(outgoingServers);
 			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
 				final StringBuffer pathRegex = new StringBuffer();
-				if (StrUtil.isNotBlank(contextPath)) {
-					if (BooleanUtil.isFalse(StrUtil.equals(contextPath, SLASH))) {
-						pathRegex.append(contextPath);
-					}
+				if (StrUtil.isNotBlank(contextPath) && BooleanUtil.isFalse(StrUtil.equals(contextPath, SLASH))) {
+					pathRegex.append(contextPath);
 				}
 				pathRegex.append(proxyPath + path + "/.*");
 				final String incomingRequestPathRegex = "/" + path + "/(?<path>.*)";
 				final String outgoingRequestPathTemplate = "/<path>";
-				CharonConfiguration configuredObject = (CharonConfiguration) ReflectUtil
-						.getFieldValue(charonConfigurer, "configuredObject");
-				RequestMappingConfigurer requestMappingConfigurer = (RequestMappingConfigurer) ReflectUtil
-						.invoke(configuredObject, "getRequestMappingConfigurer", path);
-				if (ObjectUtil.isNull(requestMappingConfigurer)) {
-					charonConfigurer
-						.add(requestMappingConfigurer(
-								requestMapping(path), 
-								config, 
-								pathRegex,
-								outgoingServers, 
-								incomingRequestPathRegex, 
-								outgoingRequestPathTemplate));
-				} else {
-					charonConfigurer
-						.update(path,
-							requestMappingConfigurerUpdate -> {
-									requestMappingConfigurerUpdate.unset(FORWARDING_LOGGER);
-								    requestMappingConfigurerUpdate.unset(ASYNCHRONOUS_FORWARDING_HANDLER);
-								    requestMappingConfigurerUpdate.unset(RATE_METER);
-								    requestMappingConfigurerUpdate.unset(AUTHENTICATOR);
-								    requestMappingConfigurerUpdate.unset(REQUEST_PROTOCOL_HEADERS_REWRITER);
-								    requestMappingConfigurerUpdate.unset(REQUEST_PROXY_HEADERS_REWRITER);
-								    requestMappingConfigurerUpdate.unset(REQUEST_SERVER_NAME_REWRITER);
-								    requestMappingConfigurerUpdate.unset(REQUEST_HOST_HEADER_REWRITER);
-								    requestMappingConfigurerUpdate.unset(REQUEST_PATH_REWRITER);
-								    requestMappingConfigurerUpdate.unset(RESPONSE_PROTOCOL_HEADERS_REWRITER);
-								    requestMappingConfigurerUpdate.unset(RESPONSE_COOKIE_REWRITER);
-								    requestMappingConfigurerUpdate.unset(CIRCUIT_BREAKER_HANDLER);
-								    requestMappingConfigurerUpdate.unset(RETRYING_HANDLER);
-								    requestMappingConfigurerUpdate.unset(RATE_LIMITING_HANDLER);
-								    requestMappingConfigurerUpdate.unset(LATENCY_METER);
-								    requestMappingConfigurerUpdate.unset(MyRequestForwardingInterceptor.TYPE);
-									requestMappingConfigurer(
-										requestMappingConfigurerUpdate,
-										config, 
-										pathRegex, 
-										outgoingServers, 
-										incomingRequestPathRegex,
-										outgoingRequestPathTemplate);
-								});
-				}
+				charonConfigurer
+					.add(requestMapping(path)
+							.pathRegex(pathRegex.toString())
+							.set(requestHostHeaderRewriter())
+							.set(requestProtocolHeadersRewriter())
+							.set(requestProxyHeadersRewriter())
+							.set(responseProtocolHeadersRewriter())
+							.set(new MyRequestForwardingInterceptorConfigurer(config))
+							.set(regexRequestPathRewriter()
+									.paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
+							.set(requestServerNameRewriter()
+									.outgoingServers(outgoingServers))
+							.set(restTemplate()
+									.set(
+										timeout()
+											.connection(ofSeconds(config.getConnectionTimeout()))
+											.read(ofSeconds(config.getReadTimeout()))
+											.write(ofSeconds(config.getWriteTimeout()))))
+							.set(rateLimiter()
+									.configuration(
+										custom()
+											.timeoutDuration(ZERO)
+											.limitRefreshPeriod(ofSeconds(1))
+											.limitForPeriod(ObjectUtil.defaultIfNull(config.getLimitForSecond(), 10000)))
+									.meterRegistry(new LoggingMeterRegistry()))
+							.set(latencyMeter()
+									.meterRegistry(new LoggingMeterRegistry()))
+							.set(rateMeter()
+									.meterRegistry(new LoggingMeterRegistry()))
+							.set(forwardingLogger()
+									.successLogLevel(DEBUG)
+									.clientErrorLogLevel(INFO)
+									.serverErrorLogLevel(ERROR)
+									.unexpectedErrorLogLevel(ERROR)))
+					;
 				log.info("==> 加载网关代理配置：{}", path);
 			}
 		});
 		return charonConfigurer;
-	}
-
-	/**
-	 * 代理配置
-	 * 
-	 * @param requestMappingConfigurer
-	 * @param config
-	 * @param pathRegex
-	 * @param outgoingServers
-	 * @param incomingRequestPathRegex
-	 * @param outgoingRequestPathTemplate
-	 * @return
-	 */
-	private static final RequestMappingConfigurer requestMappingConfigurer(
-			RequestMappingConfigurer requestMappingConfigurer, GatewayProxyConfig config, StringBuffer pathRegex,
-			List<String> outgoingServers, String incomingRequestPathRegex, String outgoingRequestPathTemplate) {
-		return requestMappingConfigurer
-				.pathRegex(pathRegex.toString())
-				.set(requestHostHeaderRewriter())
-				.set(requestProtocolHeadersRewriter())
-				.set(requestProxyHeadersRewriter())
-				.set(responseProtocolHeadersRewriter())
-				.set(new MyRequestForwardingInterceptorConfigurer(config))
-				.set(regexRequestPathRewriter()
-						.paths(incomingRequestPathRegex, outgoingRequestPathTemplate))
-				.set(requestServerNameRewriter()
-						.outgoingServers(outgoingServers))
-				.set(restTemplate()
-						.set(
-							timeout()
-								.connection(ofSeconds(config.getConnectionTimeout()))
-								.read(ofSeconds(config.getReadTimeout()))
-								.write(ofSeconds(config.getWriteTimeout()))))
-				.set(rateLimiter()
-						.configuration(
-							custom()
-								.timeoutDuration(ZERO)
-								.limitRefreshPeriod(ofSeconds(1))
-								.limitForPeriod(ObjectUtil.defaultIfNull(config.getLimitForSecond(), 10000)))
-						.meterRegistry(new LoggingMeterRegistry()))
-				.set(latencyMeter()
-						.meterRegistry(new LoggingMeterRegistry()))
-				.set(rateMeter()
-						.meterRegistry(new LoggingMeterRegistry()))
-				.set(forwardingLogger()
-						.successLogLevel(DEBUG)
-						.clientErrorLogLevel(INFO)
-						.serverErrorLogLevel(ERROR)
-						.unexpectedErrorLogLevel(ERROR))
-				;
 	}
 
 	/**
@@ -267,7 +187,8 @@ public class GatewayUtil {
 
 		private final GatewayProxyConfig proxy;
 
-		static final RequestForwardingInterceptorType TYPE = new RequestForwardingInterceptorType(LOWEST_PRECEDENCE - 100);
+		static final RequestForwardingInterceptorType TYPE = new RequestForwardingInterceptorType(
+				LOWEST_PRECEDENCE - 100);
 
 		@Override
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
