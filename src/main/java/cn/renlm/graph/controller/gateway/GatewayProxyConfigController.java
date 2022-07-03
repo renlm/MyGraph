@@ -15,6 +15,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.amqp.AmqpUtil;
+import cn.renlm.graph.amqp.GatewayReloadTopicQueue;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.gateway.dto.GatewayProxyConfigDto;
@@ -22,7 +24,6 @@ import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
 import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
-import cn.renlm.graph.util.GatewayUtil;
 
 /**
  * 网关代理配置
@@ -106,7 +107,8 @@ public class GatewayProxyConfigController {
 			User user = (User) authentication.getPrincipal();
 			Result<GatewayProxyConfigDto> result = iGatewayProxyConfigService.ajaxSave(user, form);
 			if (result.isSuccess()) {
-				GatewayUtil.reload(result.getData().getUuid());
+				AmqpUtil.createQueue(GatewayReloadTopicQueue.EXCHANGE, GatewayReloadTopicQueue.ROUTINGKEY,
+						result.getData().getUuid());
 			}
 			return result;
 		} catch (Exception e) {
