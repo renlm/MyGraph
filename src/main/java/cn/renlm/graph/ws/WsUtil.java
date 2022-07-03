@@ -10,11 +10,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
-import org.springframework.session.Session;
-import org.springframework.session.data.redis.RedisIndexedSessionRepository;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
@@ -25,11 +20,11 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
-import cn.renlm.graph.dto.User;
+import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.util.RedisUtil;
+import cn.renlm.graph.util.SessionUtil;
 import cn.renlm.graph.ws.WsMessage.WsType;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
@@ -62,7 +57,7 @@ public class WsUtil {
 	/**
 	 * 会话池
 	 */
-	private static final ConcurrentHashMap<String, User> WS_USER_REL = new ConcurrentHashMap<>();
+	private static final ConcurrentHashMap<String, UserBase> WS_USER_REL = new ConcurrentHashMap<>();
 	private static final ConcurrentHashMap<String, WebSocketSession> WS_SESSION_POOL = new ConcurrentHashMap<>();
 
 	/**
@@ -73,7 +68,7 @@ public class WsUtil {
 	 * @return
 	 */
 	public static final boolean validHandshake(String token, Long timestamp) {
-		User user = getUserInfo(token, timestamp);
+		UserBase user = SessionUtil.getUserInfo(Base64.encode(token));
 		return ObjectUtil.isNotEmpty(user) && StrUtil.isNotBlank(user.getUserId());
 	}
 
@@ -85,7 +80,7 @@ public class WsUtil {
 	 */
 	public static final WebSocketSession addSession(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
-		User user = getUserInfo(session);
+		UserBase user = getUserInfo(session);
 		String userId = user.getUserId();
 
 		// 维护在线状态
@@ -111,7 +106,7 @@ public class WsUtil {
 	 */
 	public static final WebSocketSession removeSession(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
-		User user = getUserInfo(session);
+		UserBase user = getUserInfo(session);
 
 		// 维护在线状态
 		if (ObjectUtil.isNotEmpty(user)) {
@@ -165,9 +160,9 @@ public class WsUtil {
 		log.debug("=== 在线状态心跳监测，当前机器连接数：" + WS_USER_REL.size());
 		RedisTemplate<String, String> redisTemplate = RedisUtil.getRedisTemplate();
 		ZSetOperations<String, String> zops = redisTemplate.opsForZSet();
-		for (Map.Entry<String, User> entry : WS_USER_REL.entrySet()) {
+		for (Map.Entry<String, UserBase> entry : WS_USER_REL.entrySet()) {
 			String wsKey = entry.getKey();
-			User user = entry.getValue();
+			UserBase user = entry.getValue();
 			String userId = user.getUserId();
 			Long expTime = DateUtil.current() + validityMillis;
 			WebSocketSession session = WS_SESSION_POOL.get(wsKey);
@@ -211,7 +206,7 @@ public class WsUtil {
 	 * @param session
 	 * @return
 	 */
-	private static final User getUserInfo(WebSocketSession session) {
+	private static final UserBase getUserInfo(WebSocketSession session) {
 		String wsKey = Convert.toStr(session.getAttributes().get(WsKey));
 		if (StrUtil.isBlank(wsKey) || !Base64.isBase64(wsKey)) {
 			return null;
@@ -225,36 +220,6 @@ public class WsUtil {
 			return null;
 		}
 		String token = decodes[0];
-		Long timestamp = Convert.toLong(decodes[1]);
-		return getUserInfo(token, timestamp);
-	}
-
-	/**
-	 * 获取用户信息
-	 * 
-	 * @param token
-	 * @param timestamp
-	 * @return
-	 */
-	private static final User getUserInfo(String token, Long timestamp) {
-		if (StrUtil.isBlank(token) || timestamp == null) {
-			return null;
-		}
-		RedisIndexedSessionRepository sessionRepository = SpringUtil.getBean(RedisIndexedSessionRepository.class);
-		Session session = sessionRepository.findById(token);
-		if (session == null || session.isExpired()) {
-			return null;
-		}
-		SecurityContext securityContext = session
-				.getAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY);
-		if (securityContext == null) {
-			return null;
-		}
-		Authentication authentication = securityContext.getAuthentication();
-		if (authentication == null) {
-			return null;
-		}
-		User user = (User) authentication.getPrincipal();
-		return user;
+		return SessionUtil.getUserInfo(Base64.encode(token));
 	}
 }
