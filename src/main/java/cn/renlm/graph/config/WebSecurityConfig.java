@@ -37,7 +37,7 @@ import cn.renlm.graph.security.MyAuthenticationSuccessHandler;
 import cn.renlm.graph.security.MyDaoAuthenticationProvider;
 import cn.renlm.graph.security.MyWebAuthenticationDetails;
 import cn.renlm.graph.security.UserService;
-import cn.renlm.graph.util.CharonUtil;
+import cn.renlm.graph.util.GatewayUtil;
 
 /**
  * 安全框架
@@ -78,7 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
 	 * 网关代理匹配路径
 	 */
-	public static final String GwAntMatcher = CharonUtil.proxyPath + "**";
+	public static final String GwAntMatcher = GatewayUtil.proxyPath + "**";
 
 	/**
 	 * 白名单

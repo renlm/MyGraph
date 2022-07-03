@@ -22,7 +22,7 @@ import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
 import cn.renlm.graph.response.Datagrid;
 import cn.renlm.graph.response.Result;
-import cn.renlm.graph.util.CharonUtil;
+import cn.renlm.graph.util.GatewayUtil;
 
 /**
  * 网关代理配置
@@ -106,7 +106,7 @@ public class GatewayProxyConfigController {
 			User user = (User) authentication.getPrincipal();
 			Result<GatewayProxyConfigDto> result = iGatewayProxyConfigService.ajaxSave(user, form);
 			if (result.isSuccess()) {
-				CharonUtil.reload();
+				GatewayUtil.reload();
 			}
 			return result;
 		} catch (Exception e) {

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
 
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
-import cn.renlm.graph.util.CharonUtil;
+import cn.renlm.graph.util.GatewayUtil;
 
 /**
  * 网关代理配置
@@ -21,6 +21,6 @@ public class GatewayConfig {
 	@Bean
 	CharonConfigurer charonConfigurer(ServerProperties serverProperties,
 			IGatewayProxyConfigService iGatewayProxyConfigService) {
-		return CharonUtil.configurers(serverProperties, iGatewayProxyConfigService);
+		return GatewayUtil.configurers(serverProperties, iGatewayProxyConfigService);
 	}
 }

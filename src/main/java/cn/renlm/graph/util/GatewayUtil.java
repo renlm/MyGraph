@@ -66,7 +66,7 @@ import lombok.experimental.UtilityClass;
  *
  */
 @UtilityClass
-public class CharonUtil {
+public class GatewayUtil {
 
 	private static final CharonConfigurer charonConfigurer = charonConfiguration();
 
