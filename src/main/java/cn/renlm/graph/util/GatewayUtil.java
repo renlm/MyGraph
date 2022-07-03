@@ -25,6 +25,7 @@ import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.Request
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestProxyHeadersRewriterConfigurer.requestProxyHeadersRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RequestServerNameRewriterConfigurer.requestServerNameRewriter;
 import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.ResponseProtocolHeadersRewriterConfigurer.responseProtocolHeadersRewriter;
+import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RootPathResponseCookiesRewriterConfigurer.rootPathResponseCookiesRewriter;
 import static io.github.resilience4j.ratelimiter.RateLimiterConfig.custom;
 import static java.time.Duration.ZERO;
 import static java.time.Duration.ofSeconds;
@@ -141,6 +142,7 @@ public class GatewayUtil {
 				charonConfigurer
 					.add(requestMapping(path)
 							.pathRegex(pathRegex.toString())
+							.set(rootPathResponseCookiesRewriter())
 							.set(requestHostHeaderRewriter())
 							.set(requestProtocolHeadersRewriter())
 							.set(requestProxyHeadersRewriter())
