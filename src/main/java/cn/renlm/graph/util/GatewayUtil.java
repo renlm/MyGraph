@@ -37,6 +37,7 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.github.mkopylec.charon.configuration.CharonConfiguration;
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
 import com.github.mkopylec.charon.configuration.RequestMappingConfigurer;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequest;
@@ -136,28 +137,36 @@ public class GatewayUtil {
 				pathRegex.append(proxyPath + path + "/.*");
 				final String incomingRequestPathRegex = "/" + path + "/(?<path>.*)";
 				final String outgoingRequestPathTemplate = "/<path>";
-				charonConfigurer
-					.add(requestMappingConfigurer(
-							requestMapping(path), 
-							config, 
-							pathRegex, 
-							outgoingServers,
-							incomingRequestPathRegex, 
-							outgoingRequestPathTemplate))
-					.update(path,
+				CharonConfiguration configuredObject = (CharonConfiguration) ReflectUtil.getFieldValue(charonConfigurer,
+						"configuredObject");
+				RequestMappingConfigurer requestMappingConfigurer = (RequestMappingConfigurer) ReflectUtil
+						.getFieldValue(configuredObject, "getRequestMappingConfigurer");
+				if (ObjectUtil.isNull(requestMappingConfigurer)) {
+					charonConfigurer
+						.add(requestMappingConfigurer(
+								requestMapping(path), 
+								config, 
+								pathRegex,
+								outgoingServers, 
+								incomingRequestPathRegex, 
+								outgoingRequestPathTemplate));
+				} else {
+					charonConfigurer
+						.update(path,
 							requestMappingConfigurerUpdate -> 
 								requestMappingConfigurer(
-									requestMappingConfigurerUpdate, 
+									requestMappingConfigurerUpdate,
 									config, 
 									pathRegex, 
-									outgoingServers,
-									incomingRequestPathRegex, 
+									outgoingServers, 
+									incomingRequestPathRegex,
 									outgoingRequestPathTemplate));
+				}
 			}
 		});
 		return charonConfigurer;
 	}
-	
+
 	/**
 	 * 代理配置
 	 * 
