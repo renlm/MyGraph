@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import cn.hutool.core.convert.Convert;
 import cn.renlm.graph.util.GatewayUtil;
-import cn.renlm.graph.ws.WsMessage;
 
 /**
  * 网关代理重载配置
@@ -34,11 +32,10 @@ public class GatewayReloadTopicQueue {
 	/**
 	 * 监听广播队列
 	 * 
-	 * @param message
+	 * @param uuid
 	 */
 	@RabbitListener(queues = "#{" + QUEUE + ".name}")
-	public void receiveMessage(WsMessage<Object> message) {
-		String uuid = Convert.toStr(message.getData());
+	public void receiveMessage(String uuid) {
 		GatewayUtil.reload(uuid);
 	}
 
