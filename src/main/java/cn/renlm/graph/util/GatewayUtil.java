@@ -60,7 +60,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.UtilityClass;
 
 /**
- * 网关代理配置
+ * 网关工具
  * 
  * @author Renlm
  *
