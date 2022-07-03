@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 
 /**
  * 模板工具类
@@ -21,6 +22,7 @@ import lombok.SneakyThrows;
  * @author Renlm
  *
  */
+@UtilityClass
 public class FreemarkerUtil {
 	protected final static Logger logger = LoggerFactory.getLogger(FreemarkerUtil.class);
 	private static final Configuration cfg = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
