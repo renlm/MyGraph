@@ -48,8 +48,8 @@ public class UserApiController {
 	 * @return
 	 */
 	@ResponseBody
-	@GetMapping("/getUserByTicket")
-	public Result<User> getUserByTicket(String ticket) {
+	@GetMapping("/getByTicket")
+	public Result<User> getByTicket(String ticket) {
 		User user = SessionUtil.getUserInfo(ticket);
 		user.setPassword(null);
 		return Result.success(user);
