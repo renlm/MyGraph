@@ -45,7 +45,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		// 添加登录凭证
-		String sessionId = request.getRequestedSessionId();
+		String sessionId = request.getSession().getId();
 		User principal = (User) authentication.getPrincipal();
 		principal.setTicket(Base64.encodeUrlSafe(sessionId));
 		principal.setPassword(null);
