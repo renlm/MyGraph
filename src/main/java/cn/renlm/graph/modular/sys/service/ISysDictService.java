@@ -52,10 +52,11 @@ public interface ISysDictService extends IService<SysDict> {
 	/**
 	 * 获取树形字典
 	 * 
+	 * @param root
 	 * @param codePaths
 	 * @return
 	 */
-	List<Tree<Long>> getTree(String... codePaths);
+	List<Tree<Long>> getTree(boolean root, String... codePaths);
 
 	/**
 	 * 保存（新建|编辑）

@@ -85,18 +85,19 @@ public class DictApiController {
 	/**
 	 * 获取树形字典
 	 * 
+	 * @param root
 	 * @param pcodes
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/getTree")
 	@Caching(cacheable = { @Cacheable })
-	public List<Tree<Long>> getTree(String pcodes) {
+	public List<Tree<Long>> getTree(boolean root, String pcodes) {
 		String[] codePaths = StrUtil.splitToArray(pcodes, StrUtil.COMMA);
 		if (ArrayUtil.isEmpty(codePaths)) {
 			return CollUtil.newArrayList();
 		}
-		List<Tree<Long>> tree = iSysDictService.getTree(codePaths);
+		List<Tree<Long>> tree = iSysDictService.getTree(root, codePaths);
 		return tree;
 	}
 }

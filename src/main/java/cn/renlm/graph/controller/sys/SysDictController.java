@@ -87,13 +87,14 @@ public class SysDictController {
 	/**
 	 * 获取树形字典
 	 * 
+	 * @param root
 	 * @param codePaths
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/getTree")
-	public List<Tree<Long>> getTree(String codePaths) {
-		List<Tree<Long>> tree = iSysDictService.getTree(StrUtil.splitToArray(codePaths, StrUtil.COMMA));
+	public List<Tree<Long>> getTree(boolean root, String codePaths) {
+		List<Tree<Long>> tree = iSysDictService.getTree(root, StrUtil.splitToArray(codePaths, StrUtil.COMMA));
 		return tree;
 	}
 

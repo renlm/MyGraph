@@ -106,7 +106,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	}
 
 	@Override
-	public List<Tree<Long>> getTree(String... codePaths) {
+	public List<Tree<Long>> getTree(boolean root, String... codePaths) {
 		Long pid = null;
 		if (codePaths.length > 0) {
 			List<SysDict> nodes = this.findListByPath(codePaths);
@@ -188,7 +188,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		this.saveOrUpdate(sysDict);
 		// 子节点更新
 		Map<String, Integer> map = new LinkedHashMap<>();
-		List<Tree<Long>> roots = this.getTree();
+		List<Tree<Long>> roots = this.getTree(false);
 		TreeExtraUtil.resetLevel(roots, 1);
 		roots.forEach(root -> {
 			Tree<Long> node = TreeUtil.getNode(root, sysDict.getId());
@@ -212,7 +212,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 
 	@Override
 	public void exportDataToFile(SysFile file) {
-		List<Tree<Long>> trees = this.getTree();
+		List<Tree<Long>> trees = this.getTree(false);
 		AtomicLong id = new AtomicLong(1);
 		try (Workbook workbook = MyExcelUtil.createWorkbook("excel/sys/SysDict.excel.xml", false, sheet -> {
 			for (Tree<Long> tree : trees) {
