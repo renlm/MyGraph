@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -44,7 +46,9 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 		// 添加登录凭证
 		String sessionId = request.getRequestedSessionId();
 		User principal = (User) authentication.getPrincipal();
-		principal.setTicket(Base64.encode(sessionId));
+		principal.setTicket(Base64.encodeUrlSafe(sessionId));
+		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(principal,
+				principal.getPassword(), principal.getAuthorities()));
 		// 处理响应结果
 		String contentType = request.getContentType();
 		this.sysLoginLog(request, authentication);
