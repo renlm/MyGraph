@@ -33,6 +33,7 @@ import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
 import cn.renlm.graph.security.DynamicAccessDecisionVoter;
 import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
+import cn.renlm.graph.security.MyAuthenticationFailureHandler;
 import cn.renlm.graph.security.MyAuthenticationSuccessHandler;
 import cn.renlm.graph.security.MyDaoAuthenticationProvider;
 import cn.renlm.graph.security.MyWebAuthenticationDetails;
@@ -111,6 +112,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
 
+	@Autowired
+	private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// 启用csrf
@@ -158,6 +162,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.loginProcessingUrl(LoginProcessingUrl)
 					.authenticationDetailsSource(authenticationDetailsSource())
 					.successHandler(myAuthenticationSuccessHandler)
+					.failureHandler(myAuthenticationFailureHandler)
 				// 注销
 				.and()
 					.logout()
