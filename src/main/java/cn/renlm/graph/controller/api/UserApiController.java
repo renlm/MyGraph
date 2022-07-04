@@ -52,7 +52,7 @@ public class UserApiController {
 	public Result<User> getByTicket(String ticket) {
 		User user = SessionUtil.getUserInfo(ticket);
 		if (user == null) {
-			return Result.of(HttpStatus.UNAUTHORIZED, "无效Ticket");
+			return Result.of(HttpStatus.UNAUTHORIZED, "Ticket无效或已过期");
 		} else {
 			user.setPassword(null);
 			return Result.success(user);
