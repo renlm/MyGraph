@@ -28,7 +28,7 @@ public class DictApiController {
 	private ISysDictService iSysDictService;
 
 	/**
-	 * 获取指定父节点下级列表
+	 * 获取下级列表
 	 * 
 	 * @param pcodes
 	 * @return
