@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
@@ -60,6 +62,7 @@ public class User extends SysUser implements org.springframework.security.core.u
 	 * 
 	 * @return
 	 */
+	@JsonIgnore
 	public List<SysResource> getHomePages() {
 		if (CollUtil.isEmpty(this.getResources())) {
 			return CollUtil.newArrayList();
@@ -90,6 +93,7 @@ public class User extends SysUser implements org.springframework.security.core.u
 	 * 
 	 * @return
 	 */
+	@JsonIgnore
 	public List<Tree<Long>> getNavGroup() {
 		if (CollUtil.isEmpty(this.getResources())) {
 			return CollUtil.newArrayList();

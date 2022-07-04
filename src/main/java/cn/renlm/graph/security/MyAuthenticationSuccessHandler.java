@@ -8,14 +8,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.http.ContentType;
-import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
 import cn.renlm.graph.amqp.LoginLogQueue;
 import cn.renlm.graph.dto.User;
@@ -32,6 +34,9 @@ import lombok.Cleanup;
 @Component
 public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
+	@Autowired
+	private ObjectMapper objectMapper;
+
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
@@ -42,7 +47,8 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 			response.setContentType("application/javascript;charset=" + request.getCharacterEncoding());
 			@Cleanup
 			PrintWriter out = response.getWriter();
-			out.write(JSONUtil.toJsonStr(Result.success(authentication.getPrincipal())));
+			Result<?> result = Result.success(authentication.getPrincipal());
+			out.write(objectMapper.writeValueAsString(result));
 		} else {
 			super.onAuthenticationSuccess(request, response, authentication);
 		}
