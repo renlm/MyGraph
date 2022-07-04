@@ -1,7 +1,10 @@
 package cn.renlm.graph.modular.sys.service;
 
+import static cn.renlm.graph.common.CacheKey.DictApi;
+
 import java.util.List;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -61,6 +64,7 @@ public interface ISysDictService extends IService<SysDict> {
 	 * @param sysDict
 	 * @return
 	 */
+	@CacheEvict(cacheNames = DictApi, allEntries = true)
 	Result<SysDict> ajaxSave(SysDict sysDict);
 
 	/**
@@ -77,6 +81,7 @@ public interface ISysDictService extends IService<SysDict> {
 	 * @param file
 	 * @return
 	 */
+	@CacheEvict(cacheNames = DictApi, allEntries = true)
 	Result<List<String>> importDataFromFile(User user, MultipartFile file);
 
 }
