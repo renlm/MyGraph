@@ -50,6 +50,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.APIAntMatcher, config);
 		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.PubAntMatcher, config);
 		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.GwAntMatcher, config);
+		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.KaptchaAntMatcher, config);
+		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.LoginProcessingUrl, config);
 		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource));
 		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 		return bean;

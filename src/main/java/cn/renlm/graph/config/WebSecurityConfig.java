@@ -62,6 +62,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public static final String logoutUrl = "/logout";
 
 	/**
+	 * 验证码图片匹配路径
+	 */
+	public static final String KaptchaAntMatcher = "/kaptcha";
+
+	/**
 	 * 登录接口
 	 */
 	public static final String LoginProcessingUrl = "/dologin";
@@ -84,8 +89,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
 	 * 白名单
 	 */
-	public static final String[] WHITE_LIST = {  
-			"/kaptcha",
+	public static final String[] WHITE_LIST = {
+			KaptchaAntMatcher,
 			APIAntMatcher,
 			PubAntMatcher,
 			GwAntMatcher,
