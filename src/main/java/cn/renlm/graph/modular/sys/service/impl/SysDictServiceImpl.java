@@ -85,6 +85,27 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	}
 
 	@Override
+	public List<SysDict> findListByPath(String... codePaths) {
+		List<SysDict> list = CollUtil.newArrayList();
+		for (String code : codePaths) {
+			SysDict node = this.getOne(Wrappers.<SysDict>lambdaQuery().func(wrapper -> {
+				wrapper.eq(SysDict::getCode, code);
+				if (CollUtil.isEmpty(list)) {
+					wrapper.eq(SysDict::getLevel, 1);
+				} else {
+					wrapper.eq(SysDict::getPid, CollUtil.getLast(list).getId());
+				}
+			}));
+			if (node == null) {
+				return CollUtil.newArrayList();
+			} else {
+				list.add(node);
+			}
+		}
+		return list;
+	}
+
+	@Override
 	public List<Tree<Long>> getTree(String... codePaths) {
 		Long pid = null;
 		if (codePaths.length > 0) {
@@ -264,32 +285,6 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		this.remove(Wrappers.<SysDict>lambdaQuery().isNotNull(SysDict::getId));
 		this.saveBatch(list);
 		return Result.success();
-	}
-
-	/**
-	 * 获取由上而下的父子集
-	 * 
-	 * @param codePaths
-	 * @return
-	 */
-	private List<SysDict> findListByPath(String... codePaths) {
-		List<SysDict> list = CollUtil.newArrayList();
-		for (String code : codePaths) {
-			SysDict node = this.getOne(Wrappers.<SysDict>lambdaQuery().func(wrapper -> {
-				wrapper.eq(SysDict::getCode, code);
-				if (CollUtil.isEmpty(list)) {
-					wrapper.eq(SysDict::getLevel, 1);
-				} else {
-					wrapper.eq(SysDict::getPid, CollUtil.getLast(list).getId());
-				}
-			}));
-			if (node == null) {
-				return CollUtil.newArrayList();
-			} else {
-				list.add(node);
-			}
-		}
-		return list;
 	}
 
 	/**

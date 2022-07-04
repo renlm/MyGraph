@@ -39,6 +39,14 @@ public interface ISysDictService extends IService<SysDict> {
 	List<SysDict> findFathers(Long id);
 
 	/**
+	 * 获取由上而下的父子集
+	 * 
+	 * @param codePaths
+	 * @return
+	 */
+	List<SysDict> findListByPath(String... codePaths);
+
+	/**
 	 * 获取树形字典
 	 * 
 	 * @param codePaths
