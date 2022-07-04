@@ -34,7 +34,7 @@ public class UserApiController {
 	@GetMapping("/getCurrent")
 	public Result<User> getCurrent(HttpServletRequest request, Authentication authentication) {
 		if (authentication == null) {
-			return Result.of(HttpStatus.UNAUTHORIZED);
+			return Result.of(HttpStatus.UNAUTHORIZED, "未登录");
 		}
 		User user = (User) authentication.getPrincipal();
 		user.setPassword(null);
@@ -51,7 +51,11 @@ public class UserApiController {
 	@GetMapping("/getByTicket")
 	public Result<User> getByTicket(String ticket) {
 		User user = SessionUtil.getUserInfo(ticket);
-		user.setPassword(null);
-		return Result.success(user);
+		if (user == null) {
+			return Result.of(HttpStatus.UNAUTHORIZED, "无效Ticket");
+		} else {
+			user.setPassword(null);
+			return Result.success(user);
+		}
 	}
 }
