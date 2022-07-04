@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.ContentType;
+import cn.renlm.graph.config.WebSecurityConfig;
 import cn.renlm.graph.response.Result;
 import lombok.Cleanup;
 
@@ -43,6 +44,7 @@ public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailu
 			Result<?> result = Result.of(HttpStatus.BAD_REQUEST, exception.getMessage());
 			out.write(objectMapper.writeValueAsString(result));
 		} else {
+			super.setDefaultFailureUrl(WebSecurityConfig.LoginPage);
 			super.onAuthenticationFailure(request, response, exception);
 		}
 	}
