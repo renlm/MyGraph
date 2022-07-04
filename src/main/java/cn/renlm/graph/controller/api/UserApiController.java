@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.hutool.core.codec.Base64;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.SessionUtil;
@@ -36,8 +37,10 @@ public class UserApiController {
 		if (authentication == null) {
 			return Result.of(HttpStatus.UNAUTHORIZED, "未登录");
 		}
+		String sessionId = request.getRequestedSessionId();
 		User user = (User) authentication.getPrincipal();
 		user.setPassword(null);
+		user.setTicket(Base64.encode(sessionId));
 		return Result.success(user);
 	}
 

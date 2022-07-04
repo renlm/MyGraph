@@ -62,6 +62,7 @@ public class SessionUtil {
 			return null;
 		}
 		User user = (User) authentication.getPrincipal();
+		user.setTicket(ticket);
 		return user;
 	}
 }

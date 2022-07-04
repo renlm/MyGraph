@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.http.ContentType;
@@ -40,6 +41,11 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
+		// 添加登录凭证
+		String sessionId = request.getRequestedSessionId();
+		User principal = (User) authentication.getPrincipal();
+		principal.setTicket(Base64.encode(sessionId));
+		// 处理响应结果
 		String contentType = request.getContentType();
 		this.sysLoginLog(request, authentication);
 		super.setAlwaysUseDefaultTargetUrl(false);
@@ -47,7 +53,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 			response.setContentType("application/json;charset=" + request.getCharacterEncoding());
 			@Cleanup
 			PrintWriter out = response.getWriter();
-			Result<?> result = Result.success(authentication.getPrincipal());
+			Result<?> result = Result.success(principal);
 			out.write(objectMapper.writeValueAsString(result));
 		} else {
 			super.onAuthenticationSuccess(request, response, authentication);

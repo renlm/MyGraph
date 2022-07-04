@@ -10,8 +10,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.InvalidCookieException;
 
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.graph.dto.User;
 
 /**
  * 身份认证
@@ -41,10 +41,9 @@ public class MyDaoAuthenticationProvider extends DaoAuthenticationProvider {
 		final String kaptcha = details.getKaptcha();
 		final String captcha = details.getCaptcha();
 		if (StrUtil.isBlank(kaptcha) || StrUtil.isBlank(captcha)
-				|| !kaptcha.toLowerCase().equals(captcha.toLowerCase()))
+				|| BooleanUtil.isFalse(kaptcha.toLowerCase().equals(captcha.toLowerCase()))) {
 			throw new InvalidCookieException("验证码错误");
-		User userDetails = (User) authentication.getPrincipal();
-		userDetails.setTicket(details.getTicket());
+		}
 		Authentication authen = super.authenticate(authentication);
 		return authen;
 	}
