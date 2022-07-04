@@ -26,7 +26,9 @@ import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.TreeState;
@@ -108,29 +110,46 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 	@Override
 	public List<Tree<Long>> getTree(boolean root, String... codePaths) {
 		Long pid = null;
+		AtomicLong atomic = new AtomicLong();
 		if (codePaths.length > 0) {
 			List<SysDict> nodes = this.findListByPath(codePaths);
 			if (CollUtil.isEmpty(nodes)) {
 				return CollUtil.newArrayList();
 			} else {
 				pid = CollUtil.getLast(nodes).getId();
+				atomic.set(pid);
 			}
 		}
 		List<SysDict> list = this.list();
 		if (CollUtil.isEmpty(list)) {
 			return CollUtil.newArrayList();
 		}
+		Tree<Long> top = new Tree<>();
 		List<Tree<Long>> tree = TreeUtil.build(list, pid, (object, treeNode) -> {
 			BeanUtil.copyProperties(object, treeNode);
 			treeNode.setId(object.getId());
 			treeNode.setName(object.getText());
 			treeNode.setWeight(object.getSort());
 			treeNode.setParentId(object.getPid());
+			if (BooleanUtil.isFalse(root)) {
+				return;
+			}
+			if (atomic.get() == 0) {
+				return;
+			}
+			if (NumberUtil.equals(atomic.get(), object.getId())) {
+				BeanUtil.copyProperties(treeNode, top);
+			}
 		});
 		if (CollUtil.isEmpty(tree)) {
 			return CollUtil.newArrayList();
 		}
-		return TreeExtraUtil.resetLevel(tree, 1);
+		if (ObjectUtil.isNotEmpty(top)) {
+			top.setChildren(tree);
+			return TreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
+		} else {
+			return TreeExtraUtil.resetLevel(tree, 1);
+		}
 	}
 
 	@Override
