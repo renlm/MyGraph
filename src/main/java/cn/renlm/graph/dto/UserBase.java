@@ -21,7 +21,7 @@ public class UserBase implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 会话标识
+	 * 登录凭证
 	 */
 	private String ticket;
 
