@@ -118,6 +118,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.ignoringAntMatchers(APIAntMatcher)
 			.ignoringAntMatchers(PubAntMatcher)
 			.ignoringAntMatchers(GwAntMatcher)
+			.ignoringAntMatchers(LoginProcessingUrl)
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		// 会话
 		http.sessionManagement()
