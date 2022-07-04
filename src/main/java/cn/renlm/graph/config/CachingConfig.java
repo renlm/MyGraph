@@ -31,10 +31,14 @@ import cn.renlm.graph.common.ConstVal;
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds = ConstVal.MAX_INACTIVE_INTERVAL_SECONDS)
 public class CachingConfig extends CachingConfigurerSupport {
 
-	@Bean
+	public static final String cacheManager = "cacheManager";
+
+	public static final String keyGenerator = "keyGenerator";
+
 	@Primary
+	@Bean(cacheManager)
 	RedisCacheManager cacheManager(RedisConnectionFactory connectionFactory) {
-		RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofDays(1))
+		RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofDays(30))
 				.serializeKeysWith(
 						RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
 				.serializeValuesWith(RedisSerializationContext.SerializationPair
@@ -45,8 +49,8 @@ public class CachingConfig extends CachingConfigurerSupport {
 		return redisCacheManager;
 	}
 
-	@Bean
 	@Primary
+	@Bean(keyGenerator)
 	@Override
 	public KeyGenerator keyGenerator() {
 		return (target, method, params) -> {

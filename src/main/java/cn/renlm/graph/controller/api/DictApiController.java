@@ -1,8 +1,15 @@
 package cn.renlm.graph.controller.api;
 
+import static cn.renlm.graph.common.CacheKey.DictApi;
+import static cn.renlm.graph.config.CachingConfig.cacheManager;
+import static cn.renlm.graph.config.CachingConfig.keyGenerator;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +32,7 @@ import cn.renlm.graph.modular.sys.service.ISysDictService;
  */
 @Controller
 @RequestMapping("/api/dict")
+@CacheConfig(cacheNames = DictApi, cacheManager = cacheManager, keyGenerator = keyGenerator)
 public class DictApiController {
 
 	@Autowired
@@ -38,6 +46,7 @@ public class DictApiController {
 	 */
 	@ResponseBody
 	@GetMapping("/getChildren")
+	@Caching(cacheable = { @Cacheable })
 	public List<SysDict> getChildren(String uuid) {
 		if (StrUtil.isBlank(uuid)) {
 			return CollUtil.newArrayList();
@@ -58,6 +67,7 @@ public class DictApiController {
 	 */
 	@ResponseBody
 	@GetMapping("/getItem")
+	@Caching(cacheable = { @Cacheable })
 	public List<SysDict> getItem(String pcodes) {
 		String[] codePaths = StrUtil.splitToArray(pcodes, StrUtil.COMMA);
 		if (ArrayUtil.isEmpty(codePaths)) {
@@ -80,6 +90,7 @@ public class DictApiController {
 	 */
 	@ResponseBody
 	@GetMapping("/getTree")
+	@Caching(cacheable = { @Cacheable })
 	public List<Tree<Long>> getTree(String pcodes) {
 		String[] codePaths = StrUtil.splitToArray(pcodes, StrUtil.COMMA);
 		if (ArrayUtil.isEmpty(codePaths)) {

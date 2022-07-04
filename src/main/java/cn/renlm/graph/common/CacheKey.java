@@ -13,6 +13,8 @@ public enum CacheKey {
 	SysConst("系统常量"), 
 	FontAwesomeIcons("Font Awesome 图标集"), 
 	OshiType("服务器监控");
+	
+	public static final String DictApi = "DictApi";
 
 	@Getter
 	private final String text;
