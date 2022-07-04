@@ -23,12 +23,26 @@ import lombok.experimental.UtilityClass;
 public class SessionUtil {
 
 	/**
-	 * 获取用户信息
+	 * 获取基本用户信息
 	 * 
 	 * @param ticket
 	 * @return
 	 */
-	public static final UserBase getUserInfo(String ticket) {
+	public static final UserBase getBaseUser(String ticket) {
+		User user = getUserInfo(ticket);
+		if (user == null) {
+			return null;
+		}
+		return UserBase.of(user, ticket);
+	}
+
+	/**
+	 * 获取会话用户信息
+	 * 
+	 * @param ticket
+	 * @return
+	 */
+	public static final User getUserInfo(String ticket) {
 		String sessionId = Base64.decodeStr(ticket);
 		if (StrUtil.isBlank(sessionId)) {
 			return null;
@@ -48,6 +62,6 @@ public class SessionUtil {
 			return null;
 		}
 		User user = (User) authentication.getPrincipal();
-		return UserBase.of(user, ticket);
+		return user;
 	}
 }

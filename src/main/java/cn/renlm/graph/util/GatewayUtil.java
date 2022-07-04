@@ -6,7 +6,7 @@ import static cn.hutool.core.text.StrPool.COMMA;
 import static cn.hutool.core.text.StrPool.SLASH;
 import static cn.hutool.core.util.ReUtil.getGroup1;
 import static cn.hutool.json.JSONUtil.toJsonStr;
-import static cn.renlm.graph.util.SessionUtil.getUserInfo;
+import static cn.renlm.graph.util.SessionUtil.getBaseUser;
 import static com.github.mkopylec.charon.configuration.CharonConfigurer.charonConfiguration;
 import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.requestMapping;
 import static com.github.mkopylec.charon.forwarding.RestTemplateConfigurer.restTemplate;
@@ -212,7 +212,7 @@ public class GatewayUtil {
 			String accessKey = proxy.getAccessKey();
 			String secretKey = proxy.getSecretKey();
 			HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
-			UserBase user = getUserInfo(getGroup1("SESSION=(.*?)(;|$)", rewrittenHeaders.getFirst(COOKIE)));
+			UserBase user = getBaseUser(getGroup1("SESSION=(.*?)(;|$)", rewrittenHeaders.getFirst(COOKIE)));
 			String userInfo = new StringBuffer(encodeUrlSafe(user == null ? EMPTY : toJsonStr(user))).toString();
 			String timestamp = String.valueOf(DateUtil.current());
 			rewrittenHeaders.set(HEADER_AccessKey, accessKey);
