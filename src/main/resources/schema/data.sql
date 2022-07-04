@@ -78,7 +78,7 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(30, 			'3165637A889443629EB021505A4CAC52',	'OSHI', 		'服务器', 				'permission', 		'/home/oshi',												'fa fa-server', 			null, 				null, 			1, 		3, 		'open',		1,					null,		null)
 	  ,(40, 			'EB0B50741EAC47E3A275FEBCABFC5AA1',	'40', 			'文件管理', 				'urlInsidePage', 	'/sys/file', 												'fa fa-clipboard', 			'#990000', 			null, 			1, 		4, 		'open',		0,					null,		null)
 	  ,(50, 			'731191740D22404585B359867121755B',	'50', 			'帮助文档', 				'menu', 			null, 														'fa fa-file-word-o', 		null, 				null, 			1, 		5, 		'closed',	0,					null,		null)
-	  ,(5001, 			'D654AA8332BD40DC8C3DBF27F58F8B2F',	'5001', 		'使用手册', 				'menu', 			null, 														'fa fa-etsy', 				null, 				null, 			2, 		1, 		'closed',	0,					50,			null)
+	  ,(5001, 			'D654AA8332BD40DC8C3DBF27F58F8B2F',	'5001', 		'使用手册', 				'menu', 			null, 														'fa fa-text-width', 		null, 				null, 			2, 		1, 		'closed',	0,					50,			null)
 	  ,(500101, 		'CF11DB769EDA48C39C684AC866E18105',	'500101', 		'系统简介', 				'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			3, 		1, 		'open',		0,					5001,		null)
 	  ,(500102, 		'35111CB38E564A2684B934D954BA6F0F',	'500102', 		'Markdown', 			'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			3, 		2, 		'open',		0,					5001,		null)
 	  ,(500103, 		'C5A770EB80584C919E106F2FC9358AE4',	'500103', 		'开放能力', 				'menu', 			null, 														'tree-icon tree-folder', 	null, 				null, 			3, 		3, 		'closed',	0,					5001,		null)

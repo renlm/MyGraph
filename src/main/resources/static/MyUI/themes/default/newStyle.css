@@ -319,7 +319,7 @@ input[type="checkbox"]:hover::before {
 
 #west .panel-icon{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #west .tree-hit{
