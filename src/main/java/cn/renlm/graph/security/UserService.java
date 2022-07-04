@@ -1,5 +1,7 @@
 package cn.renlm.graph.security;
 
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -56,8 +58,10 @@ public class UserService implements UserDetailsService {
 		Authentication authentication = securityContext.getAuthentication();
 		User user = (User) authentication.getPrincipal();
 		User principal = iSysUserService.loadUserByUsername(user.getUsername());
-		SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(principal,
-				principal.getPassword(), principal.getAuthorities()));
+		principal.setTicket(user.getTicket());
+		principal.setPassword(null);
+		getContext().setAuthentication(
+				new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities()));
 		return principal;
 	}
 
