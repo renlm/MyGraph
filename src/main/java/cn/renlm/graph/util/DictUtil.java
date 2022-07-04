@@ -35,7 +35,7 @@ public class DictUtil {
 	 */
 	public String MapItemsJson(String codePaths) {
 		Map<String, String> mapItems = new LinkedHashMap<>();
-		List<Tree<Long>> children = iSysDictService.getTree(StrUtil.splitToArray(codePaths, StrUtil.COMMA));
+		List<Tree<Long>> children = iSysDictService.getTree(false, StrUtil.splitToArray(codePaths, StrUtil.COMMA));
 		CollUtil.removeNull(children);
 		if (CollUtil.isNotEmpty(children)) {
 			TreeExtraUtil.foreach(children, node -> {
