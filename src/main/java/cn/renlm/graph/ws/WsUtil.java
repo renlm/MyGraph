@@ -68,7 +68,7 @@ public class WsUtil {
 	 * @return
 	 */
 	public static final boolean validHandshake(String token, Long timestamp) {
-		UserBase user = SessionUtil.getUserInfo(Base64.encode(token));
+		UserBase user = SessionUtil.getBaseUser(Base64.encode(token));
 		return ObjectUtil.isNotEmpty(user) && StrUtil.isNotBlank(user.getUserId());
 	}
 
@@ -220,6 +220,6 @@ public class WsUtil {
 			return null;
 		}
 		String token = decodes[0];
-		return SessionUtil.getUserInfo(Base64.encode(token));
+		return SessionUtil.getBaseUser(Base64.encode(token));
 	}
 }
