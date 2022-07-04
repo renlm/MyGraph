@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -25,7 +24,6 @@ import org.springframework.web.servlet.resource.WebJarsResourceResolver;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.graph.common.ConstVal;
 
 /**
  * WebMvc配置
@@ -33,7 +31,6 @@ import cn.renlm.graph.common.ConstVal;
  * @author Renlm
  */
 @Configuration
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = ConstVal.MAX_INACTIVE_INTERVAL_SECONDS)
 public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Autowired
