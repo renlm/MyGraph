@@ -44,7 +44,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 		this.sysLoginLog(request, authentication);
 		super.setAlwaysUseDefaultTargetUrl(false);
 		if (StrUtil.equals(ContentType.JSON.getValue(), contentType)) {
-			response.setContentType("application/javascript;charset=" + request.getCharacterEncoding());
+			response.setContentType("application/json;charset=" + request.getCharacterEncoding());
 			@Cleanup
 			PrintWriter out = response.getWriter();
 			Result<?> result = Result.success(authentication.getPrincipal());

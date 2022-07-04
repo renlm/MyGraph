@@ -38,7 +38,7 @@ public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailu
 			AuthenticationException exception) throws IOException, ServletException {
 		String contentType = request.getContentType();
 		if (StrUtil.equals(ContentType.JSON.getValue(), contentType)) {
-			response.setContentType("application/javascript;charset=" + request.getCharacterEncoding());
+			response.setContentType("application/json;charset=" + request.getCharacterEncoding());
 			@Cleanup
 			PrintWriter out = response.getWriter();
 			Result<?> result = Result.of(HttpStatus.BAD_REQUEST, exception.getMessage());
