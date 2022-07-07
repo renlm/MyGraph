@@ -284,11 +284,15 @@ public class GatewayUtil {
 	 * 获取客户端ip
 	 * 
 	 * @param request
+	 * @param otherHeaderNames
 	 * @return
 	 */
-	private static String getClientIP(HttpRequest request) {
+	private static String getClientIP(HttpRequest request, String... otherHeaderNames) {
 		String[] headerNames = { "X-Forwarded-For", "X-Real-IP", "Proxy-Client-IP", "WL-Proxy-Client-IP",
 				"HTTP_CLIENT_IP", "HTTP_X_FORWARDED_FOR" };
+		if (ArrayUtil.isNotEmpty(otherHeaderNames)) {
+			headerNames = ArrayUtil.addAll(headerNames, otherHeaderNames);
+		}
 		HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
 		String ip;
 		for (String header : headerNames) {
