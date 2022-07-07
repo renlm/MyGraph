@@ -65,6 +65,16 @@ public class GatewayProxyLogDOC implements Serializable {
 	private Long takeTime;
 
 	/**
+	 * 服务端ip
+	 */
+	private String serverIp;
+
+	/**
+	 * 客户端ip
+	 */
+	private String clientIp;
+
+	/**
 	 * 用户ID
 	 */
 	private String userId;
@@ -78,15 +88,5 @@ public class GatewayProxyLogDOC implements Serializable {
 	 * 昵称
 	 */
 	private String nickname;
-
-	/**
-	 * 服务端ip
-	 */
-	private String serverIp;
-
-	/**
-	 * 客户端ip
-	 */
-	private String clientIp;
 
 }
