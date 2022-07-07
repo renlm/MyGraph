@@ -173,12 +173,11 @@
 		const aesKey = CryptoJS.enc.Utf8.parse("[(${aesKey})]");
 		const aesIv = aesKey;
 		const wordsEnc = CryptoJS.enc.Utf8.parse(words);
-	    const encrypted = CryptoJS.AES.encrypt(wordsEnc, aesKey, {
-	   		iv: aesIv,
-	   		mode: CryptoJS.mode.CBC,
-	  		padding: CryptoJS.pad.Pkcs7
-	 	});
-	    return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
+	    return CryptoJS.AES
+	    		.encrypt(wordsEnc, aesKey, { iv: aesIv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
+	    		.ciphertext
+	    		.toString(CryptoJS.enc.Base64)
+	    	;
 	}
 </script>
 </body>
