@@ -156,7 +156,7 @@
 			refreshCaptcha($("#captcha").get(0));
 			alertMsg("验证码错误");
 		} else {
-			$("[name='password']").val(Base64.encodeURI(CryptoJS.AES.encrypt(password, "[(${aesKey})]")));
+			$("[name='password']").val(aesEncrypt(password));
 			document.getElementById("login-form").submit();
 		}
 	});
@@ -169,6 +169,18 @@
 		$("[name='password']").val("");
 		$("[name='captcha']").val("");
 	});
+	
+	// AES加密
+	function aesEncrypt (word) {
+		const aesKey = CryptoJS.enc.Utf8.parse("[(${aesKey})]");
+	    const wordC = CryptoJS.enc.Utf8.parse(word);
+	    const srcs = CryptoJS.enc.Base64.stringify(wordC);
+	    return CryptoJS.AES.encrypt(srcs, aesKey, {
+	   		iv: aesKey,
+	   		mode: CryptoJS.mode.CBC,
+	  		padding: CryptoJS.pad.Pkcs7
+	 	});
+	}
 </script>
 </body>
 </html>
