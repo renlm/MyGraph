@@ -52,6 +52,7 @@ import com.github.mkopylec.charon.forwarding.interceptors.RequestForwardingInter
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
@@ -60,6 +61,7 @@ import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
+import cn.hutool.system.SystemUtil;
 import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.modular.gateway.dmt.GatewayProxyLogDmt;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
@@ -228,6 +230,8 @@ public class GatewayUtil {
 			proxyLog.setProxyReadTimeout(proxy.getReadTimeout());
 			proxyLog.setProxyWriteTimeout(proxy.getWriteTimeout());
 			proxyLog.setProxyLimitForSecond(proxy.getLimitForSecond());
+			proxyLog.setServerIp(SystemUtil.getHostInfo().getAddress());
+			proxyLog.setClientIp(getClientIP(request));
 			// -!> 代理日志
 			try {
 				String accessKey = proxy.getAccessKey();
@@ -274,5 +278,25 @@ public class GatewayUtil {
 		public RequestForwardingInterceptorType getType() {
 			return TYPE;
 		}
+	}
+
+	/**
+	 * 获取客户端ip
+	 * 
+	 * @param request
+	 * @return
+	 */
+	private static String getClientIP(HttpRequest request) {
+		String[] headerNames = { "X-Forwarded-For", "X-Real-IP", "Proxy-Client-IP", "WL-Proxy-Client-IP",
+				"HTTP_CLIENT_IP", "HTTP_X_FORWARDED_FOR" };
+		HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
+		String ip;
+		for (String header : headerNames) {
+			ip = rewrittenHeaders.getFirst(header);
+			if (false == NetUtil.isUnknown(ip)) {
+				return NetUtil.getMultistageReverseProxyIp(ip);
+			}
+		}
+		return null;
 	}
 }

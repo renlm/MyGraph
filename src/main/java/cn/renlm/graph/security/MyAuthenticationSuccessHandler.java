@@ -79,7 +79,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 		sysLoginLog.setUserId(user.getUserId());
 		sysLoginLog.setUsername(user.getUsername());
 		sysLoginLog.setNickname(user.getNickname());
-		sysLoginLog.setClientIp(ServletUtil.getClientIPByHeader(request, "X-Forwarded-For"));
+		sysLoginLog.setClientIp(ServletUtil.getClientIP(request));
 		sysLoginLog.setLoginTime(new Date());
 		AmqpUtil.createQueue(LoginLogQueue.EXCHANGE, LoginLogQueue.ROUTINGKEY, sysLoginLog);
 	}
