@@ -55,6 +55,12 @@ spring:
     listener:
       direct:
         missing-queues-fatal: false
+  elasticsearch:
+    rest:
+      uris: es.renlm.cn
+      index-suffix: .prod
+      connection-timeout: 30s
+      read-timeout: 30s
   datasource:
     dynamic:
       primary: master
