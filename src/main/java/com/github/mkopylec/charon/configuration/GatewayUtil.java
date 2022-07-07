@@ -1,4 +1,4 @@
-package cn.renlm.graph.util;
+package com.github.mkopylec.charon.configuration;
 
 import static cn.hutool.core.codec.Base64.encodeUrlSafe;
 import static cn.hutool.core.text.CharSequenceUtil.EMPTY;
@@ -41,7 +41,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.github.mkopylec.charon.configuration.CharonConfigurer;
 import com.github.mkopylec.charon.forwarding.ReverseProxyFilter;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequest;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequestExecution;
@@ -66,6 +65,7 @@ import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.modular.gateway.dmt.GatewayProxyLogDmt;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
+import cn.renlm.graph.util.MyConfigProperties;
 import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
 import lombok.AllArgsConstructor;
 import lombok.experimental.UtilityClass;
@@ -99,6 +99,7 @@ public class GatewayUtil {
 	public static final String HEADER_UserInfo = "GW-UserInfo";
 	public static final String HEADER_TimeStamp = "GW-Timestamp";
 	public static final String HEADER_Sha256Hex = "GW-Sha256Hex";
+	public static final String HEADER_RemoteAddr = "GW-RemoteAddr";
 
 	/**
 	 * 重载配置
@@ -111,9 +112,10 @@ public class GatewayUtil {
 		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
 		ReverseProxyFilter reverseProxyFilter = SpringUtil.getBean(ReverseProxyFilter.class);
 		configurers(myConfigProperties, serverProperties, iGatewayProxyConfigService, uuids);
-		ReflectUtil.invoke(charonConfigurer, "configure");
+		charonConfigurer.configure();
 		Object restTemplateProvider = ReflectUtil.getFieldValue(reverseProxyFilter, "restTemplateProvider");
-		ConcurrentMap<?, ?> restTemplates = (ConcurrentMap<?, ?>) ReflectUtil.getFieldValue(restTemplateProvider, "restTemplates");
+		ConcurrentMap<?, ?> restTemplates = (ConcurrentMap<?, ?>) ReflectUtil.getFieldValue(restTemplateProvider,
+				"restTemplates");
 		restTemplates.clear();
 	}
 
@@ -146,7 +148,8 @@ public class GatewayUtil {
 				outgoingServers.add(myConfigProperties.getCtx());
 			}
 			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
-				final String root = StrUtil.isNotBlank(contextPath) && BooleanUtil.isFalse(StrUtil.equals(contextPath, SLASH)) ? contextPath : EMPTY;
+				final String root = StrUtil.isNotBlank(contextPath)
+						&& BooleanUtil.isFalse(StrUtil.equals(contextPath, SLASH)) ? contextPath : EMPTY;
 				final StringBuffer pathRegex = new StringBuffer(root);
 				pathRegex.append(proxyPath + path + "/.*");
 				final String incomingRequestPathRegex = root + proxyPath + path + "/(?<path>.*)";
@@ -231,7 +234,7 @@ public class GatewayUtil {
 			proxyLog.setProxyWriteTimeout(proxy.getWriteTimeout());
 			proxyLog.setProxyLimitForSecond(proxy.getLimitForSecond());
 			proxyLog.setServerIp(SystemUtil.getHostInfo().getAddress());
-			proxyLog.setClientIp(getClientIP(request));
+			proxyLog.setClientIp(getClientIP(request, HEADER_RemoteAddr));
 			// -!> 代理日志
 			try {
 				String accessKey = proxy.getAccessKey();

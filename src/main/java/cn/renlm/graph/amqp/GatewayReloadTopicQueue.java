@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import cn.renlm.graph.util.GatewayUtil;
+import com.github.mkopylec.charon.configuration.GatewayUtil;
 
 /**
  * 网关代理重载配置

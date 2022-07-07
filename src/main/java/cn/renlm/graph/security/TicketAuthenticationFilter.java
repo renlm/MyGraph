@@ -1,7 +1,7 @@
 package cn.renlm.graph.security;
 
 import static cn.hutool.core.text.CharSequenceUtil.EMPTY;
-import static cn.renlm.graph.util.GatewayUtil.HEADER_Ticket;
+import static com.github.mkopylec.charon.configuration.GatewayUtil.HEADER_Ticket;
 import static io.netty.util.CharsetUtil.UTF_8;
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 

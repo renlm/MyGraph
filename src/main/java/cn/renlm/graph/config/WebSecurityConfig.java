@@ -32,6 +32,8 @@ import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.Session;
 import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
+import com.github.mkopylec.charon.configuration.GatewayUtil;
+
 import cn.renlm.graph.security.DynamicAccessDecisionVoter;
 import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
 import cn.renlm.graph.security.MyAuthenticationFailureHandler;
@@ -40,7 +42,6 @@ import cn.renlm.graph.security.MyDaoAuthenticationProvider;
 import cn.renlm.graph.security.MyWebAuthenticationDetails;
 import cn.renlm.graph.security.TicketAuthenticationFilter;
 import cn.renlm.graph.security.UserService;
-import cn.renlm.graph.util.GatewayUtil;
 
 /**
  * 安全框架
