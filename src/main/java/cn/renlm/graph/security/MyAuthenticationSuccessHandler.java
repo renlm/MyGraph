@@ -1,5 +1,7 @@
 package cn.renlm.graph.security;
 
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.http.ContentType;
@@ -40,6 +43,13 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
+		// 添加登录凭证
+		String sessionId = request.getSession().getId();
+		User principal = (User) authentication.getPrincipal();
+		principal.setTicket(Base64.encodeUrlSafe(sessionId));
+		principal.setPassword(null);
+		getContext().setAuthentication(authentication);
+		// 处理响应结果
 		String contentType = request.getContentType();
 		this.sysLoginLog(request, authentication);
 		super.setAlwaysUseDefaultTargetUrl(false);

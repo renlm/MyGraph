@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -55,11 +53,10 @@ public class UserService implements UserDetailsService {
 	 * @return
 	 */
 	public User refreshAuthentication() {
-		SecurityContext securityContext = SecurityContextHolder.getContext();
-		Authentication authentication = securityContext.getAuthentication();
-		User user = (User) authentication.getPrincipal();
-		User principal = iSysUserService.loadUserByUsername(user.getUsername());
-		BeanUtil.copyProperties(principal, user, PASSWORD_PARAM_NAME);
+		Authentication authentication = getContext().getAuthentication();
+		User principal = (User) authentication.getPrincipal();
+		User user = iSysUserService.loadUserByUsername(principal.getUsername());
+		BeanUtil.copyProperties(user, principal, PASSWORD_PARAM_NAME);
 		getContext().setAuthentication(authentication);
 		return principal;
 	}
