@@ -15,7 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.baomidou.mybatisplus.core.toolkit.AES;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.hutool.core.codec.Base64;
@@ -45,8 +44,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		String AESKey = AES.generateRandomKey();
-		request.getSession().setAttribute(SessionUtil.AESKey, AESKey);
+		SessionUtil.getAesKey(request);
 		// 添加登录凭证
 		String sessionId = request.getSession().getId();
 		User principal = (User) authentication.getPrincipal();

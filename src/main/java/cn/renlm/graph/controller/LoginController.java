@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.baomidou.mybatisplus.core.toolkit.AES;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.util.ReUtil;
@@ -48,9 +47,8 @@ public class LoginController {
 	 */
 	@GetMapping("/login")
 	public String login(HttpServletRequest request, ModelMap model) {
-		String AESKey = AES.generateRandomKey();
-		request.getSession().setAttribute(SessionUtil.AESKey, AESKey);
-		model.put(SessionUtil.AESKey, AESKey);
+		String aesKey = SessionUtil.getAesKey(request);
+		model.put(SessionUtil.AESKey, aesKey);
 		return "login";
 	}
 

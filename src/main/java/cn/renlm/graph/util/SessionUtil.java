@@ -1,10 +1,15 @@
 package cn.renlm.graph.util;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.session.Session;
 import org.springframework.session.data.redis.RedisIndexedSessionRepository;
+
+import com.baomidou.mybatisplus.core.toolkit.AES;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;
@@ -23,6 +28,22 @@ import lombok.experimental.UtilityClass;
 public class SessionUtil {
 
 	public static final String AESKey = "aesKey";
+
+	/**
+	 * 获取AES加密串
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public static final String getAesKey(final HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String aesKey = (String) session.getAttribute(AESKey);
+		if (StrUtil.isBlank(aesKey)) {
+			aesKey = AES.generateRandomKey();
+			session.setAttribute(AESKey, aesKey);
+		}
+		return aesKey;
+	}
 
 	/**
 	 * 获取基本用户信息
