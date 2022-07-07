@@ -57,6 +57,7 @@ public class UserService implements UserDetailsService {
 		User principal = (User) authentication.getPrincipal();
 		User user = iSysUserService.loadUserByUsername(principal.getUsername());
 		BeanUtil.copyProperties(user, principal, PASSWORD_PARAM_NAME);
+		principal.setPassword(StrUtil.EMPTY);
 		getContext().setAuthentication(authentication);
 		return principal;
 	}

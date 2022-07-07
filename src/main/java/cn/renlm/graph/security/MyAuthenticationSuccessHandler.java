@@ -47,7 +47,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 		String sessionId = request.getSession().getId();
 		User principal = (User) authentication.getPrincipal();
 		principal.setTicket(Base64.encodeUrlSafe(sessionId));
-		principal.setPassword(null);
+		principal.setPassword(StrUtil.EMPTY);
 		getContext().setAuthentication(authentication);
 		// 处理响应结果
 		String contentType = request.getContentType();
