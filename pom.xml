@@ -163,6 +163,7 @@
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>crypto-js</artifactId>
 			<version>4.1.1</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
