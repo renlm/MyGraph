@@ -56,7 +56,7 @@ public class MyDaoAuthenticationProvider extends DaoAuthenticationProvider {
 	protected void additionalAuthenticationChecks(UserDetails userDetails,
 			UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
 		MyWebAuthenticationDetails details = (MyWebAuthenticationDetails) authentication.getDetails();
-		String credentials = AES.decrypt(Convert.toStr(authentication.getCredentials()), details.getAESKey());
+		String credentials = AES.decrypt(Convert.toStr(authentication.getCredentials()), details.getAesKey());
 		ReflectUtil.setFieldValue(authentication, "credentials", credentials);
 		super.additionalAuthenticationChecks(userDetails, authentication);
 	}

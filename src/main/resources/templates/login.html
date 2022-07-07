@@ -154,7 +154,7 @@
 			refreshCaptcha($("#captcha").get(0));
 			alertMsg("验证码错误");
 		} else {
-			$("[name='password']").val(CryptoJS.AES.encrypt(password, "[(${AESKey})]"));
+			$("[name='password']").val(CryptoJS.AES.encrypt(password, "[(${aesKey})]"));
 			document.getElementById("login-form").submit();
 		}
 	});

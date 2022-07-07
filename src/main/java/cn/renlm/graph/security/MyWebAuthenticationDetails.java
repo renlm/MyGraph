@@ -20,7 +20,7 @@ public class MyWebAuthenticationDetails extends WebAuthenticationDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Getter
-	private final String AESKey;
+	private final String aesKey;
 
 	@Getter
 	private final String kaptcha;
@@ -31,7 +31,7 @@ public class MyWebAuthenticationDetails extends WebAuthenticationDetails {
 	public MyWebAuthenticationDetails(HttpServletRequest request) {
 		super(request);
 		HttpSession httpSession = request.getSession();
-		this.AESKey = (String) httpSession.getAttribute(SessionUtil.AESKey);
+		this.aesKey = (String) httpSession.getAttribute(SessionUtil.AESKey);
 		this.kaptcha = (String) httpSession.getAttribute(ConstVal.CAPTCHA_SESSION_KEY);
 		this.captcha = request.getParameter(ConstVal.CAPTCHA_PARAM_NAME);
 		httpSession.removeAttribute(ConstVal.CAPTCHA_SESSION_KEY);

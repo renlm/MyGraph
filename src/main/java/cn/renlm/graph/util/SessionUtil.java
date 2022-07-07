@@ -22,7 +22,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class SessionUtil {
 
-	public static final String AESKey = "AESKey";
+	public static final String AESKey = "aesKey";
 
 	/**
 	 * 获取基本用户信息
