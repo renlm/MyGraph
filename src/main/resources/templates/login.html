@@ -113,8 +113,6 @@
 </div>
 <!-- AES -->
 <script th:src="@{/webjars/crypto-js/crypto-js.js}"></script>
-<!-- Js-base64 -->
-<script th:src="@{/static/markdown/editor.md-1.5.0/lib/js-base64/2.3.2/base64.min.js}"></script>
 <script type="text/javascript">
 	// 禁止嵌入
 	if(self != top) top.location.href = self.location.href;
@@ -174,7 +172,8 @@
 	function aesEncrypt (words) {
 		const aesKey = CryptoJS.enc.Utf8.parse("[(${aesKey})]");
 		const aesIv = aesKey;
-	    const encrypted = CryptoJS.AES.encrypt(words, aesKey, {
+		const wordsEnc = CryptoJS.enc.Utf8.parse(words);
+	    const encrypted = CryptoJS.AES.encrypt(wordsEnc, aesKey, {
 	   		iv: aesIv,
 	   		mode: CryptoJS.mode.CBC,
 	  		padding: CryptoJS.pad.Pkcs7
