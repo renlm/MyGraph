@@ -24,6 +24,19 @@ import cn.renlm.graph.util.SessionUtil;
 public class UserApiController {
 
 	/**
+	 * 获取加密秘钥（AES/CBC/PKCS5Padding）
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/getAesKey")
+	public Result<String> getAesKey(HttpServletRequest request) {
+		String aesKey = SessionUtil.getAesKey(request);
+		return Result.success(aesKey);
+	}
+
+	/**
 	 * 获取当前登录用户
 	 * 
 	 * @param request
