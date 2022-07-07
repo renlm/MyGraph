@@ -160,6 +160,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>crypto-js</artifactId>
+			<version>4.1.1</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.xwiki.contrib</groupId>
 			<artifactId>mxgraph-editor</artifactId>
 			<version>4.2.2_14.4.3</version>

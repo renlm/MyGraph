@@ -584,7 +584,7 @@ CREATE TABLE gateway_proxy_config(
     name       					VARCHAR(255)					NOT NULL	COMMENT '名称',
     outgoing_servers			VARCHAR(255)					NOT NULL	COMMENT '代理服务器地址（多个逗号拼接）',	
     access_key       			VARCHAR(32)		UNIQUE 			NOT NULL	COMMENT 'Access Key',
-   	secret_key					VARCHAR(32)						NOT NULL	COMMENT 'Secret Key',
+   	secret_key					VARCHAR(255)					NOT NULL	COMMENT 'Secret Key（加密存储）',
     enabled                  	TINYINT(1)      DEFAULT 1  		NOT NULL  	COMMENT '是否启用（默认启用）',
     connection_timeout			INT				DEFAULT 1 		NOT NULL	COMMENT '连接超时时间（秒）',
     read_timeout				INT				DEFAULT 600 	NOT NULL	COMMENT '读超时时间（秒）',
