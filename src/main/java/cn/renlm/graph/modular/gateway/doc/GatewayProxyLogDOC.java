@@ -30,9 +30,19 @@ public class GatewayProxyLogDOC implements Serializable {
 	private Long id;
 
 	/**
-	 * 访问地址
+	 * 应用标识
+	 */
+	private String accessKey;
+
+	/**
+	 * 请求地址
 	 */
 	private String url;
+
+	/**
+	 * 代理地址
+	 */
+	private String proxyUrl;
 
 	/**
 	 * 请求时间
@@ -43,5 +53,40 @@ public class GatewayProxyLogDOC implements Serializable {
 	 * 响应时间
 	 */
 	private Date responseTime;
+
+	/**
+	 * 响应码
+	 */
+	private Integer statusCode;
+
+	/**
+	 * 耗时（毫秒）
+	 */
+	private Long takeTime;
+
+	/**
+	 * 用户ID
+	 */
+	private String userId;
+
+	/**
+	 * 账号
+	 */
+	private String username;
+
+	/**
+	 * 昵称
+	 */
+	private String nickname;
+
+	/**
+	 * 服务端ip
+	 */
+	private String serverIp;
+
+	/**
+	 * 客户端ip
+	 */
+	private String clientIp;
 
 }
