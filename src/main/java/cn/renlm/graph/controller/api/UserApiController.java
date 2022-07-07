@@ -24,7 +24,7 @@ import cn.renlm.graph.util.SessionUtil;
 public class UserApiController {
 
 	/**
-	 * 获取加密秘钥（AES/CBC/PKCS5Padding）
+	 * 获取会话秘钥（AES/CBC/PKCS5Padding）
 	 * 
 	 * @param request
 	 * @return
