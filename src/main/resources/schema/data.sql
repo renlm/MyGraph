@@ -88,7 +88,7 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(5001040101, 	'954755B97FE84578A268CDBAEA0C8096',	'5001040101', 	'获取子集列表',				'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			5, 		1, 		'open',		0,					50010401,	null)
 	  ,(5001040102, 	'9227C84C5A8E4260AAA43F444BC2FA49',	'5001040102', 	'获取下级列表',				'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			5, 		2, 		'open',		0,					50010401,	null)
 	  ,(5001040103, 	'50F13E50709A47579B3301FB2D76B1C6',	'5001040103', 	'获取树形字典',				'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			5, 		3, 		'open',		0,					50010401,	null)
-	  ,(50010402, 		'C212F7456C694035A3D0D89D1234377F',	'50010402', 	'验证码图片',				'menu', 			null, 														'tree-icon tree-folder', 	null, 				null, 			4, 		2, 		'open',		0,					500104,		null)
+	  ,(50010402, 		'C212F7456C694035A3D0D89D1234377F',	'50010402', 	'验证码图片',				'menu', 			null, 														'tree-icon tree-folder', 	null, 				null, 			4, 		2, 		'closed',	0,					500104,		null)
 	  ,(5001040201, 	'AF0BC33AACFC469D96CE079D983F8175',	'5001040201', 	'默认风格',				'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			5, 		1, 		'open',		0,					50010402,	null)
 	  ,(50010403, 		'A8133CDDFA7E4FDE9A0E005E589EA560',	'50010403', 	'获取当前会话秘钥',			'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			4, 		3, 		'open',		0,					500104,		null)
 	  ,(50010404, 		'4579B97F59ED4A0FBDAE73BE7C72CADD',	'50010404', 	'登录接口',				'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			4, 		4, 		'open',		0,					500104,		null)
