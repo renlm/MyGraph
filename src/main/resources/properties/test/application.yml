@@ -55,7 +55,9 @@ spring:
         missing-queues-fatal: false
   elasticsearch:
     rest:
-      uris: es.renlm.cn
+      username: elastic
+      password: Yuspn546ittwK^8uK8t^t6mdi^_dfy6ierfls7IM
+      uris: es7.renlm.cn
       index-suffix: .test
       connection-timeout: 30s
       read-timeout: 30s

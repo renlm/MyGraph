@@ -40,9 +40,49 @@ public class GatewayProxyLogDOC implements Serializable {
 	private String url;
 
 	/**
+	 * 代理路径
+	 */
+	private String proxyPath;
+
+	/**
+	 * 代理名称
+	 */
+	private String proxyName;
+
+	/**
+	 * 代理服务器地址（多个逗号拼接）
+	 */
+	private String proxyOutgoingServers;
+
+	/**
 	 * 代理地址
 	 */
 	private String proxyUrl;
+
+	/**
+	 * 代理-连接超时时间（秒）
+	 */
+	private Integer proxyConnectionTimeout;
+
+	/**
+	 * 代理-读超时时间（秒）
+	 */
+	private Integer proxyReadTimeout;
+
+	/**
+	 * 代理-写超时时间（秒）
+	 */
+	private Integer proxyWriteTimeout;
+
+	/**
+	 * 代理-单服务限速（次/秒，默认1万）
+	 */
+	private Integer proxyLimitForSecond;
+
+	/**
+	 * 请求方法
+	 */
+	private String httpMethod;
 
 	/**
 	 * 请求时间
@@ -58,6 +98,16 @@ public class GatewayProxyLogDOC implements Serializable {
 	 * 响应码
 	 */
 	private Integer statusCode;
+
+	/**
+	 * 响应消息
+	 */
+	private String statusText;
+
+	/**
+	 * 错误消息
+	 */
+	private String errorMessage;
 
 	/**
 	 * 耗时（毫秒）

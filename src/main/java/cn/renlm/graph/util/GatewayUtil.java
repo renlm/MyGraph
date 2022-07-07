@@ -9,6 +9,7 @@ import static cn.hutool.json.JSONUtil.toJsonStr;
 import static cn.renlm.graph.util.SessionUtil.getBaseUser;
 import static com.github.mkopylec.charon.configuration.CharonConfigurer.charonConfiguration;
 import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.requestMapping;
+import static com.github.mkopylec.charon.forwarding.RequestForwardingException.requestForwardingError;
 import static com.github.mkopylec.charon.forwarding.RestTemplateConfigurer.restTemplate;
 import static com.github.mkopylec.charon.forwarding.TimeoutConfigurer.timeout;
 import static com.github.mkopylec.charon.forwarding.Utils.copyHeaders;
@@ -29,14 +30,15 @@ import static com.github.mkopylec.charon.forwarding.interceptors.rewrite.RootPat
 import static io.github.resilience4j.ratelimiter.RateLimiterConfig.custom;
 import static java.time.Duration.ZERO;
 import static java.time.Duration.ofSeconds;
-import static org.springframework.core.Ordered.LOWEST_PRECEDENCE;
 import static org.springframework.http.HttpHeaders.COOKIE;
 
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.mkopylec.charon.configuration.CharonConfigurer;
@@ -52,13 +54,16 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.dto.UserBase;
+import cn.renlm.graph.modular.gateway.doc.GatewayProxyLogDOC;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
+import cn.renlm.graph.modular.gateway.repository.GatewayProxyLogRepository;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
 import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
 import lombok.AllArgsConstructor;
@@ -205,29 +210,80 @@ public class GatewayUtil {
 
 		private final GatewayProxyConfig proxy;
 
-		static final RequestForwardingInterceptorType TYPE = new RequestForwardingInterceptorType(
-				LOWEST_PRECEDENCE - 100);
+		static final RequestForwardingInterceptorType TYPE = new RequestForwardingInterceptorType(-100);
 
 		@Override
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
-			String accessKey = proxy.getAccessKey();
-			String secretKey = proxy.getSecretKey();
-			HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
-			UserBase user = getBaseUser(getGroup1("SESSION=(.*?)(;|$)", rewrittenHeaders.getFirst(COOKIE)));
-			String userInfo = new StringBuffer(encodeUrlSafe(user == null ? EMPTY : toJsonStr(user))).toString();
-			String timestamp = String.valueOf(DateUtil.current());
-			rewrittenHeaders.set(HEADER_AccessKey, accessKey);
-			rewrittenHeaders.set(HEADER_UserInfo, userInfo);
-			rewrittenHeaders.set(HEADER_TimeStamp, timestamp);
-			rewrittenHeaders.set(HEADER_Sha256Hex, DigestUtil.sha256Hex(secretKey + timestamp + userInfo));
-			request.setHeaders(rewrittenHeaders);
-			HttpResponse response = execution.execute(request);
-			return response;
+			// <!- 代理日志
+			final GatewayProxyLogDOC proxyLog = new GatewayProxyLogDOC();
+			proxyLog.setAccessKey(proxy.getAccessKey());
+			proxyLog.setUrl(request.getURI().toString());
+			proxyLog.setHttpMethod(request.getMethod().toString());
+			proxyLog.setRequestTime(new Date());
+			proxyLog.setProxyPath(proxy.getPath());
+			proxyLog.setProxyName(proxy.getName());
+			proxyLog.setProxyOutgoingServers(proxy.getOutgoingServers());
+			proxyLog.setProxyConnectionTimeout(proxy.getConnectionTimeout());
+			proxyLog.setProxyReadTimeout(proxy.getReadTimeout());
+			proxyLog.setProxyWriteTimeout(proxy.getWriteTimeout());
+			proxyLog.setProxyLimitForSecond(proxy.getLimitForSecond());
+			// -!> 代理日志
+			try {
+				String accessKey = proxy.getAccessKey();
+				String secretKey = proxy.getSecretKey();
+				HttpHeaders rewrittenHeaders = copyHeaders(request.getHeaders());
+				UserBase user = getBaseUser(getGroup1("SESSION=(.*?)(;|$)", rewrittenHeaders.getFirst(COOKIE)));
+				String userInfo = new StringBuffer(encodeUrlSafe(user == null ? EMPTY : toJsonStr(user))).toString();
+				String timestamp = String.valueOf(DateUtil.current());
+				rewrittenHeaders.set(HEADER_AccessKey, accessKey);
+				rewrittenHeaders.set(HEADER_UserInfo, userInfo);
+				rewrittenHeaders.set(HEADER_TimeStamp, timestamp);
+				rewrittenHeaders.set(HEADER_Sha256Hex, DigestUtil.sha256Hex(secretKey + timestamp + userInfo));
+				request.setHeaders(rewrittenHeaders);
+				// <!- 代理日志
+				proxyLog.setUserId(user == null ? null : user.getUserId());
+				proxyLog.setUsername(user == null ? null : user.getUsername());
+				proxyLog.setNickname(user == null ? null : user.getNickname());
+				// -!> 代理日志
+				HttpResponse response = execution.execute(request);
+				// <!- 代理日志
+				proxyLog.setProxyUrl(request.getURI().toString());
+				proxyLog.setResponseTime(new Date());
+				proxyLog.setStatusCode(response.getStatusCode().value());
+				proxyLog.setStatusText(response.getStatusText());
+				// -!> 代理日志
+				return response;
+			} catch (Exception e) {
+				// <!- 代理日志
+				proxyLog.setResponseTime(new Date());
+				proxyLog.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+				proxyLog.setErrorMessage(e.getMessage());
+				// -!> 代理日志
+				throw requestForwardingError("Error executing request: " + e.getMessage(), e);
+			} finally {
+				// <!- 代理日志
+				proxyLog.setTakeTime(proxyLog.getRequestTime().getTime() - proxyLog.getResponseTime().getTime());
+				recordLog(request, execution, proxyLog);
+				// -!> 代理日志
+			}
 		}
 
 		@Override
 		public RequestForwardingInterceptorType getType() {
 			return TYPE;
 		}
+	}
+
+	/**
+	 * 记录代理日志
+	 * 
+	 * @param request
+	 * @param execution
+	 * @param proxyLog
+	 */
+	private void recordLog(HttpRequest request, HttpRequestExecution execution, GatewayProxyLogDOC proxyLog) {
+		GatewayProxyLogDOC doc = new GatewayProxyLogDOC();
+		doc.setId(IdUtil.getSnowflakeNextId());
+		SpringUtil.getBean(GatewayProxyLogRepository.class).save(doc);
 	}
 }
