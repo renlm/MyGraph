@@ -213,13 +213,14 @@ public class GatewayUtil {
 
 		@Override
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
+			Date requestTime = new Date();
 			// <!- 代理日志
 			final GatewayProxyLogDmt proxyLog = new GatewayProxyLogDmt();
 			proxyLog.setId(IdUtil.getSnowflakeNextId());
 			proxyLog.setAccessKey(proxy.getAccessKey());
 			proxyLog.setUrl(request.getURI().toString());
 			proxyLog.setHttpMethod(request.getMethod().toString());
-			proxyLog.setRequestTime(new Date());
+			proxyLog.setRequestTime(requestTime);
 			proxyLog.setProxyPath(proxy.getPath());
 			proxyLog.setProxyName(proxy.getName());
 			proxyLog.setProxyOutgoingServers(proxy.getOutgoingServers());
@@ -257,12 +258,13 @@ public class GatewayUtil {
 				// <!- 代理日志
 				proxyLog.setResponseTime(new Date());
 				proxyLog.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+				proxyLog.setStatusText(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
 				proxyLog.setErrorMessage(e.getMessage());
 				// -!> 代理日志
 				throw requestForwardingError("Error executing request: " + e.getMessage(), e);
 			} finally {
 				// <!- 代理日志
-				proxyLog.setTakeTime(proxyLog.getResponseTime().getTime() - proxyLog.getRequestTime().getTime());
+				proxyLog.setTakeTime(proxyLog.getResponseTime().getTime() - requestTime.getTime());
 				SpringUtil.getBean(IGatewayProxyConfigService.class).recordLog(proxyLog);
 				// -!> 代理日志
 			}
