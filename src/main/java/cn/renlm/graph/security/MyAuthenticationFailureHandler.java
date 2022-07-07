@@ -43,6 +43,7 @@ public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailu
 			PrintWriter out = response.getWriter();
 			Result<?> result = Result.of(HttpStatus.BAD_REQUEST, exception.getMessage());
 			out.write(objectMapper.writeValueAsString(result));
+			out.close();
 		} else {
 			super.setDefaultFailureUrl(WebSecurityConfig.LoginPage);
 			super.onAuthenticationFailure(request, response, exception);
