@@ -64,8 +64,13 @@
 				return;
 			}
 			
+			var aesKey = "[(${session.aesKey})]";
 			$.post(ctx + "/doModifyPwd", 
-				{ _password: data.field._password, password: data.field.password, confirmpwd: data.field.confirmpwd }, 
+				{ 
+					_password: $.aesEncrypt(aesKey, data.field._password), 
+					password: $.aesEncrypt(aesKey, data.field.password), 
+					confirmpwd: $.aesEncrypt(data.field.confirmpwd)
+				}, 
 				function(response) {
 					if(response.statusCode === 200) {
 						parent.layer.close(parent.window.editPwdLayerIndex);

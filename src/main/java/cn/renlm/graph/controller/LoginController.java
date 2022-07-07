@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.core.toolkit.AES;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.util.ReUtil;
@@ -65,6 +66,7 @@ public class LoginController {
 	/**
 	 * 修改密码
 	 * 
+	 * @param request
 	 * @param authentication
 	 * @param _password
 	 * @param password
@@ -73,10 +75,15 @@ public class LoginController {
 	 */
 	@ResponseBody
 	@PostMapping("/doModifyPwd")
-	public Result<?> doModifyPwd(Authentication authentication, String _password, String password, String confirmpwd) {
+	public Result<?> doModifyPwd(HttpServletRequest request, Authentication authentication, String _password,
+			String password, String confirmpwd) {
+		String aesKey = SessionUtil.getAesKey(request);
 		User user = (User) authentication.getPrincipal();
 		User userDetails = iSysUserService.loadUserByUsername(user.getUsername());
 		try {
+			_password = AES.decrypt(_password, aesKey);
+			password = AES.decrypt(password, aesKey);
+			confirmpwd = AES.decrypt(confirmpwd, aesKey);
 			if (!new BCryptPasswordEncoder().matches(_password, userDetails.getPassword())) {
 				return Result.error("密码错误");
 			}
@@ -86,8 +93,9 @@ public class LoginController {
 			if (!ReUtil.isMatch(ConstVal.password_reg, password)) {
 				return Result.error(ConstVal.password_msg);
 			}
+			String pwdEncode = new BCryptPasswordEncoder().encode(password);
 			iSysUserService.update(Wrappers.<SysUser>lambdaUpdate().func(wrapper -> {
-				wrapper.set(SysUser::getPassword, new BCryptPasswordEncoder().encode(password));
+				wrapper.set(SysUser::getPassword, pwdEncode);
 				wrapper.set(SysUser::getUpdatedAt, new Date());
 				wrapper.eq(SysUser::getId, user.getId());
 			}));
