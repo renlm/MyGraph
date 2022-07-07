@@ -1,4 +1,4 @@
-package cn.renlm.graph.modular.gateway.doc;
+package cn.renlm.graph.modular.gateway.dmt;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,7 +18,7 @@ import lombok.Data;
  */
 @Data
 @Document(indexName = "gateway_proxy_log#{@elasticsearchConfig.indexSuffix}")
-public class GatewayProxyLogDOC implements Serializable {
+public class GatewayProxyLogDmt implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

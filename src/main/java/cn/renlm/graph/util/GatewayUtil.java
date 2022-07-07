@@ -61,7 +61,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.dto.UserBase;
-import cn.renlm.graph.modular.gateway.doc.GatewayProxyLogDOC;
+import cn.renlm.graph.modular.gateway.dmt.GatewayProxyLogDmt;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.repository.GatewayProxyLogRepository;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
@@ -215,7 +215,7 @@ public class GatewayUtil {
 		@Override
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
 			// <!- 代理日志
-			final GatewayProxyLogDOC proxyLog = new GatewayProxyLogDOC();
+			final GatewayProxyLogDmt proxyLog = new GatewayProxyLogDmt();
 			proxyLog.setAccessKey(proxy.getAccessKey());
 			proxyLog.setUrl(request.getURI().toString());
 			proxyLog.setHttpMethod(request.getMethod().toString());
@@ -281,9 +281,8 @@ public class GatewayUtil {
 	 * @param execution
 	 * @param proxyLog
 	 */
-	private void recordLog(HttpRequest request, HttpRequestExecution execution, GatewayProxyLogDOC proxyLog) {
-		GatewayProxyLogDOC doc = new GatewayProxyLogDOC();
-		doc.setId(IdUtil.getSnowflakeNextId());
-		SpringUtil.getBean(GatewayProxyLogRepository.class).save(doc);
+	private void recordLog(HttpRequest request, HttpRequestExecution execution, GatewayProxyLogDmt proxyLog) {
+		proxyLog.setId(IdUtil.getSnowflakeNextId());
+		SpringUtil.getBean(GatewayProxyLogRepository.class).save(proxyLog);
 	}
 }
