@@ -7,11 +7,14 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.InvalidCookieException;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.renlm.graph.dto.User;
 
 /**
  * 身份认证
@@ -46,5 +49,13 @@ public class MyDaoAuthenticationProvider extends DaoAuthenticationProvider {
 		}
 		Authentication authen = super.authenticate(authentication);
 		return authen;
+	}
+
+	@Override
+	protected Authentication createSuccessAuthentication(Object principal, Authentication authentication,
+			UserDetails user) {
+		MyWebAuthenticationDetails details = (MyWebAuthenticationDetails) authentication.getDetails();
+		((User) principal).setTicket(Base64.encodeUrlSafe(details.getSessionId()));
+		return super.createSuccessAuthentication(principal, authentication, user);
 	}
 }
