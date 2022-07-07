@@ -22,7 +22,7 @@
 		 */
 		aesEncrypt: function (aesKey, words) {
 			const key = CryptoJS.enc.Utf8.parse(aesKey);
-			const iv = key;
+			const iv = CryptoJS.enc.Utf8.parse(aesKey);
 			const wordsEnc = CryptoJS.enc.Utf8.parse(words);
 		    return CryptoJS.AES
 		    		.encrypt(wordsEnc, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
@@ -35,9 +35,11 @@
 		 */
 		aesDecrypt: function (aesKey, encrypted) {
 			const key = CryptoJS.enc.Utf8.parse(aesKey);
-			const iv = key;
+			const iv = CryptoJS.enc.Utf8.parse(aesKey);
+			const baseResult = CryptoJS.enc.Base64.parse(encrypted);
+    		const ciphertext = CryptoJS.enc.Base64.stringify(baseResult);
 		    return CryptoJS.AES
-		    		.decrypt(encrypted, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
+		    		.decrypt(ciphertext, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
 		    		.toString(CryptoJS.enc.Utf8)
 		    	;
 		},

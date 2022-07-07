@@ -173,7 +173,7 @@
 	 */
 	function aesEncrypt (aesKey, words) {
 		const key = CryptoJS.enc.Utf8.parse(aesKey);
-		const iv = key;
+		const iv = CryptoJS.enc.Utf8.parse(aesKey);
 		const wordsEnc = CryptoJS.enc.Utf8.parse(words);
 	    return CryptoJS.AES
 	    		.encrypt(wordsEnc, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
