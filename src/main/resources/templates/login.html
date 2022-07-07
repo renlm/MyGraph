@@ -171,15 +171,15 @@
 	});
 	
 	// AES加密
-	function aesEncrypt (word) {
+	function aesEncrypt (words) {
 		const aesKey = CryptoJS.enc.Utf8.parse("[(${aesKey})]");
-	    const wordC = CryptoJS.enc.Utf8.parse(word);
-	    const srcs = CryptoJS.enc.Base64.stringify(wordC);
-	    return CryptoJS.AES.encrypt(srcs, aesKey, {
-	   		iv: aesKey,
+		const aesIv = aesKey;
+	    const encrypted = CryptoJS.AES.encrypt(words, aesKey, {
+	   		iv: aesIv,
 	   		mode: CryptoJS.mode.CBC,
 	  		padding: CryptoJS.pad.Pkcs7
 	 	});
+	    return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
 	}
 </script>
 </body>
