@@ -18,6 +18,30 @@
 (function($) {
 	$.extend({
 		/**
+		 * AES加密
+		 */
+		aesEncrypt: function (aesKey, words) {
+			const key = CryptoJS.enc.Utf8.parse(aesKey);
+			const iv = key;
+			const wordsEnc = CryptoJS.enc.Utf8.parse(words);
+		    return CryptoJS.AES
+		    		.encrypt(wordsEnc, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
+		    		.ciphertext
+		    		.toString(CryptoJS.enc.Base64)
+		    	;
+		},
+		/**
+		 * AES解密
+		 */
+		aesDecrypt: function (aesKey, encrypted) {
+			const key = CryptoJS.enc.Utf8.parse(aesKey);
+			const iv = key;
+		    return CryptoJS.AES
+		    		.decrypt(encrypted, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 })
+		    		.toString(CryptoJS.enc.Utf8)
+		    	;
+		},
+		/**
 		 * ER模型DDL下载
 		 */
 		downloadERDDL: function (uuid) {
