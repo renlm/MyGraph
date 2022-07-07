@@ -288,8 +288,14 @@ public class GatewayUtil {
 	 * @return
 	 */
 	private static String getClientIP(HttpRequest request, String... otherHeaderNames) {
-		String[] headerNames = { "X-Forwarded-For", "X-Real-IP", "Proxy-Client-IP", "WL-Proxy-Client-IP",
-				"HTTP_CLIENT_IP", "HTTP_X_FORWARDED_FOR" };
+		String[] headerNames = { 
+				"X-Forwarded-For", 
+				"X-Real-IP", 
+				"Proxy-Client-IP", 
+				"WL-Proxy-Client-IP",
+				"HTTP_CLIENT_IP", 
+				"HTTP_X_FORWARDED_FOR" 
+			};
 		if (ArrayUtil.isNotEmpty(otherHeaderNames)) {
 			headerNames = ArrayUtil.addAll(headerNames, otherHeaderNames);
 		}
@@ -301,6 +307,6 @@ public class GatewayUtil {
 				return NetUtil.getMultistageReverseProxyIp(ip);
 			}
 		}
-		return null;
+		return EMPTY;
 	}
 }
