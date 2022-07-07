@@ -54,6 +54,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.BooleanUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -214,6 +215,7 @@ public class GatewayUtil {
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
 			// <!- 代理日志
 			final GatewayProxyLogDmt proxyLog = new GatewayProxyLogDmt();
+			proxyLog.setId(IdUtil.getSnowflakeNextId());
 			proxyLog.setAccessKey(proxy.getAccessKey());
 			proxyLog.setUrl(request.getURI().toString());
 			proxyLog.setHttpMethod(request.getMethod().toString());
