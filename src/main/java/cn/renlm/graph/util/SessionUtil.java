@@ -22,6 +22,8 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class SessionUtil {
 
+	public static final String AESKey = "AESKey";
+
 	/**
 	 * 获取基本用户信息
 	 * 

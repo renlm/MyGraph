@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.baomidou.mybatisplus.core.toolkit.AES;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.hutool.core.codec.Base64;
@@ -26,6 +27,7 @@ import cn.renlm.graph.amqp.LoginLogQueue;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysLoginLog;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.util.SessionUtil;
 import lombok.Cleanup;
 
 /**
@@ -43,6 +45,8 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
+		String AESKey = AES.generateRandomKey();
+		request.getSession().setAttribute(SessionUtil.AESKey, AESKey);
 		// 添加登录凭证
 		String sessionId = request.getSession().getId();
 		User principal = (User) authentication.getPrincipal();

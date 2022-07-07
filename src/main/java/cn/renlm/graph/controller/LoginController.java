@@ -2,15 +2,19 @@ package cn.renlm.graph.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.core.toolkit.AES;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.util.ReUtil;
@@ -20,6 +24,7 @@ import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
 import cn.renlm.graph.response.Result;
+import cn.renlm.graph.util.SessionUtil;
 
 /**
  * 登录
@@ -37,10 +42,15 @@ public class LoginController {
 	/**
 	 * 登录页
 	 * 
+	 * @param request
+	 * @param model
 	 * @return
 	 */
 	@GetMapping("/login")
-	public String login() {
+	public String login(HttpServletRequest request, ModelMap model) {
+		String AESKey = AES.generateRandomKey();
+		request.getSession().setAttribute(SessionUtil.AESKey, AESKey);
+		model.put(SessionUtil.AESKey, AESKey);
 		return "login";
 	}
 
