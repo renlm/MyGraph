@@ -260,7 +260,7 @@ public class GatewayUtil {
 				throw requestForwardingError("Error executing request: " + e.getMessage(), e);
 			} finally {
 				// <!- 代理日志
-				proxyLog.setTakeTime(proxyLog.getRequestTime().getTime() - proxyLog.getResponseTime().getTime());
+				proxyLog.setTakeTime(proxyLog.getResponseTime().getTime() - proxyLog.getRequestTime().getTime());
 				SpringUtil.getBean(IGatewayProxyConfigService.class).recordLog(proxyLog);
 				// -!> 代理日志
 			}
