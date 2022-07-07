@@ -54,7 +54,6 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.BooleanUtil;
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
@@ -63,7 +62,6 @@ import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.modular.gateway.dmt.GatewayProxyLogDmt;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
-import cn.renlm.graph.modular.gateway.repository.GatewayProxyLogRepository;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
 import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
 import lombok.AllArgsConstructor;
@@ -263,7 +261,7 @@ public class GatewayUtil {
 			} finally {
 				// <!- 代理日志
 				proxyLog.setTakeTime(proxyLog.getRequestTime().getTime() - proxyLog.getResponseTime().getTime());
-				recordLog(request, execution, proxyLog);
+				SpringUtil.getBean(IGatewayProxyConfigService.class).recordLog(proxyLog);
 				// -!> 代理日志
 			}
 		}
@@ -272,17 +270,5 @@ public class GatewayUtil {
 		public RequestForwardingInterceptorType getType() {
 			return TYPE;
 		}
-	}
-
-	/**
-	 * 记录代理日志
-	 * 
-	 * @param request
-	 * @param execution
-	 * @param proxyLog
-	 */
-	private void recordLog(HttpRequest request, HttpRequestExecution execution, GatewayProxyLogDmt proxyLog) {
-		proxyLog.setId(IdUtil.getSnowflakeNextId());
-		SpringUtil.getBean(GatewayProxyLogRepository.class).save(proxyLog);
 	}
 }
