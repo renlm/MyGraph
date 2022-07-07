@@ -26,6 +26,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.expression.WebExpressionVoter;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.Session;
@@ -37,6 +38,7 @@ import cn.renlm.graph.security.MyAuthenticationFailureHandler;
 import cn.renlm.graph.security.MyAuthenticationSuccessHandler;
 import cn.renlm.graph.security.MyDaoAuthenticationProvider;
 import cn.renlm.graph.security.MyWebAuthenticationDetails;
+import cn.renlm.graph.security.TicketAuthenticationFilter;
 import cn.renlm.graph.security.UserService;
 import cn.renlm.graph.util.GatewayUtil;
 
@@ -120,8 +122,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
 
+	@Autowired
+	private TicketAuthenticationFilter ticketAuthenticationFilter;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		// 认证过滤器（Ticket）
+		http.addFilterBefore(ticketAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 		// 启用csrf
 		http.csrf()
 			.ignoringAntMatchers(APIAntMatcher)

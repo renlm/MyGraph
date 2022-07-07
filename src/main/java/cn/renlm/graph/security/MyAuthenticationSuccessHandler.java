@@ -59,6 +59,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 			PrintWriter out = response.getWriter();
 			Result<?> result = Result.success(authentication.getPrincipal());
 			out.write(objectMapper.writeValueAsString(result));
+			out.close();
 		} else {
 			super.onAuthenticationSuccess(request, response, authentication);
 		}

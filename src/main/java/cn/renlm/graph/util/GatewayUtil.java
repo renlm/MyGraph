@@ -88,6 +88,7 @@ public class GatewayUtil {
 	/**
 	 * 扩展代理请求头
 	 */
+	public static final String HEADER_Ticket = "GW-Ticket";
 	public static final String HEADER_AccessKey = "GW-AccessKey";
 	public static final String HEADER_UserInfo = "GW-UserInfo";
 	public static final String HEADER_TimeStamp = "GW-Timestamp";

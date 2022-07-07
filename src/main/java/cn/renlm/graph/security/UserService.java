@@ -1,6 +1,6 @@
 package cn.renlm.graph.security;
 
-import static cn.renlm.graph.common.ConstVal.PASSWORD_PARAM_NAME;
+import static cn.hutool.core.text.CharSequenceUtil.EMPTY;
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 import java.util.Collection;
@@ -10,6 +10,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +19,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
@@ -56,9 +56,9 @@ public class UserService implements UserDetailsService {
 		Authentication authentication = getContext().getAuthentication();
 		User principal = (User) authentication.getPrincipal();
 		User user = iSysUserService.loadUserByUsername(principal.getUsername());
-		BeanUtil.copyProperties(user, principal, PASSWORD_PARAM_NAME);
-		principal.setPassword(StrUtil.EMPTY);
-		getContext().setAuthentication(authentication);
+		user.setPassword(EMPTY);
+		Authentication token = new UsernamePasswordAuthenticationToken(user, EMPTY, user.getAuthorities());
+		getContext().setAuthentication(token);
 		return principal;
 	}
 
