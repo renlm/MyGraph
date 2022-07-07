@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.gateway.dmt.GatewayProxyLogDmt;
 import cn.renlm.graph.modular.gateway.dto.GatewayProxyConfigDto;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.response.Result;
@@ -36,5 +37,12 @@ public interface IGatewayProxyConfigService extends IService<GatewayProxyConfig>
 	 * @return
 	 */
 	Result<GatewayProxyConfigDto> ajaxSave(User user, GatewayProxyConfigDto form);
+
+	/**
+	 * 记录代理日志
+	 * 
+	 * @param proxyLog
+	 */
+	void recordLog(GatewayProxyLogDmt proxyLog);
 
 }
