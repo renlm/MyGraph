@@ -14,7 +14,6 @@ import org.springframework.security.web.authentication.rememberme.InvalidCookieE
 
 import com.baomidou.mybatisplus.core.toolkit.AES;
 
-import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 
@@ -56,8 +55,9 @@ public class MyDaoAuthenticationProvider extends DaoAuthenticationProvider {
 	protected void additionalAuthenticationChecks(UserDetails userDetails,
 			UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
 		MyWebAuthenticationDetails details = (MyWebAuthenticationDetails) authentication.getDetails();
-		String credentials = AES.decrypt(Convert.toStr(authentication.getCredentials()), details.getAesKey());
-		ReflectUtil.setFieldValue(authentication, "credentials", credentials);
+		String credentials = authentication.getCredentials().toString();
+		String decryptCredentials = AES.decrypt(credentials, details.getAesKey());
+		ReflectUtil.setFieldValue(authentication, "credentials", decryptCredentials);
 		super.additionalAuthenticationChecks(userDetails, authentication);
 	}
 }
