@@ -26,6 +26,11 @@ public class UserBase implements Serializable {
 	private String ticket;
 
 	/**
+	 * 用户表ID
+	 */
+	private Long id;
+
+	/**
 	 * 用户ID
 	 */
 	private String userId;

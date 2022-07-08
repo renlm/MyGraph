@@ -159,10 +159,10 @@ public class GatewayProxyLog implements Serializable {
     private Date createdAt;
 
     /**
-     * 用户ID
+     * 用户表ID
      */
-    @TableField("user_id")
-    private String userId;
+    @TableField("sys_user_id")
+    private Long sysUserId;
 
     /**
      * 用户昵称

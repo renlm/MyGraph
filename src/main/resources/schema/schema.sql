@@ -471,7 +471,7 @@ CREATE TABLE markdown_history (
 -- 图形设计
 DROP TABLE IF EXISTS graph;
 CREATE TABLE graph(
-    id							BIGINT(20) 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
+    id							BIGINT	 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
     uuid       					VARCHAR(32)		UNIQUE NOT NULL				COMMENT 'UUID',
     name       					VARCHAR(255)	NOT NULL					COMMENT '名称',
     version 					INT				NOT NULL					COMMENT '版本',
@@ -504,7 +504,7 @@ CREATE TABLE graph(
 -- 图形设计-历史记录
 DROP TABLE IF EXISTS graph_history;
 CREATE TABLE graph_history(
-    history_id            		BIGINT(20) 		PRIMARY KEY AUTO_INCREMENT	COMMENT '历史记录ID',
+    history_id            		BIGINT	 		PRIMARY KEY AUTO_INCREMENT	COMMENT '历史记录ID',
     change_label 				VARCHAR(255)	NOT NULL					COMMENT '变更说明',
     operate_at 					TIMESTAMP 		NOT NULL 					COMMENT '操作时间',
     operator_user_id 			VARCHAR(32) 								COMMENT '操作人（用户ID）',
@@ -579,7 +579,7 @@ CREATE TABLE sys_login_log(
 -- 网关代理配置
 DROP TABLE IF EXISTS gateway_proxy_config;
 CREATE TABLE gateway_proxy_config(
-    id							BIGINT(20) 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
+    id							BIGINT	 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
     uuid       					VARCHAR(32)		UNIQUE NOT NULL				COMMENT 'UUID',
     path       					VARCHAR(20)		UNIQUE 			NOT NULL	COMMENT '代理路径（/path/）',
     name       					VARCHAR(255)					NOT NULL	COMMENT '名称',
@@ -603,7 +603,7 @@ CREATE TABLE gateway_proxy_config(
 -- 网关代理日志
 DROP TABLE IF EXISTS gateway_proxy_log;
 CREATE TABLE gateway_proxy_log(
-    id							BIGINT(20) 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
+    id							BIGINT	 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
     path       					VARCHAR(20)									COMMENT '代理配置-路径',
     name       					VARCHAR(255)								COMMENT '代理配置-名称',
     outgoing_servers			VARCHAR(255)								COMMENT '代理配置-代理服务器地址',
@@ -620,15 +620,16 @@ CREATE TABLE gateway_proxy_log(
     status_code					INT											COMMENT '响应码',
     status_text					TEXT										COMMENT '响应消息',
     error_message				TEXT										COMMENT '错误消息',
-    take_time					BIGINT(20)									COMMENT '耗时（毫秒）',
+    take_time					BIGINT										COMMENT '耗时（毫秒）',
     server_ip					VARCHAR(255)								COMMENT '服务端ip',
     client_ip					VARCHAR(255)								COMMENT '客户端ip（地址）',
     ip_region					VARCHAR(255)								COMMENT '客户端ip（归属地）',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
-    user_id VARCHAR(32) COMMENT '用户ID',
+    sys_user_id BIGINT COMMENT '用户表ID',
     nickname VARCHAR(255) COMMENT '用户昵称',
     INDEX access_key(access_key),
     INDEX request_time(request_time),
     INDEX status_code(status_code),
-    INDEX take_time(take_time)
+    INDEX take_time(take_time),
+    INDEX sys_user_id(sys_user_id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = '网关代理日志';

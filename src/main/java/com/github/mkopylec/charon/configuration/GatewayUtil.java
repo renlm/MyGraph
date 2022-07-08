@@ -247,7 +247,7 @@ public class GatewayUtil {
 				rewrittenHeaders.set(HEADER_Sha256Hex, DigestUtil.sha256Hex(secretKey + timestamp + userInfo));
 				request.setHeaders(rewrittenHeaders);
 				// <!- 代理日志
-				proxyLog.setUserId(user == null ? null : user.getUserId());
+				proxyLog.setSysUserId(user == null ? null : user.getId());
 				proxyLog.setNickname(user == null ? null : user.getNickname());
 				// -!> 代理日志
 				HttpResponse response = execution.execute(request);
