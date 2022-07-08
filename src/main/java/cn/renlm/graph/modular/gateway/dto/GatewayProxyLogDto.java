@@ -1,6 +1,6 @@
 package cn.renlm.graph.modular.gateway.dto;
 
-import cn.renlm.graph.modular.gateway.dmt.GatewayProxyLogDmt;
+import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
-public class GatewayProxyLogDto extends GatewayProxyLogDmt {
+public class GatewayProxyLogDto extends GatewayProxyLog {
 
 	private static final long serialVersionUID = 1L;
 

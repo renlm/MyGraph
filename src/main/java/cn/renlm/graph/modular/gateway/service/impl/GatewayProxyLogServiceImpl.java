@@ -19,4 +19,8 @@ import cn.renlm.graph.modular.gateway.service.IGatewayProxyLogService;
 @Service
 public class GatewayProxyLogServiceImpl extends ServiceImpl<GatewayProxyLogMapper, GatewayProxyLog> implements IGatewayProxyLogService {
 
+	@Override
+	public void recordLog(GatewayProxyLog gatewayProxyLog) {
+		
+	}
 }

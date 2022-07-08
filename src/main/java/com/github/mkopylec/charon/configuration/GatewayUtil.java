@@ -61,9 +61,10 @@ import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.system.SystemUtil;
 import cn.renlm.graph.dto.UserBase;
-import cn.renlm.graph.modular.gateway.dmt.GatewayProxyLogDmt;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
+import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
+import cn.renlm.graph.modular.gateway.service.IGatewayProxyLogService;
 import cn.renlm.graph.util.MyConfigProperties;
 import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
 import lombok.AllArgsConstructor;
@@ -216,19 +217,19 @@ public class GatewayUtil {
 		public HttpResponse forward(HttpRequest request, HttpRequestExecution execution) {
 			Date requestTime = new Date();
 			// <!- 代理日志
-			final GatewayProxyLogDmt proxyLog = new GatewayProxyLogDmt();
+			final GatewayProxyLog proxyLog = new GatewayProxyLog();
 			proxyLog.setId(IdUtil.getSnowflakeNextId());
 			proxyLog.setAccessKey(proxy.getAccessKey());
-			proxyLog.setUrl(request.getURI().toString());
+			proxyLog.setRequestUrl(request.getURI().toString());
 			proxyLog.setHttpMethod(request.getMethod().toString());
 			proxyLog.setRequestTime(requestTime);
-			proxyLog.setProxyPath(proxy.getPath());
-			proxyLog.setProxyName(proxy.getName());
-			proxyLog.setProxyOutgoingServers(proxy.getOutgoingServers());
-			proxyLog.setProxyConnectionTimeout(proxy.getConnectionTimeout());
-			proxyLog.setProxyReadTimeout(proxy.getReadTimeout());
-			proxyLog.setProxyWriteTimeout(proxy.getWriteTimeout());
-			proxyLog.setProxyLimitForSecond(proxy.getLimitForSecond());
+			proxyLog.setPath(proxy.getPath());
+			proxyLog.setName(proxy.getName());
+			proxyLog.setOutgoingServers(proxy.getOutgoingServers());
+			proxyLog.setConnectionTimeout(proxy.getConnectionTimeout());
+			proxyLog.setReadTimeout(proxy.getReadTimeout());
+			proxyLog.setWriteTimeout(proxy.getWriteTimeout());
+			proxyLog.setLimitForSecond(proxy.getLimitForSecond());
 			proxyLog.setServerIp(SystemUtil.getHostInfo().getAddress());
 			proxyLog.setClientIp(getClientIP(request, HEADER_RemoteAddr));
 			// -!> 代理日志
@@ -246,7 +247,6 @@ public class GatewayUtil {
 				request.setHeaders(rewrittenHeaders);
 				// <!- 代理日志
 				proxyLog.setUserId(user == null ? null : user.getUserId());
-				proxyLog.setUsername(user == null ? null : user.getUsername());
 				proxyLog.setNickname(user == null ? null : user.getNickname());
 				// -!> 代理日志
 				HttpResponse response = execution.execute(request);
@@ -268,7 +268,7 @@ public class GatewayUtil {
 			} finally {
 				// <!- 代理日志
 				proxyLog.setTakeTime(proxyLog.getResponseTime().getTime() - requestTime.getTime());
-				SpringUtil.getBean(IGatewayProxyConfigService.class).recordLog(proxyLog);
+				SpringUtil.getBean(IGatewayProxyLogService.class).recordLog(proxyLog);
 				// -!> 代理日志
 			}
 		}

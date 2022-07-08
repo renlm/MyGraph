@@ -620,7 +620,7 @@ CREATE TABLE gateway_proxy_log(
     status_code					INT											COMMENT '响应码',
     status_text					TEXT										COMMENT '响应消息',
     error_message				TEXT										COMMENT '错误消息',
-    take_time					INT											COMMENT '耗时（毫秒）',
+    take_time					BIGINT(20)									COMMENT '耗时（毫秒）',
     server_ip					VARCHAR(255)								COMMENT '服务端ip',
     client_ip					VARCHAR(255)								COMMENT '客户端ip（地址）',
     ip_region					VARCHAR(255)								COMMENT '客户端ip（归属地）',

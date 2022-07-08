@@ -132,7 +132,7 @@ public class GatewayProxyLog implements Serializable {
      * 耗时（毫秒）
      */
     @TableField("take_time")
-    private Integer takeTime;
+    private Long takeTime;
 
     /**
      * 服务端ip

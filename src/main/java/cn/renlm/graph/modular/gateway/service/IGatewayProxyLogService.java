@@ -1,7 +1,8 @@
 package cn.renlm.graph.modular.gateway.service;
 
-import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 
 /**
  * <p>
@@ -12,5 +13,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-07-08
  */
 public interface IGatewayProxyLogService extends IService<GatewayProxyLog> {
+
+	/**
+	 * 记录日志
+	 * 
+	 * @param gatewayProxyLog
+	 */
+	void recordLog(GatewayProxyLog gatewayProxyLog);
 
 }

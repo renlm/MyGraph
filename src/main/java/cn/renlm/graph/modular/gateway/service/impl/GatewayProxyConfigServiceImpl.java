@@ -2,8 +2,6 @@ package cn.renlm.graph.modular.gateway.service.impl;
 
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +13,9 @@ import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
-import cn.renlm.graph.modular.gateway.dmt.GatewayProxyLogDmt;
 import cn.renlm.graph.modular.gateway.dto.GatewayProxyConfigDto;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.mapper.GatewayProxyConfigMapper;
-import cn.renlm.graph.modular.gateway.repository.GatewayProxyLogRepository;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
 import cn.renlm.graph.response.Result;
 
@@ -34,9 +30,6 @@ import cn.renlm.graph.response.Result;
 @Service
 public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfigMapper, GatewayProxyConfig>
 		implements IGatewayProxyConfigService {
-
-	@Autowired
-	private GatewayProxyLogRepository gatewayProxyLogRepository;
 
 	@Override
 	public Page<GatewayProxyConfig> findPage(Page<GatewayProxyConfig> page, User user, GatewayProxyConfigDto form) {
@@ -99,11 +92,5 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 		}
 		this.saveOrUpdate(form);
 		return Result.success(form);
-	}
-
-	@Async
-	@Override
-	public void recordLog(GatewayProxyLogDmt proxyLog) {
-		gatewayProxyLogRepository.save(proxyLog);
 	}
 }
