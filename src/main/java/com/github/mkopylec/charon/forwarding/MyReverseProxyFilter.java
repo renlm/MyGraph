@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.RequestEntity;
 
 import com.github.mkopylec.charon.configuration.GatewayUtil;
@@ -31,7 +32,8 @@ public class MyReverseProxyFilter extends ReverseProxyFilter {
 					@Override
 					RequestEntity<byte[]> map(HttpServletRequest request) throws IOException {
 						RequestEntity<byte[]> requestEntity = super.map(request);
-						requestEntity.getHeaders().add(GatewayUtil.HEADER_RemoteAddr, request.getRemoteAddr());
+						HttpHeaders headers = HttpHeaders.writableHttpHeaders(requestEntity.getHeaders());
+						headers.add(GatewayUtil.HEADER_RemoteAddr, request.getRemoteAddr());
 						return requestEntity;
 					}
 				});
