@@ -5,7 +5,6 @@ import org.lionsoul.ip2region.xdb.Searcher;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.lang.RegexPool;
 import cn.hutool.core.net.Ipv4Util;
-import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.SneakyThrows;
@@ -56,9 +55,7 @@ public class Ip2regionUtil {
 			return null;
 		} else if (Ipv4Util.isInnerIP(ip)) {
 			return null;
-		} else if (BooleanUtil.isFalse(ReUtil.isMatch(RegexPool.IPV4, ip))) {
-			return null;
-		} else if (BooleanUtil.isFalse(ReUtil.isMatch(RegexPool.IPV6, ip))) {
+		} else if (!ReUtil.isMatch(RegexPool.IPV4, ip)) {
 			return null;
 		}
 		try {
