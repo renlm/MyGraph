@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-07-02
+ * @since 2022-07-08
  */
 @Getter
 @Setter
@@ -51,10 +51,16 @@ public class SysLoginLog implements Serializable {
     private String nickname;
 
     /**
-     * 客户端ip
+     * 客户端ip（地址）
      */
     @TableField("client_ip")
     private String clientIp;
+
+    /**
+     * 客户端ip（归属地）
+     */
+    @TableField("ip_region")
+    private String ipRegion;
 
     /**
      * 登录时间

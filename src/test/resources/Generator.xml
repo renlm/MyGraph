@@ -60,5 +60,6 @@
 
 	<module name="gateway" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="gateway_proxy_config" entity="true" />
+		<table author="Renlm" name="gateway_proxy_log" entity="true" />
 	</module>
 </generator>
