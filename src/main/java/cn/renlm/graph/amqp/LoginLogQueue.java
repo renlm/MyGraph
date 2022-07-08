@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 
 import cn.renlm.graph.modular.sys.entity.SysLoginLog;
 import cn.renlm.graph.modular.sys.service.ISysLoginLogService;
+import cn.renlm.graph.util.Ip2regionUtil;
 
 /**
  * 登录日志记录
@@ -41,12 +42,13 @@ public class LoginLogQueue {
 	/**
 	 * 写入日志
 	 * 
-	 * @param sysLoginLog
+	 * @param loginLog
 	 */
 	@RabbitListener(bindings = {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
-	public void receiveMessage(SysLoginLog sysLoginLog) {
-		iLoginLogService.save(sysLoginLog);
+	public void receiveMessage(SysLoginLog loginLog) {
+		loginLog.setIpRegion(Ip2regionUtil.parse(loginLog.getClientIp()));
+		iLoginLogService.save(loginLog);
 	}
 
 	/**

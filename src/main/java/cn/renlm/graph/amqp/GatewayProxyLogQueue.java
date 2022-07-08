@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyLogService;
+import cn.renlm.graph.util.Ip2regionUtil;
 
 /**
  * 网关代理日志记录
@@ -46,6 +47,7 @@ public class GatewayProxyLogQueue {
 	@RabbitListener(concurrency = "#{myConfigProperties.proxyLogConcurrency}", bindings = {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
 	public void receiveMessage(GatewayProxyLog proxyLog) {
+		proxyLog.setIpRegion(Ip2regionUtil.parse(proxyLog.getClientIp()));
 		iGatewayProxyLogService.save(proxyLog);
 	}
 
