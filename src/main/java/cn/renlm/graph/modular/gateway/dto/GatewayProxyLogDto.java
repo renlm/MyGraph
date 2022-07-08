@@ -19,6 +19,11 @@ public class GatewayProxyLogDto extends GatewayProxyLog {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * 网关代理配置Uuid
+	 */
+	private String proxyConfigUuid;
+
+	/**
 	 * 搜索关键字
 	 */
 	private String keywords;

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,11 +34,14 @@ public class GatewayProxyLogController {
 	/**
 	 * 日志主页
 	 * 
+	 * @param model
+	 * @param proxyConfigUuid
 	 * @return
 	 */
 	@GetMapping
 	@PreAuthorize(Role.AdminSpEL)
-	public String index() {
+	public String index(ModelMap model, String proxyConfigUuid) {
+		model.put("proxyConfigUuid", proxyConfigUuid);
 		return "gateway/proxyLog";
 	}
 
