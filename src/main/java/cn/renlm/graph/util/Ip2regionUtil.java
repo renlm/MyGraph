@@ -1,7 +1,11 @@
 package cn.renlm.graph.util;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.lionsoul.ip2region.xdb.Searcher;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.lang.RegexPool;
 import cn.hutool.core.net.Ipv4Util;
@@ -18,6 +22,8 @@ import lombok.experimental.UtilityClass;
  */
 @UtilityClass
 public class Ip2regionUtil {
+
+	private static final String separator = "|";
 
 	/**
 	 * 数据文件
@@ -59,7 +65,20 @@ public class Ip2regionUtil {
 			return null;
 		}
 		try {
-			return searcher.search(ip);
+			String region = searcher.search(ip);
+			if (StrUtil.isBlank(region)) {
+				return null;
+			} else {
+				List<String> strs = StrUtil.splitTrim(region, separator).stream().filter(s -> {
+					if (StrUtil.isNumeric(s)) {
+						return false;
+					} else {
+						return true;
+					}
+				}).collect(Collectors.toList());
+				CollUtil.removeBlank(strs);
+				return StrUtil.join(separator, strs);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
