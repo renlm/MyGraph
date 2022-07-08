@@ -33,6 +33,12 @@ public class GatewayProxyLog implements Serializable {
     private Long id;
 
     /**
+     * 网关代理配置ID
+     */
+    @TableField("proxy_config_id")
+    private Long proxyConfigId;
+
+    /**
      * 代理配置-路径
      */
     @TableField("path")
@@ -49,12 +55,6 @@ public class GatewayProxyLog implements Serializable {
      */
     @TableField("outgoing_servers")
     private String outgoingServers;
-
-    /**
-     * 代理配置（Access Key）
-     */
-    @TableField("access_key")
-    private String accessKey;
 
     /**
      * 代理配置-连接超时时间（秒）

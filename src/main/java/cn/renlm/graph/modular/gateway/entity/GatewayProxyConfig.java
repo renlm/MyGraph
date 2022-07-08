@@ -27,10 +27,10 @@ public class GatewayProxyConfig implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 主键ID
+     * 网关代理配置ID
      */
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    @TableId(value = "proxy_config_id", type = IdType.AUTO)
+    private Long proxyConfigId;
 
     /**
      * UUID

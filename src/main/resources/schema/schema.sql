@@ -579,7 +579,7 @@ CREATE TABLE sys_login_log(
 -- 网关代理配置
 DROP TABLE IF EXISTS gateway_proxy_config;
 CREATE TABLE gateway_proxy_config(
-    id							BIGINT	 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
+    proxy_config_id				BIGINT	 		PRIMARY KEY AUTO_INCREMENT	COMMENT '网关代理配置ID',
     uuid       					VARCHAR(32)		UNIQUE NOT NULL				COMMENT 'UUID',
     path       					VARCHAR(20)		UNIQUE 			NOT NULL	COMMENT '代理路径（/path/）',
     name       					VARCHAR(255)					NOT NULL	COMMENT '名称',
@@ -604,10 +604,10 @@ CREATE TABLE gateway_proxy_config(
 DROP TABLE IF EXISTS gateway_proxy_log;
 CREATE TABLE gateway_proxy_log(
     id							BIGINT	 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
+    proxy_config_id       		BIGINT										COMMENT '网关代理配置ID',
     path       					VARCHAR(20)									COMMENT '代理配置-路径',
     name       					VARCHAR(255)								COMMENT '代理配置-名称',
     outgoing_servers			VARCHAR(255)								COMMENT '代理配置-代理服务器地址',
-    access_key       			VARCHAR(32)									COMMENT '代理配置（Access Key）',
     connection_timeout			INT											COMMENT '代理配置-连接超时时间（秒）',
     read_timeout				INT											COMMENT '代理配置-读超时时间（秒）',
     write_timeout				INT											COMMENT '代理配置-写超时时间（秒）',
@@ -627,7 +627,7 @@ CREATE TABLE gateway_proxy_log(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     sys_user_id BIGINT COMMENT '用户表ID',
     nickname VARCHAR(255) COMMENT '用户昵称',
-    INDEX access_key(access_key),
+    INDEX proxy_config_id(proxy_config_id),
     INDEX request_time(request_time),
     INDEX status_code(status_code),
     INDEX take_time(take_time),

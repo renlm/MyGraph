@@ -54,7 +54,6 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.BooleanUtil;
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
@@ -134,7 +133,7 @@ public class GatewayUtil {
 					if (ArrayUtil.isNotEmpty(uuids)) {
 						wrapper.in(GatewayProxyConfig::getUuid, CollUtil.newArrayList(uuids));
 					}
-					wrapper.orderByAsc(GatewayProxyConfig::getId);
+					wrapper.orderByAsc(GatewayProxyConfig::getProxyConfigId);
 				}));
 		configs.forEach(config -> {
 			String path = config.getPath();
@@ -219,11 +218,10 @@ public class GatewayUtil {
 			Date requestTime = new Date();
 			// <!- 代理日志
 			final GatewayProxyLog proxyLog = new GatewayProxyLog();
-			proxyLog.setId(IdUtil.getSnowflakeNextId());
+			proxyLog.setProxyConfigId(proxy.getProxyConfigId());
 			proxyLog.setPath(proxy.getPath());
 			proxyLog.setName(proxy.getName());
 			proxyLog.setOutgoingServers(proxy.getOutgoingServers());
-			proxyLog.setAccessKey(proxy.getAccessKey());
 			proxyLog.setConnectionTimeout(proxy.getConnectionTimeout());
 			proxyLog.setReadTimeout(proxy.getReadTimeout());
 			proxyLog.setWriteTimeout(proxy.getWriteTimeout());

@@ -43,7 +43,7 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 				});
 			}
 			wrapper.orderByDesc(GatewayProxyConfig::getUpdatedAt);
-			wrapper.orderByDesc(GatewayProxyConfig::getId);
+			wrapper.orderByDesc(GatewayProxyConfig::getProxyConfigId);
 		}));
 		result.getRecords().forEach(item -> {
 			item.setSecretKey(StrUtil.EMPTY);
@@ -79,7 +79,7 @@ public class GatewayProxyConfigServiceImpl extends ServiceImpl<GatewayProxyConfi
 		} else {
 			GatewayProxyConfig entity = this
 					.getOne(Wrappers.<GatewayProxyConfig>lambdaQuery().eq(GatewayProxyConfig::getUuid, form.getUuid()));
-			form.setId(entity.getId());
+			form.setProxyConfigId(entity.getProxyConfigId());
 			form.setPath(entity.getPath());
 			form.setAccessKey(entity.getAccessKey());
 			form.setSecretKey(entity.getSecretKey());
