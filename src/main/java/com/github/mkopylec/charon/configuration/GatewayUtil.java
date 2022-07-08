@@ -34,13 +34,13 @@ import static org.springframework.http.HttpHeaders.COOKIE;
 
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ConcurrentMap;
 
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.github.mkopylec.charon.forwarding.MyReverseProxyFilter;
 import com.github.mkopylec.charon.forwarding.ReverseProxyFilter;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequest;
 import com.github.mkopylec.charon.forwarding.interceptors.HttpRequestExecution;
@@ -56,7 +56,6 @@ import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
-import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
@@ -110,13 +109,10 @@ public class GatewayUtil {
 		MyConfigProperties myConfigProperties = SpringUtil.getBean(MyConfigProperties.class);
 		ServerProperties serverProperties = SpringUtil.getBean(ServerProperties.class);
 		IGatewayProxyConfigService iGatewayProxyConfigService = SpringUtil.getBean(IGatewayProxyConfigService.class);
-		ReverseProxyFilter reverseProxyFilter = SpringUtil.getBean(ReverseProxyFilter.class);
+		ReverseProxyFilter filter = SpringUtil.getBean(ReverseProxyFilter.class);
 		configurers(myConfigProperties, serverProperties, iGatewayProxyConfigService, uuids);
 		charonConfigurer.configure();
-		Object restTemplateProvider = ReflectUtil.getFieldValue(reverseProxyFilter, "restTemplateProvider");
-		ConcurrentMap<?, ?> restTemplates = (ConcurrentMap<?, ?>) ReflectUtil.getFieldValue(restTemplateProvider,
-				"restTemplates");
-		restTemplates.clear();
+		MyReverseProxyFilter.clear(filter);
 	}
 
 	/**

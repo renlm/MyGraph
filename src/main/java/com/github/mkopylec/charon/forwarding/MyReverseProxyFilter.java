@@ -2,11 +2,9 @@ package com.github.mkopylec.charon.forwarding;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ConcurrentMap;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.RequestEntity;
@@ -25,6 +23,12 @@ import cn.hutool.core.util.StrUtil;
  */
 public class MyReverseProxyFilter extends ReverseProxyFilter {
 
+	/**
+	 * 封装请求
+	 * 
+	 * @param order
+	 * @param requestMappingConfigurations
+	 */
 	public MyReverseProxyFilter(int order, List<RequestMappingConfiguration> requestMappingConfigurations) {
 		super(order, requestMappingConfigurations);
 		ReflectUtil.setFieldValue(this, StrUtil.lowerFirst(HttpRequestMapper.class.getSimpleName()),
@@ -39,9 +43,16 @@ public class MyReverseProxyFilter extends ReverseProxyFilter {
 				});
 	}
 
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws IOException, ServletException {
-		super.doFilterInternal(request, response, filterChain);
+	/**
+	 * 清空配置缓存
+	 * 
+	 * @param filter
+	 */
+	public static final void clear(ReverseProxyFilter filter) {
+		RestTemplateProvider restTemplateProvider = (RestTemplateProvider) ReflectUtil.getFieldValue(filter,
+				StrUtil.lowerFirst(RestTemplateProvider.class.getSimpleName()));
+		ConcurrentMap<?, ?> restTemplates = (ConcurrentMap<?, ?>) ReflectUtil.getFieldValue(restTemplateProvider,
+				"restTemplates");
+		restTemplates.clear();
 	}
 }
