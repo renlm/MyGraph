@@ -624,7 +624,7 @@ CREATE TABLE gateway_proxy_log(
     server_ip					VARCHAR(255)								COMMENT '服务端ip',
     client_ip					VARCHAR(255)								COMMENT '客户端ip（地址）',
     ip_region					VARCHAR(255)								COMMENT '客户端ip（归属地）',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间'
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     user_id VARCHAR(32) COMMENT '用户ID',
     nickname VARCHAR(255) COMMENT '用户昵称',
     INDEX access_key(access_key),
