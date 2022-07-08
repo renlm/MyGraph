@@ -466,7 +466,7 @@ CREATE TABLE markdown_history (
     INDEX graph_uuid(graph_uuid),
     INDEX graph_version(graph_version),
     INDEX data_table(data_table)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档-历史记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = 'Markdown文档-历史记录';
 
 -- 图形设计
 DROP TABLE IF EXISTS graph;
@@ -539,7 +539,7 @@ CREATE TABLE graph_history(
     INDEX graph_id(graph_id),
     INDEX graph_uuid(graph_uuid),
     INDEX version(version)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '图形设计-历史记录';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = '图形设计-历史记录';
 
 -- 定时任务日志
 DROP TABLE IF EXISTS `QRTZ_LOGS`;
@@ -569,7 +569,8 @@ CREATE TABLE sys_login_log(
     user_id            			VARCHAR(32)      				NOT NULL		COMMENT '用户ID',
     username                   	VARCHAR(255)    				NOT NULL		COMMENT '账号',
     nickname                 	VARCHAR(255)    								COMMENT '昵称',
-    client_ip                 	VARCHAR(255)    								COMMENT '客户端ip',
+    client_ip                 	VARCHAR(255)    								COMMENT '客户端ip（地址）',
+    ip_region					VARCHAR(255)									COMMENT '客户端ip（归属地）',
     login_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '登录时间',
     INDEX user_id(user_id),
     INDEX login_time(login_time)
@@ -598,3 +599,36 @@ CREATE TABLE gateway_proxy_config(
     updator_nickname 			VARCHAR(255) 								COMMENT '更新人（昵称）',
     remark VARCHAR(255) COMMENT '备注'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT = '网关代理配置';
+
+-- 网关代理日志
+DROP TABLE IF EXISTS gateway_proxy_log;
+CREATE TABLE gateway_proxy_log(
+    id							BIGINT(20) 		PRIMARY KEY AUTO_INCREMENT	COMMENT '主键ID',
+    path       					VARCHAR(20)									COMMENT '代理配置-路径',
+    name       					VARCHAR(255)								COMMENT '代理配置-名称',
+    outgoing_servers			VARCHAR(255)								COMMENT '代理配置-代理服务器地址',
+    access_key       			VARCHAR(32)									COMMENT '代理配置（Access Key）',
+    connection_timeout			INT											COMMENT '代理配置-连接超时时间（秒）',
+    read_timeout				INT											COMMENT '代理配置-读超时时间（秒）',
+    write_timeout				INT											COMMENT '代理配置-写超时时间（秒）',
+    limit_for_second			INT											COMMENT '代理配置-单服务限速（次/秒，默认1万）',
+    request_url					TEXT										COMMENT '请求地址',
+    proxy_url					TEXT										COMMENT '代理地址',
+    http_method					VARCHAR(30)									COMMENT '请求方法',
+    request_time				TIMESTAMP									COMMENT '请求时间',
+    response_time				TIMESTAMP									COMMENT '响应时间',
+    status_code					INT											COMMENT '响应码',
+    status_text					TEXT										COMMENT '响应消息',
+    error_message				TEXT										COMMENT '错误消息',
+    take_time					INT											COMMENT '耗时（毫秒）',
+    server_ip					VARCHAR(255)								COMMENT '服务端ip',
+    client_ip					VARCHAR(255)								COMMENT '客户端ip（地址）',
+    ip_region					VARCHAR(255)								COMMENT '客户端ip（归属地）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间'
+    user_id VARCHAR(32) COMMENT '用户ID',
+    nickname VARCHAR(255) COMMENT '用户昵称',
+    INDEX access_key(access_key),
+    INDEX request_time(request_time),
+    INDEX status_code(status_code),
+    INDEX take_time(take_time)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = '网关代理日志';
