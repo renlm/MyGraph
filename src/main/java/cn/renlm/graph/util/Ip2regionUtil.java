@@ -3,6 +3,7 @@ package cn.renlm.graph.util;
 import org.lionsoul.ip2region.xdb.Searcher;
 
 import cn.hutool.core.io.resource.ResourceUtil;
+import cn.hutool.core.util.StrUtil;
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
@@ -47,6 +48,9 @@ public class Ip2regionUtil {
 	 * @return
 	 */
 	public static final String parse(String ip) {
+		if (StrUtil.isBlankOrUndefined(ip)) {
+			return null;
+		}
 		try {
 			return searcher.search(ip);
 		} catch (Exception e) {
