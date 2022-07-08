@@ -60,11 +60,12 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.system.SystemUtil;
+import cn.renlm.graph.amqp.AmqpUtil;
+import cn.renlm.graph.amqp.GatewayProxyLogQueue;
 import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyConfigService;
-import cn.renlm.graph.modular.gateway.service.IGatewayProxyLogService;
 import cn.renlm.graph.util.MyConfigProperties;
 import io.micrometer.core.instrument.logging.LoggingMeterRegistry;
 import lombok.AllArgsConstructor;
@@ -268,7 +269,7 @@ public class GatewayUtil {
 			} finally {
 				// <!- 代理日志
 				proxyLog.setTakeTime(proxyLog.getResponseTime().getTime() - requestTime.getTime());
-				SpringUtil.getBean(IGatewayProxyLogService.class).recordLog(proxyLog);
+				AmqpUtil.createQueue(GatewayProxyLogQueue.EXCHANGE, GatewayProxyLogQueue.ROUTINGKEY, proxyLog);
 				// -!> 代理日志
 			}
 		}

@@ -1,7 +1,10 @@
 package cn.renlm.graph.modular.gateway.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import cn.renlm.graph.dto.User;
+import cn.renlm.graph.modular.gateway.dto.GatewayProxyLogDto;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 
 /**
@@ -15,10 +18,13 @@ import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 public interface IGatewayProxyLogService extends IService<GatewayProxyLog> {
 
 	/**
-	 * 记录日志
+	 * 分页列表
 	 * 
-	 * @param gatewayProxyLog
+	 * @param page
+	 * @param user
+	 * @param form
+	 * @return
 	 */
-	void recordLog(GatewayProxyLog gatewayProxyLog);
+	Page<GatewayProxyLog> findPage(Page<GatewayProxyLog> page, User user, GatewayProxyLogDto form);
 
 }

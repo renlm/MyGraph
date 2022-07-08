@@ -13,8 +13,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.gateway.dto.GatewayProxyLogDto;
+import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
+import cn.renlm.graph.modular.gateway.service.IGatewayProxyLogService;
 import cn.renlm.graph.response.Datagrid;
-import cn.renlm.graph.service.GatewayProxyLogService;
 
 /**
  * 网关代理日志
@@ -27,7 +28,7 @@ import cn.renlm.graph.service.GatewayProxyLogService;
 public class GatewayProxyLogController {
 
 	@Autowired
-	private GatewayProxyLogService gatewayProxyLogService;
+	private IGatewayProxyLogService iGatewayProxyLogService;
 
 	/**
 	 * 日志主页
@@ -51,10 +52,10 @@ public class GatewayProxyLogController {
 	@ResponseBody
 	@GetMapping("/ajax/page")
 	@PreAuthorize(Role.AdminSpEL)
-	public Datagrid<GatewayProxyLogDto> page(Authentication authentication, Page<GatewayProxyLogDto> page,
+	public Datagrid<GatewayProxyLog> page(Authentication authentication, Page<GatewayProxyLog> page,
 			GatewayProxyLogDto form) {
 		User user = (User) authentication.getPrincipal();
-		Page<GatewayProxyLogDto> data = gatewayProxyLogService.findPage(page, user, form);
+		Page<GatewayProxyLog> data = iGatewayProxyLogService.findPage(page, user, form);
 		return Datagrid.of(data);
 	}
 }
