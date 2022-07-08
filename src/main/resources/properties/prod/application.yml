@@ -10,6 +10,7 @@ my:
     wsHost: ws://mygraph.renlm.cn
     wssHost: wss://mygraph.renlm.cn:443
     wsAllowedOrigins: http://mygraph.renlm.cn,https://mygraph.renlm.cn
+    proxyLogConcurrency: 30-50
     
 logging:
   level:
@@ -55,14 +56,6 @@ spring:
     listener:
       direct:
         missing-queues-fatal: false
-  elasticsearch:
-    rest:
-      username: elastic
-      password: "Yuspn546ittwK^8uK8t^t6mdi^_dfy6ierfls7IM"
-      uris: es7.renlm.cn
-      index-suffix: .prod
-      connection-timeout: 30s
-      read-timeout: 30s
   datasource:
     dynamic:
       primary: master

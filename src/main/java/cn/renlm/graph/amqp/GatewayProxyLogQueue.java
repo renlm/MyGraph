@@ -43,7 +43,7 @@ public class GatewayProxyLogQueue {
 	 * 
 	 * @param proxyLog
 	 */
-	@RabbitListener(bindings = {
+	@RabbitListener(concurrency = "#{myConfigProperties.proxyLogConcurrency}", bindings = {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
 	public void receiveMessage(GatewayProxyLog proxyLog) {
 		iGatewayProxyLogService.save(proxyLog);

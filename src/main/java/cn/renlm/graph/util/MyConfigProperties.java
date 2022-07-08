@@ -24,4 +24,9 @@ public class MyConfigProperties {
 
 	private String wsAllowedOrigins;
 
+	/**
+	 * 队列线程数（网关代理日志记录）
+	 */
+	private String proxyLogConcurrency;
+
 }

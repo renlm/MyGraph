@@ -8,6 +8,7 @@ my:
     ctx: http://localhost/mygraph
     wsHost: ws://localhost
     wsAllowedOrigins: http://localhost
+    proxyLogConcurrency: 10-15
     
 logging:
   level:
@@ -53,14 +54,6 @@ spring:
     listener:
       direct:
         missing-queues-fatal: false
-  elasticsearch:
-    rest:
-      username: elastic
-      password: "Yuspn546ittwK^8uK8t^t6mdi^_dfy6ierfls7IM"
-      uris: es7.renlm.cn
-      index-suffix: .dev
-      connection-timeout: 30s
-      read-timeout: 30s
   datasource:
     dynamic:
       primary: master
