@@ -219,17 +219,17 @@ public class GatewayUtil {
 			// <!- 代理日志
 			final GatewayProxyLog proxyLog = new GatewayProxyLog();
 			proxyLog.setId(IdUtil.getSnowflakeNextId());
-			proxyLog.setAccessKey(proxy.getAccessKey());
-			proxyLog.setRequestUrl(request.getURI().toString());
-			proxyLog.setHttpMethod(request.getMethod().toString());
-			proxyLog.setRequestTime(requestTime);
 			proxyLog.setPath(proxy.getPath());
 			proxyLog.setName(proxy.getName());
 			proxyLog.setOutgoingServers(proxy.getOutgoingServers());
+			proxyLog.setAccessKey(proxy.getAccessKey());
 			proxyLog.setConnectionTimeout(proxy.getConnectionTimeout());
 			proxyLog.setReadTimeout(proxy.getReadTimeout());
 			proxyLog.setWriteTimeout(proxy.getWriteTimeout());
 			proxyLog.setLimitForSecond(proxy.getLimitForSecond());
+			proxyLog.setRequestUrl(request.getURI().toString());
+			proxyLog.setHttpMethod(request.getMethod().toString());
+			proxyLog.setRequestTime(requestTime);
 			proxyLog.setServerIp(SystemUtil.getHostInfo().getAddress());
 			proxyLog.setClientIp(getClientIP(request, HEADER_RemoteAddr));
 			// -!> 代理日志
