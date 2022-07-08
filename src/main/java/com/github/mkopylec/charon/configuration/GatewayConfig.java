@@ -20,7 +20,7 @@ import cn.renlm.graph.util.MyConfigProperties;
  */
 @Configuration
 @AutoConfigureBefore(CharonAutoConfiguration.class)
-public class MyCharonAutoConfiguration {
+public class GatewayConfig {
 
 	@Bean
 	@Primary
