@@ -4,81 +4,111 @@
     <title>网关代理日志</title>
 </head>
 <body layout:fragment="content" class="myui">
-	<div class="easyui-layout" 
-		data-options="fit:true">
-		<div data-options="region:'center',
-				split:true,
-				border:false
-			">
-            <table id="dataGrid" class="easyui-datagrid"
-            	th:data-options="|border:false,
-					fit:true,
-					fitColumns:true,
-					singleSelect:true,
-					toolbar:'#toolbar',
-					pagination:true,
-					pageSize:20,
-					method:'get',
-					url:ctx+'/gateway/proxyLog/ajax/page?proxyConfigUuid=${proxyConfigUuid}',
-                   	onBeforeLoad:$.pageOnBeforeLoad
-               	|">
-                <thead>
-	                <tr>
-	                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#dataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
-                      	<th data-options="field:'path',title:'代理路径',width:60"></th>
-                      	<th data-options="field:'requestUrl',title:'请求地址',width:250,hidden:true"></th>
-	                    <th data-options="field:'proxyUrl',title:'代理地址',width:250,formatter:$.spanWithTitleFormatter"></th>
-	                    <th data-options="field:'httpMethod',title:'请求方法',width:60"></th>
-	                    <th data-options="field:'requestTime',title:'请求时间',width:120,align:'right',formatter:$.createdAtFormatter"></th>
-	                    <th data-options="field:'responseTime',title:'响应时间',width:120,hidden:true,formatter:$.createdAtFormatter"></th>
-	                    <th data-options="field:'takeTime',title:'耗时（毫秒）',width:80,align:'right'"></th>
-	                    <th data-options="field:'statusCode',title:'响应码',width:60"></th>
-	                    <th data-options="field:'statusText',title:'响应消息',width:80"></th>
-	                    <th data-options="field:'errorMessage',title:'错误消息',width:80,formatter:$.spanWithTitleFormatter"></th>
-	                    <th data-options="field:'serverIp',title:'服务端IP',width:80,hidden:true"></th>
-	                    <th data-options="field:'clientIp',title:'客户端IP',width:80"></th>
-	                    <th data-options="field:'ipRegion',title:'IP归属地',width:120,formatter:$.spanWithTitleFormatter"></th>
-	                    <th data-options="field:'nickname',title:'登录用户',width:80"></th>
-	                </tr>
-                </thead>
-            </table>
-        </div>
+	<div class="easyui-layout"
+    	data-options="fit:true">
+    	<div data-options="region:'center',
+       			split:true,
+             	border:false
+        	">
+    		<div class="easyui-tabs"
+             	data-options="fit:true,
+                  	border:false,
+                  	tabPosition:'left'
+             	">
+              	<div title="代理日志" 
+              		data-options="iconCls:'fa fa-product-hunt'">
+              		<table id="proxyLogDataGrid" class="easyui-datagrid"
+		            	th:data-options="|border:false,
+        					bodyCls:'border_left',
+							fit:true,
+							fitColumns:true,
+							singleSelect:true,
+							toolbar:'#proxyLogToolbar',
+							pagination:true,
+							pageSize:20,
+							method:'get',
+							url:ctx+'/gateway/proxyLog/ajax/page?proxyConfigUuid=${proxyConfigUuid}',
+		                   	onBeforeLoad:$.pageOnBeforeLoad
+		               	|">
+		                <thead>
+			                <tr>
+			                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#proxyLogDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
+		                      	<th data-options="field:'path',title:'代理路径',width:60"></th>
+		                      	<th data-options="field:'requestUrl',title:'请求地址',width:250,hidden:true"></th>
+			                    <th data-options="field:'proxyUrl',title:'代理地址',width:250,formatter:$.spanWithTitleFormatter"></th>
+			                    <th data-options="field:'httpMethod',title:'请求方法',width:60"></th>
+			                    <th data-options="field:'requestTime',title:'请求时间',width:120,align:'right',formatter:$.createdAtFormatter"></th>
+			                    <th data-options="field:'responseTime',title:'响应时间',width:120,hidden:true,formatter:$.createdAtFormatter"></th>
+			                    <th data-options="field:'takeTime',title:'耗时（毫秒）',width:80,align:'right'"></th>
+			                    <th data-options="field:'statusCode',title:'响应码',width:60"></th>
+			                    <th data-options="field:'statusText',title:'响应消息',width:80"></th>
+			                    <th data-options="field:'errorMessage',title:'错误消息',width:80,formatter:$.spanWithTitleFormatter"></th>
+			                    <th data-options="field:'serverIp',title:'服务端IP',width:80,hidden:true"></th>
+			                    <th data-options="field:'clientIp',title:'客户端IP',width:80,hidden:true"></th>
+			                    <th data-options="field:'nickname',title:'登录用户',width:80,formatter:$.spanWithTitleFormatter"></th>
+			                    <th data-options="field:'ipRegion',title:'IP归属地',width:120,formatter:$.spanWithTitleFormatter"></th>
+			                </tr>
+		                </thead>
+		            </table>
+        		</div>
+        		<div title="收藏" 
+              		data-options="iconCls:'fa fa-star'">
+              		
+              	</div>
+        		<div title="分享" 
+              		data-options="iconCls:'fa fa-share-alt-square'">
+              		
+              	</div>
+        		<div title="历史记录" 
+              		data-options="iconCls:'fa fa-history'">
+              		
+              	</div>
+        	</div>
+    	</div>
     </div>
-    <div id="toolbar" class="myui-toolbar">
-        <input type="text" name="loginTime"
-        	id="loginTime" 
-        	class="easyui-datebox" 
-        	data-options="prompt:'查询起始时间',
-             	editable:false,
-        		width:220
-        	"/>
-        <a href="javascript:search();" 
-        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
-       		data-options="iconCls:'fa fa-search'
-         	">查询
-    	</a>
-    	<a href="javascript:reset();"
-      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
-      		data-options="iconCls:'fa fa-trash'
-      		">清空
-    	</a>
-    </div>
+    <!-- 代理日志 工具栏 -->
+    <div id="proxyLogToolbar" class="myui-toolbar">
+		<a href="javascript:void(0);"
+	      	class="easyui-menubutton myui-btn-normal"
+	     	data-options="iconCls:'fa fa-table',
+	        	hasDownArrow:false
+	    	">代理日志
+		</a>
+		<form id="proxyLogForm" class="search-box">
+	   		<input type="text" name="keywords"
+	    		id="proxyLogKeywords" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'关键词',
+	        		width:220
+	        	"/>
+	        <a href="javascript:searchProxyLog();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:resetProxyLog();"
+       			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+       			data-options="iconCls:'fa fa-trash'
+       			">重置
+          	</a>
+		</form> 
+	</div>
 <script type="text/javascript">
 	/**
-	 * 查询
+	 * 查询代理日志
 	 */
-	function search () {
-		$("#dataGrid").datagrid("load", {
-			loginTime: $("#loginTime").datebox("getValue")
+	function searchProxyLog () {
+		$('#proxyLogDataGrid').datagrid('load', {
+			keywords: $('#proxyLogKeywords').textbox('getValue')
 		});
 	}
 	
 	/**
-	 * 重置
+	 * 重置代理日志
 	 */
-	function reset () {
-		$("#loginTime").datebox("clear");
-		search();
+	function resetProxyLog () {
+		$('#proxyLogForm').form('clear');
+		searchProxyLog();
 	}
 </script>
 </body>
