@@ -71,11 +71,24 @@
 	    	">代理日志
 		</a>
 		<form id="proxyLogForm" class="search-box">
-	   		<input type="text" name="keywords"
-	    		id="proxyLogKeywords" 
-	   			class="easyui-textbox"
-	        	data-options="prompt:'关键词',
+	   		<input type="text" name="requestTime"
+	        	id="proxyLogRequestTime" 
+	        	class="easyui-datebox" 
+	        	data-options="prompt:'请求时间',
+	             	editable:false,
 	        		width:220
+	        	"/>
+	   		<input type="text" name="takeTime"
+	    		id="proxyLogTakeTime" 
+	   			class="easyui-numberspinner"
+	        	data-options="prompt:'耗时（毫秒）',
+	        		width:150
+	        	"/>
+	   		<input type="text" name="statusCode"
+	    		id="proxyLogStatusCode" 
+	   			class="easyui-numberspinner"
+	        	data-options="prompt:'响应码',
+	        		width:130
 	        	"/>
 	        <a href="javascript:searchProxyLog();" 
 	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
@@ -95,7 +108,9 @@
 	 */
 	function searchProxyLog () {
 		$('#proxyLogDataGrid').datagrid('load', {
-			keywords: $('#proxyLogKeywords').textbox('getValue')
+			requestTime: $('#proxyLogRequestTime').datebox('getValue'),
+			takeTime: $('#proxyLogTakeTime').numberspinner('getValue'),
+			statusCode: $('#proxyLogStatusCode').numberspinner('getValue')
 		});
 	}
 	

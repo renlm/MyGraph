@@ -35,6 +35,15 @@ public class GatewayProxyLogServiceImpl extends ServiceImpl<GatewayProxyLogMappe
 		GatewayProxyConfig proxyConfig = iGatewayProxyConfigService.getOne(
 				Wrappers.<GatewayProxyConfig>lambdaQuery().eq(GatewayProxyConfig::getUuid, form.getProxyConfigUuid()));
 		return this.page(page, Wrappers.<GatewayProxyLog>lambdaQuery().func(wrapper -> {
+			if (form.getRequestTime() != null) {
+				wrapper.ge(GatewayProxyLog::getRequestTime, form.getRequestTime());
+			}
+			if (form.getTakeTime() != null) {
+				wrapper.ge(GatewayProxyLog::getTakeTime, form.getTakeTime());
+			}
+			if (form.getStatusCode() != null) {
+				wrapper.eq(GatewayProxyLog::getStatusCode, form.getStatusCode());
+			}
 			wrapper.eq(GatewayProxyLog::getProxyConfigId, proxyConfig.getProxyConfigId());
 			wrapper.orderByDesc(GatewayProxyLog::getId);
 		}));
