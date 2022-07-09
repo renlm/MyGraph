@@ -22,11 +22,23 @@
 
 ## 关键教程
 ### 在线文档
-#### 新建文档项目
+#### 新建项目
+![新建项目](https://renlm.cn/images/demo/201.png "新建项目")
 
 #### 成员管理
+![成员管理](https://renlm.cn/images/demo/202.png "成员管理")
 
-#### 编写文档
+#### 新建文档
+支持多级目录，支持Markdown文档、图形设计、在线表格三种类型。
+![点击项目名称，进入文档管理](https://renlm.cn/images/demo/210.png "点击项目名称，进入文档管理")
+![新建分类](https://renlm.cn/images/demo/211.png "新建分类")
+![新建子级](https://renlm.cn/images/demo/212.png "新建子级")
+![编辑文档](https://renlm.cn/images/demo/213.png "编辑文档")
+![Markdown文档](https://renlm.cn/images/demo/214.png "Markdown文档")
+
+### 分享与收藏
+收藏或分享后，在知识文库页面可快速进入。
+![分享与收藏](https://renlm.cn/images/demo/215.png "分享与收藏")
 
 ### 数据库设计
 #### 从数据源生成ER图
