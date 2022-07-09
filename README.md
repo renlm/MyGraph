@@ -11,11 +11,13 @@
 ### 这是一个在线文档系统
 集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
 
-## 产品体验
-体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
-账号（超级管理员）：S-linghc  密码：123654  
-账号（普通用户）：S-renyy  密码：123654  
+## 体验系统
+系统地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
+账号（超级管理员）：S-linghc  
+账号（普通用户）：S-renyy  
+统一密码：123654  
 <a href="https://mygraph.renlm.cn/pub/doc/s/E42FB06DEC2545D6AC2947C5BF3DC750" target="_blank">系统手册</a>  
+***备注：请大家不要修改密码，此系统为体验系统，不定期初始化项目为初始状态。***  
 
 ## 功能清单
 ### Markdown文档
