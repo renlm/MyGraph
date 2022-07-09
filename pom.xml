@@ -17,7 +17,7 @@
 	<artifactId>mygraph</artifactId>
 	<version>1.0.2</version>
 	<name>MyGraph</name>
-	<description>MyGraph 管理后台，集成语法增强版Markdown、在线画图、数据库设计、在线数据表格，由一套完整的权限模型控制，支持团队协作、版本控制与分享。</description>
+	<description>MyGraph 管理后台，集成权限管理系统、统一用户认证中心、实时动态网关代理与在线文档管理等诸多强大功能于一身的后台系统开发模板，代码简洁，增强了安全控制，可放心使用。</description>
 	<url>https://github.com/renlm/MyGraph</url>
 
 	<properties>
