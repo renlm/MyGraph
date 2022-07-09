@@ -627,9 +627,17 @@ CREATE TABLE gateway_proxy_log(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     sys_user_id BIGINT COMMENT '用户表ID',
     nickname VARCHAR(255) COMMENT '用户昵称',
+    year INT COMMENT '年',
+    month INT COMMENT '月',
+    day INT COMMENT '日',
+    hour INT COMMENT '时',
     INDEX proxy_config_id(proxy_config_id),
     INDEX request_time(request_time),
     INDEX status_code(status_code),
     INDEX take_time(take_time),
-    INDEX sys_user_id(sys_user_id)
+    INDEX sys_user_id(sys_user_id),
+    INDEX year(year),
+    INDEX month(month),
+    INDEX day(day),
+    INDEX hour(hour)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = '网关代理日志';

@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-07-08
+ * @since 2022-07-09
  */
 @Getter
 @Setter
@@ -169,6 +169,30 @@ public class GatewayProxyLog implements Serializable {
      */
     @TableField("nickname")
     private String nickname;
+
+    /**
+     * 年
+     */
+    @TableField("year")
+    private Integer year;
+
+    /**
+     * 月
+     */
+    @TableField("month")
+    private Integer month;
+
+    /**
+     * 日
+     */
+    @TableField("day")
+    private Integer day;
+
+    /**
+     * 时
+     */
+    @TableField("hour")
+    private Integer hour;
 
 
 }
