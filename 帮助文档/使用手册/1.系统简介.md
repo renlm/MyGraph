@@ -1,5 +1,5 @@
 ## 简介
-MyGraph 在线文档，集成语法增强版Markdown、在线画图、数据库设计、在线数据表格，由一套完整的权限模型控制，支持团队协作、版本控制与分享。  
+MyGraph 管理后台，集成语法增强版Markdown、在线画图、数据库设计、在线数据表格，由一套完整的权限模型控制，支持团队协作、版本控制与分享。  
 
 ## 产品体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
