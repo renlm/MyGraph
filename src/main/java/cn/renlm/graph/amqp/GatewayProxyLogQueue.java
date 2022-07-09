@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import cn.hutool.core.date.DateUtil;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyLogService;
 import cn.renlm.graph.util.Ip2regionUtil;
@@ -48,6 +49,10 @@ public class GatewayProxyLogQueue {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
 	public void receiveMessage(GatewayProxyLog proxyLog) {
 		proxyLog.setIpRegion(Ip2regionUtil.parse(proxyLog.getClientIp()));
+		proxyLog.setYear(DateUtil.year(proxyLog.getRequestTime()));
+		proxyLog.setMonth(DateUtil.month(proxyLog.getRequestTime()));
+		proxyLog.setDay(DateUtil.dayOfMonth(proxyLog.getRequestTime()));
+		proxyLog.setHour(DateUtil.hour(proxyLog.getRequestTime(), true));
 		iGatewayProxyLogService.save(proxyLog);
 	}
 
