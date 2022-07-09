@@ -1,7 +1,11 @@
 package cn.renlm.graph.modular.gateway.mapper;
 
-import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
+import java.util.List;
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import cn.renlm.graph.dto.EchartsXyAxis;
+import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 
 /**
  * <p>
@@ -12,5 +16,21 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2022-07-08
  */
 public interface GatewayProxyLogMapper extends BaseMapper<GatewayProxyLog> {
+
+	/**
+	 * 统计数据（访问用户数）
+	 * 
+	 * @param proxyConfigUuid
+	 * @return
+	 */
+	List<EchartsXyAxis> getUvStatisticalData(String proxyConfigUuid);
+
+	/**
+	 * 统计数据（页面访问量）
+	 * 
+	 * @param proxyConfigUuid
+	 * @return
+	 */
+	List<EchartsXyAxis> getPvStatisticalData(String proxyConfigUuid);
 
 }

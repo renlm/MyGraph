@@ -1,6 +1,7 @@
 package cn.renlm.graph.modular.gateway.dto;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,11 @@ public class GatewayStatisticalDataDto implements Serializable {
 	/**
 	 * 访问用户数
 	 */
-	private List<Integer> uvYAxis = new ArrayList<>();
+	private List<BigDecimal> uvYAxis = new ArrayList<>();
 
 	/**
 	 * 页面访问量
 	 */
-	private List<Integer> pvYAxis = new ArrayList<>();
+	private List<BigDecimal> pvYAxis = new ArrayList<>();
 
 }

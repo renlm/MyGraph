@@ -1,5 +1,13 @@
 package cn.renlm.graph.modular.gateway.service.impl;
 
+import static cn.hutool.core.date.DatePattern.PURE_DATE_PATTERN;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +15,11 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DateField;
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
+import cn.renlm.graph.dto.EchartsXyAxis;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.gateway.dto.GatewayProxyLogDto;
 import cn.renlm.graph.modular.gateway.dto.GatewayStatisticalDataDto;
@@ -56,6 +69,40 @@ public class GatewayProxyLogServiceImpl extends ServiceImpl<GatewayProxyLogMappe
 
 	@Override
 	public GatewayStatisticalDataDto getStatisticalData(String proxyConfigUuid) {
-		return null;
+		GatewayStatisticalDataDto statisticalData = new GatewayStatisticalDataDto();
+		Integer max = Integer.valueOf(DateUtil.format(new Date(), PURE_DATE_PATTERN));
+		BigDecimal zero = new BigDecimal(0);
+		Integer min = max;
+		// 访问用户数
+		Map<String, EchartsXyAxis> uvMap = new HashMap<>();
+		List<EchartsXyAxis> uvs = this.baseMapper.getUvStatisticalData(proxyConfigUuid);
+		if (CollUtil.isNotEmpty(uvs)) {
+			for (EchartsXyAxis data : uvs) {
+				Integer key = Integer.valueOf(data.getXAxis());
+				uvMap.put(data.getXAxis(), data);
+				min = Math.min(min, key);
+			}
+		}
+		// 页面访问量
+		Map<String, EchartsXyAxis> pvMap = new HashMap<>();
+		List<EchartsXyAxis> pvs = this.baseMapper.getPvStatisticalData(proxyConfigUuid);
+		if (CollUtil.isNotEmpty(pvs)) {
+			for (EchartsXyAxis data : pvs) {
+				Integer key = Integer.valueOf(data.getXAxis());
+				pvMap.put(data.getXAxis(), data);
+				min = Math.min(min, key);
+			}
+		}
+		// 组装数据
+		Date start = DateUtil.parse(String.valueOf(min), PURE_DATE_PATTERN);
+		Date end = DateUtil.parse(String.valueOf(max), PURE_DATE_PATTERN);
+		List<DateTime> ranges = DateUtil.rangeToList(start, end, DateField.DAY_OF_MONTH);
+		for (DateTime dateTime : ranges) {
+			String day = DateUtil.format(dateTime, PURE_DATE_PATTERN);
+			statisticalData.getDayXAxis().add(day);
+			statisticalData.getUvYAxis().add(uvMap.containsKey(day) ? uvMap.get(day).getYAxis() : zero);
+			statisticalData.getPvYAxis().add(pvMap.containsKey(day) ? pvMap.get(day).getYAxis() : zero);
+		}
+		return statisticalData;
 	}
 }

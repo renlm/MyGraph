@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class EchartsXyAxisData implements Serializable {
+public class EchartsXyAxis implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
