@@ -31,7 +31,7 @@
 							url:ctx+'/gateway/proxyLog/ajax/page?proxyConfigUuid=${proxyConfigUuid}',
 		                   	onBeforeLoad:function(param){
 		                   		if (typeof param.requestTime === 'undefined') {
-		                   			param.requestTime = '${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}';
+		                   			param.requestTime = '${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}';
 		                   		}
 		                   		$.pageOnBeforeLoad(param);
 		                   	}
@@ -76,7 +76,7 @@
 	   		<input type="text" name="requestTime"
 	        	id="proxyLogRequestTime" 
 	        	class="easyui-datebox" 
-	        	th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}"
+	        	th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
 	        	data-options="prompt:'请求时间',
 	             	editable:false,
 	        		width:220
@@ -122,7 +122,7 @@
 	 */
 	function resetProxyLog () {
 		$('#proxyLogForm').form('clear');
-		$('#proxyLogRequestTime').datebox('setValue', "[(${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')})]");
+		$('#proxyLogRequestTime').datebox('setValue', "[(${#dates.format(#dates.createNow(), 'yyyy-MM-dd')})]");
 		$('#proxyLogDataGrid').datagrid('sort', { sortName: 'requestTime', sortOrder: 'desc' });
 		searchProxyLog();
 	}
