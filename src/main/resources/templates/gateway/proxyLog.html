@@ -29,7 +29,12 @@
 							sortName:'requestTime',
 							sortOrder:'desc',
 							url:ctx+'/gateway/proxyLog/ajax/page?proxyConfigUuid=${proxyConfigUuid}',
-		                   	onBeforeLoad:$.pageOnBeforeLoad
+		                   	onBeforeLoad:function(param){
+		                   		if (typeof param.requestTime === 'undefined') {
+		                   			param.requestTime = '${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}';
+		                   		}
+		                   		$.pageOnBeforeLoad(param);
+		                   	}
 		               	|">
 		                <thead>
 			                <tr>
