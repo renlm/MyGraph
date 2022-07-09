@@ -26,6 +26,8 @@
 							pagination:true,
 							pageSize:20,
 							method:'get',
+							sortName:'requestTime',
+							sortOrder:'desc',
 							url:ctx+'/gateway/proxyLog/ajax/page?proxyConfigUuid=${proxyConfigUuid}',
 		                   	onBeforeLoad:$.pageOnBeforeLoad
 		               	|">
@@ -36,9 +38,9 @@
 		                      	<th data-options="field:'requestUrl',title:'请求地址',width:200,formatter:$.spanWithTitleFormatter"></th>
 			                    <th data-options="field:'proxyUrl',title:'代理地址',width:200,formatter:$.spanWithTitleFormatter"></th>
 			                    <th data-options="field:'httpMethod',title:'请求方法',width:60"></th>
-			                    <th data-options="field:'requestTime',title:'请求时间',width:120,align:'right',formatter:$.createdAtFormatter"></th>
+			                    <th data-options="field:'requestTime',title:'请求时间',width:120,align:'right',sortable:true,formatter:$.createdAtFormatter"></th>
 			                    <th data-options="field:'responseTime',title:'响应时间',width:120,hidden:true,formatter:$.createdAtFormatter"></th>
-			                    <th data-options="field:'takeTime',title:'耗时（毫秒）',width:80,align:'right'"></th>
+			                    <th data-options="field:'takeTime',title:'耗时（毫秒）',width:80,align:'right',sortable:true"></th>
 			                    <th data-options="field:'statusCode',title:'响应码',width:60"></th>
 			                    <th data-options="field:'statusText',title:'响应消息',width:80,hidden:true"></th>
 			                    <th data-options="field:'errorMessage',title:'错误消息',width:80,formatter:$.spanWithTitleFormatter"></th>
