@@ -15,8 +15,10 @@
 	<script type="text/javascript">
 		$(function () { renderStatisticalChart(); });
     	function renderStatisticalChart () {
+    		layer.load(2, { offset: '150px' });
     		$.get("[(@{/gateway/proxyLog/ajax/getStatisticalData})]",
 				function(response) {
+					layer.closeAll();
     				var start = response.data.dayXAxis.length >= 100 ? (1 - 100 / response.data.dayXAxis.length) * 100 : 0;
 	    			var target = document.getElementById('Usage');
 		    		var myChart = echarts.init(target, 
@@ -56,8 +58,13 @@
 								dataView : {
 									show : true
 								},
-								restore : {
-									show : true
+								myTool: {
+									show: true,
+									title: '刷新数据',
+									icon: 'path://M -6.9994 0.9083 M 4.5416 -2.9654 L 7.1597 -2.9654 L 7.1597 -5.6904 M 7.0261 -2.6448 C 5.9041 -5.6102 2.8051 -7.8543 -0.8549 -7.4536 C -4.6485 -7.0261 -7.5872 -3.6867 -7.4536 0.1603 M -4.5416 2.9654 L -7.1864 2.9654 L -7.1864 5.6904 M -7.0261 2.6448 C -5.9041 5.6102 -2.8051 7.8543 0.8549 7.4536 C 4.6485 7.0261 7.5872 3.6867 7.4536 -0.1603',
+									onclick: function (option) {
+										renderStatisticalChart();
+									}
 								},
 								saveAsImage : {
 									show : true
