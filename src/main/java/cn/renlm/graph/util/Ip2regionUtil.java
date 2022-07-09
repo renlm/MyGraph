@@ -69,7 +69,7 @@ public class Ip2regionUtil {
 			if (StrUtil.isBlank(region)) {
 				return null;
 			} else {
-				List<String> strs = StrUtil.splitTrim(region, separator).stream().filter(s -> {
+				List<String> strs = StrUtil.splitTrim(region, separator).stream().distinct().filter(s -> {
 					if (StrUtil.isNumeric(s)) {
 						return false;
 					} else {
@@ -77,7 +77,14 @@ public class Ip2regionUtil {
 					}
 				}).collect(Collectors.toList());
 				CollUtil.removeBlank(strs);
-				return StrUtil.join(separator, strs);
+				return StrUtil.join(separator, strs.stream().filter(s -> {
+					for (String t : strs) {
+						if (StrUtil.startWithIgnoreEquals(t, s)) {
+							return false;
+						}
+					}
+					return true;
+				}).collect(Collectors.toList()));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
