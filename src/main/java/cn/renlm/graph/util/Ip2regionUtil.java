@@ -59,9 +59,9 @@ public class Ip2regionUtil {
 	public static final String parse(String ip) {
 		if (StrUtil.isBlankOrUndefined(ip)) {
 			return null;
-		} else if (Ipv4Util.isInnerIP(ip)) {
-			return null;
 		} else if (!ReUtil.isMatch(RegexPool.IPV4, ip)) {
+			return null;
+		} else if (Ipv4Util.isInnerIP(ip)) {
 			return null;
 		}
 		try {
