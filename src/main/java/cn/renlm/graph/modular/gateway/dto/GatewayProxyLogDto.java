@@ -28,4 +28,14 @@ public class GatewayProxyLogDto extends GatewayProxyLog {
 	 */
 	private String keywords;
 
+	/**
+	 * 排序字段
+	 */
+	private String sort;
+
+	/**
+	 * 排序方式
+	 */
+	private String order;
+
 }

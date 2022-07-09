@@ -34,6 +34,8 @@ public class GatewayProxyLogServiceImpl extends ServiceImpl<GatewayProxyLogMappe
 	public Page<GatewayProxyLog> findPage(Page<GatewayProxyLog> page, User user, GatewayProxyLogDto form) {
 		GatewayProxyConfig proxyConfig = iGatewayProxyConfigService.getOne(
 				Wrappers.<GatewayProxyConfig>lambdaQuery().eq(GatewayProxyConfig::getUuid, form.getProxyConfigUuid()));
+		String sort = form.getSort();
+		String order = form.getOrder();
 		return this.page(page, Wrappers.<GatewayProxyLog>lambdaQuery().func(wrapper -> {
 			if (form.getRequestTime() != null) {
 				wrapper.ge(GatewayProxyLog::getRequestTime, form.getRequestTime());
@@ -45,6 +47,8 @@ public class GatewayProxyLogServiceImpl extends ServiceImpl<GatewayProxyLogMappe
 				wrapper.eq(GatewayProxyLog::getStatusCode, form.getStatusCode());
 			}
 			wrapper.eq(GatewayProxyLog::getProxyConfigId, proxyConfig.getProxyConfigId());
+			wrapper.orderBy("requestTime".equals(sort), "asc".equals(order), GatewayProxyLog::getRequestTime);
+			wrapper.orderBy("takeTime".equals(sort), "asc".equals(order), GatewayProxyLog::getTakeTime);
 			wrapper.orderByDesc(GatewayProxyLog::getId);
 		}));
 	}
