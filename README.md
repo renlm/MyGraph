@@ -14,9 +14,11 @@
 ## 系统体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
 ***此为体验系统，请不要修改密码，每天晚上定时重置为初始状态。***  
+```
 账号（超级管理员）：S-linghc  
 账号（普通用户）：S-renyy  
 统一密码：123654  
+```
 <a href="https://mygraph.renlm.cn/pub/doc/s/E42FB06DEC2545D6AC2947C5BF3DC750" target="_blank">系统手册</a>  
 
 ## 关键教程
