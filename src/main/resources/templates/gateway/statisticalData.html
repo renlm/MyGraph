@@ -7,101 +7,112 @@
 	<div id="Usage" style="height: 400px;"></div>
 	<script th:src="@{/static/markdown/editor.md-1.5.0/lib/echarts/5.1.2/echarts.min.js}"></script>
 	<script type="text/javascript">
-		var usageChart = echarts.init(document.getElementById("Usage"));
-		usageChart.showLoading();
-		$.get("[(@{/gateway/proxyLog/ajax/getStatisticalData})]",
-			function(response) {
-				usageChart.hideLoading();
-				var start = response.data.dayXAxis.length >= 100 ? (1 - 100 / response.data.dayXAxis.length) * 100 : 0;
-				option = {
-					calculable : true,
-					tooltip : {
-						trigger : "axis",
-						axisPointer : {
-							type : "shadow",
-							label : {
-								show : true
-							}
-						}
-					},
-					toolbox : {
-						show : true,
-						showTitle : false,
-						feature : {
-							mark : {
-								show : true
-							},
-							magicType : {
-								show : true,
-								type : [ "line", "bar" ]
-							},
-							dataView : {
-								show : true
-							},
-							myTool: {
-								show: true,
-								title: '导出',
-								icon: 'path://M533.107323 877.693479a23.552813 23.552813 0 0 1-33.217312-0.004699l-108.630478-108.635176c-9.133586-9.138285-6.037376-16.613355 6.883078-16.613354h56.18753c12.920454 0 23.491734-10.57128 23.491735-23.491735v-73.378781c0-12.920454 10.57128-23.491734 23.491734-23.491734h30.388908c12.920454 0 23.491734 10.57128 23.491734 23.491734v73.378781c0 12.920454 10.57128 23.491734 23.491734 23.491735h56.182832c12.920454 0 16.016664 7.47507 6.883078 16.608656l-108.644573 108.644573z',
-								onclick: function (option) {
-									top.open('[(@{/excel/downloadVirtualPhoneAx})]');
+		$(function () { renderStatisticalChart(); });
+    	function renderStatisticalChart () {
+    		$.get("[(@{/gateway/proxyLog/ajax/getStatisticalData})]",
+				function(response) {
+    				var start = response.data.dayXAxis.length >= 100 ? (1 - 100 / response.data.dayXAxis.length) * 100 : 0;
+	    			var target = document.getElementById('Usage');
+		    		var myChart = echarts.init(target, 
+		    				null, 
+		    				{
+		    					renderer: 'svg',
+				    			width: $(target).width(),
+				    			height: $(target).height()
+		    				});
+		    		myChart.setOption({
+						calculable : true,
+						color: [
+		    			    '#2f4554',
+		    				'#c23531'
+		    			],
+						tooltip : {
+							trigger : "axis",
+							axisPointer : {
+								type : "shadow",
+								label : {
+									show : true
 								}
-							},
-							restore : {
-								show : true
-							},
-							saveAsImage : {
-								show : true
 							}
-						}
-					},
-					legend : {
-						data : [ "UV", "PV" ],
-						itemGap : 5
-					},
-					grid : {
-						top : "12%",
-						left : "1%",
-						right : "1%",
-						containLabel : true
-					},
-					xAxis : [ {
-						type : "category",
-						data : response.data.dayXAxis
-					} ],
-					yAxis : [ {
-						type : "value",
-						name : "次数",
-						axisLabel : {
-							formatter : function(a) {
-								a = +a;
-								return isFinite(a) ? echarts.format.addCommas(+a / 1) : "";
+						},
+						toolbox : {
+							top : 20,
+							show : true,
+							showTitle : false,
+							feature : {
+								mark : {
+									show : true
+								},
+								magicType : {
+									show : true,
+									type : [ "line", "bar" ]
+								},
+								dataView : {
+									show : true
+								},
+								restore : {
+									show : true
+								},
+								saveAsImage : {
+									show : true
+								}
 							}
-						}
-					} ],
-					dataZoom : [ {
-						show : true,
-						start : start,
-						end : 100
-					}, {
-						type : "inside",
-						start : start,
-						end : 100
-					} ],
-					series : [ {
-						name : "UV",
-						type : "bar",
-						data : response.data.uvYAxis
-					}, {
-						name : "PV",
-						type : "bar",
-						data : response.data.pvYAxis
-					} ]
-				};
-				usageChart.setOption(option);
-			});
-		$(window).resize(function(){
-			usageChart.resize();
-		});
+						},
+						legend : {
+							top : 20,
+							itemGap : 5,
+							data : [ "访问用户数", "页面访问量" ]
+						},
+						grid : {
+							top : 80,
+							left : 20,
+							right : 20,
+							containLabel : true
+						},
+						xAxis : [ {
+							type : "category",
+							data : response.data.dayXAxis
+						} ],
+						yAxis : [ {
+							type : "value",
+							name : "数量",
+							axisLabel : {
+								formatter : function(a) {
+									a = +a;
+									return isFinite(a) ? echarts.format.addCommas(+a / 1) : "";
+								}
+							}
+						} ],
+						dataZoom : [ {
+							show : true,
+							start : start,
+							end : 100
+						}, {
+							type : "inside",
+							start : start,
+							end : 100
+						} ],
+						series : [ {
+							name : "访问用户数",
+							type : "bar",
+							data : response.data.uvYAxis
+						}, {
+							name : "页面访问量",
+							type : "bar",
+							data : response.data.pvYAxis
+						} ]
+					}, true);
+		    		// 自适应
+		    		var originFn = window.onresize;
+		       		window.onresize = function () { 
+		       			originFn && originFn();
+		       			myChart.resize({ 
+		       				width: $(target).width(),
+			    			height: $(target).height()
+		    			});
+		       		}	
+	         	});
+    	}
 	</script>
 </body>
 </html>
