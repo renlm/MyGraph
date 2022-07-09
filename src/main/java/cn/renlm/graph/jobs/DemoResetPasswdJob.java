@@ -36,7 +36,7 @@ public class DemoResetPasswdJob extends JobBean {
 	public void exec(String batch, AtomicInteger seq, Map<String, Object> params) {
 		JobExecutionContext context = (JobExecutionContext) params.get(CONTEXT_KEY);
 		String username = "S-renyy";
-		String password = "Aac^123654.";
+		String password = "123654";
 		iSysUserService.update(Wrappers.<SysUser>lambdaUpdate().func(wrapper -> {
 			wrapper.set(SysUser::getPassword, new BCryptPasswordEncoder().encode(password));
 			wrapper.eq(SysUser::getUsername, username);

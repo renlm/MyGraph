@@ -15,7 +15,7 @@ public class PasswdTest {
 
 	@Test
 	public void test() {
-		String encodePasswd = new BCryptPasswordEncoder().encode("Aac^123654.");
+		String encodePasswd = new BCryptPasswordEncoder().encode("123654");
 		System.out.println(encodePasswd);
 	}
 

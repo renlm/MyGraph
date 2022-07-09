@@ -1,4 +1,4 @@
--- 用户（密码：Aac^123654.）
+-- 用户（密码：123654）
 DELETE FROM sys_user;
 INSERT INTO sys_user 
 	   (id,		user_id, 							nickname, 	username,		password, 														mobile, 		email,				sign) 
@@ -4256,7 +4256,7 @@ MyGraph 在线文档，集成语法增强版Markdown、在线画图、数据库�
 ## 产品体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
 账号：S-renyy  
-密码（每5分钟重置一次）：Aac^123654.  
+密码（每5分钟重置一次）：123654  
 <a href="https://mygraph.renlm.cn/pub/doc/s/E42FB06DEC2545D6AC2947C5BF3DC750" target="_blank">系统手册</a>  
 
 ## 功能清单
@@ -4343,8 +4343,8 @@ EasyUI + Mxgraph + Editor.md
 ## 本地化部署
 ### 初始账号
 ```
-超级管理员：S-linghc，密码：Aac^123654.
-普通用户：S-renyy，密码：Aac^123654.
+超级管理员：S-linghc，密码：123654
+普通用户：S-renyy，密码：123654
 ```
 ### 数据库初始脚本
 数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据）。  
@@ -4511,7 +4511,7 @@ MyGraph 在线文档，集成语法增强版Markdown、在线画图、数据库�
 ## 产品体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
 账号：S-renyy  
-密码（每5分钟重置一次）：Aac^123654.  
+密码（每5分钟重置一次）：123654  
 <a href="https://mygraph.renlm.cn/pub/doc/s/7297BE3A11B64D1A8940E92ECBBCC873" target="_blank">系统手册</a>  
 
 ## 功能清单
@@ -4598,8 +4598,8 @@ EasyUI + Mxgraph + Editor.md
 ## 本地化部署
 ### 初始账号
 ```
-超级管理员：S-linghc，密码：Aac^123654.
-普通用户：S-renyy，密码：Aac^123654.
+超级管理员：S-linghc，密码：123654
+普通用户：S-renyy，密码：123654
 ```
 ### 数据库初始脚本
 数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据）。  
