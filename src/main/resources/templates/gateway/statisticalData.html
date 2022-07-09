@@ -2,6 +2,12 @@
 <html lang="zh-CN" layout:decorate="~{layout/default}">
 <head>
 	<title>统计数据</title>
+	<style type="text/css">
+		#Usage textarea {
+			width: 99%!important;
+    		height: 97%!important;
+		}
+	</style>
 </head>
 <body layout:fragment="content">
 	<div id="Usage" style="height: 400px;"></div>
@@ -21,15 +27,14 @@
 				    			height: $(target).height()
 		    				});
 		    		myChart.setOption({
-						calculable : true,
 						color: [
 		    			    '#2f4554',
 		    				'#c23531'
 		    			],
 						tooltip : {
-							trigger : "axis",
+							trigger : 'axis',
 							axisPointer : {
-								type : "shadow",
+								type : 'shadow',
 								label : {
 									show : true
 								}
@@ -37,15 +42,16 @@
 						},
 						toolbox : {
 							top : 20,
+							right: 20,
 							show : true,
-							showTitle : false,
+							showTitle : true,
 							feature : {
 								mark : {
 									show : true
 								},
 								magicType : {
 									show : true,
-									type : [ "line", "bar" ]
+									type : [ 'line', 'bar' ]
 								},
 								dataView : {
 									show : true
@@ -60,45 +66,51 @@
 						},
 						legend : {
 							top : 20,
-							itemGap : 5,
-							data : [ "访问用户数", "页面访问量" ]
+							itemGap : 20,
+							data : [ '访问用户数', '页面访问量' ]
 						},
 						grid : {
 							top : 80,
-							left : 20,
-							right : 20,
+							left : 30,
+							right : 30,
 							containLabel : true
 						},
 						xAxis : [ {
-							type : "category",
+							type : 'category',
 							data : response.data.dayXAxis
 						} ],
 						yAxis : [ {
-							type : "value",
-							name : "数量",
-							axisLabel : {
-								formatter : function(a) {
-									a = +a;
-									return isFinite(a) ? echarts.format.addCommas(+a / 1) : "";
-								}
-							}
+							type : 'value',
+							splitLine: {
+		    		            show: true
+		    		        },
+		    		        axisLine: { 
+	    						show: true
+	    					},
+	        		        axisTick: {
+	        		        	show: true
+	        		        },
+		    		        axisLabel: {
+		    		        	show: true,  
+		                     	interval: 'auto'
+		    		        }
 						} ],
 						dataZoom : [ {
 							show : true,
 							start : start,
 							end : 100
 						}, {
-							type : "inside",
+							type : 'inside',
 							start : start,
 							end : 100
 						} ],
 						series : [ {
-							name : "访问用户数",
-							type : "bar",
+							name : '访问用户数',
+							type : 'bar',
 							data : response.data.uvYAxis
 						}, {
-							name : "页面访问量",
-							type : "bar",
+							name : '页面访问量',
+							type : 'bar',
 							data : response.data.pvYAxis
 						} ]
 					}, true);

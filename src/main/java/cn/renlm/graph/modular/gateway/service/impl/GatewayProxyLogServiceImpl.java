@@ -1,5 +1,6 @@
 package cn.renlm.graph.modular.gateway.service.impl;
 
+import static cn.hutool.core.date.DatePattern.NORM_DATE_PATTERN;
 import static cn.hutool.core.date.DatePattern.PURE_DATE_PATTERN;
 
 import java.math.BigDecimal;
@@ -99,7 +100,7 @@ public class GatewayProxyLogServiceImpl extends ServiceImpl<GatewayProxyLogMappe
 		List<DateTime> ranges = DateUtil.rangeToList(start, end, DateField.DAY_OF_MONTH);
 		for (DateTime dateTime : ranges) {
 			String day = DateUtil.format(dateTime, PURE_DATE_PATTERN);
-			statisticalData.getDayXAxis().add(day);
+			statisticalData.getDayXAxis().add(DateUtil.format(dateTime, NORM_DATE_PATTERN));
 			statisticalData.getUvYAxis().add(uvMap.containsKey(day) ? uvMap.get(day).getYAxis() : zero);
 			statisticalData.getPvYAxis().add(pvMap.containsKey(day) ? pvMap.get(day).getYAxis() : zero);
 		}
