@@ -50,7 +50,7 @@ public class GatewayProxyLogQueue {
 	public void receiveMessage(GatewayProxyLog proxyLog) {
 		proxyLog.setIpRegion(Ip2regionUtil.parse(proxyLog.getClientIp()));
 		proxyLog.setYear(DateUtil.year(proxyLog.getRequestTime()));
-		proxyLog.setMonth(DateUtil.month(proxyLog.getRequestTime()));
+		proxyLog.setMonth(DateUtil.month(proxyLog.getRequestTime()) + 1);
 		proxyLog.setDay(DateUtil.dayOfMonth(proxyLog.getRequestTime()));
 		proxyLog.setHour(DateUtil.hour(proxyLog.getRequestTime(), true));
 		iGatewayProxyLogService.save(proxyLog);
