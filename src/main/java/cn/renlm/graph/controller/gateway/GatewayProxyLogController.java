@@ -14,6 +14,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.gateway.dto.GatewayProxyLogDto;
+import cn.renlm.graph.modular.gateway.dto.GatewayStatisticalDataDto;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyLogService;
 import cn.renlm.graph.response.Datagrid;
@@ -87,7 +88,8 @@ public class GatewayProxyLogController {
 	@ResponseBody
 	@GetMapping("/ajax/getStatisticalData")
 	@PreAuthorize(Role.AdminSpEL)
-	public Result<?> ajaxGetStatisticalData(String proxyConfigUuid) {
-		return Result.success();
+	public Result<GatewayStatisticalDataDto> ajaxGetStatisticalData(String proxyConfigUuid) {
+		GatewayStatisticalDataDto data = iGatewayProxyLogService.getStatisticalData(proxyConfigUuid);
+		return Result.success(data);
 	}
 }

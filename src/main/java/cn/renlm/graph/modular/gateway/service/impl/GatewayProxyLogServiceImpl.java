@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.gateway.dto.GatewayProxyLogDto;
+import cn.renlm.graph.modular.gateway.dto.GatewayStatisticalDataDto;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 import cn.renlm.graph.modular.gateway.mapper.GatewayProxyLogMapper;
@@ -51,5 +52,10 @@ public class GatewayProxyLogServiceImpl extends ServiceImpl<GatewayProxyLogMappe
 			wrapper.orderBy("takeTime".equals(sort), "asc".equals(order), GatewayProxyLog::getTakeTime);
 			wrapper.orderByDesc(GatewayProxyLog::getId);
 		}));
+	}
+
+	@Override
+	public GatewayStatisticalDataDto getStatisticalData(String proxyConfigUuid) {
+		return null;
 	}
 }

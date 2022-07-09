@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.gateway.dto.GatewayProxyLogDto;
+import cn.renlm.graph.modular.gateway.dto.GatewayStatisticalDataDto;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 
 /**
@@ -26,5 +27,13 @@ public interface IGatewayProxyLogService extends IService<GatewayProxyLog> {
 	 * @return
 	 */
 	Page<GatewayProxyLog> findPage(Page<GatewayProxyLog> page, User user, GatewayProxyLogDto form);
+
+	/**
+	 * 统计数据
+	 * 
+	 * @param proxyConfigUuid
+	 * @return
+	 */
+	GatewayStatisticalDataDto getStatisticalData(String proxyConfigUuid);
 
 }
