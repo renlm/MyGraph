@@ -32,15 +32,15 @@
 		                <thead>
 			                <tr>
 			                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#proxyLogDataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
-		                      	<th data-options="field:'path',title:'代理路径',width:60"></th>
-		                      	<th data-options="field:'requestUrl',title:'请求地址',width:250,hidden:true"></th>
-			                    <th data-options="field:'proxyUrl',title:'代理地址',width:250,formatter:$.spanWithTitleFormatter"></th>
+		                      	<th data-options="field:'path',title:'代理路径',width:60,formatter:$.spanWithTitleFormatter"></th>
+		                      	<th data-options="field:'requestUrl',title:'请求地址',width:200,formatter:$.spanWithTitleFormatter"></th>
+			                    <th data-options="field:'proxyUrl',title:'代理地址',width:200,formatter:$.spanWithTitleFormatter"></th>
 			                    <th data-options="field:'httpMethod',title:'请求方法',width:60"></th>
 			                    <th data-options="field:'requestTime',title:'请求时间',width:120,align:'right',formatter:$.createdAtFormatter"></th>
 			                    <th data-options="field:'responseTime',title:'响应时间',width:120,hidden:true,formatter:$.createdAtFormatter"></th>
 			                    <th data-options="field:'takeTime',title:'耗时（毫秒）',width:80,align:'right'"></th>
 			                    <th data-options="field:'statusCode',title:'响应码',width:60"></th>
-			                    <th data-options="field:'statusText',title:'响应消息',width:80"></th>
+			                    <th data-options="field:'statusText',title:'响应消息',width:80,hidden:true"></th>
 			                    <th data-options="field:'errorMessage',title:'错误消息',width:80,formatter:$.spanWithTitleFormatter"></th>
 			                    <th data-options="field:'serverIp',title:'服务端IP',width:80,hidden:true"></th>
 			                    <th data-options="field:'clientIp',title:'客户端IP',width:80,hidden:true"></th>
@@ -50,12 +50,8 @@
 		                </thead>
 		            </table>
         		</div>
-        		<div title="按天统计" 
-              		data-options="iconCls:'fa fa-area-chart'">
-              		
-              	</div>
-        		<div title="按月统计" 
-              		data-options="iconCls:'fa fa-bar-chart'">
+        		<div title="统计数据" 
+              		data-options="iconCls:'fa fa-line-chart'">
               		
               	</div>
         	</div>
