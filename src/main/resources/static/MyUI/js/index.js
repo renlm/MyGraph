@@ -495,7 +495,7 @@ function modifyPersonal () {
             }
         }],
         onLoad: function () {
-            $.getJSON(ctx + '/api/user/getInfo', function (result) {
+            $.getJSON(ctx + '/api/user/getCurrent', function (result) {
 				// 初始化表单
 				$personalDialog.form('load', result.data);
 				if (result.data.avatar) {
