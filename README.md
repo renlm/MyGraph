@@ -20,9 +20,12 @@
 <a href="https://mygraph.renlm.cn/pub/doc/s/E42FB06DEC2545D6AC2947C5BF3DC750" target="_blank">系统手册</a>  
 
 ## 关键教程
-### 数据库设计
-
 ### 在线文档
+#### 新建文档项目
+#### 成员管理
+#### 编写文档
+
+### 数据库设计
 
 ### 网关代理
 
