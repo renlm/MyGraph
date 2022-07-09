@@ -19,6 +19,13 @@
 统一密码：123654  
 <a href="https://mygraph.renlm.cn/pub/doc/s/E42FB06DEC2545D6AC2947C5BF3DC750" target="_blank">系统手册</a>  
 
+## 关键教程
+### 数据库设计
+
+### 在线文档
+
+### 网关代理
+
 ## 主要技术组件
 SpringBoot2.5.3 + SpringSecurity + MyBatis-plus + My-Plugin  
 MySQL + Redis + Rabbitmq  
