@@ -11,13 +11,13 @@
 ### 这是一个在线文档系统
 集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
 
-## 体验系统
-系统地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
+## 系统体验
+体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
+***此为体验系统，请不要修改密码，每天晚上定时重置为初始状态。***  
 账号（超级管理员）：S-linghc  
 账号（普通用户）：S-renyy  
 统一密码：123654  
 <a href="https://mygraph.renlm.cn/pub/doc/s/E42FB06DEC2545D6AC2947C5BF3DC750" target="_blank">系统手册</a>  
-***此系统为体验系统，请不要修改密码，每天晚上定时重置为初始状态。***  
 
 ## 主要技术组件
 SpringBoot2.5.3 + SpringSecurity + MyBatis-plus + My-Plugin  
