@@ -17,6 +17,7 @@ import cn.renlm.graph.modular.gateway.dto.GatewayProxyLogDto;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
 import cn.renlm.graph.modular.gateway.service.IGatewayProxyLogService;
 import cn.renlm.graph.response.Datagrid;
+import cn.renlm.graph.response.Result;
 
 /**
  * 网关代理日志
@@ -61,5 +62,32 @@ public class GatewayProxyLogController {
 		User user = (User) authentication.getPrincipal();
 		Page<GatewayProxyLog> data = iGatewayProxyLogService.findPage(page, user, form);
 		return Datagrid.of(data);
+	}
+
+	/**
+	 * 统计数据
+	 * 
+	 * @param model
+	 * @param proxyConfigUuid
+	 * @return
+	 */
+	@GetMapping("/statisticalData")
+	@PreAuthorize(Role.AdminSpEL)
+	public String statisticalData(ModelMap model, String proxyConfigUuid) {
+		model.put("proxyConfigUuid", proxyConfigUuid);
+		return "gateway/statisticalData";
+	}
+
+	/**
+	 * 统计数据
+	 * 
+	 * @param proxyConfigUuid
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/ajax/getStatisticalData")
+	@PreAuthorize(Role.AdminSpEL)
+	public Result<?> ajaxGetStatisticalData(String proxyConfigUuid) {
+		return Result.success();
 	}
 }

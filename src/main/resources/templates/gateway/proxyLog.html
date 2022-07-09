@@ -47,7 +47,7 @@
 			                    <th data-options="field:'responseTime',title:'响应时间',width:120,hidden:true,formatter:$.createdAtFormatter"></th>
 			                    <th data-options="field:'takeTime',title:'耗时（毫秒）',width:80,align:'right',sortable:true"></th>
 			                    <th data-options="field:'statusCode',title:'响应码',width:60"></th>
-			                    <th data-options="field:'statusText',title:'响应消息',width:80,hidden:true"></th>
+			                    <th data-options="field:'statusText',title:'响应消息',width:80"></th>
 			                    <th data-options="field:'errorMessage',title:'错误消息',width:80,formatter:$.spanWithTitleFormatter"></th>
 			                    <th data-options="field:'serverIp',title:'服务端IP',width:80,hidden:true"></th>
 			                    <th data-options="field:'clientIp',title:'客户端IP',width:80,hidden:true"></th>
@@ -59,8 +59,22 @@
         		</div>
         		<div title="统计数据" 
               		data-options="iconCls:'fa fa-line-chart'">
-              		
-              	</div>
+              		<div data-options="region:'center',
+              				split:true,
+              				border:false,
+              				bodyCls:'border_left'
+              			">
+			          	<div class="easyui-layout" 
+			          		data-options="fit:true">
+				    		<iframe id="Iframe" 
+				    			th:src="@{'/gateway/proxyLog/statisticalData?proxyConfigUuid='+${proxyConfigUuid}}" 
+				    			scrolling="auto" 
+				    			frameborder="0" 
+				    			style="width:100%;height:100%;">
+				    		</iframe>
+				    	</div>
+			    	</div>
+            	</div>
         	</div>
     	</div>
     </div>
