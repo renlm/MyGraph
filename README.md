@@ -42,10 +42,22 @@
 
 ### 数据库设计
 #### 从数据源生成ER图
+新建数据源，选择表生成ER图后，根据提示进入文档管理中查看编辑图形。
+![新建数据源](https://renlm.cn/images/demo/301.png "新建数据源")
+![选择表](https://renlm.cn/images/demo/302.png "选择表")
+![生成ER图](https://renlm.cn/images/demo/303.png "生成ER图")
 
-#### 从零开始设计数据库
+#### 数据库ER模型设计
+![打开工具](https://renlm.cn/images/demo/304.png "打开工具")
+![工具栏](https://renlm.cn/images/demo/305.png "工具栏")
+![添加表](https://renlm.cn/images/demo/306.png "添加表")
+![添加表](https://renlm.cn/images/demo/307.png "添加表")
+![双击表编辑](https://renlm.cn/images/demo/308.png "双击表编辑")
+![我的字段库](https://renlm.cn/images/demo/309.png "我的字段库")
 
 #### 导出DDL
+图形分类为ER模型的才可导出DDL，下载的DDL建表语句带注释，可直接执行。
+![我的字段库](https://renlm.cn/images/demo/310.png "我的字段库")
 
 ### 网关代理
 #### 新建代理配置
