@@ -46,6 +46,19 @@ public class SessionUtil {
 	}
 
 	/**
+	 * 删除会话信息
+	 * 
+	 * @param ticket
+	 */
+	public static final void deleteSession(String ticket) {
+		String sessionId = Base64.decodeStr(ticket);
+		if (StrUtil.isNotBlank(sessionId)) {
+			RedisIndexedSessionRepository sessionRepository = SpringUtil.getBean(RedisIndexedSessionRepository.class);
+			sessionRepository.deleteById(sessionId);
+		}
+	}
+
+	/**
 	 * 获取基本用户信息
 	 * 
 	 * @param ticket
