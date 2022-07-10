@@ -75,11 +75,8 @@
 ![统计数据](https://renlm.cn/images/demo/404.png "统计数据")
 
 ### 单点登录集成
-#### 统一登录及用户中心
-
-#### 公共字典
-
-#### 集成前后端分离及统一会话
+详情请登录系统，参见帮助文档
+![单点登录集成](https://renlm.cn/images/demo/501.png "单点登录集成")
 
 ## 主要技术组件
 SpringBoot2.5.3 + SpringSecurity + MyBatis-plus + My-Plugin  
