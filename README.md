@@ -65,6 +65,8 @@
 
 ### 网关代理
 #### 代理配置
+统一代理地址前缀：/proxy/
+例：https://mygraph.renlm.cn/proxy/baidu/
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 ![代理地址](https://renlm.cn/images/demo/402.png "代理地址")
 
