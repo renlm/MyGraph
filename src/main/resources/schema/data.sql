@@ -4988,7 +4988,7 @@ INSERT INTO doc_project_member (id,doc_project_id,member_user_id,`role`,created_
 ;
 
 INSERT INTO doc_category (id,doc_project_id,uuid,text,fullname,icon_cls,`level`,sort,state,pid,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
-(1,1,'8BB20CDD27734665A25BE20D8D28B404','系统手册','系统手册',NULL,1,1,'closed',NULL,'2022-07-10 19:00:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:01:17',NULL,NULL,0,NULL)
+(1,1,'8BB20CDD27734665A25BE20D8D28B404','系统手册','系统手册',NULL,1,1,'closed',NULL,'2022-07-10 19:00:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 20:27:09',NULL,NULL,0,NULL)
 ,(2,1,'2F403FB530BA424FBA1F8A5B20445C82','Markdown','系统手册/Markdown',NULL,2,1,'open',1,'2022-07-10 19:00:20','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:00:20',NULL,NULL,0,NULL)
 ,(3,1,'C5976AC6D8F848AB8DE03AEF4C8BE986','开放能力','系统手册/开放能力',NULL,2,2,'closed',1,'2022-07-10 19:00:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:01:05',NULL,NULL,0,NULL)
 ,(4,1,'150EA5AD07D54C2FB5F7359FE79DEE34','网关代理','系统手册/开放能力/网关代理',NULL,3,1,'open',3,'2022-07-10 19:01:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:01:04',NULL,NULL,0,NULL)
@@ -5008,6 +5008,14 @@ INSERT INTO doc_category (id,doc_project_id,uuid,text,fullname,icon_cls,`level`,
 ,(16,1,'D5F67FFCE2EF4F03BD1F78F6BD6945AC','退出登录','系统手册/开放接口/单点登录/退出登录',NULL,4,5,'open',10,'2022-07-10 19:03:23','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:03:23',NULL,NULL,0,NULL)
 ,(17,1,'A74653859AB44D32BD67AAABAF44179D','获取当前登录用户','系统手册/开放接口/单点登录/获取当前登录用户',NULL,4,6,'open',10,'2022-07-10 19:03:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:03:32',NULL,NULL,0,NULL)
 ,(18,1,'BA89D24803644078B7F3A6C3936DF13F','根据Ticket查询用户','系统手册/开放接口/单点登录/根据Ticket查询用户',NULL,4,7,'open',10,'2022-07-10 19:03:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:03:45',NULL,NULL,0,NULL)
+,(19,1,'7B0ACC9BCF0B45A8A25E1F9B71192D55','数据库设计','系统手册/数据库设计',NULL,2,4,'closed',1,'2022-07-10 20:26:58','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 20:29:10',NULL,NULL,0,NULL)
+,(20,1,'0052C4B698D948FEBE78E75B189355D1','版本记录','系统手册/版本记录',NULL,2,5,'open',1,'2022-07-10 20:27:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 20:27:09',NULL,NULL,0,NULL)
+;
+INSERT INTO doc_category (id,doc_project_id,uuid,text,fullname,icon_cls,`level`,sort,state,pid,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+(21,1,'919FAE40FB7E48018E936C30F1898383','后台管理','系统手册/数据库设计/后台管理',NULL,3,1,'open',19,'2022-07-10 20:28:24','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 20:28:24',NULL,NULL,0,NULL)
+,(22,1,'C6CF6B76EF9C464E84070F4BAC019713','定时任务','系统手册/数据库设计/定时任务',NULL,3,2,'open',19,'2022-07-10 20:28:35','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 20:28:35',NULL,NULL,0,NULL)
+,(23,1,'5F4352882D9F406D9EECFE32975EEE66','数据源','系统手册/数据库设计/数据源',NULL,3,3,'open',19,'2022-07-10 20:28:53','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 20:28:53',NULL,NULL,0,NULL)
+,(24,1,'EFE9D8F72DBD4F1499CACB1C6E442663','文档管理','系统手册/数据库设计/文档管理',NULL,3,4,'open',19,'2022-07-10 20:29:10','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 20:29:10',NULL,NULL,0,NULL)
 ;
 
 INSERT INTO doc_category_collect (id,doc_project_id,doc_category_id,member_user_id,created_at,updated_at,deleted) VALUES 
@@ -5031,7 +5039,7 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 
 ### 这是一个在线文档系统
 集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
-分享文档：<a href="http://localhost/mygraph/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
+分享文档：<a href="https://mygraph.renlm.cn/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
 
 ## 系统体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
@@ -10320,7 +10328,7 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 
 ### 这是一个在线文档系统
 集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
-分享文档：<a href="http://localhost/mygraph/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
+分享文档：<a href="https://mygraph.renlm.cn/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
 
 ### 这是一个动态实时配置的网关代理
 提供了在线配置、限速、日志与流量统计等功能。  
@@ -15631,7 +15639,7 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 
 ### 这是一个在线文档系统
 集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
-分享文档：<a href="http://localhost/mygraph/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
+分享文档：<a href="https://mygraph.renlm.cn/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
 
 ## 系统体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
@@ -20948,7 +20956,7 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 
 ### 这是一个在线文档系统
 集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
-分享文档：<a href="http://localhost/mygraph/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
+分享文档：<a href="https://mygraph.renlm.cn/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
 
 ## 系统体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
