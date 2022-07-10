@@ -5031,6 +5031,7 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 
 ### 这是一个在线文档系统
 集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
+分享文档：<a href="http://localhost/mygraph/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
 
 ## 系统体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
@@ -10317,8 +10318,9 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 ### 这是一个权限管理系统
 实现了完整的用户、组织机构、角色资源、数据字典、定时任务、文件管理、登录日志等功能。  
 
-### 这是一个独立的用户中心
-提供单点登录、统一会话及前后端分离跨域的解决方案，开放接口能力，提供通用数据字典接口。  
+### 这是一个在线文档系统
+集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
+分享文档：<a href="http://localhost/mygraph/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
 
 ### 这是一个动态实时配置的网关代理
 提供了在线配置、限速、日志与流量统计等功能。  
@@ -15629,6 +15631,7 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 
 ### 这是一个在线文档系统
 集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
+分享文档：<a href="http://localhost/mygraph/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
 
 ## 系统体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
@@ -20945,6 +20948,7 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 
 ### 这是一个在线文档系统
 集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
+分享文档：<a href="http://localhost/mygraph/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
 
 ## 系统体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
