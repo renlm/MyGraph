@@ -5114,7 +5114,7 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
-例：https://mygraph.renlm.cn/proxy/baidu/  
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>  
 
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 
@@ -10409,7 +10409,7 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
-例：https://mygraph.renlm.cn/proxy/baidu/  
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>  
 
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 
@@ -15716,7 +15716,7 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
-例：https://mygraph.renlm.cn/proxy/baidu/  
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>  
 
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 
@@ -21033,7 +21033,7 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
-例：https://mygraph.renlm.cn/proxy/baidu/  
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>  
 
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 
