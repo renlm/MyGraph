@@ -50,6 +50,7 @@
 											<span class="glyphicon glyphicon-lock"></span>
 										</span> 
 										<input type="hidden" name="password" />
+										<input type="hidden" id="callback" name="callback" />
 										<input type="password" id="password" class="form-control" placeholder="密码" autocomplete="new-password" />
 									</div>
 								</div>
@@ -155,6 +156,8 @@
 			alertMsg("验证码错误");
 		} else {
 			$("[name='password']").val(aesEncrypt("[(${aesKey})]", password));
+			var callback = getQueryString("callback");
+			if(callback) { $("#callback").val(callback); }
 			document.getElementById("login-form").submit();
 		}
 	});
@@ -180,6 +183,13 @@
 	    		.ciphertext
 	    		.toString(CryptoJS.enc.Base64)
 	    	;
+	}
+	
+	// 获取当前请求参数
+	function getQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null) return unescape(r[2]); return null;
 	}
 </script>
 </body>

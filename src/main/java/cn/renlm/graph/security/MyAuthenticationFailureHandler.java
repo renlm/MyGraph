@@ -2,6 +2,7 @@ package cn.renlm.graph.security;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,9 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.http.ContentType;
+import cn.hutool.http.HttpUtil;
 import cn.renlm.graph.config.WebSecurityConfig;
 import cn.renlm.graph.response.Result;
 import lombok.Cleanup;
@@ -45,7 +48,13 @@ public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailu
 			out.write(objectMapper.writeValueAsString(result));
 			out.close();
 		} else {
-			super.setDefaultFailureUrl(WebSecurityConfig.LoginPage);
+			Map<String, String> paramMap = ServletUtil.getParamMap(request);
+			String callback = paramMap.get("callback");
+			if (HttpUtil.isHttp(callback) || HttpUtil.isHttps(callback)) {
+				super.setDefaultFailureUrl(WebSecurityConfig.LoginPage + "?callback=" + callback);
+			} else {
+				super.setDefaultFailureUrl(WebSecurityConfig.LoginPage);
+			}
 			super.onAuthenticationFailure(request, response, exception);
 		}
 	}
