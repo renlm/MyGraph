@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,7 +24,7 @@ import cn.renlm.graph.util.SessionUtil;
 public class UserApiController {
 
 	/**
-	 * 获取当前会话秘钥（AES/CBC/PKCS5Padding）
+	 * 获取会话秘钥（AES/CBC/PKCS5Padding）
 	 * 
 	 * @param request
 	 * @return
@@ -70,20 +69,5 @@ public class UserApiController {
 		} else {
 			return Result.success(user);
 		}
-	}
-
-	/**
-	 * 退出登录
-	 * 
-	 * @param request
-	 * @param ticket
-	 * @return
-	 */
-	@ResponseBody
-	@PostMapping("/logout")
-	public Result<?> logout(HttpServletRequest request, String ticket) {
-		request.getSession().invalidate();
-		SessionUtil.deleteSession(ticket);
-		return Result.success();
 	}
 }
