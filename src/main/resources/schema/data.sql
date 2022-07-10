@@ -4222,15 +4222,15 @@ INSERT INTO sys_dict (id,uuid,code,`text`,abbreviation,alias,icon_cls,`level`,so
 ;
 
 -- 初始数据
-INSERT INTO dev.gateway_proxy_config (proxy_config_id,uuid,`path`,name,outgoing_servers,access_key,secret_key,enabled,connection_timeout,read_timeout,write_timeout,limit_for_second,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,remark) VALUES 
+INSERT INTO gateway_proxy_config (proxy_config_id,uuid,`path`,name,outgoing_servers,access_key,secret_key,enabled,connection_timeout,read_timeout,write_timeout,limit_for_second,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,remark) VALUES 
 (1,'3FDA14B37BFC47B4A347AF7881B426F6','baidu','百度','https://www.baidu.com/','80D7D023EEA44BC7990D8E04F4A077D5','E4867D4DA93A4862A953204985B48C29',1,1,600,600,10000,'2022-07-10 19:16:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:16:09',NULL,NULL,NULL)
 ;
 
-INSERT INTO dev.ds (id,uuid,name,url,schema_name,username,password,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO ds (id,uuid,name,url,schema_name,username,password,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (1,'F7495500B5594D8C8A2FD4F855F561D3','MyGraph 开发环境','jdbc:mysql://renlm.cn:3306/dev',NULL,'dev','HItMYBY3ntrbaeu3sHBMlBdqfDtYMqx6hOJ9+TcOkCmdDtFNuDv/zRQr/9E/ygZbd4QgLyDiNZUl1YZDtDq51apdBSEWokXL4P4iwcs4XL4cJo+TwAvBtoGPkxCcDRRxogoGeVnWPoj9zPTqxUxL8Fn8pfJYGOmbNmTO70jyJts=','2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ;
 
-INSERT INTO dev.er (id,uuid,table_name,comment,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er (id,uuid,table_name,comment,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (1,'CBD53C2B36CA4149873FBF233390F97F','QRTZ_BLOB_TRIGGERS','','2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(2,'1E47BD119AC54AE9BFB66AE79022B3DC','QRTZ_CALENDARS','','2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(3,'DB20BA45A9AF44C69D7C330243A05C34','QRTZ_CRON_TRIGGERS','','2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
@@ -4242,7 +4242,7 @@ INSERT INTO dev.er (id,uuid,table_name,comment,created_at,creator_user_id,creato
 ,(9,'2F006F2DF34A49B7BF6D460C56FB5A9F','QRTZ_SCHEDULER_STATE','','2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(10,'F384D8159D6A463AB0B0B98E6B005C81','QRTZ_SIMPLE_TRIGGERS','','2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er (id,uuid,table_name,comment,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er (id,uuid,table_name,comment,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (11,'035BE12E872F429C8C3E0875808A0806','QRTZ_SIMPROP_TRIGGERS','','2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(12,'32D010BC81B84D9BA386710CB27C9514','QRTZ_TRIGGERS','','2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(13,'EE798E3F38D14C64825159B169916008','doc_category','文档分类','2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
@@ -4254,7 +4254,7 @@ INSERT INTO dev.er (id,uuid,table_name,comment,created_at,creator_user_id,creato
 ,(19,'19EC5608A98B48FBAA23A14B50BBB8EB','ds','数据源','2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(20,'9961C299E8954DABABF6C6A7FB9E9E16','ds_er_rel','数据源-ER模型关系','2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er (id,uuid,table_name,comment,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er (id,uuid,table_name,comment,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (21,'B2A71BC171F544CBA1FBA95FC780F001','er','ER模型','2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(22,'2C5F364F17F345319D1613D6BBEF36C5','er_field','ER模型-字段','2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(23,'423F5A815451429EB21281A8A632B074','er_field_lib','ER模型-我的字段库','2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4266,7 +4266,7 @@ INSERT INTO dev.er (id,uuid,table_name,comment,created_at,creator_user_id,creato
 ,(29,'23A6FCC82AF44E7484584ACEDC33A01C','markdown_history','Markdown文档-历史记录','2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(30,'3274081135F74C2EBD9AD979B8712BFE','sys_const','系统常量','2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er (id,uuid,table_name,comment,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er (id,uuid,table_name,comment,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (31,'5054499B7B854186893FB33C4A9C7267','sys_dict','数据字典','2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(32,'469AF92997BC4ED8B7E5AF81B7A8DBE5','sys_file','文件','2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(33,'6510A0DA8BDE42C190DD80132E5CE20B','sys_login_log','系统登录日志','2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4279,7 +4279,7 @@ INSERT INTO dev.er (id,uuid,table_name,comment,created_at,creator_user_id,creato
 ,(40,'0E3ECE83AFBA45158BCC5BE425D87630','sys_user_role','用户角色关系','2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ;
 
-INSERT INTO dev.ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted) VALUES 
+INSERT INTO ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted) VALUES 
 (1,1,1,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(2,1,2,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(3,1,3,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
@@ -4291,7 +4291,7 @@ INSERT INTO dev.ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nic
 ,(9,1,9,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(10,1,10,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ;
-INSERT INTO dev.ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted) VALUES 
+INSERT INTO ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted) VALUES 
 (11,1,11,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(12,1,12,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(13,1,13,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
@@ -4303,7 +4303,7 @@ INSERT INTO dev.ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nic
 ,(19,1,19,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(20,1,20,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ;
-INSERT INTO dev.ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted) VALUES 
+INSERT INTO ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted) VALUES 
 (21,1,21,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(22,1,22,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(23,1,23,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
@@ -4315,7 +4315,7 @@ INSERT INTO dev.ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nic
 ,(29,1,29,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(30,1,30,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ;
-INSERT INTO dev.ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted) VALUES 
+INSERT INTO ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted) VALUES 
 (31,1,31,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(32,1,32,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ,(33,1,33,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
@@ -4328,7 +4328,7 @@ INSERT INTO dev.ds_er_rel (id,ds_id,er_id,created_at,creator_user_id,creator_nic
 ,(40,1,40,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲',NULL,NULL,NULL,0)
 ;
 
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (1,1,'45EF08460AC545AA86C2A39E91964857','SCHED_NAME','',12,'VARCHAR',120,0,0,0,NULL,1,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(2,1,'3BDB64131E60443F954FF9867F8BAFAA','TRIGGER_NAME','',12,'VARCHAR',190,0,0,0,NULL,1,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(3,1,'42377841AC084AA6994E0455BD1D2C31','TRIGGER_GROUP','',12,'VARCHAR',190,0,0,0,NULL,1,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
@@ -4340,7 +4340,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(9,3,'D6B38EE4031F4E89B56BCF89653183AC','TRIGGER_NAME','',12,'VARCHAR',190,0,0,0,NULL,1,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(10,3,'E77744FA1AC54791B13F1494EE802A35','TRIGGER_GROUP','',12,'VARCHAR',190,0,0,0,NULL,1,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (11,3,'0F9BF5A8ED9148BA988382DCED30C7CD','CRON_EXPRESSION','',12,'VARCHAR',120,0,0,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(12,3,'CAE5DABB50364A758303383626C40A64','TIME_ZONE_ID','',12,'VARCHAR',80,0,1,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(13,4,'0AEFACD2A0E84BE29DAB1BF6A950809B','SCHED_NAME','',12,'VARCHAR',120,0,0,0,NULL,1,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
@@ -4352,7 +4352,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(19,4,'6C10EF87A93C47918D7A5B29D159FAD1','SCHED_TIME','',-5,'BIGINT',19,0,0,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(20,4,'826F72C9B8C6426690B5880A9A6E4E88','PRIORITY','',4,'INT',10,0,0,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (21,4,'53F36D9E311E4CE1AC1529A69D0CD46E','STATE','',12,'VARCHAR',16,0,0,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(22,4,'9C29BE240C454600BBE8EE6AF6A04111','JOB_NAME','',12,'VARCHAR',190,0,1,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(23,4,'8554FCE834DE4F37B87F891AAD0BBD7D','JOB_GROUP','',12,'VARCHAR',190,0,1,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
@@ -4364,7 +4364,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(29,5,'AD0E73C782084FB6A5A176D187D99ECF','DESCRIPTION','',12,'VARCHAR',250,0,1,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(30,5,'32BFE3B8716C4C74B54187DFCD37B2A1','JOB_CLASS_NAME','',12,'VARCHAR',250,0,0,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (31,5,'23601EA55FA04FB4B29351110F718BBE','IS_DURABLE','',12,'VARCHAR',1,0,0,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(32,5,'87E91EE8BE124C629E62501877ED032B','IS_NONCONCURRENT','',12,'VARCHAR',1,0,0,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ,(33,5,'9D9299804C81455EA9706804A3606832','IS_UPDATE_DATA','',12,'VARCHAR',1,0,0,0,NULL,0,0,'2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
@@ -4376,7 +4376,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(39,7,'A434904DF18C4C1C8952B4E6DB690BF9','machine','机器ip',12,'VARCHAR',128,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(40,7,'D8307074AA924680992DB8B2195D7448','trigger_name','触发器',12,'VARCHAR',128,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (41,7,'E2B8FAB4ECA74BC8BEE85583780DAC33','job_name','任务描述',12,'VARCHAR',128,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(42,7,'813C47B7AF2942B491BD3B57C9DFE45F','job_class_name','执行类',12,'VARCHAR',128,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(43,7,'B9BE286F7AB2434180399811DAD899CA','job_data_map_json','任务参数',-1,'TEXT',65535,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
@@ -4388,7 +4388,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(49,8,'16081CC8F6864D8AB47F903AB7960D49','SCHED_NAME','',12,'VARCHAR',120,0,0,0,NULL,1,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(50,8,'41DFC1470A404A829AFADB384EE17878','TRIGGER_GROUP','',12,'VARCHAR',190,0,0,0,NULL,1,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (51,9,'81925F24F4414614BBABEA1ABFD9087A','SCHED_NAME','',12,'VARCHAR',120,0,0,0,NULL,1,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(52,9,'B5E1045F26D54DEFB55287E12019E61F','INSTANCE_NAME','',12,'VARCHAR',190,0,0,0,NULL,1,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(53,9,'D818DB283FA54A6A8CC0BDEAB41F8BEB','LAST_CHECKIN_TIME','',-5,'BIGINT',19,0,0,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
@@ -4400,7 +4400,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(59,10,'BF0474087D744B879ECA9BB650360DA7','REPEAT_INTERVAL','',-5,'BIGINT',19,0,0,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(60,10,'3FB75748BAE841868DBFB2C76999DA58','TIMES_TRIGGERED','',-5,'BIGINT',19,0,0,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (61,11,'F4D4C17A27D14CE3A1797E8C638FCBA1','SCHED_NAME','',12,'VARCHAR',120,0,0,0,NULL,1,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(62,11,'F0CDDC3FBF294758837FBFDD316E201D','TRIGGER_NAME','',12,'VARCHAR',190,0,0,0,NULL,1,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(63,11,'DA63E01C12AA4BE099AC8882A5472B85','TRIGGER_GROUP','',12,'VARCHAR',190,0,0,0,NULL,1,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
@@ -4412,7 +4412,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(69,11,'4E504C8C81954402B6EE2592A7FA3D02','LONG_PROP_1','',-5,'BIGINT',19,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(70,11,'CE4E10C59C044C50AB9EED2638384D00','LONG_PROP_2','',-5,'BIGINT',19,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (71,11,'DE943F638858422EBC98543AFDCBB856','DEC_PROP_1','',3,'DECIMAL',13,4,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(72,11,'B662F739C3C44E7CB620D063BE44D45B','DEC_PROP_2','',3,'DECIMAL',13,4,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(73,11,'8244F92D9DB745B4A5E27CA0B0C7C4C1','BOOL_PROP_1','',12,'VARCHAR',1,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
@@ -4424,7 +4424,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(79,12,'43B1633F6AC54A2589C99F4EA767C029','JOB_GROUP','',12,'VARCHAR',190,0,0,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(80,12,'5CD9523925344487B85E1DAC8A2DA436','DESCRIPTION','',12,'VARCHAR',250,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (81,12,'9731C9CAAFB24DC7B5DDCEACF63E54C3','NEXT_FIRE_TIME','',-5,'BIGINT',19,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(82,12,'982A8FE60197490BAEAADFF70AAC6E78','PREV_FIRE_TIME','',-5,'BIGINT',19,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(83,12,'6E930B49A7BF41BFB6A35C3F9A68C338','PRIORITY','',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
@@ -4436,7 +4436,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(89,12,'FCB1F743E26C4585A32E98FA053F92E3','MISFIRE_INSTR','',5,'SMALLINT',5,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(90,12,'ED2479C5DD3B455A833044FBEC9A6AAE','JOB_DATA','',-4,'BLOB',65535,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (91,13,'D9A25F7251A34B91BAFBEFB2017A5A84','id','主键ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(92,13,'72950D59AF5A4CAEB13F8519D1A739D7','doc_project_id','文档项目ID',-5,'BIGINT',19,0,0,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(93,13,'DA83207AAC004556998E8EEFBFDD9883','uuid','UUID',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
@@ -4448,7 +4448,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(99,13,'8596F6CDBFA64286A2997F02A2CB0C8A','state','展开状态，open：无子节点、closed：有子节点',12,'VARCHAR',20,0,0,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(100,13,'418AA06AA5184C71816C0184DD855CE2','pid','父级ID',-5,'BIGINT',19,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (101,13,'5A7AA6356A2A4771AB20818E40479339','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(102,13,'C1E864E37F864E61B1F24CBE0EEB7FF8','creator_user_id','创建人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
 ,(103,13,'9EE9CA55E4B643BF8836850594E98070','creator_nickname','创建人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:45',NULL,NULL,0,NULL)
@@ -4460,7 +4460,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(109,14,'94D91113F29640E08969705FAD4EE0B5','id','主键ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(110,14,'5F90D51AB02C4A64B2F6C009294510C4','doc_project_id','文档项目ID',-5,'BIGINT',19,0,0,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (111,14,'84EF888F001045FC99B4283D7CD0564C','doc_category_id','文档分类ID',-5,'BIGINT',19,0,0,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(112,14,'4EB1A6B586CB48438D7DFFA09E883C2D','member_user_id','收藏人（用户ID）',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(113,14,'471FCF01E9044C2DB64CE67F24D27ED9','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
@@ -4472,7 +4472,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(119,15,'6166F0B7AB7F4EA79EF0317DAAB44BF3','uuid','UUID',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(120,15,'590B9ED0391E4C7AB25A2F218FE63243','share_type','分享类型，1：公开，2：密码查看',4,'INT',10,0,0,0,'1',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (121,15,'F38DA8685B5A44F28241AB9C6AF86529','password','访问密码',-1,'TEXT',65535,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(122,15,'4897B29DF16646989F6BC26630A84D68','effective_type','有效期类型（-1，永久，7:七天，30：三十天）',4,'INT',10,0,0,0,'-1',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(123,15,'F0ABA0A69AC741EA8C31E0D5F7973F74','deadline','有效截止日期',91,'DATE',10,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
@@ -4484,7 +4484,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(129,15,'26EB552B9D1B4CA7BDDE09850CDA6939','updator_nickname','更新人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(130,15,'59C948840520472C8E94FCCEE559B330','disabled','是否禁用（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (131,15,'83C6B36B86A34AA29281E9C7AA9D5817','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(132,15,'E1A5466AB3E94BF7ADA3CA8F0C77A8A6','remark','备注',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(133,16,'45D41A74D36F4B5D9BD503EA2B0DB339','id','主键ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
@@ -4496,7 +4496,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(139,16,'686BA18661FE45A4881C38BABB4D7716','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(140,16,'6EE393F691424B05A9CC2F783664CA89','creator_user_id','创建人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (141,16,'5B56BC6667A342D5B7E367CFD1BEBD33','creator_nickname','创建人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(142,16,'A821D106793A4C5EBF23D5BD6D950B28','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(143,16,'DC9B2712B50A4A438A7BA48FD2DF9A6D','updator_user_id','更新人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
@@ -4508,7 +4508,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(149,17,'93C857601E1A4C18B35E74CC25BF5F5C','member_user_id','成员（用户ID）',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(150,17,'9C94F837960E4282B2A1C60A8A5C8D63','role','角色，1：浏览者，2：编辑者，3：管理员',4,'INT',10,0,0,0,'1',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (151,17,'5FE27996C9224CAAA4CD8C1ED814E9B4','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(152,17,'11156AFEB6B34583B36F9804B118937B','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(153,17,'B38E6CB096BA4581955ED450D2D342DD','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
@@ -4520,7 +4520,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(159,18,'D8450A538CDF462CADB72E7C2BBBD9A3','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(160,19,'BAF6C22460FE4839840CBEDED37A14FB','id','主键ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (161,19,'39B44246733B4AC886D9040E27B96B1B','uuid','UUID',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(162,19,'7CFAFCC5D45C4AE7A00F34197EA744B7','name','名称',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(163,19,'F45CBBE8E0774502900D3F7E374D61AA','url','JDBC链接',12,'VARCHAR',500,0,0,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
@@ -4532,7 +4532,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(169,19,'E454D5B0BED145E2964E2E6205731190','creator_nickname','创建人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(170,19,'9EDEAA6B8A7244A28C787E2ADAA85933','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (171,19,'E5021CF6307943E0961DB940FB34711D','updator_user_id','更新人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(172,19,'5545E07C2F2546819454793CD071F1B4','updator_nickname','更新人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(173,19,'5CCF0CA0FB85448D8E02219045312289','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
@@ -4544,7 +4544,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(179,20,'CB4BBB1DA07A4DCC9E966B98E4B961AF','creator_user_id','创建人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(180,20,'AC41FEAD7AB142529AA6F0B3D7898C56','creator_nickname','创建人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (181,20,'63E7F8B7C4DB42CFAF5C14D8BAD2890B','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(182,20,'3EE0E2793F8A4577AAD592C8CFA04984','updator_user_id','更新人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(183,20,'DF90249A780749869CBE126EB9A27F9C','updator_nickname','更新人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
@@ -4556,7 +4556,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(189,21,'A118CABAEC7F4256ABFAB730194B9680','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(190,21,'4ACED93FF4344123857C5A9AFAC24AAA','creator_user_id','创建人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (191,21,'4C47F95A0DCA438DB3459FF46CA88283','creator_nickname','创建人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(192,21,'4EDFDB93241441B0A340CDAA3423A958','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
 ,(193,21,'314B549B3CA346F8BBF5760EF5382790','updator_user_id','更新人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:46','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:46',NULL,NULL,0,NULL)
@@ -4568,7 +4568,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(199,22,'31E8196602A44C669AB3557681E9458E','uuid','UUID',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(200,22,'3D33EEBF253448459FE23706B8B27E1C','name','列名',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (201,22,'88BA2067D5524B049E153976229BDA98','comment','注释',12,'VARCHAR',500,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(202,22,'9B280239769E476DA765520D7D7ACC9A','sql_type','java.sql.Types',4,'INT',10,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(203,22,'DAA01A9D67C848F1956A49595EEE8C43','jdbc_type','JdbcType',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4580,7 +4580,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(209,22,'A0BAB97351F5494F89A0A6C4AA05934F','is_pk','是否为主键（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(210,22,'AA731DE8D20B4F53BB96D6E75496182F','is_fk','是否为外键（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (211,22,'15C3F06FB83E45EBAB6D8C9D8992596C','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(212,22,'9254108BE7844C74809D47A5B7D35BCF','creator_user_id','创建人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(213,22,'36067B6705464F8C8C295675B61C9CF3','creator_nickname','创建人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4592,7 +4592,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(219,23,'973B5578350247D185568DC953F77B7F','id','主键ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(220,23,'BB7DD32CFEF74E288C0023B876D86DFA','uuid','UUID',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (221,23,'32771EA05F2D4842A6A5220EFF748AD0','name','列名',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(222,23,'7145DEE2D77D4E7EBDA0CADBF053BED0','comment','注释',12,'VARCHAR',500,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(223,23,'F9BD8D6D801141BC99F3C74AE8564C3D','sql_type','java.sql.Types',4,'INT',10,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4604,7 +4604,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(229,23,'7D49F283BA2746ACB17D1A46FD96E02F','column_def','字段默认值',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(230,23,'9511CBDD4820443EA39742245C9EF346','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (231,23,'121BF6558025438182BAC34E8992FF91','creator_user_id','创建人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(232,23,'4D307CBC596E4876B5942488AEFF709A','creator_nickname','创建人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(233,23,'432E9B5C24FB44CF9D1D2FBC6F4888BD','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4616,7 +4616,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(239,24,'0B2A125670274652A34D1000FB3FDF52','uuid','UUID',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(240,24,'89B9220471BD4D8BB92F4D5D4816C92E','path','代理路径（/path/）',12,'VARCHAR',20,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (241,24,'393300B989C7413FA5A7D7C6199C0B6E','name','名称',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(242,24,'4B2EBA18B937466E9D05D0C5FD429761','outgoing_servers','代理服务器地址（多个逗号拼接）',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(243,24,'DA5B81CE0D7F43389737122DB120FF11','access_key','Access Key',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4628,7 +4628,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(249,24,'22E985A083CA458BB7DD60AF7A83DF13','limit_for_second','单服务限速（次/秒，默认1万）',4,'INT',10,0,0,0,'10000',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(250,24,'BB62D7744AA648149AF3A58EE3A5AEE9','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (251,24,'E6C273A25E8B4492911352E930D6673F','creator_user_id','创建人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(252,24,'B2260DCAB82F498F8C99C67B0DF0AFDA','creator_nickname','创建人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(253,24,'F1DB8D6E2F014C1794FABC01548E2695','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4640,7 +4640,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(259,25,'1902CBF016DD4C3E9F73EAC181ACF595','path','代理配置-路径',12,'VARCHAR',20,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(260,25,'BC201BB84F5A486EAA0A28FAFA39F44A','name','代理配置-名称',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (261,25,'6BA00842B80341D19903E462262EC8B4','outgoing_servers','代理配置-代理服务器地址',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(262,25,'663CA7C666554E8A89ADD5E85F46C6DB','connection_timeout','代理配置-连接超时时间（秒）',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(263,25,'BE074FCC4E054FD9BD1C311D3CE93714','read_timeout','代理配置-读超时时间（秒）',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4652,7 +4652,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(269,25,'7140B59889AE467DB08862E7D02CB651','request_time','请求时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(270,25,'17BD2A008F6C42AE9F4826251FD28270','response_time','响应时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (271,25,'FC242B9336CD490AA0673F5D91E25EC8','status_code','响应码',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(272,25,'D2BC37FF03844F008111C854A8071ED2','status_text','响应消息',-1,'TEXT',65535,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(273,25,'0646B394034C464C8E16709254ED2B11','error_message','错误消息',-1,'TEXT',65535,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4664,7 +4664,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(279,25,'3F0C5F8D63E74E3780CB6872A6F571C4','sys_user_id','用户表ID',-5,'BIGINT',19,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(280,25,'900C5D63826D41C391F55FE4320F55DB','nickname','用户昵称',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (281,25,'1BE8B328815F4A89A9DD420C43D5A75D','year','年',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(282,25,'AA114385730A491AA276036914E915A6','month','月',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(283,25,'4336E7A77CAB48B5A314B2472CBC47C5','day','日',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4676,7 +4676,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(289,26,'549A4B4A7FA24ACB86A3B671A59FD96C','category_code','图形分类（编码）',12,'VARCHAR',50,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(290,26,'2BA59FF48A6B489983B5ADA0C9921AC0','category_name','图形分类（名称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (291,26,'6B37BC011FF147FA8B8F065A1103DF77','cover','封面图片',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(292,26,'2A37E41DCA4A4780819143DA4064C36F','zoom','缩放比例（默认1）',3,'DECIMAL',10,4,0,0,'1.0000',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(293,26,'9B34C27D109E40A8816394A66C6D8C18','dx','水平偏移量（默认0）',4,'INT',10,0,0,0,'0',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4688,7 +4688,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(299,26,'818D0C442E4540AB81D8FBC3E88FF5E9','background','背景色',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(300,26,'C2DC3D593334423DBC83651E0C58D02A','connection_arrows_enabled','显示连接箭头（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (301,26,'F5EE6459782D40C5B89CB7060FD2A27F','connectable','显示连接点（默认是）',-7,'BIT',1,0,0,0,'1',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(302,26,'E9C38E193FFF45829EC4D50DA508F0C1','guides_enabled','显示参考线（默认是）',-7,'BIT',1,0,0,0,'1',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(303,26,'6308E0D0142742DC98B33A75A89621E7','xml','XML文本',-1,'LONGTEXT',2147483647,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4700,7 +4700,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(309,26,'7B5E0AB750D942DBA57473C1DA273879','updator_nickname','更新人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(310,26,'0D2A9F2AB27F4E98932209E8184E06DB','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (311,26,'1FF65AD663FE4F12AF717414946BB4A4','remark','备注',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(312,27,'B0BF063C9B674B27827B8EDB9CE6D6A7','history_id','历史记录ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(313,27,'95E9F9178FBF41C49A3244850D965AC3','change_label','变更说明',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4712,7 +4712,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(319,27,'46EF43CEF6CE487584151230FC1B346A','name','名称',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(320,27,'9D1E28F6431144F6AA36FE7FB3C0540C','version','版本',4,'INT',10,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (321,27,'2F9F79550FA54D159CA409AF3810C25D','category_code','图形分类（编码）',12,'VARCHAR',50,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(322,27,'47CD71204F2D4632B948A8C0C4FBCA92','category_name','图形分类（名称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(323,27,'4E91F4EC1C8E4C799E418D2C2E0FDB39','cover','封面图片',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4724,7 +4724,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(329,27,'320E342F14544DFE93BDC470EB97DD48','grid_color','网格颜色',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(330,27,'9A5C68DE15F748E38590507DC9848B32','page_visible','页面视图（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (331,27,'6956716CA07947478684D0813FB48065','background','背景色',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(332,27,'D8E6C897399A46818E5E9BA2CABEAFBC','connection_arrows_enabled','显示连接箭头（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(333,27,'72AC2A74DBF9495C9867E1B1B4ED07AC','connectable','显示连接点（默认是）',-7,'BIT',1,0,0,0,'1',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4736,7 +4736,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(339,27,'5E1C508661A044D5813D0D602A74A48B','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(340,27,'F1978B42057448088BD62932DF6A3C4F','updator_user_id','更新人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (341,27,'9484A9AEB54D4A7A872DDB148232C8E2','updator_nickname','更新人（昵称）',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(342,27,'6473A5BB8E1C4E2EB126D5C0EDC3885C','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(343,27,'1746A87D3A0E43CBA8D074B1E1B6DC71','remark','备注',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4748,7 +4748,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(349,28,'A10F938D74A14C899D32CABE0B263A75','graph_uuid','图形设计UUID',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(350,28,'A9F2E06DA9534A7690E825F1680F5C47','graph_version','图形设计版本',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (351,28,'631B05FAD5DA459CAFE6FAE0AFDC60E6','data_table','数据表格',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(352,28,'8CE9EF3BFCD64F1D913458995D63E32E','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(353,28,'3E1E814BA3E04623B31428FDE594949E','creator_user_id','创建人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4760,7 +4760,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(359,28,'8E645C282C3940488E45F1DD8DDD4256','remark','备注',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(360,29,'5506643E2FD740EC951C4B6F38432449','history_id','历史记录ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (361,29,'09E4ED1BF8BB49FCAF16F826FFEF0074','change_label','变更说明',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(362,29,'EF06EEED961541AFAE82192389128FA7','operate_at','操作时间',93,'TIMESTAMP',19,0,0,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(363,29,'4E27ABEF26AD4FB994575A5E9FA6AC93','operator_user_id','操作人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4772,7 +4772,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(369,29,'31AE001A0F874D94998B58C2D0D41BB6','content','文档内容',-1,'LONGTEXT',2147483647,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(370,29,'C95A01AEDAAA4F2FA8BCAAD420DFEDB6','graph_uuid','图形设计UUID',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (371,29,'752A0F251A274B3F8B8F4D789DCC3E06','graph_version','图形设计版本',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(372,29,'EBB211F46571462093F6736CF5CFDCBE','data_table','数据表格',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(373,29,'1013AE8667E74089BEB2D011AB230CB2','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
@@ -4784,7 +4784,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(379,29,'5A171D4A067B48DCA941529CC2E2CB18','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ,(380,29,'83502EACF8394EF697EBA8868C980E98','remark','备注',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:47',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (381,30,'13596BC3E4C04A1692FC1FF400587B2B','const_id','常量ID',1,'CHAR',32,0,0,0,NULL,1,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(382,30,'F486AB91617F4405B8810EC1D9D270C6','code','代码',12,'VARCHAR',128,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(383,30,'C08F70B19D874D6AA70D3792BE0602C5','name','名称',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4796,7 +4796,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(389,31,'8C3C30C70DFA48278AF4A68A91DF82A8','id','主键ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(390,31,'47F4E6F26EDF434DB982B59E451FECB0','uuid','UUID',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (391,31,'0CDE738F2E314244872922B281A2D285','code','代码',12,'VARCHAR',20,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(392,31,'0EAC706F56724C99B516F931F1CA3538','text','名称',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(393,31,'77346DEA61A04222BF3C199EC747CBAB','abbreviation','简称',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4808,7 +4808,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(399,31,'B0260C6E1DC0400CA54842E3D665A331','pid','父级ID',-5,'BIGINT',19,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(400,31,'C8D9832A4C6647A0886F9CB47A8E88AB','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (401,31,'53AE3D9639944C009B551A3C40E58F40','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(402,31,'00FBE4F76BCA484394A7C741A6DD0A67','disabled','是否禁用（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(403,31,'A7376CCC4B2943D3AAA7EBEEEF0E7A20','remark','备注',12,'VARCHAR',800,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4820,7 +4820,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(409,32,'8902A8EE0E7444A5955C179EB0A83E53','file_content','文件内容',-4,'LONGBLOB',2147483647,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(410,32,'867A5463D527428BA2101BBA5168B446','size','文件大小',-5,'BIGINT',19,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (411,32,'7984ACBA86A04CA2AA158064DD9177E6','actuator','执行器',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(412,32,'BB12BA41128D434C83B0A5E5C4B58DB9','param_json','执行参数（Json格式）',-1,'TEXT',65535,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(413,32,'3E07196D25E2447AAAEA7CD86A5E3913','status','状态，1：正常，2：任务初始化，3：任务执行中，4：任务异常，5：任务已完成',4,'INT',10,0,1,0,'1',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4832,7 +4832,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(419,32,'291A9B3795EE4EED8365776E9D17975B','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(420,32,'12CDD6004A4E4386AB7768CF97BA782D','remark','备注',12,'VARCHAR',800,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (421,33,'8D07C1A31A974F46823D6ED16D959201','id','主键ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(422,33,'635BE56D28AA4BDBAFDECFE0234D4D10','user_id','用户ID',12,'VARCHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(423,33,'B7D106F9ECA141EFAC50D5E2F925F7F1','username','账号',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4844,7 +4844,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(429,34,'608290BF076D48DCA9E11EC452A57F5C','org_id','组织机构ID',1,'CHAR',32,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(430,34,'86F86E0AC61244D3861D96CFD81D7CF5','code','代码',12,'VARCHAR',20,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (431,34,'F80811544C0F46CEB5587A5A16F3B519','text','名称',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(432,34,'C61802AAE485461BA5A847E53E89D319','org_type_code','机构类型（编码）',12,'VARCHAR',20,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(433,34,'A544F16FF1254A209E00CBF69A65A711','leader_user_id','负责人（用户ID）',12,'VARCHAR',32,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4856,7 +4856,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(439,34,'CD75083673D841F1B9B47BAFF05D7CCB','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(440,34,'B6F931AFB9284A85AE1CDAB6172A0E4A','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (441,34,'42635BA22E4B49BF8CCD9C1451F6A279','disabled','是否禁用（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(442,34,'4A14C8B8A57A4B88942AC9C4CADB2B2F','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(443,34,'43AF4B4A38FD4BB999C745E43BD5A699','remark','备注',12,'VARCHAR',800,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4868,7 +4868,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(449,35,'96520324F46A4A17A64725731C7B09E3','url','资源地址或标识',12,'VARCHAR',500,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(450,35,'47E4B4B1A2E948F38CD7F39C8DC88F78','icon_cls','图标',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (451,35,'81BC3BB0E3004E5F9D436B87011BBAAD','icon_cls_colour','图标颜色',12,'VARCHAR',20,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(452,35,'67C8A0E7CC904A5A8549A00332ADDDAA','text_colour','资源名称颜色',12,'VARCHAR',20,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(453,35,'983A2F76263B45B2877EE52C538A1799','level','层级',4,'INT',10,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4880,7 +4880,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(459,35,'F352B2167D9647E794A61EE7F11FB401','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(460,35,'C24547C27CDB49EBB890482C1B5AEB06','disabled','是否禁用（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (461,35,'A57888F6593D4DB0B23DCD02B43B896F','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(462,35,'13AC721AC29A4325B9E4D64DE6B526D4','remark','备注',12,'VARCHAR',800,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(463,36,'03EE3C10D42E4D1FB587D3F3B5A98741','id','主键ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4892,7 +4892,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(469,36,'125DE4C30D0C424984D5FA3C6E835C83','sort','排序',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(470,36,'34895B806903421388E131A7E1FADE76','state','展开状态，open：无子角色、closed：有子角色',12,'VARCHAR',20,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (471,36,'7908DD87C47D4021A92C4CFD6CF231AC','pid','父级id',-5,'BIGINT',19,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(472,36,'E462DCA37C4947879A5ED2902E7B15BA','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(473,36,'8A8AD8AD5A864F7CA54CDFF7D8B9E9E5','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4904,7 +4904,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(479,37,'FF96A02AC1BE404F82EADB157FAEEE16','sys_resource_id','资源表（主键ID）',-5,'BIGINT',19,0,0,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(480,37,'62C0995F963245B6B5A7DCDD85EF1D44','alias','别名',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (481,37,'4F7B4C4D696C410DA81660BA5FB696DA','sort','排序',4,'INT',10,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(482,37,'CA1299FB92B343B59082CBCDCFBED5ED','default_home_page','是否为默认主页',-7,'BIT',1,0,1,0,NULL,0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
 ,(483,37,'BE0254B927E94D8B8EF30E6E1072BCCA','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:48',NULL,NULL,0,NULL)
@@ -4916,7 +4916,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(489,38,'7AF123B5E5944F3099CBB21D882A78A6','password','密码',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ,(490,38,'793E6144162546A68216155860B7B6AC','nickname','昵称',12,'VARCHAR',255,0,0,0,NULL,0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (491,38,'5D1A612624E04306A1ADF3D8D3EDE859','realname','真实姓名',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ,(492,38,'EFAA86FFCEBF44DBA88D9FB360DA0A4F','birthday','出生日期',91,'DATE',10,0,1,0,NULL,0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ,(493,38,'72AA78E597C948A086914520E31C212C','sex','性别，M：男，F：女',12,'VARCHAR',1,0,1,0,NULL,0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
@@ -4928,7 +4928,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(499,38,'3431E093DD354E8989BFFB45A11FEECA','account_non_expired','账户未过期（默认未过期）',-7,'BIT',1,0,0,0,'1',0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ,(500,38,'94C278AEDFC745BD80E09C7D68A7490F','credentials_non_expired','凭证未过期（默认未过期）',-7,'BIT',1,0,0,0,'1',0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (501,38,'61DF2648F3784D3696A400C7E9BEF2B4','account_non_locked','账号未锁定（默认未锁定）',-7,'BIT',1,0,0,0,'1',0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ,(502,38,'FFEE2484F37B4434AA34EA31D17C9E72','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ,(503,38,'E76A4DD97E8047238A4ED4C96CC5B7A1','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
@@ -4940,7 +4940,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(509,39,'CBC69E81C7C544A0B9254708518C3CB9','position_name','职位名称',12,'VARCHAR',255,0,1,0,NULL,0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ,(510,39,'0B99F35D3AD94DFA980A7C7FD5A43A24','created_at','创建时间',93,'TIMESTAMP',19,0,0,0,'CURRENT_TIMESTAMP',0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,is_pk,is_fk,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (511,39,'60A4D2A318A74E5383DF6CA4533F1A58','updated_at','更新时间',93,'TIMESTAMP',19,0,1,0,NULL,0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ,(512,39,'2F9B362798184DD88E624AE9ACC1F4BB','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ,(513,40,'C00EC71859F849BF8E4B127CB9E03191','id','主键ID',-5,'BIGINT',19,0,0,1,NULL,1,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
@@ -4951,7 +4951,7 @@ INSERT INTO dev.er_field (id,er_id,uuid,name,comment,sql_type,jdbc_type,`size`,d
 ,(518,40,'D226CE71D4514E2DA3B168BD1F235FA9','deleted','是否删除（默认否）',-7,'BIT',1,0,0,0,'0',0,0,'2022-07-10 19:13:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:49',NULL,NULL,0,NULL)
 ;
 
-INSERT INTO dev.er_field_lib (id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field_lib (id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (1,'93E8996E81F94BCA95E7F61A565A407D','id','主键ID',-5,'BIGINT',19,0,0,1,NULL,'2022-07-10 19:14:03','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:14:03',NULL,NULL,0,NULL)
 ,(2,'1AA2B2C48A4A40858EBAE8DCFD192C44','user_id','用户ID',1,'CHAR',32,0,0,0,NULL,'2022-07-10 19:14:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:14:04',NULL,NULL,0,NULL)
 ,(3,'64E4C3930F09455988C99E47BF117D07','username','登录账号',12,'VARCHAR',255,0,0,0,NULL,'2022-07-10 19:14:06','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:14:06',NULL,NULL,0,NULL)
@@ -4963,7 +4963,7 @@ INSERT INTO dev.er_field_lib (id,uuid,name,comment,sql_type,jdbc_type,`size`,dig
 ,(9,'8E357FFDBE434E37A401509D4B3BE4F1','mobile','手机号码',12,'VARCHAR',30,0,1,0,NULL,'2022-07-10 19:14:14','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:14:14',NULL,NULL,0,NULL)
 ,(10,'44728F83398349A398BF45E03CB526AD','email','邮箱地址',12,'VARCHAR',128,0,1,0,NULL,'2022-07-10 19:14:16','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:14:16',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.er_field_lib (id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO er_field_lib (id,uuid,name,comment,sql_type,jdbc_type,`size`,digit,is_nullable,`auto_increment`,column_def,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (11,'576BC130212F414A8E8D915AFD6147A7','sign','个性签名',12,'VARCHAR',255,0,1,0,NULL,'2022-07-10 19:14:18','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:14:18',NULL,NULL,0,NULL)
 ,(12,'2200C513F2344039A7015918B0E54F3E','avatar','头像',12,'VARCHAR',32,0,1,0,NULL,'2022-07-10 19:14:19','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:14:19',NULL,NULL,0,NULL)
 ,(13,'FBCCFD0490FE48A7A96469C8F7367E28','enabled','是否启用（默认启用）',-7,'BIT',1,0,0,0,'1','2022-07-10 19:14:21','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:14:21',NULL,NULL,0,NULL)
@@ -4975,19 +4975,19 @@ INSERT INTO dev.er_field_lib (id,uuid,name,comment,sql_type,jdbc_type,`size`,dig
 ,(19,'F1BBBD349F374237AB8843CFAC2C9F08','remark','备注',12,'VARCHAR',800,0,1,0,NULL,'2022-07-10 19:14:30','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:14:30',NULL,NULL,0,NULL)
 ;
 
-INSERT INTO dev.doc_project (id,uuid,project_name,visit_level,is_share,tags,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO doc_project (id,uuid,project_name,visit_level,is_share,tags,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (1,'1E0136417D834E619D2D5D65FA401463','MyGraph 管理后台',2,1,'系统手册','2022-07-10 18:59:50','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:59:50',NULL,NULL,0,NULL)
 ;
 
-INSERT INTO dev.doc_project_tag (id,doc_project_id,tag_name,created_at,updated_at,deleted) VALUES 
+INSERT INTO doc_project_tag (id,doc_project_id,tag_name,created_at,updated_at,deleted) VALUES 
 (1,1,'系统手册','2022-07-10 18:59:50','2022-07-10 18:59:50',0)
 ;
 
-INSERT INTO dev.doc_project_member (id,doc_project_id,member_user_id,`role`,created_at,updated_at,deleted) VALUES 
+INSERT INTO doc_project_member (id,doc_project_id,member_user_id,`role`,created_at,updated_at,deleted) VALUES 
 (1,1,'ABFEE20BA6AC4783A683C7117763951E',3,'2022-07-10 18:59:50','2022-07-10 18:59:50',0)
 ;
 
-INSERT INTO dev.doc_category (id,doc_project_id,uuid,text,fullname,icon_cls,`level`,sort,state,pid,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO doc_category (id,doc_project_id,uuid,text,fullname,icon_cls,`level`,sort,state,pid,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (1,1,'8BB20CDD27734665A25BE20D8D28B404','系统手册','系统手册',NULL,1,1,'closed',NULL,'2022-07-10 19:00:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:01:17',NULL,NULL,0,NULL)
 ,(2,1,'2F403FB530BA424FBA1F8A5B20445C82','Markdown','系统手册/Markdown',NULL,2,1,'open',1,'2022-07-10 19:00:20','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:00:20',NULL,NULL,0,NULL)
 ,(3,1,'C5976AC6D8F848AB8DE03AEF4C8BE986','开放能力','系统手册/开放能力',NULL,2,2,'closed',1,'2022-07-10 19:00:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:01:05',NULL,NULL,0,NULL)
@@ -4999,7 +4999,7 @@ INSERT INTO dev.doc_category (id,doc_project_id,uuid,text,fullname,icon_cls,`lev
 ,(9,1,'51A57538A6B140368BA4CF6E2B21D069','获取树形字典','系统手册/开放接口/数据字典/获取树形字典',NULL,4,3,'open',6,'2022-07-10 19:02:14','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:02:14',NULL,NULL,0,NULL)
 ,(10,1,'3BCD4D7242CC4F2E912A8B4AA43D2D0E','单点登录','系统手册/开放接口/单点登录',NULL,3,2,'closed',5,'2022-07-10 19:02:24','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:03:45',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.doc_category (id,doc_project_id,uuid,text,fullname,icon_cls,`level`,sort,state,pid,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO doc_category (id,doc_project_id,uuid,text,fullname,icon_cls,`level`,sort,state,pid,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (11,1,'B2A205C7433A4F11A90FA720E4200A71','验证码图片','系统手册/开放接口/单点登录/验证码图片',NULL,4,1,'closed',10,'2022-07-10 19:02:33','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:02:44',NULL,NULL,0,NULL)
 ,(12,1,'EC40D998DA494A6D9BF47D2BAA147C69','默认风格','系统手册/开放接口/单点登录/验证码图片/默认风格',NULL,5,1,'open',11,'2022-07-10 19:02:43','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:02:43',NULL,NULL,0,NULL)
 ,(13,1,'03EFE7DC10664FC4859743AD8D08341C','获取会话秘钥','系统手册/开放接口/单点登录/获取会话秘钥',NULL,4,2,'open',10,'2022-07-10 19:02:54','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:02:54',NULL,NULL,0,NULL)
@@ -5010,15 +5010,15 @@ INSERT INTO dev.doc_category (id,doc_project_id,uuid,text,fullname,icon_cls,`lev
 ,(18,1,'BA89D24803644078B7F3A6C3936DF13F','根据Ticket查询用户','系统手册/开放接口/单点登录/根据Ticket查询用户',NULL,4,7,'open',10,'2022-07-10 19:03:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:03:45',NULL,NULL,0,NULL)
 ;
 
-INSERT INTO dev.doc_category_collect (id,doc_project_id,doc_category_id,member_user_id,created_at,updated_at,deleted) VALUES 
+INSERT INTO doc_category_collect (id,doc_project_id,doc_category_id,member_user_id,created_at,updated_at,deleted) VALUES 
 (1,1,1,'ABFEE20BA6AC4783A683C7117763951E','2022-07-10 19:08:47','2022-07-10 19:08:47',0)
 ;
 
-INSERT INTO dev.doc_category_share (id,doc_project_id,doc_category_id,uuid,share_type,password,effective_type,deadline,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,disabled,deleted,remark) VALUES 
+INSERT INTO doc_category_share (id,doc_project_id,doc_category_id,uuid,share_type,password,effective_type,deadline,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,disabled,deleted,remark) VALUES 
 (1,1,1,'D32C841B469C4ECA86F936238A6D2118',2,'VGoXQXGlcFIsc9cnV7dHF8IUCTJRazaEMesNMf2T/lI0hGFtXZB4mobfCk3mthcCJo61tPJkMQul29KxT7ODOc63ZXIrih2CFUEE04v7VzyNOmf1a/QfE6imBdHMvNXItQVR0Aw1RCQTCJ4Jcy0cQT6+1mqVnEAdVPHR2KOuCDE=',-1,NULL,'2022-07-10 19:09:01','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:09:01',NULL,NULL,0,0,NULL)
 ;
 
-INSERT INTO dev.markdown (id,uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (1,'CF11DB769EDA48C39C684AC866E18105','系统简介',1,'## 简介
 ### 这是一个权限管理系统
 实现了完整的用户、组织机构、角色资源、数据字典、定时任务、文件管理、登录日志等功能。  
@@ -7833,7 +7833,7 @@ function aesDecrypt (aesKey, encrypted) {
 }
 ```',NULL,NULL,NULL,'2022-07-10 18:56:55','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:56:55',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.markdown (id,uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (11,'700CB22316704796BA3B421C0D96D38A','退出登录',1,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -10735,7 +10735,7 @@ GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)
 }
 ```',NULL,NULL,NULL,'2022-07-10 19:01:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:05:36','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ;
-INSERT INTO dev.markdown (id,uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (21,'E1B5B98909D6499AB4E242A48EA61798','MyGraph 管理后台/系统手册/开放接口/数据字典/获取下级列表',2,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -14399,7 +14399,7 @@ function aesDecrypt (aesKey, encrypted) {
 }
 ```',NULL,NULL,NULL,'2022-07-10 19:03:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:08:07','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ;
-INSERT INTO dev.markdown (id,uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (31,'BA89D24803644078B7F3A6C3936DF13F','MyGraph 管理后台/系统手册/开放接口/单点登录/根据Ticket查询用户',2,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -15616,7 +15616,7 @@ INSERT INTO dev.markdown (id,uuid,name,version,content,graph_uuid,graph_version,
 ```',NULL,NULL,NULL,'2022-07-10 19:03:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:08:30','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ;
 
-INSERT INTO dev.markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (1,'新增','2022-07-10 18:54:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲',1,'CF11DB769EDA48C39C684AC866E18105','系统简介',1,'## 简介
 ### 这是一个权限管理系统
 实现了完整的用户、组织机构、角色资源、数据字典、定时任务、文件管理、登录日志等功能。  
@@ -18431,7 +18431,7 @@ function aesDecrypt (aesKey, encrypted) {
 }
 ```',NULL,NULL,NULL,'2022-07-10 18:56:55','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:56:55',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (11,'新增','2022-07-10 18:57:08','ABFEE20BA6AC4783A683C7117763951E','令狐冲',11,'700CB22316704796BA3B421C0D96D38A','退出登录',1,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -20919,7 +20919,7 @@ INSERT INTO dev.markdown_history (history_id,change_label,operate_at,operator_us
 ,(19,'新增','2022-07-10 19:01:31','ABFEE20BA6AC4783A683C7117763951E','令狐冲',19,'5D76F9B0C7764370AFD8796373FCE0A5','MyGraph 管理后台/系统手册/开放接口/数据字典',1,NULL,NULL,NULL,NULL,'2022-07-10 19:01:31','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:01:31',NULL,NULL,0,NULL)
 ,(20,'新增','2022-07-10 19:01:49','ABFEE20BA6AC4783A683C7117763951E','令狐冲',20,'1E8C6AD04A50441AA90DEE02B8DE828E','MyGraph 管理后台/系统手册/开放接口/数据字典/获取子集列表',1,NULL,NULL,NULL,NULL,'2022-07-10 19:01:48','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:01:48',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (21,'新增','2022-07-10 19:02:07','ABFEE20BA6AC4783A683C7117763951E','令狐冲',21,'E1B5B98909D6499AB4E242A48EA61798','MyGraph 管理后台/系统手册/开放接口/数据字典/获取下级列表',1,NULL,NULL,NULL,NULL,'2022-07-10 19:02:06','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:02:06',NULL,NULL,0,NULL)
 ,(22,'新增','2022-07-10 19:02:14','ABFEE20BA6AC4783A683C7117763951E','令狐冲',22,'51A57538A6B140368BA4CF6E2B21D069','MyGraph 管理后台/系统手册/开放接口/数据字典/获取树形字典',1,NULL,NULL,NULL,NULL,'2022-07-10 19:02:14','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:02:14',NULL,NULL,0,NULL)
 ,(23,'新增','2022-07-10 19:02:25','ABFEE20BA6AC4783A683C7117763951E','令狐冲',23,'3BCD4D7242CC4F2E912A8B4AA43D2D0E','MyGraph 管理后台/系统手册/开放接口/单点登录',1,NULL,NULL,NULL,NULL,'2022-07-10 19:02:25','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:02:25',NULL,NULL,0,NULL)
@@ -20931,7 +20931,7 @@ INSERT INTO dev.markdown_history (history_id,change_label,operate_at,operator_us
 ,(29,'新增','2022-07-10 19:03:23','ABFEE20BA6AC4783A683C7117763951E','令狐冲',29,'D5F67FFCE2EF4F03BD1F78F6BD6945AC','MyGraph 管理后台/系统手册/开放接口/单点登录/退出登录',1,NULL,NULL,NULL,NULL,'2022-07-10 19:03:23','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:03:23',NULL,NULL,0,NULL)
 ,(30,'新增','2022-07-10 19:03:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲',30,'A74653859AB44D32BD67AAABAF44179D','MyGraph 管理后台/系统手册/开放接口/单点登录/获取当前登录用户',1,NULL,NULL,NULL,NULL,'2022-07-10 19:03:32','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:03:32',NULL,NULL,0,NULL)
 ;
-INSERT INTO dev.markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (31,'新增','2022-07-10 19:03:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲',31,'BA89D24803644078B7F3A6C3936DF13F','MyGraph 管理后台/系统手册/开放接口/单点登录/根据Ticket查询用户',1,NULL,NULL,NULL,NULL,'2022-07-10 19:03:45','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:03:45',NULL,NULL,0,NULL)
 ,(32,'修改','2022-07-10 19:04:39','ABFEE20BA6AC4783A683C7117763951E','令狐冲',14,'8BB20CDD27734665A25BE20D8D28B404','MyGraph 管理后台/系统手册',2,'## 简介
 ### 这是一个权限管理系统
@@ -22529,7 +22529,7 @@ function aesDecrypt (aesKey, encrypted) {
 
 ![单点登录页](https://renlm.cn/images/demo/LoginPageSso.png "单点登录页")',NULL,NULL,NULL,'2022-07-10 19:03:03','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:07:12','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ;
-INSERT INTO dev.markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
+INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (41,'修改','2022-07-10 19:07:34','ABFEE20BA6AC4783A683C7117763951E','令狐冲',28,'3D7F481AA4034AAAB0A51AB7E9FF2838','MyGraph 管理后台/系统手册/开放接口/单点登录/登录接口',2,'### 基本信息
 当需要自定义登录页面时，可使用登录接口来完成登录。  
 
