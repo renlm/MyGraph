@@ -13,7 +13,7 @@
 
 ## 系统体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
-***此为体验系统，请不要修改密码，每天晚上定时重置为初始状态。***  
+***此为体验系统，请不要修改密码，不定期重置为初始状态。***  
 ```
 账号（超级管理员）：S-linghc  
 账号（普通用户）：S-renyy  
@@ -36,8 +36,8 @@
 ![编辑文档](https://renlm.cn/images/demo/213.png "编辑文档")
 ![Markdown文档](https://renlm.cn/images/demo/214.png "Markdown文档")
 
-### 分享与收藏
-收藏或分享后，在知识文库页面可快速进入。
+#### 分享与收藏
+收藏或分享后，在知识文库可快速进入。
 ![分享与收藏](https://renlm.cn/images/demo/215.png "分享与收藏")
 
 ### 数据库设计
@@ -57,12 +57,22 @@
 
 #### 导出DDL
 图形分类为ER模型的才可导出DDL，下载的DDL建表语句带注释，可直接执行。
-![我的字段库](https://renlm.cn/images/demo/310.png "我的字段库")
+![下载DDL](https://renlm.cn/images/demo/310.png "下载DDL")
+![DDL](https://renlm.cn/images/demo/311.png "DDL")
+
+#### 图形设计（所有公开及自己名下的图）
+![所有公开及自己名下的图](https://renlm.cn/images/demo/312.png "所有公开及自己名下的图")
 
 ### 网关代理
-#### 新建代理配置
+#### 代理配置
+![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
+![代理地址](https://renlm.cn/images/demo/402.png "代理地址")
 
-#### 验证配置、日志记录及统计数据是否正常
+#### 日志记录
+![日志记录](https://renlm.cn/images/demo/403.png "日志记录")
+
+#### 统计数据
+![统计数据](https://renlm.cn/images/demo/404.png "统计数据")
 
 ### 单点登录集成
 #### 统一登录及用户中心
