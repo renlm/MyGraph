@@ -60,13 +60,16 @@
 ![下载DDL](https://renlm.cn/images/demo/310.png "下载DDL")
 ![DDL](https://renlm.cn/images/demo/311.png "DDL")
 
-#### 图形设计（所有公开及自己名下的图）
+#### 图形设计
+展示所有公开及自己名下的图。  
+除了数据库ER图，同时支持其它诸如流程图、UML、思维导图等常见图形。  
+自动计算图形尺寸并生成封面。  
 ![所有公开及自己名下的图](https://renlm.cn/images/demo/312.png "所有公开及自己名下的图")
 
 ### 网关代理
 #### 代理配置
-统一代理地址前缀：/proxy/
-例：https://mygraph.renlm.cn/proxy/baidu/
+统一代理地址前缀：/proxy/  
+例：https://mygraph.renlm.cn/proxy/baidu/  
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 ![代理地址](https://renlm.cn/images/demo/402.png "代理地址")
 
