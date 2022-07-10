@@ -5,6 +5,7 @@ import static org.springframework.security.core.context.SecurityContextHolder.ge
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.http.ContentType;
+import cn.hutool.http.HttpUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
 import cn.renlm.graph.amqp.LoginLogQueue;
 import cn.renlm.graph.dto.User;
@@ -63,7 +65,13 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 			out.write(objectMapper.writeValueAsString(result));
 			out.close();
 		} else {
-			super.onAuthenticationSuccess(request, response, authentication);
+			Map<String, String> paramMap = ServletUtil.getParamMap(request);
+			String callback = paramMap.get("callback");
+			if (HttpUtil.isHttp(callback) || HttpUtil.isHttps(callback)) {
+				getRedirectStrategy().sendRedirect(request, response, callback);
+			} else {
+				super.onAuthenticationSuccess(request, response, authentication);
+			}
 		}
 	}
 
