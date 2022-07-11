@@ -5114,7 +5114,7 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
-例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>  
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>  
 
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 
@@ -5299,7 +5299,7 @@ ___<a href="https://renlm.cn/images/demo/003.png" target="_blank"> 截图-效果
 ,(3,'946DDABD8C6040DFB3910D8A9182E8D3','网关代理',1,'## 简介
 反向代理的Java实现，实现在线配置、限速、日志记录与流量统计等功能。
 统一代理前缀：/proxy/
-例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>
 
 ## 扩展请求头
 GW-AccessKey： 代理应用的Access Key  
@@ -10409,7 +10409,7 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
-例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>  
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>  
 
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 
@@ -10595,7 +10595,7 @@ ___<a href="https://renlm.cn/images/demo/003.png" target="_blank"> 截图-效果
 ,(17,'150EA5AD07D54C2FB5F7359FE79DEE34','MyGraph 管理后台/系统手册/开放能力/网关代理',2,'## 简介
 反向代理的Java实现，实现在线配置、限速、日志记录与流量统计等功能。
 统一代理前缀：/proxy/
-例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>
 
 ## 扩展请求头
 GW-AccessKey： 代理应用的Access Key  
@@ -15716,7 +15716,7 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
-例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>  
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>  
 
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 
@@ -15901,7 +15901,7 @@ ___<a href="https://renlm.cn/images/demo/003.png" target="_blank"> 截图-效果
 ,(3,'新增','2022-07-10 18:54:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲',3,'946DDABD8C6040DFB3910D8A9182E8D3','网关代理',1,'## 简介
 反向代理的Java实现，实现在线配置、限速、日志记录与流量统计等功能。
 统一代理前缀：/proxy/
-例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>
 
 ## 扩展请求头
 GW-AccessKey： 代理应用的Access Key  
@@ -21033,7 +21033,7 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
-例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>  
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>  
 
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 
@@ -21218,7 +21218,7 @@ ___<a href="https://renlm.cn/images/demo/003.png" target="_blank"> 截图-效果
 ,(34,'修改','2022-07-10 19:05:15','ABFEE20BA6AC4783A683C7117763951E','令狐冲',17,'150EA5AD07D54C2FB5F7359FE79DEE34','MyGraph 管理后台/系统手册/开放能力/网关代理',2,'## 简介
 反向代理的Java实现，实现在线配置、限速、日志记录与流量统计等功能。
 统一代理前缀：/proxy/
-例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>
 
 ## 扩展请求头
 GW-AccessKey： 代理应用的Access Key  

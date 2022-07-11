@@ -91,7 +91,7 @@
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
-例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://mygraph.renlm.cn/proxy/baidu/ </a>  
+例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>  
 
 ![代理配置](https://renlm.cn/images/demo/401.png "代理配置")
 
