@@ -5,6 +5,7 @@ import static org.springframework.security.core.context.SecurityContextHolder.ge
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,10 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.net.url.UrlQuery;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import cn.hutool.http.ContentType;
@@ -29,6 +33,7 @@ import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysLoginLog;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.SessionUtil;
+import io.netty.util.CharsetUtil;
 import lombok.Cleanup;
 
 /**
@@ -68,7 +73,13 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 			Map<String, String> paramMap = ServletUtil.getParamMap(request);
 			String callback = paramMap.get("callback");
 			if (HttpUtil.isHttp(callback) || HttpUtil.isHttps(callback)) {
-				getRedirectStrategy().sendRedirect(request, response, callback);
+				UrlQuery uq = UrlQuery.of(callback, CharsetUtil.UTF_8);
+				Map<CharSequence, CharSequence> param = new LinkedHashMap<>();
+				BeanUtil.copyProperties(uq.getQueryMap(), param);
+				param.put("ticket", principal.getTicket());
+				MapUtil.removeNullValue(param);
+				String url = callback.split("\\?")[0] + "?" + UrlQuery.of(param).build(CharsetUtil.UTF_8);
+				getRedirectStrategy().sendRedirect(request, response, url);
 			} else {
 				super.onAuthenticationSuccess(request, response, authentication);
 			}
