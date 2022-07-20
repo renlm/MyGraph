@@ -6,6 +6,7 @@ import static cn.hutool.core.text.StrPool.COMMA;
 import static cn.hutool.core.text.StrPool.SLASH;
 import static cn.hutool.core.util.ReUtil.getGroup1;
 import static cn.hutool.json.JSONUtil.toJsonStr;
+import static cn.renlm.graph.config.WebMvcConfig.corsFilterOrder;
 import static cn.renlm.graph.util.SessionUtil.getBaseUser;
 import static com.github.mkopylec.charon.configuration.CharonConfigurer.charonConfiguration;
 import static com.github.mkopylec.charon.configuration.RequestMappingConfigurer.requestMapping;
@@ -61,7 +62,6 @@ import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.system.SystemUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
 import cn.renlm.graph.amqp.GatewayProxyLogQueue;
-import cn.renlm.graph.config.WebMvcConfig;
 import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
@@ -83,12 +83,9 @@ import lombok.extern.slf4j.Slf4j;
 public class GatewayUtil {
 
 	/**
-	 * 配置对象
+	 * 配置对象（确保在跨域之后）
 	 */
-	private static final CharonConfigurer charonConfigurer = charonConfiguration();
-	static {
-		charonConfigurer.filterOrder(WebMvcConfig.corsFilterOrder - 1);
-	}
+	private static final CharonConfigurer charonConfigurer = charonConfiguration().filterOrder(corsFilterOrder + 100);
 
 	/**
 	 * 网关代理路径
