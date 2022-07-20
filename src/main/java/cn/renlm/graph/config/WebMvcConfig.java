@@ -1,6 +1,12 @@
 package cn.renlm.graph.config;
 
+import java.io.IOException;
 import java.util.Date;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
@@ -52,12 +58,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		config.addAllowedMethod("*");
 		config.setAllowCredentials(true);
 		UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource();
-		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.APIAntMatcher, config);
-		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.PubAntMatcher, config);
 		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.GwAntMatcher, config);
-		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.KaptchaAntMatcher, config);
-		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.LoginProcessingUrl, config);
-		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource));
+		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource) {
+			@Override
+			protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+					FilterChain filterChain) throws ServletException, IOException {
+				super.doFilterInternal(request, response, filterChain);
+			}
+		});
 		bean.setOrder(corsFilterOrder);
 		return bean;
 	}
