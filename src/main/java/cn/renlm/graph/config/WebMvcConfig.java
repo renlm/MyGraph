@@ -32,6 +32,8 @@ import cn.hutool.core.util.StrUtil;
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+	
+	public static final int corsFilterOrder = Ordered.HIGHEST_PRECEDENCE + 100;
 
 	@Autowired
 	private ThymeleafProperties thymeleafProperties;
@@ -53,7 +55,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.KaptchaAntMatcher, config);
 		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.LoginProcessingUrl, config);
 		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource));
-		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		bean.setOrder(corsFilterOrder);
 		return bean;
 	}
 

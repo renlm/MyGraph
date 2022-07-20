@@ -61,6 +61,7 @@ import cn.hutool.extra.spring.SpringUtil;
 import cn.hutool.system.SystemUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
 import cn.renlm.graph.amqp.GatewayProxyLogQueue;
+import cn.renlm.graph.config.WebMvcConfig;
 import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyConfig;
 import cn.renlm.graph.modular.gateway.entity.GatewayProxyLog;
@@ -85,6 +86,9 @@ public class GatewayUtil {
 	 * 配置对象
 	 */
 	private static final CharonConfigurer charonConfigurer = charonConfiguration();
+	static {
+		charonConfigurer.filterOrder(WebMvcConfig.corsFilterOrder - 1);
+	}
 
 	/**
 	 * 网关代理路径
