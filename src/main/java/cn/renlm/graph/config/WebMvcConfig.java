@@ -70,8 +70,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 					return;
 				} else {
 					boolean doCorsFilter = false;
-					String uri = request.getRequestURI();
-					if (StrUtil.startWith(uri, GatewayUtil.proxyPath)) {
+					String servletPath = request.getServletPath();
+					if (StrUtil.startWith(servletPath, GatewayUtil.proxyPath)) {
 
 					}
 					if (doCorsFilter) {
