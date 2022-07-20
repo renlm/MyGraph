@@ -34,7 +34,9 @@ import static java.time.Duration.ofSeconds;
 import static org.springframework.http.HttpHeaders.COOKIE;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
@@ -93,6 +95,11 @@ public class GatewayUtil {
 	public static final String proxyPath = "/proxy/";
 
 	/**
+	 * 网关配置映射
+	 */
+	public static volatile Map<String, GatewayProxyConfig> proxyMap = new LinkedHashMap<>();
+
+	/**
 	 * 扩展代理请求头
 	 */
 	public static final String HEADER_Ticket = "GW-Ticket";
@@ -137,6 +144,7 @@ public class GatewayUtil {
 					wrapper.orderByAsc(GatewayProxyConfig::getProxyConfigId);
 				}));
 		configs.forEach(config -> {
+			proxyMap.put(config.getPath(), config);
 			String path = config.getPath();
 			List<String> outgoingServers = StrUtil.splitTrim(config.getOutgoingServers(), COMMA);
 			CollUtil.removeBlank(outgoingServers);
