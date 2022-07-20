@@ -17,6 +17,7 @@ import org.springframework.core.Ordered;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -27,6 +28,8 @@ import org.springframework.web.servlet.resource.ContentVersionStrategy;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.resource.VersionResourceResolver;
 import org.springframework.web.servlet.resource.WebJarsResourceResolver;
+
+import com.github.mkopylec.charon.configuration.GatewayUtil;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
@@ -63,7 +66,18 @@ public class WebMvcConfig implements WebMvcConfigurer {
 			@Override
 			protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
 					FilterChain filterChain) throws ServletException, IOException {
-				super.doFilterInternal(request, response, filterChain);
+				if (CorsUtils.isPreFlightRequest(request)) {
+					return;
+				} else {
+					boolean doCorsFilter = false;
+					String uri = request.getRequestURI();
+					if (StrUtil.startWith(uri, GatewayUtil.proxyPath)) {
+
+					}
+					if (doCorsFilter) {
+						super.doFilterInternal(request, response, filterChain);
+					}
+				}
 			}
 		});
 		bean.setOrder(corsFilterOrder);
