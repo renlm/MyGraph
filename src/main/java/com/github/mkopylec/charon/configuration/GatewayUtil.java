@@ -41,6 +41,7 @@ import java.util.Map;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.cors.CorsConfiguration;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.github.mkopylec.charon.forwarding.MyReverseProxyFilter;
@@ -95,9 +96,9 @@ public class GatewayUtil {
 	public static final String proxyPath = "/proxy/";
 
 	/**
-	 * 网关配置映射
+	 * 网关跨域配置
 	 */
-	public static volatile Map<String, GatewayProxyConfig> proxyMap = new LinkedHashMap<>();
+	public static volatile Map<String, CorsConfiguration> proxyCorsMap = new LinkedHashMap<>();
 
 	/**
 	 * 扩展代理请求头
@@ -143,8 +144,8 @@ public class GatewayUtil {
 					}
 					wrapper.orderByAsc(GatewayProxyConfig::getProxyConfigId);
 				}));
+		proxyCorsMap.clear();
 		configs.forEach(config -> {
-			proxyMap.put(config.getPath(), config);
 			String path = config.getPath();
 			List<String> outgoingServers = StrUtil.splitTrim(config.getOutgoingServers(), COMMA);
 			CollUtil.removeBlank(outgoingServers);
@@ -152,6 +153,14 @@ public class GatewayUtil {
 			if (disabled) {
 				outgoingServers.clear();
 				outgoingServers.add(myConfigProperties.getCtx());
+			}
+			if (BooleanUtil.isTrue(config.getAllowCros()) && StrUtil.isNotBlank(config.getCrosOrigin())) {
+				CorsConfiguration corsConfig = new CorsConfiguration();
+				corsConfig.addAllowedOriginPattern(config.getCrosOrigin());
+				corsConfig.addAllowedHeader("*");
+				corsConfig.addAllowedMethod("*");
+				corsConfig.setAllowCredentials(true);
+				proxyCorsMap.put(path, corsConfig);
 			}
 			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
 				final String root = StrUtil.isNotBlank(contextPath)
