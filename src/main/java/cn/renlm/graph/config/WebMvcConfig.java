@@ -1,5 +1,11 @@
 package cn.renlm.graph.config;
 
+import static cn.hutool.core.text.StrPool.SLASH;
+import static cn.renlm.graph.config.WebSecurityConfig.GwAntMatcher;
+import static com.github.mkopylec.charon.configuration.GatewayUtil.proxyCorsMap;
+import static com.github.mkopylec.charon.configuration.GatewayUtil.proxyPath;
+import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
+
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +15,6 @@ import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.cors.CorsConfiguration;
@@ -24,8 +29,6 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.resource.VersionResourceResolver;
 import org.springframework.web.servlet.resource.WebJarsResourceResolver;
 
-import com.github.mkopylec.charon.configuration.GatewayUtil;
-
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 
@@ -37,7 +40,7 @@ import cn.hutool.core.util.StrUtil;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 	
-	public static final int corsFilterOrder = Ordered.HIGHEST_PRECEDENCE;
+	public static final int corsFilterOrder = HIGHEST_PRECEDENCE;
 
 	@Autowired
 	private ThymeleafProperties thymeleafProperties;
@@ -48,24 +51,24 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Bean
 	public FilterRegistrationBean<CorsFilter> corsFilter() {
 		CorsConfiguration config = new CorsConfiguration();
-		config.addAllowedOriginPattern("*");
-		config.addAllowedHeader("*");
-		config.addAllowedMethod("*");
+		config.addAllowedOriginPattern(CorsConfiguration.ALL);
+		config.addAllowedHeader(CorsConfiguration.ALL);
+		config.addAllowedMethod(CorsConfiguration.ALL);
 		config.setAllowCredentials(true);
 		UrlBasedCorsConfigurationSource corsConfigurationSource = new UrlBasedCorsConfigurationSource() {
 			@Override
 			public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 				String servletPath = request.getServletPath();
-				if (StrUtil.startWith(servletPath, GatewayUtil.proxyPath)) {
-					String str = StrUtil.removePrefix(servletPath, GatewayUtil.proxyPath);
-					String path = StrUtil.subBefore(str, StrUtil.SLASH, false);
-					return GatewayUtil.proxyCorsMap.get(path);
+				if (StrUtil.startWith(servletPath, proxyPath)) {
+					String str = StrUtil.removePrefix(servletPath, proxyPath);
+					String path = StrUtil.subBefore(str, SLASH, false);
+					return proxyCorsMap.get(path);
 				} else {
 					return super.getCorsConfiguration(request);
 				}
 			}
 		};
-		corsConfigurationSource.registerCorsConfiguration(WebSecurityConfig.GwAntMatcher, config);
+		corsConfigurationSource.registerCorsConfiguration(GwAntMatcher, config);
 		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource));
 		bean.setOrder(corsFilterOrder);
 		return bean;

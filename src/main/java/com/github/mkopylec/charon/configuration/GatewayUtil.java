@@ -34,9 +34,9 @@ import static java.time.Duration.ofSeconds;
 import static org.springframework.http.HttpHeaders.COOKIE;
 
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.HttpHeaders;
@@ -98,7 +98,7 @@ public class GatewayUtil {
 	/**
 	 * 网关跨域配置
 	 */
-	public static volatile Map<String, CorsConfiguration> proxyCorsMap = new LinkedHashMap<>();
+	public static volatile Map<String, CorsConfiguration> proxyCorsMap = new ConcurrentHashMap<>();
 
 	/**
 	 * 扩展代理请求头
@@ -155,14 +155,14 @@ public class GatewayUtil {
 				outgoingServers.add(myConfigProperties.getCtx());
 			}
 			if (BooleanUtil.isTrue(config.getCrosAllowed())) {
-				List<String> crosOriginPatterns = StrUtil.splitTrim(config.getCrosOriginPatterns(), StrUtil.COMMA);
+				List<String> crosOriginPatterns = StrUtil.splitTrim(config.getCrosOriginPatterns(), COMMA);
 				CollUtil.removeBlank(crosOriginPatterns);
 				if (CollUtil.isNotEmpty(crosOriginPatterns)) {
 					crosOriginPatterns.forEach(crosOriginPattern -> {
 						CorsConfiguration corsConfig = new CorsConfiguration();
 						corsConfig.addAllowedOriginPattern(crosOriginPattern);
-						corsConfig.addAllowedHeader("*");
-						corsConfig.addAllowedMethod("*");
+						corsConfig.addAllowedHeader(CorsConfiguration.ALL);
+						corsConfig.addAllowedMethod(CorsConfiguration.ALL);
 						corsConfig.setAllowCredentials(true);
 						proxyCorsMap.put(path, corsConfig);
 					});
