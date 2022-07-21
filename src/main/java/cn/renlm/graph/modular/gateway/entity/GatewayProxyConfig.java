@@ -75,6 +75,18 @@ public class GatewayProxyConfig implements Serializable {
     private Boolean enabled;
 
     /**
+     * 是否允许跨域（默认否）
+     */
+    @TableField("cros_allowed")
+    private Boolean crosAllowed;
+
+    /**
+     * 跨域来源限制（匹配规则，多个逗号分隔）
+     */
+    @TableField("cros_origin_patterns")
+    private String crosOriginPatterns;
+
+    /**
      * 连接超时时间（秒）
      */
     @TableField("connection_timeout")
@@ -97,18 +109,6 @@ public class GatewayProxyConfig implements Serializable {
      */
     @TableField("limit_for_second")
     private Integer limitForSecond;
-
-    /**
-     * 是否允许跨域（默认否）
-     */
-    @TableField("cros_allowed")
-    private Boolean crosAllowed;
-
-    /**
-     * 跨域来源限制（匹配规则，多个逗号分隔）
-     */
-    @TableField("cros_origin_patterns")
-    private String crosOriginPatterns;
 
     /**
      * 创建时间
