@@ -92,7 +92,16 @@
 						data: [
 							{text:'是',value:'true'},
 						    {text:'否',value:'false'}
-						]
+						],
+						onChange:function(newValue,oldValue){
+							var $target = $('#crosOriginPatterns');
+							if(newValue==='true'){
+								$target.textbox({required:true});
+							} else if(newValue==='false'){
+								$target.textbox({required:false});
+								$target.textbox('clear');
+							}
+						}
 					"/>
             </div>
         </div>
@@ -102,12 +111,13 @@
             <label class="myui-form-label">跨域来源限制</label>
             <div class="myui-input-block">
             	<input type="text" th:field="*{crosOriginPatterns}" 
-					class="easyui-tagbox"
-					data-options="required:false,
-						prompt:'回车确认',
+            		id="crosOriginPatterns"
+					class="easyui-textbox"
+					th:data-options="|required:*{crosAllowed},
+						prompt:'匹配规则，多个逗号分隔',
 						width:'100%',
 						validType:'maxLength[255]'
-					"/>
+					|"/>
             </div>
         </div>
     </div>
