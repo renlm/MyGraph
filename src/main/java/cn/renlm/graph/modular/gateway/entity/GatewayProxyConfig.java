@@ -101,14 +101,14 @@ public class GatewayProxyConfig implements Serializable {
     /**
      * 是否允许跨域（默认否）
      */
-    @TableField("allow_cros")
-    private Boolean allowCros;
+    @TableField("cros_allowed")
+    private Boolean crosAllowed;
 
     /**
      * 跨域来源限制（匹配规则，多个逗号分隔）
      */
-    @TableField("cros_origin")
-    private String crosOrigin;
+    @TableField("cros_origin_patterns")
+    private String crosOriginPatterns;
 
     /**
      * 创建时间
