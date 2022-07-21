@@ -16,9 +16,9 @@ import lombok.experimental.UtilityClass;
 public class ConstVal {
 
 	/**
-	 * 会话存储时长（秒），6小时
+	 * 会话存储时长（秒），十二小时
 	 */
-	public static final int MAX_INACTIVE_INTERVAL_SECONDS = MapSession.DEFAULT_MAX_INACTIVE_INTERVAL_SECONDS * 2 * 6;
+	public static final int MAX_INACTIVE_INTERVAL_SECONDS = MapSession.DEFAULT_MAX_INACTIVE_INTERVAL_SECONDS * 2 * 12;
 
 	/**
 	 * 验证码-会话存储键
