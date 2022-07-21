@@ -37,9 +37,6 @@ import cn.hutool.core.util.StrUtil;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 	
-	/**
-	 * 跨域过滤优先级最高
-	 */
 	public static final int corsFilterOrder = Ordered.HIGHEST_PRECEDENCE;
 
 	@Autowired

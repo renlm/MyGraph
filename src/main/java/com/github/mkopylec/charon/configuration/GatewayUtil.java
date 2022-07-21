@@ -154,13 +154,19 @@ public class GatewayUtil {
 				outgoingServers.clear();
 				outgoingServers.add(myConfigProperties.getCtx());
 			}
-			if (BooleanUtil.isTrue(config.getAllowCros()) && StrUtil.isNotBlank(config.getCrosOrigin())) {
-				CorsConfiguration corsConfig = new CorsConfiguration();
-				corsConfig.addAllowedOriginPattern(config.getCrosOrigin());
-				corsConfig.addAllowedHeader("*");
-				corsConfig.addAllowedMethod("*");
-				corsConfig.setAllowCredentials(true);
-				proxyCorsMap.put(path, corsConfig);
+			if (BooleanUtil.isTrue(config.getAllowCros())) {
+				List<String> crosOrigins = StrUtil.splitTrim(config.getCrosOrigin(), StrUtil.COMMA);
+				CollUtil.removeBlank(crosOrigins);
+				if (CollUtil.isNotEmpty(crosOrigins)) {
+					crosOrigins.forEach(crosOrigin -> {
+						CorsConfiguration corsConfig = new CorsConfiguration();
+						corsConfig.addAllowedOriginPattern(crosOrigin);
+						corsConfig.addAllowedHeader("*");
+						corsConfig.addAllowedMethod("*");
+						corsConfig.setAllowCredentials(true);
+						proxyCorsMap.put(path, corsConfig);
+					});
+				}
 			}
 			if (StrUtil.isNotBlank(path) && CollUtil.isNotEmpty(outgoingServers)) {
 				final String root = StrUtil.isNotBlank(contextPath)
