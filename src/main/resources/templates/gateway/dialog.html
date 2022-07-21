@@ -101,13 +101,13 @@
         <div class="myui-col-sm12">
             <label class="myui-form-label">跨域来源限制</label>
             <div class="myui-input-block">
-                <input type="text" th:field="*{crosOriginPatterns}" 
-                	class="easyui-textbox" 
-                	data-options="required:true,
-                		prompt:'必填',
-                		width:'100%',
+            	<input type="text" th:field="*{crosOriginPatterns}" 
+					class="easyui-tagbox"
+					data-options="required:false,
+						prompt:'回车确认',
+						width:'100%',
 						validType:'maxLength[255]'
-                	"/>
+					"/>
             </div>
         </div>
     </div>
