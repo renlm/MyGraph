@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author Renlm
- * @since 2022-07-09
+ * @since 2022-07-21
  */
 @Getter
 @Setter
@@ -97,6 +97,18 @@ public class GatewayProxyConfig implements Serializable {
      */
     @TableField("limit_for_second")
     private Integer limitForSecond;
+
+    /**
+     * 是否允许跨域（默认否）
+     */
+    @TableField("allow_cros")
+    private Boolean allowCros;
+
+    /**
+     * 跨域来源限制（匹配规则，多个逗号分隔）
+     */
+    @TableField("cros_origin")
+    private String crosOrigin;
 
     /**
      * 创建时间
