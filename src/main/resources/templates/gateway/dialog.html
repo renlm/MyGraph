@@ -18,26 +18,6 @@
             </div>
         </div>
         <div class="myui-col-sm6">
-            <label class="myui-form-label">启用状态</label>
-            <div class="myui-input-block">
-                <input type="text" th:field="*{enabled}"
-                	class="easyui-combobox"
-                  	data-options="required:true,
-                   		editable:false,
-						valueField:'value',
-						textField:'text',
-                		width:'100%',
-						panelHeight:'auto',
-						data: [
-							{text:'启用',value:'true'},
-						    {text:'禁用',value:'false'}
-						]
-					"/>
-            </div>
-        </div>
-    </div>
-    <div class="myui-row">
-        <div class="myui-col-sm12">
             <label class="myui-form-label">名称</label>
             <div class="myui-input-block">
                 <input type="text" th:field="*{name}" 
@@ -75,6 +55,58 @@
                 		prompt:'Secret Key',
                 		width:'100%',
 						validType:'maxLength[32]'
+                	"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">启用状态</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{enabled}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+                   		editable:false,
+						valueField:'value',
+						textField:'text',
+                		width:'100%',
+						panelHeight:'auto',
+						data: [
+							{text:'启用',value:'true'},
+						    {text:'禁用',value:'false'}
+						]
+					"/>
+            </div>
+        </div>
+        <div class="myui-col-sm6">
+            <label class="myui-form-label">是否允许跨域</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{crosAllowed}"
+                	class="easyui-combobox"
+                  	data-options="required:true,
+                   		editable:false,
+						valueField:'value',
+						textField:'text',
+                		width:'100%',
+						panelHeight:'auto',
+						data: [
+							{text:'是',value:'true'},
+						    {text:'否',value:'false'}
+						]
+					"/>
+            </div>
+        </div>
+    </div>
+    <div class="myui-row">
+        <div class="myui-col-sm12">
+            <label class="myui-form-label">跨域来源限制</label>
+            <div class="myui-input-block">
+                <input type="text" th:field="*{crosOriginPatterns}" 
+                	class="easyui-textbox" 
+                	data-options="required:true,
+                		prompt:'必填',
+                		width:'100%',
+						validType:'maxLength[255]'
                 	"/>
             </div>
         </div>

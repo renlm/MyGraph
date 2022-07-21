@@ -79,6 +79,7 @@ public class GatewayProxyConfigController {
 	public String dialog(ModelMap model, String uuid) {
 		GatewayProxyConfig gatewayProxyConfig = new GatewayProxyConfig();
 		gatewayProxyConfig.setEnabled(true);
+		gatewayProxyConfig.setCrosAllowed(false);
 		gatewayProxyConfig.setConnectionTimeout(1);
 		gatewayProxyConfig.setReadTimeout(600);
 		gatewayProxyConfig.setWriteTimeout(600);
