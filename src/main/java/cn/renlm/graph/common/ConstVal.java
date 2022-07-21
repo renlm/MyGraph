@@ -2,7 +2,6 @@ package cn.renlm.graph.common;
 
 import org.springframework.session.MapSession;
 
-import cn.hutool.setting.Setting;
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
 
@@ -63,7 +62,7 @@ public class ConstVal {
 	/**
 	 * Chrome 驱动配置
 	 */
-	public static final Setting chromeSetting = new Setting("config/chrome.setting");
+	public static final String chromeSetting = "config/chrome.setting";
 
 	/**
 	 * 系统常量

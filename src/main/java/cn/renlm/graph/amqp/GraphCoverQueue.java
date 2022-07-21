@@ -89,7 +89,7 @@ public class GraphCoverQueue {
 		Rectangle rectangle = ERModelParser.getRectangle(graph.getXml());
 		int width = Convert.toInt(Math.ceil(rectangle.getWidth() < 800 ? 800 : rectangle.getWidth()));
 		int height = Convert.toInt(Math.ceil(rectangle.getHeight() < 600 ? 600 : rectangle.getHeight()));
-		Setting chromeSetting = new Setting(ConstVal.chromeSetting.getSettingPath());
+		Setting chromeSetting = new Setting(ConstVal.chromeSetting);
 		chromeSetting.set("windowSize", StrUtil.join(StrUtil.COMMA, width + 60, height + 60));
 		// 启动爬虫
 		String imageType = ImgUtil.IMAGE_TYPE_PNG;
