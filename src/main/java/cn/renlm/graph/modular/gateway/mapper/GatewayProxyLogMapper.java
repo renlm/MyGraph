@@ -20,17 +20,17 @@ public interface GatewayProxyLogMapper extends BaseMapper<GatewayProxyLog> {
 	/**
 	 * 统计数据（访问用户数）
 	 * 
-	 * @param proxyConfigUuid
+	 * @param proxyConfigId
 	 * @return
 	 */
-	List<EchartsXyAxis> getUvStatisticalData(String proxyConfigUuid);
+	List<EchartsXyAxis> getUvStatisticalData(Long proxyConfigId);
 
 	/**
 	 * 统计数据（页面访问量）
 	 * 
-	 * @param proxyConfigUuid
+	 * @param proxyConfigId
 	 * @return
 	 */
-	List<EchartsXyAxis> getPvStatisticalData(String proxyConfigUuid);
+	List<EchartsXyAxis> getPvStatisticalData(Long proxyConfigId);
 
 }

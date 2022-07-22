@@ -74,9 +74,15 @@ public class GatewayProxyLogServiceImpl extends ServiceImpl<GatewayProxyLogMappe
 		Integer max = Integer.valueOf(DateUtil.format(new Date(), PURE_DATE_PATTERN));
 		BigDecimal zero = new BigDecimal(0);
 		Integer min = max;
+		// 代理配置
+		GatewayProxyConfig proxyConfig = iGatewayProxyConfigService
+				.getOne(Wrappers.<GatewayProxyConfig>lambdaQuery().eq(GatewayProxyConfig::getUuid, proxyConfigUuid));
+		if (proxyConfig == null) {
+			return statisticalData;
+		}
 		// 访问用户数
 		Map<String, EchartsXyAxis> uvMap = new HashMap<>();
-		List<EchartsXyAxis> uvs = this.baseMapper.getUvStatisticalData(proxyConfigUuid);
+		List<EchartsXyAxis> uvs = this.baseMapper.getUvStatisticalData(proxyConfig.getProxyConfigId());
 		if (CollUtil.isNotEmpty(uvs)) {
 			for (EchartsXyAxis data : uvs) {
 				Integer key = Integer.valueOf(data.getXAxis());
@@ -86,7 +92,7 @@ public class GatewayProxyLogServiceImpl extends ServiceImpl<GatewayProxyLogMappe
 		}
 		// 页面访问量
 		Map<String, EchartsXyAxis> pvMap = new HashMap<>();
-		List<EchartsXyAxis> pvs = this.baseMapper.getPvStatisticalData(proxyConfigUuid);
+		List<EchartsXyAxis> pvs = this.baseMapper.getPvStatisticalData(proxyConfig.getProxyConfigId());
 		if (CollUtil.isNotEmpty(pvs)) {
 			for (EchartsXyAxis data : pvs) {
 				Integer key = Integer.valueOf(data.getXAxis());

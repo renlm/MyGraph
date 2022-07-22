@@ -16,7 +16,7 @@
 		$(function () { renderStatisticalChart(); });
     	function renderStatisticalChart () {
     		layer.load(2, { offset: '150px' });
-    		$.get("[(@{/gateway/proxyLog/ajax/getStatisticalData})]",
+    		$.get("[(@{/gateway/proxyLog/ajax/getStatisticalData})]?proxyConfigUuid=[(${proxyConfigUuid})]",
 				function(response) {
 					layer.closeAll();
     				var start = response.data.dayXAxis.length >= 100 ? (1 - 100 / response.data.dayXAxis.length) * 100 : 0;
