@@ -12,6 +12,10 @@
 集成语法增强版的Markdown文档、在线画图、数据库ER模型设计、在线数据表格，支持团队协作、版本控制与分享。  
 分享文档：<a href="https://mygraph.renlm.cn/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
 
+## 源码地址 
+https://gitee.com/renlm/MyGraph.git  
+https://github.com/renlm/MyGraph.git  
+
 ## 系统体验
 体验地址：<a href="https://mygraph.renlm.cn/" target="_blank">https://<span></span>mygraph.renlm.cn/</a>  
 ***此为体验系统，请不要修改密码，不定期重置为初始状态。***  
