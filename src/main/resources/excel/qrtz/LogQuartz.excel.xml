@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <excel name="cn.renlm.graph.modular.qrtz.entity.QrtzLogs"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="https://www.renlm.cn/schemas/MyExcel.xsd">
+	xsi:noNamespaceSchemaLocation="https://renlm.gitee.io/schemas/MyExcel.xsd">
 	<sheet name="执行日志">
 		<column field="createdAt" date-format="yyyy/MM/dd HH:mm:ss">
 			<title>时间</title>

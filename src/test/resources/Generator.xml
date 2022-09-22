@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <generator
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="https://www.renlm.cn/schemas/MyGenerator.xsd">
+	xsi:noNamespaceSchemaLocation="https://renlm.gitee.io/schemas/MyGenerator.xsd">
 
 	<url>jdbc:mysql://renlm.cn:3306/dev</url>
 	<username>dev</username>
