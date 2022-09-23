@@ -15,7 +15,7 @@
 
 	<groupId>cn.renlm.graph</groupId>
 	<artifactId>mygraph</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 	<name>MyGraph</name>
 	<description>MyGraph 管理后台，集成权限管理系统、统一用户认证中心、实时动态网关代理与在线文档管理等诸多强大功能于一身的后台系统开发模板，代码简洁，增强了安全控制，可放心使用。</description>
 	<url>https://github.com/renlm/MyGraph</url>
@@ -81,6 +81,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>net.dreamlu</groupId>
+			<artifactId>mica-xss</artifactId>
+			<version>2.5.3</version>
 		</dependency>
 
 		<dependency>

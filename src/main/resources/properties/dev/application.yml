@@ -10,6 +10,19 @@ my:
     wsAllowedOrigins: http://localhost
     proxyLogConcurrency: 10-15
     
+mica:
+  xss:
+    enabled: true
+    trim-text: true
+    mode: clear
+    pretty-print: false
+    enable-escape: false
+    path-patterns: /**
+    path-exclude-patterns: 
+      - /static
+      - /webjars
+      - /markdown/**
+    
 logging:
   level:
     root: info
