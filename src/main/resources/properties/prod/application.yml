@@ -18,7 +18,7 @@ mica:
     trim-text: true
     mode: clear
     pretty-print: false
-    enable-escape: false
+    enable-escape: true
     path-patterns: /**
     path-exclude-patterns: 
       - /static
