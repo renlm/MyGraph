@@ -1,6 +1,6 @@
 FROM registry.cn-hangzhou.aliyuncs.com/rlm/tomcat
 
-COPY ROOT.jar /usr/local/tomcat/webapps
+COPY ROOT.war /usr/local/tomcat/webapps
  
 EXPOSE 8080
 
