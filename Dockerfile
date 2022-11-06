@@ -4,4 +4,4 @@ COPY ROOT.war /usr/local/tomcat/webapps
  
 EXPOSE 8080
 
-CMD ["tail -f /usr/local/tomcat/logs/catalina.log"]
+CMD ["tail -f /usr/local/tomcat/logs/catalina.out"]
