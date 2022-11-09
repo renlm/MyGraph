@@ -13,13 +13,16 @@ pipeline {
         stage ('Prepare') {
             steps {
                 echo "创建工作目录..."
+                sh 'mkdir -p /var/jenkins_home/workspace/renlm'
                 sh 'rm -fr /var/jenkins_home/workspace/renlm/MyGraph'
                 sh 'rm -fr /var/jenkins_home/workspace/renlm/study-notes'
-                sh 'mkdir -p /var/jenkins_home/workspace/renlm'
                 echo "下载代码..."
-                sh 'cd /var/jenkins_home/workspace/renlm'
-                git credentialsId: "${githubCredential}", url: 'git@github.com:renlm/MyGraph.git'
-                git credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git'
+                dir('/var/jenkins_home/workspace/renlm') {
+                	git branch: 'main', credentialsId: "${githubCredential}", url: 'git@github.com:renlm/MyGraph.git'
+                }
+                dir('/var/jenkins_home/workspace/renlm') {
+                	git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git'
+                }
             }
         }
         stage ('Maven Build') {
