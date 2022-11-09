@@ -28,17 +28,20 @@ pipeline {
         stage ('Maven Build') {
             steps {
                 echo "Maven构建..."
-                sh 'cd /var/jenkins_home/workspace/renlm/MyGraph'
-                sh 'rm -fr src/main/resources/properties/prod'
-                sh 'cp -r ../study-notes/MyGraph/properties/prod src/main/resources/properties'
-                sh 'mvn clean package -P prod -Dmaven.test.skip=true'
+                dir('/var/jenkins_home/workspace/renlm/MyGraph') {
+                	sh 'rm -fr src/main/resources/properties/prod'
+                	sh 'cp -r ../study-notes/MyGraph/properties/prod src/main/resources/properties'
+                	sh 'mvn clean package -P prod -Dmaven.test.skip=true'
+                }
             }
         }
         stage('Docker Build') {
             steps {
                 script {
                 	echo "构建镜像..."
-                    docker.build("${dockerImage}", "-f ./Dockerfile .")
+                	dir('/var/jenkins_home/workspace/renlm/MyGraph') {
+                    	docker.build("${dockerImage}", "-f ./Dockerfile .")
+                    }
                 }
             }
         }
