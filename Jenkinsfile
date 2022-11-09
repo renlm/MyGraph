@@ -17,10 +17,10 @@ pipeline {
                 sh 'rm -fr /var/jenkins_home/workspace/renlm/MyGraph'
                 sh 'rm -fr /var/jenkins_home/workspace/renlm/study-notes'
                 echo "下载代码..."
-                dir('/var/jenkins_home/workspace/renlm') {
+                dir('/var/jenkins_home/workspace/renlm/MyGraph') {
                 	git branch: 'main', credentialsId: "${githubCredential}", url: 'git@github.com:renlm/MyGraph.git'
                 }
-                dir('/var/jenkins_home/workspace/renlm') {
+                dir('/var/jenkins_home/workspace/renlm/study-notes') {
                 	git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git'
                 }
             }
