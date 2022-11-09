@@ -1,12 +1,14 @@
-def rancherCredential = "Rancher"
-def githubCredential = "Github"
-def giteeCredential = "Gitee"
-def aliyuncsCredential = "Aliyuncs"
-def dockerRegistry = "https://registry.cn-hangzhou.aliyuncs.com"
-def dockerImage = "registry.cn-hangzhou.aliyuncs.com/rlm/mygraph"
-def workloadUrl = "https://rancher.renlm.cn/v3/project/c-m-lz7w89vx:p-jhxwf/workloads/deployment:renlm:mygraph"
 pipeline {
     agent any
+    environment {
+		rancherCredential = 'Rancher'
+		githubCredential = 'Github'
+		giteeCredential = 'Gitee'
+        aliyuncsCredential = 'Aliyuncs'
+		dockerRegistry = 'https://registry.cn-hangzhou.aliyuncs.com'
+		dockerImage = 'registry.cn-hangzhou.aliyuncs.com/rlm/mygraph'
+		workloadUrl = 'https://rancher.renlm.cn/v3/project/c-m-lz7w89vx:p-jhxwf/workloads/deployment:renlm:mygraph'
+    }
     stages {
         stage ('Prepare') {
             steps {
