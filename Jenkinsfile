@@ -28,7 +28,9 @@ pipeline {
             steps {
                 echo "Maven构建..."
                 sh 'cd /var/jenkins_home/workspace/renlm/MyGraph'
-                sh 'mvn clean package -Dmaven.test.skip=true'
+                sh 'rm -fr src/main/resources/properties/prod'
+                sh 'cp -r ../study-notes/MyGraph/properties/prod src/main/resources/properties'
+                sh 'mvn clean package -P prod -Dmaven.test.skip=true'
             }
         }
         stage('Docker Build') {
