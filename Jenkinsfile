@@ -16,14 +16,10 @@ pipeline {
                 sh 'rm -fr /var/jenkins_home/workspace/renlm/MyGraph'
                 sh 'rm -fr /var/jenkins_home/workspace/renlm/study-notes'
                 sh 'mkdir -p /var/jenkins_home/workspace/renlm'
-            }
-        }
-        stage ('SCM') {
-            steps {
                 echo "下载代码..."
                 sh 'cd /var/jenkins_home/workspace/renlm'
-                git credentialsId: '${githubCredential}', url: 'git@github.com:renlm/MyGraph.git'
-                git credentialsId: '${giteeCredential}', url: 'https://gitee.com/renlm/study-notes.git'
+                git credentialsId: "${githubCredential}", url: 'git@github.com:renlm/MyGraph.git'
+                git credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git'
             }
         }
         stage ('Maven Build') {
@@ -47,7 +43,7 @@ pipeline {
             steps {
                 script {
                 	echo "推送镜像..."
-                    docker.withRegistry('${dockerRegistry}', '${aliyuncsCredential}') {
+                    docker.withRegistry("${dockerRegistry}", "${aliyuncsCredential}") {
                         docker.image("${dockerImage}").push("latest")
                     }
                 }
@@ -57,7 +53,7 @@ pipeline {
             steps {
                 script {
                 	echo "部署应用..."
-                	rancherRedeploy alwaysPull: true, credential: '${githubCredential}', images: '${dockerImage}', workload: '${workloadUrl}'
+                	rancherRedeploy alwaysPull: true, credential: "${githubCredential}", images: "${dockerImage}", workload: "${workloadUrl}"
             	}
             }
         }
