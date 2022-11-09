@@ -1,6 +1,10 @@
 pipeline {
     agent any
+    tools {
+        maven 'maven-3.6.3'
+    }
     environment {
+    	workDir = '/var/jenkins_home/workspace/renlm'
 		rancherCredential = 'Rancher'
 		githubCredential = 'Github'
 		giteeCredential = 'Gitee'
@@ -13,14 +17,14 @@ pipeline {
         stage ('Prepare') {
             steps {
                 echo "创建工作目录..."
-                sh 'mkdir -p /var/jenkins_home/workspace/renlm'
-                sh 'rm -fr /var/jenkins_home/workspace/renlm/MyGraph'
-                sh 'rm -fr /var/jenkins_home/workspace/renlm/study-notes'
+                sh "mkdir -p ${workDir}"
+                sh "rm -fr ${workDir}/MyGraph"
+                sh "rm -fr ${workDir}/study-notes"
                 echo "下载代码..."
-                dir('/var/jenkins_home/workspace/renlm/MyGraph') {
+                dir("${workDir}/MyGraph") {
                 	git branch: 'main', credentialsId: "${githubCredential}", url: 'git@github.com:renlm/MyGraph.git'
                 }
-                dir('/var/jenkins_home/workspace/renlm/study-notes') {
+                dir("${workDir}/study-notes") {
                 	git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git'
                 }
             }
@@ -28,7 +32,7 @@ pipeline {
         stage ('Maven Build') {
             steps {
                 echo "Maven构建..."
-                dir('/var/jenkins_home/workspace/renlm/MyGraph') {
+                dir("${workDir}/MyGraph") {
                 	sh 'rm -fr src/main/resources/properties/prod'
                 	sh 'cp -r ../study-notes/MyGraph/properties/prod src/main/resources/properties'
                 	sh 'mvn clean package -P prod -Dmaven.test.skip=true'
