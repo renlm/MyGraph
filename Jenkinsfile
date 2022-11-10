@@ -5,6 +5,8 @@ pipeline {
         dockerTool 'docker'
     }
     environment {
+    	DATE = new Date().format('yy.M')
+        TAG = "${DATE}.${BUILD_NUMBER}"
     	workDir = '/var/jenkins_home/workspace/renlm'
 		rancherCredential = 'Rancher'
 		githubCredential = 'Github'
