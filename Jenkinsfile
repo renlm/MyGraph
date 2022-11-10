@@ -19,11 +19,9 @@ pipeline {
         stage ('Maven Build') {
             steps {
                 echo "Maven构建..."
-                dir("../${WORKSPACE}/study-notes") {
-                	git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git'
-                }
+                git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git'
                 sh 'rm -fr src/main/resources/properties/prod'
-            	sh 'cp -r ../study-notes/MyGraph/properties/prod src/main/resources/properties'
+            	sh 'cp -r study-notes/MyGraph/properties/prod src/main/resources/properties'
             	sh 'mvn clean package -P prod -Dmaven.test.skip=true'
             }
         }
