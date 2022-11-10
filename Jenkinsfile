@@ -43,7 +43,7 @@ pipeline {
             steps {
                 script {
                 	echo "构建镜像..."
-                	dir('${workDir}/MyGraph') {
+                	dir("${workDir}/MyGraph") {
                     	docker.build("${dockerImage}", "-f ./Dockerfile .")
                     }
                 }
