@@ -48,12 +48,10 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Deploy To Rancher') {
             steps {
-                script {
-                	echo "部署应用..."
-                	rancherRedeploy alwaysPull: true, credential: "${githubCredential}", images: "${dockerImage}", workload: "${workloadUrl}"
-            	}
+                echo "部署应用..."
+                rancherRedeploy alwaysPull: true, credential: "${githubCredential}", images: "${dockerImage}", workload: "${workloadUrl}"
             }
         }
     }
