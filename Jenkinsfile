@@ -19,11 +19,14 @@ pipeline {
         stage ('Maven Build') {
             steps {
                 echo "Maven构建...${JENKINS_HOME}"
-                dir("${JENKINS_HOME}/study-notes") { git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git' }
-                git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git'
-                sh 'rm -fr src/main/resources/properties/prod'
-            	sh 'cp -r study-notes/MyGraph/properties/prod src/main/resources/properties'
-            	sh 'mvn clean package -P prod -Dmaven.test.skip=true'
+                dir("${JENKINS_HOME}/study-notes") { 
+                	git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git' 
+                }
+                dir("${WORKSPACE}") { 
+                	sh 'rm -fr src/main/resources/properties/prod'
+	            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/prod src/main/resources/properties"
+	            	sh 'mvn clean package -P prod -Dmaven.test.skip=true'
+                }
             }
         }
         stage('Docker Build') {
