@@ -16,7 +16,8 @@ pipeline {
     stages {
         stage ('Prepare') {
             steps {
-                echo "创建工作目录..."
+                echo "WORKSPACE：${WORKSPACE}"
+                echo "BUILD_NUMBER：${BUILD_NUMBER}"
                 sh "mkdir -p ${workDir}"
                 sh "rm -fr ${workDir}/MyGraph"
                 sh "rm -fr ${workDir}/study-notes"
