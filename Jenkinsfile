@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         maven 'maven-3.6.3'
+        dockerTool 'docker'
     }
     environment {
     	workDir = '/var/jenkins_home/workspace/renlm'
