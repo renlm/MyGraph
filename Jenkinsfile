@@ -18,7 +18,8 @@ pipeline {
     stages {
         stage ('Maven Build') {
             steps {
-                echo "Maven构建..."
+                echo "Maven构建...${JENKINS_HOME}"
+                dir("${JENKINS_HOME}/study-notes") { git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git' }
                 git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git'
                 sh 'rm -fr src/main/resources/properties/prod'
             	sh 'cp -r study-notes/MyGraph/properties/prod src/main/resources/properties'
