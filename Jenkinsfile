@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+	agent any
     tools {
         maven 'maven-3.6.3'
         dockerTool 'docker'
@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage ('Maven Build') {
             steps {
-                echo "Maven构建...${JENKINS_HOME}"
+                echo "Maven构建..."
                 dir("${JENKINS_HOME}/study-notes") { 
                 	git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git' 
                 }
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                 	echo "构建镜像..."
-                	docker.build("${dockerImage}", "-f ./Dockerfile .")
+                	docker.build("${dockerImage}:${TAG}", "-f ./Dockerfile .")
                 }
             }
         }
@@ -41,8 +41,10 @@ pipeline {
             steps {
                 script {
                 	echo "推送镜像..."
-                    docker.image("${dockerImage}:${TAG}")
-                    docker.image("${dockerImage}:${TAG}").push("latest")
+                    docker.withRegistry("${dockerRegistry}", "${aliyuncsCredential}") {
+                        docker.image("${dockerImage}:${TAG}").push()
+                        docker.image("${dockerImage}:${TAG}").push("latest")
+                    }
                 }
             }
         }
