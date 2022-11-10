@@ -298,9 +298,9 @@
 
 	<pluginRepositories>
 		<pluginRepository>
-			<id>huaweicloud</id>
-			<name>Huaweicloud Maven</name>
-			<url>https://repo.huaweicloud.com/repository/maven/</url>
+			<id>aliyun</id>
+			<name>Aliyun Public</name>
+			<url>https://maven.aliyun.com/repository/public</url>
 		</pluginRepository>
 	</pluginRepositories>
 
