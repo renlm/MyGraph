@@ -50,7 +50,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy To Rancher') {
+        stage('Deploy') {
             steps {
                 echo "部署应用..."
                 rancherRedeploy alwaysPull: true, credential: "${githubCredential}", images: "${dockerImage}", workload: "${workloadUrl}"
