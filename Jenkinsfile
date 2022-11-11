@@ -13,30 +13,9 @@ pipeline {
         aliyuncsCredential = 'Aliyuncs'
 		dockerRegistry = 'https://registry.cn-hangzhou.aliyuncs.com'
 		dockerImage = 'registry.cn-hangzhou.aliyuncs.com/rlm/mygraph'
-		workloadUrl = 'https://rancher.renlm.cn/v3/projects/c-m-59hh87sj:p-2qj8x/workloads/deployment:renlm:mygraph'
+		workloadUrl = '/v3/project/c-m-59hh87sj:p-2qj8x/workloads/deployment:renlm:mygraph'
     }
     stages {
-        stage('Docker Build') {
-            steps {
-                script {
-                	echo "构建镜像..."
-                	docker.withRegistry("${dockerRegistry}", "${aliyuncsCredential}") {
-                        docker.build("${dockerImage}:${TAG}", "-f ${WORKSPACE}/Dockerfile .")
-                    }
-                }
-            }
-        }
-	    stage('Publish Image') {
-            steps {
-                script {
-                	echo "推送镜像..."
-                    docker.withRegistry("${dockerRegistry}", "${aliyuncsCredential}") {
-                        docker.image("${dockerImage}:${TAG}").push()
-                        docker.image("${dockerImage}:${TAG}").push("latest")
-                    }
-                }
-            }
-        }
         stage('Deploy') {
             steps {
                 echo "部署应用..."
