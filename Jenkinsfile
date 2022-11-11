@@ -16,6 +16,19 @@ pipeline {
 		workloadUrl = 'https://rancher.renlm.cn/v3/project/c-m-59hh87sj:p-2qj8x/workloads/deployment:renlm:mygraph'
     }
     stages {
+        stage ('Maven Build') {
+            steps {
+                echo "Maven构建..."
+                dir("${JENKINS_HOME}/study-notes") { 
+                	git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git' 
+                }
+                dir("${WORKSPACE}") { 
+                	sh 'rm -fr src/main/resources/properties/prod'
+	            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/prod src/main/resources/properties"
+	            	sh 'mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true'
+                }
+            }
+        }
         stage('Docker Build') {
             steps {
                 script {
