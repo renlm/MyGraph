@@ -33,9 +33,11 @@ pipeline {
             steps {
                 script {
                 	echo "构建镜像..."
-                	docker.withRegistry("${dockerRegistry}", "${aliyuncsCredential}") {
-                        docker.build("${dockerImage}:${TAG}", "-f ./Dockerfile .")
-                    }
+                	dir("${WORKSPACE}") { 
+	                	docker.withRegistry("${dockerRegistry}", "${aliyuncsCredential}") {
+	                        docker.build("${dockerImage}:${TAG}", "-f ./Dockerfile .")
+	                    }
+	                }
                 }
             }
         }
