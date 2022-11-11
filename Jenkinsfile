@@ -13,7 +13,7 @@ pipeline {
         aliyuncsCredential = 'Aliyuncs'
 		dockerRegistry = 'https://registry.cn-hangzhou.aliyuncs.com'
 		dockerImage = 'registry.cn-hangzhou.aliyuncs.com/rlm/mygraph'
-		workloadUrl = '/v3/project/c-m-59hh87sj:p-2qj8x/workloads/deployment:renlm:mygraph'
+		workloadUrl = '/project/c-m-59hh87sj:p-2qj8x/workloads/deployment:renlm:mygraph'
     }
     stages {
         stage('Deploy') {
