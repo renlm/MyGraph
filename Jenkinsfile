@@ -25,7 +25,7 @@ pipeline {
                 dir("${WORKSPACE}") { 
                 	sh 'rm -fr src/main/resources/properties/prod'
 	            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/prod src/main/resources/properties"
-	            	sh 'mvn clean package -P prod -Dmaven.test.skip=true'
+	            	sh 'mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true'
                 }
             }
         }
