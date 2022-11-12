@@ -11,4 +11,4 @@ ENTRYPOINT ["/tini", "--"]
  
 EXPOSE 8080
 
-CMD ["bin/catalina.sh start && tail -f logs/catalina.out"]
+CMD ["/usr/local/tomcat/bin/catalina.sh start && tail -f /usr/local/tomcat/logs/catalina.out"]
