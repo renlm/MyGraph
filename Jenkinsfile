@@ -24,7 +24,6 @@ pipeline {
                 dir("${WORKSPACE}") { 
 	                script {
 	                	def profile = params.Profile == 'renlm' ? 'renlm' : 'prod'
-	                	echo "发布环境：${profile}..."
 						sh 'rm -fr src/main/resources/properties/prod'
 		            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/${profile} src/main/resources/properties"
 		            	sh 'mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true'
