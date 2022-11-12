@@ -26,8 +26,9 @@ pipeline {
 	                script {
 	                	def profile = params.Profile == 'renlm' ? 'renlm' : 'prod'
 						sh 'rm -fr src/main/resources/properties/prod'
-		            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/${profile} src/main/resources/properties"
-		            	sh "mvn clean package -P ${profile} -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true"
+						sh 'mkdir -p src/main/resources/properties/prod'
+		            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/${profile}/. src/main/resources/properties/prod"
+		            	sh "mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true"
 	                }
                 }
             }
