@@ -22,20 +22,19 @@ pipeline {
                 	git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git' 
                 }
                 dir("${WORKSPACE}") { 
-                	if (params.Profile == 'renlm')
-					{
-                		echo "发布环境：renlm..."
-						sh 'rm -fr src/main/resources/properties/prod'
-		            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/renlm src/main/resources/properties"
-		            	sh 'mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true'
-					}
-					else 
-					{
-                		echo "发布环境：${params.Profile}..."
-						sh 'rm -fr src/main/resources/properties/prod'
-		            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/prod src/main/resources/properties"
-		            	sh 'mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true'
-					}
+	                script {
+	                	if (params.Profile == 'renlm') {
+	                		echo "发布环境：renlm..."
+							sh 'rm -fr src/main/resources/properties/prod'
+			            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/renlm src/main/resources/properties"
+			            	sh 'mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true'
+						} else {
+	                		echo "发布环境：${params.Profile}..."
+							sh 'rm -fr src/main/resources/properties/prod'
+			            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/prod src/main/resources/properties"
+			            	sh 'mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true'
+						}
+	                }
                 }
             }
         }
