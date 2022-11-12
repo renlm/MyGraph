@@ -13,7 +13,6 @@ import org.springframework.data.redis.core.ZSetOperations;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.io.unit.DataSizeUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.system.JavaInfo;
@@ -24,6 +23,7 @@ import cn.hutool.system.oshi.OshiUtil;
 import cn.renlm.graph.util.RedisUtil;
 import lombok.experimental.UtilityClass;
 import oshi.hardware.GlobalMemory;
+import oshi.util.FormatUtil;
 
 /**
  * Oshi 工具
@@ -167,22 +167,22 @@ public class OshiInfoUtil {
 		info.setCpuCores(cpuCores);
 		info.setCpuUsedRate(new BigDecimal(cpuUsedRate).setScale(2, RoundingMode.HALF_UP));
 		info.setMemory(totalByte);
-		info.setMemoryStr(DataSizeUtil.format(info.getMemory()));
+		info.setMemoryStr(FormatUtil.formatBytes(info.getMemory()));
 		info.setMemoryUsed(totalByte - acaliableByte);
-		info.setMemoryUsedStr(DataSizeUtil.format(info.getMemoryUsed()));
+		info.setMemoryUsedStr(FormatUtil.formatBytes(info.getMemoryUsed()));
 		info.setMemoryUsedRate(
 				new BigDecimal(100.0 - (acaliableByte * 100.0 / totalByte)).setScale(2, RoundingMode.HALF_UP));
 		info.setDisk(disk);
-		info.setDiskStr(DataSizeUtil.format(info.getDisk()));
+		info.setDiskStr(FormatUtil.formatBytes(info.getDisk()));
 		info.setDiskUsed(disk - freeSpace);
-		info.setDiskUsedStr(DataSizeUtil.format(info.getDiskUsed()));
+		info.setDiskUsedStr(FormatUtil.formatBytes(info.getDiskUsed()));
 		info.setDiskUsedRate(new BigDecimal(100.0 - (freeSpace * 100.0 / disk)).setScale(2, RoundingMode.HALF_UP));
 		info.setOsName(osName);
 		info.setOsArch(osArch);
 		info.setJvmMemory(jvmTotalMemoryByte);
-		info.setJvmMemoryStr(DataSizeUtil.format(info.getJvmMemory()));
+		info.setJvmMemoryStr(FormatUtil.formatBytes(info.getJvmMemory()));
 		info.setJvmMemoryUsed(jvmTotalMemoryByte - freeMemoryByte);
-		info.setJvmMemoryUsedStr(DataSizeUtil.format(info.getJvmMemoryUsed()));
+		info.setJvmMemoryUsedStr(FormatUtil.formatBytes(info.getJvmMemoryUsed()));
 		info.setJvmMemoryUsedRate(new BigDecimal(100.0 - (freeMemoryByte * 100.0 / jvmTotalMemoryByte)).setScale(2,
 				RoundingMode.HALF_UP));
 		info.setJavaVersion(javaVersion);
