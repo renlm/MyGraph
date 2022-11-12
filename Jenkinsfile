@@ -23,17 +23,11 @@ pipeline {
                 }
                 dir("${WORKSPACE}") { 
 	                script {
-	                	if (params.Profile == 'renlm') {
-	                		echo "发布环境：renlm..."
-							sh 'rm -fr src/main/resources/properties/prod'
-			            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/renlm src/main/resources/properties"
-			            	sh 'mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true'
-						} else {
-	                		echo "发布环境：${params.Profile}..."
-							sh 'rm -fr src/main/resources/properties/prod'
-			            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/prod src/main/resources/properties"
-			            	sh 'mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true'
-						}
+	                	def profile = params.Profile == 'renlm' ? 'renlm' : 'prod'
+	                	echo "发布环境：${profile}..."
+						sh 'rm -fr src/main/resources/properties/prod'
+		            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/${profile} src/main/resources/properties"
+		            	sh 'mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true'
 	                }
                 }
             }
