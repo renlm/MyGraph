@@ -22,9 +22,6 @@ pipeline {
                 dir("${JENKINS_HOME}/study-notes") { 
                 	git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git' 
                 }
-                script { 
-                	System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL", "86400"); 
-                }
                 dir("${WORKSPACE}") { 
 	                script {
 	                	def profile = params.Profile == 'renlm' ? 'renlm' : 'prod'
