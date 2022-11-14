@@ -7,6 +7,6 @@ ADD https://renlm.gitee.io/download/tini/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 
-CMD ["/bin/bash", "-c", "/usr/local/tomcat/bin/catalina.sh start"]
+CMD ["/bin/bash", "-c", "/usr/local/tomcat/bin/catalina.sh start && tail -f /usr/local/tomcat/logs/catalina.out"]
  
 EXPOSE 8080
