@@ -7,26 +7,20 @@ pipeline {
     	DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
 		rancherCredential = 'Rancher'
-		githubCredential = 'Github'
-		giteeCredential = 'Gitee'
         aliyuncsCredential = 'Aliyuncs'
 		dockerRegistry = 'https://registry.cn-hangzhou.aliyuncs.com'
+    	projectDir = "${WORKSPACE}"
 		dockerImage = 'registry.cn-hangzhou.aliyuncs.com/rlm/mygraph'
-		workloadUrl = '/project/c-m-94bhmf8k:p-rrspw/workloads/deployment:renlm:mygraph'
+		workloadUrl = '/project/c-m-5hjgrb22:p-jcjsv/workloads/deployment:renlm:mygraph'
     }
     stages {
         stage ('Maven Build') {
             steps {
                 echo "Maven构建..."
-                dir("${JENKINS_HOME}/study-notes") { 
-                	git branch: 'master', credentialsId: "${giteeCredential}", url: 'https://gitee.com/renlm/study-notes.git' 
-                }
-                dir("${WORKSPACE}") { 
+                dir("${projectDir}") { 
 	                script {
-	                	def profile = params.Profile == 'renlm' ? 'renlm' : 'prod'
-						sh 'rm -fr src/main/resources/properties/prod/*'
-		            	sh "cp -r ${JENKINS_HOME}/study-notes/MyGraph/properties/${profile}/. src/main/resources/properties/prod/"
-		            	sh "mvn clean package -P prod -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true"
+	                	def profile = params.Profile == null ? 'prod' : params.Profile
+		            	sh "mvn clean package -P ${profile} -T 1C -Dmaven.test.skip=true -Dmaven.compile.fork=true"
 	                }
                 }
             }
@@ -35,8 +29,10 @@ pipeline {
             steps {
                 script {
                 	echo "构建镜像..."
-                	docker.withRegistry("${dockerRegistry}", "${aliyuncsCredential}") {
-                        docker.build("${dockerImage}:${TAG}", "-f ${WORKSPACE}/Dockerfile .")
+                	dir("${projectDir}") {
+	                	docker.withRegistry("${dockerRegistry}", "${aliyuncsCredential}") {
+	                        docker.build("${dockerImage}:${TAG}", "-f ${projectDir}/Dockerfile .")
+	                    }
                     }
                 }
             }
