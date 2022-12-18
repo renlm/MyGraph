@@ -57,16 +57,16 @@ spring:
       WRITE_DATES_AS_TIMESTAMPS: true
   redis:
     database: 3
-    host: ENC(IBsqos+iXOMHj3QP8WuIKD03TE/0JiNyWdlp60WsQX3bwwjfsk8Ab0JZdCjmFXoD)
-    port: ENC(Y6RNLs6eFkRUHa8xNUlrzGdSnGhxedOiSEDcrzacuZVxRoBHH8utSFrG5+vuTCrU)
+    host: ENC(4SJL0c4Nz9zkymSQZ33U7aSQx5YfMQpqxwPhRSwPugWa5KsZyGjgu6iP+k8LaRAh)
+    port: ENC(0oT7c2IagF5gbP5v/kA6DLu/Ctcf9nV/83BhjbW3CL8y52eeqRhLIXJjicLaaS8u)
     password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
     timeout: 6s
   rabbitmq:
-    virtual-host: dev
-    host: renlm.cn
-    port: 5672
-    username: dev
-    password: K86erp7ssdi^_fyIMYmf4Kwt^tn50jl4bn
+    virtual-host: ENC(zePGodUsbK9mPRDZI5dYuZL20lMh+J5/9qCh6jYUk0+iYaUD2LhVyVG/XUGXC2I7)
+    host: ENC(B30udgyWogHkYsxU1e3sQAd4flz1XVW1MZ40tc4JUq8XEO/GuvaYWx3rX1JQbe2k)
+    port: ENC(PyTYL2Yu5KovwOE41EP81FMjHp/6U1x7hPTWJPdAJ6wPfGP9ZtSz/1W1piRbc/20)
+    username: ENC(dAwEPtF2sMl/lGe0DESwgVjgezRafykLVBsVmnBVD0ZoQWzxzrxP75eVtzijsqUr)
+    password: ENC(+DZNeJTRNilmAua20ZJQj8jbsAkXhOH4jHpYUi+Vygeg0UiEkDWsmFt0OYA782UX8gyQ5JOeB6hLpXom+wcg6GjiCFSHOj/4X/VeNmz0r8Y=)
     listener:
       direct:
         missing-queues-fatal: false
@@ -76,9 +76,9 @@ spring:
       strict: true
       datasource:
         master:
-          url: jdbc:mysql://renlm.cn:30306/dev?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
-          username: dev
-          password: K86erp7ssdi^_fyIMYmf4Kwt^tn50jl4bn
+          url: ENC(bXD4+PjVR7Fo0OpWoY6aptwGYB1ktQ3vVH+iHwLcrmeg2nRz8AKPy12g+0SVIj7Llg736JGmkSbQKfBgTcAVsdFEcycX1hC9lH5wn5H5FD9Imra1323+6qTSgwYsf2PKMt2eBeR7FgnvCquuqJBadWC0NoYjCPU7geHHBE5aXSEhRWi9kcZyHlCQQ1omv//co8C7jdR0WCOInj4cRqmcgQ==)
+          username: ENC(TH8gokJSLbQ6b+3miT2omUUP2ymJzM14ItGSYD9dZ2W4/pzFusZeCvwkuY1nFL4l)
+          password: ENC(DP2Al147pJyiFArv67h0Pm08fFWjX9Ktjyri2jXjBm4ZWYsnSwXBwOsdk7ndmNmKJu8QjXCg7oDhIqQy9HnAcw==)
           driver-class-name: com.mysql.cj.jdbc.Driver
           init:
             schema: classpath:schema/schema.sql
