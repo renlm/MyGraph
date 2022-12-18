@@ -10,6 +10,10 @@ my:
     wsAllowedOrigins: http://localhost
     proxyLogConcurrency: 20
     
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD:123654}
+    
 mica:
   xss:
     enabled: true
@@ -52,12 +56,11 @@ spring:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
   redis:
-    host: renlm.cn
-    port: 6479
-    timeout: 6000
-    password: K86erp7ssdi^_fyIMYmf4Kwt^tn50jl4bn
-    database: 2
-    client-name: test
+    database: 4
+    host: ENC(IBsqos+iXOMHj3QP8WuIKD03TE/0JiNyWdlp60WsQX3bwwjfsk8Ab0JZdCjmFXoD)
+    port: ENC(Y6RNLs6eFkRUHa8xNUlrzGdSnGhxedOiSEDcrzacuZVxRoBHH8utSFrG5+vuTCrU)
+    password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
+    timeout: 6s
   rabbitmq:
     virtual-host: test
     host: renlm.cn
@@ -73,7 +76,7 @@ spring:
       strict: true
       datasource:
         master:
-          url: jdbc:mysql://renlm.cn:3306/test?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+          url: jdbc:mysql://renlm.cn:30306/test?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
           username: test
           password: MYKtp41ust^eeerpn5wK4m^_87sfy6wlflq7diI
           driver-class-name: com.mysql.cj.jdbc.Driver
