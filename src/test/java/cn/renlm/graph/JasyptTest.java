@@ -12,7 +12,10 @@ import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 配置加密（本地启动时添加VM参数）
+ * 配置加密
+Program arguments
+--spring.profiles.active=dev
+VM arguments
 -DJASYPT_ENCRYPTOR_PASSWORD=123654 
  * 
  * @author Renlm

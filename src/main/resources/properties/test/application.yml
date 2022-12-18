@@ -57,8 +57,8 @@ spring:
       WRITE_DATES_AS_TIMESTAMPS: true
   redis:
     database: 4
-    host: ENC(4SJL0c4Nz9zkymSQZ33U7aSQx5YfMQpqxwPhRSwPugWa5KsZyGjgu6iP+k8LaRAh)
-    port: ENC(0oT7c2IagF5gbP5v/kA6DLu/Ctcf9nV/83BhjbW3CL8y52eeqRhLIXJjicLaaS8u)
+    host: ENC(3biIYGtSjtwx7A7w3AjkxJLQKNCTlGqpV+eTZBFBO7fT+39U/7O+diEnAf11Bdp1)
+    port: ENC(nvFrjBnR3rlgNorzAm5fOvVFWcf/bvtePbGohIqv9WC9KPFsQqDCbpQ/TJBnW4UD)
     password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
     timeout: 6s
   rabbitmq:
