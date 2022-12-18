@@ -58,7 +58,7 @@ spring:
   redis:
     database: 3
     host: ENC(3biIYGtSjtwx7A7w3AjkxJLQKNCTlGqpV+eTZBFBO7fT+39U/7O+diEnAf11Bdp1)
-    port: ENC(nvFrjBnR3rlgNorzAm5fOvVFWcf/bvtePbGohIqv9WC9KPFsQqDCbpQ/TJBnW4UD)
+    port: ENC(6Hk9Fr716xYOKeWkspYz08UnTkOS6npDvn+2eUZJPTSL5rSn6ZkfN1E+5EYCJUTP)
     password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
     timeout: 6s
   rabbitmq:
