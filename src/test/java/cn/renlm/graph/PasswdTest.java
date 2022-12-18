@@ -1,7 +1,8 @@
 package cn.renlm.graph;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import cn.hutool.core.util.IdUtil;
 
@@ -15,7 +16,8 @@ public class PasswdTest {
 
 	@Test
 	public void test() {
-		String encodePasswd = new BCryptPasswordEncoder().encode("123654");
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		String encodePasswd = passwordEncoder.encode("123654");
 		System.out.println(encodePasswd);
 	}
 
