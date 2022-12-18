@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.quartz.JobExecutionContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -26,6 +26,9 @@ import cn.renlm.graph.modular.sys.service.ISysUserService;
 public class DemoResetPasswdJob extends JobBean {
 
 	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private ISysUserService iSysUserService;
 
 	public DemoResetPasswdJob(IQrtzLogsService iQrtzLogsService) {
@@ -38,7 +41,7 @@ public class DemoResetPasswdJob extends JobBean {
 		String username = "S-renyy";
 		String password = "123654";
 		iSysUserService.update(Wrappers.<SysUser>lambdaUpdate().func(wrapper -> {
-			wrapper.set(SysUser::getPassword, new BCryptPasswordEncoder().encode(password));
+			wrapper.set(SysUser::getPassword, passwordEncoder.encode(password));
 			wrapper.eq(SysUser::getUsername, username);
 		}));
 		this.log(context, batch, seq, Level.INFO, username + "，重置密码为：" + password);

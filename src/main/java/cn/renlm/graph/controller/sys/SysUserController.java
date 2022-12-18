@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +45,9 @@ import cn.renlm.graph.security.UserService;
 @Controller
 @RequestMapping("/sys/user")
 public class SysUserController {
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private UserService userService;
@@ -128,7 +131,7 @@ public class SysUserController {
 			List<SysUser> users = iSysUserService
 					.list(Wrappers.<SysUser>lambdaQuery().in(SysUser::getUserId, StrUtil.splitTrim(userIds, COMMA)));
 			users.forEach(user -> {
-				user.setPassword(new BCryptPasswordEncoder().encode(newPassword));
+				user.setPassword(passwordEncoder.encode(newPassword));
 				user.setUpdatedAt(new Date());
 			});
 			iSysUserService.saveOrUpdateBatch(users);

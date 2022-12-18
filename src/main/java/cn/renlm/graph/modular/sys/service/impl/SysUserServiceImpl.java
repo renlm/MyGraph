@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,6 +58,9 @@ import cn.renlm.graph.util.TreeExtraUtil;
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private ISysRoleService iSysRoleService;
 
@@ -194,7 +197,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 				return Result.error(ConstVal.password_msg);
 			}
 			form.setUserId(IdUtil.simpleUUID().toUpperCase());
-			form.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
+			form.setPassword(passwordEncoder.encode(form.getPassword()));
 			form.setCreatedAt(new Date());
 		} else {
 			SysUser entity = this.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUserId, form.getUserId()));

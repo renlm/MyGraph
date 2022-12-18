@@ -22,7 +22,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.expression.WebExpressionVoter;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
@@ -224,6 +225,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	/**
+	 * PasswordEncoder
+	 * 
+	 * @return
+	 */
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		return passwordEncoder;
+	}
+	
+	/**
 	 * 登录认证
 	 * 
 	 * @param messageSource
@@ -231,7 +243,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Bean
 	DaoAuthenticationProvider daoAuthenticationProvider(MessageSource messageSource) {
-		return new MyDaoAuthenticationProvider(userService, new BCryptPasswordEncoder(), messageSource);
+		return new MyDaoAuthenticationProvider(userService, passwordEncoder(), messageSource);
 	}
 
 	/**

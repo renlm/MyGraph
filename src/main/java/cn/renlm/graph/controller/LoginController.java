@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +35,9 @@ import cn.renlm.graph.util.SessionUtil;
 @Controller
 @RequestMapping
 public class LoginController {
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private ISysUserService iSysUserService;
@@ -84,7 +87,7 @@ public class LoginController {
 			_password = AES.decrypt(_password, aesKey);
 			password = AES.decrypt(password, aesKey);
 			confirmpwd = AES.decrypt(confirmpwd, aesKey);
-			if (!new BCryptPasswordEncoder().matches(_password, userDetails.getPassword())) {
+			if (!passwordEncoder.matches(_password, userDetails.getPassword())) {
 				return Result.error("密码错误");
 			}
 			if (!StrUtil.equals(password, confirmpwd)) {
@@ -93,7 +96,7 @@ public class LoginController {
 			if (!ReUtil.isMatch(ConstVal.password_reg, password)) {
 				return Result.error(ConstVal.password_msg);
 			}
-			String pwdEncode = new BCryptPasswordEncoder().encode(password);
+			String pwdEncode = passwordEncoder.encode(password);
 			iSysUserService.update(Wrappers.<SysUser>lambdaUpdate().func(wrapper -> {
 				wrapper.set(SysUser::getPassword, pwdEncode);
 				wrapper.set(SysUser::getUpdatedAt, new Date());
