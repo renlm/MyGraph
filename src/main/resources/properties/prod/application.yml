@@ -59,14 +59,14 @@ spring:
       WRITE_DATES_AS_TIMESTAMPS: true
   redis:
     database: 5
-    host: ENC(IBsqos+iXOMHj3QP8WuIKD03TE/0JiNyWdlp60WsQX3bwwjfsk8Ab0JZdCjmFXoD)
-    port: ENC(Y6RNLs6eFkRUHa8xNUlrzGdSnGhxedOiSEDcrzacuZVxRoBHH8utSFrG5+vuTCrU)
+    host: redis
+    port: 6379
     password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
     timeout: 6s
   rabbitmq:
     virtual-host: ENC(O+epS5yMEqegl+pivZk2UzPRPGyaqfL1huSETOdu0lAlgEfU6mSEJknKKtc2ozm9)
-    host: ENC(upHWfmrHToOZ8qDU8xMLAflxsPZ61D0cWQaTitGGZNQqdPW+edeVGZngnpEk/EiN)
-    port: ENC(Br0y9BJ1TfC/CYtAkM9Ij0Q6z5pzy6WJRY6o/d4DZducoP5weMIRp0jdYY+RIVdm)
+    host: rabbitmq
+    port: 5672
     username: ENC(x7mQELG8zbtqpDhykzDoy2ZqMSs1HHBK6FRWrfFptc8AX28/ABnWNOY9QNFMQ1pb)
     password: ENC(mKnxCAS26wM7tYsW2pG8hjYS6JY2/iAoS5v/UkM7IniEvu8JHJWFvfrZdclGnw5oHhQwotXp83M5IJho02MC5ZmGn9FtSBr3cEtSe5xn2VM=)
     listener:
@@ -78,7 +78,7 @@ spring:
       strict: true
       datasource:
         master:
-          url: ENC(l0VmB743xPY1w+/bEI2iNuIuSEPyXgOeMU2NW72cjBAvD9TRjBBbkRNxc6zc2RMpKynET53x3A/Q/DyLcnYvFND/UHCFfV/z9GhSJg8kKnYBKr8Be53cBIq5X3iJnsn3iDljDyulGBzdfWc4PQZ4Wi/gmH6Dxay99j7GPksErOoy+AnWeWE3Nf4GUMmlonelVasoSXsdxurXcHKOZv/Qlw==)
+          url: jdbc:mysql://mysql:3306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
           username: ENC(TH8gokJSLbQ6b+3miT2omUUP2ymJzM14ItGSYD9dZ2W4/pzFusZeCvwkuY1nFL4l)
           password: ENC(DP2Al147pJyiFArv67h0Pm08fFWjX9Ktjyri2jXjBm4ZWYsnSwXBwOsdk7ndmNmKJu8QjXCg7oDhIqQy9HnAcw==)
           driver-class-name: com.mysql.cj.jdbc.Driver
