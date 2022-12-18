@@ -5054,90 +5054,90 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 ### 在线文档
 #### 新建项目
 
-![新建项目](https://renlm.gitee.io/imgs/MyGraph/201.png "新建项目")
+![新建项目](https://renlm.cn/imgs/MyGraph/201.png "新建项目")
 
 #### 成员管理
 
-![成员管理](https://renlm.gitee.io/imgs/MyGraph/202.png "成员管理")
+![成员管理](https://renlm.cn/imgs/MyGraph/202.png "成员管理")
 
 #### 新建文档
 
 支持多级目录，支持Markdown文档、图形设计、在线表格三种类型。
 
-![点击项目名称，进入文档管理](https://renlm.gitee.io/imgs/MyGraph/210.png "点击项目名称，进入文档管理")
+![点击项目名称，进入文档管理](https://renlm.cn/imgs/MyGraph/210.png "点击项目名称，进入文档管理")
 
-![新建分类](https://renlm.gitee.io/imgs/MyGraph/211.png "新建分类")
+![新建分类](https://renlm.cn/imgs/MyGraph/211.png "新建分类")
 
-![新建子级](https://renlm.gitee.io/imgs/MyGraph/212.png "新建子级")
+![新建子级](https://renlm.cn/imgs/MyGraph/212.png "新建子级")
 
-![编辑文档](https://renlm.gitee.io/imgs/MyGraph/213.png "编辑文档")
+![编辑文档](https://renlm.cn/imgs/MyGraph/213.png "编辑文档")
 
-![Markdown文档](https://renlm.gitee.io/imgs/MyGraph/214.png "Markdown文档")
+![Markdown文档](https://renlm.cn/imgs/MyGraph/214.png "Markdown文档")
 
 #### 分享与收藏
 收藏或分享后，在知识文库可快速进入。
 
-![分享与收藏](https://renlm.gitee.io/imgs/MyGraph/215.png "分享与收藏")
+![分享与收藏](https://renlm.cn/imgs/MyGraph/215.png "分享与收藏")
 
 ### 数据库设计
 #### 从数据源生成ER图
 新建数据源，选择表生成ER图后，根据提示进入文档管理中查看编辑图形。
 
-![新建数据源](https://renlm.gitee.io/imgs/MyGraph/301.png "新建数据源")
+![新建数据源](https://renlm.cn/imgs/MyGraph/301.png "新建数据源")
 
-![选择表](https://renlm.gitee.io/imgs/MyGraph/302.png "选择表")
+![选择表](https://renlm.cn/imgs/MyGraph/302.png "选择表")
 
-![生成ER图](https://renlm.gitee.io/imgs/MyGraph/303.png "生成ER图")
+![生成ER图](https://renlm.cn/imgs/MyGraph/303.png "生成ER图")
 
 #### 数据库ER模型设计
 
-![打开工具](https://renlm.gitee.io/imgs/MyGraph/304.png "打开工具")
+![打开工具](https://renlm.cn/imgs/MyGraph/304.png "打开工具")
 
-![工具栏](https://renlm.gitee.io/imgs/MyGraph/305.png "工具栏")
+![工具栏](https://renlm.cn/imgs/MyGraph/305.png "工具栏")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph/306.png "添加表")
+![添加表](https://renlm.cn/imgs/MyGraph/306.png "添加表")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph/307.png "添加表")
+![添加表](https://renlm.cn/imgs/MyGraph/307.png "添加表")
 
-![双击表编辑](https://renlm.gitee.io/imgs/MyGraph/308.png "双击表编辑")
+![双击表编辑](https://renlm.cn/imgs/MyGraph/308.png "双击表编辑")
 
-![我的字段库](https://renlm.gitee.io/imgs/MyGraph/309.png "我的字段库")
+![我的字段库](https://renlm.cn/imgs/MyGraph/309.png "我的字段库")
 
 #### 导出DDL
 图形分类为ER模型的才可导出DDL，下载的DDL建表语句带注释，可直接执行。
 
-![下载DDL](https://renlm.gitee.io/imgs/MyGraph/310.png "下载DDL")
+![下载DDL](https://renlm.cn/imgs/MyGraph/310.png "下载DDL")
 
-![DDL](https://renlm.gitee.io/imgs/MyGraph/311.png "DDL")
+![DDL](https://renlm.cn/imgs/MyGraph/311.png "DDL")
 
 #### 图形设计
 展示所有公开及自己名下的图。  
 除了数据库ER图，同时支持其它诸如流程图、UML、思维导图等常见图形。  
 自动计算图形尺寸并生成封面。  
 
-![所有公开及自己名下的图](https://renlm.gitee.io/imgs/MyGraph/312.png "所有公开及自己名下的图")
+![所有公开及自己名下的图](https://renlm.cn/imgs/MyGraph/312.png "所有公开及自己名下的图")
 
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
 例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>  
 
-![代理配置](https://renlm.gitee.io/imgs/MyGraph/401.png "代理配置")
+![代理配置](https://renlm.cn/imgs/MyGraph/401.png "代理配置")
 
-![代理地址](https://renlm.gitee.io/imgs/MyGraph/402.png "代理地址")
+![代理地址](https://renlm.cn/imgs/MyGraph/402.png "代理地址")
 
 #### 日志记录
 
-![日志记录](https://renlm.gitee.io/imgs/MyGraph/403.png "日志记录")
+![日志记录](https://renlm.cn/imgs/MyGraph/403.png "日志记录")
 
 #### 统计数据
 
-![统计数据](https://renlm.gitee.io/imgs/MyGraph/404.png "统计数据")
+![统计数据](https://renlm.cn/imgs/MyGraph/404.png "统计数据")
 
 ### 单点登录集成
 详情请登录系统，参见帮助文档。  
 
-![单点登录集成](https://renlm.gitee.io/imgs/MyGraph/501.png "单点登录集成")
+![单点登录集成](https://renlm.cn/imgs/MyGraph/501.png "单点登录集成")
 
 ## 主要技术组件
 SpringBoot2.5.3 + SpringSecurity + MyBatis-plus + My-Plugin  
@@ -5155,31 +5155,31 @@ EasyUI + Mxgraph + Editor.md
 数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据）。  
 项目默认启动test环境，启动dev环境会重建库。  
 
-![数据库初始脚本](https://renlm.gitee.io/imgs/MyGraph/100.png "数据库初始脚本")
+![数据库初始脚本](https://renlm.cn/imgs/MyGraph/100.png "数据库初始脚本")
 
 ### Redis、Rabbitmq队列、数据库
 本地化部署请修改Redis、Rabbitmq队列、数据库的地址账号及密码。  
 
-![redis、mq队列、数据库](https://renlm.gitee.io/imgs/MyGraph/101.png "redis、mq队列、数据库")
+![redis、mq队列、数据库](https://renlm.cn/imgs/MyGraph/101.png "redis、mq队列、数据库")
 
 ### 谷歌浏览器驱动
 生成封面用到了谷歌浏览器驱动，请修改驱动地址。  
 
-![谷歌浏览器驱动](https://renlm.gitee.io/imgs/MyGraph/102.png "谷歌浏览器驱动")
+![谷歌浏览器驱动](https://renlm.cn/imgs/MyGraph/102.png "谷歌浏览器驱动")
 
 ### 修改自定义参数
 配置文件中的自定义参数请修改为自己的项目地址。  
 服务器监控Websocket配置等需要。  
 
-![修改自定义参数](https://renlm.gitee.io/imgs/MyGraph/103.png "修改自定义参数")',NULL,NULL,NULL,'2022-07-10 18:54:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:54:04',NULL,NULL,0,NULL)
+![修改自定义参数](https://renlm.cn/imgs/MyGraph/103.png "修改自定义参数")',NULL,NULL,NULL,'2022-07-10 18:54:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:54:04',NULL,NULL,0,NULL)
 ,(2,'35111CB38E564A2684B934D954BA6F0F','Markdown',1,'# Markdown扩展
 
 在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
 
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
@@ -5313,7 +5313,7 @@ GW-UserInfo：当前登录用户信息Json的Base64加密串
 GW-Timestamp：时间戳  
 GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)  
 
-![扩展请求头](https://renlm.gitee.io/imgs/MyGraph/601.png "扩展请求头")
+![扩展请求头](https://renlm.cn/imgs/MyGraph/601.png "扩展请求头")
 
 ## 被代理端验权
 每一个代理应用都会分配一个Access Key和Secret Key，请妥善保存。  
@@ -5321,17 +5321,17 @@ GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)
 
 ## 代理配置
 
-![代理配置](https://renlm.gitee.io/imgs/MyGraph/401.png "代理配置")
+![代理配置](https://renlm.cn/imgs/MyGraph/401.png "代理配置")
 
-![代理地址](https://renlm.gitee.io/imgs/MyGraph/402.png "代理地址")
+![代理地址](https://renlm.cn/imgs/MyGraph/402.png "代理地址")
 
 #### 日志记录
 
-![日志记录](https://renlm.gitee.io/imgs/MyGraph/403.png "日志记录")
+![日志记录](https://renlm.cn/imgs/MyGraph/403.png "日志记录")
 
 #### 统计数据
 
-![统计数据](https://renlm.gitee.io/imgs/MyGraph/404.png "统计数据")',NULL,NULL,NULL,'2022-07-10 18:54:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:54:47',NULL,NULL,0,NULL)
+![统计数据](https://renlm.cn/imgs/MyGraph/404.png "统计数据")',NULL,NULL,NULL,'2022-07-10 18:54:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:54:47',NULL,NULL,0,NULL)
 ,(4,'954755B97FE84578A268CDBAEA0C8096','获取子集列表',1,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -6524,7 +6524,7 @@ GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)
 
 ### 示例图
 
-![登录页](https://renlm.gitee.io/imgs/MyGraph/LoginPage.png "登录页")',NULL,NULL,NULL,'2022-07-10 18:56:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:56:04',NULL,NULL,0,NULL)
+![登录页](https://renlm.cn/imgs/MyGraph/LoginPage.png "登录页")',NULL,NULL,NULL,'2022-07-10 18:56:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:56:04',NULL,NULL,0,NULL)
 ,(8,'A8133CDDFA7E4FDE9A0E005E589EA560','获取会话秘钥',1,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -6622,7 +6622,7 @@ function aesDecrypt (aesKey, encrypted) {
 登录成功后会自动会跳到之前的页面。  
 例：<a href="https://mygraph.renlm.cn/login?callback=https://www.baidu.com/" target="_blank"> https://mygraph.renlm.cn/login?callback=https://www.baidu.com/ </a>  
 
-![单点登录页](https://renlm.gitee.io/imgs/MyGraph/LoginPageSso.png "单点登录页")',NULL,NULL,NULL,'2022-07-10 18:56:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:56:37',NULL,NULL,0,NULL)
+![单点登录页](https://renlm.cn/imgs/MyGraph/LoginPageSso.png "单点登录页")',NULL,NULL,NULL,'2022-07-10 18:56:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:56:37',NULL,NULL,0,NULL)
 ,(10,'4579B97F59ED4A0FBDAE73BE7C72CADD','登录接口',1,'### 基本信息
 当需要自定义登录页面时，可使用登录接口来完成登录。  
 
@@ -10353,90 +10353,90 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 ### 在线文档
 #### 新建项目
 
-![新建项目](https://renlm.gitee.io/imgs/MyGraph/201.png "新建项目")
+![新建项目](https://renlm.cn/imgs/MyGraph/201.png "新建项目")
 
 #### 成员管理
 
-![成员管理](https://renlm.gitee.io/imgs/MyGraph/202.png "成员管理")
+![成员管理](https://renlm.cn/imgs/MyGraph/202.png "成员管理")
 
 #### 新建文档
 
 支持多级目录，支持Markdown文档、图形设计、在线表格三种类型。
 
-![点击项目名称，进入文档管理](https://renlm.gitee.io/imgs/MyGraph/210.png "点击项目名称，进入文档管理")
+![点击项目名称，进入文档管理](https://renlm.cn/imgs/MyGraph/210.png "点击项目名称，进入文档管理")
 
-![新建分类](https://renlm.gitee.io/imgs/MyGraph/211.png "新建分类")
+![新建分类](https://renlm.cn/imgs/MyGraph/211.png "新建分类")
 
-![新建子级](https://renlm.gitee.io/imgs/MyGraph/212.png "新建子级")
+![新建子级](https://renlm.cn/imgs/MyGraph/212.png "新建子级")
 
-![编辑文档](https://renlm.gitee.io/imgs/MyGraph/213.png "编辑文档")
+![编辑文档](https://renlm.cn/imgs/MyGraph/213.png "编辑文档")
 
-![Markdown文档](https://renlm.gitee.io/imgs/MyGraph/214.png "Markdown文档")
+![Markdown文档](https://renlm.cn/imgs/MyGraph/214.png "Markdown文档")
 
 #### 分享与收藏
 收藏或分享后，在知识文库可快速进入。
 
-![分享与收藏](https://renlm.gitee.io/imgs/MyGraph/215.png "分享与收藏")
+![分享与收藏](https://renlm.cn/imgs/MyGraph/215.png "分享与收藏")
 
 ### 数据库设计
 #### 从数据源生成ER图
 新建数据源，选择表生成ER图后，根据提示进入文档管理中查看编辑图形。
 
-![新建数据源](https://renlm.gitee.io/imgs/MyGraph/301.png "新建数据源")
+![新建数据源](https://renlm.cn/imgs/MyGraph/301.png "新建数据源")
 
-![选择表](https://renlm.gitee.io/imgs/MyGraph/302.png "选择表")
+![选择表](https://renlm.cn/imgs/MyGraph/302.png "选择表")
 
-![生成ER图](https://renlm.gitee.io/imgs/MyGraph/303.png "生成ER图")
+![生成ER图](https://renlm.cn/imgs/MyGraph/303.png "生成ER图")
 
 #### 数据库ER模型设计
 
-![打开工具](https://renlm.gitee.io/imgs/MyGraph/304.png "打开工具")
+![打开工具](https://renlm.cn/imgs/MyGraph/304.png "打开工具")
 
-![工具栏](https://renlm.gitee.io/imgs/MyGraph/305.png "工具栏")
+![工具栏](https://renlm.cn/imgs/MyGraph/305.png "工具栏")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph/306.png "添加表")
+![添加表](https://renlm.cn/imgs/MyGraph/306.png "添加表")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph/307.png "添加表")
+![添加表](https://renlm.cn/imgs/MyGraph/307.png "添加表")
 
-![双击表编辑](https://renlm.gitee.io/imgs/MyGraph/308.png "双击表编辑")
+![双击表编辑](https://renlm.cn/imgs/MyGraph/308.png "双击表编辑")
 
-![我的字段库](https://renlm.gitee.io/imgs/MyGraph/309.png "我的字段库")
+![我的字段库](https://renlm.cn/imgs/MyGraph/309.png "我的字段库")
 
 #### 导出DDL
 图形分类为ER模型的才可导出DDL，下载的DDL建表语句带注释，可直接执行。
 
-![下载DDL](https://renlm.gitee.io/imgs/MyGraph/310.png "下载DDL")
+![下载DDL](https://renlm.cn/imgs/MyGraph/310.png "下载DDL")
 
-![DDL](https://renlm.gitee.io/imgs/MyGraph/311.png "DDL")
+![DDL](https://renlm.cn/imgs/MyGraph/311.png "DDL")
 
 #### 图形设计
 展示所有公开及自己名下的图。  
 除了数据库ER图，同时支持其它诸如流程图、UML、思维导图等常见图形。  
 自动计算图形尺寸并生成封面。  
 
-![所有公开及自己名下的图](https://renlm.gitee.io/imgs/MyGraph/312.png "所有公开及自己名下的图")
+![所有公开及自己名下的图](https://renlm.cn/imgs/MyGraph/312.png "所有公开及自己名下的图")
 
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
 例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>  
 
-![代理配置](https://renlm.gitee.io/imgs/MyGraph/401.png "代理配置")
+![代理配置](https://renlm.cn/imgs/MyGraph/401.png "代理配置")
 
-![代理地址](https://renlm.gitee.io/imgs/MyGraph/402.png "代理地址")
+![代理地址](https://renlm.cn/imgs/MyGraph/402.png "代理地址")
 
 #### 日志记录
 
-![日志记录](https://renlm.gitee.io/imgs/MyGraph/403.png "日志记录")
+![日志记录](https://renlm.cn/imgs/MyGraph/403.png "日志记录")
 
 #### 统计数据
 
-![统计数据](https://renlm.gitee.io/imgs/MyGraph/404.png "统计数据")
+![统计数据](https://renlm.cn/imgs/MyGraph/404.png "统计数据")
 
 ### 单点登录集成
 详情请登录系统，参见帮助文档。  
 
-![单点登录集成](https://renlm.gitee.io/imgs/MyGraph/501.png "单点登录集成")
+![单点登录集成](https://renlm.cn/imgs/MyGraph/501.png "单点登录集成")
 
 ## 主要技术组件
 SpringBoot2.5.3 + SpringSecurity + MyBatis-plus + My-Plugin  
@@ -10454,31 +10454,31 @@ EasyUI + Mxgraph + Editor.md
 数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据）。  
 项目默认启动test环境，启动dev环境会重建库。  
 
-![数据库初始脚本](https://renlm.gitee.io/imgs/MyGraph/100.png "数据库初始脚本")
+![数据库初始脚本](https://renlm.cn/imgs/MyGraph/100.png "数据库初始脚本")
 
 ### Redis、Rabbitmq队列、数据库
 本地化部署请修改Redis、Rabbitmq队列、数据库的地址账号及密码。  
 
-![redis、mq队列、数据库](https://renlm.gitee.io/imgs/MyGraph/101.png "redis、mq队列、数据库")
+![redis、mq队列、数据库](https://renlm.cn/imgs/MyGraph/101.png "redis、mq队列、数据库")
 
 ### 谷歌浏览器驱动
 生成封面用到了谷歌浏览器驱动，请修改驱动地址。  
 
-![谷歌浏览器驱动](https://renlm.gitee.io/imgs/MyGraph/102.png "谷歌浏览器驱动")
+![谷歌浏览器驱动](https://renlm.cn/imgs/MyGraph/102.png "谷歌浏览器驱动")
 
 ### 修改自定义参数
 配置文件中的自定义参数请修改为自己的项目地址。  
 服务器监控Websocket配置等需要。  
 
-![修改自定义参数](https://renlm.gitee.io/imgs/MyGraph/103.png "修改自定义参数")',NULL,NULL,NULL,'2022-07-10 19:00:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:04:39','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![修改自定义参数](https://renlm.cn/imgs/MyGraph/103.png "修改自定义参数")',NULL,NULL,NULL,'2022-07-10 19:00:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:04:39','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,(15,'2F403FB530BA424FBA1F8A5B20445C82','MyGraph 管理后台/系统手册/Markdown',2,'# Markdown扩展
 
 在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
 
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
@@ -10613,7 +10613,7 @@ GW-UserInfo：当前登录用户信息Json的Base64加密串
 GW-Timestamp：时间戳  
 GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)  
 
-![扩展请求头](https://renlm.gitee.io/imgs/MyGraph/601.png "扩展请求头")
+![扩展请求头](https://renlm.cn/imgs/MyGraph/601.png "扩展请求头")
 
 ## 被代理端验权
 每一个代理应用都会分配一个Access Key和Secret Key，请妥善保存。  
@@ -10621,17 +10621,17 @@ GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)
 
 ## 代理配置
 
-![代理配置](https://renlm.gitee.io/imgs/MyGraph/401.png "代理配置")
+![代理配置](https://renlm.cn/imgs/MyGraph/401.png "代理配置")
 
-![代理地址](https://renlm.gitee.io/imgs/MyGraph/402.png "代理地址")
+![代理地址](https://renlm.cn/imgs/MyGraph/402.png "代理地址")
 
 #### 日志记录
 
-![日志记录](https://renlm.gitee.io/imgs/MyGraph/403.png "日志记录")
+![日志记录](https://renlm.cn/imgs/MyGraph/403.png "日志记录")
 
 #### 统计数据
 
-![统计数据](https://renlm.gitee.io/imgs/MyGraph/404.png "统计数据")',NULL,NULL,NULL,'2022-07-10 19:01:05','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:05:15','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![统计数据](https://renlm.cn/imgs/MyGraph/404.png "统计数据")',NULL,NULL,NULL,'2022-07-10 19:01:05','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:05:15','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,(18,'7D1B051A31534138AA5B5432E61C0580','MyGraph 管理后台/系统手册/开放接口',1,NULL,NULL,NULL,NULL,'2022-07-10 19:01:17','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:01:17',NULL,NULL,0,NULL)
 ,(19,'5D76F9B0C7764370AFD8796373FCE0A5','MyGraph 管理后台/系统手册/开放接口/数据字典',1,NULL,NULL,NULL,NULL,'2022-07-10 19:01:31','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:01:31',NULL,NULL,0,NULL)
 ,(20,'1E8C6AD04A50441AA90DEE02B8DE828E','MyGraph 管理后台/系统手册/开放接口/数据字典/获取子集列表',2,'### 基本信息
@@ -11830,7 +11830,7 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 
 ### 示例图
 
-![登录页](https://renlm.gitee.io/imgs/MyGraph/LoginPage.png "登录页")',NULL,NULL,NULL,'2022-07-10 19:02:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:06:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![登录页](https://renlm.cn/imgs/MyGraph/LoginPage.png "登录页")',NULL,NULL,NULL,'2022-07-10 19:02:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:06:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,(26,'03EFE7DC10664FC4859743AD8D08341C','MyGraph 管理后台/系统手册/开放接口/单点登录/获取会话秘钥',2,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -11928,7 +11928,7 @@ function aesDecrypt (aesKey, encrypted) {
 登录成功后会自动会跳到之前的页面。  
 例：<a href="https://mygraph.renlm.cn/login?callback=https://www.baidu.com/" target="_blank"> https://mygraph.renlm.cn/login?callback=https://www.baidu.com/ </a>  
 
-![单点登录页](https://renlm.gitee.io/imgs/MyGraph/LoginPageSso.png "单点登录页")',NULL,NULL,NULL,'2022-07-10 19:03:03','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:07:12','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![单点登录页](https://renlm.cn/imgs/MyGraph/LoginPageSso.png "单点登录页")',NULL,NULL,NULL,'2022-07-10 19:03:03','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:07:12','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,(28,'3D7F481AA4034AAAB0A51AB7E9FF2838','MyGraph 管理后台/系统手册/开放接口/单点登录/登录接口',2,'### 基本信息
 当需要自定义登录页面时，可使用登录接口来完成登录。  
 
@@ -15664,90 +15664,90 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 ### 在线文档
 #### 新建项目
 
-![新建项目](https://renlm.gitee.io/imgs/MyGraph/201.png "新建项目")
+![新建项目](https://renlm.cn/imgs/MyGraph/201.png "新建项目")
 
 #### 成员管理
 
-![成员管理](https://renlm.gitee.io/imgs/MyGraph/202.png "成员管理")
+![成员管理](https://renlm.cn/imgs/MyGraph/202.png "成员管理")
 
 #### 新建文档
 
 支持多级目录，支持Markdown文档、图形设计、在线表格三种类型。
 
-![点击项目名称，进入文档管理](https://renlm.gitee.io/imgs/MyGraph/210.png "点击项目名称，进入文档管理")
+![点击项目名称，进入文档管理](https://renlm.cn/imgs/MyGraph/210.png "点击项目名称，进入文档管理")
 
-![新建分类](https://renlm.gitee.io/imgs/MyGraph/211.png "新建分类")
+![新建分类](https://renlm.cn/imgs/MyGraph/211.png "新建分类")
 
-![新建子级](https://renlm.gitee.io/imgs/MyGraph/212.png "新建子级")
+![新建子级](https://renlm.cn/imgs/MyGraph/212.png "新建子级")
 
-![编辑文档](https://renlm.gitee.io/imgs/MyGraph/213.png "编辑文档")
+![编辑文档](https://renlm.cn/imgs/MyGraph/213.png "编辑文档")
 
-![Markdown文档](https://renlm.gitee.io/imgs/MyGraph/214.png "Markdown文档")
+![Markdown文档](https://renlm.cn/imgs/MyGraph/214.png "Markdown文档")
 
 #### 分享与收藏
 收藏或分享后，在知识文库可快速进入。
 
-![分享与收藏](https://renlm.gitee.io/imgs/MyGraph/215.png "分享与收藏")
+![分享与收藏](https://renlm.cn/imgs/MyGraph/215.png "分享与收藏")
 
 ### 数据库设计
 #### 从数据源生成ER图
 新建数据源，选择表生成ER图后，根据提示进入文档管理中查看编辑图形。
 
-![新建数据源](https://renlm.gitee.io/imgs/MyGraph/301.png "新建数据源")
+![新建数据源](https://renlm.cn/imgs/MyGraph/301.png "新建数据源")
 
-![选择表](https://renlm.gitee.io/imgs/MyGraph/302.png "选择表")
+![选择表](https://renlm.cn/imgs/MyGraph/302.png "选择表")
 
-![生成ER图](https://renlm.gitee.io/imgs/MyGraph/303.png "生成ER图")
+![生成ER图](https://renlm.cn/imgs/MyGraph/303.png "生成ER图")
 
 #### 数据库ER模型设计
 
-![打开工具](https://renlm.gitee.io/imgs/MyGraph/304.png "打开工具")
+![打开工具](https://renlm.cn/imgs/MyGraph/304.png "打开工具")
 
-![工具栏](https://renlm.gitee.io/imgs/MyGraph/305.png "工具栏")
+![工具栏](https://renlm.cn/imgs/MyGraph/305.png "工具栏")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph/306.png "添加表")
+![添加表](https://renlm.cn/imgs/MyGraph/306.png "添加表")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph/307.png "添加表")
+![添加表](https://renlm.cn/imgs/MyGraph/307.png "添加表")
 
-![双击表编辑](https://renlm.gitee.io/imgs/MyGraph/308.png "双击表编辑")
+![双击表编辑](https://renlm.cn/imgs/MyGraph/308.png "双击表编辑")
 
-![我的字段库](https://renlm.gitee.io/imgs/MyGraph/309.png "我的字段库")
+![我的字段库](https://renlm.cn/imgs/MyGraph/309.png "我的字段库")
 
 #### 导出DDL
 图形分类为ER模型的才可导出DDL，下载的DDL建表语句带注释，可直接执行。
 
-![下载DDL](https://renlm.gitee.io/imgs/MyGraph/310.png "下载DDL")
+![下载DDL](https://renlm.cn/imgs/MyGraph/310.png "下载DDL")
 
-![DDL](https://renlm.gitee.io/imgs/MyGraph/311.png "DDL")
+![DDL](https://renlm.cn/imgs/MyGraph/311.png "DDL")
 
 #### 图形设计
 展示所有公开及自己名下的图。  
 除了数据库ER图，同时支持其它诸如流程图、UML、思维导图等常见图形。  
 自动计算图形尺寸并生成封面。  
 
-![所有公开及自己名下的图](https://renlm.gitee.io/imgs/MyGraph/312.png "所有公开及自己名下的图")
+![所有公开及自己名下的图](https://renlm.cn/imgs/MyGraph/312.png "所有公开及自己名下的图")
 
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
 例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>  
 
-![代理配置](https://renlm.gitee.io/imgs/MyGraph/401.png "代理配置")
+![代理配置](https://renlm.cn/imgs/MyGraph/401.png "代理配置")
 
-![代理地址](https://renlm.gitee.io/imgs/MyGraph/402.png "代理地址")
+![代理地址](https://renlm.cn/imgs/MyGraph/402.png "代理地址")
 
 #### 日志记录
 
-![日志记录](https://renlm.gitee.io/imgs/MyGraph/403.png "日志记录")
+![日志记录](https://renlm.cn/imgs/MyGraph/403.png "日志记录")
 
 #### 统计数据
 
-![统计数据](https://renlm.gitee.io/imgs/MyGraph/404.png "统计数据")
+![统计数据](https://renlm.cn/imgs/MyGraph/404.png "统计数据")
 
 ### 单点登录集成
 详情请登录系统，参见帮助文档。  
 
-![单点登录集成](https://renlm.gitee.io/imgs/MyGraph/501.png "单点登录集成")
+![单点登录集成](https://renlm.cn/imgs/MyGraph/501.png "单点登录集成")
 
 ## 主要技术组件
 SpringBoot2.5.3 + SpringSecurity + MyBatis-plus + My-Plugin  
@@ -15765,31 +15765,31 @@ EasyUI + Mxgraph + Editor.md
 数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据）。  
 项目默认启动test环境，启动dev环境会重建库。  
 
-![数据库初始脚本](https://renlm.gitee.io/imgs/MyGraph/100.png "数据库初始脚本")
+![数据库初始脚本](https://renlm.cn/imgs/MyGraph/100.png "数据库初始脚本")
 
 ### Redis、Rabbitmq队列、数据库
 本地化部署请修改Redis、Rabbitmq队列、数据库的地址账号及密码。  
 
-![redis、mq队列、数据库](https://renlm.gitee.io/imgs/MyGraph/101.png "redis、mq队列、数据库")
+![redis、mq队列、数据库](https://renlm.cn/imgs/MyGraph/101.png "redis、mq队列、数据库")
 
 ### 谷歌浏览器驱动
 生成封面用到了谷歌浏览器驱动，请修改驱动地址。  
 
-![谷歌浏览器驱动](https://renlm.gitee.io/imgs/MyGraph/102.png "谷歌浏览器驱动")
+![谷歌浏览器驱动](https://renlm.cn/imgs/MyGraph/102.png "谷歌浏览器驱动")
 
 ### 修改自定义参数
 配置文件中的自定义参数请修改为自己的项目地址。  
 服务器监控Websocket配置等需要。  
 
-![修改自定义参数](https://renlm.gitee.io/imgs/MyGraph/103.png "修改自定义参数")',NULL,NULL,NULL,'2022-07-10 18:54:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:54:04',NULL,NULL,0,NULL)
+![修改自定义参数](https://renlm.cn/imgs/MyGraph/103.png "修改自定义参数")',NULL,NULL,NULL,'2022-07-10 18:54:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:54:04',NULL,NULL,0,NULL)
 ,(2,'新增','2022-07-10 18:54:24','ABFEE20BA6AC4783A683C7117763951E','令狐冲',2,'35111CB38E564A2684B934D954BA6F0F','Markdown',1,'# Markdown扩展
 
 在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
 
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
@@ -15923,7 +15923,7 @@ GW-UserInfo：当前登录用户信息Json的Base64加密串
 GW-Timestamp：时间戳  
 GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)  
 
-![扩展请求头](https://renlm.gitee.io/imgs/MyGraph/601.png "扩展请求头")
+![扩展请求头](https://renlm.cn/imgs/MyGraph/601.png "扩展请求头")
 
 ## 被代理端验权
 每一个代理应用都会分配一个Access Key和Secret Key，请妥善保存。  
@@ -15931,17 +15931,17 @@ GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)
 
 ## 代理配置
 
-![代理配置](https://renlm.gitee.io/imgs/MyGraph/401.png "代理配置")
+![代理配置](https://renlm.cn/imgs/MyGraph/401.png "代理配置")
 
-![代理地址](https://renlm.gitee.io/imgs/MyGraph/402.png "代理地址")
+![代理地址](https://renlm.cn/imgs/MyGraph/402.png "代理地址")
 
 #### 日志记录
 
-![日志记录](https://renlm.gitee.io/imgs/MyGraph/403.png "日志记录")
+![日志记录](https://renlm.cn/imgs/MyGraph/403.png "日志记录")
 
 #### 统计数据
 
-![统计数据](https://renlm.gitee.io/imgs/MyGraph/404.png "统计数据")',NULL,NULL,NULL,'2022-07-10 18:54:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:54:47',NULL,NULL,0,NULL)
+![统计数据](https://renlm.cn/imgs/MyGraph/404.png "统计数据")',NULL,NULL,NULL,'2022-07-10 18:54:47','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:54:47',NULL,NULL,0,NULL)
 ,(4,'新增','2022-07-10 18:55:10','ABFEE20BA6AC4783A683C7117763951E','令狐冲',4,'954755B97FE84578A268CDBAEA0C8096','获取子集列表',1,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -17134,7 +17134,7 @@ GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)
 
 ### 示例图
 
-![登录页](https://renlm.gitee.io/imgs/MyGraph/LoginPage.png "登录页")',NULL,NULL,NULL,'2022-07-10 18:56:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:56:04',NULL,NULL,0,NULL)
+![登录页](https://renlm.cn/imgs/MyGraph/LoginPage.png "登录页")',NULL,NULL,NULL,'2022-07-10 18:56:04','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:56:04',NULL,NULL,0,NULL)
 ,(8,'新增','2022-07-10 18:56:22','ABFEE20BA6AC4783A683C7117763951E','令狐冲',8,'A8133CDDFA7E4FDE9A0E005E589EA560','获取会话秘钥',1,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -17232,7 +17232,7 @@ function aesDecrypt (aesKey, encrypted) {
 登录成功后会自动会跳到之前的页面。  
 例：<a href="https://mygraph.renlm.cn/login?callback=https://www.baidu.com/" target="_blank"> https://mygraph.renlm.cn/login?callback=https://www.baidu.com/ </a>  
 
-![单点登录页](https://renlm.gitee.io/imgs/MyGraph/LoginPageSso.png "单点登录页")',NULL,NULL,NULL,'2022-07-10 18:56:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:56:37',NULL,NULL,0,NULL)
+![单点登录页](https://renlm.cn/imgs/MyGraph/LoginPageSso.png "单点登录页")',NULL,NULL,NULL,'2022-07-10 18:56:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 18:56:37',NULL,NULL,0,NULL)
 ,(10,'新增','2022-07-10 18:56:55','ABFEE20BA6AC4783A683C7117763951E','令狐冲',10,'4579B97F59ED4A0FBDAE73BE7C72CADD','登录接口',1,'### 基本信息
 当需要自定义登录页面时，可使用登录接口来完成登录。  
 
@@ -20985,90 +20985,90 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 ### 在线文档
 #### 新建项目
 
-![新建项目](https://renlm.gitee.io/imgs/MyGraph/201.png "新建项目")
+![新建项目](https://renlm.cn/imgs/MyGraph/201.png "新建项目")
 
 #### 成员管理
 
-![成员管理](https://renlm.gitee.io/imgs/MyGraph/202.png "成员管理")
+![成员管理](https://renlm.cn/imgs/MyGraph/202.png "成员管理")
 
 #### 新建文档
 
 支持多级目录，支持Markdown文档、图形设计、在线表格三种类型。
 
-![点击项目名称，进入文档管理](https://renlm.gitee.io/imgs/MyGraph/210.png "点击项目名称，进入文档管理")
+![点击项目名称，进入文档管理](https://renlm.cn/imgs/MyGraph/210.png "点击项目名称，进入文档管理")
 
-![新建分类](https://renlm.gitee.io/imgs/MyGraph/211.png "新建分类")
+![新建分类](https://renlm.cn/imgs/MyGraph/211.png "新建分类")
 
-![新建子级](https://renlm.gitee.io/imgs/MyGraph/212.png "新建子级")
+![新建子级](https://renlm.cn/imgs/MyGraph/212.png "新建子级")
 
-![编辑文档](https://renlm.gitee.io/imgs/MyGraph/213.png "编辑文档")
+![编辑文档](https://renlm.cn/imgs/MyGraph/213.png "编辑文档")
 
-![Markdown文档](https://renlm.gitee.io/imgs/MyGraph/214.png "Markdown文档")
+![Markdown文档](https://renlm.cn/imgs/MyGraph/214.png "Markdown文档")
 
 #### 分享与收藏
 收藏或分享后，在知识文库可快速进入。
 
-![分享与收藏](https://renlm.gitee.io/imgs/MyGraph/215.png "分享与收藏")
+![分享与收藏](https://renlm.cn/imgs/MyGraph/215.png "分享与收藏")
 
 ### 数据库设计
 #### 从数据源生成ER图
 新建数据源，选择表生成ER图后，根据提示进入文档管理中查看编辑图形。
 
-![新建数据源](https://renlm.gitee.io/imgs/MyGraph/301.png "新建数据源")
+![新建数据源](https://renlm.cn/imgs/MyGraph/301.png "新建数据源")
 
-![选择表](https://renlm.gitee.io/imgs/MyGraph/302.png "选择表")
+![选择表](https://renlm.cn/imgs/MyGraph/302.png "选择表")
 
-![生成ER图](https://renlm.gitee.io/imgs/MyGraph/303.png "生成ER图")
+![生成ER图](https://renlm.cn/imgs/MyGraph/303.png "生成ER图")
 
 #### 数据库ER模型设计
 
-![打开工具](https://renlm.gitee.io/imgs/MyGraph/304.png "打开工具")
+![打开工具](https://renlm.cn/imgs/MyGraph/304.png "打开工具")
 
-![工具栏](https://renlm.gitee.io/imgs/MyGraph/305.png "工具栏")
+![工具栏](https://renlm.cn/imgs/MyGraph/305.png "工具栏")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph/306.png "添加表")
+![添加表](https://renlm.cn/imgs/MyGraph/306.png "添加表")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph/307.png "添加表")
+![添加表](https://renlm.cn/imgs/MyGraph/307.png "添加表")
 
-![双击表编辑](https://renlm.gitee.io/imgs/MyGraph/308.png "双击表编辑")
+![双击表编辑](https://renlm.cn/imgs/MyGraph/308.png "双击表编辑")
 
-![我的字段库](https://renlm.gitee.io/imgs/MyGraph/309.png "我的字段库")
+![我的字段库](https://renlm.cn/imgs/MyGraph/309.png "我的字段库")
 
 #### 导出DDL
 图形分类为ER模型的才可导出DDL，下载的DDL建表语句带注释，可直接执行。
 
-![下载DDL](https://renlm.gitee.io/imgs/MyGraph/310.png "下载DDL")
+![下载DDL](https://renlm.cn/imgs/MyGraph/310.png "下载DDL")
 
-![DDL](https://renlm.gitee.io/imgs/MyGraph/311.png "DDL")
+![DDL](https://renlm.cn/imgs/MyGraph/311.png "DDL")
 
 #### 图形设计
 展示所有公开及自己名下的图。  
 除了数据库ER图，同时支持其它诸如流程图、UML、思维导图等常见图形。  
 自动计算图形尺寸并生成封面。  
 
-![所有公开及自己名下的图](https://renlm.gitee.io/imgs/MyGraph/312.png "所有公开及自己名下的图")
+![所有公开及自己名下的图](https://renlm.cn/imgs/MyGraph/312.png "所有公开及自己名下的图")
 
 ### 网关代理
 #### 代理配置
 统一代理地址前缀：/proxy/  
 例：<a href="https://mygraph.renlm.cn/proxy/baidu/" target="_blank"> https://<span></span>mygraph.renlm.cn/proxy/baidu/ </a>  
 
-![代理配置](https://renlm.gitee.io/imgs/MyGraph/401.png "代理配置")
+![代理配置](https://renlm.cn/imgs/MyGraph/401.png "代理配置")
 
-![代理地址](https://renlm.gitee.io/imgs/MyGraph/402.png "代理地址")
+![代理地址](https://renlm.cn/imgs/MyGraph/402.png "代理地址")
 
 #### 日志记录
 
-![日志记录](https://renlm.gitee.io/imgs/MyGraph/403.png "日志记录")
+![日志记录](https://renlm.cn/imgs/MyGraph/403.png "日志记录")
 
 #### 统计数据
 
-![统计数据](https://renlm.gitee.io/imgs/MyGraph/404.png "统计数据")
+![统计数据](https://renlm.cn/imgs/MyGraph/404.png "统计数据")
 
 ### 单点登录集成
 详情请登录系统，参见帮助文档。  
 
-![单点登录集成](https://renlm.gitee.io/imgs/MyGraph/501.png "单点登录集成")
+![单点登录集成](https://renlm.cn/imgs/MyGraph/501.png "单点登录集成")
 
 ## 主要技术组件
 SpringBoot2.5.3 + SpringSecurity + MyBatis-plus + My-Plugin  
@@ -21086,31 +21086,31 @@ EasyUI + Mxgraph + Editor.md
 数据库脚本在resource/shcema目录下，包含schema.sql（结构）和data.sql（初始数据）。  
 项目默认启动test环境，启动dev环境会重建库。  
 
-![数据库初始脚本](https://renlm.gitee.io/imgs/MyGraph/100.png "数据库初始脚本")
+![数据库初始脚本](https://renlm.cn/imgs/MyGraph/100.png "数据库初始脚本")
 
 ### Redis、Rabbitmq队列、数据库
 本地化部署请修改Redis、Rabbitmq队列、数据库的地址账号及密码。  
 
-![redis、mq队列、数据库](https://renlm.gitee.io/imgs/MyGraph/101.png "redis、mq队列、数据库")
+![redis、mq队列、数据库](https://renlm.cn/imgs/MyGraph/101.png "redis、mq队列、数据库")
 
 ### 谷歌浏览器驱动
 生成封面用到了谷歌浏览器驱动，请修改驱动地址。  
 
-![谷歌浏览器驱动](https://renlm.gitee.io/imgs/MyGraph/102.png "谷歌浏览器驱动")
+![谷歌浏览器驱动](https://renlm.cn/imgs/MyGraph/102.png "谷歌浏览器驱动")
 
 ### 修改自定义参数
 配置文件中的自定义参数请修改为自己的项目地址。  
 服务器监控Websocket配置等需要。  
 
-![修改自定义参数](https://renlm.gitee.io/imgs/MyGraph/103.png "修改自定义参数")',NULL,NULL,NULL,'2022-07-10 19:00:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:04:39','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![修改自定义参数](https://renlm.cn/imgs/MyGraph/103.png "修改自定义参数")',NULL,NULL,NULL,'2022-07-10 19:00:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:04:39','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,(33,'修改','2022-07-10 19:04:58','ABFEE20BA6AC4783A683C7117763951E','令狐冲',15,'2F403FB530BA424FBA1F8A5B20445C82','MyGraph 管理后台/系统手册/Markdown',2,'# Markdown扩展
 
 在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
+___<a href="https://renlm.cn/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
 
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
@@ -21244,7 +21244,7 @@ GW-UserInfo：当前登录用户信息Json的Base64加密串
 GW-Timestamp：时间戳  
 GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)  
 
-![扩展请求头](https://renlm.gitee.io/imgs/MyGraph/601.png "扩展请求头")
+![扩展请求头](https://renlm.cn/imgs/MyGraph/601.png "扩展请求头")
 
 ## 被代理端验权
 每一个代理应用都会分配一个Access Key和Secret Key，请妥善保存。  
@@ -21252,17 +21252,17 @@ GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)
 
 ## 代理配置
 
-![代理配置](https://renlm.gitee.io/imgs/MyGraph/401.png "代理配置")
+![代理配置](https://renlm.cn/imgs/MyGraph/401.png "代理配置")
 
-![代理地址](https://renlm.gitee.io/imgs/MyGraph/402.png "代理地址")
+![代理地址](https://renlm.cn/imgs/MyGraph/402.png "代理地址")
 
 #### 日志记录
 
-![日志记录](https://renlm.gitee.io/imgs/MyGraph/403.png "日志记录")
+![日志记录](https://renlm.cn/imgs/MyGraph/403.png "日志记录")
 
 #### 统计数据
 
-![统计数据](https://renlm.gitee.io/imgs/MyGraph/404.png "统计数据")',NULL,NULL,NULL,'2022-07-10 19:01:05','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:05:15','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![统计数据](https://renlm.cn/imgs/MyGraph/404.png "统计数据")',NULL,NULL,NULL,'2022-07-10 19:01:05','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:05:15','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,(35,'修改','2022-07-10 19:05:36','ABFEE20BA6AC4783A683C7117763951E','令狐冲',20,'1E8C6AD04A50441AA90DEE02B8DE828E','MyGraph 管理后台/系统手册/开放接口/数据字典/获取子集列表',2,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -22455,7 +22455,7 @@ GW-Sha256Hex：DigestUtil.sha256Hex(secretKey + timestamp + userInfo)
 
 ### 示例图
 
-![登录页](https://renlm.gitee.io/imgs/MyGraph/LoginPage.png "登录页")',NULL,NULL,NULL,'2022-07-10 19:02:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:06:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![登录页](https://renlm.cn/imgs/MyGraph/LoginPage.png "登录页")',NULL,NULL,NULL,'2022-07-10 19:02:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:06:37','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,(39,'修改','2022-07-10 19:06:55','ABFEE20BA6AC4783A683C7117763951E','令狐冲',26,'03EFE7DC10664FC4859743AD8D08341C','MyGraph 管理后台/系统手册/开放接口/单点登录/获取会话秘钥',2,'### 基本信息
 | 名称 | 描述 |
 | ------------ | ------------ |
@@ -22553,7 +22553,7 @@ function aesDecrypt (aesKey, encrypted) {
 登录成功后会自动会跳到之前的页面。  
 例：<a href="https://mygraph.renlm.cn/login?callback=https://www.baidu.com/" target="_blank"> https://mygraph.renlm.cn/login?callback=https://www.baidu.com/ </a>  
 
-![单点登录页](https://renlm.gitee.io/imgs/MyGraph/LoginPageSso.png "单点登录页")',NULL,NULL,NULL,'2022-07-10 19:03:03','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:07:12','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![单点登录页](https://renlm.cn/imgs/MyGraph/LoginPageSso.png "单点登录页")',NULL,NULL,NULL,'2022-07-10 19:03:03','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:07:12','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ;
 INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (41,'修改','2022-07-10 19:07:34','ABFEE20BA6AC4783A683C7117763951E','令狐冲',28,'3D7F481AA4034AAAB0A51AB7E9FF2838','MyGraph 管理后台/系统手册/开放接口/单点登录/登录接口',2,'### 基本信息
