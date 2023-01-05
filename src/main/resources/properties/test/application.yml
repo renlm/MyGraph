@@ -13,6 +13,17 @@ my:
 jasypt:
   encryptor:
     password: ${JASYPT_ENCRYPTOR_PASSWORD:123654}
+
+aj:
+  captcha:
+    cacheType: redis
+    jigsaw: classpath:images/jigsaw
+    picClick: classpath:images/pic-click
+    type: default
+    waterMark: mygraph.renlm.cn
+    slipOffset: 5
+    aesStatus: true
+    interferenceOptions: 0
     
 mica:
   xss:
