@@ -1,4 +1,4 @@
-package cn.renlm.graph.util;
+package cn.renlm.graph.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

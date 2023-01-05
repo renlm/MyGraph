@@ -18,7 +18,7 @@ import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.graph.util.MyConfigProperties;
+import cn.renlm.graph.properties.MyConfigProperties;
 import lombok.extern.slf4j.Slf4j;
 
 /**

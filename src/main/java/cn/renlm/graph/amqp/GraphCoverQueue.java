@@ -32,7 +32,7 @@ import cn.renlm.graph.modular.graph.service.IGraphService;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.mxgraph.ERModelParser;
-import cn.renlm.graph.util.MyConfigProperties;
+import cn.renlm.graph.properties.MyConfigProperties;
 import cn.renlm.graph.util.RedisUtil;
 import cn.renlm.plugins.MyCrawlerUtil;
 import cn.renlm.plugins.MyCrawler.MySite;

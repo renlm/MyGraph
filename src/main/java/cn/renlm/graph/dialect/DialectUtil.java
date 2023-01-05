@@ -13,8 +13,8 @@ import org.thymeleaf.dialect.IExpressionObjectDialect;
 import org.thymeleaf.expression.IExpressionObjectFactory;
 
 import cn.renlm.graph.modular.sys.service.ISysConstService;
+import cn.renlm.graph.properties.MyConfigProperties;
 import cn.renlm.graph.util.DictUtil;
-import cn.renlm.graph.util.MyConfigProperties;
 
 /**
  * 工具集
