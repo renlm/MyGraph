@@ -7,11 +7,6 @@ import static org.springframework.security.core.context.SecurityContextHolder.ge
 
 import java.io.IOException;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -19,9 +14,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.servlet.ServletUtil;
+import cn.hutool.extra.servlet.JakartaServletUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.util.SessionUtil;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 认证过滤器（Ticket）
@@ -36,7 +35,7 @@ public class TicketAuthenticationFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		Authentication authentication = getContext().getAuthentication();
-		String ticket = ServletUtil.getHeader(request, HEADER_Ticket, UTF_8);
+		String ticket = JakartaServletUtil.getHeader(request, HEADER_Ticket, UTF_8);
 		// 优先获取会话
 		if ((authentication == null || !authentication.isAuthenticated()) && StrUtil.isNotBlank(ticket)) {
 			User user = SessionUtil.getUserInfo(ticket);

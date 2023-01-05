@@ -1,6 +1,6 @@
 package cn.renlm.graph.modular.sys.service.impl;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

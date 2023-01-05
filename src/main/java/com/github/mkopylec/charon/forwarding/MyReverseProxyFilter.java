@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.RequestEntity;

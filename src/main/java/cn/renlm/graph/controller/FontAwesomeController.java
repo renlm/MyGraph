@@ -3,7 +3,7 @@ package cn.renlm.graph.controller;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;

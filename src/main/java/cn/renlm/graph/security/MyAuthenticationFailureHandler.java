@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;
@@ -17,11 +13,14 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.servlet.ServletUtil;
+import cn.hutool.extra.servlet.JakartaServletUtil;
 import cn.hutool.http.ContentType;
 import cn.hutool.http.HttpUtil;
 import cn.renlm.graph.config.WebSecurityConfig;
 import cn.renlm.graph.response.Result;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.Cleanup;
 
 /**
@@ -48,7 +47,7 @@ public class MyAuthenticationFailureHandler extends SimpleUrlAuthenticationFailu
 			out.write(objectMapper.writeValueAsString(result));
 			out.close();
 		} else {
-			Map<String, String> paramMap = ServletUtil.getParamMap(request);
+			Map<String, String> paramMap = JakartaServletUtil.getParamMap(request);
 			String callback = paramMap.get("callback");
 			if (HttpUtil.isHttp(callback) || HttpUtil.isHttps(callback)) {
 				super.setDefaultFailureUrl(WebSecurityConfig.LoginPage + "?callback=" + callback);

@@ -2,7 +2,7 @@ package cn.renlm.graph.dto;
 
 import java.io.Serializable;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.ModelMap;

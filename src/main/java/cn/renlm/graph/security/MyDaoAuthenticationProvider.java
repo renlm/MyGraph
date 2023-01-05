@@ -1,6 +1,6 @@
 package cn.renlm.graph.security;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.support.MessageSourceAccessor;

@@ -8,7 +8,7 @@ import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 
 import java.util.Date;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;

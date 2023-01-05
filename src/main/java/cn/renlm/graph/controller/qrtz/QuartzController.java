@@ -2,7 +2,7 @@ package cn.renlm.graph.controller.qrtz;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.quartz.CronExpression;
 import org.quartz.JobDataMap;

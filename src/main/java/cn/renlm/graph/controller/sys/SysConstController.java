@@ -2,7 +2,7 @@ package cn.renlm.graph.controller.sys;
 
 import java.util.Date;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

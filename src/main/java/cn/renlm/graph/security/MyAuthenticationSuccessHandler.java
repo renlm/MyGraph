@@ -8,10 +8,6 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
@@ -24,7 +20,7 @@ import cn.hutool.core.codec.Base64;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.net.url.UrlQuery;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.servlet.ServletUtil;
+import cn.hutool.extra.servlet.JakartaServletUtil;
 import cn.hutool.http.ContentType;
 import cn.hutool.http.HttpUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
@@ -34,6 +30,9 @@ import cn.renlm.graph.modular.sys.entity.SysLoginLog;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.SessionUtil;
 import io.netty.util.CharsetUtil;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.Cleanup;
 
 /**
@@ -70,7 +69,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 			out.write(objectMapper.writeValueAsString(result));
 			out.close();
 		} else {
-			Map<String, String> paramMap = ServletUtil.getParamMap(request);
+			Map<String, String> paramMap = JakartaServletUtil.getParamMap(request);
 			String callback = paramMap.get("callback");
 			if (HttpUtil.isHttp(callback) || HttpUtil.isHttps(callback)) {
 				UrlQuery uq = UrlQuery.of(callback, CharsetUtil.UTF_8);
@@ -98,7 +97,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 		sysLoginLog.setUserId(user.getUserId());
 		sysLoginLog.setUsername(user.getUsername());
 		sysLoginLog.setNickname(user.getNickname());
-		sysLoginLog.setClientIp(ServletUtil.getClientIP(request));
+		sysLoginLog.setClientIp(JakartaServletUtil.getClientIP(request));
 		sysLoginLog.setLoginTime(new Date());
 		AmqpUtil.createQueue(LoginLogQueue.EXCHANGE, LoginLogQueue.ROUTINGKEY, sysLoginLog);
 	}

@@ -1,6 +1,6 @@
 package cn.renlm.graph.controller.api;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;

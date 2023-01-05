@@ -3,7 +3,7 @@ package cn.renlm.graph.amqp;
 import java.lang.reflect.Method;
 import java.util.Date;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
