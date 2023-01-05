@@ -101,11 +101,18 @@ spring:
           username: ENC(TH8gokJSLbQ6b+3miT2omUUP2ymJzM14ItGSYD9dZ2W4/pzFusZeCvwkuY1nFL4l)
           password: ENC(DP2Al147pJyiFArv67h0Pm08fFWjX9Ktjyri2jXjBm4ZWYsnSwXBwOsdk7ndmNmKJu8QjXCg7oDhIqQy9HnAcw==)
           driver-class-name: com.mysql.cj.jdbc.Driver
-          init:
-            schema: classpath:db/schema.sql
-            data: classpath:db/data.sql
-            continue-on-error: false
-            separator: ;
+  sql:
+    init:
+      mode: always
+      schemaLocations:
+      - classpath:db/schema/schema.sql
+      - classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql
+      - classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql
+      - classpath:org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql
+      dataLocations:
+      - classpath:db/data/data.sql
+      continueOnError: false
+      separator: ;
   quartz:
     job-store-type: jdbc
     jdbc:
