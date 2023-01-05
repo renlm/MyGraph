@@ -2,8 +2,6 @@ package cn.renlm.graph.dto;
 
 import java.io.Serializable;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.ModelMap;
 
@@ -14,6 +12,7 @@ import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
 import cn.renlm.graph.response.Result;
 import cn.renlm.graph.service.PubDocService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -79,4 +78,5 @@ public class DocShareUser implements Serializable {
 	public static final DocShareUser getInfo(HttpServletRequest request, String shareUuid) {
 		return (DocShareUser) request.getSession().getAttribute(key + shareUuid);
 	}
+
 }

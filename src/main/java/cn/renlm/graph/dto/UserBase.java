@@ -92,4 +92,5 @@ public class UserBase implements Serializable {
 		userBase.setTicket(ticket);
 		return userBase;
 	}
+
 }

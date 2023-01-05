@@ -57,7 +57,6 @@ public class UserService implements UserDetailsService {
 		User principal = (User) authentication.getPrincipal();
 		User user = iSysUserService.loadUserByUsername(principal.getUsername());
 		user.setPassword(EMPTY);
-		user.setTicket(principal.getTicket());
 		Authentication token = new UsernamePasswordAuthenticationToken(user, EMPTY, user.getAuthorities());
 		getContext().setAuthentication(token);
 		return principal;

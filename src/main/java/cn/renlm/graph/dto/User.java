@@ -38,11 +38,6 @@ public class User extends SysUser implements org.springframework.security.core.u
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 登录凭证
-	 */
-	private String ticket;
-
-	/**
 	 * 角色列表
 	 */
 	private List<SysRole> roles;
@@ -182,4 +177,5 @@ public class User extends SysUser implements org.springframework.security.core.u
 	public boolean isEnabled() {
 		return getEnabled();
 	}
+
 }
