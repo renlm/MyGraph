@@ -63,7 +63,20 @@ mybatis-plus:
     db-config:
       update-strategy: IGNORED
 
+management:
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
 spring:
+  application:
+    name: mygraph
   profiles:
     active: test
   main:
