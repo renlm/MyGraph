@@ -1,6 +1,6 @@
 package cn.renlm.graph.modular.sys.service;
 
-import static cn.renlm.graph.config.CachingConfig.DICT_CACHE_NAME;
+import static cn.renlm.graph.common.CacheKey.DICT_CACHE_NAME;
 
 import java.util.List;
 
