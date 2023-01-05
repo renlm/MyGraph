@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Set;
 
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -45,7 +46,7 @@ public class HomeController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping
+	@GetMapping({ "/", "index.html" })
 	public String index(ModelMap model) {
 		User user = userService.refreshAuthentication();
 		model.put("navGroup", user.getNavGroup());
@@ -76,13 +77,14 @@ public class HomeController {
 	/**
 	 * 服务器监控
 	 * 
+	 * @param request
 	 * @param model
 	 * @param authentication
 	 * @param type
 	 * @return
 	 */
 	@GetMapping("/home/oshi")
-	public String oshi(ModelMap model, Authentication authentication, Integer type) {
+	public String oshi(HttpServletRequest request, ModelMap model, Authentication authentication, Integer type) {
 		User user = (User) authentication.getPrincipal();
 		String cacheTypeKey = CacheKey.OshiType.name() + StrUtil.AT + user.getUserId();
 		if (type == null) {
@@ -94,6 +96,8 @@ public class HomeController {
 		Map<String, Set<OshiInfo>> oshiInfos = OshiInfoUtil.get();
 		model.put("onlineUserNumber", onlineUserNumber);
 		model.put("oshiInfos", JSONUtil.toJsonStr(oshiInfos));
+		model.put("sessionId", request.getSession().getId());
 		return "home/oshi." + ObjectUtil.defaultIfNull(type, 1);
 	}
+
 }
