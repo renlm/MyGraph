@@ -24,8 +24,11 @@ import lombok.experimental.UtilityClass;
  */
 @UtilityClass
 public class FreemarkerUtil {
+
 	protected final static Logger logger = LoggerFactory.getLogger(FreemarkerUtil.class);
+
 	private static final Configuration cfg = new Configuration(Configuration.DEFAULT_INCOMPATIBLE_IMPROVEMENTS);
+
 	static {
 		cfg.setClassicCompatible(true);
 		cfg.setClassForTemplateLoading(FreemarkerUtil.class, File.separator);
@@ -64,4 +67,5 @@ public class FreemarkerUtil {
 		template.process(dataModel, new OutputStreamWriter(out));
 		return new String(out.toByteArray(), StandardCharsets.UTF_8.name());
 	}
+
 }

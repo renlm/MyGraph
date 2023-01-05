@@ -25,4 +25,5 @@ public class RedisUtil {
 	public static final <K, V> RedisTemplate<K, V> getRedisTemplate() {
 		return SpringUtil.getBean(StrUtil.lowerFirst(RedisTemplate.class.getSimpleName()));
 	}
+
 }

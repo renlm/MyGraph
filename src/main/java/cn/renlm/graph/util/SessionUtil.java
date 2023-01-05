@@ -1,8 +1,5 @@
 package cn.renlm.graph.util;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
@@ -16,6 +13,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.dto.UserBase;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -101,4 +100,5 @@ public class SessionUtil {
 		user.setTicket(ticket);
 		return user;
 	}
+
 }
