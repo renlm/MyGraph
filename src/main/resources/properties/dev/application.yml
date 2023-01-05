@@ -99,8 +99,8 @@ spring:
           password: ENC(DP2Al147pJyiFArv67h0Pm08fFWjX9Ktjyri2jXjBm4ZWYsnSwXBwOsdk7ndmNmKJu8QjXCg7oDhIqQy9HnAcw==)
           driver-class-name: com.mysql.cj.jdbc.Driver
           init:
-            schema: classpath:schema/schema.sql
-            data: classpath:schema/data.sql
+            schema: classpath:db/schema.sql
+            data: classpath:db/data.sql
             continue-on-error: false
             separator: ";"
   quartz:
