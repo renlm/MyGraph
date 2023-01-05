@@ -15,7 +15,7 @@
 		<div id="verifyPanel"></div>
 		<div class="login-body animated fadeInLeft">
 			<div class="login-main pr">
-				<form id="login-form" class="login-form" method="post" action="login">
+				<form id="login-form" class="login-form" method="post" action="doLogin">
 					<h3>认证中心</h3>
 					<div id="MobileBox" class="item-box">
 						<div class="input-group user-name">
@@ -85,7 +85,7 @@
 			},
 			success: function(params) {
 				var password = $("input[name='password']").val();
-				$("input[name='password']").val(aesEncrypt(password, "[(${secretKey})]"));
+				$("input[name='password']").val(aesEncrypt(password, "[(${aesKey})]"));
 				$("input[name='captchaVerification']").val(params.captchaVerification);
 				document.getElementById("login-form").submit();
 			}

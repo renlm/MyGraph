@@ -93,6 +93,7 @@ public class WebSecurityConfig {
 			.ignoringRequestMatchers(APIAntMatcher)
 			.ignoringRequestMatchers(PubAntMatcher)
 			.ignoringRequestMatchers(CaptchaAntMatcher)
+			.ignoringRequestMatchers(LoginProcessingUrl)
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		// 会话
 		http.sessionManagement()
