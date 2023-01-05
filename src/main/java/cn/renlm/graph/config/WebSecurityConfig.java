@@ -42,14 +42,14 @@ public class WebSecurityConfig {
 	public static final String logoutUrl = "/logout";
 
 	/**
-	 * 验证码图片匹配路径
-	 */
-	public static final String KaptchaAntMatcher = "/kaptcha";
-
-	/**
 	 * 登录接口
 	 */
-	public static final String LoginProcessingUrl = "/dologin";
+	public static final String LoginProcessingUrl = "/doLogin";
+
+	/**
+	 * 验证码匹配路径
+	 */
+	public static final String CaptchaAntMatcher = "/captcha/**";
 
 	/**
 	 * 开放接口匹配路径
@@ -65,38 +65,38 @@ public class WebSecurityConfig {
 	 * 白名单
 	 */
 	public static final String[] WHITE_LIST = {
-			KaptchaAntMatcher,
-			APIAntMatcher,
-			PubAntMatcher,
 			LoginPage, 
 			logoutUrl, 
-			LoginProcessingUrl 
+			LoginProcessingUrl, 
+			CaptchaAntMatcher, 
+			APIAntMatcher, 
+			PubAntMatcher
 		};
 
 	/**
 	 * 静态资源
 	 */
 	public static final String[] STATIC_PATHS = { 
-			"/favicon.ico",
-			"/static/**",
+			"/favicon.ico", 
+			"/static/**", 
 			"/webjars/**" 
 		};
-	
+
 	@Resource
 	private FindByIndexNameSessionRepository<? extends Session> sessionRepository;
 
 	@Bean
-	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, RequestAuthorizationManager authorizationManager) throws Exception {
-		// 启用csrf
+	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, RequestAuthorizationManager authorizationManager)
+			throws Exception {
+		// 启用Csrf
 		http.csrf()
 			.ignoringRequestMatchers(APIAntMatcher)
 			.ignoringRequestMatchers(PubAntMatcher)
-			.ignoringRequestMatchers(LoginProcessingUrl)
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 		// 会话
 		http.sessionManagement()
 			.invalidSessionUrl(LoginPage)
-			.maximumSessions(100 * 100 * 10)
+			.maximumSessions(1000)
 			.expiredUrl(LoginPage)
 			.sessionRegistry(sessionRegistry());
 		// 资源访问控制
@@ -105,6 +105,8 @@ public class WebSecurityConfig {
 			.requestMatchers(HttpMethod.OPTIONS).permitAll()
 			// 白名单
 			.requestMatchers(WHITE_LIST).permitAll()
+			// 静态资源
+			.requestMatchers(STATIC_PATHS).permitAll()
 			// 请求访问限制
 			.anyRequest().access(authorizationManager);
 		// Iframe同源访问
@@ -118,10 +120,10 @@ public class WebSecurityConfig {
 			.authenticationDetailsSource(authenticationDetailsSource());
 		// 注销
 		http.logout()
-			.logoutUrl(logoutUrl);
+			.logoutUrl(logoutUrl)
+			.invalidateHttpSession(true);
 		return http.build();
 	}
-
 
 	/**
 	 * 会话并发
