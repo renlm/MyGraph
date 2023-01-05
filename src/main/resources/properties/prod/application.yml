@@ -1,4 +1,8 @@
 server:
+  servlet:
+    session:
+      cookie:
+        name: MYGRAPH
   tomcat:
     remoteip:
       remote-ip-header: X-Forwarded-For
