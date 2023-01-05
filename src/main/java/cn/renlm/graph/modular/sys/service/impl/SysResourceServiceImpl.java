@@ -32,7 +32,7 @@ import cn.renlm.graph.modular.sys.mapper.SysResourceMapper;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleResourceService;
 import cn.renlm.graph.response.Result;
-import cn.renlm.graph.security.DynamicFilterInvocationSecurityMetadataSource;
+import cn.renlm.graph.security.RequestAuthorizationManager;
 import cn.renlm.graph.util.TreeExtraUtil;
 
 /**
@@ -241,7 +241,8 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 				wrapper.eq(SysResource::getResourceId, resourceId);
 			}));
 		});
-		DynamicFilterInvocationSecurityMetadataSource.allConfigAttributes.clear();
+		RequestAuthorizationManager.REQUEST_MATCHER_MAP.clear();
 		return Result.success(sysResource);
 	}
+
 }

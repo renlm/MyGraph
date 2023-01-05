@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RequestAuthorizationManager implements AuthorizationManager<RequestAuthorizationContext> {
 
-	private static final Map<RequestMatcher, Collection<String>> REQUEST_MATCHER_MAP;
+	public static final Map<RequestMatcher, Collection<String>> REQUEST_MATCHER_MAP;
 
 	static {
 		REQUEST_MATCHER_MAP = Collections.synchronizedMap(new HashMap<>());
