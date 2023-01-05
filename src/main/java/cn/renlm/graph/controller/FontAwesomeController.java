@@ -46,4 +46,5 @@ public class FontAwesomeController {
 		redisTemplate.opsForValue().set(CacheKey.FontAwesomeIcons.name(), icons, 7, TimeUnit.DAYS);
 		return icons;
 	}
+
 }

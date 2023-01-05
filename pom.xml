@@ -28,8 +28,13 @@
 		<dynamic-datasource-spring-boot-starter.version>3.6.1</dynamic-datasource-spring-boot-starter.version>
 		<mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
 		<jasypt-spring-boot-starter.version>3.0.5</jasypt-spring-boot-starter.version>
+		<spring-security-oauth2-authorization-server.version>1.0.0</spring-security-oauth2-authorization-server.version>
 		<cn.renlm.plugins.version>2.5.9</cn.renlm.plugins.version>
 		<hutool.version>5.8.11</hutool.version>
+		<mica-xss.version>3.0.1</mica-xss.version>
+		<webjars-locator.version>0.46</webjars-locator.version>
+		<ip2region.version>2.6.4</ip2region.version>
+		<oshi-core.version>6.1.6</oshi-core.version>
 	</properties>
 
 	<dependencies>
@@ -51,6 +56,11 @@
 		<dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-data-redis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
 		</dependency>
 
 		<dependency>
@@ -84,27 +94,21 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-oauth2-authorization-server</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>net.dreamlu</groupId>
-			<artifactId>mica-xss</artifactId>
-			<version>2.5.3</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-authorization-server</artifactId>
+			<version>${spring-security-oauth2-authorization-server.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>com.github.mkopylec</groupId>
-			<artifactId>charon-spring-webmvc</artifactId>
-			<version>4.10.0</version>
+			<groupId>net.dreamlu</groupId>
+			<artifactId>mica-xss</artifactId>
+			<version>${mica-xss.version}</version>
 		</dependency>
 
 		<dependency>
@@ -140,12 +144,12 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator</artifactId>
-			<version>0.46</version>
+			<version>${webjars-locator.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
 		</dependency>
 
 		<dependency>
@@ -168,19 +172,13 @@
 		<dependency>
 			<groupId>org.lionsoul</groupId>
 			<artifactId>ip2region</artifactId>
-			<version>2.6.4</version>
+			<version>${ip2region.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.github.oshi</groupId>
 			<artifactId>oshi-core</artifactId>
-			<version>6.1.6</version>
-		</dependency>
-
-		<dependency>
-			<groupId>pro.fessional</groupId>
-			<artifactId>kaptcha</artifactId>
-			<version>2.3.3</version>
+			<version>${oshi-core.version}</version>
 		</dependency>
 
 		<dependency>
@@ -313,11 +311,13 @@
 			<name>Huawei Maven</name>
 			<url>https://mirrors.huaweicloud.com/repository/maven</url>
 		</repository>
+
 		<repository>
 			<id>aliyun</id>
 			<name>Aliyun Public</name>
 			<url>https://maven.aliyun.com/repository/public</url>
 		</repository>
+
 		<repository>
 			<id>xwiki</id>
 			<name>XWiki Releases Repository</name>
@@ -331,6 +331,7 @@
 			<name>Huawei Maven</name>
 			<url>https://mirrors.huaweicloud.com/repository/maven</url>
 		</pluginRepository>
+
 		<pluginRepository>
 			<id>aliyun</id>
 			<name>Aliyun Public</name>

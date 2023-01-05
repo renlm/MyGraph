@@ -1,8 +1,6 @@
 package cn.renlm.graph.controller.api;
 
 import static cn.renlm.graph.common.CacheKey.DictApi;
-import static cn.renlm.graph.config.CachingConfig.cacheManager;
-import static cn.renlm.graph.config.CachingConfig.keyGenerator;
 
 import java.util.List;
 
@@ -32,7 +30,7 @@ import cn.renlm.graph.modular.sys.service.ISysDictService;
  */
 @Controller
 @RequestMapping("/api/dict")
-@CacheConfig(cacheNames = DictApi, cacheManager = cacheManager, keyGenerator = keyGenerator)
+@CacheConfig(cacheNames = DictApi)
 public class DictApiController {
 
 	@Autowired
