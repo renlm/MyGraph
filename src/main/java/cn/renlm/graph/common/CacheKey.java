@@ -10,11 +10,7 @@ import lombok.Getter;
  */
 public enum CacheKey {
 
-	SysConst("系统常量"), 
-	FontAwesomeIcons("Font Awesome 图标集"), 
-	OshiType("服务器监控");
-	
-	public static final String DictApi = "DictApi";
+	SysConst("系统常量"), FontAwesomeIcons("Font Awesome 图标集"), OshiType("服务器监控");
 
 	@Getter
 	private final String text;
@@ -22,4 +18,5 @@ public enum CacheKey {
 	private CacheKey(String text) {
 		this.text = text;
 	}
+
 }

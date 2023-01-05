@@ -1,6 +1,8 @@
 package cn.renlm.graph.controller.api;
 
-import static cn.renlm.graph.common.CacheKey.DictApi;
+import static cn.renlm.graph.config.CachingConfig.DEFAULT_CACHE_MANAGER;
+import static cn.renlm.graph.config.CachingConfig.DEFAULT_KEY_GENERATOR;
+import static cn.renlm.graph.config.CachingConfig.DEFAULT_CACHE_NAME;
 
 import java.util.List;
 
@@ -30,7 +32,7 @@ import cn.renlm.graph.modular.sys.service.ISysDictService;
  */
 @Controller
 @RequestMapping("/api/dict")
-@CacheConfig(cacheNames = DictApi)
+@CacheConfig(cacheNames = DEFAULT_CACHE_NAME, cacheManager = DEFAULT_CACHE_MANAGER, keyGenerator = DEFAULT_KEY_GENERATOR)
 public class DictApiController {
 
 	@Autowired
@@ -98,4 +100,5 @@ public class DictApiController {
 		List<Tree<Long>> tree = iSysDictService.getTree(root, codePaths);
 		return tree;
 	}
+
 }

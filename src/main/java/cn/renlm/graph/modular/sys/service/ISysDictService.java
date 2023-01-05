@@ -1,6 +1,6 @@
 package cn.renlm.graph.modular.sys.service;
 
-import static cn.renlm.graph.common.CacheKey.DictApi;
+import static cn.renlm.graph.config.CachingConfig.DICT_CACHE_NAME;
 
 import java.util.List;
 
@@ -65,7 +65,7 @@ public interface ISysDictService extends IService<SysDict> {
 	 * @param sysDict
 	 * @return
 	 */
-	@CacheEvict(cacheNames = DictApi, allEntries = true)
+	@CacheEvict(cacheNames = DICT_CACHE_NAME, allEntries = true)
 	Result<SysDict> ajaxSave(SysDict sysDict);
 
 	/**
@@ -82,7 +82,7 @@ public interface ISysDictService extends IService<SysDict> {
 	 * @param file
 	 * @return
 	 */
-	@CacheEvict(cacheNames = DictApi, allEntries = true)
+	@CacheEvict(cacheNames = DICT_CACHE_NAME, allEntries = true)
 	Result<List<String>> importDataFromFile(User user, MultipartFile file);
 
 }
