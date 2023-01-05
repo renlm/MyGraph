@@ -1,5 +1,6 @@
 package cn.renlm.graph.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,8 @@ import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisIndexedHttpSession;
 import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
+import cn.renlm.graph.security.MyAuthenticationFailureHandler;
+import cn.renlm.graph.security.MyAuthenticationSuccessHandler;
 import cn.renlm.graph.security.RequestAuthorizationManager;
 import cn.renlm.graph.security.WebAuthenticationDetails;
 import jakarta.annotation.Resource;
@@ -84,6 +87,12 @@ public class WebSecurityConfig {
 
 	@Resource
 	private FindByIndexNameSessionRepository<? extends Session> sessionRepository;
+	
+	@Autowired
+	private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+
+	@Autowired
+	private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
 
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, RequestAuthorizationManager authorizationManager)
@@ -119,7 +128,9 @@ public class WebSecurityConfig {
 		http.formLogin()
 			.loginPage(LoginPage)
 			.loginProcessingUrl(LoginProcessingUrl)
-			.authenticationDetailsSource(authenticationDetailsSource());
+			.authenticationDetailsSource(authenticationDetailsSource())
+			.successHandler(myAuthenticationSuccessHandler)
+			.failureHandler(myAuthenticationFailureHandler);
 		// 注销
 		http.logout()
 			.logoutUrl(logoutUrl)
