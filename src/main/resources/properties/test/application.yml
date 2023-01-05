@@ -14,6 +14,13 @@ jasypt:
   encryptor:
     password: ${JASYPT_ENCRYPTOR_PASSWORD:123654}
 
+encrypt:
+  keyStore:
+    location: classpath:keyStore.jks
+    password: ${KEY_STORE_PASSWORD:storepass}
+    alias: ${KEY_STORE_ALIAS:alias}
+    secret: ${KEY_STORE_SECRET:keypass}
+
 aj:
   captcha:
     cacheType: redis
