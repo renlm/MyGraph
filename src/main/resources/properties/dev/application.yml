@@ -64,6 +64,8 @@ mybatis-plus:
 spring:
   profiles:
     active: dev
+  main:
+    allow-circular-references: true
   servlet:
     multipart:
       max-file-size: 30MB
