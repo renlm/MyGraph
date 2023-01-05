@@ -1,9 +1,9 @@
 server:
   tomcat:
     remoteip:
-      remote-ip-header: "X-Forwarded-For"
-      protocol-header: "X-Forwarded-Proto"
-    
+      remote-ip-header: X-Forwarded-For
+      protocol-header: X-Forwarded-Proto
+
 my:
   config:
     ctx: https://mygraph.renlm.cn
@@ -11,7 +11,7 @@ my:
     wssHost: wss://mygraph.renlm.cn:443
     wsAllowedOrigins: http://mygraph.renlm.cn,https://mygraph.renlm.cn
     proxyLogConcurrency: 30-50
-    
+
 jasypt:
   encryptor:
     password: ${JASYPT_ENCRYPTOR_PASSWORD:123654}
@@ -33,7 +33,7 @@ aj:
     slipOffset: 5
     aesStatus: true
     interferenceOptions: 0
-    
+
 mica:
   xss:
     enabled: true
@@ -42,20 +42,22 @@ mica:
     pretty-print: false
     enable-escape: true
     path-patterns: /**
-    path-exclude-patterns: 
-      - /static
-      - /webjars
-      - /markdown/**
-    
+    path-exclude-patterns:
+    - /static
+    - /webjars
+    - /markdown/**
+
 logging:
   level:
     root: info
     cn.renlm.graph: info
   file:
     name: /opt/log/mygraph.log
-    max-size: 512MB
-    max-history: 30
-    
+  logback:
+    rollingpolicy:
+      maxFileSize: 512MB
+      maxHistory: 30
+
 mybatis-plus:
   configuration:
     localCacheScope: STATEMENT
@@ -74,7 +76,7 @@ spring:
       max-request-size: 30MB
   thymeleaf:
     cache: false
-  jackson: 
+  jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
   data:
@@ -83,7 +85,13 @@ spring:
       host: redis
       port: 6379
       password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
-      timeout: 6s
+      timeout: 10s
+      lettuce:
+        pool:
+          maxActive: 256
+          maxWait: 2000ms
+          maxIdle: 10
+          minIdle: 5
   rabbitmq:
     virtual-host: ENC(O+epS5yMEqegl+pivZk2UzPRPGyaqfL1huSETOdu0lAlgEfU6mSEJknKKtc2ozm9)
     host: rabbitmq

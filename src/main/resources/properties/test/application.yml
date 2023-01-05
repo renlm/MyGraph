@@ -2,14 +2,14 @@ server:
   port: 80
   servlet:
     context-path: /mygraph
-    
+
 my:
   config:
     ctx: http://localhost/mygraph
     wsHost: ws://localhost
     wsAllowedOrigins: http://localhost
     proxyLogConcurrency: 20
-    
+
 jasypt:
   encryptor:
     password: ${JASYPT_ENCRYPTOR_PASSWORD:123654}
@@ -31,7 +31,7 @@ aj:
     slipOffset: 5
     aesStatus: true
     interferenceOptions: 0
-    
+
 mica:
   xss:
     enabled: true
@@ -40,20 +40,22 @@ mica:
     pretty-print: false
     enable-escape: true
     path-patterns: /**
-    path-exclude-patterns: 
-      - /static
-      - /webjars
-      - /markdown/**
-    
+    path-exclude-patterns:
+    - /static
+    - /webjars
+    - /markdown/**
+
 logging:
   level:
     root: info
     cn.renlm.graph: info
   file:
     name: /opt/log/mygraph.log
-    max-size: 10MB
-    max-history: 7
-    
+  logback:
+    rollingpolicy:
+      maxFileSize: 512MB
+      maxHistory: 30
+
 mybatis-plus:
   configuration:
     localCacheScope: STATEMENT
@@ -72,7 +74,7 @@ spring:
       max-request-size: 30MB
   thymeleaf:
     cache: false
-  jackson: 
+  jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
   data:
@@ -81,7 +83,13 @@ spring:
       host: ENC(3biIYGtSjtwx7A7w3AjkxJLQKNCTlGqpV+eTZBFBO7fT+39U/7O+diEnAf11Bdp1)
       port: ENC(6Hk9Fr716xYOKeWkspYz08UnTkOS6npDvn+2eUZJPTSL5rSn6ZkfN1E+5EYCJUTP)
       password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
-      timeout: 6s
+      timeout: 10s
+      lettuce:
+        pool:
+          maxActive: 256
+          maxWait: 2000ms
+          maxIdle: 10
+          minIdle: 5
   rabbitmq:
     virtual-host: ENC(zePGodUsbK9mPRDZI5dYuZL20lMh+J5/9qCh6jYUk0+iYaUD2LhVyVG/XUGXC2I7)
     host: ENC(B30udgyWogHkYsxU1e3sQAd4flz1XVW1MZ40tc4JUq8XEO/GuvaYWx3rX1JQbe2k)
