@@ -1,4 +1,4 @@
-FROM registry.cn-hangzhou.aliyuncs.com/rlm/tomcat
+FROM registry.cn-hangzhou.aliyuncs.com/rlm/tomcat10.1.1-jre17
 
 COPY target/ROOT.war /usr/local/tomcat/webapps
 
