@@ -3,8 +3,6 @@ package cn.renlm.graph.service;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +24,7 @@ import cn.renlm.graph.modular.doc.entity.DocProject;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryShareService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * 公共文档
@@ -103,4 +102,5 @@ public class PubDocService {
 		Long docCategoryId = docCategoryShare.getDocCategoryId();
 		return iDocCategoryService.getTree(docProjectUuid, true, docCategoryId);
 	}
+
 }
