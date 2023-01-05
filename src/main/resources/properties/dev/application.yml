@@ -75,12 +75,13 @@ spring:
   jackson: 
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
-  redis:
-    database: 3
-    host: ENC(7t07SoGx3YNZQ18Jo1gu/j9yHoxJ0pxG8Y1tXE7OEQDWh+oc6kZHD49Tp+we682t)
-    port: ENC(6Hk9Fr716xYOKeWkspYz08UnTkOS6npDvn+2eUZJPTSL5rSn6ZkfN1E+5EYCJUTP)
-    password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
-    timeout: 6s
+  data:
+    redis:
+      database: 3
+      host: ENC(7t07SoGx3YNZQ18Jo1gu/j9yHoxJ0pxG8Y1tXE7OEQDWh+oc6kZHD49Tp+we682t)
+      port: ENC(6Hk9Fr716xYOKeWkspYz08UnTkOS6npDvn+2eUZJPTSL5rSn6ZkfN1E+5EYCJUTP)
+      password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
+      timeout: 6s
   rabbitmq:
     virtual-host: ENC(zePGodUsbK9mPRDZI5dYuZL20lMh+J5/9qCh6jYUk0+iYaUD2LhVyVG/XUGXC2I7)
     host: ENC(7t07SoGx3YNZQ18Jo1gu/j9yHoxJ0pxG8Y1tXE7OEQDWh+oc6kZHD49Tp+we682t)

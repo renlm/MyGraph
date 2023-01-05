@@ -77,12 +77,13 @@ spring:
   jackson: 
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
-  redis:
-    database: 5
-    host: redis
-    port: 6379
-    password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
-    timeout: 6s
+  data:
+    redis:
+      database: 5
+      host: redis
+      port: 6379
+      password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
+      timeout: 6s
   rabbitmq:
     virtual-host: ENC(O+epS5yMEqegl+pivZk2UzPRPGyaqfL1huSETOdu0lAlgEfU6mSEJknKKtc2ozm9)
     host: rabbitmq
