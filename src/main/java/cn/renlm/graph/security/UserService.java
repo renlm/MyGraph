@@ -4,12 +4,11 @@ import static cn.hutool.core.text.CharSequenceUtil.EMPTY;
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +19,7 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysResource;
@@ -64,32 +64,36 @@ public class UserService implements UserDetailsService {
 	}
 
 	/**
-	 * 加载全部权限
+	 * 加载请求认证权限
 	 * 
-	 * @param requestMap
-	 * @param matcherMap
-	 * @return
+	 * @param requestMatcherMap
 	 */
-	public Collection<ConfigAttribute> loadAllAuthority(final Map<String, Collection<ConfigAttribute>> requestMap,
-			final Map<RequestMatcher, Collection<ConfigAttribute>> matcherMap) {
+	public void loadRequestMatcher(final Map<RequestMatcher, Collection<String>> requestMatcherMap) {
+		requestMatcherMap.clear();
+		Map<String, Collection<String>> map = new LinkedHashMap<>();
 		List<SysResource> list = iSysResourceService.list();
-		Collection<ConfigAttribute> attributes = CollUtil.newArrayList();
-		list.forEach(it -> {
-			String path = it.getUrl();
-			ConfigAttribute attribute = new SecurityConfig(it.getCode());
-			attributes.add(attribute);
-			if (StrUtil.isBlank(path)) {
+		for (SysResource item : list) {
+			if (StrUtil.isBlank(item.getUrl())) {
 				return;
 			}
-			if (!requestMap.containsKey(path)) {
-				requestMap.put(path, CollUtil.newArrayList());
+			if (BooleanUtil.isTrue(item.getDeleted())) {
+				return;
 			}
-			requestMap.get(path).add(attribute);
-		});
-		for (Map.Entry<String, Collection<ConfigAttribute>> entry : requestMap.entrySet()) {
-			matcherMap.put(new AntPathRequestMatcher(entry.getKey()), entry.getValue());
+			if (BooleanUtil.isTrue(item.getDisabled())) {
+				return;
+			}
+			Collection<String> authorities = map.get(item.getUrl());
+			if (CollUtil.isEmpty(authorities)) {
+				authorities = CollUtil.newArrayList();
+				authorities.add(item.getCode());
+				map.put(item.getUrl(), authorities);
+			} else {
+				authorities.add(item.getCode());
+			}
 		}
-		return attributes;
+		map.forEach((pattern, authority) -> {
+			requestMatcherMap.put(new AntPathRequestMatcher(pattern), authority);
+		});
 	}
 
 }
