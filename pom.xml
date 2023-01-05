@@ -7,21 +7,29 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.3</version>
+		<version>3.0.0</version>
 		<relativePath />
 	</parent>
 
 	<groupId>cn.renlm.graph</groupId>
 	<artifactId>mygraph</artifactId>
-	<version>1.0.4</version>
+	<version>2.0.1</version>
 	<name>MyGraph</name>
 	<description>MyGraph 管理后台，集成权限管理系统、统一用户认证中心、实时动态网关代理与在线文档管理等诸多强大功能于一身的后台系统开发模板，代码简洁，增强了安全控制，可放心使用。</description>
 	<url>https://github.com/renlm/MyGraph</url>
 
 	<properties>
-		<compile.version>8</compile.version>
-		<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- 版本管理 -->
+		<mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
+		<dynamic-datasource-spring-boot-starter.version>3.6.1</dynamic-datasource-spring-boot-starter.version>
+		<mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
+		<jasypt-spring-boot-starter.version>3.0.5</jasypt-spring-boot-starter.version>
+		<cn.renlm.plugins.version>2.5.9</cn.renlm.plugins.version>
+		<hutool.version>5.8.11</hutool.version>
 	</properties>
 
 	<dependencies>
@@ -72,7 +80,13 @@
 
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
-			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-authorization-server</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 
 		<dependency>
@@ -96,25 +110,25 @@
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>3.4.3.4</version>
+			<version>${mybatis-plus-boot-starter.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-			<version>3.5.1</version>
+			<version>${dynamic-datasource-spring-boot-starter.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
 			<artifactId>jasypt-spring-boot-starter</artifactId>
-			<version>3.0.4</version>
+			<version>${jasypt-spring-boot-starter.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-generator</artifactId>
-			<version>3.5.1</version>
+			<version>${mybatis-plus-generator.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -126,7 +140,7 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator</artifactId>
-			<version>0.45</version>
+			<version>0.46</version>
 		</dependency>
 
 		<dependency>
@@ -142,7 +156,13 @@
 		<dependency>
 			<groupId>cn.renlm.plugins</groupId>
 			<artifactId>My-Plugin</artifactId>
-			<version>2.5.4</version>
+			<version>${cn.renlm.plugins.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>${hutool.version}</version>
 		</dependency>
 
 		<dependency>
@@ -170,8 +190,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
 
