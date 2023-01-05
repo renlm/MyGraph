@@ -73,8 +73,6 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(200203, 		'E39F1F1E3D2245B98C349DBD791CDA1F',	'200203', 		'资源管理', 				'menu', 			'/sys/resource', 											'fa fa-css3', 				null, 				null, 			3, 		3, 		'open',		0,					2002,		null)
 	  ,(2003, 			'BC5AC4EA07304BB59960E110767EE4C2',	'2003', 		'定时任务', 				'menu', 			null, 														'fa fa-tasks', 				null, 				null, 			2, 		3, 		'closed',	0,					20,			null)
 	  ,(200301, 		'D957245380414774BF7882933536DA86',	'200301', 		'任务管理', 				'menu', 			'/qrtz/jobs', 												'fa fa-deaf', 				null, 				null, 			3, 		1, 		'open',		0,					2003,		null)
-	  ,(2004, 			'8B20961854804282818F66CBE48C42AF',	'2004', 		'网关代理', 				'menu', 			null, 														'fa fa-mixcloud', 			null, 				null, 			2, 		4, 		'closed',	0,					20,			null)
-	  ,(200401, 		'E0925F6CEABF4E4CA4820F0155FE1683',	'200401', 		'代理配置', 				'menu', 			'/gateway/proxyConfig', 									'fa fa-clipboard', 			null, 				null, 			3, 		1, 		'open',		0,					2004,		null)
 	  ,(30, 			'3165637A889443629EB021505A4CAC52',	'OSHI', 		'服务器', 				'permission', 		'/home/oshi',												'fa fa-server', 			null, 				null, 			1, 		3, 		'open',		1,					null,		null)
 	  ,(40, 			'EB0B50741EAC47E3A275FEBCABFC5AA1',	'40', 			'文件管理', 				'urlInsidePage', 	'/sys/file', 												'fa fa-clipboard', 			'#990000', 			null, 			1, 		4, 		'open',		0,					null,		null)
 	  ,(50, 			'731191740D22404585B359867121755B',	'50', 			'帮助文档', 				'menu', 			null, 														'fa fa-file-word-o', 		null, 				null, 			1, 		5, 		'closed',	0,					null,		null)
@@ -4222,10 +4220,6 @@ INSERT INTO sys_dict (id,uuid,code,`text`,abbreviation,alias,icon_cls,`level`,so
 ;
 
 -- 初始数据
-INSERT INTO gateway_proxy_config (proxy_config_id,uuid,`path`,name,outgoing_servers,access_key,secret_key,enabled,connection_timeout,read_timeout,write_timeout,limit_for_second,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,remark) VALUES 
-(1,'3FDA14B37BFC47B4A347AF7881B426F6','baidu','百度','https://www.baidu.com/','80D7D023EEA44BC7990D8E04F4A077D5','E4867D4DA93A4862A953204985B48C29',1,1,600,600,10000,'2022-07-10 19:16:09','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:16:09',NULL,NULL,NULL)
-;
-
 INSERT INTO ds (id,uuid,name,url,schema_name,username,password,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (1,'F7495500B5594D8C8A2FD4F855F561D3','MyGraph 开发环境','jdbc:mysql://renlm.cn:3306/dev',NULL,'dev','HItMYBY3ntrbaeu3sHBMlBdqfDtYMqx6hOJ9+TcOkCmdDtFNuDv/zRQr/9E/ygZbd4QgLyDiNZUl1YZDtDq51apdBSEWokXL4P4iwcs4XL4cJo+TwAvBtoGPkxCcDRRxogoGeVnWPoj9zPTqxUxL8Fn8pfJYGOmbNmTO70jyJts=','2022-07-10 19:13:44','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2022-07-10 19:13:44',NULL,NULL,0,NULL)
 ;
