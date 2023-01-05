@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.core.Authentication;
@@ -44,6 +45,10 @@ public class RequestAuthorizationManager implements AuthorizationManager<Request
 		Authentication info = authentication.get();
 
 		if (info == null) {
+			return new AuthorizationDecision(false);
+		}
+
+		if (BooleanUtil.isFalse(info instanceof UsernamePasswordAuthenticationToken)) {
 			return new AuthorizationDecision(false);
 		}
 
