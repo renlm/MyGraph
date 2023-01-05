@@ -20,11 +20,11 @@
 					<div id="MobileBox" class="item-box">
 						<div class="input-group user-name">
 							<span class="input-group-addon"><i class="fa fa-user"></i></span>
-							<input type="text" name="username" class="form-control" placeholder="用户名" />
+							<input type="text" name="username" class="form-control" placeholder="用户名" autocomplete="new-password" />
 						</div>
 						<div class="input-group password">
 							<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-							<input type="password" name="password" class="form-control" placeholder="密码" />
+							<input type="password" name="password" class="form-control" placeholder="密码" autocomplete="new-password" />
 						</div>
 						<div class="login_btn_panel">
 							<input type="hidden" name="captchaVerification" />
@@ -63,8 +63,9 @@
 	<script src="static/AJ-Captcha/js/ase.js"></script>
 	<script src="static/AJ-Captcha/js/verify.js"></script>
 	<script type="text/javascript">
+		window.CTX = window.ctx = "[(@{/})]".substr(0, "[(@{/})]".length - 1);
 		$("#verifyPanel").slideVerify({
-			baseUrl: "",
+			baseUrl: window.CTX,
 			mode: "pop",
 			containerId: "loginBtn",
 			imgSize: { width: "400px", height: "200px" },

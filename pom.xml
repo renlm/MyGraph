@@ -213,6 +213,13 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>animate.css</artifactId>
+			<version>3.7.2</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>crypto-js</artifactId>
 			<version>4.1.1</version>
