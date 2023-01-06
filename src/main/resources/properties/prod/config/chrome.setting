@@ -1,2 +1,2 @@
-driverPath = /opt/chrome/chromedriver
+driverPath = /usr/bin/chromedriver
 sleepTime = 1200
