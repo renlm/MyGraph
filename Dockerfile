@@ -12,4 +12,4 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   && touch /app.jar
 EXPOSE 80
 EXPOSE 9000
-ENTRYPOINT ["/sbin/tini", "--", "java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+ENTRYPOINT ["/sbin/tini","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
