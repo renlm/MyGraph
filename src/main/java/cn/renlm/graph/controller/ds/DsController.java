@@ -20,8 +20,8 @@ import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.ds.dto.DsDto;
 import cn.renlm.graph.modular.ds.entity.Ds;
 import cn.renlm.graph.modular.ds.service.IDsService;
-import cn.renlm.graph.response.Datagrid;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Datagrid;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * 数据源

@@ -32,8 +32,8 @@ import cn.renlm.graph.modular.sys.dto.SysUserDto;
 import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
-import cn.renlm.graph.response.Datagrid;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Datagrid;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.security.UserService;
 
 /**

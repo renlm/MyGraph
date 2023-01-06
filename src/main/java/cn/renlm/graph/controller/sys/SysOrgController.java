@@ -20,7 +20,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.modular.sys.entity.SysOrg;
 import cn.renlm.graph.modular.sys.service.ISysOrgService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * 组织机构

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.graph.dto.GraphDto;
 import cn.renlm.graph.modular.graph.entity.Graph;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * <p>

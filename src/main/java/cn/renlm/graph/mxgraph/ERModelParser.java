@@ -49,7 +49,7 @@ import cn.renlm.graph.mxgraph.model.MxGeometry;
 import cn.renlm.graph.mxgraph.model.MxGraphModel;
 import cn.renlm.graph.mxgraph.model.Root;
 import cn.renlm.graph.mxgraph.model.UserObject;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.util.FreemarkerUtil;
 
 /**

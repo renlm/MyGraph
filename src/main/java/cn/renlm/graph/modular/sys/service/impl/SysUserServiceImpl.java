@@ -44,7 +44,7 @@ import cn.renlm.graph.modular.sys.service.ISysRoleService;
 import cn.renlm.graph.modular.sys.service.ISysUserOrgService;
 import cn.renlm.graph.modular.sys.service.ISysUserRoleService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.util.TreeExtraUtil;
 
 /**

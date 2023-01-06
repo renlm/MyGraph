@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import cn.renlm.graph.modular.sys.entity.SysLoginLog;
 import cn.renlm.graph.modular.sys.service.ISysLoginLogService;
-import cn.renlm.graph.response.Datagrid;
+import cn.renlm.plugins.MyResponse.Datagrid;
 
 /**
  * 系统登录日志

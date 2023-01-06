@@ -20,7 +20,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.service.ISysRoleService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * 角色

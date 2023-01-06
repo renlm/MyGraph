@@ -22,7 +22,7 @@ import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.entity.DocProject;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * 文档分类

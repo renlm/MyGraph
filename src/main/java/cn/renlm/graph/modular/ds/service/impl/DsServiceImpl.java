@@ -33,7 +33,7 @@ import cn.renlm.graph.modular.er.entity.Er;
 import cn.renlm.graph.modular.er.entity.ErField;
 import cn.renlm.graph.modular.er.service.IErFieldService;
 import cn.renlm.graph.modular.er.service.IErService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.plugins.MyUtil.MyDbUtil;
 
 /**

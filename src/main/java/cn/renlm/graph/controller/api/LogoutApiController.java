@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.util.SessionUtil;
 
 /**

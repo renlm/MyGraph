@@ -17,8 +17,8 @@ import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocProjectMemberDto;
 import cn.renlm.graph.modular.doc.service.IDocProjectMemberService;
 import cn.renlm.graph.modular.sys.entity.SysUser;
-import cn.renlm.graph.response.Datagrid;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Datagrid;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * 文档项目-成员

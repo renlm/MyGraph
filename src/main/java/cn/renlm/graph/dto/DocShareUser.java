@@ -2,7 +2,6 @@ package cn.renlm.graph.dto;
 
 import java.io.Serializable;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.ui.ModelMap;
 
 import cn.hutool.core.util.StrUtil;
@@ -10,8 +9,9 @@ import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
 import cn.hutool.extra.spring.SpringUtil;
 import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
-import cn.renlm.graph.response.Result;
 import cn.renlm.graph.service.PubDocService;
+import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyResponse.StatusCode;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -53,10 +53,10 @@ public class DocShareUser implements Serializable {
 		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
 		if (StrUtil.isBlank(shareUuid)) {
-			return Result.of(HttpStatus.BAD_REQUEST, "参数缺失");
+			return Result.of(StatusCode.BAD_REQUEST, "参数缺失");
 		}
 		if (StrUtil.isBlank(password)) {
-			return Result.of(HttpStatus.BAD_REQUEST, "请输入密码");
+			return Result.of(StatusCode.BAD_REQUEST, "请输入密码");
 		}
 		if (StrUtil.equals(decryptStr, password)) {
 			DocShareUser docShareUser = new DocShareUser();
@@ -64,7 +64,7 @@ public class DocShareUser implements Serializable {
 			request.getSession().setAttribute(key + shareUuid, docShareUser);
 			return Result.success();
 		} else {
-			return Result.of(HttpStatus.BAD_REQUEST, "密码错误");
+			return Result.of(StatusCode.BAD_REQUEST, "密码错误");
 		}
 	}
 

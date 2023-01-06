@@ -13,7 +13,7 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysDict;
 import cn.renlm.graph.modular.sys.entity.SysFile;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * <p>

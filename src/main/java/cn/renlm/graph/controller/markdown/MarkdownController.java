@@ -32,7 +32,7 @@ import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.properties.MyConfigProperties;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * Markdown文档

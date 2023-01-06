@@ -29,8 +29,8 @@ import cn.renlm.graph.modular.doc.entity.DocCategoryShare;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryShareService;
 import cn.renlm.graph.properties.MyConfigProperties;
-import cn.renlm.graph.response.Datagrid;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Datagrid;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * 文档分类-分享

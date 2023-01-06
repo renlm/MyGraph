@@ -21,7 +21,7 @@ import cn.renlm.graph.modular.er.entity.ErFieldLib;
 import cn.renlm.graph.modular.er.mapper.ErFieldLibMapper;
 import cn.renlm.graph.modular.er.service.IErFieldLibService;
 import cn.renlm.graph.modular.er.service.IErFieldService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * <p>

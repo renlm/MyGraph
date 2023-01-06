@@ -33,8 +33,8 @@ import cn.renlm.graph.modular.qrtz.dto.QrtzTriggersDto;
 import cn.renlm.graph.modular.qrtz.entity.QrtzLogs;
 import cn.renlm.graph.modular.qrtz.service.IQrtzLogsService;
 import cn.renlm.graph.modular.qrtz.service.IQrtzTriggersService;
-import cn.renlm.graph.response.Datagrid;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Datagrid;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.plugins.MyUtil.MyXStreamUtil;
 
 /**

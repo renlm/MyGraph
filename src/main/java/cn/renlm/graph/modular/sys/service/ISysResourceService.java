@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import cn.hutool.core.lang.tree.Tree;
 import cn.renlm.graph.modular.sys.dto.SysResourceDto;
 import cn.renlm.graph.modular.sys.entity.SysResource;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * <p>

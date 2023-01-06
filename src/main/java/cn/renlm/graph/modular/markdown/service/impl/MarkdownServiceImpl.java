@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +26,8 @@ import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
 import cn.renlm.graph.modular.markdown.mapper.MarkdownMapper;
 import cn.renlm.graph.modular.markdown.service.IMarkdownHistoryService;
 import cn.renlm.graph.modular.markdown.service.IMarkdownService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyResponse.StatusCode;
 
 /**
  * <p>
@@ -53,14 +53,14 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 	@Transactional(rollbackFor = Exception.class)
 	public Result<Markdown> ajaxSave(User user, Markdown form) {
 		if (StrUtil.isBlank(form.getUuid())) {
-			return Result.of(HttpStatus.BAD_REQUEST, "参数不全");
+			return Result.of(StatusCode.BAD_REQUEST, "参数不全");
 		} else {
 			DocCategory docCategory = iDocCategoryService
 					.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, form.getUuid()));
 			if (ObjectUtil.isNotEmpty(docCategory)) {
 				Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
 				if (role == null || !ArrayUtil.contains(new Integer[] { 2, 3 }, role.intValue())) {
-					return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
+					return Result.of(StatusCode.FORBIDDEN, "您没有操作权限");
 				} else {
 					DocProject docProject = iDocProjectService.getById(docCategory.getDocProjectId());
 					List<DocCategory> fathers = iDocCategoryService.findFathers(docProject.getUuid(),
@@ -80,12 +80,12 @@ public class MarkdownServiceImpl extends ServiceImpl<MarkdownMapper, Markdown> i
 				form.setUpdatedAt(form.getCreatedAt());
 				form.setDeleted(false);
 			} else if (!BooleanUtil.isFalse(entity.getDeleted())) {
-				return Result.of(HttpStatus.FORBIDDEN, "数据已被删除");
+				return Result.of(StatusCode.FORBIDDEN, "数据已被删除");
 			} else {
 				if (form.getVersion() == null) {
-					return Result.of(HttpStatus.BAD_REQUEST, "缺失版本号");
+					return Result.of(StatusCode.BAD_REQUEST, "缺失版本号");
 				} else if (form.getVersion().intValue() < entity.getVersion().intValue()) {
-					return Result.of(HttpStatus.BAD_REQUEST, "版本错误，请获取最新数据");
+					return Result.of(StatusCode.BAD_REQUEST, "版本错误，请获取最新数据");
 				}
 				form.setId(entity.getId());
 				form.setVersion(entity.getVersion() + 1);

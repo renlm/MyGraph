@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +30,8 @@ import cn.renlm.graph.modular.doc.mapper.DocCategoryCollectMapper;
 import cn.renlm.graph.modular.doc.service.IDocCategoryCollectService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyResponse.StatusCode;
 
 /**
  * <p>
@@ -66,14 +66,14 @@ public class DocCategoryCollectServiceImpl extends ServiceImpl<DocCategoryCollec
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, docProjectUuid));
 		if (!BooleanUtil.isFalse(docProject.getDeleted())) {
-			return Result.of(HttpStatus.FORBIDDEN, "项目已被删除");
+			return Result.of(StatusCode.FORBIDDEN, "项目已被删除");
 		}
 		DocCategory docCategory = iDocCategoryService.getOne(Wrappers.<DocCategory>lambdaQuery().func(wrapper -> {
 			wrapper.eq(DocCategory::getDocProjectId, docProject.getId());
 			wrapper.eq(DocCategory::getUuid, docCategoryUuid);
 		}));
 		if (!BooleanUtil.isFalse(docCategory.getDeleted())) {
-			return Result.of(HttpStatus.FORBIDDEN, "数据已被删除");
+			return Result.of(StatusCode.FORBIDDEN, "数据已被删除");
 		}
 		// 取消收藏
 		this.update(Wrappers.<DocCategoryCollect>lambdaUpdate().func(wrapper -> {

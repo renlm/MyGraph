@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.OptionalInt;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +25,8 @@ import cn.renlm.graph.modular.doc.mapper.DocProjectMapper;
 import cn.renlm.graph.modular.doc.service.IDocProjectMemberService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
 import cn.renlm.graph.modular.doc.service.IDocProjectTagService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyResponse.StatusCode;
 
 /**
  * <p>
@@ -107,7 +107,7 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 				wrapper.eq(DocProjectMember::getDeleted, false);
 			}));
 			if (members == 0) {
-				return Result.of(HttpStatus.FORBIDDEN, "非管理员，无操作权限");
+				return Result.of(StatusCode.FORBIDDEN, "非管理员，无操作权限");
 			}
 			form.setId(entity.getId());
 			form.setCreatedAt(entity.getCreatedAt());
@@ -168,7 +168,7 @@ public class DocProjectServiceImpl extends ServiceImpl<DocProjectMapper, DocProj
 			wrapper.eq(DocProjectMember::getDeleted, false);
 		}));
 		if (members == 0) {
-			return Result.of(HttpStatus.FORBIDDEN, "非管理员，无操作权限");
+			return Result.of(StatusCode.FORBIDDEN, "非管理员，无操作权限");
 		}
 		this.update(Wrappers.<DocProject>lambdaUpdate().func(wrapper -> {
 			wrapper.set(DocProject::getDeleted, true);

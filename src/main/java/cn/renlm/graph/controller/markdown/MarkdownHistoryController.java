@@ -20,7 +20,7 @@ import cn.renlm.graph.modular.doc.entity.DocCategory;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.markdown.dto.MarkdownHistoryDto;
 import cn.renlm.graph.modular.markdown.service.IMarkdownHistoryService;
-import cn.renlm.graph.response.Datagrid;
+import cn.renlm.plugins.MyResponse.Datagrid;
 
 /**
  * Markdown文档-历史记录

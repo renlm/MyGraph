@@ -38,7 +38,7 @@ import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.mapper.SysDictMapper;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.util.TreeExtraUtil;
 import cn.renlm.plugins.MyExcelUtil;
 import cn.renlm.plugins.MyExcel.handler.DataWriterHandler;

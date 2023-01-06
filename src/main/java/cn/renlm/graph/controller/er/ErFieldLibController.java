@@ -21,8 +21,8 @@ import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.er.dto.ErFieldLibDto;
 import cn.renlm.graph.modular.er.entity.ErFieldLib;
 import cn.renlm.graph.modular.er.service.IErFieldLibService;
-import cn.renlm.graph.response.Datagrid;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Datagrid;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * ER模型-我的字段库

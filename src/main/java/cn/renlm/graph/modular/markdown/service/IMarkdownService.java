@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.markdown.entity.Markdown;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * <p>

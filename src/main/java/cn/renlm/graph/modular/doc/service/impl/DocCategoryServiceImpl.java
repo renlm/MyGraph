@@ -9,7 +9,6 @@ import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,8 +37,9 @@ import cn.renlm.graph.modular.markdown.entity.Markdown;
 import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
 import cn.renlm.graph.modular.markdown.service.IMarkdownHistoryService;
 import cn.renlm.graph.modular.markdown.service.IMarkdownService;
-import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.TreeExtraUtil;
+import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyResponse.StatusCode;
 
 /**
  * <p>
@@ -168,7 +168,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 		}
 		Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
 		if (role == null || !ArrayUtil.contains(new Integer[] { 2, 3 }, role.intValue())) {
-			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
+			return Result.of(StatusCode.FORBIDDEN, "您没有操作权限");
 		}
 		if (docCategory.getPid() == null) {
 			docCategory.setFullname(docCategory.getText());
@@ -277,7 +277,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 		DocProject docProject = iDocProjectService.getById(entity.getDocProjectId());
 		Integer role = iDocProjectService.findRole(user, entity.getDocProjectId());
 		if (role == null || !ArrayUtil.contains(new Integer[] { 2, 3 }, role.intValue())) {
-			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
+			return Result.of(StatusCode.FORBIDDEN, "您没有操作权限");
 		}
 		// 获取全部子节点
 		List<Tree<Long>> tree = this.getTree(docProject.getUuid(), true, entity.getId());

@@ -6,10 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import jakarta.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,7 +36,9 @@ import cn.renlm.graph.modular.doc.mapper.DocCategoryShareMapper;
 import cn.renlm.graph.modular.doc.service.IDocCategoryService;
 import cn.renlm.graph.modular.doc.service.IDocCategoryShareService;
 import cn.renlm.graph.modular.doc.service.IDocProjectService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyResponse.StatusCode;
+import jakarta.annotation.Resource;
 
 /**
  * <p>
@@ -83,22 +82,22 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 		DocProject docProject = iDocProjectService
 				.getOne(Wrappers.<DocProject>lambdaQuery().eq(DocProject::getUuid, form.getDocProjectUuid()));
 		if (ObjectUtil.isEmpty(docProject) || !BooleanUtil.isTrue(docProject.getIsShare())) {
-			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
+			return Result.of(StatusCode.FORBIDDEN, "您没有操作权限");
 		}
 		if (!BooleanUtil.isFalse(docProject.getDeleted())) {
-			return Result.of(HttpStatus.FORBIDDEN, "项目已被删除");
+			return Result.of(StatusCode.FORBIDDEN, "项目已被删除");
 		}
 		DocCategory docCategory = iDocCategoryService
 				.getOne(Wrappers.<DocCategory>lambdaQuery().eq(DocCategory::getUuid, form.getDocCategoryUuid()));
 		if (ObjectUtil.isEmpty(docCategory)) {
-			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
+			return Result.of(StatusCode.FORBIDDEN, "您没有操作权限");
 		}
 		if (!BooleanUtil.isFalse(docCategory.getDeleted())) {
-			return Result.of(HttpStatus.FORBIDDEN, "数据已被删除");
+			return Result.of(StatusCode.FORBIDDEN, "数据已被删除");
 		}
 		Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
 		if (NumberUtil.equals(docProject.getVisitLevel(), 1) && role == null) {
-			return Result.of(HttpStatus.FORBIDDEN, "您没有操作权限");
+			return Result.of(StatusCode.FORBIDDEN, "您没有操作权限");
 		}
 		// 保存分享信息
 		String password = form.getPassword();
@@ -106,7 +105,7 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			form.setPassword(null);
 		} else {
 			if (StrUtil.isBlank(password)) {
-				return Result.of(HttpStatus.BAD_REQUEST, "访问密码缺失");
+				return Result.of(StatusCode.BAD_REQUEST, "访问密码缺失");
 			}
 			form.setPassword(rsa.encryptBase64(password, KeyType.PrivateKey));
 		}

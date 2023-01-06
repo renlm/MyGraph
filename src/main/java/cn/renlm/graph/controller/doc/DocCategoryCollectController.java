@@ -13,8 +13,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.dto.DocCategoryCollectDto;
 import cn.renlm.graph.modular.doc.service.IDocCategoryCollectService;
-import cn.renlm.graph.response.Datagrid;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Datagrid;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * 文档分类-收藏

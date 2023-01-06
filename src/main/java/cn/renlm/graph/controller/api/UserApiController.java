@@ -1,8 +1,5 @@
 package cn.renlm.graph.controller.api;
 
-import jakarta.servlet.http.HttpServletRequest;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.renlm.graph.dto.User;
-import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.SessionUtil;
+import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyResponse.StatusCode;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * 用户信息接口
@@ -47,27 +46,11 @@ public class UserApiController {
 	@GetMapping("/getCurrent")
 	public Result<User> getCurrent(HttpServletRequest request, Authentication authentication) {
 		if (authentication == null) {
-			return Result.of(HttpStatus.UNAUTHORIZED, "未登录");
+			return Result.of(StatusCode.UNAUTHORIZED, "未登录");
 		} else {
 			User user = (User) authentication.getPrincipal();
 			return Result.success(user);
 		}
 	}
 
-	/**
-	 * 根据Ticket查询用户
-	 * 
-	 * @param ticket
-	 * @return
-	 */
-	@ResponseBody
-	@GetMapping("/getByTicket")
-	public Result<User> getByTicket(String ticket) {
-		User user = SessionUtil.getUserInfo(ticket);
-		if (user == null) {
-			return Result.of(HttpStatus.UNAUTHORIZED, "Ticket无效或已过期");
-		} else {
-			return Result.success(user);
-		}
-	}
 }

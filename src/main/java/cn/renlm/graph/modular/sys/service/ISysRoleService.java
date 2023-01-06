@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import cn.hutool.core.lang.tree.Tree;
 import cn.renlm.graph.modular.sys.entity.SysRole;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * <p>

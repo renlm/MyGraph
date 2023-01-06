@@ -21,8 +21,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.modular.sys.dto.SysUserDto;
 import cn.renlm.graph.modular.sys.entity.SysUser;
-import cn.renlm.graph.response.Datagrid;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Datagrid;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.service.SysAuthAccessService;
 
 /**

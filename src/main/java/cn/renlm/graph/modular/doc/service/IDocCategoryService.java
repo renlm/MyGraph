@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import cn.hutool.core.lang.tree.Tree;
 import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.doc.entity.DocCategory;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * <p>

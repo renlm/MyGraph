@@ -31,7 +31,7 @@ import cn.renlm.graph.modular.sys.entity.SysRoleResource;
 import cn.renlm.graph.modular.sys.mapper.SysResourceMapper;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleResourceService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.security.RequestAuthorizationManager;
 import cn.renlm.graph.util.TreeExtraUtil;
 

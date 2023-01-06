@@ -20,8 +20,8 @@ import cn.renlm.graph.common.CacheKey;
 import cn.renlm.graph.common.Role;
 import cn.renlm.graph.modular.sys.entity.SysConst;
 import cn.renlm.graph.modular.sys.service.ISysConstService;
-import cn.renlm.graph.response.Datagrid;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Datagrid;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * 系统常量

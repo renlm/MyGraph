@@ -27,7 +27,7 @@ import cn.renlm.graph.common.TreeState;
 import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.mapper.SysRoleMapper;
 import cn.renlm.graph.modular.sys.service.ISysRoleService;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.util.TreeExtraUtil;
 
 /**

@@ -10,7 +10,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,8 +34,9 @@ import cn.renlm.graph.modular.sys.entity.SysOrg;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysOrgService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
-import cn.renlm.graph.response.Result;
 import cn.renlm.graph.util.TreeExtraUtil;
+import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyResponse.StatusCode;
 
 /**
  * <p>
@@ -160,7 +160,7 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 				wrapper.eq(DocProjectMember::getDeleted, false);
 			}));
 			if (members == 0) {
-				return Result.of(HttpStatus.FORBIDDEN, "非管理员，无操作权限");
+				return Result.of(StatusCode.FORBIDDEN, "非管理员，无操作权限");
 			}
 		}
 		// 添加新关联关系
@@ -205,7 +205,7 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 			wrapper.eq(DocProjectMember::getDeleted, false);
 		}));
 		if (members == 0) {
-			return Result.of(HttpStatus.FORBIDDEN, "非管理员，无操作权限");
+			return Result.of(StatusCode.FORBIDDEN, "非管理员，无操作权限");
 		}
 		if (CollUtil.isNotEmpty(userIds)) {
 			this.update(Wrappers.<DocProjectMember>lambdaUpdate().func(wrapper -> {

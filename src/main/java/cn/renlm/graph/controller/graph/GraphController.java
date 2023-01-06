@@ -38,7 +38,7 @@ import cn.renlm.graph.modular.graph.service.IGraphHistoryService;
 import cn.renlm.graph.modular.graph.service.IGraphService;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.mxgraph.ERModelParser;
-import cn.renlm.graph.response.Result;
+import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.util.RedisUtil;
 
 /**
