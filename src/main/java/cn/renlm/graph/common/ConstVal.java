@@ -1,7 +1,5 @@
 package cn.renlm.graph.common;
 
-import org.springframework.session.MapSession;
-
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
 
@@ -13,21 +11,6 @@ import lombok.experimental.UtilityClass;
  */
 @UtilityClass
 public class ConstVal {
-
-	/**
-	 * 会话存储时长（秒），十二小时
-	 */
-	public static final int MAX_INACTIVE_INTERVAL_SECONDS = MapSession.DEFAULT_MAX_INACTIVE_INTERVAL_SECONDS * 2 * 12;
-
-	/**
-	 * 验证码-会话存储键
-	 */
-	public static final String CAPTCHA_SESSION_KEY = "CAPTCHA_SESSION_KEY";
-
-	/**
-	 * 验证码-参数键
-	 */
-	public static final String CAPTCHA_PARAM_NAME = "captcha";
 
 	/**
 	 * 用户名-参数名
@@ -69,7 +52,10 @@ public class ConstVal {
 	 */
 	public enum Sys {
 
-		cfgSystemName("系统名称"), cfgSystemVersion("系统版本"), cfgSystemVersionPublishDate("发布日期"), cfgSiteBeian("网站备案号");
+		cfgSystemName("系统名称"), 
+		cfgSystemVersion("系统版本"), 
+		cfgSystemVersionPublishDate("发布日期"), 
+		cfgSiteBeian("网站备案号");
 
 		@Getter
 		private final String text;
@@ -78,4 +64,5 @@ public class ConstVal {
 			this.text = text;
 		}
 	}
+
 }

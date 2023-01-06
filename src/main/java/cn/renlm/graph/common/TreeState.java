@@ -10,7 +10,8 @@ import lombok.Getter;
  */
 public enum TreeState {
 
-	open("无子菜单"), closed("有子菜单");
+	open("无子菜单"), 
+	closed("有子菜单");
 
 	@Getter
 	private final String text;
@@ -18,4 +19,5 @@ public enum TreeState {
 	private TreeState(String text) {
 		this.text = text;
 	}
+
 }

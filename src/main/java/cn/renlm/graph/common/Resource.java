@@ -28,8 +28,8 @@ public enum Resource {
 		menu("菜单"), 
 		button("按钮"), 
 		urlNewWindows("链接-新窗口"), 
-		urlInsidePage("链接-内页"),
-		more("更多功能"),
+		urlInsidePage("链接-内页"), 
+		more("更多功能"), 
 		permission("权限"),
 		markdown("Markdown文档");
 
@@ -40,4 +40,5 @@ public enum Resource {
 			this.text = text;
 		}
 	}
+
 }

@@ -10,7 +10,10 @@ import lombok.Getter;
  */
 public enum Role {
 
-	PLATFORM("平台管理"), SUPER("超级管理员"), COMMON("通用权限"), GENERAL("普通用户");
+	PLATFORM("平台管理"), 
+	SUPER("超级管理员"), 
+	COMMON("通用权限"), 
+	GENERAL("普通用户");
 
 	/**
 	 * 角色前缀
@@ -28,4 +31,5 @@ public enum Role {
 	private Role(String text) {
 		this.text = text;
 	}
+
 }
