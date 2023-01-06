@@ -3,7 +3,7 @@ ADD target/MyGraph.jar app.jar
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
   && apk update \
   && apk upgrade \
-  && apk --no-cache add ttf-dejavu fontconfig \
+  && apk --no-cache add wqy-zenhei fontconfig \
   && apk --no-cache add chromium chromium-chromedriver \
   && apk --no-cache add tini \
   && touch /app.jar
