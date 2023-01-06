@@ -1,6 +1,6 @@
 FROM openjdk:17-jdk-alpine
 ADD target/MyGraph.jar app.jar
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
   && apk update \
   && apk upgrade \
   && apk --no-cache add ttf-dejavu fontconfig \
