@@ -42,21 +42,25 @@ public class User extends SysUser implements org.springframework.security.core.u
 	/**
 	 * 角色列表
 	 */
+	@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 	private List<SysRole> roles;
 
 	/**
 	 * 资源列表
 	 */
+	@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 	private List<SysResource> resources;
 
 	/**
 	 * 组织机构列表
 	 */
+	@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 	private List<SysOrgDto> orgs;
 
 	/**
 	 * 权限列表
 	 */
+	@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 	private List<GrantedAuthority> authorities;
 
 	/**
