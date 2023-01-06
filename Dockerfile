@@ -1,6 +1,6 @@
 FROM openjdk:17-jdk-alpine
 ADD target/MyGraph.jar app.jar
-RUN mkdir /usr/share/fonts/myfonts
+RUN mkdir -p /usr/share/fonts/myfonts
 COPY file/msyh.ttf /usr/share/fonts/myfonts
 COPY file/msyhbd.ttf /usr/share/fonts/myfonts
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
