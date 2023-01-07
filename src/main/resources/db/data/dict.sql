@@ -1,4 +1,4 @@
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1,'4C21A887F02042838683F1CA1CBF662F','RESOURCE_TYPE','资源类型',NULL,NULL,'fa fa-life-ring',1,1,'closed',NULL,'2023-01-07 17:39:25','2022-05-15 14:29:25',0,NULL)
 ,(2,'7E967DCF65224D9EB72BD46998023A2D','menu','菜单',NULL,NULL,NULL,2,1,'open',1,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(3,'5CE73C64FF0C476AA679959C2171E484','button','按钮',NULL,NULL,NULL,2,2,'open',1,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -10,7 +10,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(9,'4EBA7353D5AD4334AF9FA77A83F7438F','ORG_TYPE','组织机构类型',NULL,NULL,'fa fa-sitemap',1,2,'closed',NULL,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(10,'167B8A383BD149A4965BA18637E71BCE','1','公司',NULL,NULL,NULL,2,1,'open',9,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (11,'63240F29EA6A4153A3682319F54D72E2','2','部门',NULL,NULL,NULL,2,2,'open',9,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(12,'FC93489249F04187A3A87709B96C2B03','3','岗位',NULL,NULL,NULL,2,3,'open',9,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(13,'D3586B6A58BB4369BD4C9ACEE57C635D','EDUCATION','学历',NULL,NULL,'fa fa-audio-description',1,3,'closed',NULL,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -22,7 +22,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(19,'772C5CC4F3674C84AED9AF9C564FD049','06','技校',NULL,NULL,NULL,2,6,'open',13,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(20,'AB82CE5546D14D74A6B6605ED9D8F2ED','07','本科',NULL,NULL,NULL,2,7,'open',13,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (21,'AA9F34EF54914587B47EA7C8E81A69BB','08','硕士',NULL,NULL,NULL,2,8,'open',13,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(22,'0059C79BC1004119A1103E99D2C890AF','09','博士',NULL,NULL,NULL,2,9,'open',13,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(23,'8B557E312BBF4900B85F41FD1CAE809F','DEGREE','学位',NULL,NULL,'fa fa-graduation-cap',1,4,'closed',NULL,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -34,7 +34,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(29,'ED1136347FEE4E0EA5B436BCC5F7D00F','02','瑶族',NULL,NULL,NULL,2,2,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(30,'036813E1ECF642FB903193C0934A13E0','03','拉祜族',NULL,NULL,NULL,2,3,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (31,'8693417AFACF452B95EF8B7CE3D2FE77','04','撒拉族',NULL,NULL,NULL,2,4,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(32,'DC95908CBC08495BB4DD9BE9BE8A3BEF','05','京族',NULL,NULL,NULL,2,5,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(33,'7F074BFECABE4456891274C0D28B559C','06','珞巴族',NULL,NULL,NULL,2,6,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -46,7 +46,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(39,'5C44DAA195DA4796B2DE4F06E275AD23','12','傣族',NULL,NULL,NULL,2,12,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(40,'5764CD88FA49411A8E1ED262CAF03378','13','仫佬族',NULL,NULL,NULL,2,13,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (41,'59ABC75E839448948A8CD6A2D1B305A1','14','乌兹别克族',NULL,NULL,NULL,2,14,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(42,'CAB0C3900623430F951A406CBA514661','15','壮族',NULL,NULL,NULL,2,15,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(43,'33E5579EA65944898FD5301136B0C624','16','朝鲜族',NULL,NULL,NULL,2,16,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -58,7 +58,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(49,'E596DA8CC80A477FADB73541EB1F3289','22','蒙古族',NULL,NULL,NULL,2,22,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(50,'B56C8A8BCF324925BB29AB314B4A2F9F','23','白族',NULL,NULL,NULL,2,23,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (51,'DA032A8F4E70410486B55C8307E81AC7','24','傈僳族',NULL,NULL,NULL,2,24,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(52,'C9F0AE6D05304EB4A59B9C2146FBC4C4','25','佤族',NULL,NULL,NULL,2,25,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(53,'38159F29AEE342E9953F2352ED4845D2','26','柯尔克孜族',NULL,NULL,NULL,2,26,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -70,7 +70,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(59,'40199BAC854343278E53792DAF9D371E','32','哈尼族',NULL,NULL,NULL,2,32,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(60,'5C6A45CD8ED440FB887A6E11EF89DDC7','33','仡佬族',NULL,NULL,NULL,2,33,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (61,'88CFCB4AEF08486D80603C44428BE5E4','34','纳西族',NULL,NULL,NULL,2,34,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(62,'AF01FF9340204022B08DFA98F67795FF','35','达斡尔族',NULL,NULL,NULL,2,35,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(63,'6F9BA56CF5944E429CA81E64C2BC167F','36','普米族',NULL,NULL,NULL,2,36,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -82,7 +82,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(69,'B47A40AC70DD423FBF2E3BA54AC4A0D8','42','东乡族',NULL,NULL,NULL,2,42,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(70,'68A4C391F6CC423396E82D22F2CC7ECF','43','羌族',NULL,NULL,NULL,2,43,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (71,'96D2AFB38BCE4B8CAE07265F7068C751','44','景颇族',NULL,NULL,NULL,2,44,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(72,'C9ECDF431F2349F683CA98D570AB53A6','45','鄂温克族',NULL,NULL,NULL,2,45,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(73,'C1698988011143B8A90B826DDABC4150','46','俄罗斯族',NULL,NULL,NULL,2,46,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -94,7 +94,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(79,'AAFE06DC932A47B09AC595849B2D3B04','52','土族',NULL,NULL,NULL,2,52,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(80,'969D3029EAA54EB28B3EC7285A8A1E88','53','毛南族',NULL,NULL,NULL,2,53,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (81,'72F733BB623846E0BA1A4BF3D0282B67','54','怒族',NULL,NULL,NULL,2,54,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(82,'BFFE009FD436444FBC46E2735B9B7B9C','55','裕固族',NULL,NULL,NULL,2,55,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(83,'8FC67790725C425DB470D69C5A1E5DE1','56','赫哲族',NULL,NULL,NULL,2,56,'open',27,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -106,7 +106,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(89,'26410D3F819046B38948E4A664ADC12F','05','河北省（冀）',NULL,NULL,NULL,2,5,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(90,'27BBDF9ECB2F44FDA941CAB53ECFBF27','06','河南省（豫）',NULL,NULL,NULL,2,6,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (91,'FC894821962945D0999522024AC3B578','07','云南省（云）',NULL,NULL,NULL,2,7,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(92,'C2E0E4B77B2946A38D74F4D37400FCCB','08','辽宁省（辽）',NULL,NULL,NULL,2,8,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(93,'F4007160A4AC4D1089C976AFD8DEF9F1','09','黑龙江省（黑）',NULL,NULL,NULL,2,9,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -118,7 +118,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(99,'B7A32743C7C44F30A861E70C84032EB3','15','浙江省（浙）',NULL,NULL,NULL,2,15,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(100,'F2765E3C64E3467CA08E4665ECD2A892','16','江西省（赣）',NULL,NULL,NULL,2,16,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (101,'9701EB9EC1B9497193301EF4688F37C4','17','湖北省（鄂）',NULL,NULL,NULL,2,17,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(102,'B8C4F9BD3FEC4EF8A73E46EF26789D19','18','广西壮族（桂）',NULL,NULL,NULL,2,18,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(103,'FE13B95560CB48329DA157A04F539259','19','甘肃省（甘）',NULL,NULL,NULL,2,19,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -130,7 +130,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(109,'EB1FEEAD6A3D47349DC6A7990194849D','25','贵州省（贵）',NULL,NULL,NULL,2,25,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(110,'12B5E27870934CE1A7CB8C1A0755DCF4','26','广东省（粤）',NULL,NULL,NULL,2,26,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (111,'B5D79AC448924F0A8C12AC4DABF478D9','27','青海省（青）',NULL,NULL,NULL,2,27,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(112,'C1816506DB9740DE807B7067CD63DE3D','28','西藏（藏）',NULL,NULL,NULL,2,28,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(113,'006CABF6CB1E4BB88193609445EA7226','29','四川省（川）',NULL,NULL,NULL,2,29,'open',84,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -142,7 +142,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(119,'6D70D6B73AAC4F7A89E7204364E2AF11','MXGRAPH','图形分类',NULL,NULL,'fa fa-file-image-o',1,7,'closed',NULL,'2023-01-07 17:39:25','2022-05-05 08:44:27',0,NULL)
 ,(120,'53260F32915A4410B7C618739D433800','UML','UML',NULL,NULL,NULL,2,1,'open',119,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (121,'9D182143640B4472974F9DE1FB609951','BUS','业务设计',NULL,NULL,NULL,2,2,'open',119,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(122,'45AACB6ADD2B4541BA9704DC52C5A8B0','FLOWCHART','流程图',NULL,NULL,NULL,2,3,'open',119,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(123,'B2A61C67CDD04612B6FE9E4428541284','PLAN','平面图',NULL,NULL,NULL,2,4,'open',119,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -154,7 +154,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(129,'667FA0DB8B8B473CB3D0B235C7C29698','A','行政区划',NULL,NULL,'fa fa-font',1,8,'closed',NULL,'2023-01-07 17:39:25','2022-02-13 16:07:39',0,NULL)
 ,(130,'704BD927A8C947E49E49ECC9BCD9EB8A','CN','中国',NULL,NULL,NULL,2,1,'closed',129,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (131,'0931387E518D4C7C817D59E7F4A1A61A','110000','北京市','北京','京',NULL,3,1,'closed',130,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(132,'BF44663A2D2C4677A798A5658F7DE11E','110101','东城区','东城区',NULL,NULL,4,1,'open',131,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(133,'F691E5FB8D894A2CB10AD11081525519','110102','西城区','西城区',NULL,NULL,4,2,'open',131,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -166,7 +166,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(139,'2BBFDE3672D94ED7870D93992183F795','110111','房山区','房山区',NULL,NULL,4,8,'open',131,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(140,'8323E910D38641A6BC749956DFE1BEBE','110112','通州区','通州区',NULL,NULL,4,9,'open',131,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (141,'31E07D4A18254543885CED64ECEB59D2','110113','顺义区','顺义区',NULL,NULL,4,10,'open',131,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(142,'6065B8A5294C475F830DED839FC7FEAA','110114','昌平区','昌平区',NULL,NULL,4,11,'open',131,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(143,'7DF15BB283AA4446B52300A0F2A9FEF6','110115','大兴区','大兴区',NULL,NULL,4,12,'open',131,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -178,7 +178,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(149,'BF7A70F7521C4FD39A54C55078534E93','120101','和平区','和平区',NULL,NULL,4,1,'open',148,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(150,'CDF65562A3AD4592B6B8F41A798A15D2','120102','河东区','河东区',NULL,NULL,4,2,'open',148,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (151,'10AED7E92B9A48AC86B3AE8FA50BE543','120103','河西区','河西区',NULL,NULL,4,3,'open',148,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(152,'4F73EAA280B74FB580496D5D9089D033','120104','南开区','南开区',NULL,NULL,4,4,'open',148,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(153,'ECADA7F352A047E8B42DDE225925A03C','120105','河北区','河北区',NULL,NULL,4,5,'open',148,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -190,7 +190,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(159,'885AC897B5CF47358A44334FEDBE1BEE','120114','武清区','武清区',NULL,NULL,4,11,'open',148,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(160,'8185358BFF1C4C80AEAC50D2CCCBAD74','120115','宝坻区','宝坻区',NULL,NULL,4,12,'open',148,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (161,'A733F2D0DE98444F9205BDBE29F558AF','120116','滨海新区','滨海新区',NULL,NULL,4,13,'open',148,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(162,'441D3CD6728A4CF8BEAD7A5BD833B8DE','120117','宁河区','宁河区',NULL,NULL,4,14,'open',148,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(163,'D4BD0C256F414284A9C8BD31CF8C2C1D','120118','静海区','静海区',NULL,NULL,4,15,'open',148,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -202,7 +202,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(169,'16BF53C16B004D42A40D5450B255CF4E','130105','新华区','新华区',NULL,NULL,5,3,'open',166,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(170,'41001199C2A84AC79DCA0BEA550F61ED','130107','井陉矿区','井陉矿区',NULL,NULL,5,4,'open',166,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (171,'C70224F42E444E5FB6950D94385C3C74','130108','裕华区','裕华区',NULL,NULL,5,5,'open',166,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(172,'1A72EFF261A044BB9297D71FAF321CE3','130109','藁城区','藁城区',NULL,NULL,5,6,'open',166,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(173,'2EE1C1019E184ED8A32B00888FF96F69','130110','鹿泉区','鹿泉区',NULL,NULL,5,7,'open',166,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -214,7 +214,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(179,'DB7B285F4DAC428EA7895A99701E5B3F','130127','高邑县','高邑县',NULL,NULL,5,13,'open',166,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(180,'EE2DC8F176C04EA788992208FB9E64FF','130128','深泽县','深泽县',NULL,NULL,5,14,'open',166,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (181,'72BD63582C3B4252B0FD918C059D219B','130129','赞皇县','赞皇县',NULL,NULL,5,15,'open',166,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(182,'112FB80285324C418C2615715AC3F103','130130','无极县','无极县',NULL,NULL,5,16,'open',166,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(183,'DC27548DB1B74D8C9C7CF4B4AC722319','130131','平山县','平山县',NULL,NULL,5,17,'open',166,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -226,7 +226,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(189,'FE327E4124434978965747FF2A1A73B2','130200','唐山市','唐山市',NULL,NULL,4,2,'closed',165,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(190,'1A56E3332D0D4086B5DCDF3CCA83154E','130202','路南区','路南区',NULL,NULL,5,1,'open',189,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (191,'7DFA676DEF604A28A517A4AF6C1075FD','130203','路北区','路北区',NULL,NULL,5,2,'open',189,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(192,'8B051830D89F4E8AA6CE773889718786','130204','古冶区','古冶区',NULL,NULL,5,3,'open',189,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(193,'21C8FBD6CB764D3DAE855203FEA4A91D','130205','开平区','开平区',NULL,NULL,5,4,'open',189,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -238,7 +238,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(199,'0FD9ED3F007F47B4980172B55B555B52','130227','迁西县','迁西县',NULL,NULL,5,10,'open',189,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(200,'1B8D1FCCA182405ABD57DEE6FFAF6EB7','130229','玉田县','玉田县',NULL,NULL,5,11,'open',189,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (201,'F4423563F6D145538F0ED188BFB9E77C','130281','遵化市','遵化市',NULL,NULL,5,12,'open',189,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(202,'2CEF818E96A94939A1A0B0099CA0F31B','130283','迁安市','迁安市',NULL,NULL,5,13,'open',189,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(203,'578A9133BD814726BA3D15CF99E45A4F','130284','滦州市','滦州市',NULL,NULL,5,14,'open',189,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -250,7 +250,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(209,'1A6BF169AC0D43D28A5D7D6424CF61D4','130321','青龙满族自治县','青龙满族自治县',NULL,NULL,5,5,'open',204,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(210,'4C26622C46854ECDB618C4791879BD5F','130322','昌黎县','昌黎县',NULL,NULL,5,6,'open',204,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (211,'8437C5F5F21C433EB26BCBB5C8BE145E','130324','卢龙县','卢龙县',NULL,NULL,5,7,'open',204,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(212,'A2E457652D434A34A18E71D7527AEF82','130400','邯郸市','邯郸市',NULL,NULL,4,4,'closed',165,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(213,'D61DD45C04054B56957D0D52C3211261','130402','邯山区','邯山区',NULL,NULL,5,1,'open',212,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -262,7 +262,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(219,'E462A77C6FD144D98FFF09E458A3F342','130423','临漳县','临漳县',NULL,NULL,5,7,'open',212,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(220,'2A0714A96FD242F2A8E37A569B3B2FE3','130424','成安县','成安县',NULL,NULL,5,8,'open',212,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (221,'50AC64D382C540E0BB102F6D1462FF39','130425','大名县','大名县',NULL,NULL,5,9,'open',212,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(222,'E0D2395F4B6241C29DBB685DC3FC3EE1','130426','涉县','涉县',NULL,NULL,5,10,'open',212,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(223,'EBEC80530ECC4EA4A53BA2CCEF24C7C6','130427','磁县','磁县',NULL,NULL,5,11,'open',212,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -274,7 +274,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(229,'AC2DE9E14DC148A787BDFA1C68AF0A5D','130435','曲周县','曲周县',NULL,NULL,5,17,'open',212,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(230,'A280B3DFE87A4AA999D99ACB7432ED14','130481','武安市','武安市',NULL,NULL,5,18,'open',212,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (231,'18BF04CD588C4D208D18349AAB312052','130500','邢台市','邢台市',NULL,NULL,4,5,'closed',165,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(232,'E521036B4BB444FFBB291CADDA8D9513','130502','桥东区','桥东区',NULL,NULL,5,1,'open',231,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(233,'EC3A1F12B3CB47CAB8C481E5AFD976CB','130503','桥西区','桥西区',NULL,NULL,5,2,'open',231,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -286,7 +286,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(239,'A10ED20463DC473AB1A1815EF3C7AE41','130526','任县','任县',NULL,NULL,5,8,'open',231,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(240,'7EECF8D803D94322BF3BA5D62D0A4337','130527','南和县','南和县',NULL,NULL,5,9,'open',231,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (241,'0E3FF552032749DE87E4B2AF71C44609','130528','宁晋县','宁晋县',NULL,NULL,5,10,'open',231,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(242,'7ADAC0E5BFA74C38AA8B0B7118892A1A','130529','巨鹿县','巨鹿县',NULL,NULL,5,11,'open',231,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(243,'2FA6B3D3E96A4989802AB8234630205C','130530','新河县','新河县',NULL,NULL,5,12,'open',231,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -298,7 +298,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(249,'3F1F97A55B474A23BE35018CD26C1BD8','130581','南宫市','南宫市',NULL,NULL,5,18,'open',231,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(250,'7907F9C8833242289ECEC7E928853D99','130582','沙河市','沙河市',NULL,NULL,5,19,'open',231,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (251,'B16064B6DDC84A1CA964760C170474DC','130600','保定市','保定市',NULL,NULL,4,6,'closed',165,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(252,'9C38191C522043EAA8EE85A82D6DCBCD','130602','竞秀区','竞秀区',NULL,NULL,5,1,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(253,'8BA6A501F7D1497F8B3178E54E37D437','130606','莲池区','莲池区',NULL,NULL,5,2,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -310,7 +310,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(259,'2A3B23D85F2048469665C8B45ACE3746','130626','定兴县','定兴县',NULL,NULL,5,8,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(260,'CAE4BFF92D104A1E82792E396E5F491C','130627','唐县','唐县',NULL,NULL,5,9,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (261,'ABE2B6D3842D4AEB96B1AF4931A9E11D','130628','高阳县','高阳县',NULL,NULL,5,10,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(262,'6E19898188D74039806206FE7F1CEB19','130629','容城县','容城县',NULL,NULL,5,11,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(263,'BBF3EDF6ECA74DD795D355E0A574C844','130630','涞源县','涞源县',NULL,NULL,5,12,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -322,7 +322,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(269,'6114722E802C442BA455ED5656ADB31F','130636','顺平县','顺平县',NULL,NULL,5,18,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(270,'50B88D1218664297ADA808DFB1795D52','130637','博野县','博野县',NULL,NULL,5,19,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (271,'7B873FF91B394CBF9523CA2D5A1A5076','130638','雄县','雄县',NULL,NULL,5,20,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(272,'CF6FE2CA247E4789A960EF766D76FDB9','130681','涿州市','涿州市',NULL,NULL,5,21,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(273,'BCC7187C0DA14BE8BAA44C7818C3DFBB','130682','定州市','定州市',NULL,NULL,5,22,'open',251,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -334,7 +334,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(279,'CA788CFB1F7D45BFB01B9C00C960603F','130705','宣化区','宣化区',NULL,NULL,5,3,'open',276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(280,'6EECAE7C1AA54921BE86BF4CED50ECF2','130706','下花园区','下花园区',NULL,NULL,5,4,'open',276,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (281,'6E61974BFCE54F54BCA2F9F6FD7E489C','130708','万全区','万全区',NULL,NULL,5,5,'open',276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(282,'BDE9BD85EE1B4F35BA40FEF99C49D45D','130709','崇礼区','崇礼区',NULL,NULL,5,6,'open',276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(283,'21E6021052C2441EBD924071BF678972','130722','张北县','张北县',NULL,NULL,5,7,'open',276,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -346,7 +346,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(289,'AA820F82ADF242AC96BC4CDEF4389950','130728','怀安县','怀安县',NULL,NULL,5,13,'open',276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(290,'9C9DA4656B5C4681930266D41D80689A','130730','怀来县','怀来县',NULL,NULL,5,14,'open',276,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (291,'FD72F46598814F3B8A65BDC3C1C639D1','130731','涿鹿县','涿鹿县',NULL,NULL,5,15,'open',276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(292,'CAEE21FCF4AF40F58FDA1891366A77C7','130732','赤城县','赤城县',NULL,NULL,5,16,'open',276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(293,'A554899F8D4E4ED9A317ED2FAE342B55','130800','承德市','承德市',NULL,NULL,4,8,'closed',165,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -358,7 +358,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(299,'F33030A30C6241B5B8578D605B9A1DAB','130824','滦平县','滦平县',NULL,NULL,5,6,'open',293,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(300,'CDB9A707A50741B8BFBC06A95AC8D6EF','130825','隆化县','隆化县',NULL,NULL,5,7,'open',293,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (301,'CD4E1944BF594D5E8FA4A0ABD82C9010','130826','丰宁满族自治县','丰宁满族自治县',NULL,NULL,5,8,'open',293,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(302,'B1F7FF02C2A44216BE13342CF9A7DEB1','130827','宽城满族自治县','宽城满族自治县',NULL,NULL,5,9,'open',293,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(303,'DB4623F3781648658106E2415F2A5906','130828','围场满族蒙古族自治县','围场满族蒙古族自治县',NULL,NULL,5,10,'open',293,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -370,7 +370,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(309,'596DC7D0ADE64E9AB9F64ADEF385742E','130922','青县','青县',NULL,NULL,5,4,'open',305,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(310,'0752C7A1DB8A448F89F39FFBAB4A31E1','130923','东光县','东光县',NULL,NULL,5,5,'open',305,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (311,'2EC6500B3BD2484B82296A5F98ED6A95','130924','海兴县','海兴县',NULL,NULL,5,6,'open',305,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(312,'AFEC850F0EAC430FBB6A5C09A2AB8001','130925','盐山县','盐山县',NULL,NULL,5,7,'open',305,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(313,'B85725ECE73E4E6891377B74E2AC2EFD','130926','肃宁县','肃宁县',NULL,NULL,5,8,'open',305,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -382,7 +382,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(319,'9473DB2327AA447F8B168BAE196283AC','130982','任丘市','任丘市',NULL,NULL,5,14,'open',305,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(320,'CBB7BD40E4794F73A51BEF84A165166B','130983','黄骅市','黄骅市',NULL,NULL,5,15,'open',305,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (321,'F8BFCF47E55B4DE293DF8F04479B741E','130984','河间市','河间市',NULL,NULL,5,16,'open',305,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(322,'1763C40BFD654C94BCF926DF91231D1B','131000','廊坊市','廊坊市',NULL,NULL,4,10,'closed',165,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(323,'E6A6796226B542278596AFCF9DFC7396','131002','安次区','安次区',NULL,NULL,5,1,'open',322,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -394,7 +394,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(329,'71A57FC128C94B85920B11BDF14FFBE7','131026','文安县','文安县',NULL,NULL,5,7,'open',322,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(330,'76E83FE690FE44E59F88580044064D27','131028','大厂回族自治县','大厂回族自治县',NULL,NULL,5,8,'open',322,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (331,'6DD3C4C235F0419BAA6BF1187BABCF08','131081','霸州市','霸州市',NULL,NULL,5,9,'open',322,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(332,'0F65328B835D4FE98884C12C48B879F0','131082','三河市','三河市',NULL,NULL,5,10,'open',322,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(333,'7052C1EEE437491DB8AC52C477D1E72A','131100','衡水市','衡水市',NULL,NULL,4,11,'closed',165,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -406,7 +406,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(339,'ADFCD52D688546478FB45E0D69C92240','131124','饶阳县','饶阳县',NULL,NULL,5,6,'open',333,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(340,'4CB9043B318B4755A2F670D52E913D49','131125','安平县','安平县',NULL,NULL,5,7,'open',333,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (341,'0D1FA51834434E98B0B7B06AD80ADACE','131126','故城县','故城县',NULL,NULL,5,8,'open',333,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(342,'85275EE14B4E48F89D5C004E67B01288','131127','景县','景县',NULL,NULL,5,9,'open',333,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(343,'642D5ED620034C72870F16E7932B709E','131128','阜城县','阜城县',NULL,NULL,5,10,'open',333,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -418,7 +418,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(349,'459C8CFFE6A7452FA63833AFCB2A2733','140107','杏花岭区','杏花岭区',NULL,NULL,5,3,'open',346,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(350,'09E777B6B88A46F48A6FAD7B4A0DC6FE','140108','尖草坪区','尖草坪区',NULL,NULL,5,4,'open',346,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (351,'1804115E8B694DA8A42ED60207570B7D','140109','万柏林区','万柏林区',NULL,NULL,5,5,'open',346,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(352,'A4039757B5F64155BFFF2AFEA006FDAA','140110','晋源区','晋源区',NULL,NULL,5,6,'open',346,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(353,'57C2CAD821374867935A358EF649401C','140121','清徐县','清徐县',NULL,NULL,5,7,'open',346,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -430,7 +430,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(359,'1102B1F756534703819F9FB4518334F7','140213','平城区','平城区',NULL,NULL,5,2,'open',357,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(360,'B1539D82D06A407B9EC20FD25EB36EFF','140214','云冈区','云冈区',NULL,NULL,5,3,'open',357,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (361,'A6BA09D51FDD4FA5BB9FE8234D3F1334','140215','云州区','云州区',NULL,NULL,5,4,'open',357,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(362,'48F049639793400497AF805E397ABD75','140221','阳高县','阳高县',NULL,NULL,5,5,'open',357,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(363,'34C073811DF344C1A6EE8D8BC814196B','140222','天镇县','天镇县',NULL,NULL,5,6,'open',357,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -442,7 +442,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(369,'24AECD6F329D43B5A428D04D8D020565','140302','城区','城区',NULL,NULL,5,1,'open',368,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(370,'BF47F0FB1B734B06858B7DA0F13ABC58','140303','矿区','矿区',NULL,NULL,5,2,'open',368,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (371,'FD644E2270544BED9DCB5F83FC9E2EE1','140311','郊区','郊区',NULL,NULL,5,3,'open',368,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(372,'7A8F9D2BA8884A939687095B4CE2C3CD','140321','平定县','平定县',NULL,NULL,5,4,'open',368,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(373,'797C54713E11421FB2C8745C54FAD4F7','140322','盂县','盂县',NULL,NULL,5,5,'open',368,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -454,7 +454,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(379,'2DB3D084105544C1B97DFBE5164DDB7F','140423','襄垣县','襄垣县',NULL,NULL,5,5,'open',374,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(380,'837CE8A3BBAC4E21A78602D3EAC27AFD','140425','平顺县','平顺县',NULL,NULL,5,6,'open',374,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (381,'240B35E07355493D853764E1E58EA967','140426','黎城县','黎城县',NULL,NULL,5,7,'open',374,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(382,'0EEFAC343A3546278DC870D11125F979','140427','壶关县','壶关县',NULL,NULL,5,8,'open',374,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(383,'28E6D502944D4A3CA56D1D4449908D05','140428','长子县','长子县',NULL,NULL,5,9,'open',374,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -466,7 +466,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(389,'15FB875700334DEE83E90851A1F408BE','140521','沁水县','沁水县',NULL,NULL,5,2,'open',387,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(390,'B9DFF0B3001B48A0853D8A55A77D2F89','140522','阳城县','阳城县',NULL,NULL,5,3,'open',387,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (391,'2AF0BE3B546D4FBD9F3E2411AF916BC5','140524','陵川县','陵川县',NULL,NULL,5,4,'open',387,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(392,'CADA848E81BE483AB25274FD8CFC2030','140525','泽州县','泽州县',NULL,NULL,5,5,'open',387,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(393,'DDC6082FA99849E49E7CE176F10E5DB9','140581','高平市','高平市',NULL,NULL,5,6,'open',387,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -478,7 +478,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(399,'591BBE799B834EAE8531A12BA073A621','140623','右玉县','右玉县',NULL,NULL,5,5,'open',394,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(400,'A50027307F0E4B31BA6A6A502682C5BD','140681','怀仁市','怀仁市',NULL,NULL,5,6,'open',394,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (401,'E8B49692C1C849488EA364613C9BA63F','140700','晋中市','晋中市',NULL,NULL,4,7,'closed',345,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(402,'E851226E563C4211B920EC01B6667707','140702','榆次区','榆次区',NULL,NULL,5,1,'open',401,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(403,'155CF10A5DDB438B937906199B7A8BDA','140703','太谷区','太谷区',NULL,NULL,5,2,'open',401,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -490,7 +490,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(409,'B536F18362EA4401B771AEB2367670A6','140727','祁县','祁县',NULL,NULL,5,8,'open',401,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(410,'A69E768B77D543A4820486B750035C19','140728','平遥县','平遥县',NULL,NULL,5,9,'open',401,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (411,'BE7977B9AD0D4B608D7C8A4D4338082C','140729','灵石县','灵石县',NULL,NULL,5,10,'open',401,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(412,'391C917398F04B39A8CDB7A1C670DFC6','140781','介休市','介休市',NULL,NULL,5,11,'open',401,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(413,'6506B4CDEDF3402EB918734F476989D4','140800','运城市','运城市',NULL,NULL,4,8,'closed',345,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -502,7 +502,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(419,'2852E9A65B514E02B5099A828D950338','140825','新绛县','新绛县',NULL,NULL,5,6,'open',413,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(420,'01A58E02C07F44CF94A8343DC7E41D56','140826','绛县','绛县',NULL,NULL,5,7,'open',413,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (421,'D388F881B36E4C8BA903534074C322CB','140827','垣曲县','垣曲县',NULL,NULL,5,8,'open',413,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(422,'17382C5AA52C4A70B70A73A20509A26A','140828','夏县','夏县',NULL,NULL,5,9,'open',413,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(423,'FD0C15007B9248879EEBDBB02A964BB4','140829','平陆县','平陆县',NULL,NULL,5,10,'open',413,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -514,7 +514,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(429,'E23A532C9BEB49F585C12B5D53276B21','140921','定襄县','定襄县',NULL,NULL,5,2,'open',427,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(430,'6F092DAAC7B84F27B33806693534ED98','140922','五台县','五台县',NULL,NULL,5,3,'open',427,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (431,'260173113F784578A80416DF7427A418','140923','代县','代县',NULL,NULL,5,4,'open',427,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(432,'AAA12B015BEC4E96A0904FEEEF04617F','140924','繁峙县','繁峙县',NULL,NULL,5,5,'open',427,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(433,'6C4E5CAA2B544AAFA4D10856176EA3D7','140925','宁武县','宁武县',NULL,NULL,5,6,'open',427,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -526,7 +526,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(439,'428A8006BA1D487B9C2ED25A732BCA79','140931','保德县','保德县',NULL,NULL,5,12,'open',427,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(440,'3A4D79773C1C499E9EDC59C378901515','140932','偏关县','偏关县',NULL,NULL,5,13,'open',427,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (441,'7DB773E7DC964684AF36B1ECFC45D4F5','140981','原平市','原平市',NULL,NULL,5,14,'open',427,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(442,'4856BE2033C144D7A3F7CD04D00E3626','141000','临汾市','临汾市',NULL,NULL,4,10,'closed',345,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(443,'A9A5FEE789874756B2F39C02B18CEA88','141002','尧都区','尧都区',NULL,NULL,5,1,'open',442,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -538,7 +538,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(449,'19FD44B7612E45C6BF7EEAE8DBEA16EE','141026','安泽县','安泽县',NULL,NULL,5,7,'open',442,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(450,'1C7F2F48384E40E0A3FDA49AF6108572','141027','浮山县','浮山县',NULL,NULL,5,8,'open',442,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (451,'B356E511FF034C4684A805711D9F8860','141028','吉县','吉县',NULL,NULL,5,9,'open',442,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(452,'C08913E27F8D4C1493825A4B1D1C8D7A','141029','乡宁县','乡宁县',NULL,NULL,5,10,'open',442,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(453,'5D3BE99F8A454D5E8912405F395B009F','141030','大宁县','大宁县',NULL,NULL,5,11,'open',442,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -550,7 +550,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(459,'F96CB29DAAB84938BB2474A6E0FF3CB8','141082','霍州市','霍州市',NULL,NULL,5,17,'open',442,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(460,'66ABAB395A6A4004ABE089369798D429','141100','吕梁市','吕梁市',NULL,NULL,4,11,'closed',345,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (461,'59D797A4914347499B9738EE440C3874','141102','离石区','离石区',NULL,NULL,5,1,'open',460,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(462,'9DFB8591FA40407BBC0D25E914364DA9','141121','文水县','文水县',NULL,NULL,5,2,'open',460,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(463,'B6DE5CA091DD4A1AAACD35099E823D03','141122','交城县','交城县',NULL,NULL,5,3,'open',460,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -562,7 +562,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(469,'379D662C48EA4F079D322A06B90DB1B5','141128','方山县','方山县',NULL,NULL,5,9,'open',460,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(470,'73833EE973C84E5DBA6DFF8FC254C30C','141129','中阳县','中阳县',NULL,NULL,5,10,'open',460,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (471,'4E9ED6E47FFD44C7884E070751D847FE','141130','交口县','交口县',NULL,NULL,5,11,'open',460,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(472,'C4CFA8E7190E43F99843A5E7A4292C06','141181','孝义市','孝义市',NULL,NULL,5,12,'open',460,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(473,'562F213A431C43759F1FCE1849862164','141182','汾阳市','汾阳市',NULL,NULL,5,13,'open',460,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -574,7 +574,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(479,'B6E1ED22F4E847AB842BD25684A2680A','150105','赛罕区','赛罕区',NULL,NULL,5,4,'open',475,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(480,'BA2A6E1D314043EA8704D47D2C226CFA','150121','土默特左旗','土默特左旗',NULL,NULL,5,5,'open',475,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (481,'7CE2D7419CCE4465B7495EC926FECA6B','150122','托克托县','托克托县',NULL,NULL,5,6,'open',475,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(482,'64B2EECB3CCE4CAB88156B06C408791A','150123','和林格尔县','和林格尔县',NULL,NULL,5,7,'open',475,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(483,'8E80DD9B01B14584A1A435B4AD55D3E2','150124','清水河县','清水河县',NULL,NULL,5,8,'open',475,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -586,7 +586,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(489,'6A2D43200E604E419340D3088BAF7287','150205','石拐区','石拐区',NULL,NULL,5,4,'open',485,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(490,'59AE12588CB94C17A96275E206531904','150206','白云鄂博矿区','白云鄂博矿区',NULL,NULL,5,5,'open',485,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (491,'D6DD95B807904C29A274CC3F2A92BA09','150207','九原区','九原区',NULL,NULL,5,6,'open',485,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(492,'693EEB19B9A1452A9F8725303E50AA5F','150221','土默特右旗','土默特右旗',NULL,NULL,5,7,'open',485,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(493,'6B464CD98F624BB387BD1BD77BAE3B80','150222','固阳县','固阳县',NULL,NULL,5,8,'open',485,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -598,7 +598,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(499,'09AF1E2456724114A369025E1C47E8BB','150400','赤峰市','赤峰市',NULL,NULL,4,4,'closed',474,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(500,'795CBF8140A341D4889530AE305CC282','150402','红山区','红山区',NULL,NULL,5,1,'open',499,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (501,'B1FDA8F5AB7C47D4AC3F2361F9642088','150403','元宝山区','元宝山区',NULL,NULL,5,2,'open',499,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(502,'9E56EC7991A848D0BACFCA9C35474640','150404','松山区','松山区',NULL,NULL,5,3,'open',499,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(503,'DDA61623214E418082F57AE117AD63B7','150421','阿鲁科尔沁旗','阿鲁科尔沁旗',NULL,NULL,5,4,'open',499,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -610,7 +610,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(509,'2C77681CE17E4FD2A6ECAA07C12FD135','150428','喀喇沁旗','喀喇沁旗',NULL,NULL,5,10,'open',499,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(510,'A87268F7B1AB481EB5D35E23BD8CAFAA','150429','宁城县','宁城县',NULL,NULL,5,11,'open',499,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (511,'5746DE0FD7CD4734BD277896D34E0147','150430','敖汉旗','敖汉旗',NULL,NULL,5,12,'open',499,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(512,'36FD8AF0AB504811B20F9528E1FAFDEF','150500','通辽市','通辽市',NULL,NULL,4,5,'closed',474,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(513,'6C4AAB255576481ABCA7BD47C834E1A4','150502','科尔沁区','科尔沁区',NULL,NULL,5,1,'open',512,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -622,7 +622,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(519,'968A18491C6F468888387358A8229F4C','150526','扎鲁特旗','扎鲁特旗',NULL,NULL,5,7,'open',512,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(520,'0AEBB3A490A74C6299C054A139E1EF94','150581','霍林郭勒市','霍林郭勒市',NULL,NULL,5,8,'open',512,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (521,'1C75EE8134CE422796DA5F55D6E4A757','150600','鄂尔多斯市','鄂尔多斯市',NULL,NULL,4,6,'closed',474,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(522,'C385E71CED3148D5B6C92EECD77B92CC','150602','东胜区','东胜区',NULL,NULL,5,1,'open',521,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(523,'04AF69E6C8C4405889E6392445E6ADF7','150603','康巴什区','康巴什区',NULL,NULL,5,2,'open',521,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -634,7 +634,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(529,'306F7CE2079E421C85DB9194DFD2C43B','150626','乌审旗','乌审旗',NULL,NULL,5,8,'open',521,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(530,'3E73CBDF152E4DE8A55BBB76614DC8CD','150627','伊金霍洛旗','伊金霍洛旗',NULL,NULL,5,9,'open',521,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (531,'1DFAF4FB2D4D45329DA62E3D35CC9088','150700','呼伦贝尔市','呼伦贝尔市',NULL,NULL,4,7,'closed',474,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(532,'35F1E18A546C44B48FF86F107810BA4B','150702','海拉尔区','海拉尔区',NULL,NULL,5,1,'open',531,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(533,'42AC760F5BF2481FB97026F70B4AC159','150703','扎赉诺尔区','扎赉诺尔区',NULL,NULL,5,2,'open',531,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -646,7 +646,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(539,'D06FB8C243F345D1AC32A4287AE4E694','150726','新巴尔虎左旗','新巴尔虎左旗',NULL,NULL,5,8,'open',531,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(540,'B509B0D300584A57B8E606FD7315E902','150727','新巴尔虎右旗','新巴尔虎右旗',NULL,NULL,5,9,'open',531,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (541,'DD717CE2BDD049D48C440CA1AB0FCDEA','150781','满洲里市','满洲里市',NULL,NULL,5,10,'open',531,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(542,'1C3E4875F70C4C18ABB45A8646D6EAC0','150782','牙克石市','牙克石市',NULL,NULL,5,11,'open',531,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(543,'E4F0AF36361240C0963E31BC85A34D0B','150783','扎兰屯市','扎兰屯市',NULL,NULL,5,12,'open',531,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -658,7 +658,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(549,'05EF3374F33A41DC9E4EA621D0D288C3','150822','磴口县','磴口县',NULL,NULL,5,3,'open',546,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(550,'8B219D2117024BCD93EE095034A370EA','150823','乌拉特前旗','乌拉特前旗',NULL,NULL,5,4,'open',546,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (551,'10B3E3CE7F124533BE86E9A6DD7FB638','150824','乌拉特中旗','乌拉特中旗',NULL,NULL,5,5,'open',546,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(552,'80865044CB714E54AF97A6497F5495D7','150825','乌拉特后旗','乌拉特后旗',NULL,NULL,5,6,'open',546,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(553,'EB9A9122D2084731A48AADF6DE26CF02','150826','杭锦后旗','杭锦后旗',NULL,NULL,5,7,'open',546,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -670,7 +670,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(559,'8045C8F7B7A04F829C7D02E8CF16B628','150924','兴和县','兴和县',NULL,NULL,5,5,'open',554,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(560,'502123A5C74C44C6B9602B2E1670998E','150925','凉城县','凉城县',NULL,NULL,5,6,'open',554,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (561,'9A5C6E4B510E49E9860E81509586DC2F','150926','察哈尔右翼前旗','察哈尔右翼前旗',NULL,NULL,5,7,'open',554,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(562,'ED22EE88305A406E8521342304570B44','150927','察哈尔右翼中旗','察哈尔右翼中旗',NULL,NULL,5,8,'open',554,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(563,'1CD46C06192641EAA3E3796FA4221C98','150928','察哈尔右翼后旗','察哈尔右翼后旗',NULL,NULL,5,9,'open',554,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -682,7 +682,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(569,'9ED435F7747545DF941B3A72E2F03350','152221','科尔沁右翼前旗','科尔沁右翼前旗',NULL,NULL,5,3,'open',566,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(570,'66C470BB2BF64236A283E816411A0848','152222','科尔沁右翼中旗','科尔沁右翼中旗',NULL,NULL,5,4,'open',566,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (571,'21389AEF54B1461F8F8A0B7DD210BE81','152223','扎赉特旗','扎赉特旗',NULL,NULL,5,5,'open',566,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(572,'D952F0AE8ADF4084A8F7D5BB3C659BA1','152224','突泉县','突泉县',NULL,NULL,5,6,'open',566,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(573,'B9757D6514E542C2955C6B150FA4D6B9','152500','锡林郭勒盟','锡林郭勒盟',NULL,NULL,4,11,'closed',474,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -694,7 +694,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(579,'C642CE04046041B580AC08F68FC0B5E8','152525','东乌珠穆沁旗','东乌珠穆沁旗',NULL,NULL,5,6,'open',573,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(580,'2266204BABF54555AE400B7ACBD323D7','152526','西乌珠穆沁旗','西乌珠穆沁旗',NULL,NULL,5,7,'open',573,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (581,'965E04071DC246BE8F2BE449120FBBA5','152527','太仆寺旗','太仆寺旗',NULL,NULL,5,8,'open',573,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(582,'968AA704E9334A22B5DE9ACC38228B9A','152528','镶黄旗','镶黄旗',NULL,NULL,5,9,'open',573,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(583,'0CA2F517761840DF8FC59F679FCE85C0','152529','正镶白旗','正镶白旗',NULL,NULL,5,10,'open',573,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -706,7 +706,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(589,'63F3E9CD847A44158C8512EE3B020295','152923','额济纳旗','额济纳旗',NULL,NULL,5,3,'open',586,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(590,'C7F9B382F94F497389A747E320EF3FEF','210000','辽宁省','辽宁','辽',NULL,3,6,'closed',130,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (591,'4AE9F915BD0848F78E92CA1643E14C63','210100','沈阳市','沈阳市',NULL,NULL,4,1,'closed',590,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(592,'5FE4C7F3F9E446D79CECBC919B522149','210102','和平区','和平区',NULL,NULL,5,1,'open',591,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(593,'43090DB2E2AB42F2BC168918E600D7AB','210103','沈河区','沈河区',NULL,NULL,5,2,'open',591,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -718,7 +718,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(599,'A761A0A72558428F8E72B025FD6B522D','210113','沈北新区','沈北新区',NULL,NULL,5,8,'open',591,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(600,'3AD211350C0E494CB03C9FAA94BB6903','210114','于洪区','于洪区',NULL,NULL,5,9,'open',591,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (601,'3CBBECD47AAE4EA2965A285CED6DCD1F','210115','辽中区','辽中区',NULL,NULL,5,10,'open',591,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(602,'811D250702564EE4828DCEF6FA50876F','210123','康平县','康平县',NULL,NULL,5,11,'open',591,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(603,'727431CF542C4003AF1299B88DE696C2','210124','法库县','法库县',NULL,NULL,5,12,'open',591,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -730,7 +730,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(609,'06FFE8F07909491093B014B3A92468B1','210211','甘井子区','甘井子区',NULL,NULL,5,4,'open',605,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(610,'3A916ED8AEF249F7983F49FFA6D62B4D','210212','旅顺口区','旅顺口区',NULL,NULL,5,5,'open',605,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (611,'5DB7626169984AD98B80EC934FDDF4A9','210213','金州区','金州区',NULL,NULL,5,6,'open',605,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(612,'67084ACA5D984FADBE593650E3A8F6A0','210214','普兰店区','普兰店区',NULL,NULL,5,7,'open',605,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(613,'88D5DD5D81A8495A8AAF7973B8E21512','210224','长海县','长海县',NULL,NULL,5,8,'open',605,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -742,7 +742,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(619,'F7CA868AB163431CBC1340B3F2C3C1ED','210304','立山区','立山区',NULL,NULL,5,3,'open',616,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(620,'75AEDB6F1CCF44DD898FA5CDBD6761D1','210311','千山区','千山区',NULL,NULL,5,4,'open',616,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (621,'2F827FEEFD8A4B3F895FF8E49FE65311','210321','台安县','台安县',NULL,NULL,5,5,'open',616,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(622,'EDA73BC04AD1425D96741CA8DCE1A7C6','210323','岫岩满族自治县','岫岩满族自治县',NULL,NULL,5,6,'open',616,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(623,'ADC29BF43D424560B3076169F882ECE9','210381','海城市','海城市',NULL,NULL,5,7,'open',616,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -754,7 +754,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(629,'E66A6AA8B2724B938C515D311672C6DF','210421','抚顺县','抚顺县',NULL,NULL,5,5,'open',624,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(630,'3E306F5D94FD4A639E37B6C4C8F6671C','210422','新宾满族自治县','新宾满族自治县',NULL,NULL,5,6,'open',624,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (631,'50A9C7E81597457688D9AFE9DDCA0EB7','210423','清原满族自治县','清原满族自治县',NULL,NULL,5,7,'open',624,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(632,'6E57E5E5D7924261BBE178CB47EF42DD','210500','本溪市','本溪市',NULL,NULL,4,5,'closed',590,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(633,'08394493EB714496BD4A1D377AB2510C','210502','平山区','平山区',NULL,NULL,5,1,'open',632,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -766,7 +766,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(639,'AC4D00ADB44C4E24A57FB6B61F89D14F','210600','丹东市','丹东市',NULL,NULL,4,6,'closed',590,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(640,'60F23B1BA70049268F7040A999F90C43','210602','元宝区','元宝区',NULL,NULL,5,1,'open',639,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (641,'C2F6FB9C065A4D6691CCF4BB8349BD0D','210603','振兴区','振兴区',NULL,NULL,5,2,'open',639,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(642,'732BECF0DFE9447C8E6484A1AE5DD324','210604','振安区','振安区',NULL,NULL,5,3,'open',639,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(643,'9E1FC6B8BEAD4E7DA7902D1C09A426A6','210624','宽甸满族自治县','宽甸满族自治县',NULL,NULL,5,4,'open',639,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -778,7 +778,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(649,'CF1833247D4D433FBA9913247A71A65C','210711','太和区','太和区',NULL,NULL,5,3,'open',646,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(650,'633FEB61A7AF4863A063D9C9E375387F','210726','黑山县','黑山县',NULL,NULL,5,4,'open',646,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (651,'52D583AB8DEF4C54A20A033104E07959','210727','义县','义县',NULL,NULL,5,5,'open',646,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(652,'2A0C73DC38214E31ABBB08ED1104D62C','210781','凌海市','凌海市',NULL,NULL,5,6,'open',646,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(653,'1C38F6CB3BC6460FB2433FEDE7E89779','210782','北镇市','北镇市',NULL,NULL,5,7,'open',646,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -790,7 +790,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(659,'7EDF27CE83554287A3BC4AC916963BB9','210881','盖州市','盖州市',NULL,NULL,5,5,'open',654,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(660,'14D1FCBB5FB24DCCB9A75BC6C4491D58','210882','大石桥市','大石桥市',NULL,NULL,5,6,'open',654,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (661,'CD299D1EE29E4C6982719B812846C777','210900','阜新市','阜新市',NULL,NULL,4,9,'closed',590,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(662,'6CFABB84E02C4B3D9092E530ADB0BAF5','210902','海州区','海州区',NULL,NULL,5,1,'open',661,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(663,'9DD9C3BFED0E4EEE8867F4452BF7F443','210903','新邱区','新邱区',NULL,NULL,5,2,'open',661,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -802,7 +802,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(669,'28496F944E4F4D4786255FE2DCCAC30E','211000','辽阳市','辽阳市',NULL,NULL,4,10,'closed',590,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(670,'A6E698B001DF4C01B77944C0BA1A28A5','211002','白塔区','白塔区',NULL,NULL,5,1,'open',669,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (671,'0BE817B9453E4ABAB63EEDD04EFE108C','211003','文圣区','文圣区',NULL,NULL,5,2,'open',669,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(672,'4CA95F2C25C44A69A8DAA0054D6CBF66','211004','宏伟区','宏伟区',NULL,NULL,5,3,'open',669,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(673,'647A93954BFB48A1BE696A091FF1E3ED','211005','弓长岭区','弓长岭区',NULL,NULL,5,4,'open',669,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -814,7 +814,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(679,'1AAA38F5CC3C47D5BC508812E936156E','211103','兴隆台区','兴隆台区',NULL,NULL,5,2,'open',677,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(680,'F1025A0D81024A0F90710EA2334AF93B','211104','大洼区','大洼区',NULL,NULL,5,3,'open',677,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (681,'6ACB8B7AD3F746B7982F64DE091037E4','211122','盘山县','盘山县',NULL,NULL,5,4,'open',677,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(682,'1156FAB795734A2D973A6CEBDD52D425','211200','铁岭市','铁岭市',NULL,NULL,4,12,'closed',590,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(683,'6E60CDF412EB4B1993DE57FB04BE5247','211202','银州区','银州区',NULL,NULL,5,1,'open',682,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -826,7 +826,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(689,'CD77D3AC5BA2471CB6B0E7FDCEF40DCB','211282','开原市','开原市',NULL,NULL,5,7,'open',682,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(690,'38CC86AF637D4F4CAFA72D0139E36797','211300','朝阳市','朝阳市',NULL,NULL,4,13,'closed',590,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (691,'0EE15992102A4273B0DAB2FC83A51250','211302','双塔区','双塔区',NULL,NULL,5,1,'open',690,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(692,'D0AD6D3F0CC942C7A25F473C16A6C22D','211303','龙城区','龙城区',NULL,NULL,5,2,'open',690,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(693,'D5AE1C0A89314C01ACFB6D35AEAD209E','211321','朝阳县','朝阳县',NULL,NULL,5,3,'open',690,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -838,7 +838,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(699,'5878A439CD4F4E63B9920FD13A366B12','211402','连山区','连山区',NULL,NULL,5,1,'open',698,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(700,'ECF54CB5F89941009695E2C857823DC0','211403','龙港区','龙港区',NULL,NULL,5,2,'open',698,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (701,'B815F0AA14944DA2B5F9D27C9D3A1C9F','211404','南票区','南票区',NULL,NULL,5,3,'open',698,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(702,'2B9713AE661A4887BB2C9FB0C77163CA','211421','绥中县','绥中县',NULL,NULL,5,4,'open',698,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(703,'9B9AF7ED92794B9E8078A6D8A46D0287','211422','建昌县','建昌县',NULL,NULL,5,5,'open',698,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -850,7 +850,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(709,'2C4D84F4CF03495B8A5D48D8FCEFDDC4','220104','朝阳区','朝阳区',NULL,NULL,5,3,'open',706,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(710,'B023AEDDBE7A40DD805DD59E43719473','220105','二道区','二道区',NULL,NULL,5,4,'open',706,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (711,'6F382C614C244D608A7344EE67EC8644','220106','绿园区','绿园区',NULL,NULL,5,5,'open',706,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(712,'6169C050DE9B49068D6C18C9A2580B7C','220112','双阳区','双阳区',NULL,NULL,5,6,'open',706,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(713,'2F73B214E7A14F38B409CF07A556B6DB','220113','九台区','九台区',NULL,NULL,5,7,'open',706,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -862,7 +862,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(719,'BBE5300406B040A997C8F6A07E6DF3EA','220203','龙潭区','龙潭区',NULL,NULL,5,2,'open',717,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(720,'EA28E5004633405CA1A7A357BD4966F7','220204','船营区','船营区',NULL,NULL,5,3,'open',717,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (721,'F3D839E8EF4D48B2B6D46B592D509E30','220211','丰满区','丰满区',NULL,NULL,5,4,'open',717,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(722,'33BCEC0A2E8F461E9C28331C5E7BDC01','220221','永吉县','永吉县',NULL,NULL,5,5,'open',717,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(723,'B0DF87AFEC0A44F5B2366C6EB5DE0D9D','220281','蛟河市','蛟河市',NULL,NULL,5,6,'open',717,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -874,7 +874,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(729,'A2060A4DA1FE4410A02A508275E9A319','220303','铁东区','铁东区',NULL,NULL,5,2,'open',727,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(730,'20105A1643ED492CA6A2534B43422CDE','220322','梨树县','梨树县',NULL,NULL,5,3,'open',727,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (731,'C94DCAF5D472463C86A2EF40D719D300','220323','伊通满族自治县','伊通满族自治县',NULL,NULL,5,4,'open',727,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(732,'A72C77FECDC946B4964E4571A3608004','220381','公主岭市','公主岭市',NULL,NULL,5,5,'open',727,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(733,'F06BD945F08B42D69E34CEDD9F26CC01','220382','双辽市','双辽市',NULL,NULL,5,6,'open',727,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -886,7 +886,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(739,'3F754279F2E64BC08BCD869C54F95A96','220500','通化市','通化市',NULL,NULL,4,5,'closed',705,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(740,'29720B9F24EA43818D50EB5EA9839F40','220502','东昌区','东昌区',NULL,NULL,5,1,'open',739,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (741,'CA2D8ACE6C724128BEAC185CE09E935C','220503','二道江区','二道江区',NULL,NULL,5,2,'open',739,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(742,'A697475A0EE9454BA114BDD6727E70E4','220521','通化县','通化县',NULL,NULL,5,3,'open',739,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(743,'5A5EA1396BBE4441BE43B0A23E091524','220523','辉南县','辉南县',NULL,NULL,5,4,'open',739,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -898,7 +898,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(749,'8A8D5CE1B74D4DAFA550FBB698A58FA6','220605','江源区','江源区',NULL,NULL,5,2,'open',747,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(750,'34F803DEAE5A4B63824DCC0C7CF73962','220621','抚松县','抚松县',NULL,NULL,5,3,'open',747,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (751,'79D0DF57D6BD4156B63824080E44F512','220622','靖宇县','靖宇县',NULL,NULL,5,4,'open',747,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(752,'EAE3AA9436D54C7BA22BC789DF50F46D','220623','长白朝鲜族自治县','长白朝鲜族自治县',NULL,NULL,5,5,'open',747,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(753,'767294712D4A49ED912A07E7BF969BF1','220681','临江市','临江市',NULL,NULL,5,6,'open',747,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -910,7 +910,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(759,'775456D157604588A823570A4535CCF6','220781','扶余市','扶余市',NULL,NULL,5,5,'open',754,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(760,'0CAB7AE989FB4F1BABA36E3D6313D594','220800','白城市','白城市',NULL,NULL,4,8,'closed',705,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (761,'A8E922BE63B2410284093A81547D0620','220802','洮北区','洮北区',NULL,NULL,5,1,'open',760,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(762,'A9772E01DDE049E1B97A7BC27FBCEC8A','220821','镇赉县','镇赉县',NULL,NULL,5,2,'open',760,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(763,'B25873F2A0514AE8986E1A7443D8C00B','220822','通榆县','通榆县',NULL,NULL,5,3,'open',760,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -922,7 +922,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(769,'4D54BAEA265B4928B496D67DA2A048CE','222403','敦化市','敦化市',NULL,NULL,5,3,'open',766,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(770,'ADC5C31C7B2F4194A2AC80874331CC8A','222404','珲春市','珲春市',NULL,NULL,5,4,'open',766,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (771,'716B1D9E89944B78ADCBE3B0765E88EA','222405','龙井市','龙井市',NULL,NULL,5,5,'open',766,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(772,'C93033BD6BDA48B89AA0A854E70C60E0','222406','和龙市','和龙市',NULL,NULL,5,6,'open',766,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(773,'20A4CE11DCA44768BFC947199576F93C','222424','汪清县','汪清县',NULL,NULL,5,7,'open',766,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -934,7 +934,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(779,'DEBECE9E902B411B8EE420D2A9354A95','230104','道外区','道外区',NULL,NULL,5,3,'open',776,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(780,'DA896013EBE746BE8528B27EC9222CC4','230108','平房区','平房区',NULL,NULL,5,4,'open',776,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (781,'47D3F62A7EC34B828A714881DF394505','230109','松北区','松北区',NULL,NULL,5,5,'open',776,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(782,'80774E70C98D42FDBFFA3485C990A68D','230110','香坊区','香坊区',NULL,NULL,5,6,'open',776,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(783,'86166D315D5B480BA2973D9307BF3B3C','230111','呼兰区','呼兰区',NULL,NULL,5,7,'open',776,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -946,7 +946,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(789,'AB69574320BB4D63B7A08AE671C3077C','230126','巴彦县','巴彦县',NULL,NULL,5,13,'open',776,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(790,'48D023E6F8394AEAA1461B40F439BD33','230127','木兰县','木兰县',NULL,NULL,5,14,'open',776,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (791,'5C3697A1BCF5440A99C7F8DA021F3994','230128','通河县','通河县',NULL,NULL,5,15,'open',776,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(792,'BDCDB96E1B264ED68D813862FB8CCDE8','230129','延寿县','延寿县',NULL,NULL,5,16,'open',776,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(793,'B02CBCE742894FB1BB46C3B66EA0AFF4','230183','尚志市','尚志市',NULL,NULL,5,17,'open',776,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -958,7 +958,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(799,'5410A16D58D14625A8B06552C9D507A4','230205','昂昂溪区','昂昂溪区',NULL,NULL,5,4,'open',795,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(800,'8E5ED397B6BD404FBCB4A8C0CF6AAED2','230206','富拉尔基区','富拉尔基区',NULL,NULL,5,5,'open',795,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (801,'97E56310AB164025AC4FA24DD5A8568B','230207','碾子山区','碾子山区',NULL,NULL,5,6,'open',795,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(802,'F771169279A544958008B16B8792D575','230208','梅里斯达斡尔族区','梅里斯达斡尔族区',NULL,NULL,5,7,'open',795,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(803,'174387EDFA1C46A49F452C6B2F699289','230221','龙江县','龙江县',NULL,NULL,5,8,'open',795,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -970,7 +970,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(809,'221DDC9F0DD4442E8608F49478CD9CE5','230230','克东县','克东县',NULL,NULL,5,14,'open',795,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(810,'01672202254E4B7999833C4C59933162','230231','拜泉县','拜泉县',NULL,NULL,5,15,'open',795,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (811,'356802422BD64D26BBE8A52DF8E24A2A','230281','讷河市','讷河市',NULL,NULL,5,16,'open',795,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(812,'C28F045180CC4551A685CD26FC19CCA2','230300','鸡西市','鸡西市',NULL,NULL,4,3,'closed',775,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(813,'89AD6B2469DC4C2795765863ABB6B1AF','230302','鸡冠区','鸡冠区',NULL,NULL,5,1,'open',812,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -982,7 +982,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(819,'2465665770ED442E9571DE49ABEECCB5','230321','鸡东县','鸡东县',NULL,NULL,5,7,'open',812,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(820,'595F1B4B18374EF4BBC2A87665620DD3','230381','虎林市','虎林市',NULL,NULL,5,8,'open',812,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (821,'4FD714D42C8347BE9DC505AB363EFA18','230382','密山市','密山市',NULL,NULL,5,9,'open',812,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(822,'2ED6DAEE893640EA925C31F89923363B','230400','鹤岗市','鹤岗市',NULL,NULL,4,4,'closed',775,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(823,'C3784D9453C3420B8BC9368FD55C5B3D','230402','向阳区','向阳区',NULL,NULL,5,1,'open',822,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -994,7 +994,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(829,'C566FE0C97494C4F979983D072419CD8','230421','萝北县','萝北县',NULL,NULL,5,7,'open',822,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(830,'41725F0C9F69423882E2C0B0A43FE497','230422','绥滨县','绥滨县',NULL,NULL,5,8,'open',822,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (831,'BBE74F27C64F430E8E5A1AFE7CED0834','230500','双鸭山市','双鸭山市',NULL,NULL,4,5,'closed',775,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(832,'4F0EEF68F5D64175B815245397D3FE23','230502','尖山区','尖山区',NULL,NULL,5,1,'open',831,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(833,'B7B8FF86210C4EAFB91522B486F6C048','230503','岭东区','岭东区',NULL,NULL,5,2,'open',831,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1006,7 +1006,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(839,'7F860462EAEC4C6B937F613704EA61D1','230524','饶河县','饶河县',NULL,NULL,5,8,'open',831,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(840,'58E6112504504709AA936B8D98FD69E9','230600','大庆市','大庆市',NULL,NULL,4,6,'closed',775,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (841,'4F276B1FFD7E4A8C9C54F2B22723B51D','230602','萨尔图区','萨尔图区',NULL,NULL,5,1,'open',840,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(842,'4A0CC756CC3B4948B94934217BEC5899','230603','龙凤区','龙凤区',NULL,NULL,5,2,'open',840,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(843,'6A4E35799B714D50B59D27E09DE2B646','230604','让胡路区','让胡路区',NULL,NULL,5,3,'open',840,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1018,7 +1018,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(849,'88C76CE89B604B21A50DE060151E1678','230624','杜尔伯特蒙古族自治县','杜尔伯特蒙古族自治县',NULL,NULL,5,9,'open',840,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(850,'7E68EAAFE822467CBEF66772B835D67B','230700','伊春市','伊春市',NULL,NULL,4,7,'closed',775,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (851,'E4AF849564E94D9082FE41D6719BD9FC','230717','伊美区','伊美区',NULL,NULL,5,1,'open',850,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(852,'BD8FB4293E5B42A99FF564C9BDB42F07','230718','乌翠区','乌翠区',NULL,NULL,5,2,'open',850,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(853,'D2F229B4B2B743B9A0663C933078709B','230719','友好区','友好区',NULL,NULL,5,3,'open',850,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1030,7 +1030,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(859,'563708FDB5F841E09C2E6EAB6AE1F54F','230751','金林区','金林区',NULL,NULL,5,9,'open',850,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(860,'EAE730426A1641F1B91D0E1983A99882','230781','铁力市','铁力市',NULL,NULL,5,10,'open',850,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (861,'FA0D5B9BF72346E481D369FB0E6DDD30','230800','佳木斯市','佳木斯市',NULL,NULL,4,8,'closed',775,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(862,'EFA3501CEC624A9C85ED8BAA3948D5DF','230803','向阳区','向阳区',NULL,NULL,5,1,'open',861,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(863,'49A47BBD153042F79192B2817CF04656','230804','前进区','前进区',NULL,NULL,5,2,'open',861,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1042,7 +1042,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(869,'7800D55E7C06456E80F7A1044E9B70A1','230881','同江市','同江市',NULL,NULL,5,8,'open',861,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(870,'C9F186542641499DA4E481F0903C7B14','230882','富锦市','富锦市',NULL,NULL,5,9,'open',861,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (871,'8D629705DCE14872BF9DE06E4A7D3B91','230883','抚远市','抚远市',NULL,NULL,5,10,'open',861,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(872,'31041B9DD5324DE880F794155D268F0E','230900','七台河市','七台河市',NULL,NULL,4,9,'closed',775,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(873,'3F0FA351E0A64A0EA444453F3C90F82E','230902','新兴区','新兴区',NULL,NULL,5,1,'open',872,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1054,7 +1054,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(879,'99E69D44BD424A7398C385D58469DCB2','231003','阳明区','阳明区',NULL,NULL,5,2,'open',877,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(880,'46DF3C4C956F4C2D8D565000DA97B000','231004','爱民区','爱民区',NULL,NULL,5,3,'open',877,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (881,'5AC47A8221FD4A36AA969C76106A1D85','231005','西安区','西安区',NULL,NULL,5,4,'open',877,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(882,'EE27C93CD7914FE9AAF0313B9BEEEA87','231025','林口县','林口县',NULL,NULL,5,5,'open',877,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(883,'738D69581363419D960046DB8C7E9CA0','231081','绥芬河市','绥芬河市',NULL,NULL,5,6,'open',877,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1066,7 +1066,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(889,'B4AE4708763B4566B1436CC7AA73EE73','231102','爱辉区','爱辉区',NULL,NULL,5,1,'open',888,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(890,'D80D40D81BC44C139771F6E29ADD5A10','231123','逊克县','逊克县',NULL,NULL,5,2,'open',888,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (891,'0CC8FC7C365D4536B36B1F926F613EAA','231124','孙吴县','孙吴县',NULL,NULL,5,3,'open',888,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(892,'CB2ECE091A994190B26D758CC77A2D1C','231181','北安市','北安市',NULL,NULL,5,4,'open',888,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(893,'060A19DEFE044D3C8DC54B76428AA74C','231182','五大连池市','五大连池市',NULL,NULL,5,5,'open',888,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1078,7 +1078,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(899,'63F5D346F05C4FFB8C4FC0490E263CC4','231223','青冈县','青冈县',NULL,NULL,5,4,'open',895,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(900,'FCC0EBBD74CD4CF9AC19C28755DEC20B','231224','庆安县','庆安县',NULL,NULL,5,5,'open',895,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (901,'7E326EA4BEF143969B1973C377F45B92','231225','明水县','明水县',NULL,NULL,5,6,'open',895,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(902,'226A7CD2F6554688B7488C607C026A37','231226','绥棱县','绥棱县',NULL,NULL,5,7,'open',895,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(903,'AE7DA10E0B19421A81DB6FFA0661F725','231281','安达市','安达市',NULL,NULL,5,8,'open',895,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1090,7 +1090,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(909,'D588903EAD344EF3AAB0E1F18219A20C','232722','塔河县','塔河县',NULL,NULL,5,3,'open',906,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(910,'1D34A26D8C4B454182599395B21923C2','310000','上海市','上海','沪',NULL,3,9,'closed',130,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (911,'8D8C14AEE3EB40A1B050C1E2AB238EB6','310101','黄浦区','黄浦区',NULL,NULL,4,1,'open',910,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(912,'CE33710E494A4C51A13155EFB6D62D9D','310104','徐汇区','徐汇区',NULL,NULL,4,2,'open',910,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(913,'D023926840AD44BAB83D22C1AB94FD67','310105','长宁区','长宁区',NULL,NULL,4,3,'open',910,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1102,7 +1102,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(919,'AD888AB1992E45328FCD935A0B0BE65B','310113','宝山区','宝山区',NULL,NULL,4,9,'open',910,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(920,'717E4689730C4B129124E36528DF33CB','310114','嘉定区','嘉定区',NULL,NULL,4,10,'open',910,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (921,'610F2A25111A40E3BC4397B86451867E','310115','浦东新区','浦东新区',NULL,NULL,4,11,'open',910,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(922,'6ED2308E69184E1F9C406F9719C94F8D','310116','金山区','金山区',NULL,NULL,4,12,'open',910,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(923,'FC59F59C5FF746ED958E3524304C6CC6','310117','松江区','松江区',NULL,NULL,4,13,'open',910,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1114,7 +1114,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(929,'DE3EC077DA80449C96EEBEDDCEC5551C','320102','玄武区','玄武区',NULL,NULL,5,1,'open',928,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(930,'365E9AD23EBD4F45AFF670ADC62FD6DF','320104','秦淮区','秦淮区',NULL,NULL,5,2,'open',928,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (931,'11A29F0A619F4C7D8FEBA3B578C5CA68','320105','建邺区','建邺区',NULL,NULL,5,3,'open',928,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(932,'9B165E12EFD248E9A6F965452ABE5616','320106','鼓楼区','鼓楼区',NULL,NULL,5,4,'open',928,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(933,'47B0D268FD5F4D3B89B038A7B4ECCB28','320111','浦口区','浦口区',NULL,NULL,5,5,'open',928,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1126,7 +1126,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(939,'DE6A82305A8942C8AD65CD6BE26D9EE7','320118','高淳区','高淳区',NULL,NULL,5,11,'open',928,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(940,'B387C1CC8A6842658DCBC719EB03DEAC','320200','无锡市','无锡市',NULL,NULL,4,2,'closed',927,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (941,'5C0E8281F3894B868848C93610ED49C9','320205','锡山区','锡山区',NULL,NULL,5,1,'open',940,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(942,'A566D2B0DB594B47B5453456D631EE9C','320206','惠山区','惠山区',NULL,NULL,5,2,'open',940,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(943,'F0C5CE84C25C4BAF97FE8928D8053EBE','320211','滨湖区','滨湖区',NULL,NULL,5,3,'open',940,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1138,7 +1138,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(949,'7E00EF1FA4DB456F9E2D98B9E0127AB7','320302','鼓楼区','鼓楼区',NULL,NULL,5,1,'open',948,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(950,'376BF84C74FF4A6794B0D14AED57A837','320303','云龙区','云龙区',NULL,NULL,5,2,'open',948,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (951,'9810480A64C743F098B5CD46B71B15D2','320305','贾汪区','贾汪区',NULL,NULL,5,3,'open',948,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(952,'1BA2B4CC111E4CDF8823DF4F0F7BB9C2','320311','泉山区','泉山区',NULL,NULL,5,4,'open',948,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(953,'0535C1A38BD74A8790F0F3FEAB2AB150','320312','铜山区','铜山区',NULL,NULL,5,5,'open',948,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1150,7 +1150,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(959,'55DCE141CF954B069B7E714DB3E38DE2','320400','常州市','常州市',NULL,NULL,4,4,'closed',927,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(960,'AC1202F98EE343EC8CF8E63A3DBCDD88','320402','天宁区','天宁区',NULL,NULL,5,1,'open',959,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (961,'61589CDCE01B44E0B554574074E3D001','320404','钟楼区','钟楼区',NULL,NULL,5,2,'open',959,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(962,'9F403A3296734B94807A46E47C651B85','320411','新北区','新北区',NULL,NULL,5,3,'open',959,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(963,'5A32EFF2839D4CC996670FD071D5E83E','320412','武进区','武进区',NULL,NULL,5,4,'open',959,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1162,7 +1162,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(969,'D2DBDB396CA74D5694A89F0FDA68A051','320507','相城区','相城区',NULL,NULL,5,3,'open',966,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(970,'5EE7834A65884DD9BD66AD9A6BE690E6','320508','姑苏区','姑苏区',NULL,NULL,5,4,'open',966,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (971,'C300936655004FCCA9323B5E40F41B2C','320509','吴江区','吴江区',NULL,NULL,5,5,'open',966,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(972,'741B16595BFA4362947CF7ADD19DBF65','320581','常熟市','常熟市',NULL,NULL,5,6,'open',966,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(973,'77AD9FAE8EA84CDB8F93CD8AD2810331','320582','张家港市','张家港市',NULL,NULL,5,7,'open',966,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1174,7 +1174,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(979,'2A1C8A3757A94C3CB3ED8A095453F3CE','320612','通州区','通州区',NULL,NULL,5,3,'open',976,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(980,'204B974398984C249C50FC3AFACB8A02','320623','如东县','如东县',NULL,NULL,5,4,'open',976,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (981,'574509A4EEEF43BCBC7E49723B1C507E','320681','启东市','启东市',NULL,NULL,5,5,'open',976,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(982,'2EC1425CA5DB400FAD546B99F7C06F6A','320682','如皋市','如皋市',NULL,NULL,5,6,'open',976,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(983,'024134B53CD743E3985E9270F7CCBDB6','320684','海门市','海门市',NULL,NULL,5,7,'open',976,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1186,7 +1186,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(989,'AEBB8B8DE8DC4BAB9EE5123AB6538E5E','320722','东海县','东海县',NULL,NULL,5,4,'open',985,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(990,'F3E1DAB8F781407CAB32807B4C25114E','320723','灌云县','灌云县',NULL,NULL,5,5,'open',985,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (991,'F6D811D07CE94D14B02553F84DB386CF','320724','灌南县','灌南县',NULL,NULL,5,6,'open',985,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(992,'4EBAA88E67F44C488B8F1447D63FCA69','320800','淮安市','淮安市',NULL,NULL,4,8,'closed',927,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(993,'1B207BB75FFC41EC96690A641E9E1112','320803','淮安区','淮安区',NULL,NULL,5,1,'open',992,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1198,7 +1198,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(999,'40BB7668E0EF428D818C48EAE4F19005','320831','金湖县','金湖县',NULL,NULL,5,7,'open',992,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1000,'C0C62A15ABC8415C8DCB7C89848DB0A3','320900','盐城市','盐城市',NULL,NULL,4,9,'closed',927,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1001,'240E11A00D2A48648D6926A39DA4B53D','320902','亭湖区','亭湖区',NULL,NULL,5,1,'open',1000,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1002,'A7F8569626BA489B9E9EB31B881C9AB0','320903','盐都区','盐都区',NULL,NULL,5,2,'open',1000,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1003,'8798BA2A715F4EF6A77473D00BCC1037','320904','大丰区','大丰区',NULL,NULL,5,3,'open',1000,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1210,7 +1210,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1009,'C8CFE0B710D440EF8227B9085A9972B6','320981','东台市','东台市',NULL,NULL,5,9,'open',1000,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1010,'1D2A71394A8648D2A7B6E9D8BA97E79F','321000','扬州市','扬州市',NULL,NULL,4,10,'closed',927,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1011,'BD6AA624D29E43F0ACA1B5F90D2CF814','321002','广陵区','广陵区',NULL,NULL,5,1,'open',1010,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1012,'6AD979714D894E08B4A937620DDDE7AF','321003','邗江区','邗江区',NULL,NULL,5,2,'open',1010,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1013,'0C3231C9E2904BE5BC3FB3FA508DEDC4','321012','江都区','江都区',NULL,NULL,5,3,'open',1010,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1222,7 +1222,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1019,'1D60DA18C2FB4EBB9C04310AA8A4CD6C','321111','润州区','润州区',NULL,NULL,5,2,'open',1017,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1020,'41EAE47E9AD14643BA3F88518912A8B2','321112','丹徒区','丹徒区',NULL,NULL,5,3,'open',1017,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1021,'D57F2AF83986417CBC670827AF2D67C6','321181','丹阳市','丹阳市',NULL,NULL,5,4,'open',1017,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1022,'8F5B1E4D953C41A8AED662501BCF1C2A','321182','扬中市','扬中市',NULL,NULL,5,5,'open',1017,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1023,'2AAFF226492649319299C54C8D82920F','321183','句容市','句容市',NULL,NULL,5,6,'open',1017,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1234,7 +1234,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1029,'BF2689D995E34683A56CE08C250BDC6C','321282','靖江市','靖江市',NULL,NULL,5,5,'open',1024,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1030,'288569609A1E496DAB08C02970F059B4','321283','泰兴市','泰兴市',NULL,NULL,5,6,'open',1024,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1031,'69B0236917B74B62A606E24432BC2CF4','321300','宿迁市','宿迁市',NULL,NULL,4,13,'closed',927,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1032,'42C1E0B5559845CD988E309C591AA8D9','321302','宿城区','宿城区',NULL,NULL,5,1,'open',1031,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1033,'B57719E790794F6399ED0D3BB54D3602','321311','宿豫区','宿豫区',NULL,NULL,5,2,'open',1031,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1246,7 +1246,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1039,'DE1DAF79BA0748C1ADF39CA03229881B','330102','上城区','上城区',NULL,NULL,5,1,'open',1038,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1040,'1DF9180755E44A6E896E9611C0113F2D','330103','下城区','下城区',NULL,NULL,5,2,'open',1038,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1041,'664BA816DF9444018523F7B0542B8156','330104','江干区','江干区',NULL,NULL,5,3,'open',1038,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1042,'D9A33CC6C166470DAE8292691F916232','330105','拱墅区','拱墅区',NULL,NULL,5,4,'open',1038,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1043,'E15AAB58F31B477AB4771B2F353D923A','330106','西湖区','西湖区',NULL,NULL,5,5,'open',1038,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1258,7 +1258,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1049,'2A4B8D28A88C42E6A253C0AB8007244A','330122','桐庐县','桐庐县',NULL,NULL,5,11,'open',1038,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1050,'168420652D47477C837D71600742222F','330127','淳安县','淳安县',NULL,NULL,5,12,'open',1038,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1051,'97E35B90BC374A238401BA2A14F50042','330182','建德市','建德市',NULL,NULL,5,13,'open',1038,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1052,'0827F879E0194745B9D1D6EAEEFAE23E','330200','宁波市','宁波市',NULL,NULL,4,2,'closed',1037,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1053,'EDA40CE1F5A64456B2D87208488A4BD3','330203','海曙区','海曙区',NULL,NULL,5,1,'open',1052,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1270,7 +1270,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1059,'A7A20F8C24DD485EBE45E73D11DFCBBC','330225','象山县','象山县',NULL,NULL,5,7,'open',1052,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1060,'1D1A94285145498F92D36EAA3F7FFCAA','330226','宁海县','宁海县',NULL,NULL,5,8,'open',1052,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1061,'F624E28517934E59A4B91C25A2BD69E6','330281','余姚市','余姚市',NULL,NULL,5,9,'open',1052,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1062,'A0F286557BDD466F984732A48B8ECDC7','330282','慈溪市','慈溪市',NULL,NULL,5,10,'open',1052,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1063,'61184465E7434B73B9E029BA590341F4','330300','温州市','温州市',NULL,NULL,4,3,'closed',1037,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1282,7 +1282,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1069,'599EC05E4AA840C5B9A6BB2441DEBCA1','330326','平阳县','平阳县',NULL,NULL,5,6,'open',1063,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1070,'AD343A0F326E414D959496B5B4C70294','330327','苍南县','苍南县',NULL,NULL,5,7,'open',1063,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1071,'04210E8D77AB4FE38C3401D296F67EA9','330328','文成县','文成县',NULL,NULL,5,8,'open',1063,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1072,'13D55DEE73814B1E84DA7C29C144E78E','330329','泰顺县','泰顺县',NULL,NULL,5,9,'open',1063,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1073,'26834CE39BA4486ABA3955EA24165787','330381','瑞安市','瑞安市',NULL,NULL,5,10,'open',1063,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1294,7 +1294,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1079,'E8DB324F77CC4787BC0EE33B3280BD88','330421','嘉善县','嘉善县',NULL,NULL,5,3,'open',1076,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1080,'861B367AA7E143ACB4C2B1D11E1FD694','330424','海盐县','海盐县',NULL,NULL,5,4,'open',1076,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1081,'105EBF2E6E3942EE918759A5A7798D5B','330481','海宁市','海宁市',NULL,NULL,5,5,'open',1076,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1082,'E0576814F6584BE59A61C629D827E1C9','330482','平湖市','平湖市',NULL,NULL,5,6,'open',1076,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1083,'F8BC7A8D48A9416AA1436C94B923E1F7','330483','桐乡市','桐乡市',NULL,NULL,5,7,'open',1076,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1306,7 +1306,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1089,'EA2E66D687374DFAA249774FA4A439F2','330523','安吉县','安吉县',NULL,NULL,5,5,'open',1084,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1090,'6169CE68781D4AD1B940B626D515D267','330600','绍兴市','绍兴市',NULL,NULL,4,6,'closed',1037,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1091,'ABECBE47694D44AD8BDE3C0A5794AF8B','330602','越城区','越城区',NULL,NULL,5,1,'open',1090,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1092,'1A1244F0ED3748A88291F3705F3288A9','330603','柯桥区','柯桥区',NULL,NULL,5,2,'open',1090,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1093,'A59EAC0B107549F6901679278F3D7DF6','330604','上虞区','上虞区',NULL,NULL,5,3,'open',1090,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1318,7 +1318,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1099,'EDB8C3CA424145A789FCCEDC250A056B','330703','金东区','金东区',NULL,NULL,5,2,'open',1097,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1100,'F9C6A30737D745D2BAD21B384D4F74A9','330723','武义县','武义县',NULL,NULL,5,3,'open',1097,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1101,'F11E799919FD4712858B715745961E9F','330726','浦江县','浦江县',NULL,NULL,5,4,'open',1097,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1102,'16B29146092F4F2EA8EA8B49C836516E','330727','磐安县','磐安县',NULL,NULL,5,5,'open',1097,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1103,'59858DD360314DEB8AEE04BAF527DF23','330781','兰溪市','兰溪市',NULL,NULL,5,6,'open',1097,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1330,7 +1330,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1109,'8C242B540D5E4FBBAD357B04139299C0','330803','衢江区','衢江区',NULL,NULL,5,2,'open',1107,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1110,'F3BE5067E7FD4858A69ACA42C65977BB','330822','常山县','常山县',NULL,NULL,5,3,'open',1107,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1111,'B41525C78C804A6592D58920D20C7889','330824','开化县','开化县',NULL,NULL,5,4,'open',1107,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1112,'C4ADC97E7567443F800D6502C294FB83','330825','龙游县','龙游县',NULL,NULL,5,5,'open',1107,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1113,'2E40DF4F2AA041639A5B8821DCB5F273','330881','江山市','江山市',NULL,NULL,5,6,'open',1107,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1342,7 +1342,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1119,'ACFBEB29034D4561A16A261C6D82AB00','331000','台州市','台州市',NULL,NULL,4,10,'closed',1037,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1120,'227CDF2772054D56B2B3314E17B066C2','331002','椒江区','椒江区',NULL,NULL,5,1,'open',1119,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1121,'BC17FFCAD76D45CB92B58AA460DF0687','331003','黄岩区','黄岩区',NULL,NULL,5,2,'open',1119,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1122,'55ACF776387B4744BB05C108ECC500C0','331004','路桥区','路桥区',NULL,NULL,5,3,'open',1119,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1123,'9851558397AA4F04A3E013FA5AC8CD8D','331022','三门县','三门县',NULL,NULL,5,4,'open',1119,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1354,7 +1354,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1129,'DB84DEEC95964A4FBC34F715350CED78','331100','丽水市','丽水市',NULL,NULL,4,11,'closed',1037,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1130,'A7F7C84764AD42B2B9352F238BE507E1','331102','莲都区','莲都区',NULL,NULL,5,1,'open',1129,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1131,'350C71F215C84796AF15E4FB17BBDC7F','331121','青田县','青田县',NULL,NULL,5,2,'open',1129,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1132,'C20251E072074E8D901A5C2E35D9B873','331122','缙云县','缙云县',NULL,NULL,5,3,'open',1129,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1133,'16ECC92C006B432A865AE755F3166AEB','331123','遂昌县','遂昌县',NULL,NULL,5,4,'open',1129,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1366,7 +1366,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1139,'B5A15BB4EEEB417AAA3BDAD5ED4ACA87','340000','安徽省','安徽','皖',NULL,3,12,'closed',130,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1140,'AA3E1C31FB8149B2B66348EDA6137915','340100','合肥市','合肥市',NULL,NULL,4,1,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1141,'BAA5AE2F118C424DAD618411E72CC0D1','340102','瑶海区','瑶海区',NULL,NULL,5,1,'open',1140,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1142,'B32C054BB4EA41BFBD303349B294B203','340103','庐阳区','庐阳区',NULL,NULL,5,2,'open',1140,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1143,'B9CB3DB058F3443398566F5EB81D534C','340104','蜀山区','蜀山区',NULL,NULL,5,3,'open',1140,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1378,7 +1378,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1149,'1E3C9695F6BA41F29891C1CADC8DED8C','340181','巢湖市','巢湖市',NULL,NULL,5,9,'open',1140,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1150,'E98C2CDF4964423C999F2166FCFBD395','340200','芜湖市','芜湖市',NULL,NULL,4,2,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1151,'FB9C8643E9C349E2B937EA846A9D35E5','340202','镜湖区','镜湖区',NULL,NULL,5,1,'open',1150,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1152,'62554EE8D3024F559F500B9B647EB1EB','340203','弋江区','弋江区',NULL,NULL,5,2,'open',1150,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1153,'7DEB4C2F5109428986B4EB9583E5FC4B','340207','鸠江区','鸠江区',NULL,NULL,5,3,'open',1150,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1390,7 +1390,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1159,'E47F2F73220440E0A202B3AEA47B00D4','340300','蚌埠市','蚌埠市',NULL,NULL,4,3,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1160,'14CD80B0D29A4B9E88BE2AB5DBD02CD1','340302','龙子湖区','龙子湖区',NULL,NULL,5,1,'open',1159,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1161,'60FF7C364FE140EFA85BAE350EAC8A65','340303','蚌山区','蚌山区',NULL,NULL,5,2,'open',1159,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1162,'0CC57D445A5144E480487F58E0C7E103','340304','禹会区','禹会区',NULL,NULL,5,3,'open',1159,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1163,'59DEB8EC9C1548009D66167524DC9184','340311','淮上区','淮上区',NULL,NULL,5,4,'open',1159,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1402,7 +1402,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1169,'62D2C5C6192D46A1BE0337692F136880','340403','田家庵区','田家庵区',NULL,NULL,5,2,'open',1167,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1170,'8AA4BFE573BB40B592D24E6F2BC023B4','340404','谢家集区','谢家集区',NULL,NULL,5,3,'open',1167,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1171,'E256967135BB4C9E85BB04AC7C67F3EA','340405','八公山区','八公山区',NULL,NULL,5,4,'open',1167,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1172,'543D95952F85432DA652DF04F79D7EA0','340406','潘集区','潘集区',NULL,NULL,5,5,'open',1167,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1173,'075DA0A6DEFA4569AD938D339CEA8E0C','340421','凤台县','凤台县',NULL,NULL,5,6,'open',1167,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1414,7 +1414,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1179,'8D12DF41E21F449A95F2305C7430182F','340521','当涂县','当涂县',NULL,NULL,5,4,'open',1175,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1180,'F0353164946E45638C790A42EB0757BD','340522','含山县','含山县',NULL,NULL,5,5,'open',1175,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1181,'7BA1C217F4FD42A1A4BA471C53E0678C','340523','和县','和县',NULL,NULL,5,6,'open',1175,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1182,'ABCFEE3811D64E26A17790B8CDD5F405','340600','淮北市','淮北市',NULL,NULL,4,6,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1183,'452E7E25E9BA402A878BC756A41098B3','340602','杜集区','杜集区',NULL,NULL,5,1,'open',1182,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1426,7 +1426,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1189,'82060DE926F34086B9A7F5EA2522AB42','340706','义安区','义安区',NULL,NULL,5,2,'open',1187,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1190,'E79BA20779574B95A27AC10387B8C6D3','340711','郊区','郊区',NULL,NULL,5,3,'open',1187,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1191,'81821F56BC2A4FCF98C643665B6362EB','340722','枞阳县','枞阳县',NULL,NULL,5,4,'open',1187,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1192,'2DAE15F0321940148963ADA79B1740E3','340800','安庆市','安庆市',NULL,NULL,4,8,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1193,'CACE0491C35240F688CEAA9EA9DB27A4','340802','迎江区','迎江区',NULL,NULL,5,1,'open',1192,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1438,7 +1438,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1199,'278CBE39A21A40EEA40B8114E75DB0F4','340827','望江县','望江县',NULL,NULL,5,7,'open',1192,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1200,'1CA5EFE60E8F4D818E3FAC27B6B9C7AA','340828','岳西县','岳西县',NULL,NULL,5,8,'open',1192,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1201,'A4916C8F0C444A978F34A822675F2370','340881','桐城市','桐城市',NULL,NULL,5,9,'open',1192,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1202,'8DB5DF29078247B095FC8A50B1FD4215','340882','潜山市','潜山市',NULL,NULL,5,10,'open',1192,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1203,'7C898A2737B24BDDBD4AB86ED61C8F4E','341000','黄山市','黄山市',NULL,NULL,4,9,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1450,7 +1450,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1209,'CE017D7D56974858AD2910BEC5C4936F','341023','黟县','黟县',NULL,NULL,5,6,'open',1203,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1210,'1CFCD72BD7AC40BBAF8E1749A87C50BE','341024','祁门县','祁门县',NULL,NULL,5,7,'open',1203,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1211,'1AEE18DAD8D0423282036005EBD64DF6','341100','滁州市','滁州市',NULL,NULL,4,10,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1212,'FD74F394375C46F7A1ED12F2125DA6B8','341102','琅琊区','琅琊区',NULL,NULL,5,1,'open',1211,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1213,'6C5CE6EDB6FE496F99FB3FD124EBF3D6','341103','南谯区','南谯区',NULL,NULL,5,2,'open',1211,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1462,7 +1462,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1219,'CAFC3B307CCA4321BAF9342E6EF1126E','341182','明光市','明光市',NULL,NULL,5,8,'open',1211,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1220,'84FC4E0857D844BDA643C42248625A23','341200','阜阳市','阜阳市',NULL,NULL,4,11,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1221,'968F2444984E49C89267FD486E2880B7','341202','颍州区','颍州区',NULL,NULL,5,1,'open',1220,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1222,'8C563530865941F58C88B4BD259898BF','341203','颍东区','颍东区',NULL,NULL,5,2,'open',1220,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1223,'0E44FB8273704439995C2882C891CAD4','341204','颍泉区','颍泉区',NULL,NULL,5,3,'open',1220,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1474,7 +1474,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1229,'7FFECB037B6E4D5F904CD585655722AD','341300','宿州市','宿州市',NULL,NULL,4,12,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1230,'1D96DFD270794911BCD143B7F212308B','341302','埇桥区','埇桥区',NULL,NULL,5,1,'open',1229,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1231,'0259E54ED65F4158A7834A82FE2EA7CC','341321','砀山县','砀山县',NULL,NULL,5,2,'open',1229,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1232,'4983610667F34283A011C9385AF04EAD','341322','萧县','萧县',NULL,NULL,5,3,'open',1229,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1233,'54D18C06B29141E690B6B283D3AFDB2B','341323','灵璧县','灵璧县',NULL,NULL,5,4,'open',1229,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1486,7 +1486,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1239,'B1332D73DED54817AE5340E26A7FA06D','341522','霍邱县','霍邱县',NULL,NULL,5,4,'open',1235,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1240,'225B552F2197431CAC9D25F954DB458D','341523','舒城县','舒城县',NULL,NULL,5,5,'open',1235,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1241,'A3E49942410846959913A34C65B17C0A','341524','金寨县','金寨县',NULL,NULL,5,6,'open',1235,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1242,'EED367ADA9B440DF80516385D9DFAA21','341525','霍山县','霍山县',NULL,NULL,5,7,'open',1235,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1243,'4E5F4C316B9741029AFBC326CE32535D','341600','亳州市','亳州市',NULL,NULL,4,14,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1498,7 +1498,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1249,'A4C93DA39E8C4F67A55F05372E8BDF90','341702','贵池区','贵池区',NULL,NULL,5,1,'open',1248,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1250,'45A559390FFA451AAA248DFECF6F5760','341721','东至县','东至县',NULL,NULL,5,2,'open',1248,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1251,'6E8F0ECD03DF4E108CCE1AB2C7E2868F','341722','石台县','石台县',NULL,NULL,5,3,'open',1248,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1252,'564FB560B2064C76B18F6CE1B28AA923','341723','青阳县','青阳县',NULL,NULL,5,4,'open',1248,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1253,'99AB023FD7DA4405889B89698C7402D5','341800','宣城市','宣城市',NULL,NULL,4,16,'closed',1139,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1510,7 +1510,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1259,'5059F62F35394E0686C8AC76B6B2D7D4','341881','宁国市','宁国市',NULL,NULL,5,6,'open',1253,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1260,'DACCC2FD2A1A41A19324A484310260FD','341882','广德市','广德市',NULL,NULL,5,7,'open',1253,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1261,'9D9544E2B1B14BC7915EDAC4990589F9','350000','福建省','福建','闽',NULL,3,13,'closed',130,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1262,'533CEB26A1C94FE7A385C19E84FAA2E0','350100','福州市','福州市',NULL,NULL,4,1,'closed',1261,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1263,'82A4C88B88B3475B81C250FDDA3042DA','350102','鼓楼区','鼓楼区',NULL,NULL,5,1,'open',1262,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1522,7 +1522,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1269,'F0BF1237AA3A49B98CB15649FF39225F','350121','闽侯县','闽侯县',NULL,NULL,5,7,'open',1262,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1270,'5D02B6E5DEDC407A833EB5A2C79D33A3','350122','连江县','连江县',NULL,NULL,5,8,'open',1262,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1271,'FFB697278FE74D29956A14E1B1C1EFCE','350123','罗源县','罗源县',NULL,NULL,5,9,'open',1262,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1272,'C1D7A19F64A843F2B1AC7AA0A722894A','350124','闽清县','闽清县',NULL,NULL,5,10,'open',1262,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1273,'ED2CA63E33564892A15487B53B364A69','350125','永泰县','永泰县',NULL,NULL,5,11,'open',1262,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1534,7 +1534,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1279,'510341517B604EC9B79AD0307BA52B37','350206','湖里区','湖里区',NULL,NULL,5,3,'open',1276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1280,'D74361322D8E43FEBAD3EE9DFD545A40','350211','集美区','集美区',NULL,NULL,5,4,'open',1276,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1281,'244B4B23289A4BC1B5BA375DE59C0E3E','350212','同安区','同安区',NULL,NULL,5,5,'open',1276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1282,'E9D035F8FE2C45F1ACCF989664E393F8','350213','翔安区','翔安区',NULL,NULL,5,6,'open',1276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1283,'1ADDF5A5407545F4AFEA2D14946240A7','350300','莆田市','莆田市',NULL,NULL,4,3,'closed',1261,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1546,7 +1546,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1289,'5E69DC7E45D34D63AD48F9FDF3B02FDF','350400','三明市','三明市',NULL,NULL,4,4,'closed',1261,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1290,'16AE6FFBD79248A3A2D4BD15147A5579','350402','梅列区','梅列区',NULL,NULL,5,1,'open',1289,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1291,'D31CB3BB6F9A48FA9DAEFF585BE7D23B','350403','三元区','三元区',NULL,NULL,5,2,'open',1289,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1292,'D539AFC0F7CD4E648FAF6D2E12E868DD','350421','明溪县','明溪县',NULL,NULL,5,3,'open',1289,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1293,'9CD8057073774372B6A3930716964323','350423','清流县','清流县',NULL,NULL,5,4,'open',1289,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1558,7 +1558,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1299,'C12CFE8BCE51466EB8412FCA0EC83CB0','350429','泰宁县','泰宁县',NULL,NULL,5,10,'open',1289,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1300,'63723E5C69984C05A2AF29FB64893C1C','350430','建宁县','建宁县',NULL,NULL,5,11,'open',1289,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1301,'F1F7EBC90B504CFD9EE691E79BE3E34A','350481','永安市','永安市',NULL,NULL,5,12,'open',1289,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1302,'A598C217593E4BCA995861F309978E17','350500','泉州市','泉州市',NULL,NULL,4,5,'closed',1261,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1303,'C6557990A3E246B9AC5F19AD9F263F42','350502','鲤城区','鲤城区',NULL,NULL,5,1,'open',1302,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1570,7 +1570,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1309,'F90D4FE835FE4809ABF7A19730FEE484','350525','永春县','永春县',NULL,NULL,5,7,'open',1302,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1310,'561BA660BD5E4CAA9155A68D51C74700','350526','德化县','德化县',NULL,NULL,5,8,'open',1302,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1311,'B5902D90E58F438C9E516B8A9ADEFAB4','350527','金门县☆','金门县☆',NULL,NULL,5,9,'open',1302,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1312,'BDED1841928449BE9C15F7F02E54CE62','350581','石狮市','石狮市',NULL,NULL,5,10,'open',1302,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1313,'7858CF9B05DB437880365AA90BE256E7','350582','晋江市','晋江市',NULL,NULL,5,11,'open',1302,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1582,7 +1582,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1319,'6D2B238C668E4AE38E441E3EF2C1C079','350623','漳浦县','漳浦县',NULL,NULL,5,4,'open',1315,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1320,'4AC3B72EFD2441B89896F91002C89E58','350624','诏安县','诏安县',NULL,NULL,5,5,'open',1315,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1321,'8DD08623A1DF4A9A8A1376619B770FCA','350625','长泰县','长泰县',NULL,NULL,5,6,'open',1315,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1322,'C35C912AD6E743C0A193FBAA857276AA','350626','东山县','东山县',NULL,NULL,5,7,'open',1315,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1323,'ACC4E687E93F420EB7D18F78C50C644B','350627','南靖县','南靖县',NULL,NULL,5,8,'open',1315,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1594,7 +1594,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1329,'FF075CF80DC14FB38D1824181375501B','350703','建阳区','建阳区',NULL,NULL,5,2,'open',1327,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1330,'73995F2DEBE146988BC2F0EF1A2EAB81','350721','顺昌县','顺昌县',NULL,NULL,5,3,'open',1327,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1331,'96378194BF3B40F2A629BA60E1518695','350722','浦城县','浦城县',NULL,NULL,5,4,'open',1327,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1332,'38F6BC42C04045168D3BA31536AAF2F2','350723','光泽县','光泽县',NULL,NULL,5,5,'open',1327,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1333,'2B2D83BB34E847C4B1F47A7FB3EC1920','350724','松溪县','松溪县',NULL,NULL,5,6,'open',1327,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1606,7 +1606,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1339,'032809039A8D4277A7DD8EF2E90A70E3','350802','新罗区','新罗区',NULL,NULL,5,1,'open',1338,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1340,'BDDB402B9B5F40E5A43F80AADF5E7987','350803','永定区','永定区',NULL,NULL,5,2,'open',1338,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1341,'DD116EFBE04F49EDB5BF69AB3E04950E','350821','长汀县','长汀县',NULL,NULL,5,3,'open',1338,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1342,'E40BC96E70E245A581F899DFB4613DEA','350823','上杭县','上杭县',NULL,NULL,5,4,'open',1338,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1343,'2E23D307AF994D2CAFFD485BA2FFE8DE','350824','武平县','武平县',NULL,NULL,5,5,'open',1338,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1618,7 +1618,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1349,'027EF9A92EC9480A850529E56E30A9FA','350922','古田县','古田县',NULL,NULL,5,3,'open',1346,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1350,'A302CB87C65E405787F448155871D2A2','350923','屏南县','屏南县',NULL,NULL,5,4,'open',1346,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1351,'35ED96213CC841AFA93BB671011F1EDC','350924','寿宁县','寿宁县',NULL,NULL,5,5,'open',1346,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1352,'90C5EABAC536432D8F2A4048DF638352','350925','周宁县','周宁县',NULL,NULL,5,6,'open',1346,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1353,'1041B48D545444648AD13B20E005F335','350926','柘荣县','柘荣县',NULL,NULL,5,7,'open',1346,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1630,7 +1630,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1359,'B053A90911DC4D3891698EAEA7D6C90D','360103','西湖区','西湖区',NULL,NULL,5,2,'open',1357,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1360,'FC0781F69D434BA490FAD483D08FF9F1','360104','青云谱区','青云谱区',NULL,NULL,5,3,'open',1357,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1361,'5F93DC0D9ED44C9C92B1B1E382570E34','360111','青山湖区','青山湖区',NULL,NULL,5,4,'open',1357,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1362,'9C1F3FC5E13F4F98B62384B26B77C4B9','360112','新建区','新建区',NULL,NULL,5,5,'open',1357,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1363,'6C98CC14263647C49FFFBED5AAD86DF6','360113','红谷滩区','红谷滩区',NULL,NULL,5,6,'open',1357,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1642,7 +1642,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1369,'B8DC1D0BBCCF4EA08F1C6FF6B5A1CCFE','360203','珠山区','珠山区',NULL,NULL,5,2,'open',1367,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1370,'AD0D5653C48547ECAB36FC54FEC9C0BE','360222','浮梁县','浮梁县',NULL,NULL,5,3,'open',1367,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1371,'415257F78FC1407683779EEC060941A1','360281','乐平市','乐平市',NULL,NULL,5,4,'open',1367,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1372,'BCF2E017B005461283DE1AF19DE0C9C6','360300','萍乡市','萍乡市',NULL,NULL,4,3,'closed',1356,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1373,'2B8BF2932FC649E984D121A4FC163C10','360302','安源区','安源区',NULL,NULL,5,1,'open',1372,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1654,7 +1654,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1379,'948466DDA5B442F39CA7451386AB4F5F','360402','濂溪区','濂溪区',NULL,NULL,5,1,'open',1378,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1380,'6C78FD458EAC442CBED2125A0110EF6E','360403','浔阳区','浔阳区',NULL,NULL,5,2,'open',1378,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1381,'4B6D66831E404A87A14CA86435E673B5','360404','柴桑区','柴桑区',NULL,NULL,5,3,'open',1378,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1382,'6F798002286145D992F15FD22866084F','360423','武宁县','武宁县',NULL,NULL,5,4,'open',1378,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1383,'A226A23DE076449BB7D293B4EED523B8','360424','修水县','修水县',NULL,NULL,5,5,'open',1378,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1666,7 +1666,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1389,'E8F285015A014E9C85DD7B5413F41072','360481','瑞昌市','瑞昌市',NULL,NULL,5,11,'open',1378,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1390,'E7542A06673248EB82918F82B525E787','360482','共青城市','共青城市',NULL,NULL,5,12,'open',1378,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1391,'941CE6360BEC40F5AC253E38006E1508','360483','庐山市','庐山市',NULL,NULL,5,13,'open',1378,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1392,'63F273F49F864AF09146C1C5946F9FC9','360500','新余市','新余市',NULL,NULL,4,5,'closed',1356,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1393,'3DEDC9C8BB184936B8EB6A17B10C5648','360502','渝水区','渝水区',NULL,NULL,5,1,'open',1392,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1678,7 +1678,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1399,'C11134E5666648F18008B8B89B8B8A7C','360700','赣州市','赣州市',NULL,NULL,4,7,'closed',1356,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1400,'9CD48B13EFA84E6B84A711536337C5E6','360702','章贡区','章贡区',NULL,NULL,5,1,'open',1399,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1401,'CBDCAF3E6EF340E38A0042560F8F356E','360703','南康区','南康区',NULL,NULL,5,2,'open',1399,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1402,'524C6C4667F9492B9D2E078582CC9E7C','360704','赣县区','赣县区',NULL,NULL,5,3,'open',1399,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1403,'C12B6015623A4A7E9EE58840EB0FD031','360722','信丰县','信丰县',NULL,NULL,5,4,'open',1399,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1690,7 +1690,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1409,'803F40F2AA40431488D2DA864C0B7F23','360728','定南县','定南县',NULL,NULL,5,10,'open',1399,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1410,'A769113BE37A46C39AF9A16240602B30','360729','全南县','全南县',NULL,NULL,5,11,'open',1399,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1411,'2B200456AE304F5CB8D650D77995955B','360730','宁都县','宁都县',NULL,NULL,5,12,'open',1399,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1412,'56FA62FD59784D388DFFF952E408D49F','360731','于都县','于都县',NULL,NULL,5,13,'open',1399,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1413,'9EA15AB3D5334F14B290537D0E705C7E','360732','兴国县','兴国县',NULL,NULL,5,14,'open',1399,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1702,7 +1702,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1419,'F6C45B6489B64C5DAAAA9385171FE746','360802','吉州区','吉州区',NULL,NULL,5,1,'open',1418,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1420,'19B7FAAD1E0E472688E4670371FE2379','360803','青原区','青原区',NULL,NULL,5,2,'open',1418,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1421,'F1C8BE427A6E40BD83D68D67EA33DFB7','360821','吉安县','吉安县',NULL,NULL,5,3,'open',1418,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1422,'4277A6328E774BBE9FD2D866E595659F','360822','吉水县','吉水县',NULL,NULL,5,4,'open',1418,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1423,'F2515E254D6B4AF8B68A74615146E877','360823','峡江县','峡江县',NULL,NULL,5,5,'open',1418,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1714,7 +1714,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1429,'0A3628A543384696B7A7B4F4C13E59CA','360829','安福县','安福县',NULL,NULL,5,11,'open',1418,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1430,'E424ABC61DD04004A20D026F7B51D42A','360830','永新县','永新县',NULL,NULL,5,12,'open',1418,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1431,'18A592A553B2464AA6E301319FCB78F7','360881','井冈山市','井冈山市',NULL,NULL,5,13,'open',1418,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1432,'C42BE46A085D4A17A33943FC376AF438','360900','宜春市','宜春市',NULL,NULL,4,9,'closed',1356,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1433,'CACABE96BD114490B6669E8C6D9B0703','360902','袁州区','袁州区',NULL,NULL,5,1,'open',1432,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1726,7 +1726,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1439,'D3C1D0F12CE84CF18EC4FCAB19B6C953','360926','铜鼓县','铜鼓县',NULL,NULL,5,7,'open',1432,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1440,'85781B46A07549C78F401037E117842A','360981','丰城市','丰城市',NULL,NULL,5,8,'open',1432,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1441,'1A8F5B2E2E6B483281C36E3807CC0E76','360982','樟树市','樟树市',NULL,NULL,5,9,'open',1432,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1442,'2724C07B4F2E4A6C8805019C442A19ED','360983','高安市','高安市',NULL,NULL,5,10,'open',1432,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1443,'3598B5F040544EAE981F38EF19C0A054','361000','抚州市','抚州市',NULL,NULL,4,10,'closed',1356,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1738,7 +1738,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1449,'393099A21AD2479DA239E112AB378129','361024','崇仁县','崇仁县',NULL,NULL,5,6,'open',1443,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1450,'A077CB3E8D9842E89A6566185B928193','361025','乐安县','乐安县',NULL,NULL,5,7,'open',1443,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1451,'5B9DC3AE6EFC463FB7F5E512305FBFF3','361026','宜黄县','宜黄县',NULL,NULL,5,8,'open',1443,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1452,'48D47FD1787345A7BFC8C514595F066E','361027','金溪县','金溪县',NULL,NULL,5,9,'open',1443,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1453,'BBC56B6C3BAC466181DB7036CE12C223','361028','资溪县','资溪县',NULL,NULL,5,10,'open',1443,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1750,7 +1750,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1459,'04224E99F0404B93AC85DE505F5E3022','361123','玉山县','玉山县',NULL,NULL,5,4,'open',1455,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1460,'3FFCE570FD6F4CACA78BCB434666772D','361124','铅山县','铅山县',NULL,NULL,5,5,'open',1455,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1461,'8A81F5113B7648F286830C29B0F9BF39','361125','横峰县','横峰县',NULL,NULL,5,6,'open',1455,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1462,'FAC9A63151A9423F999617D06D0CC85A','361126','弋阳县','弋阳县',NULL,NULL,5,7,'open',1455,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1463,'5FF69C2CDB9B4CA89D2BBA7526EC9196','361127','余干县','余干县',NULL,NULL,5,8,'open',1455,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1762,7 +1762,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1469,'0E67C3F7478840CB98C217A0C4C86416','370100','济南市','济南市',NULL,NULL,4,1,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1470,'E2449EEB3A8E4539B1C6DF96EAFB3932','370102','历下区','历下区',NULL,NULL,5,1,'open',1469,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1471,'5EF64C133CCE47DE99ABDCFF1357CB7C','370103','市中区','市中区',NULL,NULL,5,2,'open',1469,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1472,'E9483DC7A7C745E2A2A8A363FC9B9C90','370104','槐荫区','槐荫区',NULL,NULL,5,3,'open',1469,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1473,'3650E1FA372C4F1D870FA2F70B85C91C','370105','天桥区','天桥区',NULL,NULL,5,4,'open',1469,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1774,7 +1774,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1479,'7FF777A0EBB34450A51A105B430C7F15','370117','钢城区','钢城区',NULL,NULL,5,10,'open',1469,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1480,'CAAC9982BF6243A9A0311FB885D5A9FB','370124','平阴县','平阴县',NULL,NULL,5,11,'open',1469,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1481,'4EFD6FBEDD1F472D8DCEC35AE0CC49DF','370126','商河县','商河县',NULL,NULL,5,12,'open',1469,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1482,'F788027DBECC437D9766C48C487FDC10','370200','青岛市','青岛市',NULL,NULL,4,2,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1483,'AF18623250C64FCFA592EE362EC15DF1','370202','市南区','市南区',NULL,NULL,5,1,'open',1482,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1786,7 +1786,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1489,'E3FD2F8E72914022A96024ABF60B6D49','370215','即墨区','即墨区',NULL,NULL,5,7,'open',1482,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1490,'FA7B3D97915342A6B2396BBDBC53C196','370281','胶州市','胶州市',NULL,NULL,5,8,'open',1482,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1491,'576BDBCD49AB4689AC42CA70EED96D84','370283','平度市','平度市',NULL,NULL,5,9,'open',1482,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1492,'1BFC7CDD7F104BCDBFB2A039C8D5C0BC','370285','莱西市','莱西市',NULL,NULL,5,10,'open',1482,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1493,'0240998100E04C968475CD0A338C8AD4','370300','淄博市','淄博市',NULL,NULL,4,3,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1798,7 +1798,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1499,'33E4AC891CE9497093060AE0E3CD23BB','370321','桓台县','桓台县',NULL,NULL,5,6,'open',1493,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1500,'FF86F5E28DCB463A85C3DEC390088D8C','370322','高青县','高青县',NULL,NULL,5,7,'open',1493,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1501,'A1BD6D139A234A61981236821AFFB3E9','370323','沂源县','沂源县',NULL,NULL,5,8,'open',1493,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1502,'EF790DDD8F2A4D52A94F95DA91BA9DB9','370400','枣庄市','枣庄市',NULL,NULL,4,4,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1503,'624091A9590548B2BEE11E353A239C47','370402','市中区','市中区',NULL,NULL,5,1,'open',1502,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1810,7 +1810,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1509,'B499277FE4AA4BCA80FF1C28CBCB2BCE','370500','东营市','东营市',NULL,NULL,4,5,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1510,'56B2D9A1792B4F9E8F7BDEABF604B08B','370502','东营区','东营区',NULL,NULL,5,1,'open',1509,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1511,'D6D10ACA38274F6EB76E87B56A24CA8C','370503','河口区','河口区',NULL,NULL,5,2,'open',1509,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1512,'927BE6B4B6704FA9B3686A8363405C0D','370505','垦利区','垦利区',NULL,NULL,5,3,'open',1509,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1513,'4C1AC18DF3AF4F4EA248792949CD27DD','370522','利津县','利津县',NULL,NULL,5,4,'open',1509,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1822,7 +1822,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1519,'11A4F91500AF42C1B38BE8195822B473','370613','莱山区','莱山区',NULL,NULL,5,4,'open',1515,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1520,'F4D48E1760E24A7F9843F1D02FCFE675','370634','长岛县','长岛县',NULL,NULL,5,5,'open',1515,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1521,'9BC90B78751F424BB8E45FB4B25CF6F9','370681','龙口市','龙口市',NULL,NULL,5,6,'open',1515,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1522,'88E7AE95C7A74604B424F64EC4A77DBE','370682','莱阳市','莱阳市',NULL,NULL,5,7,'open',1515,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1523,'BA138307B8AE40A0B3FE929F61A2A97D','370683','莱州市','莱州市',NULL,NULL,5,8,'open',1515,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1834,7 +1834,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1529,'C7DEFFF331E943FF92076D861786BA19','370702','潍城区','潍城区',NULL,NULL,5,1,'open',1528,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1530,'7D00381C9C114D1FB991DC5DBD34B592','370703','寒亭区','寒亭区',NULL,NULL,5,2,'open',1528,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1531,'51186FA6DD7E497F96FAE0D77A9CB3FB','370704','坊子区','坊子区',NULL,NULL,5,3,'open',1528,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1532,'A973AD45B168423E9577DBF05233BE20','370705','奎文区','奎文区',NULL,NULL,5,4,'open',1528,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1533,'B40B3214B7EE42389203D5AE26121617','370724','临朐县','临朐县',NULL,NULL,5,5,'open',1528,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1846,7 +1846,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1539,'E6BCB74CB90D47AE9F5AE9A7B285D69D','370785','高密市','高密市',NULL,NULL,5,11,'open',1528,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1540,'37CC04D55332480597C8E07B4937BEEC','370786','昌邑市','昌邑市',NULL,NULL,5,12,'open',1528,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1541,'145F3A7AC1F44E77A5DBC489C2ED0CAB','370800','济宁市','济宁市',NULL,NULL,4,8,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1542,'3376FCF8D4114BD5A097ADFEED007EE8','370811','任城区','任城区',NULL,NULL,5,1,'open',1541,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1543,'D665489D777940CB8EB687F1CC7F96D5','370812','兖州区','兖州区',NULL,NULL,5,2,'open',1541,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1858,7 +1858,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1549,'70813F1CFE25483DB0E36124D16B6052','370831','泗水县','泗水县',NULL,NULL,5,8,'open',1541,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1550,'FE052FF6B2544A019628E2CEEF12D905','370832','梁山县','梁山县',NULL,NULL,5,9,'open',1541,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1551,'69CC67F46B7448029FBE694383996470','370881','曲阜市','曲阜市',NULL,NULL,5,10,'open',1541,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1552,'EB90FAE84F074C5D9D6B7B9E1CD1A24A','370883','邹城市','邹城市',NULL,NULL,5,11,'open',1541,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1553,'1FD599CA0F324A5B9B4A36B8D52666FD','370900','泰安市','泰安市',NULL,NULL,4,9,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1870,7 +1870,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1559,'6636F814ED3F449D8E670133CD605833','370983','肥城市','肥城市',NULL,NULL,5,6,'open',1553,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1560,'311B1CFD5AAA47F29923FFE8EA04CD94','371000','威海市','威海市',NULL,NULL,4,10,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1561,'7ED41C3A56194D6D9E154BFAE7C17BA5','371002','环翠区','环翠区',NULL,NULL,5,1,'open',1560,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1562,'FD47942A2E3A47CFBA489A5B8853E8F2','371003','文登区','文登区',NULL,NULL,5,2,'open',1560,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1563,'6B2A15CFC6304559BF1EE4C2A3F9000F','371082','荣成市','荣成市',NULL,NULL,5,3,'open',1560,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1882,7 +1882,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1569,'66AF7CE2374C47ECA3D10F5C9AECD8B3','371122','莒县','莒县',NULL,NULL,5,4,'open',1565,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1570,'68DBD5892D294D64B6A4378BB7C45346','371300','临沂市','临沂市',NULL,NULL,4,12,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1571,'0C6F94E5511C46DA9E20EF10CB0BD68F','371302','兰山区','兰山区',NULL,NULL,5,1,'open',1570,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1572,'D189C9E09DCF4637841DC6E8AA45D583','371311','罗庄区','罗庄区',NULL,NULL,5,2,'open',1570,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1573,'7F775E4B2F0D4B70A415F31A4A0FFE14','371312','河东区','河东区',NULL,NULL,5,3,'open',1570,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1894,7 +1894,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1579,'E2E3EA9196B74A2FBC85B74A43CE2EBF','371326','平邑县','平邑县',NULL,NULL,5,9,'open',1570,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1580,'9CB0E4DAE8C84DBF9EF5A036DF02AC44','371327','莒南县','莒南县',NULL,NULL,5,10,'open',1570,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1581,'ACE31316C1BF4EC787AFB490E0C00908','371328','蒙阴县','蒙阴县',NULL,NULL,5,11,'open',1570,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1582,'8C2BA6859542466F9EFC843ECB0FB781','371329','临沭县','临沭县',NULL,NULL,5,12,'open',1570,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1583,'5CF1A9B702F644DA83DC4BF268A84EF2','371400','德州市','德州市',NULL,NULL,4,13,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1906,7 +1906,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1589,'ECFE8840D99948C18B2EE60B86526B0D','371425','齐河县','齐河县',NULL,NULL,5,6,'open',1583,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1590,'740EFF25E6274A02A5EBA0633007840B','371426','平原县','平原县',NULL,NULL,5,7,'open',1583,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1591,'45D83D9838E7451C839AFA65685DD0E0','371427','夏津县','夏津县',NULL,NULL,5,8,'open',1583,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1592,'D212B5B577034039AB8279F76DF80923','371428','武城县','武城县',NULL,NULL,5,9,'open',1583,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1593,'35EAA5BC17E94E538CC8B9D88CA9562D','371481','乐陵市','乐陵市',NULL,NULL,5,10,'open',1583,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1918,7 +1918,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1599,'64E749C8C88C44BE927F7AD1DF561199','371522','莘县','莘县',NULL,NULL,5,4,'open',1595,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1600,'2851BFFFAED8484495776A780B9E8C9C','371524','东阿县','东阿县',NULL,NULL,5,5,'open',1595,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1601,'072ADDC1700448FB972AC52AADAF1B4D','371525','冠县','冠县',NULL,NULL,5,6,'open',1595,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1602,'D9FA5FD9DFCF450686E1E97ED01BA55D','371526','高唐县','高唐县',NULL,NULL,5,7,'open',1595,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1603,'C30BE80AE75A496EB25529E5A6A3FC52','371581','临清市','临清市',NULL,NULL,5,8,'open',1595,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1930,7 +1930,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1609,'3C6DDEA0D0A4488D9410071632A7426D','371623','无棣县','无棣县',NULL,NULL,5,5,'open',1604,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1610,'6C289CBC3229436E83614C50B8DAD0EF','371625','博兴县','博兴县',NULL,NULL,5,6,'open',1604,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1611,'B590C1A63A584672A50A85061D5CB818','371681','邹平市','邹平市',NULL,NULL,5,7,'open',1604,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1612,'5BB6FEDDA73C495DB2BA106962550A5D','371700','菏泽市','菏泽市',NULL,NULL,4,16,'closed',1468,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1613,'E30E144264654AD18758F5A500DD5B56','371702','牡丹区','牡丹区',NULL,NULL,5,1,'open',1612,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1942,7 +1942,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1619,'87D7F6BB79B544AFA6F3C25FA8C61028','371725','郓城县','郓城县',NULL,NULL,5,7,'open',1612,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1620,'8440A1ABE3EA4B82966B59A71FA19520','371726','鄄城县','鄄城县',NULL,NULL,5,8,'open',1612,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1621,'52715359B0224136B037FDF8F4269584','371728','东明县','东明县',NULL,NULL,5,9,'open',1612,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1622,'728BEBDFD84B4A098E6094F0CA17D650','410000','河南省','河南','豫',NULL,3,16,'closed',130,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1623,'4D38240B86104032BDB01C578043EA75','410100','郑州市','郑州市',NULL,NULL,4,1,'closed',1622,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1954,7 +1954,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1629,'06BEEAAAF60747F4BA63A74E620F2398','410108','惠济区','惠济区',NULL,NULL,5,6,'open',1623,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1630,'3D61A70D9C4841AEB54324DA88A1C699','410122','中牟县','中牟县',NULL,NULL,5,7,'open',1623,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1631,'CA905D232EB74309978E3F97BC4D4AE1','410181','巩义市','巩义市',NULL,NULL,5,8,'open',1623,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1632,'6D376E40E6DE4958A0A2015DF193E27C','410182','荥阳市','荥阳市',NULL,NULL,5,9,'open',1623,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1633,'95A05CF0568748A6AB64E8D0C8903E68','410183','新密市','新密市',NULL,NULL,5,10,'open',1623,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1966,7 +1966,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1639,'822964E9AB164A0A9F546FF8D97D72CD','410204','鼓楼区','鼓楼区',NULL,NULL,5,3,'open',1636,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1640,'8FF322C266174D73B504161D30ACD767','410205','禹王台区','禹王台区',NULL,NULL,5,4,'open',1636,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1641,'247B26993EF5442BAF48FC02896BF17F','410212','祥符区','祥符区',NULL,NULL,5,5,'open',1636,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1642,'7C8A0DFAFCE24475ADFCD3EC84BAF660','410221','杞县','杞县',NULL,NULL,5,6,'open',1636,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1643,'721932257D8D4D31A4471AF201316E99','410222','通许县','通许县',NULL,NULL,5,7,'open',1636,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1978,7 +1978,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1649,'5E79FFB9B3304093918FA3D4FCEA8AF0','410304','瀍河回族区','瀍河回族区',NULL,NULL,5,3,'open',1646,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1650,'92A102662E1E49E0AD1AA573C8B5F6CB','410305','涧西区','涧西区',NULL,NULL,5,4,'open',1646,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1651,'A5CFED48F7BE4943A56650AD5188C5D9','410306','吉利区','吉利区',NULL,NULL,5,5,'open',1646,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1652,'A5FECF15A22E490C92EEFF679F599D8E','410311','洛龙区','洛龙区',NULL,NULL,5,6,'open',1646,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1653,'26247E98F8D640E6B68B7D34AD99F7D0','410322','孟津县','孟津县',NULL,NULL,5,7,'open',1646,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -1990,7 +1990,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1659,'9BD12C3FC1D84E8F979716893BF63F30','410328','洛宁县','洛宁县',NULL,NULL,5,13,'open',1646,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1660,'E132755557A14FB6BD3EB54522B85593','410329','伊川县','伊川县',NULL,NULL,5,14,'open',1646,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1661,'CCAEA8B85B6F4D79B67DF2FAC97BDE00','410381','偃师市','偃师市',NULL,NULL,5,15,'open',1646,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1662,'871A3AA294494CC4B3B16F45616F7059','410400','平顶山市','平顶山市',NULL,NULL,4,4,'closed',1622,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1663,'EE679F07883448BDAC82258211532367','410402','新华区','新华区',NULL,NULL,5,1,'open',1662,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2002,7 +2002,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1669,'2EEA8AF6AE7B4DC697E5D54A493FF854','410423','鲁山县','鲁山县',NULL,NULL,5,7,'open',1662,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1670,'7FB48B532A174CA2B134C0B19A98DB57','410425','郏县','郏县',NULL,NULL,5,8,'open',1662,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1671,'49E84D83A8CD464A9AB18809B2EB9887','410481','舞钢市','舞钢市',NULL,NULL,5,9,'open',1662,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1672,'908E3250BE2141DAACEAA2A3A1450FC6','410482','汝州市','汝州市',NULL,NULL,5,10,'open',1662,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1673,'62A14B415E224E5F9432694D0DE56738','410500','安阳市','安阳市',NULL,NULL,4,5,'closed',1622,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2014,7 +2014,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1679,'9567EAE799404523BD127210EE813E9E','410523','汤阴县','汤阴县',NULL,NULL,5,6,'open',1673,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1680,'8347EA51A3594EFDAEF22BE1E7E4AF2F','410526','滑县','滑县',NULL,NULL,5,7,'open',1673,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1681,'BF101A1C3F414059A68B6598A1701311','410527','内黄县','内黄县',NULL,NULL,5,8,'open',1673,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1682,'2BA1FEC17409433CBB624AFB90E3A5DE','410581','林州市','林州市',NULL,NULL,5,9,'open',1673,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1683,'6435EACE9464466D97951267B6B7C556','410600','鹤壁市','鹤壁市',NULL,NULL,4,6,'closed',1622,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2026,7 +2026,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1689,'CCF3283F6E1B452B9695A9638BD97E93','410700','新乡市','新乡市',NULL,NULL,4,7,'closed',1622,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1690,'193E696B5257434EAC3A4E259E9E901F','410702','红旗区','红旗区',NULL,NULL,5,1,'open',1689,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1691,'EFE05069E7644FD588306F025D769307','410703','卫滨区','卫滨区',NULL,NULL,5,2,'open',1689,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1692,'2914249808334E2BA3320A90373AD2E6','410704','凤泉区','凤泉区',NULL,NULL,5,3,'open',1689,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1693,'5A059A0AA0984170B5462998AA2530B1','410711','牧野区','牧野区',NULL,NULL,5,4,'open',1689,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2038,7 +2038,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1699,'676044A2B8BD443698243CF8E7258126','410781','卫辉市','卫辉市',NULL,NULL,5,10,'open',1689,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1700,'90ACC9367BF5452BAF912EFA5C0B9556','410782','辉县市','辉县市',NULL,NULL,5,11,'open',1689,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1701,'D9A6CD886217415297D43AA9EC9E4FCA','410783','长垣市','长垣市',NULL,NULL,5,12,'open',1689,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1702,'C96D3029453E4585BA8150CD342A127D','410800','焦作市','焦作市',NULL,NULL,4,8,'closed',1622,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1703,'31507A1CA11640839AAD99316D317F59','410802','解放区','解放区',NULL,NULL,5,1,'open',1702,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2050,7 +2050,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1709,'C0FFAD37343146F88283447AA4DF7211','410823','武陟县','武陟县',NULL,NULL,5,7,'open',1702,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1710,'D783AE951F9746CE8770F7360DA922D5','410825','温县','温县',NULL,NULL,5,8,'open',1702,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1711,'DDC4505C9BBE484684C2F8375DF23751','410882','沁阳市','沁阳市',NULL,NULL,5,9,'open',1702,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1712,'3955107B645244A29DFFCAA594F3D213','410883','孟州市','孟州市',NULL,NULL,5,10,'open',1702,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1713,'B714E666B96D4B34AC368AE4267FE70C','410900','濮阳市','濮阳市',NULL,NULL,4,9,'closed',1622,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2062,7 +2062,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1719,'D41CA65E3C854F1BAAE91032326EB63C','410928','濮阳县','濮阳县',NULL,NULL,5,6,'open',1713,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1720,'C7BCA7F3366C469A81379BD722E06633','411000','许昌市','许昌市',NULL,NULL,4,10,'closed',1622,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1721,'FD03D01E4AF743729CB9475EA9ED7E4D','411002','魏都区','魏都区',NULL,NULL,5,1,'open',1720,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1722,'E51F9EACC6734528877ED2F0C63CFE9A','411003','建安区','建安区',NULL,NULL,5,2,'open',1720,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1723,'34F21E03301F41F2A679A640C246FCEC','411024','鄢陵县','鄢陵县',NULL,NULL,5,3,'open',1720,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2074,7 +2074,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1729,'CD5FF2AF95FD40868FEB7732075346DD','411103','郾城区','郾城区',NULL,NULL,5,2,'open',1727,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1730,'E502F8261B52479D80D5C7DEFD82352F','411104','召陵区','召陵区',NULL,NULL,5,3,'open',1727,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1731,'07B1D2A277AE41169A0B7BC573B75C8D','411121','舞阳县','舞阳县',NULL,NULL,5,4,'open',1727,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1732,'7C19AA625C614408BA3223B45248BCBA','411122','临颍县','临颍县',NULL,NULL,5,5,'open',1727,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1733,'0FDC8C50A0F045C682020F193055665F','411200','三门峡市','三门峡市',NULL,NULL,4,12,'closed',1622,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2086,7 +2086,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1739,'BA61C1A7E90344EB917FB266275E9EF3','411282','灵宝市','灵宝市',NULL,NULL,5,6,'open',1733,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1740,'42898629B6AB42BAACEEAA15FE8305F4','411300','南阳市','南阳市',NULL,NULL,4,13,'closed',1622,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1741,'A34F323ADBCD4C3FA57901F0AD639234','411302','宛城区','宛城区',NULL,NULL,5,1,'open',1740,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1742,'EF8E64FB51494252BF7767E47617B85A','411303','卧龙区','卧龙区',NULL,NULL,5,2,'open',1740,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1743,'90E07326D9434451842C6CEC88E3FE17','411321','南召县','南召县',NULL,NULL,5,3,'open',1740,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2098,7 +2098,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1749,'1906C3E6338E4640A1BD286F66D89B25','411327','社旗县','社旗县',NULL,NULL,5,9,'open',1740,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1750,'5AB6BB86405C43179200572860D53B55','411328','唐河县','唐河县',NULL,NULL,5,10,'open',1740,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1751,'F0E1F14477FF42A5946DCD507168458D','411329','新野县','新野县',NULL,NULL,5,11,'open',1740,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1752,'984C04CA4E0D41FEACFDFA9BB8B06B6E','411330','桐柏县','桐柏县',NULL,NULL,5,12,'open',1740,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1753,'2C36F505B30C4AF0A3322C4006285E4C','411381','邓州市','邓州市',NULL,NULL,5,13,'open',1740,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2110,7 +2110,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1759,'7D29032E57774B93BE9AE9B9213A63BF','411423','宁陵县','宁陵县',NULL,NULL,5,5,'open',1754,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1760,'D43B6E94CAE1456F83A6D3A89E1B8873','411424','柘城县','柘城县',NULL,NULL,5,6,'open',1754,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1761,'810605A9950E40F8A439A6DD33D90682','411425','虞城县','虞城县',NULL,NULL,5,7,'open',1754,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1762,'A7783ED6B68E438CBCCDAD70B651C7C9','411426','夏邑县','夏邑县',NULL,NULL,5,8,'open',1754,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1763,'703CE7358CDD40D79D39BCB75023649B','411481','永城市','永城市',NULL,NULL,5,9,'open',1754,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2122,7 +2122,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1769,'FBE434F1EA15411F8F3E7F46C52A4B5B','411523','新县','新县',NULL,NULL,5,5,'open',1764,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1770,'67B880F31D1D4873912E00F04914790D','411524','商城县','商城县',NULL,NULL,5,6,'open',1764,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1771,'2B1BC70F18084704B9ABE1157C6B315B','411525','固始县','固始县',NULL,NULL,5,7,'open',1764,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1772,'06F3A4E47A8341FB82C936A7A2DB5E09','411526','潢川县','潢川县',NULL,NULL,5,8,'open',1764,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1773,'80A6E03083444D2497B10B655C6B1CE0','411527','淮滨县','淮滨县',NULL,NULL,5,9,'open',1764,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2134,7 +2134,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1779,'A0107E61BE854FD0827C086943DD4108','411622','西华县','西华县',NULL,NULL,5,4,'open',1775,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1780,'6C72697CFD4E49DB85C64E801A254735','411623','商水县','商水县',NULL,NULL,5,5,'open',1775,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1781,'90FB8D9E9B8D4FF5B54EFFC16EBB3A16','411624','沈丘县','沈丘县',NULL,NULL,5,6,'open',1775,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1782,'455E0115B8F242E3A17A1FFB5F0D4A64','411625','郸城县','郸城县',NULL,NULL,5,7,'open',1775,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1783,'CFB37D2C6C724AD9AE9CD9E37BADD181','411627','太康县','太康县',NULL,NULL,5,8,'open',1775,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2146,7 +2146,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1789,'05826FA44C4540E18D26735996C89046','411722','上蔡县','上蔡县',NULL,NULL,5,3,'open',1786,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1790,'5929B7084F0D4823A7A987D2C358F61C','411723','平舆县','平舆县',NULL,NULL,5,4,'open',1786,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1791,'953D0556C8DD471AADFFCBBD6246E037','411724','正阳县','正阳县',NULL,NULL,5,5,'open',1786,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1792,'ABD547D9D93F41D392C49542AE70994E','411725','确山县','确山县',NULL,NULL,5,6,'open',1786,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1793,'22779478F7ED49F490074206E28498FC','411726','泌阳县','泌阳县',NULL,NULL,5,7,'open',1786,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2158,7 +2158,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1799,'C07102C735EE4451A9C0FFF0BDB6E37B','420100','武汉市','武汉市',NULL,NULL,4,1,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1800,'2282E2795007486196978F3E74689958','420102','江岸区','江岸区',NULL,NULL,5,1,'open',1799,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1801,'D271EA2820F94F54A110BEE90B76C95E','420103','江汉区','江汉区',NULL,NULL,5,2,'open',1799,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1802,'88CDEF5E2D08483B9318FD99D11FFAE9','420104','硚口区','硚口区',NULL,NULL,5,3,'open',1799,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1803,'3B2FAEA849794589BED3D8832F09410A','420105','汉阳区','汉阳区',NULL,NULL,5,4,'open',1799,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2170,7 +2170,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1809,'748D0D93F7FF4D25AD129A908F632F4F','420114','蔡甸区','蔡甸区',NULL,NULL,5,10,'open',1799,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1810,'9154D97A1A97449F97C41CD64BBC854C','420115','江夏区','江夏区',NULL,NULL,5,11,'open',1799,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1811,'404AC30A5500469DAB61FE816895BBD7','420116','黄陂区','黄陂区',NULL,NULL,5,12,'open',1799,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1812,'4473C4A07C3346628A7B4A9E77AAF909','420117','新洲区','新洲区',NULL,NULL,5,13,'open',1799,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1813,'52AABD904B4A477E949C5A255FE5D381','420200','黄石市','黄石市',NULL,NULL,4,2,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2182,7 +2182,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1819,'2A48F62EE29B486589998B96BD741079','420281','大冶市','大冶市',NULL,NULL,5,6,'open',1813,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1820,'70B0829D0BAE48B4AEF3E66F7A29A28C','420300','十堰市','十堰市',NULL,NULL,4,3,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1821,'DD59CF89364647E4AE08E1977470C7A3','420302','茅箭区','茅箭区',NULL,NULL,5,1,'open',1820,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1822,'E3C2512C0FB247C5A446619094C021DB','420303','张湾区','张湾区',NULL,NULL,5,2,'open',1820,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1823,'B0DAA632D3764578AB420787B2E4ABAD','420304','郧阳区','郧阳区',NULL,NULL,5,3,'open',1820,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2194,7 +2194,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1829,'7DED6376AFBF4F719D5C99A3025CED0D','420500','宜昌市','宜昌市',NULL,NULL,4,4,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1830,'ED338C4216704C8C98909EA7D7314313','420502','西陵区','西陵区',NULL,NULL,5,1,'open',1829,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1831,'2842A18764E643398E64097E76544548','420503','伍家岗区','伍家岗区',NULL,NULL,5,2,'open',1829,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1832,'D1EF37C486C844BFAE60749F20A1E54E','420504','点军区','点军区',NULL,NULL,5,3,'open',1829,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1833,'97785B6698144219A28819FEAFAEF594','420505','猇亭区','猇亭区',NULL,NULL,5,4,'open',1829,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2206,7 +2206,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1839,'DA640C22E9CE46BB86BDBC5488DC2311','420529','五峰土家族自治县','五峰土家族自治县',NULL,NULL,5,10,'open',1829,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1840,'A50E2857C2E04C96BA9ACB69E50698F6','420581','宜都市','宜都市',NULL,NULL,5,11,'open',1829,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1841,'4BB1A75EBD3849A28E24A6CB32DCB999','420582','当阳市','当阳市',NULL,NULL,5,12,'open',1829,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1842,'4D9A25739B96488CA84352ACB8AD121D','420583','枝江市','枝江市',NULL,NULL,5,13,'open',1829,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1843,'DA682EF36C8549BFB92D81375B2EF315','420600','襄阳市','襄阳市',NULL,NULL,4,5,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2218,7 +2218,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1849,'A15D8BAE94684BC18867726439E292BA','420626','保康县','保康县',NULL,NULL,5,6,'open',1843,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1850,'F67E97EC146342EC905FC32272A80D5B','420682','老河口市','老河口市',NULL,NULL,5,7,'open',1843,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1851,'7932C191766946A6BCC77F58F386E36B','420683','枣阳市','枣阳市',NULL,NULL,5,8,'open',1843,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1852,'47369DA530654B8AB9037D47B83E2631','420684','宜城市','宜城市',NULL,NULL,5,9,'open',1843,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1853,'E1BD0CAB04C842B5A3BDE182ED93A18B','420700','鄂州市','鄂州市',NULL,NULL,4,6,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2230,7 +2230,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1859,'1B526BEDFE474EBA94934467D86CF691','420804','掇刀区','掇刀区',NULL,NULL,5,2,'open',1857,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1860,'75A61AC8D24942D89523A2C37AF9A32C','420822','沙洋县','沙洋县',NULL,NULL,5,3,'open',1857,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1861,'AC40F857C9CE41C99C2A6C98380E5D80','420881','钟祥市','钟祥市',NULL,NULL,5,4,'open',1857,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1862,'2495EE14ED1B44A49A3EB20CAD72A49E','420882','京山市','京山市',NULL,NULL,5,5,'open',1857,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1863,'428DE8A999934D38BB75DD99AD238796','420900','孝感市','孝感市',NULL,NULL,4,8,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2242,7 +2242,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1869,'FEC5B6F98F084C749792DFAEAAD075E6','420982','安陆市','安陆市',NULL,NULL,5,6,'open',1863,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1870,'322A6FD537C0451D934705F17730F865','420984','汉川市','汉川市',NULL,NULL,5,7,'open',1863,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1871,'CDB317548A90429BB4D45CDEF2ED01E5','421000','荆州市','荆州市',NULL,NULL,4,9,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1872,'47E05AA3DE334A088E19CEE765EE8F3D','421002','沙市区','沙市区',NULL,NULL,5,1,'open',1871,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1873,'7E6AD089767548E889B0C80CC1CF0075','421003','荆州区','荆州区',NULL,NULL,5,2,'open',1871,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2254,7 +2254,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1879,'291C1CD19F404922B1B6387B4FC54AD5','421087','松滋市','松滋市',NULL,NULL,5,8,'open',1871,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1880,'344FE01A09F24042AF7DBAF426AA1AAE','421100','黄冈市','黄冈市',NULL,NULL,4,10,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1881,'4D9FEBD66C184D4AB59ECCA2E38A6C12','421102','黄州区','黄州区',NULL,NULL,5,1,'open',1880,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1882,'604EF72B577B475D900D66F277576603','421121','团风县','团风县',NULL,NULL,5,2,'open',1880,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1883,'E36A71DA80064FC9B7A4CC0FCEDE8F24','421122','红安县','红安县',NULL,NULL,5,3,'open',1880,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2266,7 +2266,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1889,'4C597B5CB2F040C58B1813DF99EFA442','421181','麻城市','麻城市',NULL,NULL,5,9,'open',1880,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1890,'96B01CFB666049CFAFA0ADAE956E54ED','421182','武穴市','武穴市',NULL,NULL,5,10,'open',1880,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1891,'5E48CF1820C54A3CA00E9C50BB376D73','421200','咸宁市','咸宁市',NULL,NULL,4,11,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1892,'138DD9140DBC48978E64FCAA59B7DA96','421202','咸安区','咸安区',NULL,NULL,5,1,'open',1891,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1893,'90D45966228E43ACBD11A6010648A1B4','421221','嘉鱼县','嘉鱼县',NULL,NULL,5,2,'open',1891,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2278,7 +2278,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1899,'C546CC4C5BA348229296E37E36F08A0A','421303','曾都区','曾都区',NULL,NULL,5,1,'open',1898,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1900,'933E7F9B711346C1B3D3952AB4EC790B','421321','随县','随县',NULL,NULL,5,2,'open',1898,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1901,'020676F7F3BF484EAF758235C06D0C2F','421381','广水市','广水市',NULL,NULL,5,3,'open',1898,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1902,'3024FFBD3F4545709D180606A8A123F5','422800','恩施土家族苗族自治州','恩施土家族苗族自治州',NULL,NULL,4,13,'closed',1798,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1903,'D58F4D8BA17C4F6A9B66E1F31AC63D08','422801','恩施市','恩施市',NULL,NULL,5,1,'open',1902,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2290,7 +2290,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1909,'C347316A614A461DB7B1880DD4294595','422827','来凤县','来凤县',NULL,NULL,5,7,'open',1902,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1910,'016D811A4E294DF5A3E52E222B5194D9','422828','鹤峰县','鹤峰县',NULL,NULL,5,8,'open',1902,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1911,'0ED579C4B22448CCB61AC9A27085785E','429004','仙桃市','仙桃市',NULL,NULL,4,14,'open',1798,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1912,'3B3923D9E08240F0ADBEEA183F0EFA05','429005','潜江市','潜江市',NULL,NULL,4,15,'open',1798,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1913,'9BBEAA7A399B4E1195447700DFB94C4E','429006','天门市','天门市',NULL,NULL,4,16,'open',1798,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2302,7 +2302,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1919,'FFC8B9BC9E204E78BC0E3DB4A6F6AFAC','430104','岳麓区','岳麓区',NULL,NULL,5,3,'open',1916,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1920,'9CE38A35DA3D4E46B723C455F1EB6CDC','430105','开福区','开福区',NULL,NULL,5,4,'open',1916,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1921,'D17D67665D474EEDA738CA60E0242734','430111','雨花区','雨花区',NULL,NULL,5,5,'open',1916,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1922,'97F4AEF255734F6E88C734F19651BAB6','430112','望城区','望城区',NULL,NULL,5,6,'open',1916,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1923,'0923345E12D7465CA5574641352AC925','430121','长沙县','长沙县',NULL,NULL,5,7,'open',1916,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2314,7 +2314,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1929,'901499C5DDFD4D53ABC36B792294CB58','430204','石峰区','石峰区',NULL,NULL,5,3,'open',1926,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1930,'7C4F6A93D5A84AEBBC6C75219E06C938','430211','天元区','天元区',NULL,NULL,5,4,'open',1926,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1931,'5B887ACF33A84B62B35C03683F25B80A','430212','渌口区','渌口区',NULL,NULL,5,5,'open',1926,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1932,'546284A50FBF4DB99B4B31BA31B47277','430223','攸县','攸县',NULL,NULL,5,6,'open',1926,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1933,'00CEEAC10868496E8867F9710D8B2C3F','430224','茶陵县','茶陵县',NULL,NULL,5,7,'open',1926,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2326,7 +2326,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1939,'01B69F352DEC48BF906FA562209A9443','430321','湘潭县','湘潭县',NULL,NULL,5,3,'open',1936,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1940,'EC18DC2514194EA3BDC8E42D14713158','430381','湘乡市','湘乡市',NULL,NULL,5,4,'open',1936,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1941,'41A36691D29C43349228CA7823C0C42A','430382','韶山市','韶山市',NULL,NULL,5,5,'open',1936,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1942,'9C4978819FC0414FAC7F32A8B61DBC1E','430400','衡阳市','衡阳市',NULL,NULL,4,4,'closed',1915,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1943,'03536DC9F1824BD987CD9F521689C084','430405','珠晖区','珠晖区',NULL,NULL,5,1,'open',1942,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2338,7 +2338,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1949,'792513A0F8934E25AB1C2F9C71C1B7A5','430422','衡南县','衡南县',NULL,NULL,5,7,'open',1942,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1950,'2842ED3478D34DE3BA3C490FE7C23E55','430423','衡山县','衡山县',NULL,NULL,5,8,'open',1942,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1951,'7994B74DB53A4AE3BF6A351A9CAC75FB','430424','衡东县','衡东县',NULL,NULL,5,9,'open',1942,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1952,'55441B10C2524EC392C6F00C7CE3DFD9','430426','祁东县','祁东县',NULL,NULL,5,10,'open',1942,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1953,'F6048F9736434433AFBCF1E27A97D6B1','430481','耒阳市','耒阳市',NULL,NULL,5,11,'open',1942,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2350,7 +2350,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1959,'F7B5F363475B4C7AA2D26DBE4A060353','430522','新邵县','新邵县',NULL,NULL,5,4,'open',1955,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1960,'F6F46BEE13EA4F3C995B3A265ACC302F','430523','邵阳县','邵阳县',NULL,NULL,5,5,'open',1955,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1961,'ED56C63ED3CB400498808F478B49DE89','430524','隆回县','隆回县',NULL,NULL,5,6,'open',1955,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1962,'C2F83A76000E4C05BD9925DA5DAEB241','430525','洞口县','洞口县',NULL,NULL,5,7,'open',1955,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1963,'7F5A814F47FB4DA2A1F425B7F514CD4D','430527','绥宁县','绥宁县',NULL,NULL,5,8,'open',1955,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2362,7 +2362,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1969,'A5A869A549294DA0BC7251B3493CE923','430602','岳阳楼区','岳阳楼区',NULL,NULL,5,1,'open',1968,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1970,'E5F0D03A72374AB585BEED79737DA586','430603','云溪区','云溪区',NULL,NULL,5,2,'open',1968,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1971,'F15258719263461D82BE44152F0F1C29','430611','君山区','君山区',NULL,NULL,5,3,'open',1968,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1972,'E09C916CEE74454591B7431E5527C8D8','430621','岳阳县','岳阳县',NULL,NULL,5,4,'open',1968,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1973,'3AAA49C46B3D4975B7F0394DB551D6F2','430623','华容县','华容县',NULL,NULL,5,5,'open',1968,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2374,7 +2374,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1979,'098172E4F4D74F0FAE790BC7E1DDAF94','430702','武陵区','武陵区',NULL,NULL,5,1,'open',1978,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1980,'168E60C274C24D93898FC2122EFB22EC','430703','鼎城区','鼎城区',NULL,NULL,5,2,'open',1978,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1981,'18B77F3DD1824D9DBD1641CC4F1EEB69','430721','安乡县','安乡县',NULL,NULL,5,3,'open',1978,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1982,'DBE412CA64D546E58A86AEF455EDD3DC','430722','汉寿县','汉寿县',NULL,NULL,5,4,'open',1978,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1983,'EF5319E3B0FF483080E0BC02520B46B7','430723','澧县','澧县',NULL,NULL,5,5,'open',1978,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2386,7 +2386,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1989,'C840DD467FA643FB96512EF729785B20','430802','永定区','永定区',NULL,NULL,5,1,'open',1988,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1990,'3B0B388FF84443CF8E7A6E6D443CBE8D','430811','武陵源区','武陵源区',NULL,NULL,5,2,'open',1988,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (1991,'0C514CFEC09F4185B1FF36C853FCAD8E','430821','慈利县','慈利县',NULL,NULL,5,3,'open',1988,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1992,'C9AD93C01E704770A4B555942F9B92A2','430822','桑植县','桑植县',NULL,NULL,5,4,'open',1988,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(1993,'60CF77740F7E4361BD159486AF0D2F9D','430900','益阳市','益阳市',NULL,NULL,4,9,'closed',1915,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2398,7 +2398,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(1999,'E327EE002F9A492BBCBA6A2DFD85BDEF','430981','沅江市','沅江市',NULL,NULL,5,6,'open',1993,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2000,'21957AC483754C6789D19C887817E3FF','431000','郴州市','郴州市',NULL,NULL,4,10,'closed',1915,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2001,'56AA2EDC4F9F4B74AFCE6AF0E8E1988E','431002','北湖区','北湖区',NULL,NULL,5,1,'open',2000,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2002,'F0161BF7F06C4611BBAD6E9AE2326954','431003','苏仙区','苏仙区',NULL,NULL,5,2,'open',2000,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2003,'EE163A6B6C8A4D38A0187FA7A2CBCDB8','431021','桂阳县','桂阳县',NULL,NULL,5,3,'open',2000,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2410,7 +2410,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2009,'9B580D0C6EEA424695152E1A3B323EC3','431027','桂东县','桂东县',NULL,NULL,5,9,'open',2000,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2010,'FF7AD62A9C834D3788CFC37249B014D4','431028','安仁县','安仁县',NULL,NULL,5,10,'open',2000,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2011,'9BD0CB8ED30D458D87844B9948052EC2','431081','资兴市','资兴市',NULL,NULL,5,11,'open',2000,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2012,'742F05D60BFD4B389F28BEFBEC9018EE','431100','永州市','永州市',NULL,NULL,4,11,'closed',1915,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2013,'3C4C2A4D2FB34015B08571212783185D','431102','零陵区','零陵区',NULL,NULL,5,1,'open',2012,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2422,7 +2422,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2019,'5494AEEF728747118A60F6698E163084','431125','江永县','江永县',NULL,NULL,5,7,'open',2012,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2020,'44217C702D1141768F531F5703D0346D','431126','宁远县','宁远县',NULL,NULL,5,8,'open',2012,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2021,'F4C9D86E2C1B45B4989ED014B4D8F23F','431127','蓝山县','蓝山县',NULL,NULL,5,9,'open',2012,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2022,'CD9A4F863FA54F44AB6737CF584803D6','431128','新田县','新田县',NULL,NULL,5,10,'open',2012,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2023,'6084D5C4C23743139DAADBE72C81968D','431129','江华瑶族自治县','江华瑶族自治县',NULL,NULL,5,11,'open',2012,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2434,7 +2434,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2029,'F942D52525914FD8A124122C66C814F9','431224','溆浦县','溆浦县',NULL,NULL,5,5,'open',2024,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2030,'B89724D2D2674CE99AA81DA11ED29477','431225','会同县','会同县',NULL,NULL,5,6,'open',2024,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2031,'2E61E14C7EE44648AD4A1AD26A18F373','431226','麻阳苗族自治县','麻阳苗族自治县',NULL,NULL,5,7,'open',2024,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2032,'920D16A2B83D416EA113A6A44654E839','431227','新晃侗族自治县','新晃侗族自治县',NULL,NULL,5,8,'open',2024,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2033,'73C24F88965444B7B3B815914E5B38D6','431228','芷江侗族自治县','芷江侗族自治县',NULL,NULL,5,9,'open',2024,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2446,7 +2446,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2039,'75DC13A151BC470B81B3CEFD6E6B3343','431321','双峰县','双峰县',NULL,NULL,5,2,'open',2037,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2040,'BF9360DF9B1A4E9E841974D650C30DC5','431322','新化县','新化县',NULL,NULL,5,3,'open',2037,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2041,'AE1D00C41CD74E048F8F329A2E4C3D79','431381','冷水江市','冷水江市',NULL,NULL,5,4,'open',2037,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2042,'1E538BD0EE884B62AD888C3C5B336937','431382','涟源市','涟源市',NULL,NULL,5,5,'open',2037,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2043,'00DE2EA9661541A794CAD282F3D9A0A6','433100','湘西土家族苗族自治州','湘西土家族苗族自治州',NULL,NULL,4,14,'closed',1915,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2458,7 +2458,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2049,'66DB164C671144C5846D12191D71981A','433126','古丈县','古丈县',NULL,NULL,5,6,'open',2043,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2050,'C826A43EB809467E9D5E0149BCBC5259','433127','永顺县','永顺县',NULL,NULL,5,7,'open',2043,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2051,'9ADA4D7D42244A9CAD12079FA7FE32FF','433130','龙山县','龙山县',NULL,NULL,5,8,'open',2043,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2052,'BDEF9C151B6E40E59A08D98210E55C2E','440000','广东省','广东','粤',NULL,3,19,'closed',130,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2053,'57E51E9BE0D64E30972CD19979AC6273','440100','广州市','广州市',NULL,NULL,4,1,'closed',2052,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2470,7 +2470,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2059,'22D692D45A3C44E4A084218216329964','440112','黄埔区','黄埔区',NULL,NULL,5,6,'open',2053,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2060,'D9C0C16D1BCC4E2CB9FDF324D6607A4D','440113','番禺区','番禺区',NULL,NULL,5,7,'open',2053,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2061,'DB775AAF44724299867DEE64DA205CBD','440114','花都区','花都区',NULL,NULL,5,8,'open',2053,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2062,'B76BF23E339B402793F3B02F9D87ECD5','440115','南沙区','南沙区',NULL,NULL,5,9,'open',2053,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2063,'5FA8FB4F59244E7F90A30CB053702342','440117','从化区','从化区',NULL,NULL,5,10,'open',2053,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2482,7 +2482,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2069,'7E726B1B1B22478A8D7D0675FB0F354B','440222','始兴县','始兴县',NULL,NULL,5,4,'open',2065,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2070,'CCD92B861080484483645A9198E5366B','440224','仁化县','仁化县',NULL,NULL,5,5,'open',2065,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2071,'A859B19645394BC6A165DCF336348E55','440229','翁源县','翁源县',NULL,NULL,5,6,'open',2065,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2072,'120AFC600F044397BBCA0E0A9E79BA04','440232','乳源瑶族自治县','乳源瑶族自治县',NULL,NULL,5,7,'open',2065,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2073,'BE3756050A994A5D83F957FD3CE7647C','440233','新丰县','新丰县',NULL,NULL,5,8,'open',2065,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2494,7 +2494,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2079,'CAB2DC3D495B42ACBF8E8C807E596957','440305','南山区','南山区',NULL,NULL,5,3,'open',2076,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2080,'0C2EF4E3D3D1404E9EBBD0AA22A5CA5E','440306','宝安区','宝安区',NULL,NULL,5,4,'open',2076,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2081,'158DE31C806949B6AD7DE05D8783D2F5','440307','龙岗区','龙岗区',NULL,NULL,5,5,'open',2076,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2082,'15C8F75B620B4AD7BC5535CC7C27040A','440308','盐田区','盐田区',NULL,NULL,5,6,'open',2076,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2083,'20FCED1BD8874EA491CB7190CAD4BC4D','440309','龙华区','龙华区',NULL,NULL,5,7,'open',2076,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2506,7 +2506,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2089,'128EF355F97646F38DFD80029ED53EB9','440404','金湾区','金湾区',NULL,NULL,5,3,'open',2086,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2090,'4C79C7BF872C4509920F4817F9124317','440500','汕头市','汕头市',NULL,NULL,4,5,'closed',2052,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2091,'6B1DC37DDA1A4394B8FB21BDB3014069','440507','龙湖区','龙湖区',NULL,NULL,5,1,'open',2090,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2092,'8DBE8C365FA74A41A5B9DCB58F199C46','440511','金平区','金平区',NULL,NULL,5,2,'open',2090,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2093,'4B6C732632334C7CB4525DE6E753FF02','440512','濠江区','濠江区',NULL,NULL,5,3,'open',2090,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2518,7 +2518,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2099,'F5C4231DDBE843B3B1B3D3288DAD8E9F','440604','禅城区','禅城区',NULL,NULL,5,1,'open',2098,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2100,'277DCED855804A1296A6B7D72B3E681F','440605','南海区','南海区',NULL,NULL,5,2,'open',2098,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2101,'7857B5FDC3F548AB8E98DE677400BB11','440606','顺德区','顺德区',NULL,NULL,5,3,'open',2098,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2102,'5A21272AEE834A278E0757F2EEA30E18','440607','三水区','三水区',NULL,NULL,5,4,'open',2098,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2103,'BBB169839CF2475BB41CCFFF1A0B04E0','440608','高明区','高明区',NULL,NULL,5,5,'open',2098,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2530,7 +2530,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2109,'D64DCC7D53C2478C9F883E6DE6736F8B','440783','开平市','开平市',NULL,NULL,5,5,'open',2104,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2110,'0EF3E986926F45CE94B83BB95868AD64','440784','鹤山市','鹤山市',NULL,NULL,5,6,'open',2104,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2111,'16CE4907751D4DB4BB18E4E3501C3B2C','440785','恩平市','恩平市',NULL,NULL,5,7,'open',2104,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2112,'060A8B1909E74C7589F1F67C35B8AC8A','440800','湛江市','湛江市',NULL,NULL,4,8,'closed',2052,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2113,'E87D70618C7F47FD97EF5F6BF612BC47','440802','赤坎区','赤坎区',NULL,NULL,5,1,'open',2112,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2542,7 +2542,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2119,'96F4F0292B594DABA5746475D5B89EA2','440881','廉江市','廉江市',NULL,NULL,5,7,'open',2112,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2120,'412C45BA1F6B445B838E2D296EF2B9B3','440882','雷州市','雷州市',NULL,NULL,5,8,'open',2112,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2121,'835A887187AA44148BB14710EF9D1DC8','440883','吴川市','吴川市',NULL,NULL,5,9,'open',2112,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2122,'47907613D5274A908A1B8B21883E3B2C','440900','茂名市','茂名市',NULL,NULL,4,9,'closed',2052,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2123,'343C5EE5FDD3440DBF49350EBED69607','440902','茂南区','茂南区',NULL,NULL,5,1,'open',2122,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2554,7 +2554,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2129,'045B53FB6E7147C0B2170D668445241C','441202','端州区','端州区',NULL,NULL,5,1,'open',2128,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2130,'B02A57A6205B46DD84A7B8E9DB940068','441203','鼎湖区','鼎湖区',NULL,NULL,5,2,'open',2128,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2131,'F88FD22FCF1A452FB7657054E5DF29F0','441204','高要区','高要区',NULL,NULL,5,3,'open',2128,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2132,'0C612814A9B54F80A89E9FA306B888A1','441223','广宁县','广宁县',NULL,NULL,5,4,'open',2128,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2133,'3B3D148C04B04C11AE734EC1627EE8E2','441224','怀集县','怀集县',NULL,NULL,5,5,'open',2128,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2566,7 +2566,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2139,'F1696686B2794797A3530592CD62A32D','441303','惠阳区','惠阳区',NULL,NULL,5,2,'open',2137,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2140,'4D3288E0885B46A1B8D593494C0F966D','441322','博罗县','博罗县',NULL,NULL,5,3,'open',2137,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2141,'FD3D1C85DB7C4A9899BDC04B215C6DF7','441323','惠东县','惠东县',NULL,NULL,5,4,'open',2137,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2142,'06F5E6B33E5D4F6CBF3A6B2C1F8F7C76','441324','龙门县','龙门县',NULL,NULL,5,5,'open',2137,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2143,'93689AF8A15044C380C78AEB11CCCA89','441400','梅州市','梅州市',NULL,NULL,4,12,'closed',2052,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2578,7 +2578,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2149,'D6F392FA13594526A9B7A22BF8D7B6E6','441426','平远县','平远县',NULL,NULL,5,6,'open',2143,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2150,'39365F047CB648B49090A77E6114723E','441427','蕉岭县','蕉岭县',NULL,NULL,5,7,'open',2143,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2151,'9844400F444042F0B216CB414FCCF90F','441481','兴宁市','兴宁市',NULL,NULL,5,8,'open',2143,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2152,'7FBC8C0312C146E7B7E8EC76DB408B8C','441500','汕尾市','汕尾市',NULL,NULL,4,13,'closed',2052,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2153,'483349BB63794E698C77D7B666C083C4','441502','城区','城区',NULL,NULL,5,1,'open',2152,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2590,7 +2590,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2159,'2FF36AE72F4B4EFE9D54FC5ECBE2C314','441621','紫金县','紫金县',NULL,NULL,5,2,'open',2157,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2160,'D28F33ACF2844423BC474D6415A6E688','441622','龙川县','龙川县',NULL,NULL,5,3,'open',2157,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2161,'9EFF887225B848EBA1CFABD9CF8E8AA5','441623','连平县','连平县',NULL,NULL,5,4,'open',2157,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2162,'33B29F341FEB4E3B9BEB31251BB89AFD','441624','和平县','和平县',NULL,NULL,5,5,'open',2157,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2163,'9FBDCDBA2E854725A39BC2310A782DAA','441625','东源县','东源县',NULL,NULL,5,6,'open',2157,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2602,7 +2602,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2169,'3570FF9B4C274EDFA9F1315D14CFDDD8','441800','清远市','清远市',NULL,NULL,4,16,'closed',2052,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2170,'6864FC0C62CE457686920E5C914FF340','441802','清城区','清城区',NULL,NULL,5,1,'open',2169,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2171,'7897F4FA65D440FAA22FBAE963F4A82A','441803','清新区','清新区',NULL,NULL,5,2,'open',2169,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2172,'23D3B2DCBB6E4AD5BBE260112669292E','441821','佛冈县','佛冈县',NULL,NULL,5,3,'open',2169,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2173,'D77C52F8ECC743D38384D020281B71FD','441823','阳山县','阳山县',NULL,NULL,5,4,'open',2169,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2614,7 +2614,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2179,'BDC6698944E6414C86AA1FBCF3B44D19','442000','中山市','中山市',NULL,NULL,4,18,'open',2052,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2180,'C21BEBF1664C49D6A5855E98DE0A9824','445100','潮州市','潮州市',NULL,NULL,4,19,'closed',2052,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2181,'2D224A11280A4F6695060051F839DDB3','445102','湘桥区','湘桥区',NULL,NULL,5,1,'open',2180,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2182,'BAFB8229F45D474CA5E2364FC054A704','445103','潮安区','潮安区',NULL,NULL,5,2,'open',2180,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2183,'7C75E0AE97684A50845EA9F3AE331EDB','445122','饶平县','饶平县',NULL,NULL,5,3,'open',2180,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2626,7 +2626,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2189,'F732F9750F1A4DA499E1EB76B3077ECE','445281','普宁市','普宁市',NULL,NULL,5,5,'open',2184,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2190,'C501C84628F14E0E8FC84B6AF76787B6','445300','云浮市','云浮市',NULL,NULL,4,21,'closed',2052,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2191,'C80DD4ED7A8949D4A9455A5485E402DC','445302','云城区','云城区',NULL,NULL,5,1,'open',2190,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2192,'D173A286189D40818B9433E7080EB92B','445303','云安区','云安区',NULL,NULL,5,2,'open',2190,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2193,'285262D4E0E546E9A38948C821E5D45C','445321','新兴县','新兴县',NULL,NULL,5,3,'open',2190,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2638,7 +2638,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2199,'BE2503DA1B0649649910A3322D609B84','450103','青秀区','青秀区',NULL,NULL,5,2,'open',2197,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2200,'F2FF00FCEB914DA9ACE91D833445F74F','450105','江南区','江南区',NULL,NULL,5,3,'open',2197,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2201,'19FBA870E2EF442FB5807D170B318582','450107','西乡塘区','西乡塘区',NULL,NULL,5,4,'open',2197,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2202,'388A4ADC4AA04EB7AA112DAF4C7ED190','450108','良庆区','良庆区',NULL,NULL,5,5,'open',2197,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2203,'D53E4699A4EA42399932CB76E3F21008','450109','邕宁区','邕宁区',NULL,NULL,5,6,'open',2197,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2650,7 +2650,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2209,'AEF26F87C9F04072B64C34551465A2BD','450127','横县','横县',NULL,NULL,5,12,'open',2197,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2210,'D73A2457DF68477FA7DB9B9849C146A3','450200','柳州市','柳州市',NULL,NULL,4,2,'closed',2196,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2211,'551289D8A7CB4DA688700D744AE0F265','450202','城中区','城中区',NULL,NULL,5,1,'open',2210,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2212,'44D545C1EB41415FA9480E649DA9E05B','450203','鱼峰区','鱼峰区',NULL,NULL,5,2,'open',2210,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2213,'24C6A9E5AB3A49D1B7CA71A120FB0F7F','450204','柳南区','柳南区',NULL,NULL,5,3,'open',2210,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2662,7 +2662,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2219,'9E5F960E85C749CEAC0CDCA1D7B68DDF','450225','融水苗族自治县','融水苗族自治县',NULL,NULL,5,9,'open',2210,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2220,'B570B4D7260B45B38E64DF590BD2A1B2','450226','三江侗族自治县','三江侗族自治县',NULL,NULL,5,10,'open',2210,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2221,'91750CD7922B4B14BD72DEEFEB45AA9F','450300','桂林市','桂林市',NULL,NULL,4,3,'closed',2196,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2222,'D75B2E3E4ED4490F9BCD5695511FBC67','450302','秀峰区','秀峰区',NULL,NULL,5,1,'open',2221,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2223,'652FFCC412084EFBB28266564BD7018F','450303','叠彩区','叠彩区',NULL,NULL,5,2,'open',2221,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2674,7 +2674,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2229,'BBC4859BA8D747ABB16C8A7CBA21312F','450323','灵川县','灵川县',NULL,NULL,5,8,'open',2221,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2230,'7E4D9F0088B94E4DB6D4078B4E4206FB','450324','全州县','全州县',NULL,NULL,5,9,'open',2221,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2231,'FC13B056489D4FCEA3604B309392F4E4','450325','兴安县','兴安县',NULL,NULL,5,10,'open',2221,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2232,'B21907F125CF48E783F1FA0EE860933A','450326','永福县','永福县',NULL,NULL,5,11,'open',2221,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2233,'23ACA94300D340E991C816278941C97D','450327','灌阳县','灌阳县',NULL,NULL,5,12,'open',2221,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2686,7 +2686,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2239,'DF54D8578F9940C8ACFB17C22E563B7E','450400','梧州市','梧州市',NULL,NULL,4,4,'closed',2196,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2240,'0FDC2C3D40DB413A989A06E590ADC8B7','450403','万秀区','万秀区',NULL,NULL,5,1,'open',2239,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2241,'64BFA4C7C8B34F26BAAD4FDF061B0388','450405','长洲区','长洲区',NULL,NULL,5,2,'open',2239,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2242,'173239BA57B34197A8CA8B701815C5B0','450406','龙圩区','龙圩区',NULL,NULL,5,3,'open',2239,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2243,'9D8C886F6D984DF5A98774846706D3FE','450421','苍梧县','苍梧县',NULL,NULL,5,4,'open',2239,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2698,7 +2698,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2249,'2A04800A50FD40C8905C82652D47B9AF','450503','银海区','银海区',NULL,NULL,5,2,'open',2247,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2250,'C0A7A1B820134E22B41BD0D87D496FB3','450512','铁山港区','铁山港区',NULL,NULL,5,3,'open',2247,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2251,'FFF7BEB9B3844A23898B7F272F2C47B7','450521','合浦县','合浦县',NULL,NULL,5,4,'open',2247,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2252,'A4226FD8ABFB4103BB61BBC9506290A4','450600','防城港市','防城港市',NULL,NULL,4,6,'closed',2196,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2253,'42184DCF212D431FBEC1049681A478EE','450602','港口区','港口区',NULL,NULL,5,1,'open',2252,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2710,7 +2710,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2259,'EA3EEE5050CC4600A4412ABE2FEDC41B','450703','钦北区','钦北区',NULL,NULL,5,2,'open',2257,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2260,'5551EC2ECC514BF3A9C884588A029319','450721','灵山县','灵山县',NULL,NULL,5,3,'open',2257,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2261,'C8D8FCADF6E74EDE9844876D36202BD5','450722','浦北县','浦北县',NULL,NULL,5,4,'open',2257,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2262,'8E20B9C5EA324C818B3DCAC0EADB36F1','450800','贵港市','贵港市',NULL,NULL,4,8,'closed',2196,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2263,'64BFFD3AF5564979B6E81547F16E2B5C','450802','港北区','港北区',NULL,NULL,5,1,'open',2262,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2722,7 +2722,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2269,'5B693C4559794051A0C9CA06A71AD233','450902','玉州区','玉州区',NULL,NULL,5,1,'open',2268,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2270,'F4258D49665245268FD63B45C023D462','450903','福绵区','福绵区',NULL,NULL,5,2,'open',2268,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2271,'0B06744219AF4EA9855F8E3DDA44576E','450921','容县','容县',NULL,NULL,5,3,'open',2268,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2272,'12D2510E022848FBB14760DCEFEC44B8','450922','陆川县','陆川县',NULL,NULL,5,4,'open',2268,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2273,'CC993FF099FE4848895C5FBE60086103','450923','博白县','博白县',NULL,NULL,5,5,'open',2268,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2734,7 +2734,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2279,'6F7B1DB768204A589238C2918747ACCE','451022','田东县','田东县',NULL,NULL,5,3,'open',2276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2280,'11326AB695C842679599C4EC0DE6E607','451024','德保县','德保县',NULL,NULL,5,4,'open',2276,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2281,'CA8E2469AF834781A518DBAA2F7BAD20','451026','那坡县','那坡县',NULL,NULL,5,5,'open',2276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2282,'F720BE7DAF42498C94134277E44EAAF4','451027','凌云县','凌云县',NULL,NULL,5,6,'open',2276,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2283,'1B881DC8EE244854821DAB41ADA9B36B','451028','乐业县','乐业县',NULL,NULL,5,7,'open',2276,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2746,7 +2746,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2289,'259F19F0D07E43E3AC9E62E6257B5367','451100','贺州市','贺州市',NULL,NULL,4,11,'closed',2196,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2290,'55DA8006280E4F33982A396F0078EAF5','451102','八步区','八步区',NULL,NULL,5,1,'open',2289,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2291,'C4A0C51C17F8444AB8C5F7CAC0ED5406','451103','平桂区','平桂区',NULL,NULL,5,2,'open',2289,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2292,'83FA918E168241349F106FB684A25727','451121','昭平县','昭平县',NULL,NULL,5,3,'open',2289,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2293,'0277197696FD4FD380FCD74F1B51C982','451122','钟山县','钟山县',NULL,NULL,5,4,'open',2289,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2758,7 +2758,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2299,'903D34C7D8F44328894590D6D12AAEAF','451222','天峨县','天峨县',NULL,NULL,5,4,'open',2295,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2300,'8952797CCE934CFCBA84EF61ACDE9320','451223','凤山县','凤山县',NULL,NULL,5,5,'open',2295,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2301,'C254EE8621E548F48BB23A619B086AEA','451224','东兰县','东兰县',NULL,NULL,5,6,'open',2295,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2302,'394054FA28294E7791B4E0F91C0DE317','451225','罗城仫佬族自治县','罗城仫佬族自治县',NULL,NULL,5,7,'open',2295,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2303,'A5075073BD0B456CB338C224CF8F3CA3','451226','环江毛南族自治县','环江毛南族自治县',NULL,NULL,5,8,'open',2295,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2770,7 +2770,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2309,'58ADFEFBF9CF4F9B92CF23196F7E161B','451321','忻城县','忻城县',NULL,NULL,5,2,'open',2307,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2310,'DB482EBAAC1A41CD8A06113692E3EA79','451322','象州县','象州县',NULL,NULL,5,3,'open',2307,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2311,'7EED1D413A7C41E7A59A6DFC25076859','451323','武宣县','武宣县',NULL,NULL,5,4,'open',2307,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2312,'A6F9F058E72C4E95BAEB6A4EF279EFE7','451324','金秀瑶族自治县','金秀瑶族自治县',NULL,NULL,5,5,'open',2307,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2313,'C03519C728A642A8BBF90DB2AD211E69','451381','合山市','合山市',NULL,NULL,5,6,'open',2307,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2782,7 +2782,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2319,'452E9FE2137242839425CC931AD01072','451424','大新县','大新县',NULL,NULL,5,5,'open',2314,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2320,'C3FA157061F542FB82EF5FC37013BAB2','451425','天等县','天等县',NULL,NULL,5,6,'open',2314,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2321,'BC016BDA8D6545E88F10DF79BA69B2AC','451481','凭祥市','凭祥市',NULL,NULL,5,7,'open',2314,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2322,'7F4A8ED2A008422F885A64D74DB11B4A','460000','海南省','海南','琼',NULL,3,21,'closed',130,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2323,'4A06650377F446BA87AADA4CCDDF1E6E','460100','海口市','海口市',NULL,NULL,4,1,'closed',2322,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2794,7 +2794,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2329,'B321587AC87C42C5B6FC2B3A5566007E','460202','海棠区','海棠区',NULL,NULL,5,1,'open',2328,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2330,'1BB88154F870458DAADDF3B87BA5DA91','460203','吉阳区','吉阳区',NULL,NULL,5,2,'open',2328,'2023-01-07 17:39:25',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2331,'9117BF93250A4190BC48B202137B94BC','460204','天涯区','天涯区',NULL,NULL,5,3,'open',2328,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2332,'F67AC32C56384F00BE003F0DDBBD0F55','460205','崖州区','崖州区',NULL,NULL,5,4,'open',2328,'2023-01-07 17:39:25',NULL,0,NULL)
 ,(2333,'BF05708FCE674EF5AFEEDFFC02695961','460300','三沙市☆','三沙市☆',NULL,NULL,4,3,'open',2322,'2023-01-07 17:39:25',NULL,0,NULL)
@@ -2806,7 +2806,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2339,'BA450EFF4848494F9F98DC352AD9EADA','469007','东方市','东方市',NULL,NULL,4,9,'open',2322,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2340,'1BAC460500234DC086E305C830E2EC81','469021','定安县','定安县',NULL,NULL,4,10,'open',2322,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2341,'299181902DA349618FBBE4CFC6490210','469022','屯昌县','屯昌县',NULL,NULL,4,11,'open',2322,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2342,'888636E9237F4ABC976001F820388FEF','469023','澄迈县','澄迈县',NULL,NULL,4,12,'open',2322,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2343,'182D45C42DAD4359979273B6ECEFE544','469024','临高县','临高县',NULL,NULL,4,13,'open',2322,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2818,7 +2818,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2349,'286DDA17C9014EBC9B22E1F214B2CD1D','469030','琼中黎族苗族自治县','琼中黎族苗族自治县',NULL,NULL,4,19,'open',2322,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2350,'428554422F414E3AA4C12FA1C819BCE6','500000','重庆市','重庆','渝',NULL,3,22,'closed',130,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2351,'70A0EA3B64124718A15EE26006C9AA7E','500101','万州区','万州区',NULL,NULL,4,1,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2352,'B036B791F70B4585B70DBE3663167436','500102','涪陵区','涪陵区',NULL,NULL,4,2,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2353,'437482A201DA496999622F3BF8205B0A','500103','渝中区','渝中区',NULL,NULL,4,3,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2830,7 +2830,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2359,'08698405C4414A5BB5B7CBE4B101047A','500109','北碚区','北碚区',NULL,NULL,4,9,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2360,'8723DA931D51470D8106A496DB18E319','500110','綦江区','綦江区',NULL,NULL,4,10,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2361,'97219E31BB814CAE9AA6E9788DF6B904','500111','大足区','大足区',NULL,NULL,4,11,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2362,'2381311DE7AC42DCA8F89C56A7439D1F','500112','渝北区','渝北区',NULL,NULL,4,12,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2363,'68BF44CDE2AD461981A5667E910A870C','500113','巴南区','巴南区',NULL,NULL,4,13,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2842,7 +2842,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2369,'49A413663D644AFBAE647817B6E9C0B4','500119','南川区','南川区',NULL,NULL,4,19,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2370,'0C11642F2099420B98F57CE7A2811BF5','500120','璧山区','璧山区',NULL,NULL,4,20,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2371,'6C5F302F02424045BC52688C95E95918','500151','铜梁区','铜梁区',NULL,NULL,4,21,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2372,'8FBC76316F044CD691F86DAF89BA74A9','500152','潼南区','潼南区',NULL,NULL,4,22,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2373,'0E5D79336D8D4C7AAF1517B53C8D77FA','500153','荣昌区','荣昌区',NULL,NULL,4,23,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2854,7 +2854,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2379,'0E40677D67324351B6BF705277027C99','500231','垫江县','垫江县',NULL,NULL,4,29,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2380,'B232C91626D244ED92EF2BF87FC70B83','500233','忠县','忠县',NULL,NULL,4,30,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2381,'F434A5A40DAE47C2BAC3A9F1D7A026A1','500235','云阳县','云阳县',NULL,NULL,4,31,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2382,'43D135A42E114895AD1F5C743C5A6A3A','500236','奉节县','奉节县',NULL,NULL,4,32,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2383,'16AD64578A254457A024269F9B237982','500237','巫山县','巫山县',NULL,NULL,4,33,'open',2350,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2866,7 +2866,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2389,'DB9CEAD1056348BA800DEBA58A373691','510000','四川省','四川','川、蜀',NULL,3,23,'closed',130,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2390,'368D9A47B005409BA8E76F5DD81CB655','510100','成都市','成都市',NULL,NULL,4,1,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2391,'9385E532B1CE4F73AFD18827784ED3AE','510104','锦江区','锦江区',NULL,NULL,5,1,'open',2390,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2392,'EEE0CA50548E4153B99BC52C594F9B78','510105','青羊区','青羊区',NULL,NULL,5,2,'open',2390,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2393,'CE22060B295F4184856E1998B3A58DCB','510106','金牛区','金牛区',NULL,NULL,5,3,'open',2390,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2878,7 +2878,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2399,'75D558A29D7640CA80DA6734B8C62D37','510115','温江区','温江区',NULL,NULL,5,9,'open',2390,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2400,'05DBD582C4E04F4FBA1A94C34075D139','510116','双流区','双流区',NULL,NULL,5,10,'open',2390,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2401,'158B274B1B9E44C3B1D26CEF775F2A32','510117','郫都区','郫都区',NULL,NULL,5,11,'open',2390,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2402,'D54A7E33A6AD488589CAA53CFF6AF88C','510121','金堂县','金堂县',NULL,NULL,5,12,'open',2390,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2403,'101646A2C76C4E37BDFF7BA0C4EAEEFF','510129','大邑县','大邑县',NULL,NULL,5,13,'open',2390,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2890,7 +2890,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2409,'7DA136A6694D4067BB1B8D2F579B035C','510184','崇州市','崇州市',NULL,NULL,5,19,'open',2390,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2410,'0B280D2AB99449B8B1F5A6B1F1C777B9','510185','简阳市','简阳市',NULL,NULL,5,20,'open',2390,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2411,'1083CE264B1241308677E9D85B561B41','510300','自贡市','自贡市',NULL,NULL,4,2,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2412,'906212FB80D647CF9411A664012E407A','510302','自流井区','自流井区',NULL,NULL,5,1,'open',2411,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2413,'6E0A02927DC64AEE92E419E6E210FA99','510303','贡井区','贡井区',NULL,NULL,5,2,'open',2411,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2902,7 +2902,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2419,'BDF993A396834A018623C9B34AEC2B95','510402','东区','东区',NULL,NULL,5,1,'open',2418,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2420,'694A90A070AF4735BCE9849E839DBE94','510403','西区','西区',NULL,NULL,5,2,'open',2418,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2421,'5A834861353D4B999C141A0098390F0A','510411','仁和区','仁和区',NULL,NULL,5,3,'open',2418,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2422,'DB463F0122FB4460B441B34FE9BD56D3','510421','米易县','米易县',NULL,NULL,5,4,'open',2418,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2423,'A40EE0D542F64D018DE683AA4A04F780','510422','盐边县','盐边县',NULL,NULL,5,5,'open',2418,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2914,7 +2914,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2429,'CC8E8E1FD38D47B8825EFBA54BCD7B22','510522','合江县','合江县',NULL,NULL,5,5,'open',2424,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2430,'D87F1A3E4DA74A13872590015D4EFE71','510524','叙永县','叙永县',NULL,NULL,5,6,'open',2424,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2431,'294EBD51976F4A2DA7DF76223DA58B07','510525','古蔺县','古蔺县',NULL,NULL,5,7,'open',2424,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2432,'895D7CB9E5074706AA286488EFEBBAD4','510600','德阳市','德阳市',NULL,NULL,4,5,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2433,'C92894A5323C4B56A5CC444EC320C4B6','510603','旌阳区','旌阳区',NULL,NULL,5,1,'open',2432,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2926,7 +2926,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2439,'11A74CD33C4A47DD87FC243570B5E753','510700','绵阳市','绵阳市',NULL,NULL,4,6,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2440,'57F57DA2F3184F25A22A94C847FFB4C2','510703','涪城区','涪城区',NULL,NULL,5,1,'open',2439,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2441,'1996361A29D541FF9D072FB1F3F2266D','510704','游仙区','游仙区',NULL,NULL,5,2,'open',2439,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2442,'4370560E93AB4D1FA434101E379BA30F','510705','安州区','安州区',NULL,NULL,5,3,'open',2439,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2443,'2C0D8463528544CB987F398F69E2013D','510722','三台县','三台县',NULL,NULL,5,4,'open',2439,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2938,7 +2938,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2449,'058359AD00C040B1AD681A4B8A096A9D','510800','广元市','广元市',NULL,NULL,4,7,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2450,'B0E6B3CEE85D4B71AD95300AE262ADA8','510802','利州区','利州区',NULL,NULL,5,1,'open',2449,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2451,'C00821DDF9F24364A7C2B15DA04B42FD','510811','昭化区','昭化区',NULL,NULL,5,2,'open',2449,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2452,'F6FC1B12D91F4B0E8ED913DC98CF41CD','510812','朝天区','朝天区',NULL,NULL,5,3,'open',2449,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2453,'978DD93B1CF64177809D573F332A5318','510821','旺苍县','旺苍县',NULL,NULL,5,4,'open',2449,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2950,7 +2950,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2459,'C93EDE6801E3437A81BE32FA25408ED5','510904','安居区','安居区',NULL,NULL,5,2,'open',2457,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2460,'597BC204DF334A4EAEC9E640CB833ECD','510921','蓬溪县','蓬溪县',NULL,NULL,5,3,'open',2457,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2461,'36CE88B6BD8F474F91980D36A14B21F7','510923','大英县','大英县',NULL,NULL,5,4,'open',2457,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2462,'6D4E2A4B4A734848BDABF258EAAF60E1','510981','射洪市','射洪市',NULL,NULL,5,5,'open',2457,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2463,'019D63873F904A85A82A6BC2E3467928','511000','内江市','内江市',NULL,NULL,4,9,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2962,7 +2962,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2469,'1C914E24376A4AAD92F015516CE46725','511100','乐山市','乐山市',NULL,NULL,4,10,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2470,'D830A391C2BD4D9B8E08FDB393BB9B29','511102','市中区','市中区',NULL,NULL,5,1,'open',2469,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2471,'6F51D64BF3E44BB49A24C231CFB8F887','511111','沙湾区','沙湾区',NULL,NULL,5,2,'open',2469,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2472,'BEC547585634416789B3BBF7EBB9C463','511112','五通桥区','五通桥区',NULL,NULL,5,3,'open',2469,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2473,'E1205A07B62F4CE89BE045705E92994B','511113','金口河区','金口河区',NULL,NULL,5,4,'open',2469,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2974,7 +2974,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2479,'7253715CA887486989F52BE3F755559F','511133','马边彝族自治县','马边彝族自治县',NULL,NULL,5,10,'open',2469,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2480,'99FBE4CC33354220ACF81D1317A7DCDC','511181','峨眉山市','峨眉山市',NULL,NULL,5,11,'open',2469,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2481,'D6703E4E7F5A41DDA94CB34F75980E66','511300','南充市','南充市',NULL,NULL,4,11,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2482,'884AB2FA04A640EA9BC810DD9A44C65D','511302','顺庆区','顺庆区',NULL,NULL,5,1,'open',2481,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2483,'D821EF06AFD24C5F91BD9568289E06EB','511303','高坪区','高坪区',NULL,NULL,5,2,'open',2481,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2986,7 +2986,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2489,'0989F519050A4E4BA41CCB2DE56F7240','511325','西充县','西充县',NULL,NULL,5,8,'open',2481,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2490,'D705C449A0F5416C9A50B896C16B5BF7','511381','阆中市','阆中市',NULL,NULL,5,9,'open',2481,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2491,'2BFD0C1FD5784BC18E41232F7332489E','511400','眉山市','眉山市',NULL,NULL,4,12,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2492,'8CA952C5BA394B4F8386AEA2B66EB692','511402','东坡区','东坡区',NULL,NULL,5,1,'open',2491,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2493,'F276017CD76C45FDB00110AA641AB344','511403','彭山区','彭山区',NULL,NULL,5,2,'open',2491,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -2998,7 +2998,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2499,'5F9EAA3B15D042E0ADDA549DDAE5863B','511502','翠屏区','翠屏区',NULL,NULL,5,1,'open',2498,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2500,'3D3FCD25961D4A6496C31E6362B43B0C','511503','南溪区','南溪区',NULL,NULL,5,2,'open',2498,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2501,'7B30B858BD0D4F398FB3D39E5B01FDC5','511504','叙州区','叙州区',NULL,NULL,5,3,'open',2498,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2502,'E6862BFA796D466B8F960324E9BE8835','511523','江安县','江安县',NULL,NULL,5,4,'open',2498,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2503,'8966A0D1919545D59F7867C42D947271','511524','长宁县','长宁县',NULL,NULL,5,5,'open',2498,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3010,7 +3010,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2509,'8FCB844D8A8C4B2688AB5D88143C33AD','511600','广安市','广安市',NULL,NULL,4,14,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2510,'20649838720C47F3A3B42DFF4CB571FE','511602','广安区','广安区',NULL,NULL,5,1,'open',2509,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2511,'3614CED634BD4B81855CABEEF4CCB6A4','511603','前锋区','前锋区',NULL,NULL,5,2,'open',2509,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2512,'0EA1603E6851412C951F7B68F8DBD1D6','511621','岳池县','岳池县',NULL,NULL,5,3,'open',2509,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2513,'3D1A27F56F7843D685E380ABA3CFC1B5','511622','武胜县','武胜县',NULL,NULL,5,4,'open',2509,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3022,7 +3022,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2519,'CBC815D186484E28B71C0EF475509341','511722','宣汉县','宣汉县',NULL,NULL,5,3,'open',2516,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2520,'FD5BF5A063D948DEBC7540D685B5E92E','511723','开江县','开江县',NULL,NULL,5,4,'open',2516,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2521,'33BA532F280B4141BEBF696024359911','511724','大竹县','大竹县',NULL,NULL,5,5,'open',2516,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2522,'70309A3DDC5D452EABC24E67E9182E7D','511725','渠县','渠县',NULL,NULL,5,6,'open',2516,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2523,'F13EF790CCC24BF2BF68416403515CCA','511781','万源市','万源市',NULL,NULL,5,7,'open',2516,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3034,7 +3034,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2529,'9025AE81D1204401B6DFA27D9D7C10E2','511824','石棉县','石棉县',NULL,NULL,5,5,'open',2524,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2530,'CCA77F24D7F341BA9D5123E1BF87F593','511825','天全县','天全县',NULL,NULL,5,6,'open',2524,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2531,'8E656592327143F4ACB86C13D60DFBD3','511826','芦山县','芦山县',NULL,NULL,5,7,'open',2524,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2532,'9702B0D70C8448839C165C48E8447B80','511827','宝兴县','宝兴县',NULL,NULL,5,8,'open',2524,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2533,'A6D387B336F24A25B2B38497EC89C440','511900','巴中市','巴中市',NULL,NULL,4,17,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3046,7 +3046,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2539,'558C97172775460D927F26E73CC1DAC6','512000','资阳市','资阳市',NULL,NULL,4,18,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2540,'C48015B7CB8B46F8AD630C9BBA84BFB2','512002','雁江区','雁江区',NULL,NULL,5,1,'open',2539,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2541,'F931F5673B274E5B96AAF28A2611DD52','512021','安岳县','安岳县',NULL,NULL,5,2,'open',2539,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2542,'B80F73D824BE46CD8C3FC9F931CE03A5','512022','乐至县','乐至县',NULL,NULL,5,3,'open',2539,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2543,'061C9D8AC2374880881312A23341892D','513200','阿坝藏族羌族自治州','阿坝藏族羌族自治州',NULL,NULL,4,19,'closed',2389,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3058,7 +3058,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2549,'39CE85B7C8D14D6B8DB3EC70162C2521','513225','九寨沟县','九寨沟县',NULL,NULL,5,6,'open',2543,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2550,'1B782677DB2C47769AC311E53D293851','513226','金川县','金川县',NULL,NULL,5,7,'open',2543,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2551,'CFD861BE36A94DFB847BD3A016C61DDF','513227','小金县','小金县',NULL,NULL,5,8,'open',2543,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2552,'DA375AA209A0440D974F35FDDA3B86AE','513228','黑水县','黑水县',NULL,NULL,5,9,'open',2543,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2553,'29967DEDC27B4049ACC6DFF75DA7E771','513230','壤塘县','壤塘县',NULL,NULL,5,10,'open',2543,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3070,7 +3070,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2559,'D39804F520CE4BADABE0FF940706CE8A','513322','泸定县','泸定县',NULL,NULL,5,2,'open',2557,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2560,'67807686F7C64FE4B799EDD07715B931','513323','丹巴县','丹巴县',NULL,NULL,5,3,'open',2557,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2561,'1FCD555C307840888FCCB98318E96FCE','513324','九龙县','九龙县',NULL,NULL,5,4,'open',2557,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2562,'831DF1B4B7AD4965B98B4756492CE35B','513325','雅江县','雅江县',NULL,NULL,5,5,'open',2557,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2563,'D6CFBDEE6A4D46B9980132DA4CC444C9','513326','道孚县','道孚县',NULL,NULL,5,6,'open',2557,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3082,7 +3082,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2569,'494EAD3E008A4716A78A612948704195','513332','石渠县','石渠县',NULL,NULL,5,12,'open',2557,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2570,'27CD3003748B4F7D938CCD6200D1085F','513333','色达县','色达县',NULL,NULL,5,13,'open',2557,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2571,'EC14B736EED840F7B10D318F1D8634BD','513334','理塘县','理塘县',NULL,NULL,5,14,'open',2557,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2572,'F98EA29FDA3D4A06BE47A19ACD76031B','513335','巴塘县','巴塘县',NULL,NULL,5,15,'open',2557,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2573,'E6C151DBEA0D485FA9525DBF875F2722','513336','乡城县','乡城县',NULL,NULL,5,16,'open',2557,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3094,7 +3094,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2579,'7051E79D0E47412BB5A1DF3942F81367','513423','盐源县','盐源县',NULL,NULL,5,3,'open',2576,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2580,'406D0B0B97164133B0157AC75935B38D','513424','德昌县','德昌县',NULL,NULL,5,4,'open',2576,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2581,'DD73047FE5DA4606A73B0D2086F5654A','513425','会理县','会理县',NULL,NULL,5,5,'open',2576,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2582,'266D946DDDE2489A9083BBA788ECEB06','513426','会东县','会东县',NULL,NULL,5,6,'open',2576,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2583,'8A83F294F6C24514B60DD1A01A2112D1','513427','宁南县','宁南县',NULL,NULL,5,7,'open',2576,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3106,7 +3106,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2589,'9D8BCBD73A85403C8D6F5D17F7B64C85','513433','冕宁县','冕宁县',NULL,NULL,5,13,'open',2576,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2590,'B127702DBB1A4F9DA99B6301EE76B23A','513434','越西县','越西县',NULL,NULL,5,14,'open',2576,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2591,'FDAC1DADD8A149559719A6EC6CCB6505','513435','甘洛县','甘洛县',NULL,NULL,5,15,'open',2576,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2592,'2152C4D746DC443381CA3D3E7A3DD979','513436','美姑县','美姑县',NULL,NULL,5,16,'open',2576,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2593,'41D54F23B6284708A715FA2149853D31','513437','雷波县','雷波县',NULL,NULL,5,17,'open',2576,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3118,7 +3118,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2599,'094A22FEB6BA474DA76C6BFF29A3EC20','520112','乌当区','乌当区',NULL,NULL,5,4,'open',2595,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2600,'48B65E45560D42CDA7EAE385C947B291','520113','白云区','白云区',NULL,NULL,5,5,'open',2595,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2601,'28AAC1CB8B7940F59FE862B34203F84C','520115','观山湖区','观山湖区',NULL,NULL,5,6,'open',2595,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2602,'2627BB1710014456A9F86FDD7A49155A','520121','开阳县','开阳县',NULL,NULL,5,7,'open',2595,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2603,'0E4A16F864EC4EA4BEFB60B34D27BC3F','520122','息烽县','息烽县',NULL,NULL,5,8,'open',2595,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3130,7 +3130,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2609,'E136C3B5B090453A855129BC492EC17D','520221','水城县','水城县',NULL,NULL,5,3,'open',2606,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2610,'E97699265E44450594ACCBD3180C7FB0','520281','盘州市','盘州市',NULL,NULL,5,4,'open',2606,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2611,'74AD311A18B841B5966708CA4D4025DA','520300','遵义市','遵义市',NULL,NULL,4,3,'closed',2594,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2612,'AA55F316493A4B4EB6E17786EDD9F0CB','520302','红花岗区','红花岗区',NULL,NULL,5,1,'open',2611,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2613,'F8DF144FF0254A298314637D4DBD6F1C','520303','汇川区','汇川区',NULL,NULL,5,2,'open',2611,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3142,7 +3142,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2619,'AFF3EE08E6674C19B8A0BA5C1609FC96','520326','务川仡佬族苗族自治县','务川仡佬族苗族自治县',NULL,NULL,5,8,'open',2611,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2620,'AB3F451CB3384047921EF013DE75B4BD','520327','凤冈县','凤冈县',NULL,NULL,5,9,'open',2611,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2621,'D3478E12D84542BF8B9FC4F3F594802A','520328','湄潭县','湄潭县',NULL,NULL,5,10,'open',2611,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2622,'3FDE3940B5484B1787CA89AC8D5D9B8C','520329','余庆县','余庆县',NULL,NULL,5,11,'open',2611,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2623,'3F6C3BA1161D45E98E78B7748CA0299F','520330','习水县','习水县',NULL,NULL,5,12,'open',2611,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3154,7 +3154,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2629,'83C0A617FA73476FA34345A7917B9519','520422','普定县','普定县',NULL,NULL,5,3,'open',2626,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2630,'978603B529AA4A13A6236C3951E887C0','520423','镇宁布依族苗族自治县','镇宁布依族苗族自治县',NULL,NULL,5,4,'open',2626,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2631,'880978F113704B6F93F00908EF12B102','520424','关岭布依族苗族自治县','关岭布依族苗族自治县',NULL,NULL,5,5,'open',2626,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2632,'227073486FF34BF089A5131F0F3A884F','520425','紫云苗族布依族自治县','紫云苗族布依族自治县',NULL,NULL,5,6,'open',2626,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2633,'3507E70E8D624DEDAF711DF2437F65A2','520500','毕节市','毕节市',NULL,NULL,4,5,'closed',2594,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3166,7 +3166,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2639,'5EF60ABBA2034EA7899BF766D66CAA1D','520525','纳雍县','纳雍县',NULL,NULL,5,6,'open',2633,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2640,'DA71514A39E7486A9A348411CAD29551','520526','威宁彝族回族苗族自治县','威宁彝族回族苗族自治县',NULL,NULL,5,7,'open',2633,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2641,'59FF9A0ADCD441C498EA99480D38B9DB','520527','赫章县','赫章县',NULL,NULL,5,8,'open',2633,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2642,'86E20A54BF5D4CC38DC85FE88734CBD8','520600','铜仁市','铜仁市',NULL,NULL,4,6,'closed',2594,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2643,'EF4456D5CB884A5BA0EF4C744A326DCD','520602','碧江区','碧江区',NULL,NULL,5,1,'open',2642,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3178,7 +3178,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2649,'7F8617D62B094494B4B580064530566B','520625','印江土家族苗族自治县','印江土家族苗族自治县',NULL,NULL,5,7,'open',2642,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2650,'E2D2235DE03545D883027F49A19D57DA','520626','德江县','德江县',NULL,NULL,5,8,'open',2642,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2651,'805D82E50D3B4AECA6E9250E6BFF8847','520627','沿河土家族自治县','沿河土家族自治县',NULL,NULL,5,9,'open',2642,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2652,'353BD0BC520A47BBB093F3620391AD9E','520628','松桃苗族自治县','松桃苗族自治县',NULL,NULL,5,10,'open',2642,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2653,'88B7D7D824DC4C6EBE1738EE0BBC8D7B','522300','黔西南布依族苗族自治州','黔西南布依族苗族自治州',NULL,NULL,4,7,'closed',2594,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3190,7 +3190,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2659,'C50FD10C1CD446DDA9DCE8696DAFA43D','522326','望谟县','望谟县',NULL,NULL,5,6,'open',2653,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2660,'F429CF1F21804D8097463652A2137F07','522327','册亨县','册亨县',NULL,NULL,5,7,'open',2653,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2661,'022F298268524D71849B35B1F16BBE0D','522328','安龙县','安龙县',NULL,NULL,5,8,'open',2653,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2662,'4B984257865D4A1BBDCD73D8DE3DB04C','522600','黔东南苗族侗族自治州','黔东南苗族侗族自治州',NULL,NULL,4,8,'closed',2594,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2663,'EBBBC0EBF8874ECBBA0E2CDF211D5E85','522601','凯里市','凯里市',NULL,NULL,5,1,'open',2662,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3202,7 +3202,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2669,'F9DD6B240C2B4AA19C06A85DB0E00ACE','522627','天柱县','天柱县',NULL,NULL,5,7,'open',2662,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2670,'9C483983AB7A4E4B93E1A874B0D19F0D','522628','锦屏县','锦屏县',NULL,NULL,5,8,'open',2662,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2671,'4D48369656CF47EF98FADD46EEC70C27','522629','剑河县','剑河县',NULL,NULL,5,9,'open',2662,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2672,'2BC8974507CB4BC8A1B4ED0A60C8261D','522630','台江县','台江县',NULL,NULL,5,10,'open',2662,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2673,'9B307FAC71CA4F3095C8C3A7F38BA0AD','522631','黎平县','黎平县',NULL,NULL,5,11,'open',2662,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3214,7 +3214,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2679,'AFD23C0139B1474D8AB740D25E4CAE45','522700','黔南布依族苗族自治州','黔南布依族苗族自治州',NULL,NULL,4,9,'closed',2594,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2680,'3D8F2C83C7C9471BAB5643D87FFE16E1','522701','都匀市','都匀市',NULL,NULL,5,1,'open',2679,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2681,'5A0B276EE5634030B6D076FA35230C10','522702','福泉市','福泉市',NULL,NULL,5,2,'open',2679,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2682,'F80FA3C797FA455A8424D20B9637414A','522722','荔波县','荔波县',NULL,NULL,5,3,'open',2679,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2683,'991168503FE14E50AA5EBB50D75288CF','522723','贵定县','贵定县',NULL,NULL,5,4,'open',2679,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3226,7 +3226,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2689,'334B9B0F938247558D7C0B5C4E71F0BC','522730','龙里县','龙里县',NULL,NULL,5,10,'open',2679,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2690,'DE67579ED14543C297B6D508FDF7C1DD','522731','惠水县','惠水县',NULL,NULL,5,11,'open',2679,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2691,'9C3FB65C7CE54F97BA8C2417AA00B0AA','522732','三都水族自治县','三都水族自治县',NULL,NULL,5,12,'open',2679,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2692,'EB03886BC46B4BE49BC2B7C43F7D2425','530000','云南省','云南','滇、云',NULL,3,25,'closed',130,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2693,'5948928E834B4611B893FD93608C8333','530100','昆明市','昆明市',NULL,NULL,4,1,'closed',2692,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3238,7 +3238,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2699,'E7BD010B91334686A3516FAAE32E23C6','530114','呈贡区','呈贡区',NULL,NULL,5,6,'open',2693,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2700,'0F74D279D24B4ECD9913FA17C3E17D2F','530115','晋宁区','晋宁区',NULL,NULL,5,7,'open',2693,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2701,'85641006B153487A8D863B92B3185612','530124','富民县','富民县',NULL,NULL,5,8,'open',2693,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2702,'C0132C0B472A439EA3CA664589B886A3','530125','宜良县','宜良县',NULL,NULL,5,9,'open',2693,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2703,'A18992B0C4A44A81A6526C1F81C016EF','530126','石林彝族自治县','石林彝族自治县',NULL,NULL,5,10,'open',2693,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3250,7 +3250,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2709,'793D0446D96D4653A37838017971DCD2','530302','麒麟区','麒麟区',NULL,NULL,5,1,'open',2708,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2710,'648273A1285C41A38822CF284CE5E8C3','530303','沾益区','沾益区',NULL,NULL,5,2,'open',2708,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2711,'91E159DD484B4F7AAAF54794A8A9FB84','530304','马龙区','马龙区',NULL,NULL,5,3,'open',2708,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2712,'9B90C8853FE341F88BACDBBEF53731E8','530322','陆良县','陆良县',NULL,NULL,5,4,'open',2708,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2713,'C19C59903A29427E8FABD1AE97A4EE28','530323','师宗县','师宗县',NULL,NULL,5,5,'open',2708,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3262,7 +3262,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2719,'BCDE804B6C4E474E9434DDEB297C3AAD','530402','红塔区','红塔区',NULL,NULL,5,1,'open',2718,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2720,'EFF5CC03FBA1474687850EA80ADF8119','530403','江川区','江川区',NULL,NULL,5,2,'open',2718,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2721,'0246D6863910434BA55EF0938C8EB264','530423','通海县','通海县',NULL,NULL,5,3,'open',2718,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2722,'87E3D7B4E34B4FA39C77D104673D1A06','530424','华宁县','华宁县',NULL,NULL,5,4,'open',2718,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2723,'8950906F43C0403DB711D4AC340C30DC','530425','易门县','易门县',NULL,NULL,5,5,'open',2718,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3274,7 +3274,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2729,'20A6AA3E1595490EA36C453044357ECA','530502','隆阳区','隆阳区',NULL,NULL,5,1,'open',2728,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2730,'099EA96E79EA4235ACD4939EEC012878','530521','施甸县','施甸县',NULL,NULL,5,2,'open',2728,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2731,'E8FD568030484DAFBE676B28EA63BAE1','530523','龙陵县','龙陵县',NULL,NULL,5,3,'open',2728,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2732,'CA9FCF37E3A841B08A3A00202C81823A','530524','昌宁县','昌宁县',NULL,NULL,5,4,'open',2728,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2733,'C2D0AD3CF47E4E6BAF8E36122983A24F','530581','腾冲市','腾冲市',NULL,NULL,5,5,'open',2728,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3286,7 +3286,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2739,'CA89115B2CCE4269BBE4DD1A82CFC13E','530624','大关县','大关县',NULL,NULL,5,5,'open',2734,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2740,'8892D00133304031A95F77A40A622E21','530625','永善县','永善县',NULL,NULL,5,6,'open',2734,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2741,'CAFAF1522A56481D94727A6DF70280D7','530626','绥江县','绥江县',NULL,NULL,5,7,'open',2734,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2742,'989082E9D2F34EBFA1AC8E567A999FF3','530627','镇雄县','镇雄县',NULL,NULL,5,8,'open',2734,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2743,'88A393C2DF5A4817AFB0B1027ABFBC7D','530628','彝良县','彝良县',NULL,NULL,5,9,'open',2734,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3298,7 +3298,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2749,'C94181C7CA9A411691A6472B739FCE0A','530722','永胜县','永胜县',NULL,NULL,5,3,'open',2746,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2750,'542EB40758F5401BAA8DB7B598ECF447','530723','华坪县','华坪县',NULL,NULL,5,4,'open',2746,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2751,'A403E248A28649A7850FD227901C4C26','530724','宁蒗彝族自治县','宁蒗彝族自治县',NULL,NULL,5,5,'open',2746,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2752,'1C0A21B776474F3E8689F5FB7003F010','530800','普洱市','普洱市',NULL,NULL,4,7,'closed',2692,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2753,'3035900E74F346EBB44E92C3715DC5BA','530802','思茅区','思茅区',NULL,NULL,5,1,'open',2752,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3310,7 +3310,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2759,'717F251443B24ED98EF73772BBCAAE33','530826','江城哈尼族彝族自治县','江城哈尼族彝族自治县',NULL,NULL,5,7,'open',2752,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2760,'766BC08084BF4D458983802FAF9E1499','530827','孟连傣族拉祜族佤族自治县','孟连傣族拉祜族佤族自治县',NULL,NULL,5,8,'open',2752,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2761,'1293AD8DE3EE473CA2B25CA4C423EE97','530828','澜沧拉祜族自治县','澜沧拉祜族自治县',NULL,NULL,5,9,'open',2752,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2762,'5B167B8AC1D64696894CF36F5F1A2E25','530829','西盟佤族自治县','西盟佤族自治县',NULL,NULL,5,10,'open',2752,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2763,'88E27BB8992B4A3CBA99BAAA44558803','530900','临沧市','临沧市',NULL,NULL,4,8,'closed',2692,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3322,7 +3322,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2769,'18A71CBBE3024A62A0D27C45D865CA10','530925','双江拉祜族佤族布朗族傣族自治县','双江拉祜族佤族布朗族傣族自治县',NULL,NULL,5,6,'open',2763,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2770,'C2CAFB8738904C3B8866F854C96C0A38','530926','耿马傣族佤族自治县','耿马傣族佤族自治县',NULL,NULL,5,7,'open',2763,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2771,'6B9D98501F77453A8AA6D09F0CD2181C','530927','沧源佤族自治县','沧源佤族自治县',NULL,NULL,5,8,'open',2763,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2772,'FD4BC3BE2DF04103BE4506D69D88A4C4','532300','楚雄彝族自治州','楚雄彝族自治州',NULL,NULL,4,9,'closed',2692,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2773,'F175801A964D4FA0AC622777B554311C','532301','楚雄市','楚雄市',NULL,NULL,5,1,'open',2772,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3334,7 +3334,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2779,'DAB767D8AC064E7A907D464FED5A13C7','532327','永仁县','永仁县',NULL,NULL,5,7,'open',2772,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2780,'E4315CB6DC654ED2A4B6901E15E13AE2','532328','元谋县','元谋县',NULL,NULL,5,8,'open',2772,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2781,'19D2A646B0BD4A54A582B8A9282CBE2A','532329','武定县','武定县',NULL,NULL,5,9,'open',2772,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2782,'AEA9517CF3A74B72AE87E7218E755D38','532331','禄丰县','禄丰县',NULL,NULL,5,10,'open',2772,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2783,'2818F17BD7C34DE8B883E9ACCEDB4646','532500','红河哈尼族彝族自治州','红河哈尼族彝族自治州',NULL,NULL,4,10,'closed',2692,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3346,7 +3346,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2789,'7969B422851142FC82BA035A1B0B8C5C','532524','建水县','建水县',NULL,NULL,5,6,'open',2783,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2790,'787D59E5D2834135AC85E3DAD9594690','532525','石屏县','石屏县',NULL,NULL,5,7,'open',2783,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2791,'047BD81AB9B540E7833C049300FE8C90','532527','泸西县','泸西县',NULL,NULL,5,8,'open',2783,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2792,'BB83BAA672474679A9B79D881012D16C','532528','元阳县','元阳县',NULL,NULL,5,9,'open',2783,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2793,'3ED73C7CCAA64726AE6694AA386DEC0C','532529','红河县','红河县',NULL,NULL,5,10,'open',2783,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3358,7 +3358,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2799,'E091E4E0C2184A61B4CEF99A3FF30779','532622','砚山县','砚山县',NULL,NULL,5,2,'open',2797,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2800,'6DCF2BCBDC4541FDB9A254D4FE1B1CDB','532623','西畴县','西畴县',NULL,NULL,5,3,'open',2797,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2801,'6DD9C3559EC04B5DA53F8EF6A3FAEF34','532624','麻栗坡县','麻栗坡县',NULL,NULL,5,4,'open',2797,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2802,'3C740D2294074085A2F5C9871B05101D','532625','马关县','马关县',NULL,NULL,5,5,'open',2797,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2803,'F39131F4B67D4E0CA84059EB08907DE6','532626','丘北县','丘北县',NULL,NULL,5,6,'open',2797,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3370,7 +3370,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2809,'32C4BE3B389C4C9F9A7D26BFB78EAFD3','532823','勐腊县','勐腊县',NULL,NULL,5,3,'open',2806,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2810,'4EE45A6AAB6F4D7490451D1D88FA8648','532900','大理白族自治州','大理白族自治州',NULL,NULL,4,13,'closed',2692,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2811,'497424D9AAF84C7BB572B62F160D1A6A','532901','大理市','大理市',NULL,NULL,5,1,'open',2810,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2812,'498C77BBB6E54450AC982F0AB0A2DD64','532922','漾濞彝族自治县','漾濞彝族自治县',NULL,NULL,5,2,'open',2810,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2813,'67947AF05DB143F8B2F161107E2F2D22','532923','祥云县','祥云县',NULL,NULL,5,3,'open',2810,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3382,7 +3382,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2819,'CE91C27EB233487E960F3DE80176306D','532929','云龙县','云龙县',NULL,NULL,5,9,'open',2810,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2820,'CD945175CA6647708C25AAEA52795176','532930','洱源县','洱源县',NULL,NULL,5,10,'open',2810,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2821,'00B4AF781A2D4DD7AF558FD6F065A5E7','532931','剑川县','剑川县',NULL,NULL,5,11,'open',2810,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2822,'57954EAA532340DA91F819AFE4674D23','532932','鹤庆县','鹤庆县',NULL,NULL,5,12,'open',2810,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2823,'146B94AB21AF4D7B9EA3E777AB0A9D29','533100','德宏傣族景颇族自治州','德宏傣族景颇族自治州',NULL,NULL,4,14,'closed',2692,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3394,7 +3394,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2829,'96BB1F3D0D30402A88B30E14AF2B1130','533300','怒江傈僳族自治州','怒江傈僳族自治州',NULL,NULL,4,15,'closed',2692,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2830,'EB37235124314696B9629BA8B553C1E7','533301','泸水市','泸水市',NULL,NULL,5,1,'open',2829,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2831,'A74F897318BE423A8C6602BB6DCE6BE0','533323','福贡县','福贡县',NULL,NULL,5,2,'open',2829,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2832,'AEFFCF603B164C8E892E6684D2F2FFF9','533324','贡山独龙族怒族自治县','贡山独龙族怒族自治县',NULL,NULL,5,3,'open',2829,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2833,'12BAF94F5B604958A33F1092AAA1C33B','533325','兰坪白族普米族自治县','兰坪白族普米族自治县',NULL,NULL,5,4,'open',2829,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3406,7 +3406,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2839,'0AC85210C5714462811C9D775059BEE4','540100','拉萨市','拉萨市',NULL,NULL,4,1,'closed',2838,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2840,'5D8F911878B343F08044AAD187D8D475','540102','城关区','城关区',NULL,NULL,5,1,'open',2839,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2841,'8291A0DD131C4ECFBE6FC3B3325AFB59','540103','堆龙德庆区','堆龙德庆区',NULL,NULL,5,2,'open',2839,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2842,'9CE2535BC9DC4B86AADC74157CF2FB90','540104','达孜区','达孜区',NULL,NULL,5,3,'open',2839,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2843,'81C03C784B69400196133744BB1612CB','540121','林周县','林周县',NULL,NULL,5,4,'open',2839,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3418,7 +3418,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2849,'5D12B0821DE440C8876C27D7AE7CA480','540202','桑珠孜区','桑珠孜区',NULL,NULL,5,1,'open',2848,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2850,'33F4F7B56BDB4E52B5AEE4F5C3BD5661','540221','南木林县','南木林县',NULL,NULL,5,2,'open',2848,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2851,'E74B3A72A3D641D28F2C630322A7B8CC','540222','江孜县','江孜县',NULL,NULL,5,3,'open',2848,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2852,'9F4A83D4FE1849DC982A49DE543C0F9E','540223','定日县','定日县',NULL,NULL,5,4,'open',2848,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2853,'54BEEE55AEC9421EB5EE46765FFC7FA7','540224','萨迦县','萨迦县',NULL,NULL,5,5,'open',2848,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3430,7 +3430,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2859,'37DA5D2A03414CCD9C30918E1E5D7228','540230','康马县','康马县',NULL,NULL,5,11,'open',2848,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2860,'04B2A506E4F447B4A0439559F56D6AC9','540231','定结县','定结县',NULL,NULL,5,12,'open',2848,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2861,'E0B7BF70778F4EDF9F0CF4BDD0392447','540232','仲巴县','仲巴县',NULL,NULL,5,13,'open',2848,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2862,'5EC94F3E79754E9F9CB6A86B1D932B1E','540233','亚东县','亚东县',NULL,NULL,5,14,'open',2848,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2863,'6228B40618D6438C8AA505573D01D586','540234','吉隆县','吉隆县',NULL,NULL,5,15,'open',2848,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3442,7 +3442,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2869,'13ED006398224E55A8E893EE2D6D93A4','540321','江达县','江达县',NULL,NULL,5,2,'open',2867,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2870,'E7DF0AF2830B422EA6AC587E5DB2E869','540322','贡觉县','贡觉县',NULL,NULL,5,3,'open',2867,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2871,'C0988F51A17D4468B14DC60AA1B91724','540323','类乌齐县','类乌齐县',NULL,NULL,5,4,'open',2867,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2872,'C00C5314C850403783962360C78F0CDA','540324','丁青县','丁青县',NULL,NULL,5,5,'open',2867,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2873,'4F3B6AB887B649A9A8C430C31B585FF1','540325','察雅县','察雅县',NULL,NULL,5,6,'open',2867,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3454,7 +3454,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2879,'2FD8AF94A96847FBBB377DE42D3FF063','540400','林芝市','林芝市',NULL,NULL,4,4,'closed',2838,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2880,'7D291AC1B6274B7791CA5C8659F86167','540402','巴宜区','巴宜区',NULL,NULL,5,1,'open',2879,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2881,'3DD722E40EBB4B239337492AEC9483FB','540421','工布江达县','工布江达县',NULL,NULL,5,2,'open',2879,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2882,'D8D906737FFD47BEB0602A38CF6D2191','540422','米林县','米林县',NULL,NULL,5,3,'open',2879,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2883,'BC26D4C1F9C8434FA170E9ADC9E8AC54','540423','墨脱县','墨脱县',NULL,NULL,5,4,'open',2879,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3466,7 +3466,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2889,'803CD57B39E14972BA943A408BAD1EA4','540521','扎囊县','扎囊县',NULL,NULL,5,2,'open',2887,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2890,'BE8E8706D5A34803AE0229889B33A8CA','540522','贡嘎县','贡嘎县',NULL,NULL,5,3,'open',2887,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2891,'866333B61F1946A2B3D629601E6FD8A1','540523','桑日县','桑日县',NULL,NULL,5,4,'open',2887,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2892,'D3C50040A5E646D4B06FFE0541B70327','540524','琼结县','琼结县',NULL,NULL,5,5,'open',2887,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2893,'3C06F273DA054CE299041C5CD2C87335','540525','曲松县','曲松县',NULL,NULL,5,6,'open',2887,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3478,7 +3478,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2899,'3B7D5AE99E3A4763876DD3B5E06A4231','540531','浪卡子县','浪卡子县',NULL,NULL,5,12,'open',2887,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2900,'2BF907F3471C40B9A7A266AB5766FC62','540600','那曲市','那曲市',NULL,NULL,4,6,'closed',2838,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2901,'D2B358DC098842F5ABEC8FA871F26E65','540602','色尼区','色尼区',NULL,NULL,5,1,'open',2900,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2902,'A1BFE2A89973425898D13E8677F03925','540621','嘉黎县','嘉黎县',NULL,NULL,5,2,'open',2900,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2903,'F2F952B4F03D4C689A9A7F761EEFFE6A','540622','比如县','比如县',NULL,NULL,5,3,'open',2900,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3490,7 +3490,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2909,'62BFB984B06E4E1B84847C9B942A4CD7','540628','巴青县','巴青县',NULL,NULL,5,9,'open',2900,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2910,'89E8F3CE95874B5F9BE6018DA02AD4C6','540629','尼玛县','尼玛县',NULL,NULL,5,10,'open',2900,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2911,'70A7DB093F0043E899D593010F037360','540630','双湖县','双湖县',NULL,NULL,5,11,'open',2900,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2912,'D3C388BED7094A85857131878BA6A4B3','542500','阿里地区','阿里地区',NULL,NULL,4,7,'closed',2838,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2913,'D845B21CD8164B80BDFAE0C12CEC17B0','542521','普兰县','普兰县',NULL,NULL,5,1,'open',2912,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3502,7 +3502,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2919,'A5E84C598EA0404281F3D2C9B46215F9','542527','措勤县','措勤县',NULL,NULL,5,7,'open',2912,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2920,'DA60AF5682CA4D21B1018D6E2686BE68','610000','陕西省','陕西','陕、秦',NULL,3,27,'closed',130,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2921,'6D82D14EE7674AAABFA65AD2445905D0','610100','西安市','西安市',NULL,NULL,4,1,'closed',2920,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2922,'5C838D0FEB5345D1951BA90C5BBF1233','610102','新城区','新城区',NULL,NULL,5,1,'open',2921,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2923,'A365448F362E4E7EB515968474C24DB6','610103','碑林区','碑林区',NULL,NULL,5,2,'open',2921,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3514,7 +3514,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2929,'449A232BE262437CBC8F576AB616B2A0','610115','临潼区','临潼区',NULL,NULL,5,8,'open',2921,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2930,'A3E84C44004E4FE4A1990EC76F5F3120','610116','长安区','长安区',NULL,NULL,5,9,'open',2921,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2931,'D5B97A036E0E4BB48358BA09943ADAF6','610117','高陵区','高陵区',NULL,NULL,5,10,'open',2921,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2932,'41278A7951E243B08A18C86B0A9F8CC3','610118','鄠邑区','鄠邑区',NULL,NULL,5,11,'open',2921,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2933,'6B7248B0FF4A43A1B59F6B0DE88CE647','610122','蓝田县','蓝田县',NULL,NULL,5,12,'open',2921,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3526,7 +3526,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2939,'EBCE8FD2F7A440199AE57205A21920B9','610222','宜君县','宜君县',NULL,NULL,5,4,'open',2935,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2940,'A2A71754A4FE40FFB3E777AC9BF446CD','610300','宝鸡市','宝鸡市',NULL,NULL,4,3,'closed',2920,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2941,'61008C46B5FD4C3A9F154C2CA41FD8C3','610302','渭滨区','渭滨区',NULL,NULL,5,1,'open',2940,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2942,'DB7127FCE78744FF9054AB5183A371DD','610303','金台区','金台区',NULL,NULL,5,2,'open',2940,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2943,'0FEB33AACC414E74A6A9109B7CB7AEAD','610304','陈仓区','陈仓区',NULL,NULL,5,3,'open',2940,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3538,7 +3538,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2949,'DC3AF8558C37416BAFA83DD7C7DBD094','610328','千阳县','千阳县',NULL,NULL,5,9,'open',2940,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2950,'811EB428892F472CB1B79F5D0E18F66C','610329','麟游县','麟游县',NULL,NULL,5,10,'open',2940,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2951,'7E80C3797BEC4C01858429311EB6990E','610330','凤县','凤县',NULL,NULL,5,11,'open',2940,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2952,'9C5E6A9B6D664E1D941FC496F63576C2','610331','太白县','太白县',NULL,NULL,5,12,'open',2940,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2953,'D7506BE0DAAC4D1E88A4E52DF0642847','610400','咸阳市','咸阳市',NULL,NULL,4,4,'closed',2920,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3550,7 +3550,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2959,'7635791770FE437B92478F698B4C217D','610424','乾县','乾县',NULL,NULL,5,6,'open',2953,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2960,'7F95599A4E0E483A81401E1E9CD56DAF','610425','礼泉县','礼泉县',NULL,NULL,5,7,'open',2953,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2961,'2685AC37670E49BEB4CE651E1F8FC530','610426','永寿县','永寿县',NULL,NULL,5,8,'open',2953,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2962,'11878C418E6B4862930A66DB2258B0FD','610428','长武县','长武县',NULL,NULL,5,9,'open',2953,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2963,'EDD6C992066D45059B6EBB580E38C5E0','610429','旬邑县','旬邑县',NULL,NULL,5,10,'open',2953,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3562,7 +3562,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2969,'A131C033E7C743D4BE600C24D5A44938','610502','临渭区','临渭区',NULL,NULL,5,1,'open',2968,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2970,'460BD07177C6475D8F08FB288AD0A52B','610503','华州区','华州区',NULL,NULL,5,2,'open',2968,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2971,'8FAFEED59BEE474D9045EA82570B6C5A','610522','潼关县','潼关县',NULL,NULL,5,3,'open',2968,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2972,'C695B0AE789D45AF9D39E16443A65118','610523','大荔县','大荔县',NULL,NULL,5,4,'open',2968,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2973,'AA8D5A3B2AF94C36B20CA9E76643DEBD','610524','合阳县','合阳县',NULL,NULL,5,5,'open',2968,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3574,7 +3574,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2979,'34C9B946B2C04286A981696397F81C35','610582','华阴市','华阴市',NULL,NULL,5,11,'open',2968,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2980,'CAD25DF4AEC94F16A6978472D0E44868','610600','延安市','延安市',NULL,NULL,4,6,'closed',2920,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2981,'25B4BBC3FED34FF7899E1BD6D6EB3EFB','610602','宝塔区','宝塔区',NULL,NULL,5,1,'open',2980,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2982,'B9D321372F9F42B0B295AAD5558AE397','610603','安塞区','安塞区',NULL,NULL,5,2,'open',2980,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2983,'F3E8648530844EFDB6E4C7CE94142AA1','610621','延长县','延长县',NULL,NULL,5,3,'open',2980,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3586,7 +3586,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2989,'70C99615818E4AAEB94C12DECEFCA609','610629','洛川县','洛川县',NULL,NULL,5,9,'open',2980,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2990,'F4E999A0E9014EA88909D966E84206CB','610630','宜川县','宜川县',NULL,NULL,5,10,'open',2980,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (2991,'B02CFD970C414190BC993EBDB88EF604','610631','黄龙县','黄龙县',NULL,NULL,5,11,'open',2980,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2992,'1A6327940CFE44FA88E8068C5EF80B26','610632','黄陵县','黄陵县',NULL,NULL,5,12,'open',2980,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(2993,'83BEDE8D1BFE41CD818FEB2D1DE1BD0C','610681','子长市','子长市',NULL,NULL,5,13,'open',2980,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3598,7 +3598,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(2999,'A4FCD7BA3919453DB2CC0C0900989AAB','610724','西乡县','西乡县',NULL,NULL,5,5,'open',2994,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3000,'D29E4CF327A54616852886DE1ADBD47C','610725','勉县','勉县',NULL,NULL,5,6,'open',2994,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3001,'2750E74F381D4B2D833123A33FC025D7','610726','宁强县','宁强县',NULL,NULL,5,7,'open',2994,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3002,'E769C28EB06E4BDE9B8DCCF54FB04E7B','610727','略阳县','略阳县',NULL,NULL,5,8,'open',2994,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3003,'88D6B4EABB2A4799907FDE0B3224EC09','610728','镇巴县','镇巴县',NULL,NULL,5,9,'open',2994,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3610,7 +3610,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3009,'DE128D886D76438E9A361349F3103810','610822','府谷县','府谷县',NULL,NULL,5,3,'open',3006,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3010,'629501806E3041A19090F82ED4E7B401','610824','靖边县','靖边县',NULL,NULL,5,4,'open',3006,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3011,'F73F65ACBBC44B508DADF18609D9F3B3','610825','定边县','定边县',NULL,NULL,5,5,'open',3006,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3012,'166EAFDB693A4E599E2F018A5CEA3D4B','610826','绥德县','绥德县',NULL,NULL,5,6,'open',3006,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3013,'E6B85A75C9B14E4ABE7B15D6D8995A6A','610827','米脂县','米脂县',NULL,NULL,5,7,'open',3006,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3622,7 +3622,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3019,'A5C81063B3174CFCBD80C8F78C18B01B','610900','安康市','安康市',NULL,NULL,4,9,'closed',2920,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3020,'11422D545AA34DDA9D8894895D3DBC19','610902','汉滨区','汉滨区',NULL,NULL,5,1,'open',3019,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3021,'180EE6AA8D494E73B107ED5A0047865D','610921','汉阴县','汉阴县',NULL,NULL,5,2,'open',3019,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3022,'BEDFBEDE8A4F43FAAC95DDAACE914258','610922','石泉县','石泉县',NULL,NULL,5,3,'open',3019,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3023,'5C89B7896EDE4B8EA112B88CAC77717B','610923','宁陕县','宁陕县',NULL,NULL,5,4,'open',3019,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3634,7 +3634,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3029,'0D9DF9935C7B498E866007A4D6ECF247','610929','白河县','白河县',NULL,NULL,5,10,'open',3019,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3030,'3DB2E4E161974BF88B2CF8B6E75805EB','611000','商洛市','商洛市',NULL,NULL,4,10,'closed',2920,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3031,'1E2072CF3755477BB5CBE395F765A742','611002','商州区','商州区',NULL,NULL,5,1,'open',3030,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3032,'24C0CAF5F9FE42C1A7E915B2E87784BB','611021','洛南县','洛南县',NULL,NULL,5,2,'open',3030,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3033,'B26543439F4246089783F0EF7965BF76','611022','丹凤县','丹凤县',NULL,NULL,5,3,'open',3030,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3646,7 +3646,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3039,'E9AFB413BA664D41BE3830AA247BADA3','620100','兰州市','兰州市',NULL,NULL,4,1,'closed',3038,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3040,'712ABD3FAB9E45FBAED15149B5633A15','620102','城关区','城关区',NULL,NULL,5,1,'open',3039,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3041,'6747FA1A13BE4681B1103ADFBB249240','620103','七里河区','七里河区',NULL,NULL,5,2,'open',3039,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3042,'1401D03A97D943ACA427C913D590D516','620104','西固区','西固区',NULL,NULL,5,3,'open',3039,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3043,'E1D60F5A74E3462E85D6B6C0D16A055C','620105','安宁区','安宁区',NULL,NULL,5,4,'open',3039,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3658,7 +3658,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3049,'2F5B8781EF7A4F94BF4FBC44798D47F9','620300','金昌市','金昌市',NULL,NULL,4,3,'closed',3038,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3050,'4C996024FB5A445680A7F5AB2994BA07','620302','金川区','金川区',NULL,NULL,5,1,'open',3049,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3051,'BC18C58357F445D7BF10C2E6470CB0FC','620321','永昌县','永昌县',NULL,NULL,5,2,'open',3049,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3052,'FF52FBAD127C44B8BBB9444E0AA74275','620400','白银市','白银市',NULL,NULL,4,4,'closed',3038,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3053,'DCD4E853CB844E4AA7A359B2DC42F2C0','620402','白银区','白银区',NULL,NULL,5,1,'open',3052,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3670,7 +3670,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3059,'6DCFFE39FBB74F27A97DCF67E2F14A3A','620502','秦州区','秦州区',NULL,NULL,5,1,'open',3058,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3060,'BB447D78CD7C4A95BF105986090A9418','620503','麦积区','麦积区',NULL,NULL,5,2,'open',3058,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3061,'B0E31A68E3C541C7BD75420A6596E83F','620521','清水县','清水县',NULL,NULL,5,3,'open',3058,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3062,'7CFFFA70EEE744D8A68B9F07E26A89F3','620522','秦安县','秦安县',NULL,NULL,5,4,'open',3058,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3063,'BD549A103C444D3EA379913DB9F0EEA8','620523','甘谷县','甘谷县',NULL,NULL,5,5,'open',3058,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3682,7 +3682,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3069,'8AD274BAC2F24C409CEB208427F820C8','620622','古浪县','古浪县',NULL,NULL,5,3,'open',3066,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3070,'370AC2CF104F4F0BB4613C624DEC228D','620623','天祝藏族自治县','天祝藏族自治县',NULL,NULL,5,4,'open',3066,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3071,'FBF743785F0C4E43AFE476C1380BE390','620700','张掖市','张掖市',NULL,NULL,4,7,'closed',3038,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3072,'3B53E6B15A7647B8A63C80BEF8B3BF31','620702','甘州区','甘州区',NULL,NULL,5,1,'open',3071,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3073,'17712725F87C4D11AADCEC6E74523FF5','620721','肃南裕固族自治县','肃南裕固族自治县',NULL,NULL,5,2,'open',3071,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3694,7 +3694,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3079,'8909E1EF63E34BD6A242BD18D41B9E25','620802','崆峒区','崆峒区',NULL,NULL,5,1,'open',3078,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3080,'9511ACE7D4FD4410826298DEAE00240B','620821','泾川县','泾川县',NULL,NULL,5,2,'open',3078,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3081,'110A4EEAD79544BEA57B87B71DAD795B','620822','灵台县','灵台县',NULL,NULL,5,3,'open',3078,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3082,'A76C8BB0AF034F959D47EB2D00B8BCEF','620823','崇信县','崇信县',NULL,NULL,5,4,'open',3078,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3083,'DE4BAAF9B1DF49E9AAAB20B67A2C44D8','620825','庄浪县','庄浪县',NULL,NULL,5,5,'open',3078,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3706,7 +3706,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3089,'242EBACDCE8240C48D74D075F65432B6','620922','瓜州县','瓜州县',NULL,NULL,5,3,'open',3086,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3090,'BD90771325BC4A56A49FCD0B68B226A8','620923','肃北蒙古族自治县','肃北蒙古族自治县',NULL,NULL,5,4,'open',3086,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3091,'DC5358C3C4B1414CBC6C7B3340F58F0C','620924','阿克塞哈萨克族自治县','阿克塞哈萨克族自治县',NULL,NULL,5,5,'open',3086,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3092,'0615B1AE64974AE8807E556BD3778C8F','620981','玉门市','玉门市',NULL,NULL,5,6,'open',3086,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3093,'736D2BC32D344EA196B56AFF8C8C132E','620982','敦煌市','敦煌市',NULL,NULL,5,7,'open',3086,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3718,7 +3718,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3099,'13759EDC54A944E3AA8A23F15330FDB6','621024','合水县','合水县',NULL,NULL,5,5,'open',3094,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3100,'970B1DC555DE4A8D8EE8274D9D4ECCEB','621025','正宁县','正宁县',NULL,NULL,5,6,'open',3094,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3101,'F6630671BC4C402885EDCE2FD56B0D7F','621026','宁县','宁县',NULL,NULL,5,7,'open',3094,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3102,'4A3F2F0798844FEE89719895F47AB471','621027','镇原县','镇原县',NULL,NULL,5,8,'open',3094,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3103,'D588C9B6DC4047DFBB4AC6D76AD9DDFC','621100','定西市','定西市',NULL,NULL,4,11,'closed',3038,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3730,7 +3730,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3109,'D01218B8DF3B45E183BC05E6D640B19C','621125','漳县','漳县',NULL,NULL,5,6,'open',3103,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3110,'0959EAE938304B2783DE30B6F22CB73A','621126','岷县','岷县',NULL,NULL,5,7,'open',3103,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3111,'A0210B92C9DC46998DEDA3148BB93483','621200','陇南市','陇南市',NULL,NULL,4,12,'closed',3038,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3112,'C84C7B39A4684914A0C87AD5FB87DEDD','621202','武都区','武都区',NULL,NULL,5,1,'open',3111,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3113,'4CC16AF5846349FFA465FBD3C8A947B8','621221','成县','成县',NULL,NULL,5,2,'open',3111,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3742,7 +3742,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3119,'6C81A92941594A7BBB8678095B5546A2','621227','徽县','徽县',NULL,NULL,5,8,'open',3111,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3120,'D08EED298FE749EB9A84077A2423C2FB','621228','两当县','两当县',NULL,NULL,5,9,'open',3111,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3121,'D65097F8094D42D88B3C3930D85F71DF','622900','临夏回族自治州','临夏回族自治州',NULL,NULL,4,13,'closed',3038,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3122,'A9035B9837274CD4A6555CC91385D0A8','622901','临夏市','临夏市',NULL,NULL,5,1,'open',3121,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3123,'726EFE04C13E4D7FA21AB5397C2A098E','622921','临夏县','临夏县',NULL,NULL,5,2,'open',3121,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3754,7 +3754,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3129,'8FFC95541AA541B6BF7F04EC3405B0A0','622927','积石山保安族东乡族撒拉族自治县','积石山保安族东乡族撒拉族自治县',NULL,NULL,5,8,'open',3121,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3130,'9D2C239C737547E092C46FC333167EA8','623000','甘南藏族自治州','甘南藏族自治州',NULL,NULL,4,14,'closed',3038,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3131,'7F5C403D0E1A460C8AEBE4587F141CCF','623001','合作市','合作市',NULL,NULL,5,1,'open',3130,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3132,'993EF05834EF4CBEB4DD856E9B100150','623021','临潭县','临潭县',NULL,NULL,5,2,'open',3130,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3133,'279FD387D3B5454990214A50B8F71882','623022','卓尼县','卓尼县',NULL,NULL,5,3,'open',3130,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3766,7 +3766,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3139,'EAAEC0BEC418452085C324E7A4853493','630000','青海省','青海','青',NULL,3,29,'closed',130,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3140,'D33BC707F43E4FF5BBFC277908A06293','630100','西宁市','西宁市',NULL,NULL,4,1,'closed',3139,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3141,'B51E07EA41DE4B8982B7B09D0DB4C8DB','630102','城东区','城东区',NULL,NULL,5,1,'open',3140,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3142,'6DF1B5DBC4074AB6BDF816DE8FB17C75','630103','城中区','城中区',NULL,NULL,5,2,'open',3140,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3143,'D71E857E3A8D438E80C65C5AF8126EA3','630104','城西区','城西区',NULL,NULL,5,3,'open',3140,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3778,7 +3778,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3149,'1EFF11231B2F4F549953D96BC968C8EB','630202','乐都区','乐都区',NULL,NULL,5,1,'open',3148,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3150,'E69B332D5F23479BA029C47E7E22256B','630203','平安区','平安区',NULL,NULL,5,2,'open',3148,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3151,'8751A860877040C5BB6AC0F61A5EE333','630222','民和回族土族自治县','民和回族土族自治县',NULL,NULL,5,3,'open',3148,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3152,'4F9B919FBD994625B1049398ECCEFBDB','630223','互助土族自治县','互助土族自治县',NULL,NULL,5,4,'open',3148,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3153,'B2173010C9794C5B9C0F5D86A4123BD4','630224','化隆回族自治县','化隆回族自治县',NULL,NULL,5,5,'open',3148,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3790,7 +3790,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3159,'FE14CF68434A4C1690ECEF91FBBCFA8F','632224','刚察县','刚察县',NULL,NULL,5,4,'open',3155,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3160,'262231B7E11346F4BE9EC7873008146F','632300','黄南藏族自治州','黄南藏族自治州',NULL,NULL,4,4,'closed',3139,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3161,'8F85F145DFE6499AAD1FFA570E35BC59','632321','同仁县','同仁县',NULL,NULL,5,1,'open',3160,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3162,'65054F76586747CA9194E4903EC000FC','632322','尖扎县','尖扎县',NULL,NULL,5,2,'open',3160,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3163,'1A89E55AF96C443D855FCE8BF807BA64','632323','泽库县','泽库县',NULL,NULL,5,3,'open',3160,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3802,7 +3802,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3169,'748380F6658A4555A617D1F3BA60E3E8','632524','兴海县','兴海县',NULL,NULL,5,4,'open',3165,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3170,'06D544BD37FF4965B8B4CCC814CDB8D0','632525','贵南县','贵南县',NULL,NULL,5,5,'open',3165,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3171,'44396E97B83645259F8ACF3D58DA37CE','632600','果洛藏族自治州','果洛藏族自治州',NULL,NULL,4,6,'closed',3139,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3172,'6633CCC33D904EFDBA8C69FC882DE96C','632621','玛沁县','玛沁县',NULL,NULL,5,1,'open',3171,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3173,'D231E108FC014E8B9A68CBF0E482B40D','632622','班玛县','班玛县',NULL,NULL,5,2,'open',3171,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3814,7 +3814,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3179,'E523A80793C94823B65F03A04EE16A84','632701','玉树市','玉树市',NULL,NULL,5,1,'open',3178,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3180,'A5E273BEAD30433F8B869370AAD4F08B','632722','杂多县','杂多县',NULL,NULL,5,2,'open',3178,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3181,'B516F497776540EC9BF311B20EBF9B8C','632723','称多县','称多县',NULL,NULL,5,3,'open',3178,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3182,'6B6BACFBCF6D4587BE2ACF43A4E95EE4','632724','治多县','治多县',NULL,NULL,5,4,'open',3178,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3183,'21AEBF3671C04E31896F45FE72146C3C','632725','囊谦县','囊谦县',NULL,NULL,5,5,'open',3178,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3826,7 +3826,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3189,'FE91D1717EF84B2BA64F225AE29B58D8','632821','乌兰县','乌兰县',NULL,NULL,5,4,'open',3185,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3190,'2020BEC7DB8848419E3F310610D882C8','632822','都兰县','都兰县',NULL,NULL,5,5,'open',3185,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3191,'3A39FD8BC7B84ECA8E00D56618C90D90','632823','天峻县','天峻县',NULL,NULL,5,6,'open',3185,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3192,'FF672ED124F04B0AACAC0A8DB61B5C02','640000','宁夏回族自治区','宁夏','宁',NULL,3,30,'closed',130,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3193,'02AC1075A9774DDEA13C9C4E831BF968','640100','银川市','银川市',NULL,NULL,4,1,'closed',3192,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3838,7 +3838,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3199,'E52859D340D2479EB1361FA20031009E','640181','灵武市','灵武市',NULL,NULL,5,6,'open',3193,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3200,'8EB1C1C0C24E4B76A0E7EDBBA81F9FC0','640200','石嘴山市','石嘴山市',NULL,NULL,4,2,'closed',3192,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3201,'211AC13240F341E7B647838A1E9451D7','640202','大武口区','大武口区',NULL,NULL,5,1,'open',3200,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3202,'FB3FAD7056BD4693A0FA74E2798A468D','640205','惠农区','惠农区',NULL,NULL,5,2,'open',3200,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3203,'C8F9F1590DF84F8AA5E295C7FA6CEA5B','640221','平罗县','平罗县',NULL,NULL,5,3,'open',3200,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3850,7 +3850,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3209,'F9A4586EBF5E41939997BF2CF63BF2C8','640381','青铜峡市','青铜峡市',NULL,NULL,5,5,'open',3204,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3210,'4A6C6819DC444CE79737A37016BF9575','640400','固原市','固原市',NULL,NULL,4,4,'closed',3192,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3211,'7A1CEBD4B266446C8105093884A9D635','640402','原州区','原州区',NULL,NULL,5,1,'open',3210,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3212,'8D155591240F4CC0AE1E18D6C08C49E8','640422','西吉县','西吉县',NULL,NULL,5,2,'open',3210,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3213,'3BC0181A319E4CE497F35B0AFEF9EBEC','640423','隆德县','隆德县',NULL,NULL,5,3,'open',3210,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3862,7 +3862,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3219,'A26B768A1DC54369AA19F0171994C200','640522','海原县','海原县',NULL,NULL,5,3,'open',3216,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3220,'480EBD5017F14540BBAF47C1B9B16996','650000','新疆维吾尔自治区','新疆','新',NULL,3,31,'closed',130,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3221,'8D82075380A945EDB987BD409B164CF1','650100','乌鲁木齐市','乌鲁木齐市',NULL,NULL,4,1,'closed',3220,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3222,'F5008B19D0C44104B442FF67F953DF91','650102','天山区','天山区',NULL,NULL,5,1,'open',3221,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3223,'27013CC323354232A6C29BE6FC4D9F32','650103','沙依巴克区','沙依巴克区',NULL,NULL,5,2,'open',3221,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3874,7 +3874,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3229,'BE295EF3A68B4774963D410944916561','650121','乌鲁木齐县','乌鲁木齐县',NULL,NULL,5,8,'open',3221,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3230,'99B4AFFBE12A47C3B765B7F7A9343A29','650200','克拉玛依市','克拉玛依市',NULL,NULL,4,2,'closed',3220,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3231,'1F6027884E38414FBECF9467FF0B84DC','650202','独山子区','独山子区',NULL,NULL,5,1,'open',3230,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3232,'8ACD58B024AA45D1BDAFE72FC0BB4FA6','650203','克拉玛依区','克拉玛依区',NULL,NULL,5,2,'open',3230,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3233,'325D7B1B7B904CB08E98D23A5C418CBA','650204','白碱滩区','白碱滩区',NULL,NULL,5,3,'open',3230,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3886,7 +3886,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3239,'9BC63BA805A24B97991B851E7C056C84','650500','哈密市','哈密市',NULL,NULL,4,4,'closed',3220,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3240,'3AEFFAA36EF8480389B78A9AC2E2E93E','650502','伊州区','伊州区',NULL,NULL,5,1,'open',3239,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3241,'EEB824572C4F43B0B44F506899F87B4B','650521','巴里坤哈萨克自治县','巴里坤哈萨克自治县',NULL,NULL,5,2,'open',3239,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3242,'14E03EF615984ED08DA837A1295EF32E','650522','伊吾县','伊吾县',NULL,NULL,5,3,'open',3239,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3243,'063C5EEACF9F4EF5A37A69C79F6EB1B0','652300','昌吉回族自治州','昌吉回族自治州',NULL,NULL,4,5,'closed',3220,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3898,7 +3898,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3249,'C0717A92211F4FB7BD360EAE4702B436','652327','吉木萨尔县','吉木萨尔县',NULL,NULL,5,6,'open',3243,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3250,'9C6A73DFE010400F9AE36103101C04B4','652328','木垒哈萨克自治县','木垒哈萨克自治县',NULL,NULL,5,7,'open',3243,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3251,'99F78722BD164EB5B3B720841414EF34','652700','博尔塔拉蒙古自治州','博尔塔拉蒙古自治州',NULL,NULL,4,6,'closed',3220,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3252,'3E6F6513856A4673903CC81B8544083E','652701','博乐市','博乐市',NULL,NULL,5,1,'open',3251,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3253,'8B566E9000D1409CB4B0E3A02F87015C','652702','阿拉山口市','阿拉山口市',NULL,NULL,5,2,'open',3251,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3910,7 +3910,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3259,'8357A70C7C464070B7D78AF8160B2F0D','652823','尉犁县','尉犁县',NULL,NULL,5,3,'open',3256,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3260,'AD0329C211B84A1595941FBBCCD55F36','652824','若羌县','若羌县',NULL,NULL,5,4,'open',3256,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3261,'FEBDF488EC7646169E66D71B69324064','652825','且末县','且末县',NULL,NULL,5,5,'open',3256,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3262,'7870275018C442478D7EE745645F6FBF','652826','焉耆回族自治县','焉耆回族自治县',NULL,NULL,5,6,'open',3256,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3263,'4F6B619A410D4B07A2F437AD5DA67F00','652827','和静县','和静县',NULL,NULL,5,7,'open',3256,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3922,7 +3922,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3269,'C6CA50DC0E3549DCB01639C95527DD15','652922','温宿县','温宿县',NULL,NULL,5,3,'open',3266,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3270,'9BEDEFF424AE4301ACEF2E6869CA6B65','652924','沙雅县','沙雅县',NULL,NULL,5,4,'open',3266,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3271,'9B73E9FF08E644139C5A46F02844AA8C','652925','新和县','新和县',NULL,NULL,5,5,'open',3266,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3272,'5048FC33EDFC4C5A946D4DDB39E90229','652926','拜城县','拜城县',NULL,NULL,5,6,'open',3266,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3273,'F07F6B3FAC434C46B9CCD70361F94473','652927','乌什县','乌什县',NULL,NULL,5,7,'open',3266,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3934,7 +3934,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3279,'CDC6A10FFBB84276A42F6F549345AF9F','653023','阿合奇县','阿合奇县',NULL,NULL,5,3,'open',3276,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3280,'DE08BC0CAE3D4ED2BFC03964ACE6026F','653024','乌恰县','乌恰县',NULL,NULL,5,4,'open',3276,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3281,'AA34E47FEBA34615AD4A8ED9C7468F73','653100','喀什地区','喀什地区',NULL,NULL,4,10,'closed',3220,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3282,'6B50DEC9DA2C4027AB05AC8A21E97E5A','653101','喀什市','喀什市',NULL,NULL,5,1,'open',3281,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3283,'5E759A551F054BF192FEA1D672DE81A6','653121','疏附县','疏附县',NULL,NULL,5,2,'open',3281,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3946,7 +3946,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3289,'E107A1F9AD474E94A4E3025AC8353D7C','653127','麦盖提县','麦盖提县',NULL,NULL,5,8,'open',3281,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3290,'272C8B22FAEC4BF08A69EAE33FFD1932','653128','岳普湖县','岳普湖县',NULL,NULL,5,9,'open',3281,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3291,'D396521DA010461F96492310D619FB55','653129','伽师县','伽师县',NULL,NULL,5,10,'open',3281,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3292,'3DBB4C2BED1F45C183807BB109B99BC7','653130','巴楚县','巴楚县',NULL,NULL,5,11,'open',3281,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3293,'307BCB1CD3764DFF8077B51C7371DBA2','653131','塔什库尔干塔吉克自治县','塔什库尔干塔吉克自治县',NULL,NULL,5,12,'open',3281,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3958,7 +3958,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3299,'21E172BE1836465CAD67CDA2ABF9D216','653224','洛浦县','洛浦县',NULL,NULL,5,5,'open',3294,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3300,'B57C48ADDD4C453BA44D7539595E8C44','653225','策勒县','策勒县',NULL,NULL,5,6,'open',3294,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3301,'F93FF3D63C8B4F24AD55F1258057129C','653226','于田县','于田县',NULL,NULL,5,7,'open',3294,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3302,'855AE357E96E4E2D89B64FB8F81B15C2','653227','民丰县','民丰县',NULL,NULL,5,8,'open',3294,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3303,'0C48C336962D4F2C86E9C6894E786F85','654000','伊犁哈萨克自治州☆','伊犁哈萨克自治州☆',NULL,NULL,4,12,'closed',3220,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3970,7 +3970,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3309,'C244F07C9CCD4FE4AAD14230AC332B06','654023','霍城县','霍城县',NULL,NULL,5,6,'open',3303,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3310,'CF5DF48646164EC688F2A71DB065FBA3','654024','巩留县','巩留县',NULL,NULL,5,7,'open',3303,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3311,'5BDCB024380B4DD19B4002FA74C35841','654025','新源县','新源县',NULL,NULL,5,8,'open',3303,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3312,'9C43E6C184384B48B7BC8CC397C651F5','654026','昭苏县','昭苏县',NULL,NULL,5,9,'open',3303,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3313,'D2300E204A7449F9B6DA9A227D588399','654027','特克斯县','特克斯县',NULL,NULL,5,10,'open',3303,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3982,7 +3982,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3319,'178440DE086747679ABDFB1523D57D18','654223','沙湾县','沙湾县',NULL,NULL,5,4,'open',3315,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3320,'4379E0D99D3C4DE997E9A31E78EC9D7A','654224','托里县','托里县',NULL,NULL,5,5,'open',3315,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3321,'FB093E092CA64196A60D2B28EBE7E0A9','654225','裕民县','裕民县',NULL,NULL,5,6,'open',3315,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3322,'044DFC87728A4C4797FB3ED5D5D660B8','654226','和布克赛尔蒙古自治县','和布克赛尔蒙古自治县',NULL,NULL,5,7,'open',3315,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3323,'DC68B4057B404701A6015255C8530334','654300','阿勒泰地区','阿勒泰地区',NULL,NULL,4,14,'closed',3220,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -3994,7 +3994,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3329,'E07EE0B5D45B4C5B9DE40A6B9C5A2F32','654325','青河县','青河县',NULL,NULL,5,6,'open',3323,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3330,'76DB45EB529D4D9BA99515314D6993D0','654326','吉木乃县','吉木乃县',NULL,NULL,5,7,'open',3323,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3331,'A7C3DF5FA83B40F3AA941285551C2546','659001','石河子市','石河子市',NULL,NULL,4,15,'open',3220,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3332,'D27BE2AC61BC47CA8034E5F4766ED61B','659002','阿拉尔市','阿拉尔市',NULL,NULL,4,16,'open',3220,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3333,'F7CEA70E811B4B109045A78118CC8B02','659003','图木舒克市','图木舒克市',NULL,NULL,4,17,'open',3220,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -4006,7 +4006,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3339,'56DBD7A5A5FA47CDBC996AF71BACE39C','659009','昆玉市','昆玉市',NULL,NULL,4,23,'open',3220,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3340,'7C54A597FDC442E5B9A7B0C0CD5187A7','659010','胡杨河市','胡杨河市',NULL,NULL,4,24,'open',3220,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3341,'5BB6E23076034022A666E6E0558D8254','710000','台湾省','台湾','台',NULL,3,32,'open',130,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3342,'71C05483307F4DD4A1602AEB847757DA','810000','香港特别行政区','香港','港',NULL,3,33,'open',130,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3343,'BDE492FDD36C4F5CA344901081F2B0B5','820000','澳门特别行政区','澳门','澳',NULL,3,34,'open',130,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -4018,7 +4018,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3349,'EB1D6EB80FCD448BBBA9B997E3680DB3','WARN','WARN',NULL,NULL,NULL,2,5,'open',3344,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3350,'5BF3D21AA5EB4C9893843889405D116E','ERROR','ERROR',NULL,NULL,NULL,2,6,'open',3344,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3351,'638A70912F464731BF3F4857A762ABCA','FATAL','FATAL',NULL,NULL,NULL,2,7,'open',3344,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3352,'066550D7481840CA93807A4F1806E1DE','OFF','OFF',NULL,NULL,NULL,2,8,'open',3344,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3353,'C17F22BA0E234DEAB09A6A5BDD182390','JDBC_TYPE','JdbcType',NULL,NULL,'fa fa-cubes',1,10,'closed',NULL,'2023-01-07 17:39:26','2022-05-11 17:47:27',0,NULL)
@@ -4030,7 +4030,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3359,'157A7DFD0FDC4B169E4B78ADC86B0D96','-5','BIGINT',NULL,NULL,NULL,2,6,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3360,'CE5D233AB68A433182BB38BC04F011BB','6','FLOAT',NULL,NULL,NULL,2,7,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3361,'8A642E2012FB436A88F4D1C8ED8EA78D','7','REAL',NULL,NULL,NULL,2,8,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3362,'009742EAF24E4130A4DCE55F49FF8CFE','8','DOUBLE',NULL,NULL,NULL,2,9,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3363,'4AC886EEAC944F6BA0AF6428E2BBEAFB','2','NUMERIC',NULL,NULL,NULL,2,10,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -4042,7 +4042,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3369,'B1012581EC95483E83150D51E57EE93A','92','TIME',NULL,NULL,NULL,2,16,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3370,'E918BAF239F645D1971A6C2FF6EEE4D6','93','TIMESTAMP',NULL,NULL,NULL,2,17,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3371,'E9775DB4320748CCAC012D81824B1908','-2','BINARY',NULL,NULL,NULL,2,18,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3372,'3B93958982B84BC3BC51DA74410995DD','-3','VARBINARY',NULL,NULL,NULL,2,19,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3373,'00E7F7D1077541D883F3B43A968809C1','-4','LONGVARBINARY',NULL,NULL,NULL,2,20,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -4054,7 +4054,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3379,'B4BF33074DDF47D2BB83DCDD86E8F00E','-10','CURSOR',NULL,NULL,NULL,2,26,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3380,'469207777D71439F99B540A1CC59E526','-2147482648','UNDEFINED',NULL,NULL,NULL,2,27,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3381,'DDEA3B3137B34E81AB87F328ED591A24','-9','NVARCHAR',NULL,NULL,NULL,2,28,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3382,'18B2A6A03AC844F78304A49F8D772764','-15','NCHAR',NULL,NULL,NULL,2,29,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3383,'D9A4D5C3DFDD46B09EFDD4959D80C6CD','2011','NCLOB',NULL,NULL,NULL,2,30,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
@@ -4066,7 +4066,7 @@ INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`lev
 ,(3389,'6543E23D859F4094A2A8B0BE37220082','-8','ROWID',NULL,NULL,NULL,2,36,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3390,'4769620BEA9C4EC189C93FCF0A8F915E','-16','LONGNVARCHAR',NULL,NULL,NULL,2,37,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ;
-INSERT INTO mygraph.sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
+INSERT INTO sys_dict (id,uuid,code,text,abbreviation,alias,icon_cls,`level`,sort,state,pid,created_at,updated_at,disabled,remark) VALUES 
 (3391,'26F254E5842E442686FFBAB9F30D9444','2009','SQLXML',NULL,NULL,NULL,2,38,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3392,'7A1632C8773A4B48A19072D8B04F2437','-155','DATETIMEOFFSET',NULL,NULL,NULL,2,39,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
 ,(3393,'8330D6BC2F31437EBFEB7DF51DD720EA','2013','TIME_WITH_TIMEZONE',NULL,NULL,NULL,2,40,'open',3353,'2023-01-07 17:39:26',NULL,0,NULL)
