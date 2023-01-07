@@ -20,6 +20,7 @@ import org.springframework.security.oauth2.server.authorization.JdbcOAuth2Author
 import org.springframework.security.oauth2.server.authorization.JdbcOAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsentService;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
+import org.springframework.security.oauth2.server.authorization.OAuth2TokenType;
 import org.springframework.security.oauth2.server.authorization.client.JdbcRegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2AuthorizationServerConfiguration;
@@ -122,7 +123,8 @@ public class AuthorizationServerConfig {
 	@Bean
 	public OAuth2TokenCustomizer<JwtEncodingContext> tokenCustomizer() {
 		return (context) -> {
-			if (OidcParameterNames.ID_TOKEN.equals(context.getTokenType().getValue())) {
+			if (OAuth2TokenType.ACCESS_TOKEN.equals(context.getTokenType())
+					|| OidcParameterNames.ID_TOKEN.equals(context.getTokenType().getValue())) {
 				context.getClaims().claims(claim -> {
 					Authentication authentication = context.getPrincipal();
 					Object principal = authentication.getPrincipal();
