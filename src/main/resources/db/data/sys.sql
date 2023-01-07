@@ -79,7 +79,7 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(5001, 			'D654AA8332BD40DC8C3DBF27F58F8B2F',	'5001', 		'使用手册', 				'menu', 			null, 														'fa fa-text-width', 		null, 				null, 			2, 		1, 		'closed',	0,					50,			null)
 	  ,(500101, 		'CF11DB769EDA48C39C684AC866E18105',	'500101', 		'系统简介', 				'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			3, 		1, 		'open',		0,					5001,		null)
 	  ,(500102, 		'35111CB38E564A2684B934D954BA6F0F',	'500102', 		'Markdown', 			'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			3, 		2, 		'open',		0,					5001,		null)
-	  ,(500103, 		'C5A770EB80584C919E106F2FC9358AE4',	'500103', 		'Oauth2.0认证服务', 		'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			3, 		3, 		'open',		0,					5001,		null)
+	  ,(500103, 		'C5A770EB80584C919E106F2FC9358AE4',	'500103', 		'Oauth2.0', 			'markdown', 		null, 														'tree-icon tree-file', 		null, 				null, 			3, 		3, 		'open',		0,					5001,		null)
 	  ,(60, 			'396BDB80E54D4DC7A5AC63EF79D8A2F3',	'60', 			'更多功能', 				'more', 			null, 														'fa fa-th', 				null, 				null, 			1, 		6, 		'closed',	0,					null,		null)
 	  ,(6001, 			'991F18B5DEA54FCC99DFC6DC9AD6B22F',	'6001', 		'在线调试', 				'urlInsidePage', 	'/compile', 												'fa fa-code', 				'rebeccapurple', 	null, 			2, 		1, 		'open',		0,					60,			null)
 	  ,(6002, 			'466FA46CA81B44A0B286294B6149007F',	'6002', 		'Editor.md', 			'urlNewWindows', 	'/static/markdown/editor.md-1.5.0/examples/index.html', 	'fa fa-file-word-o', 		null, 				null, 			2, 		2, 		'open',		0,					60,			null)
