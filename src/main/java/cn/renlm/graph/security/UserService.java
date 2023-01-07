@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
 		user.setPassword(EMPTY);
 		Authentication token = new UsernamePasswordAuthenticationToken(user, EMPTY, user.getAuthorities());
 		getContext().setAuthentication(token);
-		return principal;
+		return user;
 	}
 
 	/**
