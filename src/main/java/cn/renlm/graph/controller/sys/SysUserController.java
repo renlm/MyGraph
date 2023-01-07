@@ -34,6 +34,7 @@ import cn.renlm.graph.security.UserService;
 import cn.renlm.plugins.MyResponse.Datagrid;
 import cn.renlm.plugins.MyResponse.Result;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 用户
@@ -93,17 +94,19 @@ public class SysUserController {
 	/**
 	 * 修改个人信息
 	 * 
-	 * @param authentication
+	 * @param request
+	 * @param response
 	 * @param form
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/doModifyPersonal")
-	public Result<?> doModifyPersonal(Authentication authentication, SysUser form) {
+	public Result<?> doModifyPersonal(HttpServletRequest request, HttpServletResponse response, SysUser form) {
+		Authentication authentication = (Authentication) request.getUserPrincipal();
 		User user = (User) authentication.getPrincipal();
 		try {
 			iSysUserService.doModifyPersonal(user.getId(), form);
-			User refreshUser = userService.refreshAuthentication();
+			User refreshUser = userService.refreshUserDetails(request, response);
 			return Result.success(refreshUser);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -187,13 +190,12 @@ public class SysUserController {
 	/**
 	 * 获取当前登录用户
 	 * 
-	 * @param request
 	 * @param authentication
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/getCurrent")
-	public Result<User> getCurrent(HttpServletRequest request, Authentication authentication) {
+	public Result<User> getCurrent(Authentication authentication) {
 		try {
 			User user = (User) authentication.getPrincipal();
 			return Result.success(user);

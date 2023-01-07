@@ -1,7 +1,6 @@
 package cn.renlm.graph.security;
 
 import static cn.hutool.core.text.CharSequenceUtil.EMPTY;
-import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -11,9 +10,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.sys.entity.SysResource;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 用户信息
@@ -34,6 +38,9 @@ import cn.renlm.graph.modular.sys.service.ISysUserService;
  */
 @Service
 public class UserService implements UserDetailsService {
+
+	@Autowired
+	private SecurityContextRepository securityContextRepository;
 
 	@Autowired
 	private ISysUserService iSysUserService;
@@ -50,15 +57,18 @@ public class UserService implements UserDetailsService {
 	/**
 	 * 刷新当前登录用户信息
 	 * 
+	 * @param request
+	 * @param response
 	 * @return
 	 */
-	public User refreshAuthentication() {
-		Authentication authentication = getContext().getAuthentication();
+	public User refreshUserDetails(HttpServletRequest request, HttpServletResponse response) {
+		Authentication authentication = (Authentication) request.getUserPrincipal();
 		User principal = (User) authentication.getPrincipal();
 		User user = iSysUserService.loadUserByUsername(principal.getUsername());
 		user.setPassword(EMPTY);
-		Authentication token = new UsernamePasswordAuthenticationToken(user, EMPTY, user.getAuthorities());
-		getContext().setAuthentication(token);
+		SecurityContext context = SecurityContextHolder.createEmptyContext();
+		context.setAuthentication(new UsernamePasswordAuthenticationToken(user, EMPTY, user.getAuthorities()));
+		securityContextRepository.saveContext(context, request, response);
 		return user;
 	}
 

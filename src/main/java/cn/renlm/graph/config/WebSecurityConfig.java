@@ -10,6 +10,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisIndexedHttpSession;
@@ -92,6 +96,11 @@ public class WebSecurityConfig {
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, RequestAuthorizationManager authorizationManager)
 			throws Exception {
+		// 显示保存 SecurityContext
+		http.securityContext(securityContext -> {
+			securityContext.requireExplicitSave(true);
+			securityContext.securityContextRepository(securityContextRepository());
+		});
 		// 启用Csrf
 		http.csrf()
 			.ignoringRequestMatchers(PubAntMatcher)
@@ -129,6 +138,12 @@ public class WebSecurityConfig {
 			.logoutUrl(logoutUrl)
 			.invalidateHttpSession(true);
 		return http.build();
+	}
+	
+	@Bean
+	SecurityContextRepository securityContextRepository() {
+		return new DelegatingSecurityContextRepository(new RequestAttributeSecurityContextRepository(),
+				new HttpSessionSecurityContextRepository());
 	}
 
 	/**

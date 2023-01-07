@@ -3,8 +3,6 @@ package cn.renlm.graph.controller.sys;
 import java.util.Date;
 import java.util.List;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -26,8 +24,10 @@ import cn.renlm.graph.modular.sys.entity.SysRoleResource;
 import cn.renlm.graph.modular.sys.service.ISysResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleResourceService;
 import cn.renlm.graph.modular.sys.service.ISysRoleService;
-import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.security.UserService;
+import cn.renlm.plugins.MyResponse.Result;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 资源
@@ -54,13 +54,15 @@ public class SysResourceController {
 	/**
 	 * 获取菜单列表
 	 * 
+	 * @param request
+	 * @param response
 	 * @param uuid
 	 * @return
 	 */
 	@ResponseBody
 	@GetMapping("/ajax/getMenus")
-	public List<Tree<Long>> getMenus(String uuid) {
-		User user = userService.refreshAuthentication();
+	public List<Tree<Long>> getMenus(HttpServletRequest request, HttpServletResponse response, String uuid) {
+		User user = userService.refreshUserDetails(request, response);
 		List<Tree<Long>> tree = user.getMenuTree(uuid);
 		return tree;
 	}
@@ -190,4 +192,5 @@ public class SysResourceController {
 			return Result.error("出错了");
 		}
 	}
+
 }

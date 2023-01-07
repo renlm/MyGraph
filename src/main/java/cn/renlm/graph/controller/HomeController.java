@@ -3,9 +3,6 @@ package cn.renlm.graph.controller;
 import java.util.Map;
 import java.util.Set;
 
-import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
@@ -23,6 +20,9 @@ import cn.renlm.graph.oshi.OshiInfo;
 import cn.renlm.graph.oshi.OshiInfoUtil;
 import cn.renlm.graph.security.UserService;
 import cn.renlm.graph.ws.WsUtil;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Home
@@ -43,12 +43,14 @@ public class HomeController {
 	/**
 	 * 主页
 	 * 
+	 * @param request
+	 * @param response
 	 * @param model
 	 * @return
 	 */
 	@GetMapping({ "/", "index.html" })
-	public String index(ModelMap model) {
-		User user = userService.refreshAuthentication();
+	public String index(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+		User user = userService.refreshUserDetails(request, response);
 		model.put("navGroup", user.getNavGroup());
 		model.put("homePages", user.getHomePages());
 		return "index";
