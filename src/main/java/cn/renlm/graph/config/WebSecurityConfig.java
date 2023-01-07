@@ -55,11 +55,6 @@ public class WebSecurityConfig {
 	public static final String CaptchaAntMatcher = "/captcha/**";
 
 	/**
-	 * 开放接口匹配路径
-	 */
-	public static final String APIAntMatcher = "/api/**";
-
-	/**
 	 * 开放网页匹配路径
 	 */
 	public static final String PubAntMatcher = "/pub/**";
@@ -72,7 +67,6 @@ public class WebSecurityConfig {
 			logoutUrl, 
 			LoginProcessingUrl, 
 			CaptchaAntMatcher, 
-			APIAntMatcher, 
 			PubAntMatcher,
 			"/actuator/prometheus"
 		};
@@ -100,7 +94,6 @@ public class WebSecurityConfig {
 			throws Exception {
 		// 启用Csrf
 		http.csrf()
-			.ignoringRequestMatchers(APIAntMatcher)
 			.ignoringRequestMatchers(PubAntMatcher)
 			.ignoringRequestMatchers(CaptchaAntMatcher)
 			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
