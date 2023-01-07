@@ -1,5 +1,5 @@
 INSERT INTO ds (id,uuid,name,url,schema_name,username,password,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
-(1,'053DAA6371124358833A189D4702F5F1','MyGraph 管理后台','jdbc:mysql://rlm.pub:30306/mygraph','','mygraph',NULL,'2023-01-07 17:58:31','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2023-01-07 17:58:31',NULL,NULL,0,'')
+(1,'053DAA6371124358833A189D4702F5F1','MyGraph 管理后台','jdbc:mysql://rlm.pub:30306/mygraph','','mygraph','','2023-01-07 17:58:31','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2023-01-07 17:58:31',NULL,NULL,0,'')
 ;
 
 INSERT INTO er (id,uuid,table_name,comment,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
