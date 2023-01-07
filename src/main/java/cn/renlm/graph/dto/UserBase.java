@@ -21,11 +21,6 @@ public class UserBase implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * 登录凭证
-	 */
-	private String ticket;
-
-	/**
 	 * 用户表ID
 	 */
 	private Long id;
@@ -84,12 +79,10 @@ public class UserBase implements Serializable {
 	 * 封装
 	 * 
 	 * @param user
-	 * @param ticket
 	 * @return
 	 */
-	public static final UserBase of(SysUser user, String ticket) {
+	public static final UserBase of(SysUser user) {
 		UserBase userBase = BeanUtil.copyProperties(user, UserBase.class);
-		userBase.setTicket(ticket);
 		return userBase;
 	}
 

@@ -39,6 +39,7 @@ import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
 import cn.renlm.graph.dto.User;
+import cn.renlm.graph.dto.UserBase;
 import cn.renlm.graph.properties.KeyStoreProperties;
 import cn.renlm.graph.security.OAuth2PasswordAuthenticationConverter;
 import cn.renlm.graph.security.OAuth2PasswordAuthenticationProvider;
@@ -127,8 +128,7 @@ public class AuthorizationServerConfig {
 					Object principal = authentication.getPrincipal();
 					if (principal instanceof User) {
 						User userDetails = (User) authentication.getPrincipal();
-						claim.put("userId", userDetails.getUserId());
-						claim.put("username", userDetails.getUsername());
+						claim.put("principal", UserBase.of(userDetails));
 						claim.put("authorities", userDetails.getAuthorities());
 					}
 				});

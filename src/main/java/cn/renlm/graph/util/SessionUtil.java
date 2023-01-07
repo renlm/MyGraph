@@ -68,7 +68,7 @@ public class SessionUtil {
 		if (user == null) {
 			return null;
 		}
-		return UserBase.of(user, ticket);
+		return UserBase.of(user);
 	}
 
 	/**
