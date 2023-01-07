@@ -3,6 +3,8 @@ package cn.renlm.graph.dto;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import cn.hutool.core.bean.BeanUtil;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import lombok.Data;
@@ -16,6 +18,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public class UserBase implements Serializable {
 
 	private static final long serialVersionUID = 1L;
