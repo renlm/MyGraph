@@ -34,7 +34,7 @@ import jakarta.servlet.http.HttpServletRequest;
  */
 @Configuration
 @EnableWebSecurity
-@EnableRedisIndexedHttpSession(redisNamespace = "mygraph:session")
+@EnableRedisIndexedHttpSession(redisNamespace = "mygraph:session", maxInactiveIntervalInSeconds = 60 * 60 * 12)
 @EnableMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig {
 
