@@ -121,7 +121,7 @@ spring:
       strict: true
       datasource:
         master:
-          url: ENC(/0ecf3cS2HEnTd5c7pv64Pt0LSGTddWMgoYRikEC5rmIDyZbsmwp9ENHi/gZSMagMq5misO1CcrrARDPfHL5bMUj6O95rVPcqjtUPqjEHuTM3i99UybSemLyNrJ0H9xaKXBqSFSQhSCuZpwphOdr1vTZZvb9deCvhkV32zRPtF1hg4A8vQ0vjQP2ZN0KzEsGaRWoeQ5c4fAag4QiaWhVTA==)
+          url: ENC(ii7sttTJgw3vH/R2NGbSsWM9SSbBJV/qwZb73eUQ/rlbS6Ux2lwl6iE19s+5bCxwiDziI8bxqQAuTMzL6ZMHgSshv38QHt2KbpM6O/lLgYsPy+VibyIDINvvgDgLFkEN21V086vzcjfxzL3JXNC8o539ON3pkSaB9KTrbxxpyNdnsax0y5b8ZVs08NxBN+8WCiWk4WrwXD86Kpt6deGh0w==)
           username: ENC(TH8gokJSLbQ6b+3miT2omUUP2ymJzM14ItGSYD9dZ2W4/pzFusZeCvwkuY1nFL4l)
           password: ENC(DP2Al147pJyiFArv67h0Pm08fFWjX9Ktjyri2jXjBm4ZWYsnSwXBwOsdk7ndmNmKJu8QjXCg7oDhIqQy9HnAcw==)
           driver-class-name: com.mysql.cj.jdbc.Driver
