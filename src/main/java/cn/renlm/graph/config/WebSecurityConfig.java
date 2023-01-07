@@ -50,7 +50,7 @@ public class WebSecurityConfig {
 	public static final String LoginProcessingUrl = "/doLogin";
 
 	/**
-	 * 验证码匹配路径
+	 * 验证码路径
 	 */
 	public static final String CaptchaAntMatcher = "/captcha/**";
 
