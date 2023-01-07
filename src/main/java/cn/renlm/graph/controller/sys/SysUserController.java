@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -32,9 +30,10 @@ import cn.renlm.graph.modular.sys.dto.SysUserDto;
 import cn.renlm.graph.modular.sys.entity.SysRole;
 import cn.renlm.graph.modular.sys.entity.SysUser;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
+import cn.renlm.graph.security.UserService;
 import cn.renlm.plugins.MyResponse.Datagrid;
 import cn.renlm.plugins.MyResponse.Result;
-import cn.renlm.graph.security.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * 用户
@@ -45,7 +44,7 @@ import cn.renlm.graph.security.UserService;
 @Controller
 @RequestMapping("/sys/user")
 public class SysUserController {
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -184,4 +183,24 @@ public class SysUserController {
 			return Result.error("出错了");
 		}
 	}
+
+	/**
+	 * 获取当前登录用户
+	 * 
+	 * @param request
+	 * @param authentication
+	 * @return
+	 */
+	@ResponseBody
+	@GetMapping("/getCurrent")
+	public Result<User> getCurrent(HttpServletRequest request, Authentication authentication) {
+		try {
+			User user = (User) authentication.getPrincipal();
+			return Result.success(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.error("出错了");
+		}
+	}
+
 }
