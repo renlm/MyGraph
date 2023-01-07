@@ -137,6 +137,7 @@ spring:
       dataLocations:
       - classpath:db/data/sys.sql
       - classpath:db/data/dict.sql
+      - classpath:db/data/ds-er.sql
       - classpath:db/data/oauth2.sql
       continueOnError: false
       separator: ;
