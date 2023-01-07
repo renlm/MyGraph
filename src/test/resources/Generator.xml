@@ -58,11 +58,6 @@
 		<table author="Renlm" name="QRTZ_LOGS" entity="true" />
 	</module>
 
-	<module name="gateway" package="cn.renlm.graph.modular">
-		<table author="Renlm" name="gateway_proxy_config" entity="true" />
-		<table author="Renlm" name="gateway_proxy_log" entity="true" />
-	</module>
-
 	<module name="oauth2" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="oauth2_authorization" entity="true" />
 		<table author="Renlm" name="oauth2_authorization_consent" entity="true" />
