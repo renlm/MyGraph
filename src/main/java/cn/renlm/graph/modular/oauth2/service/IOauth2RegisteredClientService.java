@@ -3,10 +3,8 @@ package cn.renlm.graph.modular.oauth2.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.oauth2.dto.Oauth2RegisteredClientDto;
 import cn.renlm.graph.modular.oauth2.entity.Oauth2RegisteredClient;
-import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * <p>
@@ -26,14 +24,5 @@ public interface IOauth2RegisteredClientService extends IService<Oauth2Registere
 	 * @return
 	 */
 	Page<Oauth2RegisteredClient> findPage(Page<Oauth2RegisteredClient> page, Oauth2RegisteredClientDto form);
-
-	/**
-	 * 保存（新建|编辑）
-	 * 
-	 * @param user
-	 * @param form
-	 * @return
-	 */
-	Result<String> ajaxSave(User user, Oauth2RegisteredClientDto form);
 
 }

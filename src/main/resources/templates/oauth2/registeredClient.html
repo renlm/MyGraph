@@ -17,7 +17,7 @@
 					singleSelect:true,
 					toolbar:'#toolbar',
 					pagination:true,
-					pageSize:10,
+					pageSize:20,
 					method:'get',
 					url:ctx+'/oauth2/registeredClient/ajax/page',
                    	onBeforeLoad:$.pageOnBeforeLoad
@@ -28,7 +28,7 @@
                       	<th data-options="field:'clientId',title:'客户端id',width:250"></th>
 	                    <th data-options="field:'clientName',title:'客户端名称',width:200"></th>
 	                    <th data-options="field:'clientIdIssuedAt',title:'创建时间',width:153,formatter:$.createdAtFormatter"></th>
-	                    <th data-options="field:'clientSecretExpiresAt',title:'过期时间',width:153,formatter:$.createdAtFormatter"></th>
+	                    <th data-options="field:'clientSecretExpiresAt',title:'过期时间',width:153,formatter:$.updatedAtFormatter"></th>
 	                    <th data-options="field:'redirectUris',title:'重定向地址',width:500"></th>
 	                </tr>
                 </thead>
@@ -36,104 +36,40 @@
         </div>
     </div>
     <div id="toolbar" class="myui-toolbar">
-    	<a href="javascript:registeredClientDialog();"
-          	class="easyui-menubutton myui-btn-normal myui-btn-green"
-         	data-options="iconCls:'fa fa-plus',
-           		hasDownArrow:false
-        	">新增
-       	</a>
-       	<form id="registeredClientDataGridForm" class="search-box">
-	    	<input type="text" name="keywords"
-	    		id="registeredClientDataGridKeywords" 
-	   			class="easyui-textbox"
-	        	data-options="prompt:'关键词',
-	        		width:220
-	        	"/>
-	        <a href="javascript:searchRegisteredClient();" 
-	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
-	       		data-options="iconCls:'fa fa-search'
-	         	">查询
-	    	</a>
-	    	<a href="javascript:resetRegisteredClient();"
-	      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
-	      		data-options="iconCls:'fa fa-trash'
-	      		">清空
-	    	</a>
-		</form>
+        <input type="text" name="keywords"
+	   		id="keywords" 
+	  		class="easyui-textbox"
+	       	data-options="prompt:'关键词',
+	       		width:220
+	       	"/>
+        <a href="javascript:search();" 
+        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+       		data-options="iconCls:'fa fa-search'
+         	">查询
+    	</a>
+    	<a href="javascript:reset();"
+      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+      		data-options="iconCls:'fa fa-trash'
+      		">清空
+    	</a>
     </div>
-	<script type="text/javascript">
-		/**
-		 * 查询
-		 */
-		function searchRegisteredClient () {
-			$('#dataGrid').datagrid('load', {
-				keywords: $('#registeredClientDataGridKeywords').textbox('getValue')
-			});
-		}
-		
-		/**
-		 * 清空
-		 */
-		function resetRegisteredClient () {
-			$('#registeredClientDataGridForm').form('clear');
-			searchRegisteredClient();
-		}
-		
-		/**
-		 * 弹窗（新增）
-		 */
-		function registeredClientDialog (id) {
-			var $registeredClientDialog = $('<form id=\'registeredClientDialog\' method=\'post\' class=\'myui\'></form>');
-		    $registeredClientDialog.myuiDialog({
-		        title: '新增',
-		        width: 890,
-		        height: 503,
-				collapsible: true,
-				minimizable: false,
-				maximizable: true,
-		        closed: false,
-		        cache: false,
-		        href: ctx + '/oauth2/registeredClient/dialog',
-		        modal: true,
-		        buttons: [{
-		            text: '保存',
-		            iconCls: 'fa fa-plus',
-		            handler: function () {
-						$.messager.progress({'text': '请求中……'});
-				        $registeredClientDialog.form('submit', {
-				            url: ctx + '/oauth2/registeredClient/ajax/save',
-				            onSubmit: function () {
-				                var isValid = $(this).form('validate');
-				                if (!isValid) {
-				                    $.messager.progress('close');
-				                }
-				                return isValid;
-				            },
-				            success: function (result) {
-								var resultJson = JSON.parse(result);
-				                $.messager.progress('close');
-				                if (resultJson.statusCode == 200) {
-				                	$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
-				                	$registeredClientDialog.dialog('destroy');
-				                	$('#dataGrid').datagrid('reload');
-				                } else {
-				                    $.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'出错了', timeout: 5000, showType: 'slide'});
-				                }
-				        	}
-				 		});
-					}
-		        }, {
-		            text: '关闭',
-		            iconCls: 'fa fa-close',
-		            handler: function () {
-		                $registeredClientDialog.dialog('destroy');
-		            }
-		        }],
-				onClose: function () {
-					$registeredClientDialog.dialog('destroy');
-				}
-		    });
-		}
-	</script>
+<script type="text/javascript">
+	/**
+	 * 查询
+	 */
+	function search () {
+		$("#dataGrid").datagrid("load", {
+			keywords: $("#keywords").textbox('getValue')
+		});
+	}
+	
+	/**
+	 * 重置
+	 */
+	function reset () {
+		$("#keywords").textbox("clear");
+		search();
+	}
+</script>
 </body>
 </html>

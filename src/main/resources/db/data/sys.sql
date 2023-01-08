@@ -74,7 +74,7 @@ VALUES (1, 				'9AC40BC2E9A84761A6310A2BD6D4833A',	'WELCOME', 		'系统首页', 
 	  ,(2003, 			'BC5AC4EA07304BB59960E110767EE4C2',	'2003', 		'定时任务', 				'menu', 			null, 														'fa fa-tasks', 				null, 				null, 			2, 		3, 		'closed',	0,					20,			null)
 	  ,(200301, 		'D957245380414774BF7882933536DA86',	'200301', 		'任务管理', 				'menu', 			'/qrtz/jobs', 												'fa fa-deaf', 				null, 				null, 			3, 		1, 		'open',		0,					2003,		null)
 	  ,(2004, 			'260E55DDB6014A98989EA01566E849CD',	'2004', 		'Oauth2.0认证', 			'menu', 			null, 														'fa fa-qrcode', 			null, 				null, 			2, 		4, 		'closed',	0,					20,			null)
-	  ,(200401, 		'40166599BA3247EEA5CC43599D8C3C03',	'200401', 		'客户端', 				'menu', 			'/oauth2/registeredClient/list', 							'fa fa-user-md', 			null, 				null, 			3, 		1, 		'open',		0,					2004,		null)
+	  ,(200401, 		'40166599BA3247EEA5CC43599D8C3C03',	'200401', 		'客户端', 				'menu', 			'/oauth2/registeredClient', 								'fa fa-user-md', 			null, 				null, 			3, 		1, 		'open',		0,					2004,		null)
 	  ,(30, 			'3165637A889443629EB021505A4CAC52',	'OSHI', 		'服务器', 				'permission', 		'/home/oshi',												'fa fa-server', 			null, 				null, 			1, 		3, 		'open',		1,					null,		null)
 	  ,(40, 			'EB0B50741EAC47E3A275FEBCABFC5AA1',	'40', 			'文件管理', 				'urlInsidePage', 	'/sys/file', 												'fa fa-clipboard', 			'#990000', 			null, 			1, 		4, 		'open',		0,					null,		null)
 	  ,(50, 			'731191740D22404585B359867121755B',	'50', 			'帮助文档', 				'menu', 			null, 														'fa fa-file-word-o', 		null, 				null, 			1, 		5, 		'closed',	0,					null,		null)

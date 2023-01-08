@@ -7,12 +7,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import cn.hutool.core.util.StrUtil;
-import cn.renlm.graph.dto.User;
 import cn.renlm.graph.modular.oauth2.dto.Oauth2RegisteredClientDto;
 import cn.renlm.graph.modular.oauth2.entity.Oauth2RegisteredClient;
 import cn.renlm.graph.modular.oauth2.mapper.Oauth2RegisteredClientMapper;
 import cn.renlm.graph.modular.oauth2.service.IOauth2RegisteredClientService;
-import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * <p>
@@ -38,11 +36,6 @@ public class Oauth2RegisteredClientServiceImpl extends ServiceImpl<Oauth2Registe
 				});
 			}
 		}));
-	}
-
-	@Override
-	public Result<String> ajaxSave(User user, Oauth2RegisteredClientDto form) {
-		return null;
 	}
 
 }
