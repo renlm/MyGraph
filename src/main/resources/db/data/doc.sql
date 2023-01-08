@@ -296,20 +296,20 @@ ___<a href="https://renlm.cn/imgs/MyGraph/003.png" target="_blank"> 截图-效�
 	
 ```
 https://mygraph.renlm.cn/oauth2/authorize
-?response_type=code&amp;client_id=&amp;scope=&amp;state=&amp;redirect_uri=
+?response_type=code&client_id=&scope=&state=&redirect_uri=
 ```
 
 根据code获取token
 	
 ```
-curl -d ''grant_type=authorization_code&amp;client_id=&amp;client_secret=&amp;code=&amp;redirect_uri=''
+curl -d 'grant_type=authorization_code&client_id=&client_secret=&code=&redirect_uri='
 https://mygraph.renlm.cn/oauth2/token | python -m json.tool
 ```
 
 ### 客户端模式
 
 ```
-curl -d ''grant_type=client_credentials&amp;client_id=&amp;client_secret=&amp;scope=''
+curl -d 'grant_type=client_credentials&client_id=&client_secret=&scope='
 https://mygraph.renlm.cn/oauth2/token | python -m json.tool
 ```
 
@@ -592,20 +592,20 @@ ___<a href="https://renlm.cn/imgs/MyGraph/003.png" target="_blank"> 截图-效�
 	
 ```
 https://mygraph.renlm.cn/oauth2/authorize
-?response_type=code&amp;client_id=&amp;scope=&amp;state=&amp;redirect_uri=
+?response_type=code&client_id=&scope=&state=&redirect_uri=
 ```
 
 根据code获取token
 	
 ```
-curl -d ''grant_type=authorization_code&amp;client_id=&amp;client_secret=&amp;code=&amp;redirect_uri=''
+curl -d 'grant_type=authorization_code&client_id=&client_secret=&code=&redirect_uri='
 https://mygraph.renlm.cn/oauth2/token | python -m json.tool
 ```
 
 ### 客户端模式
 
 ```
-curl -d ''grant_type=client_credentials&amp;client_id=&amp;client_secret=&amp;scope=''
+curl -d 'grant_type=client_credentials&client_id=&client_secret=&scope='
 https://mygraph.renlm.cn/oauth2/token | python -m json.tool
 ```
 
@@ -894,20 +894,20 @@ ___<a href="https://renlm.cn/imgs/MyGraph/003.png" target="_blank"> 截图-效�
 	
 ```
 https://mygraph.renlm.cn/oauth2/authorize
-?response_type=code&amp;client_id=&amp;scope=&amp;state=&amp;redirect_uri=
+?response_type=code&client_id=&scope=&state=&redirect_uri=
 ```
 
 根据code获取token
 	
 ```
-curl -d ''grant_type=authorization_code&amp;client_id=&amp;client_secret=&amp;code=&amp;redirect_uri=''
+curl -d 'grant_type=authorization_code&client_id=&client_secret=&code=&redirect_uri='
 https://mygraph.renlm.cn/oauth2/token | python -m json.tool
 ```
 
 ### 客户端模式
 
 ```
-curl -d ''grant_type=client_credentials&amp;client_id=&amp;client_secret=&amp;scope=''
+curl -d 'grant_type=client_credentials&client_id=&client_secret=&scope='
 https://mygraph.renlm.cn/oauth2/token | python -m json.tool
 ```
 
@@ -1191,20 +1191,20 @@ ___<a href="https://renlm.cn/imgs/MyGraph/003.png" target="_blank"> 截图-效�
 	
 ```
 https://mygraph.renlm.cn/oauth2/authorize
-?response_type=code&amp;client_id=&amp;scope=&amp;state=&amp;redirect_uri=
+?response_type=code&client_id=&scope=&state=&redirect_uri=
 ```
 
 根据code获取token
 	
 ```
-curl -d ''grant_type=authorization_code&amp;client_id=&amp;client_secret=&amp;code=&amp;redirect_uri=''
+curl -d 'grant_type=authorization_code&client_id=&client_secret=&code=&redirect_uri='
 https://mygraph.renlm.cn/oauth2/token | python -m json.tool
 ```
 
 ### 客户端模式
 
 ```
-curl -d ''grant_type=client_credentials&amp;client_id=&amp;client_secret=&amp;scope=''
+curl -d 'grant_type=client_credentials&client_id=&client_secret=&scope='
 https://mygraph.renlm.cn/oauth2/token | python -m json.tool
 ```
 
