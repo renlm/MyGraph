@@ -25,14 +25,11 @@
                 <thead>
 	                <tr>
 	                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#dataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
-                      	<th data-options="field:'clientId',title:'clientId'"></th>
-	                    <th data-options="field:'clientName',title:'clientName'"></th>
-	                    <th data-options="field:'clientIdIssuedAt',title:'clientIdIssuedAt'"></th>
-	                    <th data-options="field:'clientSecretExpiresAt',title:'clientSecretExpiresAt'"></th>
-	                    <th data-options="field:'clientAuthenticationMethods',title:'clientAuthenticationMethods'"></th>
-		            	<th data-options="field:'authorizationGrantTypes',title:'authorizationGrantTypes'"></th>
-		            	<th data-options="field:'redirectUris',title:'redirectUris'"></th>
-		            	<th data-options="field:'scopes',title:'scopes'"></th>
+                      	<th data-options="field:'clientId',title:'客户端id',width:250"></th>
+	                    <th data-options="field:'clientName',title:'客户端名称',width:200"></th>
+	                    <th data-options="field:'clientIdIssuedAt',title:'创建时间',width:153,formatter:$.createdAtFormatter"></th>
+	                    <th data-options="field:'clientSecretExpiresAt',title:'过期时间',width:153,formatter:$.createdAtFormatter"></th>
+	                    <th data-options="field:'redirectUris',title:'重定向地址',width:500"></th>
 	                </tr>
                 </thead>
             </table>
