@@ -38,12 +38,12 @@ aj:
 mica:
   xss:
     enabled: true
-    trim-text: true
+    trimText: true
     mode: clear
-    pretty-print: false
-    enable-escape: true
-    path-patterns: /**
-    path-exclude-patterns:
+    prettyPrint: false
+    enableEscape: false
+    pathPatterns: /**
+    pathExcludePatterns:
     - /static
     - /webjars
     - /markdown/**
