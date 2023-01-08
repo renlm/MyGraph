@@ -14,7 +14,7 @@
 	<artifactId>mygraph</artifactId>
 	<version>2.0.1</version>
 	<name>MyGraph</name>
-	<description>MyGraph 管理后台，集成权限管理系统、统一用户认证中心、实时动态网关代理与在线文档管理等诸多强大功能于一身的后台系统开发模板，代码简洁，增强了安全控制，可放心使用。</description>
+	<description>MyGraph 管理后台，集成经典RABC权限后台、Oauth2.0认证服务、在线画图、ER模型设计与在线文档管理，是一个高度集成的后台模板。</description>
 	<url>https://github.com/renlm/MyGraph</url>
 
 	<properties>
