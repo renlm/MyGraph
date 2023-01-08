@@ -59,6 +59,6 @@
 	</module>
 
 	<module name="oauth2" package="cn.renlm.graph.modular">
-		<table author="Renlm" name="oauth2_registered_client" entity="true" />
+		<table author="Renlm" name="oauth2_registered_client" entity="true" idType="ASSIGN_ID" />
 	</module>
 </generator>
