@@ -47,7 +47,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 			String targetUrl = savedRequest.getRedirectUrl();
 			log.info("targetUrl = {}", targetUrl);
 			String ctx = myConfigProperties.getCtx();
-			if (!StrUtil.startWith(targetUrl, ctx + "/oauth2")) {
+			if (!StrUtil.startWith(targetUrl, ctx + "/oauth2/authorize")) {
 				this.getRedirectStrategy().sendRedirect(request, response, ctx);
 				return;
 			}
