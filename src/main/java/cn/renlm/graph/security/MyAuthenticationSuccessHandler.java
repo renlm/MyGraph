@@ -21,6 +21,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 登录成功处理
@@ -28,6 +29,7 @@ import lombok.RequiredArgsConstructor;
  * @author Renlm
  *
  */
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
@@ -43,6 +45,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 		SavedRequest savedRequest = this.requestCache.getRequest(request, response);
 		if (savedRequest != null) {
 			String targetUrl = savedRequest.getRedirectUrl();
+			log.info("targetUrl = {}", targetUrl);
 			if (StrUtil.startWith(targetUrl, myConfigProperties.getCtx())) {
 				this.getRedirectStrategy().sendRedirect(request, response, myConfigProperties.getCtx());
 				return;
