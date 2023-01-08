@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * Oauth2.0 注册客户端
  * </p>
  *
  * @author Renlm
