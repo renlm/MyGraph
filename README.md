@@ -12,7 +12,7 @@
 
 ### 这是一个在线文档系统
 集成语法增强版的Markdown文档，支持团队协作、版本控制与分享。  
-分享文档：<a href="https://mygraph.renlm.cn/pub/doc/s/D32C841B469C4ECA86F936238A6D2118" target="_blank"> 系统手册 </a>，查看密码：123654  
+分享文档：<a href="https://mygraph.renlm.cn/pub/doc/s/F6518D2F9B4542D1B8AD48325066A20B" target="_blank"> 系统手册 </a>，查看密码：123654  
 
 ## 源码地址 
 <a href="https://gitee.com/renlm/MyGraph.git" target="_blank">https://<span></span>gitee.com/renlm/MyGraph.git</a>  
