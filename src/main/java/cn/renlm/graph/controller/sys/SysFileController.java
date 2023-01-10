@@ -7,10 +7,6 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Date;
 
-import jakarta.servlet.ServletOutputStream;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -34,6 +30,9 @@ import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.plugins.MyResponse.Datagrid;
 import cn.renlm.plugins.MyResponse.Result;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 文件
@@ -130,9 +129,10 @@ public class SysFileController {
 	public void download(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("fileId") String fileId) throws IOException {
 		boolean inline = request.getParameterMap().containsKey("inline");
-		String openStyle = inline ? "inline" : "attachment";
 		SysFile file = iSysFileService.getOne(Wrappers.<SysFile>lambdaQuery().eq(SysFile::getFileId, fileId));
 		String filename = URLEncoder.encode(file.getOriginalFilename(), "UTF-8");
+		String[] viewArr = { ".gif", ".jpg", ".jpeg", ".bmp", ".png", ".pdf", ".xsd", ".xml" };
+		String openStyle = inline ? (StrUtil.endWithAny(filename, viewArr) ? "inline" : "attachment") : "attachment";
 		response.setHeader("Content-Type", file.getFileType());
 		response.setHeader("Content-Disposition", openStyle + ";fileName=" + filename);
 		try (ServletOutputStream os = response.getOutputStream()) {
@@ -175,4 +175,5 @@ public class SysFileController {
 			return Result.error("出错了");
 		}
 	}
+
 }
