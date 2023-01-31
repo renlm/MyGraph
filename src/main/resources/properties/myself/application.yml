@@ -1,0 +1,153 @@
+server:
+  port: 80
+  servlet:
+    session:
+      cookie:
+        name: MYGRAPH
+  tomcat:
+    remoteip:
+      remote-ip-header: X-Forwarded-For
+      protocol-header: X-Forwarded-Proto
+
+my:
+  config:
+    ctx: https://mygraph.renlm.cn
+    wsHost: ws://mygraph.renlm.cn
+    wssHost: wss://mygraph.renlm.cn:443
+    wsAllowedOrigins: http://mygraph.renlm.cn,https://mygraph.renlm.cn
+    proxyLogConcurrency: 30-50
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD:123654}
+
+encrypt:
+  keyStore:
+    location: classpath:keyStore.jks
+    password: ${KEY_STORE_PASSWORD:storepass}
+    alias: ${KEY_STORE_ALIAS:alias}
+    secret: ${KEY_STORE_SECRET:keypass}
+
+aj:
+  captcha:
+    cacheType: redis
+    jigsaw: classpath:images/jigsaw
+    picClick: classpath:images/pic-click
+    type: default
+    waterMark: mygraph.renlm.cn
+    slipOffset: 5
+    aesStatus: true
+    interferenceOptions: 0
+
+mica:
+  xss:
+    enabled: true
+    trimText: true
+    mode: clear
+    prettyPrint: false
+    enableEscape: false
+    pathPatterns: /**
+    pathExcludePatterns:
+    - /static
+    - /webjars
+    - /markdown/**
+
+logging:
+  level:
+    root: info
+    cn.renlm.graph: info
+  file:
+    name: /opt/log/mygraph.log
+  logback:
+    rollingpolicy:
+      maxFileSize: 512MB
+      maxHistory: 30
+
+mybatis-plus:
+  configuration:
+    localCacheScope: STATEMENT
+  global-config:
+    db-config:
+      update-strategy: IGNORED
+
+management:
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+spring:
+  application:
+    name: mygraph
+  profiles:
+    active: prod
+  main:
+    allow-circular-references: true
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+  thymeleaf:
+    cache: false
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+  data:
+    redis:
+      database: 3
+      host: redis
+      port: 6379
+      password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
+      timeout: 10s
+      lettuce:
+        pool:
+          maxActive: 256
+          maxWait: 2000ms
+          maxIdle: 10
+          minIdle: 5
+  rabbitmq:
+    virtual-host: ENC(O+epS5yMEqegl+pivZk2UzPRPGyaqfL1huSETOdu0lAlgEfU6mSEJknKKtc2ozm9)
+    host: rabbitmq
+    port: 5672
+    username: ENC(x7mQELG8zbtqpDhykzDoy2ZqMSs1HHBK6FRWrfFptc8AX28/ABnWNOY9QNFMQ1pb)
+    password: ENC(mKnxCAS26wM7tYsW2pG8hjYS6JY2/iAoS5v/UkM7IniEvu8JHJWFvfrZdclGnw5oHhQwotXp83M5IJho02MC5ZmGn9FtSBr3cEtSe5xn2VM=)
+    listener:
+      direct:
+        missing-queues-fatal: false
+  datasource:
+    dynamic:
+      primary: master
+      strict: true
+      datasource:
+        master:
+          url: jdbc:mysql://mysql:3306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+          username: ENC(TH8gokJSLbQ6b+3miT2omUUP2ymJzM14ItGSYD9dZ2W4/pzFusZeCvwkuY1nFL4l)
+          password: ENC(DP2Al147pJyiFArv67h0Pm08fFWjX9Ktjyri2jXjBm4ZWYsnSwXBwOsdk7ndmNmKJu8QjXCg7oDhIqQy9HnAcw==)
+          driver-class-name: com.mysql.cj.jdbc.Driver
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceId: AUTO
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            misfireThreshold: 60000
+            clusterCheckinInterval: 5000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
