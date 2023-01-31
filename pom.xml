@@ -392,6 +392,12 @@
 			</activation>
 		</profile>
 		<profile>
+			<id>myself</id>
+			<properties>
+				<profiles.active>properties/myself</profiles.active>
+			</properties>
+		</profile>
+		<profile>
 			<id>prod</id>
 			<properties>
 				<profiles.active>properties/prod</profiles.active>
@@ -412,6 +418,7 @@
 				<directory>src/main/resources</directory>
 				<excludes>
 					<exclude>properties/dev/**</exclude>
+					<exclude>properties/myself/**</exclude>
 					<exclude>properties/prod/**</exclude>
 					<exclude>properties/test/**</exclude>
 				</excludes>
