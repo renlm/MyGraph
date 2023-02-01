@@ -44,8 +44,8 @@ import cn.renlm.graph.modular.sys.service.ISysRoleService;
 import cn.renlm.graph.modular.sys.service.ISysUserOrgService;
 import cn.renlm.graph.modular.sys.service.ISysUserRoleService;
 import cn.renlm.graph.modular.sys.service.ISysUserService;
-import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.util.TreeExtraUtil;
+import cn.renlm.plugins.MyResponse.Result;
 
 /**
  * <p>
@@ -187,7 +187,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 			return Result.error(ConstVal.username_msg);
 		}
 		SysUser exists = this.getOne(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername, form.getUsername()));
-		if (form.getUserId() == null) {
+		if (StrUtil.isBlank(form.getUserId())) {
 			// 校验账号（是否存在）
 			if (exists != null) {
 				return Result.error("登录账号已存在");
