@@ -111,7 +111,7 @@ spring:
           maxIdle: 10
           minIdle: 5
   rabbitmq:
-    virtual-host: ENC(XflatZbv+cUhvllZJyiDEcjisE1t/t3C/XdWpdX89w3BxaAt7keRhxUMBc1S3qYo)
+    virtual-host: ENC(3Pb16Z/FP6eOolJV/BEnKlHDKGk88rVOrrfzwGl9NndumtLvdsd8kJU7sukc0/xy)
     host: rabbitmq
     port: 5672
     username: ENC(lhsbi5VLIdXCWzO1elJz5hya6Bf92QTVsiu6hZMv7WGk3MvWiOixDW0cwQ7hrU0E)
