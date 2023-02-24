@@ -30,7 +30,7 @@
 		<jasypt-spring-boot-starter.version>3.0.5</jasypt-spring-boot-starter.version>
 		<spring-boot-starter-captcha.version>1.3.0</spring-boot-starter-captcha.version>
 		<spring-security-rsa.version>1.0.11.RELEASE</spring-security-rsa.version>
-		<cn.renlm.plugins.version>2.7.4</cn.renlm.plugins.version>
+		<cn.renlm.plugins.version>2.7.5</cn.renlm.plugins.version>
 		<selenium-devtools-v93.version>4.0.0</selenium-devtools-v93.version>
 		<mica-xss.version>3.0.1</mica-xss.version>
 		<webjars-locator.version>0.46</webjars-locator.version>
