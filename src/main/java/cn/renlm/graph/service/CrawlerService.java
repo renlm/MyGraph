@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.renlm.graph.modular.crawler.entity.CrawlerRequest;
@@ -77,6 +78,7 @@ public class CrawlerService {
 	public final CrawlerRequest createRequest(boolean save, String siteCode, String siteName, String startUrl,
 			String regex, int regexGroup, Integer pageUrlType, int depth, String flag, String url, String referer) {
 		CrawlerRequest request = new CrawlerRequest();
+		request.setId(IdUtil.getSnowflakeNextId());
 		request.setSiteCode(siteCode);
 		request.setSiteName(siteName);
 		request.setStartUrl(startUrl);
