@@ -7,7 +7,7 @@ import cn.renlm.plugins.MyGeneratorUtil;
 /**
  * 代码生成
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public class GeneratorTest {
@@ -16,4 +16,10 @@ public class GeneratorTest {
 	public void run() {
 		MyGeneratorUtil.run("Generator.xml");
 	}
+
+	@Test
+	public void run2() {
+		MyGeneratorUtil.run("Generator2.xml");
+	}
+
 }

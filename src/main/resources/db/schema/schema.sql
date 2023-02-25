@@ -575,3 +575,29 @@ CREATE TABLE sys_login_log(
     INDEX user_id(user_id),
     INDEX login_time(login_time)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = '系统登录日志';
+
+-- 简易爬虫 - 访问请求
+DROP TABLE IF EXISTS crawler_request;
+CREATE TABLE crawler_request(
+    id            				BIGINT      	PRIMARY KEY 	AUTO_INCREMENT	COMMENT '主键ID',
+    site_code 					VARCHAR(60) 					NOT NULL		COMMENT '站点代码',
+	site_name 					VARCHAR(255) 					NOT NULL		COMMENT '站点名称',
+	start_url 					VARCHAR(800) 									COMMENT '入口链接',
+	regex 						VARCHAR(800) 									COMMENT '匹配正则',
+	regex_group 				INT												COMMENT '正则Group',
+	page_url_type 				INT(1) 											COMMENT '页面链接类型，-1：入口链接，0：种子，1：数据',
+	depth 						INT												COMMENT '爬取深度',
+	flag 						VARCHAR(255) 									COMMENT '标记值',
+	url 						VARCHAR(800) 									COMMENT '页面链接',
+	url_md5 					VARCHAR(32) 									COMMENT '页面链接MD5值',
+	referer 					VARCHAR(800) 									COMMENT '访问来源',
+	status_code					INT												COMMENT '请求响应码',
+	html_title 					VARCHAR(255) 									COMMENT '网页Title',
+	html_content 				LONGTEXT 										COMMENT '网页内容',
+	screenshot_base64 			TEXT 											COMMENT '网页截屏图片（Base64）',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
+    updated_at TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    deleted TINYINT(1) DEFAULT 0 NOT NULL COMMENT '是否删除（默认否）',
+    INDEX site_code(site_code),
+    INDEX url_md5(url_md5)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COMMENT = '简易爬虫 - 访问请求';
