@@ -1,6 +1,7 @@
 package cn.renlm.graph.amqp;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -17,16 +18,23 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.setting.Setting;
 import cn.renlm.graph.dto.CrawlerRequestDto;
 import cn.renlm.graph.modular.crawler.entity.CrawlerRequest;
+import cn.renlm.graph.modular.crawler.service.ICrawlerRequestService;
 import cn.renlm.graph.properties.CrawlerConfigProperties.CrawlerSite;
 import cn.renlm.plugins.MyCrawlerUtil;
 import cn.renlm.plugins.MyCrawler.MySite;
 import cn.renlm.plugins.MyCrawler.MySpider;
+import cn.renlm.plugins.MyCrawler.scheduler.MyDuplicateVerify;
 import redis.clients.jedis.JedisPool;
 import us.codecraft.webmagic.Request;
+import us.codecraft.webmagic.ResultItems;
+import us.codecraft.webmagic.Task;
 
 /**
  * 简易爬虫 - 访问请求
@@ -48,6 +56,9 @@ public class CrawlerRequestQueue {
 	@Autowired
 	private JedisPool jedisPool;
 
+	@Autowired
+	private ICrawlerRequestService iCrawlerRequestService;
+
 	/**
 	 * 接收消息
 	 * 
@@ -65,33 +76,58 @@ public class CrawlerRequestQueue {
 		MySpider spider = MyCrawlerUtil.createSpider(jedisPool, mySite, myPage -> {
 
 		}, myData -> {
+			Task task = myData.task();
+			ResultItems resultItems = myData.resultItems();
+			MyDuplicateVerify duplicateVerify = myData.duplicateVerify();
 
+			// 过滤重复请求
+			List<Request> noDuplicates = CollUtil.newArrayList();
+			List<CrawlerRequest> requests = CollUtil.newArrayList();
+			List<Request> nextRequests = resultItems.getRequest().getExtra(EXCHANGE);
+			if (CollUtil.isEmpty(nextRequests)) {
+				return;
+			}
+			nextRequests.forEach(nr -> {
+				if (!duplicateVerify.verifyDuplicate(param.getForceUpdate(), nr, task)) {
+					noDuplicates.add(nr);
+					requests.add((CrawlerRequest) nr.getExtras().remove(KEY));
+				}
+			});
+
+			// 批量保存
+			if (CollUtil.isNotEmpty(requests)) {
+				iCrawlerRequestService.saveBatch(requests);
+				// 添加任务
+				CrawlerRequestDto newRequest = new CrawlerRequestDto();
+				newRequest.setRequests(noDuplicates.toArray(new Request[noDuplicates.size()]));
+				AmqpUtil.createQueue(EXCHANGE, ROUTINGKEY, newRequest);
+			}
 		}).onDownloaded(mySite, page -> {
 			Request req = page.getRequest();
 
-			// 下载失败（例：连接超时）
+			// 下载失败
 			if (req == null) {
 				return;
 			}
 
-			// 获取当前链接
+			// 访问请求
 			CrawlerRequest crawlerRequest = req.getExtra(KEY);
 			if (crawlerRequest == null) {
 				return;
 			}
 
-			// 更新请求状态、网页标题及截屏图片
-			crawlerRequest.setStatusCode(page.getStatusCode());
-			crawlerRequest.setHtmlTitle(page.getHtml().xpath("//title/text()").get());
-			if (site.isSaveHtml()) {
-				crawlerRequest.setHtmlContent(page.getRawText());
-			}
-			if (site.isScreenshot()) {
-				String screenshotBASE64 = req.getExtra(MyCrawlerUtil.screenshotBASE64ExtraKey);
-				crawlerRequest.setScreenshotBase64(screenshotBASE64);
-			}
-			crawlerRequest.setUpdatedAt(new Date());
+			// 更新请求状态
+			// 保存网页、标题及截屏图片
 			page.getRequest().putExtra(KEY, crawlerRequest);
+			String screenshotBASE64 = req.getExtra(MyCrawlerUtil.screenshotBASE64ExtraKey);
+			iCrawlerRequestService.update(Wrappers.<CrawlerRequest>lambdaUpdate().func(wrapper -> {
+				wrapper.set(CrawlerRequest::getStatusCode, page.getStatusCode());
+				wrapper.set(CrawlerRequest::getHtmlTitle, page.getHtml().xpath("//title/text()").get());
+				wrapper.set(site.isSaveHtml(), CrawlerRequest::getHtmlContent, page.getRawText());
+				wrapper.set(site.isScreenshot(), CrawlerRequest::getScreenshotBase64, screenshotBASE64);
+				wrapper.set(CrawlerRequest::getUpdatedAt, new Date());
+				wrapper.eq(CrawlerRequest::getId, crawlerRequest.getId());
+			}));
 		});
 		spider.thread(1);
 		spider.setEmptySleepTime(site.getSleepTime());
