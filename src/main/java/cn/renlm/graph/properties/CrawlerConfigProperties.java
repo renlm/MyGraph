@@ -25,13 +25,18 @@ public class CrawlerConfigProperties {
 
 	private CrawlerProxy proxy;
 
-	private Map<String, CrawlerSite> sites;
+	private List<CrawlerSite> sites;
 
 	/**
 	 * 站点配置
 	 */
 	@Data
 	public static final class CrawlerSite {
+
+		/**
+		 * 编码
+		 */
+		private String code;
 
 		/**
 		 * 名称
