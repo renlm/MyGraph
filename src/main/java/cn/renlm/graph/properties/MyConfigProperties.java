@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * 自定义配置
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Data
