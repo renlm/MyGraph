@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" layout:decorate="~{layout/decorate}">
 <head>
-    <title>登录日志</title>
+    <title>简易爬虫 - 配置中心</title>
 </head>
 <body layout:fragment="content" class="myui">
 	<div class="easyui-layout" 
@@ -16,54 +16,27 @@
 					fitColumns:true,
 					singleSelect:true,
 					toolbar:'#toolbar',
-					pagination:true,
-					pageSize:20,
+					pagination:false,
 					method:'get',
-					url:'loginLog/ajax/page',
-                   	onBeforeLoad:$.pageOnBeforeLoad
+					url:'config/sites'
                	">
                 <thead>
 	                <tr>
 	                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#dataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
-                      	<th data-options="field:'username',title:'账号',width:100"></th>
-	                    <th data-options="field:'nickname',title:'昵称',width:100"></th>
-	                    <th data-options="field:'clientIp',title:'客户端ip',width:100"></th>
-	                    <th data-options="field:'loginTime',title:'登录时间',width:50,formatter:$.createdAtFormatter"></th>
-			          	<th data-options="field:'ipRegion',title:'IP归属地',width:120,formatter:$.spanWithTitleFormatter"></th>
+                      	<th data-options="field:'code',title:'代码',width:100"></th>
+	                    <th data-options="field:'name',title:'名称',width:100"></th>
 	                </tr>
                 </thead>
             </table>
         </div>
     </div>
     <div id="toolbar" class="myui-toolbar">
-    	<input type="text" name="userId"
-        	id="userId"
-       		class="easyui-combogrid"
-      		data-options="idField:'userId',
-         		textField:'nickname',
-            	prompt:'账号',
-            	width:220,
-            	panelWidth:444,
-           		pagination:true,
-           		fitColumns:true,
-           		pageSize:10,
-           		mode:'remote',
-           		method:'get',
-           		url:'user/ajax/page',
-              	onBeforeLoad:$.pageOnBeforeLoad,
-              	columns:[[
-              		{field:'username',title:'账号',width:100},
-                 	{field:'nickname',title:'昵称',width:100},
-                	{field:'mobile',title:'手机号码',width:100}
-             	]]
-        	"/>
-        <input type="text" name="loginTime"
-        	id="loginTime" 
-        	class="easyui-datebox" 
-        	data-options="prompt:'查询起始时间',
-             	editable:false,
-        		width:220
-        	"/>
+        <input type="text" name="keywords"
+	   		id="keywords" 
+	  		class="easyui-textbox"
+	       	data-options="prompt:'关键词',
+	       		width:220
+	       	"/>
         <a href="javascript:search();" 
         	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
        		data-options="iconCls:'fa fa-search'
@@ -81,8 +54,7 @@
 	 */
 	function search () {
 		$("#dataGrid").datagrid("load", {
-			userId: $("#userId").combogrid("getValue"),
-			loginTime: $("#loginTime").datebox("getValue")
+			keywords: $("#keywords").textbox('getValue')
 		});
 	}
 	
@@ -90,8 +62,7 @@
 	 * 重置
 	 */
 	function reset () {
-		$("#userId").combogrid("clear");
-		$("#loginTime").datebox("clear");
+		$("#keywords").textbox("clear");
 		search();
 	}
 </script>
