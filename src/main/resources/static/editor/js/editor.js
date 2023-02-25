@@ -365,7 +365,8 @@
 							isNullable: row.isNullable === 'true',
 							autoIncrement: row.autoIncrement === 'true',
 							isPk: row.isPk === 'true',
-							isFk: row.isFk === 'true'
+							isFk: row.isFk === 'true',
+							jdbcType: JDBC_TYPE[row.sqlType]
 						}
 					});
 				}
@@ -409,7 +410,8 @@
 									isNullable: row.isNullable === 'true',
 									autoIncrement: row.autoIncrement === 'true',
 									isPk: row.isPk === 'true',
-									isFk: row.isFk === 'true'
+									isFk: row.isFk === 'true',
+									jdbcType: JDBC_TYPE[row.sqlType]
 								}
 							});
 						}
