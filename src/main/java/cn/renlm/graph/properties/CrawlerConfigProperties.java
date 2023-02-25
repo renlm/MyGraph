@@ -34,7 +34,7 @@ public class CrawlerConfigProperties {
 	public static final class CrawlerSite {
 
 		/**
-		 * 编码
+		 * 代码
 		 */
 		private String code;
 
@@ -81,7 +81,7 @@ public class CrawlerConfigProperties {
 		/**
 		 * 是否启用定时任务（默认否）
 		 */
-		private Boolean enableCron;
+		private boolean enableCron;
 
 		/**
 		 * 执行时间
