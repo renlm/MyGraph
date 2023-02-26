@@ -587,7 +587,6 @@ CREATE TABLE crawler_request(
 	regex_group 				INT												COMMENT '正则Group',
 	page_url_type 				INT(1) 											COMMENT '页面链接类型，-1：入口链接，0：种子，1：数据',
 	depth 						INT												COMMENT '爬取深度',
-	clean_params 				TINYINT(1)										COMMENT '是否清除Url参数',
 	flag 						VARCHAR(255) 									COMMENT '标记值',
 	url 						VARCHAR(800) 									COMMENT '页面链接',
 	url_md5 					VARCHAR(32) 									COMMENT '页面链接MD5值',

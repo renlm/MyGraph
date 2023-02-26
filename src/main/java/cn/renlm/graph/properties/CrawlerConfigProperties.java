@@ -19,11 +19,9 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "crawler.config")
 public class CrawlerConfigProperties {
 
-	private String driverPath;
-
-	private Integer sleepTime;
-
 	private CrawlerProxy proxy;
+
+	private Map<String, String> scripts;
 
 	private List<CrawlerSite> sites;
 
@@ -109,9 +107,9 @@ public class CrawlerConfigProperties {
 		private List<Map<String, Map<String, String>>> cookies;
 
 		/**
-		 * 动态脚本
+		 * 动态脚本（名称列表）
 		 */
-		private List<String> scripts;
+		private List<String> scriptNames;
 
 		/**
 		 * 站点入口
@@ -155,11 +153,6 @@ public class CrawlerConfigProperties {
 		 * 标记值
 		 */
 		private List<String> flag;
-
-		/**
-		 * 动态脚本
-		 */
-		private List<String> scripts;
 
 	}
 
