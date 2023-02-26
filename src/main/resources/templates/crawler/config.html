@@ -87,6 +87,39 @@
 		$('#gridForm').form('clear');
 		search();
 	}
+	
+	/**
+	 * 启动站点
+	 */
+	function startSites () {
+		var checked = $('#dataGrid').datagrid('getChecked');
+		if (!checked || checked.length === 0) {
+			$.messager.myuiAlert('操作提示', '请先选中要启动的站点！', 'warning');
+			return;
+		} else {
+			var siteCodes = [];
+			$.each(checked, function (i, item) {
+				siteCodes[i] = item.code;
+			});
+			$.messager.myuiConfirm('操作提示', '您确定要启动选中的站点吗？', function (r) {
+				if (r) {
+					$.messager.progress({'text': '请求中……'});
+					$.post(ctx + '/crawler/startSites', 
+							{ siteCodes: siteCodes.join() }, 
+							function (resultJson) {
+				                $.messager.progress('close');
+								if (resultJson.statusCode == 200) {
+									$.messager.show({title: '我的消息', msg: resultJson.message?resultJson.message:'操作成功', timeout: 5000, showType: 'slide'});
+									$('#dataGrid').datagrid('unselectAll');
+				                	$('#dataGrid').datagrid('reload');
+				                } else {
+				                	$.messager.myuiAlert("操作提示", resultJson.message?resultJson.message:'出错了', "error");
+				                }
+							});
+				}
+			});
+		}
+	}
 </script>
 </body>
 </html>
