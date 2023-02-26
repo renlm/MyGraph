@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Configuration;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.setting.Setting;
 import cn.renlm.graph.dto.CrawlerRequestDto;
@@ -137,7 +138,7 @@ public class CrawlerRequestQueue {
 			}));
 		});
 		spider.thread(1);
-		spider.setEmptySleepTime(site.getSleepTime());
+		spider.setEmptySleepTime(Convert.toLong(site.getSleepTime(), 1000L));
 		spider.addRequest(param.getRequests());
 		spider.run();
 	}
