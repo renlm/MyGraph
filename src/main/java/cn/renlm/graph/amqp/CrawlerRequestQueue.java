@@ -98,7 +98,7 @@ public class CrawlerRequestQueue {
 			nextRequests.forEach(nr -> {
 				if (!duplicateVerify.verifyDuplicate(param.getForceUpdate(), nr, task)) {
 					noDuplicates.add(nr);
-					requests.add((CrawlerRequest) nr.getExtras().remove(KEY));
+					requests.add((CrawlerRequest) nr.getExtras().remove(QUEUE));
 				}
 			});
 
