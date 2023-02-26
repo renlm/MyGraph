@@ -42,6 +42,25 @@ public class CrawlerService {
 	/**
 	 * 爬虫站点
 	 * 
+	 * @param siteCode
+	 * @return
+	 */
+	public CrawlerSite getSiteByCode(String siteCode) {
+		List<CrawlerSite> sites = crawlerConfigProperties.getSites();
+		if (sites == null) {
+			return null;
+		}
+		for (CrawlerSite site : sites) {
+			if (StrUtil.equals(siteCode, site.getCode())) {
+				return site;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 爬虫站点
+	 * 
 	 * @param keywords
 	 * @return
 	 */
