@@ -24,6 +24,11 @@ public class CrawlerRequestDto implements Serializable {
 	private Boolean forceUpdate;
 
 	/**
+	 * 站点代码
+	 */
+	private String siteCode;
+
+	/**
 	 * 请求列表
 	 */
 	private Request[] requests;

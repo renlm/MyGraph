@@ -56,13 +56,14 @@ public class CrawlerController {
 	/**
 	 * 启动站点
 	 * 
+	 * @param forceUpdate
 	 * @param siteCodes
 	 * @return
 	 */
 	@ResponseBody
 	@PostMapping("/startSites")
-	public Result<?> startSites(String siteCodes) {
-		crawlerService.startSites(StrUtil.splitTrim(siteCodes, StrUtil.COMMA));
+	public Result<?> startSites(boolean forceUpdate, String siteCodes) {
+		crawlerService.startSites(forceUpdate, StrUtil.splitTrim(siteCodes, StrUtil.COMMA));
 		return Result.success();
 	}
 

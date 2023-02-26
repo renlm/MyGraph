@@ -61,9 +61,10 @@ public class CrawlerService {
 	/**
 	 * 启动站点
 	 * 
-	 * @param siteCodes
+	 * @param forceUpdate 是否强制更新
+	 * @param siteCodes   站点代码集
 	 */
-	public void startSites(List<String> siteCodes) {
+	public void startSites(boolean forceUpdate, List<String> siteCodes) {
 		List<CrawlerSite> sites = crawlerConfigProperties.getSites();
 		if (CollUtil.isNotEmpty(sites)) {
 			for (CrawlerSite site : sites) {
@@ -95,6 +96,8 @@ public class CrawlerService {
 							CrawlerRequestDto newRequest = new CrawlerRequestDto();
 							Request request = new Request(startUrl);
 							request.putExtra(QUEUE, crawlerRequest);
+							newRequest.setForceUpdate(forceUpdate);
+							newRequest.setSiteCode(siteCode);
 							newRequest.setRequests(new Request[] { request });
 							AmqpUtil.createQueue(EXCHANGE, ROUTINGKEY, newRequest);
 						}
