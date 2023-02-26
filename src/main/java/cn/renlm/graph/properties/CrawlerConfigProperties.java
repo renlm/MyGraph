@@ -54,7 +54,7 @@ public class CrawlerConfigProperties {
 		private Integer timeout;
 
 		/**
-		 * 域名（Cookie指定域时生效必须）
+		 * 主域名
 		 */
 		private String domain;
 
@@ -84,9 +84,14 @@ public class CrawlerConfigProperties {
 		private boolean enableCron;
 
 		/**
-		 * 执行时间
+		 * 延迟秒数
 		 */
-		private String cronExpression;
+		private int cronDelaySeconds;
+
+		/**
+		 * 是否清除Url参数（默认否）
+		 */
+		private boolean cleanParams;
 
 		/**
 		 * 无效参数（多个逗号分隔，从Url删除此参数，降低重复请求次数）
@@ -99,9 +104,14 @@ public class CrawlerConfigProperties {
 		private List<Map<String, String>> headers;
 
 		/**
-		 * Cookie
+		 * Cookie（[域名：{ key: value }]）
 		 */
-		private List<Map<String, String>> cookies;
+		private List<Map<String, Map<String, String>>> cookies;
+
+		/**
+		 * 动态脚本
+		 */
+		private List<String> scripts;
 
 		/**
 		 * 站点入口
@@ -137,11 +147,6 @@ public class CrawlerConfigProperties {
 		private Integer pageUrlType;
 
 		/**
-		 * 是否清除Url参数（默认否）
-		 */
-		private boolean cleanParams;
-
-		/**
 		 * 爬取深度，默认0（无限制）
 		 */
 		private int depth;
@@ -150,6 +155,11 @@ public class CrawlerConfigProperties {
 		 * 标记值
 		 */
 		private List<String> flag;
+
+		/**
+		 * 动态脚本
+		 */
+		private List<String> scripts;
 
 	}
 
