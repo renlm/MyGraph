@@ -1,9 +1,8 @@
 package cn.renlm.graph.dto;
 
-import cn.renlm.graph.modular.crawler.entity.CrawlerRequest;
-import cn.renlm.graph.properties.CrawlerConfigProperties.CrawlerSite;
+import java.io.Serializable;
+
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import us.codecraft.webmagic.Request;
 
@@ -15,8 +14,7 @@ import us.codecraft.webmagic.Request;
  */
 @Data
 @Accessors(chain = true)
-@EqualsAndHashCode(callSuper = true)
-public class CrawlerRequestDto extends CrawlerRequest {
+public class CrawlerRequestDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,11 +22,6 @@ public class CrawlerRequestDto extends CrawlerRequest {
 	 * 强制更新
 	 */
 	private Boolean forceUpdate;
-
-	/**
-	 * 站点配置
-	 */
-	private CrawlerSite site;
 
 	/**
 	 * 请求列表

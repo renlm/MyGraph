@@ -1,5 +1,9 @@
 package cn.renlm.graph.service;
 
+import static cn.renlm.graph.amqp.CrawlerRequestQueue.EXCHANGE;
+import static cn.renlm.graph.amqp.CrawlerRequestQueue.QUEUE;
+import static cn.renlm.graph.amqp.CrawlerRequestQueue.ROUTINGKEY;
+
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,11 +14,15 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.crypto.digest.DigestUtil;
+import cn.hutool.json.JSONUtil;
+import cn.renlm.graph.amqp.AmqpUtil;
+import cn.renlm.graph.dto.CrawlerRequestDto;
 import cn.renlm.graph.modular.crawler.entity.CrawlerRequest;
 import cn.renlm.graph.modular.crawler.service.ICrawlerRequestService;
 import cn.renlm.graph.properties.CrawlerConfigProperties;
 import cn.renlm.graph.properties.CrawlerConfigProperties.CrawlerSite;
+import cn.renlm.graph.properties.CrawlerConfigProperties.CrawlerSiteEndpoint;
+import us.codecraft.webmagic.Request;
 
 /**
  * 简易爬虫
@@ -56,7 +64,44 @@ public class CrawlerService {
 	 * @param siteCodes
 	 */
 	public void startSites(List<String> siteCodes) {
-
+		List<CrawlerSite> sites = crawlerConfigProperties.getSites();
+		if (CollUtil.isNotEmpty(sites)) {
+			for (CrawlerSite site : sites) {
+				if (CollUtil.contains(siteCodes, site.getCode())) {
+					List<CrawlerSiteEndpoint> endpoints = site.getEndpoints();
+					if (CollUtil.isNotEmpty(endpoints)) {
+						for (CrawlerSiteEndpoint endpoint : endpoints) {
+							List<String> flags = endpoint.getFlag();
+							CollUtil.removeBlank(flags);
+							String siteCode = site.getCode();
+							String siteName = site.getName();
+							String startUrl = endpoint.getStartUrl();
+							String regex = endpoint.getRegex();
+							int regexGroup = endpoint.getRegexGroup();
+							Integer pageUrlType = endpoint.getPageUrlType();
+							int depth = endpoint.getDepth();
+							String flag = JSONUtil.toJsonStr(flags);
+							// 保存访问请求
+							CrawlerRequest crawlerRequest = this.createRequest(true, 
+									siteCode, 
+									siteName, 
+									startUrl,
+									regex, 
+									regexGroup, 
+									pageUrlType, 
+									depth, 
+									flag);
+							// 添加队列任务
+							CrawlerRequestDto newRequest = new CrawlerRequestDto();
+							Request request = new Request(startUrl);
+							request.putExtra(QUEUE, crawlerRequest);
+							newRequest.setRequests(new Request[] { request });
+							AmqpUtil.createQueue(EXCHANGE, ROUTINGKEY, newRequest);
+						}
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -71,12 +116,10 @@ public class CrawlerService {
 	 * @param pageUrlType
 	 * @param depth
 	 * @param flag
-	 * @param url
-	 * @param referer
 	 * @return
 	 */
 	public final CrawlerRequest createRequest(boolean save, String siteCode, String siteName, String startUrl,
-			String regex, int regexGroup, Integer pageUrlType, int depth, String flag, String url, String referer) {
+			String regex, int regexGroup, Integer pageUrlType, int depth, String flag) {
 		CrawlerRequest request = new CrawlerRequest();
 		request.setId(IdUtil.getSnowflakeNextId());
 		request.setSiteCode(siteCode);
@@ -87,9 +130,6 @@ public class CrawlerService {
 		request.setPageUrlType(pageUrlType);
 		request.setDepth(depth);
 		request.setFlag(flag);
-		request.setUrl(url);
-		request.setUrlMd5(DigestUtil.md5Hex(url));
-		request.setReferer(referer);
 		request.setCreatedAt(new Date());
 		request.setDeleted(false);
 		if (save) {
