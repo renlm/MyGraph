@@ -1,5 +1,7 @@
 package cn.renlm.graph.amqp;
 
+import static cn.hutool.core.text.CharSequenceUtil.EMPTY;
+
 import java.util.Date;
 import java.util.List;
 
@@ -17,8 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
@@ -47,8 +47,8 @@ import us.codecraft.webmagic.Task;
 public class CrawlerRequestQueue {
 
 	public static final String EXTRA_ID = "_CrawlerRequestId";
-
 	public static final String EXTRA_INFO = "_CrawlerRequestInfo";
+	public static final String EXTRA_NEXTS = "_CrawlerRequestNexts";
 
 	private static final String KEY = "CrawlerRequest";
 
@@ -96,14 +96,14 @@ public class CrawlerRequestQueue {
 			// 过滤重复请求
 			List<Request> noDuplicates = CollUtil.newArrayList();
 			List<CrawlerRequest> requests = CollUtil.newArrayList();
-			List<Request> nextRequests = resultItems.getRequest().getExtra(EXCHANGE);
+			List<Request> nextRequests = resultItems.getRequest().getExtra(EXTRA_NEXTS);
 			if (CollUtil.isEmpty(nextRequests)) {
 				return;
 			}
 			nextRequests.forEach(nr -> {
 				if (!duplicateVerify.verifyDuplicate(param.isForceUpdate(), nr, task)) {
 					noDuplicates.add(nr);
-					requests.add((CrawlerRequest) nr.getExtras().remove(QUEUE));
+					requests.add((CrawlerRequest) nr.getExtras().remove(EXTRA_INFO));
 				}
 			});
 
@@ -131,16 +131,16 @@ public class CrawlerRequestQueue {
 
 			// 更新请求状态
 			// 保存网页、标题及截屏图片
-			page.getRequest().putExtra(EXTRA_INFO, crawlerRequest);
+			String htmlTitle = page.getHtml().xpath("//title/text()").get();
+			String htmlContent = page.getRawText();
 			String screenshotBASE64 = req.getExtra(MyCrawlerUtil.screenshotBASE64ExtraKey);
-			iCrawlerRequestService.update(Wrappers.<CrawlerRequest>lambdaUpdate().func(wrapper -> {
-				wrapper.set(CrawlerRequest::getStatusCode, page.getStatusCode());
-				wrapper.set(CrawlerRequest::getHtmlTitle, page.getHtml().xpath("//title/text()").get());
-				wrapper.set(site.isSaveHtml(), CrawlerRequest::getHtmlContent, page.getRawText());
-				wrapper.set(site.isScreenshot(), CrawlerRequest::getScreenshotBase64, screenshotBASE64);
-				wrapper.set(CrawlerRequest::getUpdatedAt, new Date());
-				wrapper.eq(CrawlerRequest::getId, crawlerRequest.getId());
-			}));
+			crawlerRequest.setStatusCode(page.getStatusCode());
+			crawlerRequest.setHtmlTitle(htmlTitle);
+			crawlerRequest.setHtmlContent(site.isSaveHtml() ? htmlContent : EMPTY);
+			crawlerRequest.setScreenshotBase64(site.isScreenshot() ? screenshotBASE64 : EMPTY);
+			crawlerRequest.setUpdatedAt(new Date());
+			iCrawlerRequestService.updateById(crawlerRequest);
+			page.getRequest().putExtra(EXTRA_INFO, crawlerRequest);
 		});
 		spider.thread(1);
 		spider.setEmptySleepTime(Convert.toLong(site.getSleepTime(), 1000L));
