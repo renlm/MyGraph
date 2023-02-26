@@ -48,12 +48,11 @@ public class CrawlerService {
 	 */
 	public CrawlerSite getSiteByCode(String siteCode) {
 		List<CrawlerSite> sites = crawlerConfigProperties.getSites();
-		if (sites == null) {
-			return null;
-		}
-		for (CrawlerSite site : sites) {
-			if (StrUtil.equals(siteCode, site.getCode())) {
-				return site;
+		if (CollUtil.isNotEmpty(sites)) {
+			for (CrawlerSite site : sites) {
+				if (StrUtil.equals(siteCode, site.getCode())) {
+					return site;
+				}
 			}
 		}
 		return null;
