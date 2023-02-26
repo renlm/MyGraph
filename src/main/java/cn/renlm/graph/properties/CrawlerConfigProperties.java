@@ -19,6 +19,8 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "crawler.config")
 public class CrawlerConfigProperties {
 
+	private String threadNum;
+
 	private CrawlerProxy proxy;
 
 	private Map<String, String> scripts;

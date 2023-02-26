@@ -27,6 +27,7 @@ import cn.renlm.graph.dto.CrawlerRequestDto;
 import cn.renlm.graph.modular.crawler.entity.CrawlerRequest;
 import cn.renlm.graph.modular.crawler.service.ICrawlerRequestService;
 import cn.renlm.graph.properties.CrawlerConfigProperties.CrawlerSite;
+import cn.renlm.graph.service.CrawlerService;
 import cn.renlm.plugins.MyCrawlerUtil;
 import cn.renlm.plugins.MyCrawler.MySite;
 import cn.renlm.plugins.MyCrawler.MySpider;
@@ -57,17 +58,23 @@ public class CrawlerRequestQueue {
 	private JedisPool jedisPool;
 
 	@Autowired
+	private CrawlerService crawlerService;
+
+	@Autowired
 	private ICrawlerRequestService iCrawlerRequestService;
 
 	/**
 	 * 接收消息
 	 * 
-	 * @param request
+	 * @param param
 	 */
-	@RabbitListener(bindings = {
+	@RabbitListener(concurrency = "#{crawlerConfigProperties.threadNum}", bindings = {
 			@QueueBinding(value = @Queue(value = QUEUE, durable = Exchange.TRUE), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.DIRECT), key = ROUTINGKEY) })
 	public void receiveMessage(CrawlerRequestDto param) {
-		CrawlerSite site = param.getSite();
+		CrawlerSite site = crawlerService.getSiteByCode(param.getSiteCode());
+		if (site == null) {
+			return;
+		}
 		MySite mySite = MySite.me();
 		Setting chromeSetting = new Setting("config/chrome.setting");
 		mySite.setForceUpdate(BooleanUtil.isTrue(param.getForceUpdate()));
