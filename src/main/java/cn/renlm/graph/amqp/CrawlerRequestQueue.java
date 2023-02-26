@@ -22,7 +22,6 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
-import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.setting.Setting;
 import cn.renlm.graph.dto.CrawlerRequestDto;
 import cn.renlm.graph.modular.crawler.entity.CrawlerRequest;
@@ -46,6 +45,10 @@ import us.codecraft.webmagic.Task;
  */
 @Configuration
 public class CrawlerRequestQueue {
+
+	public static final String EXTRA_ID = "_CrawlerRequestId";
+
+	public static final String EXTRA_INFO = "_CrawlerRequestInfo";
 
 	private static final String KEY = "CrawlerRequest";
 
@@ -78,8 +81,10 @@ public class CrawlerRequestQueue {
 		}
 		MySite mySite = MySite.me();
 		Setting chromeSetting = new Setting("config/chrome.setting");
-		mySite.setForceUpdate(BooleanUtil.isTrue(param.getForceUpdate()));
-		mySite.setEnableSelenuim(BooleanUtil.isTrue(site.isEnableSelenuim()));
+		mySite.setForceUpdate(param.isForceUpdate());
+		mySite.setEnableSelenuim(site.isEnableSelenuim());
+		mySite.setHeadless(true);
+		mySite.setScreenshot(site.isScreenshot());
 		mySite.setChromeSetting(chromeSetting);
 		MySpider spider = MyCrawlerUtil.createSpider(jedisPool, mySite, myPage -> {
 
@@ -96,7 +101,7 @@ public class CrawlerRequestQueue {
 				return;
 			}
 			nextRequests.forEach(nr -> {
-				if (!duplicateVerify.verifyDuplicate(param.getForceUpdate(), nr, task)) {
+				if (!duplicateVerify.verifyDuplicate(param.isForceUpdate(), nr, task)) {
 					noDuplicates.add(nr);
 					requests.add((CrawlerRequest) nr.getExtras().remove(QUEUE));
 				}
@@ -119,14 +124,14 @@ public class CrawlerRequestQueue {
 			}
 
 			// 访问请求
-			CrawlerRequest crawlerRequest = req.getExtra(QUEUE);
+			CrawlerRequest crawlerRequest = iCrawlerRequestService.getById(req.getExtra(EXTRA_ID));
 			if (crawlerRequest == null) {
 				return;
 			}
 
 			// 更新请求状态
 			// 保存网页、标题及截屏图片
-			page.getRequest().putExtra(QUEUE, crawlerRequest);
+			page.getRequest().putExtra(EXTRA_INFO, crawlerRequest);
 			String screenshotBASE64 = req.getExtra(MyCrawlerUtil.screenshotBASE64ExtraKey);
 			iCrawlerRequestService.update(Wrappers.<CrawlerRequest>lambdaUpdate().func(wrapper -> {
 				wrapper.set(CrawlerRequest::getStatusCode, page.getStatusCode());

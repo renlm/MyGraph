@@ -1,7 +1,7 @@
 package cn.renlm.graph.service;
 
 import static cn.renlm.graph.amqp.CrawlerRequestQueue.EXCHANGE;
-import static cn.renlm.graph.amqp.CrawlerRequestQueue.QUEUE;
+import static cn.renlm.graph.amqp.CrawlerRequestQueue.EXTRA_ID;
 import static cn.renlm.graph.amqp.CrawlerRequestQueue.ROUTINGKEY;
 
 import java.util.Date;
@@ -102,22 +102,12 @@ public class CrawlerService {
 							Integer pageUrlType = endpoint.getPageUrlType();
 							int depth = endpoint.getDepth();
 							String flag = JSONUtil.toJsonStr(flags);
-							// 保存访问请求
-							CrawlerRequest crawlerRequest = this.createRequest(true, 
-									siteCode, 
-									siteName, 
-									startUrl,
-									regex, 
-									regexGroup, 
-									pageUrlType, 
-									depth, 
-									flag, 
-									startUrl, 
-									null);
+							CrawlerRequest crawlerRequest = this.createRequest(true, siteCode, siteName, startUrl,
+									regex, regexGroup, pageUrlType, depth, flag, startUrl);
 							// 添加队列任务
 							CrawlerRequestDto newRequest = new CrawlerRequestDto();
 							Request request = new Request(startUrl);
-							request.putExtra(QUEUE, crawlerRequest);
+							request.putExtra(EXTRA_ID, crawlerRequest.getId());
 							newRequest.setForceUpdate(forceUpdate);
 							newRequest.setSiteCode(siteCode);
 							newRequest.setRequests(new Request[] { request });
@@ -142,11 +132,10 @@ public class CrawlerService {
 	 * @param depth
 	 * @param flag
 	 * @param url
-	 * @param referer
 	 * @return
 	 */
 	public final CrawlerRequest createRequest(boolean save, String siteCode, String siteName, String startUrl,
-			String regex, int regexGroup, Integer pageUrlType, int depth, String flag, String url, String referer) {
+			String regex, int regexGroup, Integer pageUrlType, int depth, String flag, String url) {
 		CrawlerRequest request = new CrawlerRequest();
 		request.setId(IdUtil.getSnowflakeNextId());
 		request.setSiteCode(siteCode);
@@ -159,7 +148,6 @@ public class CrawlerService {
 		request.setFlag(flag);
 		request.setUrl(url);
 		request.setUrlMd5(DigestUtil.md5Hex(url));
-		request.setReferer(referer);
 		request.setCreatedAt(new Date());
 		request.setDeleted(false);
 		if (save) {
