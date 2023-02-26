@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
 import cn.renlm.graph.dto.CrawlerRequestDto;
@@ -110,7 +111,9 @@ public class CrawlerService {
 									regexGroup, 
 									pageUrlType, 
 									depth, 
-									flag);
+									flag, 
+									startUrl, 
+									null);
 							// 添加队列任务
 							CrawlerRequestDto newRequest = new CrawlerRequestDto();
 							Request request = new Request(startUrl);
@@ -138,10 +141,12 @@ public class CrawlerService {
 	 * @param pageUrlType
 	 * @param depth
 	 * @param flag
+	 * @param url
+	 * @param referer
 	 * @return
 	 */
 	public final CrawlerRequest createRequest(boolean save, String siteCode, String siteName, String startUrl,
-			String regex, int regexGroup, Integer pageUrlType, int depth, String flag) {
+			String regex, int regexGroup, Integer pageUrlType, int depth, String flag, String url, String referer) {
 		CrawlerRequest request = new CrawlerRequest();
 		request.setId(IdUtil.getSnowflakeNextId());
 		request.setSiteCode(siteCode);
@@ -152,6 +157,9 @@ public class CrawlerService {
 		request.setPageUrlType(pageUrlType);
 		request.setDepth(depth);
 		request.setFlag(flag);
+		request.setUrl(url);
+		request.setUrlMd5(DigestUtil.md5Hex(url));
+		request.setReferer(referer);
 		request.setCreatedAt(new Date());
 		request.setDeleted(false);
 		if (save) {

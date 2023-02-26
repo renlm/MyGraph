@@ -118,14 +118,14 @@ public class CrawlerRequestQueue {
 			}
 
 			// 访问请求
-			CrawlerRequest crawlerRequest = req.getExtra(KEY);
+			CrawlerRequest crawlerRequest = req.getExtra(QUEUE);
 			if (crawlerRequest == null) {
 				return;
 			}
 
 			// 更新请求状态
 			// 保存网页、标题及截屏图片
-			page.getRequest().putExtra(KEY, crawlerRequest);
+			page.getRequest().putExtra(QUEUE, crawlerRequest);
 			String screenshotBASE64 = req.getExtra(MyCrawlerUtil.screenshotBASE64ExtraKey);
 			iCrawlerRequestService.update(Wrappers.<CrawlerRequest>lambdaUpdate().func(wrapper -> {
 				wrapper.set(CrawlerRequest::getStatusCode, page.getStatusCode());
