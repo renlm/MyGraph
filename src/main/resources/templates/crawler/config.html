@@ -15,6 +15,8 @@
 					fit:true,
 					fitColumns:true,
 					singleSelect:true,
+					checkOnSelect:false,
+					selectOnCheck:false,
 					toolbar:'#toolbar',
 					pagination:false,
 					method:'get',
@@ -22,37 +24,52 @@
                	">
                 <thead>
 	                <tr>
+	                	<th data-options="field:'code',title:'siteCode',checkbox:true"></th>
 	                	<th data-options="field:'seq',title:'序号',formatter:function(value,row,index){var opts=$('#dataGrid').datagrid('options');return opts.pageSize*(opts.pageNumber-1)+index+1;}"></th>
-                      	<th data-options="field:'code',title:'代码',width:100"></th>
+                      	<th data-options="field:'siteCode',title:'代码',width:100,formatter:function(value,row,index){return row.code;}"></th>
 	                    <th data-options="field:'name',title:'名称',width:200"></th>
 	                    <th data-options="field:'enableSelenuim',title:'浏览器模式',width:100,formatter:$.yesNoFormatter"></th>
 	                    <th data-options="field:'screenshot',title:'截图',width:100,formatter:$.yesNoFormatter"></th>
 	                    <th data-options="field:'saveHtml',title:'保存网页',width:100,formatter:$.yesNoFormatter"></th>
 	                    <th data-options="field:'enableCron',title:'启用定时',width:100,formatter:$.enabledFormatter"></th>
-	                    <th data-options="field:'cronExpression',title:'Cron',width:100"></th>
+	                    <th data-options="field:'cronDelaySeconds',title:'延迟秒数',width:100"></th>
 	                </tr>
                 </thead>
             </table>
         </div>
     </div>
     <div id="toolbar" class="myui-toolbar">
-        <input type="text" name="keywords"
-	   		id="keywords" 
-	  		class="easyui-textbox"
-	       	data-options="prompt:'关键词',
-	       		width:220
-	       	"/>
-        <a href="javascript:search();" 
-        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
-       		data-options="iconCls:'fa fa-search'
-         	">查询
-    	</a>
-    	<a href="javascript:reset();"
-      		class="easyui-linkbutton myui-btn-brown myui-btn-normal"
-      		data-options="iconCls:'fa fa-trash'
-      		">清空
-    	</a>
-    </div>
+		<a href="javascript:void(0);"
+	      	class="easyui-menubutton myui-btn-normal"
+	     	data-options="iconCls:'fa fa-table',
+	        	hasDownArrow:false
+	    	">站点
+		</a>
+		<a href="javascript:startSites();"
+          	class="easyui-menubutton myui-btn-normal myui-btn-brown"
+         	data-options="iconCls:'fa fa-send',
+           		hasDownArrow:false
+        	">启动
+       	</a>
+		<form id="gridForm" class="search-box">
+	   		<input type="text" name="keywords"
+	    		id="keywords" 
+	   			class="easyui-textbox"
+	        	data-options="prompt:'关键词',
+	        		width:220
+	        	"/>
+	        <a href="javascript:search();" 
+	        	class="easyui-linkbutton myui-btn-blue myui-btn-normal"
+	       		data-options="iconCls:'fa fa-search'
+	         	">查询
+	    	</a>
+	    	<a href="javascript:reset();"
+       			class="easyui-linkbutton myui-btn-brown myui-btn-normal"
+       			data-options="iconCls:'fa fa-trash'
+       			">重置
+          	</a>
+		</form> 
+	</div>
 <script type="text/javascript">
 	/**
 	 * 查询
@@ -67,7 +84,7 @@
 	 * 重置
 	 */
 	function reset () {
-		$("#keywords").textbox("clear");
+		$('#gridForm').form('clear');
 		search();
 	}
 </script>
