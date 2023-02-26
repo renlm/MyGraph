@@ -19,8 +19,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 
+import cn.hutool.core.util.ReflectUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.db.nosql.redis.RedisDS;
 import lombok.RequiredArgsConstructor;
+import redis.clients.jedis.JedisPool;
 
 /**
  * 缓存配置
@@ -79,6 +82,12 @@ public class CachingConfig implements CachingConfigurer {
 			sb.append(Arrays.deepHashCode(params));
 			return sb.toString();
 		};
+	}
+
+	@Bean
+	public JedisPool jedisPool() {
+		RedisDS redisDS = RedisDS.create();
+		return (JedisPool) ReflectUtil.getFieldValue(redisDS, "pool");
 	}
 
 }

@@ -1,0 +1,6 @@
+host = renlm.cn
+port = 30379
+timeout = 2000
+password = fy36^m7lKdR128170^0lGR2K^rr8dh5w
+database = 4
+clientName = myself
