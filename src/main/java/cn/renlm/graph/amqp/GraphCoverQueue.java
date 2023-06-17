@@ -98,7 +98,7 @@ public class GraphCoverQueue {
 		site.setEnableSelenuim(true);
 		site.setHeadless(true);
 		site.setScreenshot(true);
-		site.setSleepTime(3000);
+		site.setSleepTime(0);
 		site.setChromeSetting(chromeSetting);
 		MySpider spider = MyCrawlerUtil.createSpider(site, myPage -> {
 			BufferedImage screenshot = ImgUtil.toImage(myPage.screenshotBASE64());
