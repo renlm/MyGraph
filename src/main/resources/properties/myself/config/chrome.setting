@@ -1,2 +1,2 @@
 driverPath = /usr/bin/chromedriver
-sleepTime = 60000
+sleepTime = 300000
