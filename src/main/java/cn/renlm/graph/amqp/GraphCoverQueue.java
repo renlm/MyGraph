@@ -1,5 +1,8 @@
 package cn.renlm.graph.amqp;
 
+import static cn.hutool.core.convert.Convert.toInt;
+import static cn.hutool.core.convert.Convert.toStr;
+
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Date;
@@ -22,7 +25,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 
-import cn.hutool.core.convert.Convert;
 import cn.hutool.core.img.ImgUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.Setting;
@@ -87,10 +89,10 @@ public class GraphCoverQueue {
 		}
 		// 设置尺寸
 		Rectangle rectangle = ERModelParser.getRectangle(graph.getXml());
-		int width = Convert.toInt(Math.ceil(rectangle.getWidth() < 800 ? 800 : rectangle.getWidth()));
-		int height = Convert.toInt(Math.ceil(rectangle.getHeight() < 600 ? 600 : rectangle.getHeight()));
+		String w = toStr(toInt(Math.ceil(rectangle.getWidth() < 800 ? 800 : rectangle.getWidth())) + 60);
+		String h = toStr(toInt(Math.ceil(rectangle.getHeight() < 600 ? 600 : rectangle.getHeight())) + 60);
 		Setting chromeSetting = new Setting(ConstVal.chromeSetting);
-		chromeSetting.set("windowSize", StrUtil.join(StrUtil.COMMA, width + 60, height + 60));
+		chromeSetting.set("windowSize", StrUtil.join(StrUtil.COMMA, w, h));
 		// 启动爬虫
 		String imageType = ImgUtil.IMAGE_TYPE_PNG;
 		String originalFilename = StrUtil.join(StrUtil.DOT, graph.getName(), imageType);
@@ -116,7 +118,8 @@ public class GraphCoverQueue {
 				wrapper.in(Graph::getUuid, uuid);
 			}));
 		});
-		spider.addUrl(myConfigProperties.getCtx() + "/pub/doc/gtv/" + key + "?headless=true&fitWindow=" + fitWindow);
+		String path = StrUtil.format("/pub/doc/gtv/{}?headless=true&fitWindow={}&w={}&h={}", key, fitWindow, w, h);
+		spider.addUrl(myConfigProperties.getCtx() + path);
 		spider.run();
 	}
 
