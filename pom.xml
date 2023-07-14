@@ -23,7 +23,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- 版本管理 -->
-		<spring-security-oauth2-authorization-server.version>1.0.0</spring-security-oauth2-authorization-server.version>
+		<spring-security-oauth2-authorization-server.version>1.1.1</spring-security-oauth2-authorization-server.version>
 		<mybatis-plus-boot-starter.version>3.5.3.1</mybatis-plus-boot-starter.version>
 		<dynamic-datasource-spring-boot-starter.version>3.6.1</dynamic-datasource-spring-boot-starter.version>
 		<mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
@@ -32,8 +32,8 @@
 		<spring-security-rsa.version>1.0.11.RELEASE</spring-security-rsa.version>
 		<cn.renlm.plugins.version>2.7.5</cn.renlm.plugins.version>
 		<selenium-devtools-v93.version>4.0.0</selenium-devtools-v93.version>
-		<mica-xss.version>3.0.1</mica-xss.version>
-		<webjars-locator.version>0.46</webjars-locator.version>
+		<mica-xss.version>3.0.7</mica-xss.version>
+		<webjars-locator.version>0.47</webjars-locator.version>
 		<ip2region.version>2.6.4</ip2region.version>
 		<oshi-core.version>6.1.6</oshi-core.version>
 	</properties>
