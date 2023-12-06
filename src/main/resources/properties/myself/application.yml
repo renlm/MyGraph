@@ -112,11 +112,11 @@ spring:
           maxIdle: 10
           minIdle: 5
   rabbitmq:
-    virtual-host: ENC(3Pb16Z/FP6eOolJV/BEnKlHDKGk88rVOrrfzwGl9NndumtLvdsd8kJU7sukc0/xy)
+    virtual-host: ENC(7Ie8vh6wtP2aOHXlRAJk8SH8DKexZA/35ZK4VawvHhreNwezpLzav5/f5V8QUvag)
     host: rabbitmq
     port: 5672
-    username: ENC(lhsbi5VLIdXCWzO1elJz5hya6Bf92QTVsiu6hZMv7WGk3MvWiOixDW0cwQ7hrU0E)
-    password: ENC(mKnxCAS26wM7tYsW2pG8hjYS6JY2/iAoS5v/UkM7IniEvu8JHJWFvfrZdclGnw5oHhQwotXp83M5IJho02MC5ZmGn9FtSBr3cEtSe5xn2VM=)
+    username: ENC(6bCmM/8Y+zaFcFns3lq1Zkca9Zva6box+mE8cijqUeZsji/HuriTMu19X4gi3JaL)
+    password: ENC(YUg37CIjBBx8+cd2RGn/rfPwiz3SHt+8Fp901VTZGvihenrTPJWjv0wmqnmnrDbXHKeXttyu7+4XLfloCqTD2N0SQXrIGp+n7uphB1EMosc=)
     listener:
       direct:
         missing-queues-fatal: false
