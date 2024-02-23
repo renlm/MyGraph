@@ -31,6 +31,7 @@ import cn.hutool.extra.spring.EnableSpringUtil;
 public class GraphApplication {
 
 	public static void main(String[] args) {
+		System.setProperty("spring.amqp.deserialization.trust.all", "true");
 		SpringApplication springApplication = new SpringApplication(GraphApplication.class);
 		springApplication.run(args);
 	}
