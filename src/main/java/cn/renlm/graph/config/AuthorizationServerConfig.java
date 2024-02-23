@@ -1,7 +1,5 @@
 package cn.renlm.graph.config;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 import java.util.function.Function;
 
 import org.springframework.context.annotation.Bean;
@@ -10,8 +8,8 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
 import org.springframework.security.oauth2.core.oidc.endpoint.OidcParameterNames;
@@ -60,7 +58,7 @@ public class AuthorizationServerConfig {
 		OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
 		OAuth2AuthorizationServerConfigurer oAuth2Configurer = http
 				.getConfigurer(OAuth2AuthorizationServerConfigurer.class);
-		oAuth2Configurer.oidc(withDefaults());
+		oAuth2Configurer.oidc(Customizer.withDefaults());
 		http.exceptionHandling(exceptions -> {
 			exceptions.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint(WebSecurityConfig.LoginPage));
 		});
@@ -75,7 +73,7 @@ public class AuthorizationServerConfig {
 			return new OidcUserInfo(principal.getToken().getClaims());
 		};
 		oAuth2Configurer.oidc((oidc) -> oidc.userInfoEndpoint((userInfo) -> userInfo.userInfoMapper(userInfoMapper)));
-		http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+		http.oauth2ResourceServer((resourceServer) -> resourceServer.jwt(Customizer.withDefaults()));
 		SecurityFilterChain securityFilterChain = http.build();
 		this.addCustomOAuth2GrantAuthenticationProvider(http);
 		return securityFilterChain;
