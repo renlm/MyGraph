@@ -102,41 +102,48 @@ public class WebSecurityConfig {
 			securityContext.securityContextRepository(securityContextRepository());
 		});
 		// 启用Csrf
-		http.csrf()
-			.ignoringRequestMatchers(PubAntMatcher)
-			.ignoringRequestMatchers(CaptchaAntMatcher)
-			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+		http.csrf(csrf -> {
+			csrf.ignoringRequestMatchers(PubAntMatcher)
+				.ignoringRequestMatchers(CaptchaAntMatcher)
+				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+		});
 		// 会话
-		http.sessionManagement()
-			.invalidSessionUrl(LoginPage)
-			.maximumSessions(1000)
-			.expiredUrl(LoginPage)
-			.sessionRegistry(sessionRegistry());
+		http.sessionManagement(sessionManagement -> {
+			sessionManagement.invalidSessionUrl(LoginPage)
+				.maximumSessions(1000)
+				.expiredUrl(LoginPage)
+				.sessionRegistry(sessionRegistry());
+		});
 		// 资源访问控制
-		http.authorizeHttpRequests()
+		http.authorizeHttpRequests(authorizeHttpRequests -> {
 			// 放行所有OPTIONS请求
-			.requestMatchers(HttpMethod.OPTIONS).permitAll()
-			// 白名单
-			.requestMatchers(WHITE_LIST).permitAll()
-			// 静态资源
-			.requestMatchers(STATIC_PATHS).permitAll()
-			// 请求访问限制
-			.anyRequest().access(authorizationManager);
+			authorizeHttpRequests.requestMatchers(HttpMethod.OPTIONS).permitAll()
+				// 白名单
+				.requestMatchers(WHITE_LIST).permitAll()
+				// 静态资源
+				.requestMatchers(STATIC_PATHS).permitAll()
+				// 请求访问限制
+				.anyRequest().access(authorizationManager);
+		});
 		// Iframe同源访问
-		http.headers()
-			.frameOptions()
-			.sameOrigin();
+		http.headers(headers -> {
+			headers.frameOptions(frameOptions -> {
+				frameOptions.sameOrigin();
+			});
+		});
 		// 登录
-		http.formLogin()
-			.loginPage(LoginPage)
-			.loginProcessingUrl(LoginProcessingUrl)
-			.authenticationDetailsSource(authenticationDetailsSource())
-			.successHandler(myAuthenticationSuccessHandler)
-			.failureHandler(myAuthenticationFailureHandler);
+		http.formLogin(formLogin -> {
+			formLogin.loginPage(LoginPage)
+				.loginProcessingUrl(LoginProcessingUrl)
+				.authenticationDetailsSource(authenticationDetailsSource())
+				.successHandler(myAuthenticationSuccessHandler)
+				.failureHandler(myAuthenticationFailureHandler);
+		});
 		// 注销
-		http.logout()
-			.logoutUrl(logoutUrl)
-			.invalidateHttpSession(true);
+		http.logout(logout -> {
+			logout.logoutUrl(logoutUrl)
+				.invalidateHttpSession(true);
+		});
 		return http.build();
 	}
 	
