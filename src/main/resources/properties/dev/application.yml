@@ -96,7 +96,7 @@ spring:
   data:
     redis:
       database: 1
-      host: ENC(7t07SoGx3YNZQ18Jo1gu/j9yHoxJ0pxG8Y1tXE7OEQDWh+oc6kZHD49Tp+we682t)
+      host: ENC(3biIYGtSjtwx7A7w3AjkxJLQKNCTlGqpV+eTZBFBO7fT+39U/7O+diEnAf11Bdp1)
       port: ENC(6Hk9Fr716xYOKeWkspYz08UnTkOS6npDvn+2eUZJPTSL5rSn6ZkfN1E+5EYCJUTP)
       password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
       timeout: 10s
@@ -107,11 +107,11 @@ spring:
           maxIdle: 10
           minIdle: 5
   rabbitmq:
-    virtual-host: ENC(zePGodUsbK9mPRDZI5dYuZL20lMh+J5/9qCh6jYUk0+iYaUD2LhVyVG/XUGXC2I7)
-    host: ENC(7t07SoGx3YNZQ18Jo1gu/j9yHoxJ0pxG8Y1tXE7OEQDWh+oc6kZHD49Tp+we682t)
-    port: ENC(PyTYL2Yu5KovwOE41EP81FMjHp/6U1x7hPTWJPdAJ6wPfGP9ZtSz/1W1piRbc/20)
-    username: ENC(dAwEPtF2sMl/lGe0DESwgVjgezRafykLVBsVmnBVD0ZoQWzxzrxP75eVtzijsqUr)
-    password: ENC(+DZNeJTRNilmAua20ZJQj8jbsAkXhOH4jHpYUi+Vygeg0UiEkDWsmFt0OYA782UX8gyQ5JOeB6hLpXom+wcg6GjiCFSHOj/4X/VeNmz0r8Y=)
+    virtual-host: /sck
+    host: rabbitmq.renlm.cn
+    port: 30672
+    username: rabbitmq
+    password: rabbitmq.renlm.cn
     listener:
       direct:
         missing-queues-fatal: false
@@ -121,7 +121,7 @@ spring:
       strict: true
       datasource:
         master:
-          url: ENC(ii7sttTJgw3vH/R2NGbSsWM9SSbBJV/qwZb73eUQ/rlbS6Ux2lwl6iE19s+5bCxwiDziI8bxqQAuTMzL6ZMHgSshv38QHt2KbpM6O/lLgYsPy+VibyIDINvvgDgLFkEN21V086vzcjfxzL3JXNC8o539ON3pkSaB9KTrbxxpyNdnsax0y5b8ZVs08NxBN+8WCiWk4WrwXD86Kpt6deGh0w==)
+          url: ENC(bXD4+PjVR7Fo0OpWoY6aptwGYB1ktQ3vVH+iHwLcrmeg2nRz8AKPy12g+0SVIj7Llg736JGmkSbQKfBgTcAVsdFEcycX1hC9lH5wn5H5FD9Imra1323+6qTSgwYsf2PKMt2eBeR7FgnvCquuqJBadWC0NoYjCPU7geHHBE5aXSEhRWi9kcZyHlCQQ1omv//co8C7jdR0WCOInj4cRqmcgQ==)
           username: ENC(TH8gokJSLbQ6b+3miT2omUUP2ymJzM14ItGSYD9dZ2W4/pzFusZeCvwkuY1nFL4l)
           password: ENC(DP2Al147pJyiFArv67h0Pm08fFWjX9Ktjyri2jXjBm4ZWYsnSwXBwOsdk7ndmNmKJu8QjXCg7oDhIqQy9HnAcw==)
           driver-class-name: com.mysql.cj.jdbc.Driver
