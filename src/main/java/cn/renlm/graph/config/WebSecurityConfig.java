@@ -66,13 +66,13 @@ public class WebSecurityConfig {
 	/**
 	 * 白名单
 	 */
-	public static final String[] WHITE_LIST = {
+	public static final String[] WHITE_LIST = { 
 			LoginPage, 
 			logoutUrl, 
 			LoginProcessingUrl, 
-			CaptchaAntMatcher, 
-			PubAntMatcher,
-			"/actuator/prometheus"
+			CaptchaAntMatcher,
+			PubAntMatcher, 
+			"/actuator/prometheus" 
 		};
 
 	/**
@@ -86,7 +86,7 @@ public class WebSecurityConfig {
 
 	@Resource
 	private FindByIndexNameSessionRepository<? extends Session> sessionRepository;
-	
+
 	@Autowired
 	private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
 
@@ -146,11 +146,10 @@ public class WebSecurityConfig {
 		});
 		return http.build();
 	}
-	
+
 	@Bean
 	SecurityContextRepository securityContextRepository() {
-		return new DelegatingSecurityContextRepository(new RequestAttributeSecurityContextRepository(),
-				new HttpSessionSecurityContextRepository());
+		return new DelegatingSecurityContextRepository(new RequestAttributeSecurityContextRepository(), new HttpSessionSecurityContextRepository());
 	}
 
 	/**
