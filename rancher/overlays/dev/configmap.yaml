@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: mygraph-configmap
 data:
-{{ (.Files.Glob "properties/*").AsConfig | indent 2 }}
+{{ (.Files.Glob "../../properties/*").AsConfig | indent 2 }}
