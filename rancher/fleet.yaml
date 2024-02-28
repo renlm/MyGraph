@@ -2,7 +2,8 @@
 # https://github.com/rancher/fleet-examples
 namespace: renlm
 helm:
-  chart: https://renlm.gitee.io/helm/repo/mygraph/mygraph-0.0.1.tgz
+  repo: https://renlm.gitee.io/helm/repo/mygraph
+  version: 0.0.1
 targetCustomizations:
 - name: dev
   clusterSelector:
