@@ -12,7 +12,7 @@ targetCustomizations:
     dir: overlays/dev
   helm:
     valuesFiles:
-    - values.yaml
+    - overlays/dev/values.yaml
 - name: prod
   clusterSelector:
     matchLabels:
@@ -21,4 +21,4 @@ targetCustomizations:
     dir: overlays/prod
   helm:
     valuesFiles:
-    - values.yaml
+    - overlays/prod/values.yaml
