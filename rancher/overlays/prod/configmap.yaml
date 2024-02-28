@@ -3,4 +3,9 @@ kind: ConfigMap
 metadata:
   name: mygraph-configmap
 data:
-{{ (.Files.Glob "properties/*").AsConfig | indent 2 }}
+  dev.yaml: |-
+    {{ .Files.Get "properties/dev.yaml" }}
+  test.yaml: |-
+    {{ .Files.Get "properties/test.yaml" }}
+  prod.yaml: |-
+    {{ .Files.Get "properties/prod.yaml" }}

@@ -2,7 +2,7 @@
 # https://github.com/rancher/fleet-examples
 namespace: renlm
 helm:
-  chart: redis
+  chart: mygraph
   repo: https://renlm.gitee.io/helm/repo
   version: 0.1.0
 targetCustomizations:
