@@ -1,0 +1,166 @@
+server:
+  port: 80
+  servlet:
+    context-path: /mygraph
+    session:
+      cookie:
+        name: MYGRAPH
+
+my:
+  config:
+    ctx: http://localhost/mygraph
+    wsHost: ws://localhost
+    wsAllowedOrigins: http://localhost
+    proxyLogConcurrency: 10-15
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD:123654}
+
+encrypt:
+  keyStore:
+    location: classpath:keyStore.jks
+    password: ${KEY_STORE_PASSWORD:storepass}
+    alias: ${KEY_STORE_ALIAS:alias}
+    secret: ${KEY_STORE_SECRET:keypass}
+
+aj:
+  captcha:
+    cacheType: redis
+    jigsaw: classpath:images/jigsaw
+    picClick: classpath:images/pic-click
+    type: default
+    waterMark: mygraph.renlm.cn
+    slipOffset: 5
+    aesStatus: true
+    interferenceOptions: 0
+
+mica:
+  xss:
+    enabled: true
+    trimText: true
+    mode: clear
+    prettyPrint: false
+    enableEscape: false
+    pathPatterns: /**
+    pathExcludePatterns:
+    - /static
+    - /webjars
+    - /markdown/**
+
+logging:
+  level:
+    root: info
+    cn.renlm.graph: debug
+  file:
+    name: /opt/log/mygraph.log
+  logback:
+    rollingpolicy:
+      maxFileSize: 512MB
+      maxHistory: 30
+
+mybatis-plus:
+  configuration:
+    localCacheScope: STATEMENT
+  global-config:
+    db-config:
+      update-strategy: IGNORED
+
+management:
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+spring:
+  application:
+    name: mygraph
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+  thymeleaf:
+    cache: false
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+  data:
+    redis:
+      database: 1
+      host: ENC(3biIYGtSjtwx7A7w3AjkxJLQKNCTlGqpV+eTZBFBO7fT+39U/7O+diEnAf11Bdp1)
+      port: ENC(6Hk9Fr716xYOKeWkspYz08UnTkOS6npDvn+2eUZJPTSL5rSn6ZkfN1E+5EYCJUTP)
+      password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
+      timeout: 10s
+      lettuce:
+        pool:
+          maxActive: 256
+          maxWait: 2000ms
+          maxIdle: 10
+          minIdle: 5
+  rabbitmq:
+    virtual-host: /sck
+    host: rabbitmq.renlm.cn
+    port: 30672
+    username: rabbitmq
+    password: rabbitmq.renlm.cn
+    listener:
+      direct:
+        missing-queues-fatal: false
+  datasource:
+    dynamic:
+      primary: master
+      strict: true
+      datasource:
+        master:
+          url: ENC(bXD4+PjVR7Fo0OpWoY6aptwGYB1ktQ3vVH+iHwLcrmeg2nRz8AKPy12g+0SVIj7Llg736JGmkSbQKfBgTcAVsdFEcycX1hC9lH5wn5H5FD9Imra1323+6qTSgwYsf2PKMt2eBeR7FgnvCquuqJBadWC0NoYjCPU7geHHBE5aXSEhRWi9kcZyHlCQQ1omv//co8C7jdR0WCOInj4cRqmcgQ==)
+          username: ENC(TH8gokJSLbQ6b+3miT2omUUP2ymJzM14ItGSYD9dZ2W4/pzFusZeCvwkuY1nFL4l)
+          password: ENC(DP2Al147pJyiFArv67h0Pm08fFWjX9Ktjyri2jXjBm4ZWYsnSwXBwOsdk7ndmNmKJu8QjXCg7oDhIqQy9HnAcw==)
+          driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: always
+      schemaLocations:
+      - classpath:db/schema/schema.sql
+      - classpath:db/schema/oauth2.sql
+      - classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql
+      - classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql
+      - classpath:org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql
+      dataLocations:
+      - classpath:db/data/sys.sql
+      - classpath:db/data/dict.sql
+      - classpath:db/data/ds-er.sql
+      - classpath:db/data/doc.sql
+      - classpath:db/data/oauth2.sql
+      continueOnError: false
+      separator: ;
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceId: AUTO
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            misfireThreshold: 60000
+            clusterCheckinInterval: 5000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true

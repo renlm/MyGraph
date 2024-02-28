@@ -1,2 +1,2 @@
 patchesStrategicMerge:
-- values.yaml
+- configmap.yaml
