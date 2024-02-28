@@ -19,3 +19,6 @@ targetCustomizations:
       env: prod
   kustomize:
     dir: overlays/prod
+  helm:
+    valuesFiles:
+    - values.yaml
