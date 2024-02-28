@@ -1,0 +1,16 @@
+namespace: renlm
+helm:
+  chart: https://renlm.gitee.io/helm/repo/mygraph/mygraph-0.0.1.tgz
+targetCustomizations:
+- name: dev
+  clusterSelector:
+    matchLabels:
+      env: dev
+  kustomize:
+    dir: overlays/dev
+- name: prod
+  clusterSelector:
+    matchLabels:
+      env: prod
+  kustomize:
+    dir: overlays/prod
