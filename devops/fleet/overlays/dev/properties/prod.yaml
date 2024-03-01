@@ -160,4 +160,4 @@ data:
                 class: org.quartz.simpl.SimpleThreadPool
                 threadCount: 10
                 threadPriority: 5
-                threadsInheritContextClassLoaderOfInitializingThread: trueee
+                threadsInheritContextClassLoaderOfInitializingThread: true
