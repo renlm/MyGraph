@@ -10,10 +10,9 @@ server:
       protocol-header: X-Forwarded-Proto
 my:
   config:
-    ctx: https://{{ .Values.host }}
-    wsHost: ws://{{ .Values.host }}
-    wssHost: wss://{{ .Values.host }}
-    wsAllowedOrigins: http://{{ .Values.host }},https://{{ .Values.host }}
+    ctx: http://localhost/mygraph
+    wsHost: ws://localhost
+    wsAllowedOrigins: http://localhost
     chrome:
       driverPath: D:/chrome/chromedriver.exe
       sleepTime: 800
@@ -90,8 +89,8 @@ spring:
   data:
     redis:
       database: 1
-      host: {{ $fullName }}-redis
-      port: 6379
+      host: renlm.cn
+      port: 30379
       password: {{ .Values.redis.requirepass }}
       timeout: 10s
       lettuce:
@@ -102,8 +101,8 @@ spring:
           minIdle: 5
   rabbitmq:
     virtual-host: {{ .Values.rabbitmq.defaultVhost }}
-    host: {{ $fullName }}-rabbitmq
-    port: 5672
+    host: renlm.cn
+    port: 30672
     username: {{ .Values.rabbitmq.defaultUser }}
     password: {{ .Values.rabbitmq.defaultPass }}
   datasource:
@@ -112,7 +111,7 @@ spring:
       strict: true
       datasource:
         master:
-          url: jdbc:mysql://{{ $fullName }}-mysql:3306/{{ .Values.mysql.database }}?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+          url: jdbc:mysql://renlm.cn:30306/{{ .Values.mysql.database }}?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
           username: {{ .Values.mysql.user }}
           password: {{ .Values.mysql.password }}
           driver-class-name: com.mysql.cj.jdbc.Driver
