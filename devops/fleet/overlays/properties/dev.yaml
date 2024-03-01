@@ -75,12 +75,8 @@ data:
             include: prometheus
       metrics:
         tags:
-          application: mygraph
+          application: ${spring.application.name}
     spring:
-      application:
-        name: mygraph
-      main:
-        allow-circular-references: true
       servlet:
         multipart:
           max-file-size: 30MB
