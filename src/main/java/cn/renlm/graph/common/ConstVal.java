@@ -43,11 +43,6 @@ public class ConstVal {
 	public static final String password_msg = "密码限定6~20个字符，大小写字母、数字及特殊字符至少各一个";
 
 	/**
-	 * Chrome 驱动配置
-	 */
-	public static final String chromeSetting = "config/chrome.setting";
-
-	/**
 	 * 系统常量
 	 */
 	public enum Sys {

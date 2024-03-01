@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import cn.hutool.crypto.asymmetric.RSA;
 import cn.hutool.extra.spring.EnableSpringUtil;
 import cn.renlm.graph.properties.MyConfigProperties;
+import cn.renlm.graph.properties.MyConfigProperties.Rsa;
 
 /**
  * 应用启动入口
@@ -46,8 +47,9 @@ public class GraphApplication {
 
 	@Bean
 	public RSA rsa(MyConfigProperties myConfigProperties) {
-		String privateKeyBase64 = myConfigProperties.getRsaPrivateKeyStr();
-		String publicKeyBase64 = myConfigProperties.getRsaPublicKeyStr();
+		Rsa rsa = myConfigProperties.getRsa();
+		String privateKeyBase64 = rsa.getPrivateKeyStr();
+		String publicKeyBase64 = rsa.getPublicKeyStr();
 		return new RSA(privateKeyBase64, publicKeyBase64);
 	}
 

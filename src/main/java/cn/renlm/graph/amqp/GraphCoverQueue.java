@@ -28,13 +28,13 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.img.ImgUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.Setting;
-import cn.renlm.graph.common.ConstVal;
 import cn.renlm.graph.modular.graph.entity.Graph;
 import cn.renlm.graph.modular.graph.service.IGraphService;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.mxgraph.ERModelParser;
 import cn.renlm.graph.properties.MyConfigProperties;
+import cn.renlm.graph.properties.MyConfigProperties.Chrome;
 import cn.renlm.graph.util.RedisUtil;
 import cn.renlm.plugins.MyCrawlerUtil;
 import cn.renlm.plugins.MyCrawler.MySite;
@@ -91,7 +91,10 @@ public class GraphCoverQueue {
 		Rectangle rectangle = ERModelParser.getRectangle(graph.getXml());
 		String w = toStr(toInt(Math.ceil(rectangle.getWidth() < 800 ? 800 : rectangle.getWidth())) + 60);
 		String h = toStr(toInt(Math.ceil(rectangle.getHeight() < 600 ? 600 : rectangle.getHeight())) + 60);
-		Setting chromeSetting = new Setting(ConstVal.chromeSetting);
+		Setting chromeSetting = new Setting();
+		Chrome chrome = myConfigProperties.getChrome();
+		chromeSetting.set("driverPath", chrome.getDriverPath());
+		chromeSetting.set("sleepTime", chrome.getSleepTime());
 		chromeSetting.set("windowSize", StrUtil.join(StrUtil.COMMA, w, h));
 		// 启动爬虫
 		String imageType = ImgUtil.IMAGE_TYPE_PNG;
