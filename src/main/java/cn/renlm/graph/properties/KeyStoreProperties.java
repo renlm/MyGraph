@@ -23,7 +23,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties("encrypt.keyStore")
+@ConfigurationProperties("encrypt.key-store")
 public class KeyStoreProperties {
 
 	private Resource location;
