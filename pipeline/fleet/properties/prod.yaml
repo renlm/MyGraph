@@ -1,44 +1,38 @@
 server:
-  port: 80
+  port: {{ .Values.service.port }}
   servlet:
     session:
       cookie:
-        name: MYGRAPH
+        name: {{ $fullName | upper }}
   tomcat:
     remoteip:
       remote-ip-header: X-Forwarded-For
       protocol-header: X-Forwarded-Proto
-
 my:
   config:
-    ctx: https://mygraph.renlm.cn
-    wsHost: ws://mygraph.renlm.cn
-    wssHost: wss://mygraph.renlm.cn:443
-    wsAllowedOrigins: http://mygraph.renlm.cn,https://mygraph.renlm.cn
-    proxyLogConcurrency: 30-50
-
-jasypt:
-  encryptor:
-    password: ${JASYPT_ENCRYPTOR_PASSWORD:123654}
-
+    ctx: https://{{ .Values.host }}
+    wsHost: ws://{{ .Values.host }}
+    wssHost: wss://{{ .Values.host }}
+    wsAllowedOrigins: http://{{ .Values.host }},https://{{ .Values.host }}
+    chrome:
+      driverPath: D:/chrome/chromedriver.exe
+      sleepTime: 800
 encrypt:
   keyStore:
     location: classpath:keyStore.jks
     password: ${KEY_STORE_PASSWORD:storepass}
     alias: ${KEY_STORE_ALIAS:alias}
     secret: ${KEY_STORE_SECRET:keypass}
-
 aj:
   captcha:
     cacheType: redis
     jigsaw: classpath:images/jigsaw
     picClick: classpath:images/pic-click
     type: default
-    waterMark: mygraph.renlm.cn
+    waterMark: {{ .Values.host }}
     slipOffset: 5
     aesStatus: true
     interferenceOptions: 0
-
 mica:
   xss:
     enabled: true
@@ -51,41 +45,37 @@ mica:
     - /static
     - /webjars
     - /markdown/**
-
 logging:
   level:
     root: info
-    cn.renlm.graph: info
+    cn.renlm.mygraph: info
   file:
-    name: /opt/log/mygraph.log
+    name: /opt/log/{{ $fullName }}.log
   logback:
     rollingpolicy:
       maxFileSize: 512MB
       maxHistory: 30
-
 mybatis-plus:
   configuration:
     localCacheScope: STATEMENT
   global-config:
     db-config:
       update-strategy: IGNORED
-
 management:
   server:
-    port: 9000
+    port: {{ .Values.prometheus.port }}
   endpoints:
     web:
       exposure:
         include: prometheus
   metrics:
     tags:
-      application: ${spring.application.name}
-
+      application: {{ $fullName }}
 spring:
   application:
-    name: mygraph
+    name: {{ $fullName }}
   profiles:
-    active: prod
+    active: {{ .Values.env }}
   main:
     allow-circular-references: true
   servlet:
@@ -93,16 +83,16 @@ spring:
       max-file-size: 30MB
       max-request-size: 30MB
   thymeleaf:
-    cache: false
+    cache: true
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
   data:
     redis:
-      database: 3
-      host: redis
+      database: 1
+      host: {{ $fullName }}-redis
       port: 6379
-      password: ENC(kvMVW92bXK7Ym2drMqz81542HlHnpGWV+1FMPnjXcctU/Q0bAtQuN2rLe16BAZE3ZCOn+CWhThK/Qsep+/q8/xG4YV03mdP+grGgQXUXeTg=)
+      password: {{ .Values.redis.requirepass }}
       timeout: 10s
       lettuce:
         pool:
@@ -111,28 +101,42 @@ spring:
           maxIdle: 10
           minIdle: 5
   rabbitmq:
-    virtual-host: ENC(O+epS5yMEqegl+pivZk2UzPRPGyaqfL1huSETOdu0lAlgEfU6mSEJknKKtc2ozm9)
-    host: rabbitmq
+    virtual-host: {{ .Values.rabbitmq.defaultVhost }}
+    host: {{ $fullName }}-rabbitmq
     port: 5672
-    username: ENC(x7mQELG8zbtqpDhykzDoy2ZqMSs1HHBK6FRWrfFptc8AX28/ABnWNOY9QNFMQ1pb)
-    password: ENC(mKnxCAS26wM7tYsW2pG8hjYS6JY2/iAoS5v/UkM7IniEvu8JHJWFvfrZdclGnw5oHhQwotXp83M5IJho02MC5ZmGn9FtSBr3cEtSe5xn2VM=)
-    listener:
-      direct:
-        missing-queues-fatal: false
+    username: {{ .Values.rabbitmq.defaultUser }}
+    password: {{ .Values.rabbitmq.defaultPass }}
   datasource:
     dynamic:
       primary: master
       strict: true
       datasource:
         master:
-          url: jdbc:mysql://mysql:3306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
-          username: ENC(TH8gokJSLbQ6b+3miT2omUUP2ymJzM14ItGSYD9dZ2W4/pzFusZeCvwkuY1nFL4l)
-          password: ENC(DP2Al147pJyiFArv67h0Pm08fFWjX9Ktjyri2jXjBm4ZWYsnSwXBwOsdk7ndmNmKJu8QjXCg7oDhIqQy9HnAcw==)
+          url: jdbc:mysql://{{ $fullName }}-mysql:3306/{{ .Values.mysql.database }}?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+          username: {{ .Values.mysql.user }}
+          password: {{ .Values.mysql.password }}
           driver-class-name: com.mysql.cj.jdbc.Driver
+    sql:
+      init:
+        mode: always
+        schemaLocations:
+        - classpath:db/schema/schema.sql
+        - classpath:db/schema/oauth2.sql
+        - classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql
+        - classpath:org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql
+        - classpath:org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql
+        dataLocations:
+        - classpath:db/data/sys.sql
+        - classpath:db/data/dict.sql
+        - classpath:db/data/ds-er.sql
+        - classpath:db/data/doc.sql
+        - classpath:db/data/oauth2.sql
+        continueOnError: false
+        separator: ;
   quartz:
     job-store-type: jdbc
     jdbc:
-      initialize-schema: never
+      initialize-schema: always
     properties:
       org:
         quartz:
