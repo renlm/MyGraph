@@ -53,7 +53,7 @@ data:
     logging:
       level:
         root: info
-        cn.renlm.mygraph: info
+        cn.renlm.mygraph: debug
       file:
         name: /opt/log/mygraph.log
       logback:
@@ -79,8 +79,6 @@ data:
     spring:
       application:
         name: mygraph
-      profiles:
-        active: dev
       main:
         allow-circular-references: true
       servlet:
@@ -88,7 +86,7 @@ data:
           max-file-size: 30MB
           max-request-size: 30MB
       thymeleaf:
-        cache: true
+        cache: false
       jackson:
         serialization:
           WRITE_DATES_AS_TIMESTAMPS: true

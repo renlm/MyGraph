@@ -80,8 +80,6 @@ data:
     spring:
       application:
         name: mygraph
-      profiles:
-        active: prod
       servlet:
         multipart:
           max-file-size: 30MB
