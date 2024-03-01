@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import cn.hutool.core.util.IdUtil;
-
 /**
  * 密码
  * 
@@ -21,12 +19,4 @@ public class PasswdTest {
 		System.out.println(encodePasswd);
 	}
 
-	@Test
-	public void uuid() {
-		System.out.println(IdUtil.simpleUUID().toUpperCase());
-		System.out.println(IdUtil.simpleUUID().toUpperCase());
-		System.out.println(IdUtil.simpleUUID().toUpperCase());
-		System.out.println(IdUtil.simpleUUID().toUpperCase());
-		System.out.println(IdUtil.simpleUUID().toUpperCase());
-	}
 }

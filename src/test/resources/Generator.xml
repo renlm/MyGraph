@@ -3,9 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="https://renlm.gitee.io/schemas/MyGenerator.xsd">
 
-	<url>jdbc:mysql://renlm.cn:3306/dev</url>
-	<username>dev</username>
-	<password>K86erp7ssdi^_fyIMYmf4Kwt^tn50jl4bn</password>
+	<url>jdbc:mysql://renlm.cn:30306/mygraph</url>
+	<username>mygraph</username>
+	<password>PWD@20xx$</password>
 
 	<module name="sys" package="cn.renlm.graph.modular">
 		<table author="Renlm" name="sys_org" entity="true" />

@@ -16,4 +16,5 @@ public class GeneratorTest {
 	public void run() {
 		MyGeneratorUtil.run("Generator.xml");
 	}
+
 }
