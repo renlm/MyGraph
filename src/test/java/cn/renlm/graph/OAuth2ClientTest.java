@@ -29,7 +29,7 @@ import cn.hutool.core.lang.UUID;
  *
  */
 @ActiveProfiles("dev")
-@SpringBootTest(classes = GraphApplication.class)
+@SpringBootTest(classes = MyGraphApplication.class)
 public class OAuth2ClientTest {
 
 	@Autowired
