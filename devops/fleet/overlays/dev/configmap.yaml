@@ -5,24 +5,23 @@ metadata:
 data:
   dev.yaml: |-
     server:
-      port: {{ .Values.service.port }}
+      port: 80
       servlet:
         session:
           cookie:
-            name: {{ $fullName | upper }}
+            name: MYGRAPH
       tomcat:
         remoteip:
           remote-ip-header: X-Forwarded-For
           protocol-header: X-Forwarded-Proto
     my:
       config:
-        ctx: https://{{ .Values.host }}
-        wsHost: ws://{{ .Values.host }}
-        wssHost: wss://{{ .Values.host }}
-        wsAllowedOrigins: http://{{ .Values.host }},https://{{ .Values.host }}
+        ctx: http://localhost/mygraph
+        wsHost: ws://localhost
+        wsAllowedOrigins: http://localhost
         chrome:
-          driverPath: /usr/bin/chromedriver
-          sleepTime: 2500
+          driverPath: D:/chrome/chromedriver.exe
+          sleepTime: 800
     encrypt:
       keyStore:
         location: classpath:keyStore.jks
@@ -35,7 +34,7 @@ data:
         jigsaw: classpath:images/jigsaw
         picClick: classpath:images/pic-click
         type: default
-        waterMark: {{ .Values.host }}
+        waterMark: localhost
         slipOffset: 5
         aesStatus: true
         interferenceOptions: 0
@@ -56,7 +55,7 @@ data:
         root: info
         cn.renlm.mygraph: info
       file:
-        name: /opt/log/{{ $fullName }}.log
+        name: /opt/log/mygraph.log
       logback:
         rollingpolicy:
           maxFileSize: 512MB
@@ -69,19 +68,19 @@ data:
           update-strategy: IGNORED
     management:
       server:
-        port: {{ .Values.prometheus.port }}
+        port: 9000
       endpoints:
         web:
           exposure:
             include: prometheus
       metrics:
         tags:
-          application: {{ $fullName }}
+          application: mygraph
     spring:
       application:
-        name: {{ $fullName }}
+        name: mygraph
       profiles:
-        active: {{ .Values.env }}
+        active: dev
       main:
         allow-circular-references: true
       servlet:
@@ -96,9 +95,9 @@ data:
       data:
         redis:
           database: 1
-          host: {{ $fullName }}-redis
-          port: 6379
-          password: {{ .Values.redis.requirepass }}
+          host: renlm.cn
+          port: 30379
+          password: PWD@20xx$
           timeout: 10s
           lettuce:
             pool:
@@ -107,20 +106,20 @@ data:
               maxIdle: 10
               minIdle: 5
       rabbitmq:
-        virtual-host: {{ .Values.rabbitmq.defaultVhost }}
-        host: {{ $fullName }}-rabbitmq
-        port: 5672
-        username: {{ .Values.rabbitmq.defaultUser }}
-        password: {{ .Values.rabbitmq.defaultPass }}
+        virtual-host: /mygraph
+        host: renlm.cn
+        port: 30672
+        username: mygraph
+        password: PWD@20xx$
       datasource:
         dynamic:
           primary: master
           strict: true
           datasource:
             master:
-              url: jdbc:mysql://{{ $fullName }}-mysql:3306/{{ .Values.mysql.database }}?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
-              username: {{ .Values.mysql.user }}
-              password: {{ .Values.mysql.password }}
+              url: jdbc:mysql://renlm.cn:30306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+              username: mygraph
+              password: PWD@20xx$
               driver-class-name: com.mysql.cj.jdbc.Driver
         sql:
           init:
