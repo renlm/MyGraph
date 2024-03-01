@@ -29,4 +29,14 @@ public class MyConfigProperties {
 	 */
 	private String proxyLogConcurrency;
 
+	/**
+	 * RSA 私钥Hex或Base64表示
+	 */
+	private String rsaPrivateKeyStr;
+
+	/**
+	 * RSA 公钥Hex或Base64表示
+	 */
+	private String rsaPublicKeyStr;
+
 }

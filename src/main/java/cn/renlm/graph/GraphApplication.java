@@ -14,9 +14,9 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.crypto.asymmetric.RSA;
 import cn.hutool.extra.spring.EnableSpringUtil;
+import cn.renlm.graph.properties.MyConfigProperties;
 
 /**
  * 应用启动入口
@@ -45,9 +45,9 @@ public class GraphApplication {
 	}
 
 	@Bean
-	public RSA rsa() {
-		String privateKeyBase64 = ResourceUtil.readUtf8Str("config/pub.asc");
-		String publicKeyBase64 = ResourceUtil.readUtf8Str("config/pub");
+	public RSA rsa(MyConfigProperties myConfigProperties) {
+		String privateKeyBase64 = myConfigProperties.getRsaPrivateKeyStr();
+		String publicKeyBase64 = myConfigProperties.getRsaPublicKeyStr();
 		return new RSA(privateKeyBase64, publicKeyBase64);
 	}
 
