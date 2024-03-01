@@ -9,7 +9,7 @@ targetCustomizations:
 - name: mygraph
   clusterSelector:
     matchLabels:
-      env: dev
+      env: prod
   kustomize:
     dir: overlays
   helm:
