@@ -1,4 +1,8 @@
 spring:
+  profiles:
+    active: prod
+  main:
+    allowCircularReferences: true
   cloud:
     kubernetes:
       reload:

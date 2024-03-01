@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   main:
     cloudPlatform: KUBERNETES
     allowCircularReferences: true
