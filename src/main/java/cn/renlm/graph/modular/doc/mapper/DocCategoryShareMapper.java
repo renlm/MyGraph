@@ -16,7 +16,7 @@ import cn.renlm.graph.modular.doc.entity.DocCategoryShare;
  * 文档分类-分享 Mapper 接口
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-06-16
  */
 public interface DocCategoryShareMapper extends BaseMapper<DocCategoryShare> {

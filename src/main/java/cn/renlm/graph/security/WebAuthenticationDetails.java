@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * 登录认证信息
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)

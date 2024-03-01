@@ -16,7 +16,7 @@ import lombok.Getter;
 /**
  * 密码模式
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public class OAuth2PasswordAuthenticationToken extends OAuth2AuthorizationGrantAuthenticationToken {

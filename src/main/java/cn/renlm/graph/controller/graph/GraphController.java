@@ -44,7 +44,7 @@ import cn.renlm.graph.util.RedisUtil;
 /**
  * 图形设计
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

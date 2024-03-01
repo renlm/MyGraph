@@ -30,7 +30,7 @@ import cn.renlm.graph.util.RedisUtil;
 /**
  * ER模型
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

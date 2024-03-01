@@ -20,7 +20,7 @@ import cn.hutool.core.util.StrUtil;
 /**
  * WebMvc 配置
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {

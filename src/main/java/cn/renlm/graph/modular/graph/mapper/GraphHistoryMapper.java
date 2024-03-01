@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * 图形设计-历史记录 Mapper 接口
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-06-22
  */
 public interface GraphHistoryMapper extends BaseMapper<GraphHistory> {

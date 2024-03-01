@@ -9,7 +9,7 @@ import cn.renlm.graph.modular.ds.entity.DsErRel;
  * 数据源-ER模型关系 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 public interface IDsErRelService extends IService<DsErRel> {

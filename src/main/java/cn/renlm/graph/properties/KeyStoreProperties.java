@@ -17,7 +17,7 @@ import lombok.Setter;
 /**
  * 秘钥信息
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Getter

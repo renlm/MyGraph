@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * WebSocket 广播队列
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Slf4j

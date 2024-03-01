@@ -22,7 +22,7 @@ import cn.renlm.graph.modular.sys.service.ISysUserService;
 /**
  * 演示账号重置密码（0 0/5 * * * ?）
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Component

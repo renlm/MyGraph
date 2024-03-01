@@ -13,7 +13,7 @@ import cn.renlm.plugins.MyResponse.Result;
  * 数据源 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 public interface IDsService extends IService<Ds> {

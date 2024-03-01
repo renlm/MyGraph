@@ -19,7 +19,7 @@ import cn.renlm.plugins.MyResponse.Result;
 /**
  * 文档分类-收藏
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

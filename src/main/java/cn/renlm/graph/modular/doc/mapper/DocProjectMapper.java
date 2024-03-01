@@ -14,7 +14,7 @@ import cn.renlm.graph.modular.doc.entity.DocProject;
  * 文档项目 Mapper 接口
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-06-13
  */
 public interface DocProjectMapper extends BaseMapper<DocProject> {

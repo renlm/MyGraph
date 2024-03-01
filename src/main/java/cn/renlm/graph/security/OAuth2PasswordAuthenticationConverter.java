@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * 密码模式
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public class OAuth2PasswordAuthenticationConverter implements AuthenticationConverter {

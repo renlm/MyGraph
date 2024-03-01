@@ -15,7 +15,7 @@ import cn.renlm.graph.modular.markdown.entity.MarkdownHistory;
  * Markdown文档-历史记录 Mapper 接口
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-06-13
  */
 public interface MarkdownHistoryMapper extends BaseMapper<MarkdownHistory> {

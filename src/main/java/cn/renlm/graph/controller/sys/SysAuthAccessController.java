@@ -28,7 +28,7 @@ import cn.renlm.graph.service.SysAuthAccessService;
 /**
  * 角色授权
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

@@ -9,7 +9,7 @@ import cn.hutool.core.util.IdUtil;
 /**
  * 密码
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public class PasswdTest {

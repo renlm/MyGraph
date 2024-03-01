@@ -10,7 +10,7 @@ import cn.renlm.graph.modular.qrtz.dto.QrtzTriggersDto;
 /**
  * 触发器
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public interface IQrtzTriggersService {

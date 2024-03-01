@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
  * 系统登录日志
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-07-21
  */
 @Getter

@@ -14,7 +14,7 @@ import cn.renlm.plugins.MyResponse.Result;
  * 资源 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 public interface ISysResourceService extends IService<SysResource> {

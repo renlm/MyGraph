@@ -24,7 +24,7 @@ import cn.renlm.plugins.MyResponse.Result;
 /**
  * ER模型-字段
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

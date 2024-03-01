@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 缓存Key
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public enum CacheKey {

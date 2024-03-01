@@ -25,7 +25,7 @@ import cn.hutool.core.lang.UUID;
 -DKEY_STORE_ALIAS=alias
 -DKEY_STORE_SECRET=keypass
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @ActiveProfiles("dev")

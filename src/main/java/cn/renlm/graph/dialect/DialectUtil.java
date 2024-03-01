@@ -19,7 +19,7 @@ import cn.renlm.graph.util.DictUtil;
 /**
  * 工具集
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Component

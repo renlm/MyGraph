@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * 缓存配置
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @RequiredArgsConstructor

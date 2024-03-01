@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * 系统常量 Mapper 接口
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 public interface SysConstMapper extends BaseMapper<SysConst> {

@@ -32,7 +32,7 @@ import cn.renlm.graph.modular.markdown.service.IMarkdownHistoryService;
  * Markdown文档-历史记录 服务实现类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-06-13
  */
 @Service

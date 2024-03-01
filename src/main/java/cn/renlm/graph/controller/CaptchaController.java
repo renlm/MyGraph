@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * 验证码
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @RestController

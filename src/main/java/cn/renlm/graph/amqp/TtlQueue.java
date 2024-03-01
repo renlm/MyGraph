@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * 延时队列
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Configuration

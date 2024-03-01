@@ -10,7 +10,7 @@ import com.anji.captcha.service.CaptchaCacheService;
 /**
  * CaptchaCacheService SPI 实现类
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public class CaptchaCacheServiceRedisImpl implements CaptchaCacheService {

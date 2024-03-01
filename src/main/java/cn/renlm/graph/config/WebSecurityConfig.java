@@ -29,7 +29,7 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * Security 配置
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Configuration

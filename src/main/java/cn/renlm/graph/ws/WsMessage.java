@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 /**
  * WebSocket 消息
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Data

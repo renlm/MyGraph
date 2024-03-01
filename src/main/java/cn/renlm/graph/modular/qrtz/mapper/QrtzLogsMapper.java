@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * 定时任务日志 Mapper 接口
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-05-09
  */
 public interface QrtzLogsMapper extends BaseMapper<QrtzLogs> {

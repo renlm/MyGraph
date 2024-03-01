@@ -16,7 +16,7 @@ import cn.renlm.plugins.MyResponse.Datagrid;
 /**
  * 系统登录日志
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

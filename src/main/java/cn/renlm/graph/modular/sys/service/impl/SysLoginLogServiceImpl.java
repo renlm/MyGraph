@@ -17,7 +17,7 @@ import cn.renlm.graph.modular.sys.service.ISysLoginLogService;
  * 系统登录日志 服务实现类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-05-16
  */
 @Service

@@ -10,7 +10,7 @@ import lombok.Data;
 /**
  * 图形设计-Xml配置
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Data

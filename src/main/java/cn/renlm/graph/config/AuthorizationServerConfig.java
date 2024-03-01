@@ -46,7 +46,7 @@ import cn.renlm.graph.security.OAuth2PasswordAuthenticationProvider;
 /**
  * 认证服务
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Configuration(proxyBeanMethods = false)

@@ -11,7 +11,7 @@ import cn.renlm.graph.modular.oauth2.entity.Oauth2RegisteredClient;
  * Oauth2.0 注册客户端 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2023-01-07
  */
 public interface IOauth2RegisteredClientService extends IService<Oauth2RegisteredClient> {

@@ -46,7 +46,7 @@ import cn.renlm.graph.util.TreeExtraUtil;
 /**
  * 公共文档
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

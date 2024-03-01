@@ -17,7 +17,7 @@ import cn.renlm.graph.modular.qrtz.service.IQrtzLogsService;
 /**
  * 任务执行
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public abstract class JobBean extends QuartzJobBean {

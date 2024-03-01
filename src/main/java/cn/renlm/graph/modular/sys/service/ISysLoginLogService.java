@@ -10,7 +10,7 @@ import cn.renlm.graph.modular.sys.entity.SysLoginLog;
  * 系统登录日志 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-05-16
  */
 public interface ISysLoginLogService extends IService<SysLoginLog> {

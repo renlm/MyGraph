@@ -11,7 +11,7 @@ import com.anji.captcha.properties.AjCaptchaProperties;
 /**
  * 验证码
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Configuration

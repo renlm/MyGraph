@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 关键角色
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public enum Role {

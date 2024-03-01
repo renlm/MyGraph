@@ -52,7 +52,7 @@ import cn.renlm.plugins.MyResponse.Result;
  * 用户 服务实现类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 @Service

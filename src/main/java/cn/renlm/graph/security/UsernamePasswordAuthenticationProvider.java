@@ -20,7 +20,7 @@ import cn.hutool.core.util.ReflectUtil;
 /**
  * 登录认证检查
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Component

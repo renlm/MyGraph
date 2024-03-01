@@ -33,7 +33,7 @@ import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 /**
  * 文档管理
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

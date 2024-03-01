@@ -44,7 +44,7 @@ import cn.renlm.graph.util.TreeExtraUtil;
 /**
  * 角色授权
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Service

@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 登录成功处理
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Slf4j

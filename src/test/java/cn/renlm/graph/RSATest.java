@@ -11,7 +11,7 @@ import cn.renlm.plugins.ConstVal;
 /**
  * 非对称加密RSA
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public class RSATest {

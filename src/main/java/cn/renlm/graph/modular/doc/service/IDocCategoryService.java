@@ -14,7 +14,7 @@ import cn.renlm.plugins.MyResponse.Result;
  * 文档分类 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-06-13
  */
 public interface IDocCategoryService extends IService<DocCategory> {

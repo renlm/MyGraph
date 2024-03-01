@@ -44,7 +44,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * 图形封面任务
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Slf4j

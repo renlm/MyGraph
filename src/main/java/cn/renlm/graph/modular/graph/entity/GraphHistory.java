@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * 图形设计-历史记录
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-07-21
  */
 @Getter

@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 图形分类
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public enum Mxgraph {

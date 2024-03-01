@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * 资源
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

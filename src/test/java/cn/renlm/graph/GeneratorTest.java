@@ -7,7 +7,7 @@ import cn.renlm.plugins.MyGeneratorUtil;
 /**
  * 代码生成
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public class GeneratorTest {

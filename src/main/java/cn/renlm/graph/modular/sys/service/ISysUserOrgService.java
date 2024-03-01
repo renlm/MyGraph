@@ -11,7 +11,7 @@ import cn.renlm.graph.modular.sys.entity.SysUserOrg;
  * 用户组织机构关系 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 public interface ISysUserOrgService extends IService<SysUserOrg> {

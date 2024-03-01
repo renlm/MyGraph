@@ -17,7 +17,7 @@ import cn.renlm.graph.ws.WsMessage.WsType;
 /**
  * WebSocket 处理器
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Component

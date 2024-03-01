@@ -9,7 +9,7 @@ import cn.renlm.graph.modular.sys.entity.SysConst;
  * 系统常量 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 public interface ISysConstService extends IService<SysConst> {

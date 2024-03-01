@@ -44,7 +44,7 @@ import org.springframework.util.CollectionUtils;
 /**
  * 密码模式
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public final class OAuth2PasswordAuthenticationProvider implements AuthenticationProvider {

@@ -47,7 +47,7 @@ import cn.renlm.plugins.MyResponse.StatusCode;
  * 图形设计 服务实现类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 @Service

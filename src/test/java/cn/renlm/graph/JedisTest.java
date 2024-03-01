@@ -16,7 +16,7 @@ import redis.clients.jedis.Jedis;
 /**
  * Jedis工具
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Slf4j

@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * 请求认证检查
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Component

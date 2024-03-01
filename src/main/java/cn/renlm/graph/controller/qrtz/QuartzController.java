@@ -40,7 +40,7 @@ import cn.renlm.plugins.MyUtil.MyXStreamUtil;
 /**
  * 定时任务
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

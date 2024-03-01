@@ -19,7 +19,7 @@ import lombok.experimental.Accessors;
 /**
  * 认证用户（文档分享）
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Data

@@ -13,7 +13,7 @@ import cn.renlm.graph.modular.graph.service.IGraphHistoryService;
  * 图形设计-历史记录 服务实现类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-06-22
  */
 @Service

@@ -194,7 +194,7 @@
 		},
 		/**
 		 * 自定义元图Demo-ER模型
-		 * @author Renlm
+		 * @author RenLiMing(任黎明)
 		 * @param sidebar 
 		 * @param isAddEntry 
 		 * @return {width,height,html,cell,func}
@@ -212,7 +212,7 @@
 		},
 		/**
 		 * 自定义元图-ER模型
-		 * @author Renlm
+		 * @author RenLiMing(任黎明)
 		 * @param sidebar 
 		 * @param isAddEntry 
 		 * @param erDto {tableName,comment,fields:[{name,comment,isPk,isFk}]}
@@ -237,7 +237,7 @@
 		},
 		/**
 		 * 生成Html模板-ER模型
-		 * @author Renlm
+		 * @author RenLiMing(任黎明)
 		 * @param erDto {tableName,comment,fields:[{name,comment,isPk,isFk}]}
 		 * @return {width,height,html}
 		 */
@@ -843,7 +843,7 @@
     }
 	/**
 	 * 自定义元图-ER模型
-	 * @author Renlm
+	 * @author RenLiMing(任黎明)
 	 * @param sidebar 
 	 * @param isAddEntry 
 	 * @param style
@@ -876,7 +876,7 @@
 	}
 	/**
 	 * 自定义元图-ER模型
-	 * @author Renlm
+	 * @author RenLiMing(任黎明)
 	 * @param sidebar 
 	 * @param cell
 	 * @param width

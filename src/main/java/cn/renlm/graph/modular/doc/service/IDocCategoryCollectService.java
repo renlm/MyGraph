@@ -13,7 +13,7 @@ import cn.renlm.plugins.MyResponse.Result;
  * 文档分类-收藏 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-06-15
  */
 public interface IDocCategoryCollectService extends IService<DocCategoryCollect> {

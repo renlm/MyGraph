@@ -22,7 +22,7 @@ import cn.renlm.graph.util.Ip2regionUtil;
 /**
  * 登录日志记录
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Configuration

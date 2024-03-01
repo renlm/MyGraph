@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 /**
  * 二维数据封装（Echarts）
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Data

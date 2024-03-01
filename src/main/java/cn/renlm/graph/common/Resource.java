@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 资源
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public enum Resource {

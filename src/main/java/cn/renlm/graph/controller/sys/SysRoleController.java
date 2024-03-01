@@ -25,7 +25,7 @@ import cn.renlm.plugins.MyResponse.Result;
 /**
  * 角色
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

@@ -12,7 +12,7 @@ import cn.renlm.graph.modular.sys.entity.SysOrg;
  * 组织机构 Mapper 接口
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 public interface SysOrgMapper extends BaseMapper<SysOrg> {

@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * WebSocket 工具
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Slf4j

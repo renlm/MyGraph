@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 /**
  * 定时任务日志
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Data

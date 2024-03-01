@@ -15,7 +15,7 @@ import lombok.Data;
  * 
  * 任务配置类
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Data

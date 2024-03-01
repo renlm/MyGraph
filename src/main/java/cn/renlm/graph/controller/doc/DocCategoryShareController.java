@@ -35,7 +35,7 @@ import cn.renlm.plugins.MyResponse.Result;
 /**
  * 文档分类-分享
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

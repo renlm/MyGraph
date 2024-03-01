@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 /**
  * 资源
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Data

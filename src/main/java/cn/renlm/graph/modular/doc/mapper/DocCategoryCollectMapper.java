@@ -16,7 +16,7 @@ import cn.renlm.graph.modular.doc.entity.DocCategoryCollect;
  * 文档分类-收藏 Mapper 接口
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-06-15
  */
 public interface DocCategoryCollectMapper extends BaseMapper<DocCategoryCollect> {

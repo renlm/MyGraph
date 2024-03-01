@@ -11,7 +11,7 @@ import cn.renlm.plugins.MyResponse.Result;
  * Markdown文档 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-05-13
  */
 public interface IMarkdownService extends IService<Markdown> {

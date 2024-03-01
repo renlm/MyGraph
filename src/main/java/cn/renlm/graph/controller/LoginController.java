@@ -29,7 +29,7 @@ import cn.renlm.graph.util.SessionUtil;
 /**
  * 登录
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

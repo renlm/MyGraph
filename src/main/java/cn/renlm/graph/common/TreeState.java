@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * 菜单状态
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 public enum TreeState {

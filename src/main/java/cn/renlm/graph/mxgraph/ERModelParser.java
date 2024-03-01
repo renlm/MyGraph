@@ -55,7 +55,7 @@ import cn.renlm.graph.util.FreemarkerUtil;
 /**
  * ER图形解析器
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Component

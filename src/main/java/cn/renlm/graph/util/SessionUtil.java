@@ -20,7 +20,7 @@ import lombok.experimental.UtilityClass;
 /**
  * 会话工具
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @UtilityClass

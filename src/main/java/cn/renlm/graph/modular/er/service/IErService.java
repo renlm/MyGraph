@@ -14,7 +14,7 @@ import cn.renlm.graph.modular.er.entity.Er;
  * ER模型 服务类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 public interface IErService extends IService<Er> {

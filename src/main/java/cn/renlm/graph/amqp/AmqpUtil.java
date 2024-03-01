@@ -16,7 +16,7 @@ import lombok.experimental.UtilityClass;
 /**
  * 消息队列
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @UtilityClass

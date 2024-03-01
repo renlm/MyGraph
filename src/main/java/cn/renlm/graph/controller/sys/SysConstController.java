@@ -26,7 +26,7 @@ import cn.renlm.plugins.MyResponse.Result;
 /**
  * 系统常量
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * Oauth2.0 注册客户端
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Controller

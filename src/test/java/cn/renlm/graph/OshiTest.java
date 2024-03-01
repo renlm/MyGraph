@@ -24,7 +24,7 @@ import oshi.util.FormatUtil;
 /**
  * Oshi工具
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Slf4j

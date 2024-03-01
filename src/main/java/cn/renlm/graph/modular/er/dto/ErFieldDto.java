@@ -8,7 +8,7 @@ import lombok.experimental.Accessors;
 /**
  * ER模型-字段
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Data

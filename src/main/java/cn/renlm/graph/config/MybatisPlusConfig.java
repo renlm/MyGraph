@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerIntercept
 /**
  * MybatisPlus 配置
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Configuration

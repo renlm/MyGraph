@@ -43,7 +43,7 @@ import cn.renlm.plugins.MyResponse.StatusCode;
  * 文档项目-成员 服务实现类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-06-13
  */
 @Service

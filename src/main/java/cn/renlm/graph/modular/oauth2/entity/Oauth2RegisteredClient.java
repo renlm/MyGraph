@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
  * Oauth2.0 注册客户端
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2023-01-07
  */
 @Getter

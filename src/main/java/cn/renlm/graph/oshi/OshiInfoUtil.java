@@ -28,7 +28,7 @@ import oshi.util.FormatUtil;
 /**
  * Oshi 工具
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @UtilityClass

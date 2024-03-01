@@ -17,7 +17,7 @@ import cn.renlm.graph.modular.oauth2.service.IOauth2RegisteredClientService;
  * Oauth2.0 注册客户端 服务实现类
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2023-01-07
  */
 @Service

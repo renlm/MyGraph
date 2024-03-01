@@ -16,7 +16,7 @@ import cn.renlm.graph.modular.graph.entity.Graph;
  * 图形设计 Mapper 接口
  * </p>
  *
- * @author Renlm
+ * @author RenLiMing(任黎明)
  * @since 2022-04-29
  */
 public interface GraphMapper extends BaseMapper<Graph> {
