@@ -10,8 +10,6 @@ targetCustomizations:
   clusterSelector:
     matchLabels:
       env: dev
-  kustomize:
-    dir: overlays/dev
   helm:
     valuesFiles:
     - values/dev.yaml
