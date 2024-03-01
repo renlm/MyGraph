@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: mygraph-configmap
 data:
-  mygraph-dev.yml: |-
+  mygraph-dev.yaml: |-
     server:
       port: 80
       servlet:
