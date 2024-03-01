@@ -7,17 +7,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.nimbusds.jose.jwk.RSAKey;
+
 import cn.hutool.crypto.asymmetric.RSA;
 import cn.hutool.extra.spring.EnableSpringUtil;
+import cn.renlm.graph.properties.KeyStoreProperties;
 import cn.renlm.graph.properties.MyConfigProperties;
-import cn.renlm.graph.properties.MyConfigProperties.Rsa;
+import lombok.SneakyThrows;
 
 /**
  * 应用启动入口
@@ -46,25 +47,16 @@ public class GraphApplication {
 	}
 
 	@Bean
-	public RSA rsa(MyConfigProperties myConfigProperties) {
-		Rsa rsa = myConfigProperties.getRsa();
-		String privateKeyBase64 = rsa.getPrivateKeyStr();
-		String publicKeyBase64 = rsa.getPublicKeyStr();
-		return new RSA(privateKeyBase64, publicKeyBase64);
+	@SneakyThrows
+	public RSA rsa(MyConfigProperties myConfigProperties, KeyStoreProperties keyStoreProperties) {
+		RSAKey key = keyStoreProperties.getRSAKey();
+		return new RSA(key.toRSAPrivateKey(), key.toRSAPublicKey());
 	}
 
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		return passwordEncoder;
-	}
-
-	@Bean
-	public TaskScheduler taskScheduler() {
-		ThreadPoolTaskScheduler scheduling = new ThreadPoolTaskScheduler();
-		scheduling.setPoolSize(64);
-		scheduling.initialize();
-		return scheduling;
 	}
 
 }
