@@ -38,6 +38,21 @@ autoscaling:
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
 # 子Chart配置
+mysql:
+  enabled: true
+  mini: true
+  database: mygraph
+  user: mygraph
+  password: PWD@20xx$
+  nodeSelector: {}
+  image:
+    repository: mysql
+    pullPolicy: IfNotPresent
+    tag: 8.0.31
+  service:
+    type: NodePort
+    port: 3306
+    nodePort: 30306
 prometheus:
   enabled: false
   port: 9000
@@ -45,21 +60,19 @@ prometheus:
   selector:
   - name: prometheus
     value: monitor
-redis:
-  enabled: true
-  requirepass: PWD@20xx$
-mysql:
-  enabled: true
-  database: mygraph
-  user: mygraph
-  password: PWD@20xx$
 rabbitmq:
   enabled: true
   defaultVhost: /mygraph
   defaultUser: mygraph
   defaultPass: PWD@20xx$
+  nodeSelector: {}
+  image:
+    repository: rabbitmq
+    pullPolicy: IfNotPresent
+    tag: management
   ingress:
     enabled: true
+    annotations: {}
     hosts:
     - host: rabbitmq.renlm.cn
       paths:
@@ -69,3 +82,20 @@ rabbitmq:
     - secretName: renlm.secret
       hosts:
       - rabbitmq.renlm.cn
+  service:
+    type: NodePort
+    port: 15672
+    amqpPort: 5672
+    amqpNodePort: 30672
+redis:
+  enabled: true
+  requirepass: PWD@20xx$
+  nodeSelector: {}
+  image:
+    repository: redis
+    pullPolicy: IfNotPresent
+    tag: latest
+  service:
+    type: NodePort
+    port: 6379
+    nodePort: 30379
