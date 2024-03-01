@@ -5,7 +5,7 @@ metadata:
 data:
   dev.yaml: |-
     server:
-      port: 80
+      port: 8080
       servlet:
         session:
           cookie:
@@ -81,9 +81,7 @@ data:
       application:
         name: mygraph
       profiles:
-        active: dev
-      main:
-        allow-circular-references: true
+        active: prod
       servlet:
         multipart:
           max-file-size: 30MB
