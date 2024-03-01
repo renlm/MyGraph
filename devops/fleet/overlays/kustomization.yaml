@@ -1,4 +1,3 @@
 patchesStrategicMerge:
 - properties/dev.yaml
 - properties/prod.yaml
-- properties/test.yaml
