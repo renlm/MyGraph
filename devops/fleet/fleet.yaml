@@ -6,30 +6,12 @@ helm:
   repo: https://renlm.gitee.io/helm/repo
   version: 0.1.0
 targetCustomizations:
-- name: dev
+- name: mygraph
   clusterSelector:
     matchLabels:
       env: dev
   kustomize:
-    dir: overlays/dev
+    dir: overlays/mygraph
   helm:
     valuesFiles:
-    - values/dev.yaml
-- name: test
-  clusterSelector:
-    matchLabels:
-      env: test
-  kustomize:
-    dir: overlays/test
-  helm:
-    valuesFiles:
-    - values/test.yaml
-- name: prod
-  clusterSelector:
-    matchLabels:
-      env: prod
-  kustomize:
-    dir: overlays/prod
-  helm:
-    valuesFiles:
-    - values/prod.yaml
+    - overlays/mygraph/values.yaml
