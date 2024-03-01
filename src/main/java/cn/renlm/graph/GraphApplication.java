@@ -21,7 +21,7 @@ import cn.renlm.graph.properties.MyConfigProperties;
 /**
  * 应用启动入口
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @EnableAsync

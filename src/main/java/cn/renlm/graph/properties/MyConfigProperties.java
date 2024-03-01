@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * 自定义配置
  * 
- * @author Renlm
+ * @author RenLiMing(任黎明)
  *
  */
 @Data
@@ -23,11 +23,6 @@ public class MyConfigProperties {
 	private String wssHost;
 
 	private String wsAllowedOrigins;
-
-	/**
-	 * 队列线程数（网关代理日志记录）
-	 */
-	private String proxyLogConcurrency;
 
 	/**
 	 * RSA 私钥Hex或Base64表示
