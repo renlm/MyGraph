@@ -1,6 +1,7 @@
 spring:
   main:
     cloudPlatform: KUBERNETES
+    allowCircularReferences: true
   cloud:
     kubernetes:
       reload:
