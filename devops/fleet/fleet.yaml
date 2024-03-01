@@ -2,12 +2,16 @@
 # https://github.com/rancher/fleet-examples
 namespace: renlm
 helm:
-  chart: https://renlm.gitee.io/helm/repo/mygraph-0.1.0.tgz
+  chart: mygraph
+  repo: https://renlm.gitee.io/helm/repo
+  version: 0.1.0
 targetCustomizations:
 - name: dev
   clusterSelector:
     matchLabels:
       env: dev
+  kustomize:
+    dir: overlays/dev
   helm:
     valuesFiles:
     - values/dev.yaml
