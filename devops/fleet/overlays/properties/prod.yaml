@@ -67,16 +67,6 @@ data:
       global-config:
         db-config:
           update-strategy: IGNORED
-    management:
-      server:
-        port: 9000
-      endpoints:
-        web:
-          exposure:
-            include: prometheus
-      metrics:
-        tags:
-          application: ${spring.application.name}
     spring:
       servlet:
         multipart:
@@ -89,7 +79,7 @@ data:
           WRITE_DATES_AS_TIMESTAMPS: true
       data:
         redis:
-          database: 1
+          database: 16
           host: mygraph-devops-fleet-redis
           port: 6379
           password: PWD@20xx$

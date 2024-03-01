@@ -1,0 +1,15 @@
+management:
+  server:
+    port: 9000
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      showDetails: always
+    shutdown:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
