@@ -1,0 +1,16 @@
+server:
+  port: ${SERVER_PORT:8000}
+spring:
+  application:
+    name: ${SPRING_APPLICATION_NAME:sck}
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:prod}
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+      client:
+        namespace: ${NAMESPACE:renlm}
+      config:
+        name: ${spring.application.name}
+        namespace: ${spring.cloud.kubernetes.client.namespace}
