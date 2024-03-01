@@ -85,7 +85,7 @@
 			@emitdata="pageData">
 		</graph-page>
 	</div>
-	<script th:replace="fragments/pagination :: pager('graph-page')"></script>
+	<script th:replace="~{fragments/pagination :: pager('graph-page')}"></script>
 	<script type="text/javascript" th:inline="javascript">
 		new Vue({
 		    el: "#vue-app",

@@ -5,7 +5,7 @@
 </head>
 <body layout:fragment="content">
 	<!-- 禁用IE -->
-	<div th:replace="fragments/ie-warn :: info"></div>
+	<div th:replace="~{fragments/ie-warn :: info}"></div>
 	<!-- 页面主体 -->
 	<div class="container layui-tab no-footer" lay-filter="TabIframe">
 		<!-- 头部开始 -->
