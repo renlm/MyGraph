@@ -1,2 +1,4 @@
 patchesStrategicMerge:
-- configmap.yaml
+- properties/dev.yaml
+- properties/prod.yaml
+- properties/test.yaml

@@ -11,7 +11,7 @@ targetCustomizations:
     matchLabels:
       env: dev
   kustomize:
-    dir: overlays/mygraph
+    dir: overlays
   helm:
     valuesFiles:
-    - overlays/mygraph/values.yaml
+    - overlays/values.yaml
