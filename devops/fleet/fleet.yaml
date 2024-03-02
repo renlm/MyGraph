@@ -9,7 +9,7 @@ targetCustomizations:
 - name: mygraph
   clusterSelector:
     matchLabels:
-      env: prod
+      provider.cattle.io: k3s
   kustomize:
     dir: overlays
   helm:
