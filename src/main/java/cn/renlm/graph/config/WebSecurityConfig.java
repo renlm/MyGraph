@@ -25,17 +25,12 @@ import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisIndexedHttpSession;
 import org.springframework.session.security.SpringSessionBackedSessionRegistry;
 
-import com.nimbusds.jose.jwk.RSAKey;
-
-import cn.hutool.crypto.asymmetric.RSA;
-import cn.renlm.graph.properties.KeyStoreProperties;
 import cn.renlm.graph.security.MyAuthenticationFailureHandler;
 import cn.renlm.graph.security.MyAuthenticationSuccessHandler;
 import cn.renlm.graph.security.RequestAuthorizationManager;
 import cn.renlm.graph.security.WebAuthenticationDetails;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
-import lombok.SneakyThrows;
 
 /**
  * Security 配置
@@ -200,13 +195,6 @@ public class WebSecurityConfig {
 	PasswordEncoder passwordEncoder() {
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		return passwordEncoder;
-	}
-
-	@Bean
-	@SneakyThrows
-	public RSA rsa(KeyStoreProperties keyStoreProperties) {
-		RSAKey key = keyStoreProperties.getRSAKey();
-		return new RSA(key.toRSAPrivateKey(), key.toRSAPublicKey());
 	}
 
 }
