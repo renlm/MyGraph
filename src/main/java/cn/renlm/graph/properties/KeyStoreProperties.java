@@ -6,15 +6,14 @@ import java.security.interfaces.RSAPublicKey;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
-import org.springframework.stereotype.Component;
 
 import com.nimbusds.jose.jwk.RSAKey;
 
 import cn.hutool.crypto.asymmetric.RSA;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import lombok.SneakyThrows;
 
 /**
@@ -23,9 +22,8 @@ import lombok.SneakyThrows;
  * @author RenLiMing(任黎明)
  *
  */
-@Getter
-@Setter
-@Component
+@Data
+@Configuration
 @ConfigurationProperties("encrypt.key-store")
 public class KeyStoreProperties {
 
