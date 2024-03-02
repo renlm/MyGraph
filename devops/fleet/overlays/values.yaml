@@ -2,12 +2,13 @@ env: prod
 initDb: true
 host: mygraph.renlm.cn
 replicaCount: 1
-nodeSelector: {}
 podAnnotations: {}
 podSecurityContext: {}
 securityContext: {}
 tolerations: []
 affinity: {}
+nodeSelector:
+  node.app: yes
 imagePullSecrets:
 - name: aliyun.secret
 image:
