@@ -53,7 +53,7 @@ mysql:
   user: mygraph
   password: PWD@20xx$
   nodeSelector:
-    node: app
+    node.app: yes
   image:
     repository: mysql
     pullPolicy: IfNotPresent
@@ -68,7 +68,7 @@ rabbitmq:
   defaultUser: mygraph
   defaultPass: PWD@20xx$
   nodeSelector:
-    node: app
+    node.app: yes
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
@@ -94,7 +94,7 @@ redis:
   enabled: true
   requirepass: PWD@20xx$
   nodeSelector:
-    node: app
+    node.app: yes
   image:
     repository: redis
     pullPolicy: IfNotPresent
@@ -106,7 +106,7 @@ redis:
 jenkins:
   enabled: true
   nodeSelector:
-    node: tool
+    node.tool: yes
   image:
     repository: jenkins/jenkins
     pullPolicy: IfNotPresent
