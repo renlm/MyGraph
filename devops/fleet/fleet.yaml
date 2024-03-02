@@ -7,9 +7,7 @@ helm:
   version: 0.1.0
 targetCustomizations:
 - name: mygraph
-  clusterSelector:
-    matchLabels:
-      provider.cattle.io: k3s
+  clusterName: local
   kustomize:
     dir: overlays
   helm:
