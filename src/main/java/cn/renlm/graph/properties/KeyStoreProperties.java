@@ -5,16 +5,13 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.security.rsa.crypto.KeyStoreKeyFactory;
+import org.springframework.stereotype.Component;
 
 import com.nimbusds.jose.jwk.RSAKey;
 
-import cn.hutool.crypto.asymmetric.RSA;
 import lombok.Data;
-import lombok.SneakyThrows;
 
 /**
  * 秘钥信息
@@ -23,7 +20,7 @@ import lombok.SneakyThrows;
  *
  */
 @Data
-@Configuration
+@Component
 @ConfigurationProperties("encrypt.key-store")
 public class KeyStoreProperties {
 
@@ -41,13 +38,6 @@ public class KeyStoreProperties {
 		RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
 		RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
 		return new RSAKey.Builder(publicKey).privateKey(privateKey).keyID(alias).build();
-	}
-
-	@Bean
-	@SneakyThrows
-	public RSA rsa() {
-		RSAKey key = this.getRSAKey();
-		return new RSA(key.toRSAPrivateKey(), key.toRSAPublicKey());
 	}
 
 }
