@@ -100,3 +100,21 @@ redis:
     type: NodePort
     port: 6379
     nodePort: 30379
+jenkins:
+  nodeSelector: {}
+  image:
+    repository: jenkins/jenkins
+    pullPolicy: IfNotPresent
+    tag: lts-jdk17
+  ingress:
+    enabled: true
+    annotations: {}
+    hosts:
+    - host: jenkins.renlm.cn
+      paths:
+      - path: /
+        pathType: Prefix
+    tls:
+    - secretName: renlm.secret
+      hosts:
+      - jenkins.renlm.cn
