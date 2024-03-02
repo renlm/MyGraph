@@ -108,7 +108,7 @@ data:
               driver-class-name: com.mysql.cj.jdbc.Driver
       sql:
         init:
-          mode: always
+          mode: ${DB_INIT_MODE:NEVER}
           schemaLocations:
           - classpath:db/schema/schema.sql
           - classpath:db/schema/oauth2.sql
@@ -126,7 +126,7 @@ data:
       quartz:
         job-store-type: jdbc
         jdbc:
-          initialize-schema: always
+          initialize-schema: ${DB_INIT_MODE:NEVER}
         properties:
           org:
             quartz:

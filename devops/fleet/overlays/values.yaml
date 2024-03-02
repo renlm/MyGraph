@@ -1,4 +1,5 @@
 env: prod
+initDb: true
 host: mygraph.renlm.cn
 replicaCount: 1
 nodeSelector: {}
