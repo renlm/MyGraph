@@ -39,13 +39,21 @@ autoscaling:
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
 # 子Chart配置
+prometheus:
+  enabled: false
+  port: 9000
+  portName: prometheus
+  selector:
+  - name: prometheus
+    value: monitor
 mysql:
   enabled: true
   mini: true
   database: mygraph
   user: mygraph
   password: PWD@20xx$
-  nodeSelector: {}
+  nodeSelector:
+    node: app
   image:
     repository: mysql
     pullPolicy: IfNotPresent
@@ -54,19 +62,13 @@ mysql:
     type: NodePort
     port: 3306
     nodePort: 30306
-prometheus:
-  enabled: false
-  port: 9000
-  portName: prometheus
-  selector:
-  - name: prometheus
-    value: monitor
 rabbitmq:
   enabled: true
   defaultVhost: /mygraph
   defaultUser: mygraph
   defaultPass: PWD@20xx$
-  nodeSelector: {}
+  nodeSelector:
+    node: app
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
@@ -91,7 +93,8 @@ rabbitmq:
 redis:
   enabled: true
   requirepass: PWD@20xx$
-  nodeSelector: {}
+  nodeSelector:
+    node: app
   image:
     repository: redis
     pullPolicy: IfNotPresent
@@ -102,7 +105,8 @@ redis:
     nodePort: 30379
 jenkins:
   enabled: true
-  nodeSelector: {}
+  nodeSelector:
+    node: tool
   image:
     repository: jenkins/jenkins
     pullPolicy: IfNotPresent
