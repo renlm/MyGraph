@@ -8,7 +8,7 @@ securityContext: {}
 tolerations: []
 affinity: {}
 nodeSelector:
-  node.app: yes
+  node: mygraph
 imagePullSecrets:
 - name: aliyun.secret
 image:
@@ -54,7 +54,7 @@ mysql:
   user: mygraph
   password: PWD@20xx$
   nodeSelector:
-    node.app: yes
+    node: mygraph
   image:
     repository: mysql
     pullPolicy: IfNotPresent
@@ -69,7 +69,7 @@ rabbitmq:
   defaultUser: mygraph
   defaultPass: PWD@20xx$
   nodeSelector:
-    node.app: yes
+    node: mygraph
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
@@ -95,7 +95,7 @@ redis:
   enabled: true
   requirepass: PWD@20xx$
   nodeSelector:
-    node.app: yes
+    node: mygraph
   image:
     repository: redis
     pullPolicy: IfNotPresent
@@ -107,7 +107,7 @@ redis:
 jenkins:
   enabled: true
   nodeSelector:
-    node.tool: yes
+    node: mygraph
   image:
     repository: jenkins/jenkins
     pullPolicy: IfNotPresent
