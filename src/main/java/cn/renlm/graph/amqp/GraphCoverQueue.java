@@ -106,7 +106,7 @@ public class GraphCoverQueue {
 		site.setSleepTime(0);
 		site.setChromeSetting(chromeSetting);
 		MySpider spider = MyCrawlerUtil.createSpider(site, myPage -> {
-			log.info("=== 图形封面任务 - 截图完成：{} - {} - {}", uuid, chromeSetting.getBool("screenshot", false), myPage.screenshotBASE64());
+			log.info("=== 图形封面任务 - 截图完成：{}", uuid);
 			BufferedImage screenshot = ImgUtil.toImage(myPage.screenshotBASE64());
 			byte[] bytes = ImgUtil.toBytes(screenshot, ImgUtil.IMAGE_TYPE_PNG);
 			SysFile sysFile = iSysFileService.upload(originalFilename, bytes, file -> {
