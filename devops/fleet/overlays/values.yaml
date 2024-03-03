@@ -1,5 +1,5 @@
 env: prod
-initDb: true
+initDb: false
 host: mygraph.renlm.cn
 replicaCount: 1
 nodeSelector: {}
@@ -118,7 +118,7 @@ redis:
     port: 6379
     nodePort: 30379
 jenkins:
-  enabled: true
+  enabled: false
   nodeSelector:
     node-jenkins: mark
   image:
