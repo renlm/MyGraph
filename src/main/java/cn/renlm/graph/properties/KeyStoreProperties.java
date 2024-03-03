@@ -18,7 +18,7 @@ import lombok.SneakyThrows;
 
 /**
  * 秘钥信息
- * <p>keytool -genkeypair -alias alias -keyalg RSA -dname "C=CN" -keypass keypass -keystore keyStore.jks -storepass storepass</p>
+ * keytool -genkeypair -alias alias -keyalg RSA -dname "C=CN" -keypass keypass -keystore keyStore.jks -storepass storepass
  * 
  * @author RenLiMing(任黎明)
  *
