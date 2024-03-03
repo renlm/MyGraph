@@ -10,7 +10,7 @@ data:
         context-path: /mygraph
         session:
           cookie:
-            name: MYGRAPH
+            name: MYGRAPH-DEV
       tomcat:
         remoteip:
           remote-ip-header: X-Forwarded-For
