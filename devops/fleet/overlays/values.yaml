@@ -39,13 +39,13 @@ actuator:
       initialDelaySeconds: 15
       periodSeconds: 10
       successThreshold: 1
-      failureThreshold: 4
+      failureThreshold: 8
       timeoutSeconds: 1
     readiness:
       initialDelaySeconds: 15
       periodSeconds: 10
       successThreshold: 1
-      failureThreshold: 4
+      failureThreshold: 8
       timeoutSeconds: 1
 autoscaling:
   enabled: false
