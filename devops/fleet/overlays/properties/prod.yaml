@@ -53,7 +53,7 @@ data:
     logging:
       level:
         root: info
-        cn.renlm.mygraph: info
+        cn.renlm: debug
       file:
         name: /opt/log/mygraph.log
       logback:
