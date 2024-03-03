@@ -11,7 +11,7 @@ pipeline {
 		dockerRegistry = 'https://registry.cn-hangzhou.aliyuncs.com'
     	projectDir = "${WORKSPACE}"
 		dockerImage = 'registry.cn-hangzhou.aliyuncs.com/rlm/mygraph'
-		workloadUrl = '/project/c-m-86tndr5w:p-66kxj/workloads/deployment:renlm:mygraph-devops-fleet'
+		workloadUrl = '/project/c-m-hrskhgrf:p-cp6jl/workloads/deployment:renlm:mygraph-devops-fleet'
     }
     stages {
         stage ('Maven Build') {
