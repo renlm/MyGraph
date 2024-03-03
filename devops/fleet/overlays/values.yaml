@@ -2,13 +2,12 @@ env: prod
 initDb: true
 host: mygraph.renlm.cn
 replicaCount: 1
+nodeSelector: {}
 podAnnotations: {}
 podSecurityContext: {}
 securityContext: {}
 tolerations: []
 affinity: {}
-nodeSelector:
-  node: mygraph
 imagePullSecrets:
 - name: aliyun.secret
 image:
@@ -54,7 +53,7 @@ mysql:
   user: mygraph
   password: PWD@20xx$
   nodeSelector:
-    node: mygraph
+    node-mysql: yes
   image:
     repository: mysql
     pullPolicy: IfNotPresent
@@ -69,7 +68,7 @@ rabbitmq:
   defaultUser: mygraph
   defaultPass: PWD@20xx$
   nodeSelector:
-    node: mygraph
+    node-rabbitmq: yes
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
@@ -95,7 +94,7 @@ redis:
   enabled: true
   requirepass: PWD@20xx$
   nodeSelector:
-    node: mygraph
+    node-redis: yes
   image:
     repository: redis
     pullPolicy: IfNotPresent
@@ -107,7 +106,7 @@ redis:
 jenkins:
   enabled: true
   nodeSelector:
-    node: mygraph
+    node-jenkins: yes
   image:
     repository: jenkins/jenkins
     pullPolicy: IfNotPresent
