@@ -364,6 +364,7 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
 				<excludes>
 					<exclude>properties/dev/**</exclude>
 					<exclude>properties/prod/**</exclude>
