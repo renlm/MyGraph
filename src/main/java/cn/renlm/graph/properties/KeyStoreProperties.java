@@ -18,6 +18,7 @@ import lombok.SneakyThrows;
 
 /**
  * 秘钥信息
+ * <p>keytool -genkeypair -alias alias -keyalg RSA -dname "C=CN" -keypass keypass -keystore keyStore.jks -storepass storepass</p>
  * 
  * @author RenLiMing(任黎明)
  *
@@ -29,15 +30,13 @@ public class KeyStoreProperties {
 
 	private Resource location;
 
-	private String password;
-
 	private String alias;
 
-	private String secret;
+	private String storepass;
 
 	public RSAKey getRSAKey() {
-		KeyStoreKeyFactory factory = new KeyStoreKeyFactory(location, secret.toCharArray());
-		KeyPair keyPair = factory.getKeyPair(alias, password.toCharArray());
+		KeyStoreKeyFactory factory = new KeyStoreKeyFactory(location, storepass.toCharArray());
+		KeyPair keyPair = factory.getKeyPair(alias);
 		RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
 		RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
 		return new RSAKey.Builder(publicKey).privateKey(privateKey).keyID(alias).build();
