@@ -26,9 +26,8 @@ data:
     encrypt:
       keyStore:
         location: classpath:keyStore.jks
-        password: ${KEY_STORE_PASSWORD:storepass}
         alias: ${KEY_STORE_ALIAS:alias}
-        secret: ${KEY_STORE_SECRET:keypass}
+        storepass: ${KEY_STORE_STOREPASS:storepass}
     aj:
       captcha:
         cacheType: redis
