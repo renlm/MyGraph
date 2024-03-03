@@ -45,8 +45,8 @@ public class KeyStoreProperties {
 
 	@Bean
 	@SneakyThrows
-	public RSA rsa(KeyStoreProperties keyStoreProperties) {
-		RSAKey key = keyStoreProperties.getRSAKey();
+	public RSA rsa() {
+		RSAKey key = this.getRSAKey();
 		return new RSA(key.toRSAPrivateKey(), key.toRSAPublicKey());
 	}
 
