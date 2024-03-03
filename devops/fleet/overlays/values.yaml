@@ -33,6 +33,20 @@ ingress:
 service:
   type: ClusterIP
   port: 8080
+actuator:
+  health:
+    liveness:
+      initialDelaySeconds: 15
+      periodSeconds: 10
+      successThreshold: 1
+      failureThreshold: 4
+      timeoutSeconds: 1
+    readiness:
+      initialDelaySeconds: 15
+      periodSeconds: 10
+      successThreshold: 1
+      failureThreshold: 4
+      timeoutSeconds: 1
 autoscaling:
   enabled: false
   minReplicas: 1
