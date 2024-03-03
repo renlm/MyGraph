@@ -78,7 +78,7 @@ public class WebSecurityConfig {
 			LoginProcessingUrl, 
 			CaptchaAntMatcher,
 			PubAntMatcher, 
-			"/actuator/prometheus" 
+			"/actuator/**" 
 		};
 
 	/**
