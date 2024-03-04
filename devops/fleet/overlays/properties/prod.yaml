@@ -10,7 +10,7 @@ data:
         session:
           cookie:
             name: MYGRAPH
-      forward-headers-strategy: FRAMEWORK
+      forward-headers-strategy: NATIVE
       tomcat:
         remoteip:
           remote-ip-header: X-Forwarded-For
