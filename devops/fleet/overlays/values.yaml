@@ -21,6 +21,7 @@ ingress:
   enabled: true
   className: nginx
   annotations:
+    nginx.ingress.kubernetes.io/proxy-protocol-header: "true"
     nginx.ingress.kubernetes.io/proxy-body-size: "512m"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "128k"
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
@@ -31,11 +32,6 @@ ingress:
       sendfile on;
       tcp_nopush on;
       tcp_nodelay on;
-      proxy_set_header Host $http_host;
-      proxy_set_header X-Forwarded-Proto $scheme;
-      proxy_set_header X-Forwarded-Port $server_port;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       gzip on;
       gzip_vary on;
       gzip_comp_level 5;
