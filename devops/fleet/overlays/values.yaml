@@ -1,5 +1,5 @@
-env: dev
-initDb: true
+env: prod
+initDb: false
 host: mygraph.renlm.cn
 replicaCount: 1
 nodeSelector: {}
@@ -20,7 +20,29 @@ serviceAccount:
   name: mygraph-service-account
 ingress:
   enabled: true
-  annotations: {}
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: 512m
+    nginx.ingress.kubernetes.io/client-body-buffer-size: 128k
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: '600'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '600'
+    nginx.ingress.kubernetes.io/proxy-next-upstream: off
+    nginx.ingress.kubernetes.io/server-snippet: |-
+      sendfile on;
+      tcp_nopush on;
+      tcp_nodelay on;
+      proxy_set_header Host $http_host;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Forwarded-Port $server_port;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      gzip on;
+      gzip_vary on;
+      gzip_comp_level 5;
+      gzip_min_length 1k;
+      gzip_disable "MSIE [1-6]\.";
+      gzip_types text/plain application/javascript application/x-javascript text/javascript text/xml text/css;
   hosts:
   - host: mygraph.renlm.cn
     paths:
@@ -36,16 +58,16 @@ service:
 actuator:
   health:
     liveness:
-      initialDelaySeconds: 15
+      initialDelaySeconds: 3
       periodSeconds: 10
       successThreshold: 1
-      failureThreshold: 4
+      failureThreshold: 20
       timeoutSeconds: 1
     readiness:
-      initialDelaySeconds: 15
+      initialDelaySeconds: 3
       periodSeconds: 10
       successThreshold: 1
-      failureThreshold: 4
+      failureThreshold: 20
       timeoutSeconds: 1
 autoscaling:
   enabled: false
@@ -66,7 +88,8 @@ mysql:
   database: mygraph
   user: mygraph
   password: PWD@20xx$
-  nodeSelector: {}
+  nodeSelector:
+    node-mysql: mark
   image:
     repository: mysql
     pullPolicy: IfNotPresent
@@ -80,7 +103,8 @@ rabbitmq:
   defaultVhost: /mygraph
   defaultUser: mygraph
   defaultPass: PWD@20xx$
-  nodeSelector: {}
+  nodeSelector:
+    node-rabbitmq: mark
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
@@ -105,7 +129,8 @@ rabbitmq:
 redis:
   enabled: true
   requirepass: PWD@20xx$
-  nodeSelector: {}
+  nodeSelector:
+    node-redis: mark
   image:
     repository: redis
     pullPolicy: IfNotPresent
@@ -115,8 +140,9 @@ redis:
     port: 6379
     nodePort: 30379
 jenkins:
-  enabled: true
-  nodeSelector: {}
+  enabled: false
+  nodeSelector:
+    node-jenkins: mark
   image:
     repository: jenkins/jenkins
     pullPolicy: IfNotPresent
