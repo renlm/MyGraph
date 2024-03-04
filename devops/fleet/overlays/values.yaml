@@ -140,7 +140,7 @@ redis:
     port: 6379
     nodePort: 30379
 jenkins:
-  enabled: false
+  enabled: true
   nodeSelector:
     mygraph/jenkins: mark
   image:
