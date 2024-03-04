@@ -8,8 +8,7 @@ podSecurityContext: {}
 securityContext: {}
 tolerations: []
 affinity: {}
-imagePullSecrets:
-- name: aliyun.secret
+imagePullSecrets: []
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/rlm/mygraph
   pullPolicy: Always
@@ -89,7 +88,7 @@ mysql:
   user: mygraph
   password: PWD@20xx$
   nodeSelector:
-    node-mysql: mark
+    mygraph/mysql: mark
   image:
     repository: mysql
     pullPolicy: IfNotPresent
@@ -104,7 +103,7 @@ rabbitmq:
   defaultUser: mygraph
   defaultPass: PWD@20xx$
   nodeSelector:
-    node-rabbitmq: mark
+    mygraph/rabbitmq: mark
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
@@ -130,7 +129,7 @@ redis:
   enabled: true
   requirepass: PWD@20xx$
   nodeSelector:
-    node-redis: mark
+    mygraph/redis: mark
   image:
     repository: redis
     pullPolicy: IfNotPresent
@@ -142,7 +141,7 @@ redis:
 jenkins:
   enabled: false
   nodeSelector:
-    node-jenkins: mark
+    mygraph/jenkins: mark
   image:
     repository: jenkins/jenkins
     pullPolicy: IfNotPresent
