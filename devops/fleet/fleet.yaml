@@ -15,3 +15,56 @@ targetCustomizations:
   helm:
     valuesFiles:
     - overlays/values.yaml
+    values:
+      env: prod
+      initDb: false
+      ingress:
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          nginx.ingress.kubernetes.io/proxy-body-size: "512m"
+          nginx.ingress.kubernetes.io/client-body-buffer-size: "128k"
+          nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
+          nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+          nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+          nginx.ingress.kubernetes.io/proxy-next-upstream: "off"
+          nginx.ingress.kubernetes.io/server-snippet: |-
+            sendfile on;
+            tcp_nopush on;
+            tcp_nodelay on;
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Forwarded-Port $server_port;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            gzip on;
+            gzip_vary on;
+            gzip_comp_level 5;
+            gzip_min_length 1k;
+            gzip_disable "MSIE [1-6]\.";
+            gzip_types text/plain application/javascript application/x-javascript text/javascript text/xml text/css;
+      actuator:
+        health:
+          liveness:
+            initialDelaySeconds: 3
+            failureThreshold: 20
+          readiness:
+            initialDelaySeconds: 15
+            failureThreshold: 20
+      prometheus:
+        enabled: false
+      mysql:
+        enabled: true
+        nodeSelector:
+          node-mysql: mark
+      rabbitmq:
+        enabled: true
+        nodeSelector:
+          node-rabbitmq: mark
+      redis:
+        enabled: true
+        nodeSelector:
+          node-redis: mark
+      jenkins:
+        enabled: false
+        nodeSelector:
+          node-jenkins: mark

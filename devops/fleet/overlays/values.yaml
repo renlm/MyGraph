@@ -1,5 +1,5 @@
-env: prod
-initDb: false
+env: dev
+initDb: true
 host: mygraph.renlm.cn
 replicaCount: 1
 nodeSelector: {}
@@ -39,13 +39,13 @@ actuator:
       initialDelaySeconds: 15
       periodSeconds: 10
       successThreshold: 1
-      failureThreshold: 8
+      failureThreshold: 4
       timeoutSeconds: 1
     readiness:
       initialDelaySeconds: 15
       periodSeconds: 10
       successThreshold: 1
-      failureThreshold: 8
+      failureThreshold: 4
       timeoutSeconds: 1
 autoscaling:
   enabled: false
@@ -66,8 +66,7 @@ mysql:
   database: mygraph
   user: mygraph
   password: PWD@20xx$
-  nodeSelector:
-    node-mysql: mark
+  nodeSelector: {}
   image:
     repository: mysql
     pullPolicy: IfNotPresent
@@ -81,8 +80,7 @@ rabbitmq:
   defaultVhost: /mygraph
   defaultUser: mygraph
   defaultPass: PWD@20xx$
-  nodeSelector:
-    node-rabbitmq: mark
+  nodeSelector: {}
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
@@ -107,8 +105,7 @@ rabbitmq:
 redis:
   enabled: true
   requirepass: PWD@20xx$
-  nodeSelector:
-    node-redis: mark
+  nodeSelector: {}
   image:
     repository: redis
     pullPolicy: IfNotPresent
@@ -118,9 +115,8 @@ redis:
     port: 6379
     nodePort: 30379
 jenkins:
-  enabled: false
-  nodeSelector:
-    node-jenkins: mark
+  enabled: true
+  nodeSelector: {}
   image:
     repository: jenkins/jenkins
     pullPolicy: IfNotPresent
