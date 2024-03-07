@@ -17,4 +17,4 @@ targetCustomizations:
     - overlays/values.yaml
     values:
       jenkins:
-        enabled: ${ .ClusterLabels.jenkinsEnabled | default "false" }
+        enabled: false
