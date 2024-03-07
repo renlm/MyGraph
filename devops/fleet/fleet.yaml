@@ -15,3 +15,6 @@ targetCustomizations:
   helm:
     valuesFiles:
     - overlays/values.yaml
+    values:
+      jenkins:
+        enabled: ${ .ClusterLabels.jenkinsEnabled | default "false" }
