@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.JakartaServletUtil;
-import cn.hutool.json.JSONUtil;
 import cn.renlm.graph.amqp.AmqpUtil;
 import cn.renlm.graph.amqp.LoginLogQueue;
 import cn.renlm.graph.dto.User;
@@ -63,7 +62,6 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 	 * @param authentication
 	 */
 	private void sysLoginLog(HttpServletRequest request, Authentication authentication) {
-		log.info("=== HttpServletRequest.HeaderMap: {}", JSONUtil.toJsonPrettyStr(JakartaServletUtil.getHeaderMap(request)));
 		User user = (User) authentication.getPrincipal();
 		SysLoginLog sysLoginLog = new SysLoginLog();
 		sysLoginLog.setUserId(user.getUserId());
