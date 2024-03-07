@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: ${SPRING_APPLICATION_NAME:mygraph}
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:prod}
+  main:
+    allowCircularReferences: true
+  cloud:
+    kubernetes:
+      reload:
+        enabled: true
+      client:
+        namespace: renlm
+      config:
+        name: mygraph-configmap
+        namespace: renlm
