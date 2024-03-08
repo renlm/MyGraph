@@ -4,7 +4,7 @@ namespace: renlm
 helm:
   chart: mygraph
   repo: https://renlm.gitee.io/helm/repo
-  version: 0.1.0
+  version: 1.0.1
 targetCustomizations:
 - name: mygraph
   clusterSelector:
