@@ -1,6 +1,6 @@
 # https://fleet.rancher.io/ref-fleet-yaml
 # https://github.com/rancher/fleet-examples
-namespace: renlm
+defaultNamespace: renlm
 helm:
   chart: mygraph
   repo: https://renlm.gitee.io/helm/repo
