@@ -98,7 +98,7 @@ mysql:
     port: 3306
     nodePort: 30306
   nfs:
-    enabled: false
+    enabled: true
     storage: 20Gi
     path: /nfs_share/mysql
     server: 192.168.16.3
@@ -131,7 +131,7 @@ rabbitmq:
     amqpPort: 5672
     amqpNodePort: 30672
   nfs:
-    enabled: false
+    enabled: true
     storage: 5Gi
     path: /nfs_share/rabbitmq
     server: 192.168.16.3
@@ -169,7 +169,7 @@ jenkins:
       hosts:
       - jenkins.renlm.cn
   nfs:
-    enabled: false
+    enabled: true
     storage: 20Gi
     path: /nfs_share/jenkins
     server: 192.168.16.3
