@@ -1,5 +1,5 @@
 env: prod
-initDb: false
+initDb: true
 host: mygraph.renlm.cn
 replicaCount: 1
 nodeSelector: {}
@@ -97,6 +97,11 @@ mysql:
     type: NodePort
     port: 3306
     nodePort: 30306
+  nfs:
+    enabled: false
+    storage: 20Gi
+    path: /nfs_share/mysql
+    server: 192.168.16.3
 rabbitmq:
   enabled: true
   defaultVhost: /mygraph
@@ -125,6 +130,11 @@ rabbitmq:
     port: 15672
     amqpPort: 5672
     amqpNodePort: 30672
+  nfs:
+    enabled: false
+    storage: 5Gi
+    path: /nfs_share/rabbitmq
+    server: 192.168.16.3
 redis:
   enabled: true
   requirepass: PWD@20xx$
@@ -139,6 +149,7 @@ redis:
     port: 6379
     nodePort: 30379
 jenkins:
+  enabled: true
   nodeSelector:
     mygraph/jenkins: mark
   image:
@@ -157,3 +168,8 @@ jenkins:
     - secretName: renlm.secret
       hosts:
       - jenkins.renlm.cn
+  nfs:
+    enabled: false
+    storage: 20Gi
+    path: /nfs_share/jenkins
+    server: 192.168.16.3
