@@ -1,10 +1,10 @@
 # https://fleet.rancher.io/ref-fleet-yaml
 # https://github.com/rancher/fleet-examples
-defaultNamespace: renlm
 helm:
   chart: mygraph
   repo: https://renlm.gitee.io/helm/repo
   version: 1.0.1
+defaultNamespace: renlm
 targetCustomizations:
 - name: mygraph
   clusterSelector:
@@ -15,3 +15,6 @@ targetCustomizations:
   helm:
     valuesFiles:
     - overlays/values.yaml
+    values:
+      jenkins:
+        enabled: false
