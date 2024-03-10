@@ -1,15 +1,17 @@
 management:
   server:
     port: 9000
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      showDetails: always
-    shutdown:
-      enabled: true
   metrics:
     tags:
       application: ${spring.application.name}
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        basePath: /actuator
+        include: health,shutdown,metrics,prometheus
