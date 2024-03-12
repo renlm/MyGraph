@@ -14,7 +14,6 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.BooleanUtil;
-import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.dto.DocShareUser;
 import cn.renlm.graph.modular.doc.dto.DocCategoryShareDto;
@@ -71,7 +70,7 @@ public class PubDocService {
 		if (!BooleanUtil.isFalse(dto.getDisabled()) || !BooleanUtil.isFalse(dto.getDeleted())
 				|| !BooleanUtil.isFalse(docCategory.getDeleted()) || !BooleanUtil.isFalse(docProject.getDeleted())) {
 			dto.setStatus(2);
-		} else if (!NumberUtil.equals(dto.getEffectiveType(), -1)
+		} else if (dto.getEffectiveType() != -1
 				&& DateUtil.compare(new Date(), dto.getDeadline(), DatePattern.NORM_DATE_PATTERN) > 0) {
 			dto.setStatus(3);
 		} else {
@@ -89,10 +88,10 @@ public class PubDocService {
 	 */
 	public List<Tree<Long>> getTree(HttpServletRequest request, String shareUuid) {
 		DocCategoryShareDto docCategoryShare = this.getDocCategoryShare(shareUuid);
-		if (docCategoryShare == null || !NumberUtil.equals(docCategoryShare.getStatus(), 1)) {
+		if (docCategoryShare == null || docCategoryShare.getStatus() != 1) {
 			return CollUtil.newArrayList();
 		}
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+		if (docCategoryShare.getShareType() == 2) {
 			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
 			if (user == null || !StrUtil.equals(shareUuid, user.getShareUuid())) {
 				return CollUtil.newArrayList();

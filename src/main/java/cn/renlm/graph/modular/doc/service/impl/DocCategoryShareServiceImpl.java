@@ -21,7 +21,6 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
@@ -96,12 +95,12 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			return Result.of(StatusCode.FORBIDDEN, "数据已被删除");
 		}
 		Integer role = iDocProjectService.findRole(user, docCategory.getDocProjectId());
-		if (NumberUtil.equals(docProject.getVisitLevel(), 1) && role == null) {
+		if (docProject.getVisitLevel() == 1 && role == null) {
 			return Result.of(StatusCode.FORBIDDEN, "您没有操作权限");
 		}
 		// 保存分享信息
 		String password = form.getPassword();
-		if (NumberUtil.equals(form.getShareType(), 1)) {
+		if (form.getShareType() == 1) {
 			form.setPassword(null);
 		} else {
 			if (StrUtil.isBlank(password)) {
@@ -109,7 +108,7 @@ public class DocCategoryShareServiceImpl extends ServiceImpl<DocCategoryShareMap
 			}
 			form.setPassword(rsa.encryptBase64(password, KeyType.PrivateKey));
 		}
-		if (!NumberUtil.equals(form.getEffectiveType(), -1)) {
+		if (form.getEffectiveType() != -1) {
 			form.setDeadline(DateUtil.offsetDay(new Date(), form.getEffectiveType()));
 		}
 		form.setDocProjectId(docCategory.getDocProjectId());

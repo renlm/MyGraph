@@ -4,11 +4,6 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.List;
 
-import jakarta.annotation.Resource;
-import jakarta.servlet.ServletOutputStream;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -23,7 +18,6 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
-import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
@@ -38,10 +32,14 @@ import cn.renlm.graph.modular.markdown.service.IMarkdownService;
 import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
 import cn.renlm.graph.mxgraph.ERModelParser;
-import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.service.PubDocService;
 import cn.renlm.graph.util.RedisUtil;
 import cn.renlm.graph.util.TreeExtraUtil;
+import cn.renlm.plugins.MyResponse.Result;
+import jakarta.annotation.Resource;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 公共文档
@@ -104,7 +102,7 @@ public class PubDocController {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
 		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+		if (docCategoryShare.getShareType() == 2) {
 			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
 			if (user == null) {
 				return "pub/docSharePasswd";
@@ -128,7 +126,7 @@ public class PubDocController {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
 		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+		if (docCategoryShare.getShareType() == 2) {
 			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
 			if (user == null) {
 				return "pub/docSharePasswd";
@@ -172,7 +170,7 @@ public class PubDocController {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
 		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+		if (docCategoryShare.getShareType() == 2) {
 			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
 			if (user == null) {
 				return "pub/docSharePasswd";
@@ -213,7 +211,7 @@ public class PubDocController {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
 		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+		if (docCategoryShare.getShareType() == 2) {
 			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
 			if (user == null) {
 				return "pub/docSharePasswd";
@@ -259,7 +257,7 @@ public class PubDocController {
 	public void downloadERDDL(HttpServletRequest request, HttpServletResponse response, @PathVariable String shareUuid,
 			String uuid) throws IOException {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+		if (docCategoryShare.getShareType() == 2) {
 			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
 			if (user == null || !StrUtil.equals(shareUuid, user.getShareUuid())) {
 				throw new RuntimeException("行为异常");
@@ -289,7 +287,7 @@ public class PubDocController {
 		DocCategoryShareDto docCategoryShare = pubDocService.getDocCategoryShare(shareUuid);
 		model.put("shareUuid", shareUuid);
 		model.put("docCategoryShare", docCategoryShare);
-		if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+		if (docCategoryShare.getShareType() == 2) {
 			DocShareUser user = DocShareUser.getInfo(request, shareUuid);
 			if (user == null) {
 				return "pub/docSharePasswd";

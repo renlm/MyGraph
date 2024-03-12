@@ -28,7 +28,6 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.lang.tree.TreeUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.renlm.graph.common.TreeState;
@@ -38,10 +37,11 @@ import cn.renlm.graph.modular.sys.entity.SysFile;
 import cn.renlm.graph.modular.sys.mapper.SysDictMapper;
 import cn.renlm.graph.modular.sys.service.ISysDictService;
 import cn.renlm.graph.modular.sys.service.ISysFileService;
-import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.graph.util.TreeExtraUtil;
 import cn.renlm.plugins.MyExcelUtil;
 import cn.renlm.plugins.MyExcel.handler.DataWriterHandler;
+import cn.renlm.plugins.MyExcel.reader.AbstractReader;
+import cn.renlm.plugins.MyResponse.Result;
 import lombok.SneakyThrows;
 
 /**
@@ -137,7 +137,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 			if (atomic.get() == 0) {
 				return;
 			}
-			if (NumberUtil.equals(atomic.get(), object.getId())) {
+			if (atomic.get() == object.getId()) {
 				BeanUtil.copyProperties(treeNode, top);
 			}
 		});
@@ -272,8 +272,9 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		});
 		List<String> errors = CollUtil.newArrayList();
 		List<SysDict> list = CollUtil.newArrayList();
-		int rows = MyExcelUtil.readBySax("excel/sys/SysDict.excel.xml", IoUtil.toStream(sysFile.getFileContent()),
-				"数据字典", (data, checkResult) -> {
+		String sheetName = "数据字典";
+		AbstractReader reader = MyExcelUtil.readBySax("excel/sys/SysDict.excel.xml", IoUtil.toStream(sysFile.getFileContent()),
+				sheetName, (data, checkResult) -> {
 					// 出错了
 					if (checkResult.isError()) {
 						// 表头已处理完，进入行数据读取流程中
@@ -293,7 +294,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 						CollUtil.addAll(list, item);
 					}
 				});
-		if (rows == 0) {
+		if (reader.getRead(sheetName) == 0) {
 			Result<List<String>> result = Result.error();
 			return result.setData(CollUtil.newArrayList("未读到表头，模板不符合要求！"));
 		}

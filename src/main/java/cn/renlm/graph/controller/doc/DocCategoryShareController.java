@@ -3,8 +3,6 @@ package cn.renlm.graph.controller.doc;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import jakarta.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
-import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
@@ -31,6 +28,7 @@ import cn.renlm.graph.modular.doc.service.IDocCategoryShareService;
 import cn.renlm.graph.properties.MyConfigProperties;
 import cn.renlm.plugins.MyResponse.Datagrid;
 import cn.renlm.plugins.MyResponse.Result;
+import jakarta.annotation.Resource;
 
 /**
  * 文档分类-分享
@@ -92,7 +90,7 @@ public class DocCategoryShareController {
 		if (ObjectUtil.isNotEmpty(docCategoryShare)) {
 			model.put("ctx", myConfigProperties.getCtx());
 			model.put("docCategoryShare", docCategoryShare);
-			if (NumberUtil.equals(docCategoryShare.getShareType(), 2)) {
+			if (docCategoryShare.getShareType() == 2) {
 				String password = rsa.decryptStr(docCategoryShare.getPassword(), KeyType.PublicKey);
 				model.put("password", password);
 			}
