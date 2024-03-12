@@ -6,6 +6,7 @@ data:
   mygraph-prod.yaml: |-
     server:
       port: 8080
+      shutdown: graceful
       servlet:
         session:
           cookie:

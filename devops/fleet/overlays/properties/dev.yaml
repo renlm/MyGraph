@@ -6,6 +6,7 @@ data:
   mygraph-dev.yaml: |-
     server:
       port: 80
+      shutdown: graceful
       servlet:
         context-path: /mygraph
         session:
