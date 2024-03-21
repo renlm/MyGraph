@@ -196,7 +196,7 @@ CREATE TABLE ds (
     url							VARCHAR(500)					NOT NULL		COMMENT 'JDBC链接',
     schema_name       			VARCHAR(255)									COMMENT '模式',
     username					VARCHAR(255)					NOT NULL		COMMENT '账号',
-    password					VARCHAR(255)					NOT NULL		COMMENT '密码',
+    password					VARCHAR(800)					NOT NULL		COMMENT '密码',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT '创建时间',
     creator_user_id 			VARCHAR(32) 								COMMENT '创建人（用户ID）',
     creator_nickname 			VARCHAR(255) 								COMMENT '创建人（昵称）',
