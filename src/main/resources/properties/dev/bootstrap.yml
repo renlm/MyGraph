@@ -14,11 +14,8 @@ spring:
         enabled: true
       client:
         namespace: renlm
-        masterUrl: https://kubernetes.renlm.cn
-        clientKeyAlgo: EC
-        caCertFile: ~/.kube/devops/server-ca.crt
-        clientKeyFile: ~/.kube/devops/devops-key.pem
-        clientCertFile: ~/.kube/devops/devops.crt
+        masterUrl: https://rancher.renlm.cn/k8s/clusters/c-m-jtwhjkg8
+        oauthToken: kubeconfig-user-z56jcvt6bx:lm5zstp42xrgc2hkwg24wh9pvn7qt875rz7k4tclskd48c6lpfjrx4
       config:
         name: mygraph-configmap
         namespace: renlm
