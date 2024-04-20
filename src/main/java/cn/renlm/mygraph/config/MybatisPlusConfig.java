@@ -14,7 +14,7 @@ import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerIntercept
  *
  */
 @Configuration
-@MapperScan("cn.renlm.graph.**.mapper")
+@MapperScan("cn.renlm.mygraph.**.mapper")
 public class MybatisPlusConfig {
 
 	@Bean
@@ -23,4 +23,5 @@ public class MybatisPlusConfig {
 		interceptor.addInnerInterceptor(new PaginationInnerInterceptor());
 		return interceptor;
 	}
+
 }

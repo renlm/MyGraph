@@ -7,7 +7,7 @@
 	<username>mygraph</username>
 	<password>PWD@20xx$</password>
 
-	<module name="sys" package="cn.renlm.graph.modular">
+	<module name="sys" package="cn.renlm.mygraph.modular">
 		<table author="Renlm" name="sys_org" entity="true" />
 		<table author="Renlm" name="sys_user" entity="true" />
 		<table author="Renlm" name="sys_user_org" entity="true" />
@@ -24,18 +24,18 @@
 		<table author="Renlm" name="sys_login_log" entity="true" />
 	</module>
 
-	<module name="ds" package="cn.renlm.graph.modular">
+	<module name="ds" package="cn.renlm.mygraph.modular">
 		<table author="Renlm" name="ds" entity="true" />
 		<table author="Renlm" name="ds_er_rel" entity="true" />
 	</module>
 
-	<module name="er" package="cn.renlm.graph.modular">
+	<module name="er" package="cn.renlm.mygraph.modular">
 		<table author="Renlm" name="er" entity="true" />
 		<table author="Renlm" name="er_field" entity="true" />
 		<table author="Renlm" name="er_field_lib" entity="true" />
 	</module>
 
-	<module name="doc" package="cn.renlm.graph.modular">
+	<module name="doc" package="cn.renlm.mygraph.modular">
 		<table author="Renlm" name="doc_project" entity="true" />
 		<table author="Renlm" name="doc_project_tag" entity="true" />
 		<table author="Renlm" name="doc_project_member" entity="true" />
@@ -44,21 +44,21 @@
 		<table author="Renlm" name="doc_category_share" entity="true" />
 	</module>
 
-	<module name="markdown" package="cn.renlm.graph.modular">
+	<module name="markdown" package="cn.renlm.mygraph.modular">
 		<table author="Renlm" name="markdown" entity="true" />
 		<table author="Renlm" name="markdown_history" entity="true" />
 	</module>
 
-	<module name="graph" package="cn.renlm.graph.modular">
+	<module name="graph" package="cn.renlm.mygraph.modular">
 		<table author="Renlm" name="graph" entity="true" />
 		<table author="Renlm" name="graph_history" entity="true" />
 	</module>
 
-	<module name="qrtz" package="cn.renlm.graph.modular">
+	<module name="qrtz" package="cn.renlm.mygraph.modular">
 		<table author="Renlm" name="QRTZ_LOGS" entity="true" />
 	</module>
 
-	<module name="oauth2" package="cn.renlm.graph.modular">
+	<module name="oauth2" package="cn.renlm.mygraph.modular">
 		<table author="Renlm" name="oauth2_registered_client" entity="true" idType="ASSIGN_ID" />
 	</module>
 </generator>

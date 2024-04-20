@@ -54,7 +54,7 @@ public class SysDictController {
 	 */
 	@GetMapping
 	public String index(ModelMap model) {
-		String actuator = rsa.encryptBase64("cn.renlm.graph.modular.sys.service.ISysDictService.exportDataToFile",
+		String actuator = rsa.encryptBase64("cn.renlm.mygraph.modular.sys.service.ISysDictService.exportDataToFile",
 				KeyType.PrivateKey);
 		model.put("actuator", Base64.encodeUrlSafe(actuator));
 		return "sys/dict";
@@ -167,4 +167,5 @@ public class SysDictController {
 			return Result.error("出错了");
 		}
 	}
+
 }

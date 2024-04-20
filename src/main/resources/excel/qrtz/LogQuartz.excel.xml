@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<excel name="cn.renlm.graph.modular.qrtz.entity.QrtzLogs"
+<excel name="cn.renlm.mygraph.modular.qrtz.entity.QrtzLogs"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="https://renlm.gitee.io/schemas/MyExcel.xsd">
 	<sheet name="执行日志">

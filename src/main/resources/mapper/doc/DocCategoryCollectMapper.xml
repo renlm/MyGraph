@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.renlm.graph.modular.doc.mapper.DocCategoryCollectMapper">
+<mapper namespace="cn.renlm.mygraph.modular.doc.mapper.DocCategoryCollectMapper">
 	<!-- 分页列表 -->
-	<select id="findDocPage" resultType="cn.renlm.graph.modular.doc.dto.DocCategoryCollectDto">
+	<select id="findDocPage" resultType="cn.renlm.mygraph.modular.doc.dto.DocCategoryCollectDto">
 		select dcc.`id`,
 			dcc.`doc_project_id`,
 			dcc.`doc_category_id`,

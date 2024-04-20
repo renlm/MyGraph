@@ -1,1 +1,1 @@
-cn.renlm.graph.service.CaptchaCacheServiceRedisImpl
+cn.renlm.mygraph.service.CaptchaCacheServiceRedisImpl

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.renlm.graph.modular.markdown.mapper.MarkdownHistoryMapper">
+<mapper namespace="cn.renlm.mygraph.modular.markdown.mapper.MarkdownHistoryMapper">
 	<!-- 分页列表（文档） -->
-	<select id="findDocPage" resultType="cn.renlm.graph.modular.markdown.dto.MarkdownHistoryDto">
+	<select id="findDocPage" resultType="cn.renlm.mygraph.modular.markdown.dto.MarkdownHistoryDto">
 		select mh.`history_id`,
 			mh.`change_label`,
 			mh.`operate_at`,

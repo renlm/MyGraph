@@ -66,7 +66,7 @@ public class QuartzController {
 	 */
 	@RequestMapping("/jobs")
 	public String jobs(ModelMap model) {
-		String actuator = rsa.encryptBase64("cn.renlm.graph.modular.qrtz.service.IQrtzLogsService.exportDataToFile",
+		String actuator = rsa.encryptBase64("cn.renlm.mygraph.modular.qrtz.service.IQrtzLogsService.exportDataToFile",
 				KeyType.PrivateKey);
 		model.put("actuator", Base64.encodeUrlSafe(actuator));
 		return "qrtz/jobs";
@@ -226,4 +226,5 @@ public class QuartzController {
 		Page<QrtzLogs> pager = iQrtzLogsService.findPage(page, form);
 		return Datagrid.of(pager);
 	}
+
 }
