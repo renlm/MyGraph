@@ -34,8 +34,8 @@ import cn.renlm.mygraph.modular.sys.service.ISysFileService;
 import cn.renlm.mygraph.mxgraph.ERModelParser;
 import cn.renlm.mygraph.service.PubDocService;
 import cn.renlm.mygraph.util.RedisUtil;
-import cn.renlm.mygraph.util.TreeExtraUtil;
 import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyUtil.MyTreeExtraUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletRequest;
@@ -135,7 +135,7 @@ public class PubDocController {
 			}
 		}
 		List<Tree<Long>> tree = pubDocService.getTree(request, shareUuid);
-		List<Tree<Long>> nodes = TreeExtraUtil.getAllNodes(tree);
+		List<Tree<Long>> nodes = MyTreeExtraUtil.getAllNodes(tree);
 		model.put("tree", tree);
 		model.put("nodes", CollUtil.size(nodes));
 		return "pub/docShareCategory";

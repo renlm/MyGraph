@@ -31,9 +31,9 @@ import cn.renlm.mygraph.modular.sys.entity.SysRoleResource;
 import cn.renlm.mygraph.modular.sys.mapper.SysResourceMapper;
 import cn.renlm.mygraph.modular.sys.service.ISysResourceService;
 import cn.renlm.mygraph.modular.sys.service.ISysRoleResourceService;
-import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.mygraph.security.RequestAuthorizationManager;
-import cn.renlm.mygraph.util.TreeExtraUtil;
+import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyUtil.MyTreeExtraUtil;
 
 /**
  * <p>
@@ -165,9 +165,9 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 		});
 		if (ObjectUtil.isNotEmpty(top)) {
 			top.setChildren(tree);
-			return TreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
+			return MyTreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
 		} else {
-			return TreeExtraUtil.resetLevel(tree, 1);
+			return MyTreeExtraUtil.resetLevel(tree, 1);
 		}
 	}
 
@@ -223,11 +223,11 @@ public class SysResourceServiceImpl extends ServiceImpl<SysResourceMapper, SysRe
 		// 子节点更新
 		Map<String, Integer> map = new LinkedHashMap<>();
 		List<Tree<Long>> roots = this.getTree(true, null, true);
-		TreeExtraUtil.resetLevel(roots, 1);
+		MyTreeExtraUtil.resetLevel(roots, 1);
 		roots.forEach(root -> {
 			Tree<Long> node = TreeUtil.getNode(root, sysResource.getId());
 			if (ObjectUtil.isNotEmpty(node)) {
-				List<Tree<Long>> childs = TreeExtraUtil.getAllNodes(CollUtil.newArrayList(node));
+				List<Tree<Long>> childs = MyTreeExtraUtil.getAllNodes(CollUtil.newArrayList(node));
 				childs.forEach(child -> {
 					SysResource sr = BeanUtil.copyProperties(child, SysResource.class);
 					map.put(sr.getResourceId(), sr.getLevel());

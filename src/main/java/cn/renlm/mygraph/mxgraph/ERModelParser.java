@@ -50,7 +50,7 @@ import cn.renlm.mygraph.mxgraph.model.MxGraphModel;
 import cn.renlm.mygraph.mxgraph.model.Root;
 import cn.renlm.mygraph.mxgraph.model.UserObject;
 import cn.renlm.plugins.MyResponse.Result;
-import cn.renlm.mygraph.util.FreemarkerUtil;
+import cn.renlm.plugins.MyUtil.MyFreemarkerUtil;
 
 /**
  * ER图形解析器
@@ -205,10 +205,10 @@ public class ERModelParser {
 			});
 		}
 		// MySQL
-		String MySQL = FreemarkerUtil.read("ftl/MySQL.DDL.ftl", "ers", ers);
+		String MySQL = MyFreemarkerUtil.read("ftl/MySQL.DDL.ftl", "ers", ers);
 		FileUtil.writeUtf8String(MySQL, folder + File.separator + "MySQL.sql");
 		// PostgreSQL
-		String PostgreSQL = FreemarkerUtil.read("ftl/PostgreSQL.DDL.ftl", "ers", ers);
+		String PostgreSQL = MyFreemarkerUtil.read("ftl/PostgreSQL.DDL.ftl", "ers", ers);
 		FileUtil.writeUtf8String(PostgreSQL, folder + File.separator + "PostgreSQL.sql");
 		// 压缩文件夹
 		File zip = ZipUtil.zip(temp);

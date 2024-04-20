@@ -39,7 +39,7 @@ import cn.renlm.mygraph.modular.sys.service.ISysRoleResourceService;
 import cn.renlm.mygraph.modular.sys.service.ISysRoleService;
 import cn.renlm.mygraph.modular.sys.service.ISysUserRoleService;
 import cn.renlm.mygraph.modular.sys.service.ISysUserService;
-import cn.renlm.mygraph.util.TreeExtraUtil;
+import cn.renlm.plugins.MyUtil.MyTreeExtraUtil;
 
 /**
  * 角色授权
@@ -116,13 +116,13 @@ public class SysAuthAccessService {
 			});
 			if (ObjectUtil.isNotEmpty(top)) {
 				top.setChildren(tree);
-				return TreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
+				return MyTreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
 			} else {
-				return TreeExtraUtil.resetLevel(tree, 1);
+				return MyTreeExtraUtil.resetLevel(tree, 1);
 			}
 		}
 		List<Tree<Long>> tree = iSysResourceService.getTree(root, pid, false);
-		TreeExtraUtil.foreach(tree, node -> {
+		MyTreeExtraUtil.foreach(tree, node -> {
 			node.putExtra("roleId", sysRole.getRoleId());
 			SysResourceDto srd = authAccessedMap.get(node.getId());
 			if (ObjectUtil.isNotEmpty(srd)) {
@@ -226,7 +226,7 @@ public class SysAuthAccessService {
 			if (allSysResourceIds.contains(sysResourceId)) {
 				continue;
 			}
-			List<Tree<Long>> list = TreeExtraUtil.getAllNodes(iSysResourceService.getTree(true, sysResourceId, true));
+			List<Tree<Long>> list = MyTreeExtraUtil.getAllNodes(iSysResourceService.getTree(true, sysResourceId, true));
 			CollUtil.addAll(allSysResourceIds, list.stream().map(Tree::getId).collect(Collectors.toList()));
 		}
 
@@ -275,7 +275,7 @@ public class SysAuthAccessService {
 				if (CollUtil.isNotEmpty(orgs)) {
 					List<Long> sysOrgIds = orgs.stream().map(SysOrg::getId).collect(Collectors.toList());
 					sysOrgIds.forEach(it -> {
-						List<Tree<Long>> list = TreeExtraUtil.getAllNodes(iSysOrgService.getTree(true, it));
+						List<Tree<Long>> list = MyTreeExtraUtil.getAllNodes(iSysOrgService.getTree(true, it));
 						CollUtil.addAll(allSysOrgIds, list.stream().map(Tree::getId).collect(Collectors.toList()));
 					});
 					if (CollUtil.isNotEmpty(allSysOrgIds)) {

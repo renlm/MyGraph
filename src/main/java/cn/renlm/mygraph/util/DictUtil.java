@@ -14,6 +14,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.mygraph.modular.sys.entity.SysDict;
 import cn.renlm.mygraph.modular.sys.service.ISysDictService;
+import cn.renlm.plugins.MyUtil.MyTreeExtraUtil;
 
 /**
  * 字典工具
@@ -38,7 +39,7 @@ public class DictUtil {
 		List<Tree<Long>> children = iSysDictService.getTree(false, StrUtil.splitToArray(codePaths, StrUtil.COMMA));
 		CollUtil.removeNull(children);
 		if (CollUtil.isNotEmpty(children)) {
-			TreeExtraUtil.foreach(children, node -> {
+			MyTreeExtraUtil.foreach(children, node -> {
 				SysDict sd = BeanUtil.copyProperties(node, SysDict.class);
 				mapItems.put(sd.getCode(), sd.getText());
 			});

@@ -44,8 +44,8 @@ import cn.renlm.mygraph.modular.sys.service.ISysRoleService;
 import cn.renlm.mygraph.modular.sys.service.ISysUserOrgService;
 import cn.renlm.mygraph.modular.sys.service.ISysUserRoleService;
 import cn.renlm.mygraph.modular.sys.service.ISysUserService;
-import cn.renlm.mygraph.util.TreeExtraUtil;
 import cn.renlm.plugins.MyResponse.Result;
+import cn.renlm.plugins.MyUtil.MyTreeExtraUtil;
 
 /**
  * <p>
@@ -89,7 +89,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 				sysOrgs.forEach(sysOrg -> {
 					orgTrees.addAll(iSysOrgService.getTree(true, sysOrg.getId()));
 				});
-				List<Tree<Long>> orgNodes = TreeExtraUtil.getAllNodes(orgTrees);
+				List<Tree<Long>> orgNodes = MyTreeExtraUtil.getAllNodes(orgTrees);
 				wrapper.inSql(SysUser::getId, StrUtil.indexedFormat(
 						"select suo.sys_user_id from sys_org so, sys_user_org suo where so.id in ({0}) and so.id = suo.sys_org_id and so.deleted = 0 and suo.deleted = 0",
 						orgNodes.stream().map(it -> String.valueOf(it.getId()))
