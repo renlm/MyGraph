@@ -19,7 +19,7 @@
 
 		<table author="Renlm" name="sys_const" idType="ASSIGN_ID" entity="true" />
 		<table author="Renlm" name="sys_dict" entity="true" />
-		<table author="Renlm" name="sys_file" entity="true" />
+		<table author="Renlm" name="sys_file" entity="true" typeHandler="org.apache.ibatis.type.BlobTypeHandler" />
 		
 		<table author="Renlm" name="sys_login_log" entity="true" />
 	</module>
@@ -81,7 +81,7 @@
 				<tableFieldAnnotationEnable>false</tableFieldAnnotationEnable>
 				<versionColumnName>version</versionColumnName>
 				<logicDeleteColumnName>deleted</logicDeleteColumnName>
-				<superClass>cn.renlm.plugins.Common.BaseModel</superClass>
+				<!-- <superClass>cn.renlm.plugins.Common.BaseModel</superClass> -->
 				<superEntityColumns>
 					<column>created_at</column>
 					<column>updated_at</column>
