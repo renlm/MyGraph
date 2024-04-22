@@ -34,7 +34,7 @@ import cn.renlm.mygraph.modular.sys.mapper.SysOrgMapper;
 import cn.renlm.mygraph.modular.sys.service.ISysOrgService;
 import cn.renlm.mygraph.modular.sys.service.ISysUserService;
 import cn.renlm.plugins.MyResponse.Result;
-import cn.renlm.plugins.MyUtil.MyTreeExtraUtil;
+import cn.renlm.plugins.MyUtil.MyTreeUtil;
 
 /**
  * <p>
@@ -126,9 +126,9 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 		});
 		if (ObjectUtil.isNotEmpty(top)) {
 			top.setChildren(tree);
-			return MyTreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
+			return MyTreeUtil.resetLevel(CollUtil.newArrayList(top), 1);
 		} else {
-			return MyTreeExtraUtil.resetLevel(tree, 1);
+			return MyTreeUtil.resetLevel(tree, 1);
 		}
 	}
 
@@ -182,11 +182,11 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgMapper, SysOrg> impleme
 		// 子节点更新
 		Map<String, Integer> map = new LinkedHashMap<>();
 		List<Tree<Long>> roots = this.getTree(true, null);
-		MyTreeExtraUtil.resetLevel(roots, 1);
+		MyTreeUtil.resetLevel(roots, 1);
 		roots.forEach(root -> {
 			Tree<Long> node = TreeUtil.getNode(root, sysOrg.getId());
 			if (ObjectUtil.isNotEmpty(node)) {
-				List<Tree<Long>> childs = MyTreeExtraUtil.getAllNodes(CollUtil.newArrayList(node));
+				List<Tree<Long>> childs = MyTreeUtil.getAllNodes(CollUtil.newArrayList(node));
 				childs.forEach(child -> {
 					SysOrg so = BeanUtil.copyProperties(child, SysOrg.class);
 					map.put(so.getOrgId(), so.getLevel());

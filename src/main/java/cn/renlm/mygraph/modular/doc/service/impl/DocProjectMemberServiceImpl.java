@@ -36,7 +36,7 @@ import cn.renlm.mygraph.modular.sys.service.ISysOrgService;
 import cn.renlm.mygraph.modular.sys.service.ISysUserService;
 import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.plugins.MyResponse.StatusCode;
-import cn.renlm.plugins.MyUtil.MyTreeExtraUtil;
+import cn.renlm.plugins.MyUtil.MyTreeUtil;
 
 /**
  * <p>
@@ -91,7 +91,7 @@ public class DocProjectMemberServiceImpl extends ServiceImpl<DocProjectMemberMap
 				if (CollUtil.isNotEmpty(orgs)) {
 					List<Long> sysOrgIds = orgs.stream().map(SysOrg::getId).collect(Collectors.toList());
 					sysOrgIds.forEach(it -> {
-						List<Tree<Long>> list = MyTreeExtraUtil.getAllNodes(iSysOrgService.getTree(true, it));
+						List<Tree<Long>> list = MyTreeUtil.getAllNodes(iSysOrgService.getTree(true, it));
 						CollUtil.addAll(allSysOrgIds, list.stream().map(Tree::getId).collect(Collectors.toList()));
 					});
 					if (CollUtil.isNotEmpty(allSysOrgIds)) {

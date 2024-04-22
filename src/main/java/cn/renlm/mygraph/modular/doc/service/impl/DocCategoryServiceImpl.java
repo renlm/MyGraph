@@ -39,7 +39,7 @@ import cn.renlm.mygraph.modular.markdown.service.IMarkdownHistoryService;
 import cn.renlm.mygraph.modular.markdown.service.IMarkdownService;
 import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.plugins.MyResponse.StatusCode;
-import cn.renlm.plugins.MyUtil.MyTreeExtraUtil;
+import cn.renlm.plugins.MyUtil.MyTreeUtil;
 
 /**
  * <p>
@@ -131,9 +131,9 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 		});
 		if (ObjectUtil.isNotEmpty(top)) {
 			top.setChildren(tree);
-			return MyTreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
+			return MyTreeUtil.resetLevel(CollUtil.newArrayList(top), 1);
 		} else {
-			return MyTreeExtraUtil.resetLevel(tree, 1);
+			return MyTreeUtil.resetLevel(tree, 1);
 		}
 	}
 
@@ -236,11 +236,11 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 		} else {
 			Map<String, Object[]> map = new LinkedHashMap<>();
 			List<Tree<Long>> roots = this.getTree(docProjectUuid, true, null);
-			MyTreeExtraUtil.resetLevel(roots, 1);
+			MyTreeUtil.resetLevel(roots, 1);
 			roots.forEach(root -> {
 				Tree<Long> node = TreeUtil.getNode(root, docCategory.getId());
 				if (ObjectUtil.isNotEmpty(node)) {
-					List<Tree<Long>> childs = MyTreeExtraUtil.getAllNodes(CollUtil.newArrayList(node));
+					List<Tree<Long>> childs = MyTreeUtil.getAllNodes(CollUtil.newArrayList(node));
 					childs.forEach(child -> {
 						DocCategory dc = BeanUtil.copyProperties(child, DocCategory.class);
 						List<CharSequence> parents = TreeUtil.getParentsName(child, true);
@@ -283,7 +283,7 @@ public class DocCategoryServiceImpl extends ServiceImpl<DocCategoryMapper, DocCa
 		List<Tree<Long>> tree = this.getTree(docProject.getUuid(), true, entity.getId());
 		List<Long> ids = CollUtil.newArrayList();
 		List<String> uuids = CollUtil.newArrayList();
-		MyTreeExtraUtil.getAllNodes(tree).stream().map(obj -> {
+		MyTreeUtil.getAllNodes(tree).stream().map(obj -> {
 			DocCategory node = BeanUtil.copyProperties(obj, DocCategory.class);
 			ids.add(node.getId());
 			uuids.add(node.getUuid());

@@ -41,7 +41,7 @@ import cn.renlm.plugins.MyExcelUtil;
 import cn.renlm.plugins.MyExcel.handler.DataWriterHandler;
 import cn.renlm.plugins.MyExcel.reader.AbstractReader;
 import cn.renlm.plugins.MyResponse.Result;
-import cn.renlm.plugins.MyUtil.MyTreeExtraUtil;
+import cn.renlm.plugins.MyUtil.MyTreeUtil;
 import lombok.SneakyThrows;
 
 /**
@@ -146,9 +146,9 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		}
 		if (ObjectUtil.isNotEmpty(top)) {
 			top.setChildren(tree);
-			return MyTreeExtraUtil.resetLevel(CollUtil.newArrayList(top), 1);
+			return MyTreeUtil.resetLevel(CollUtil.newArrayList(top), 1);
 		} else {
-			return MyTreeExtraUtil.resetLevel(tree, 1);
+			return MyTreeUtil.resetLevel(tree, 1);
 		}
 	}
 
@@ -208,11 +208,11 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictMapper, SysDict> impl
 		// 子节点更新
 		Map<String, Integer> map = new LinkedHashMap<>();
 		List<Tree<Long>> roots = this.getTree(false);
-		MyTreeExtraUtil.resetLevel(roots, 1);
+		MyTreeUtil.resetLevel(roots, 1);
 		roots.forEach(root -> {
 			Tree<Long> node = TreeUtil.getNode(root, sysDict.getId());
 			if (ObjectUtil.isNotEmpty(node)) {
-				List<Tree<Long>> childs = MyTreeExtraUtil.getAllNodes(CollUtil.newArrayList(node));
+				List<Tree<Long>> childs = MyTreeUtil.getAllNodes(CollUtil.newArrayList(node));
 				childs.forEach(child -> {
 					SysDict sd = BeanUtil.copyProperties(child, SysDict.class);
 					map.put(sd.getUuid(), sd.getLevel());
