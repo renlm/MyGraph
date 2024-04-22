@@ -61,4 +61,46 @@
 	<module name="oauth2" package="cn.renlm.mygraph.modular">
 		<table author="Renlm" name="oauth2_registered_client" entity="true" idType="ASSIGN_ID" />
 	</module>
+	
+	<config>
+		<typeConvert>
+			<javaSqlType name="TINYINT" type="Boolean" />
+		</typeConvert>
+		<package>
+			<controller>controller</controller>
+			<serviceImpl>service.impl</serviceImpl>
+			<service>service</service>
+			<entity>entity</entity>
+			<mapper>mapper</mapper>
+			<xml>mapper</xml>
+		</package>
+		<strategy>
+			<entity>
+				<formatFileName>{entityName}</formatFileName>
+				<disableSerialVersionUID>false</disableSerialVersionUID>
+				<tableFieldAnnotationEnable>false</tableFieldAnnotationEnable>
+				<versionColumnName>version</versionColumnName>
+				<logicDeleteColumnName>deleted</logicDeleteColumnName>
+				<superClass>cn.renlm.plugins.Common.BaseModel</superClass>
+				<superEntityColumns>
+					<column>created_at</column>
+					<column>updated_at</column>
+					<column>deleted</column>
+				</superEntityColumns>
+			</entity>
+			<controller>
+				<controller>false</controller>
+				<enableRestStyle>false</enableRestStyle>
+				<formatFileName>{entityName}Controller</formatFileName>
+			</controller>
+			<service>
+				<formatServiceFileName>I{entityName}Service</formatServiceFileName>
+				<formatServiceImplFileName>{entityName}ServiceImpl</formatServiceImplFileName>
+			</service>
+			<mapper>
+				<formatMapperFileName>{entityName}Mapper</formatMapperFileName>
+				<formatXmlFileName>{entityName}Mapper</formatXmlFileName>
+			</mapper>
+		</strategy>
+	</config>
 </generator>
