@@ -10,11 +10,11 @@ import cn.renlm.plugins.MyGeneratorUtil;
  * @author RenLiMing(任黎明)
  *
  */
-public class GeneratorTest {
+public class MyGeneratorTest {
 
 	@Test
 	public void run() {
-		MyGeneratorUtil.run("Generator.xml");
+		MyGeneratorUtil.run("MyGenerator.xml");
 	}
 
 }

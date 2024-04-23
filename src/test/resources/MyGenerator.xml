@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<generator
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://renlm.gitee.io/schemas/MyGenerator.xsd">
+
+	<url>jdbc:mysql://renlm.cn:30306/mygraph</url>
+	<username>mygraph</username>
+	<password>PWD@20xx$</password>
+
+	<module name="sys" package="cn.renlm.mygraph.modular">
+		<table author="RenLiMing(任黎明)" name="sys_org" entity="true" />
+		<table author="RenLiMing(任黎明)" name="sys_user" entity="true" />
+		<table author="RenLiMing(任黎明)" name="sys_user_org" entity="true" />
+		<table author="RenLiMing(任黎明)" name="sys_user_post" entity="true" />
+		<table author="RenLiMing(任黎明)" name="sys_user_role" entity="true" />
+		<table author="RenLiMing(任黎明)" name="sys_role" entity="true" />
+		<table author="RenLiMing(任黎明)" name="sys_role_resource" entity="true" />
+		<table author="RenLiMing(任黎明)" name="sys_resource" entity="true" />
+
+		<table author="RenLiMing(任黎明)" name="sys_const" idType="ASSIGN_ID" entity="true" />
+		<table author="RenLiMing(任黎明)" name="sys_dict" entity="true" />
+		<table author="RenLiMing(任黎明)" name="sys_file" entity="true">
+			<column name="file_content">
+				<typeHandler>org.apache.ibatis.type.BlobTypeHandler</typeHandler>
+				<javaSqlType type="byte[]"/>
+			</column>
+		</table>
+		
+		<table author="RenLiMing(任黎明)" name="sys_login_log" entity="true" />
+	</module>
+
+	<module name="ds" package="cn.renlm.mygraph.modular">
+		<table author="RenLiMing(任黎明)" name="ds" entity="true" />
+		<table author="RenLiMing(任黎明)" name="ds_er_rel" entity="true" />
+	</module>
+
+	<module name="er" package="cn.renlm.mygraph.modular">
+		<table author="RenLiMing(任黎明)" name="er" entity="true" />
+		<table author="RenLiMing(任黎明)" name="er_field" entity="true" />
+		<table author="RenLiMing(任黎明)" name="er_field_lib" entity="true" />
+	</module>
+
+	<module name="doc" package="cn.renlm.mygraph.modular">
+		<table author="RenLiMing(任黎明)" name="doc_project" entity="true" />
+		<table author="RenLiMing(任黎明)" name="doc_project_tag" entity="true" />
+		<table author="RenLiMing(任黎明)" name="doc_project_member" entity="true" />
+		<table author="RenLiMing(任黎明)" name="doc_category" entity="true" />
+		<table author="RenLiMing(任黎明)" name="doc_category_collect" entity="true" />
+		<table author="RenLiMing(任黎明)" name="doc_category_share" entity="true" />
+	</module>
+
+	<module name="markdown" package="cn.renlm.mygraph.modular">
+		<table author="RenLiMing(任黎明)" name="markdown" entity="true" />
+		<table author="RenLiMing(任黎明)" name="markdown_history" entity="true" />
+	</module>
+
+	<module name="graph" package="cn.renlm.mygraph.modular">
+		<table author="RenLiMing(任黎明)" name="graph" entity="true" />
+		<table author="RenLiMing(任黎明)" name="graph_history" entity="true" />
+	</module>
+
+	<module name="qrtz" package="cn.renlm.mygraph.modular">
+		<table author="RenLiMing(任黎明)" name="QRTZ_LOGS" entity="true" />
+	</module>
+
+	<module name="oauth2" package="cn.renlm.mygraph.modular">
+		<table author="RenLiMing(任黎明)" name="oauth2_registered_client" entity="true" idType="ASSIGN_ID" />
+	</module>
+
+</generator>
