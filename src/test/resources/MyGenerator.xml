@@ -11,7 +11,6 @@
 		<table author="RenLiMing(任黎明)" name="sys_org" entity="true" />
 		<table author="RenLiMing(任黎明)" name="sys_user" entity="true" />
 		<table author="RenLiMing(任黎明)" name="sys_user_org" entity="true" />
-		<table author="RenLiMing(任黎明)" name="sys_user_post" entity="true" />
 		<table author="RenLiMing(任黎明)" name="sys_user_role" entity="true" />
 		<table author="RenLiMing(任黎明)" name="sys_role" entity="true" />
 		<table author="RenLiMing(任黎明)" name="sys_role_resource" entity="true" />
