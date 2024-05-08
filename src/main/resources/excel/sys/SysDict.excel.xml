@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <excel name="cn.renlm.mygraph.modular.sys.entity.SysDict"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="https://renlm.gitee.io/schemas/MyExcel.xsd">
+	xsi:noNamespaceSchemaLocation="https://renlm.github.io/schemas/MyExcel.xsd">
 	<sheet name="数据字典">
 		<column field="id" not-null="true" prefix="#">
 			<title>主键ID</title>

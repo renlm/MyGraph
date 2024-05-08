@@ -60,68 +60,68 @@ INSERT INTO markdown (id,uuid,name,version,content,graph_uuid,graph_version,data
 ### 在线文档
 #### 新建项目
 
-![新建项目](https://renlm.gitee.io/imgs/MyGraph2/201.png "新建项目")
+![新建项目](https://renlm.github.io/imgs/MyGraph2/201.png "新建项目")
 
 #### 成员管理
 
-![成员管理](https://renlm.gitee.io/imgs/MyGraph2/202.png "成员管理")
+![成员管理](https://renlm.github.io/imgs/MyGraph2/202.png "成员管理")
 
 #### 新建文档
 
 支持多级目录，支持Markdown文档、图形设计、在线表格三种类型。
 
-![点击项目名称，进入文档管理](https://renlm.gitee.io/imgs/MyGraph2/210.png "点击项目名称，进入文档管理")
+![点击项目名称，进入文档管理](https://renlm.github.io/imgs/MyGraph2/210.png "点击项目名称，进入文档管理")
 
-![新建分类](https://renlm.gitee.io/imgs/MyGraph2/211.png "新建分类")
+![新建分类](https://renlm.github.io/imgs/MyGraph2/211.png "新建分类")
 
-![新建子级](https://renlm.gitee.io/imgs/MyGraph2/212.png "新建子级")
+![新建子级](https://renlm.github.io/imgs/MyGraph2/212.png "新建子级")
 
-![编辑文档](https://renlm.gitee.io/imgs/MyGraph2/213.png "编辑文档")
+![编辑文档](https://renlm.github.io/imgs/MyGraph2/213.png "编辑文档")
 
-![Markdown文档](https://renlm.gitee.io/imgs/MyGraph2/214.png "Markdown文档")
+![Markdown文档](https://renlm.github.io/imgs/MyGraph2/214.png "Markdown文档")
 
 #### 分享与收藏
 收藏或分享后，在知识文库可快速进入。
 
-![分享与收藏](https://renlm.gitee.io/imgs/MyGraph2/215.png "分享与收藏")
+![分享与收藏](https://renlm.github.io/imgs/MyGraph2/215.png "分享与收藏")
 
 ### 数据库设计
 #### 从数据源生成ER图
 新建数据源，选择表生成ER图后，根据提示进入文档管理中查看编辑图形。
 
-![新建数据源](https://renlm.gitee.io/imgs/MyGraph2/301.png "新建数据源")
+![新建数据源](https://renlm.github.io/imgs/MyGraph2/301.png "新建数据源")
 
-![选择表](https://renlm.gitee.io/imgs/MyGraph2/302.png "选择表")
+![选择表](https://renlm.github.io/imgs/MyGraph2/302.png "选择表")
 
-![生成ER图](https://renlm.gitee.io/imgs/MyGraph2/303.png "生成ER图")
+![生成ER图](https://renlm.github.io/imgs/MyGraph2/303.png "生成ER图")
 
 #### 数据库ER模型设计
 
-![打开工具](https://renlm.gitee.io/imgs/MyGraph2/304.png "打开工具")
+![打开工具](https://renlm.github.io/imgs/MyGraph2/304.png "打开工具")
 
-![工具栏](https://renlm.gitee.io/imgs/MyGraph2/305.png "工具栏")
+![工具栏](https://renlm.github.io/imgs/MyGraph2/305.png "工具栏")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph2/306.png "添加表")
+![添加表](https://renlm.github.io/imgs/MyGraph2/306.png "添加表")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph2/307.png "添加表")
+![添加表](https://renlm.github.io/imgs/MyGraph2/307.png "添加表")
 
-![双击表编辑](https://renlm.gitee.io/imgs/MyGraph2/308.png "双击表编辑")
+![双击表编辑](https://renlm.github.io/imgs/MyGraph2/308.png "双击表编辑")
 
-![我的字段库](https://renlm.gitee.io/imgs/MyGraph2/309.png "我的字段库")
+![我的字段库](https://renlm.github.io/imgs/MyGraph2/309.png "我的字段库")
 
 #### 导出DDL
 图形分类为ER模型的才可导出DDL，下载的DDL建表语句带注释，可直接执行。
 
-![下载DDL](https://renlm.gitee.io/imgs/MyGraph2/310.png "下载DDL")
+![下载DDL](https://renlm.github.io/imgs/MyGraph2/310.png "下载DDL")
 
-![DDL](https://renlm.gitee.io/imgs/MyGraph2/311.png "DDL")
+![DDL](https://renlm.github.io/imgs/MyGraph2/311.png "DDL")
 
 #### 图形设计
 展示所有公开及自己名下的图。  
 除了数据库ER图，同时支持其它诸如流程图、UML、思维导图等常见图形。  
 自动计算图形尺寸并生成封面。  
 
-![所有公开及自己名下的图](https://renlm.gitee.io/imgs/MyGraph2/312.png "所有公开及自己名下的图")
+![所有公开及自己名下的图](https://renlm.github.io/imgs/MyGraph2/312.png "所有公开及自己名下的图")
 
 ## 主要技术组件
 SpringBoot3.0.0 + SpringSecurity6.0.0 + spring-security-oauth2-authorization-server1.0.0  
@@ -141,31 +141,31 @@ EasyUI + Mxgraph + Editor.md
 数据库脚本在resource/db目录下。  
 项目默认启动test环境，启动dev环境会重建库。  
 
-![数据库初始脚本](https://renlm.gitee.io/imgs/MyGraph2/100.png "数据库初始脚本")
+![数据库初始脚本](https://renlm.github.io/imgs/MyGraph2/100.png "数据库初始脚本")
 
 ### Redis、Rabbitmq队列、数据库
 本地化部署请修改Redis、Rabbitmq队列、数据库的地址账号及密码。  
 
-![redis、mq队列、数据库](https://renlm.gitee.io/imgs/MyGraph2/101.png "redis、mq队列、数据库")
+![redis、mq队列、数据库](https://renlm.github.io/imgs/MyGraph2/101.png "redis、mq队列、数据库")
 
 ### 谷歌浏览器驱动
 生成封面用到了谷歌浏览器驱动，请修改驱动地址。  
 
-![谷歌浏览器驱动](https://renlm.gitee.io/imgs/MyGraph2/102.png "谷歌浏览器驱动")
+![谷歌浏览器驱动](https://renlm.github.io/imgs/MyGraph2/102.png "谷歌浏览器驱动")
 
 ### 修改自定义参数
 配置文件中的自定义参数请修改为自己的项目地址。  
 服务器监控Websocket配置等需要。  
 
-![修改自定义参数](https://renlm.gitee.io/imgs/MyGraph2/103.png "修改自定义参数")','',NULL,'','2023-01-08 16:03:31','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2023-01-08 16:05:07','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![修改自定义参数](https://renlm.github.io/imgs/MyGraph2/103.png "修改自定义参数")','',NULL,'','2023-01-08 16:03:31','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2023-01-08 16:05:07','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,(2,'D4DAC29C74F247448149208E1AF5E0AD','MyGraph 管理后台/系统手册/Markdown',2,'# Markdown扩展
 
 在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
 
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
@@ -356,68 +356,68 @@ https://mygraph.renlm.cn/oauth2/token | python -m json.tool
 ### 在线文档
 #### 新建项目
 
-![新建项目](https://renlm.gitee.io/imgs/MyGraph2/201.png "新建项目")
+![新建项目](https://renlm.github.io/imgs/MyGraph2/201.png "新建项目")
 
 #### 成员管理
 
-![成员管理](https://renlm.gitee.io/imgs/MyGraph2/202.png "成员管理")
+![成员管理](https://renlm.github.io/imgs/MyGraph2/202.png "成员管理")
 
 #### 新建文档
 
 支持多级目录，支持Markdown文档、图形设计、在线表格三种类型。
 
-![点击项目名称，进入文档管理](https://renlm.gitee.io/imgs/MyGraph2/210.png "点击项目名称，进入文档管理")
+![点击项目名称，进入文档管理](https://renlm.github.io/imgs/MyGraph2/210.png "点击项目名称，进入文档管理")
 
-![新建分类](https://renlm.gitee.io/imgs/MyGraph2/211.png "新建分类")
+![新建分类](https://renlm.github.io/imgs/MyGraph2/211.png "新建分类")
 
-![新建子级](https://renlm.gitee.io/imgs/MyGraph2/212.png "新建子级")
+![新建子级](https://renlm.github.io/imgs/MyGraph2/212.png "新建子级")
 
-![编辑文档](https://renlm.gitee.io/imgs/MyGraph2/213.png "编辑文档")
+![编辑文档](https://renlm.github.io/imgs/MyGraph2/213.png "编辑文档")
 
-![Markdown文档](https://renlm.gitee.io/imgs/MyGraph2/214.png "Markdown文档")
+![Markdown文档](https://renlm.github.io/imgs/MyGraph2/214.png "Markdown文档")
 
 #### 分享与收藏
 收藏或分享后，在知识文库可快速进入。
 
-![分享与收藏](https://renlm.gitee.io/imgs/MyGraph2/215.png "分享与收藏")
+![分享与收藏](https://renlm.github.io/imgs/MyGraph2/215.png "分享与收藏")
 
 ### 数据库设计
 #### 从数据源生成ER图
 新建数据源，选择表生成ER图后，根据提示进入文档管理中查看编辑图形。
 
-![新建数据源](https://renlm.gitee.io/imgs/MyGraph2/301.png "新建数据源")
+![新建数据源](https://renlm.github.io/imgs/MyGraph2/301.png "新建数据源")
 
-![选择表](https://renlm.gitee.io/imgs/MyGraph2/302.png "选择表")
+![选择表](https://renlm.github.io/imgs/MyGraph2/302.png "选择表")
 
-![生成ER图](https://renlm.gitee.io/imgs/MyGraph2/303.png "生成ER图")
+![生成ER图](https://renlm.github.io/imgs/MyGraph2/303.png "生成ER图")
 
 #### 数据库ER模型设计
 
-![打开工具](https://renlm.gitee.io/imgs/MyGraph2/304.png "打开工具")
+![打开工具](https://renlm.github.io/imgs/MyGraph2/304.png "打开工具")
 
-![工具栏](https://renlm.gitee.io/imgs/MyGraph2/305.png "工具栏")
+![工具栏](https://renlm.github.io/imgs/MyGraph2/305.png "工具栏")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph2/306.png "添加表")
+![添加表](https://renlm.github.io/imgs/MyGraph2/306.png "添加表")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph2/307.png "添加表")
+![添加表](https://renlm.github.io/imgs/MyGraph2/307.png "添加表")
 
-![双击表编辑](https://renlm.gitee.io/imgs/MyGraph2/308.png "双击表编辑")
+![双击表编辑](https://renlm.github.io/imgs/MyGraph2/308.png "双击表编辑")
 
-![我的字段库](https://renlm.gitee.io/imgs/MyGraph2/309.png "我的字段库")
+![我的字段库](https://renlm.github.io/imgs/MyGraph2/309.png "我的字段库")
 
 #### 导出DDL
 图形分类为ER模型的才可导出DDL，下载的DDL建表语句带注释，可直接执行。
 
-![下载DDL](https://renlm.gitee.io/imgs/MyGraph2/310.png "下载DDL")
+![下载DDL](https://renlm.github.io/imgs/MyGraph2/310.png "下载DDL")
 
-![DDL](https://renlm.gitee.io/imgs/MyGraph2/311.png "DDL")
+![DDL](https://renlm.github.io/imgs/MyGraph2/311.png "DDL")
 
 #### 图形设计
 展示所有公开及自己名下的图。  
 除了数据库ER图，同时支持其它诸如流程图、UML、思维导图等常见图形。  
 自动计算图形尺寸并生成封面。  
 
-![所有公开及自己名下的图](https://renlm.gitee.io/imgs/MyGraph2/312.png "所有公开及自己名下的图")
+![所有公开及自己名下的图](https://renlm.github.io/imgs/MyGraph2/312.png "所有公开及自己名下的图")
 
 ## 主要技术组件
 SpringBoot3.0.0 + SpringSecurity6.0.0 + spring-security-oauth2-authorization-server1.0.0  
@@ -437,31 +437,31 @@ EasyUI + Mxgraph + Editor.md
 数据库脚本在resource/db目录下。  
 项目默认启动test环境，启动dev环境会重建库。  
 
-![数据库初始脚本](https://renlm.gitee.io/imgs/MyGraph2/100.png "数据库初始脚本")
+![数据库初始脚本](https://renlm.github.io/imgs/MyGraph2/100.png "数据库初始脚本")
 
 ### Redis、Rabbitmq队列、数据库
 本地化部署请修改Redis、Rabbitmq队列、数据库的地址账号及密码。  
 
-![redis、mq队列、数据库](https://renlm.gitee.io/imgs/MyGraph2/101.png "redis、mq队列、数据库")
+![redis、mq队列、数据库](https://renlm.github.io/imgs/MyGraph2/101.png "redis、mq队列、数据库")
 
 ### 谷歌浏览器驱动
 生成封面用到了谷歌浏览器驱动，请修改驱动地址。  
 
-![谷歌浏览器驱动](https://renlm.gitee.io/imgs/MyGraph2/102.png "谷歌浏览器驱动")
+![谷歌浏览器驱动](https://renlm.github.io/imgs/MyGraph2/102.png "谷歌浏览器驱动")
 
 ### 修改自定义参数
 配置文件中的自定义参数请修改为自己的项目地址。  
 服务器监控Websocket配置等需要。  
 
-![修改自定义参数](https://renlm.gitee.io/imgs/MyGraph2/103.png "修改自定义参数")','',NULL,'','2023-01-08 16:09:22','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2023-01-08 16:09:22',NULL,NULL,0,NULL)
+![修改自定义参数](https://renlm.github.io/imgs/MyGraph2/103.png "修改自定义参数")','',NULL,'','2023-01-08 16:09:22','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2023-01-08 16:09:22',NULL,NULL,0,NULL)
 ,(7,'35111CB38E564A2684B934D954BA6F0F','Markdown',1,'# Markdown扩展
 
 在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
 
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
@@ -658,68 +658,68 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 ### 在线文档
 #### 新建项目
 
-![新建项目](https://renlm.gitee.io/imgs/MyGraph2/201.png "新建项目")
+![新建项目](https://renlm.github.io/imgs/MyGraph2/201.png "新建项目")
 
 #### 成员管理
 
-![成员管理](https://renlm.gitee.io/imgs/MyGraph2/202.png "成员管理")
+![成员管理](https://renlm.github.io/imgs/MyGraph2/202.png "成员管理")
 
 #### 新建文档
 
 支持多级目录，支持Markdown文档、图形设计、在线表格三种类型。
 
-![点击项目名称，进入文档管理](https://renlm.gitee.io/imgs/MyGraph2/210.png "点击项目名称，进入文档管理")
+![点击项目名称，进入文档管理](https://renlm.github.io/imgs/MyGraph2/210.png "点击项目名称，进入文档管理")
 
-![新建分类](https://renlm.gitee.io/imgs/MyGraph2/211.png "新建分类")
+![新建分类](https://renlm.github.io/imgs/MyGraph2/211.png "新建分类")
 
-![新建子级](https://renlm.gitee.io/imgs/MyGraph2/212.png "新建子级")
+![新建子级](https://renlm.github.io/imgs/MyGraph2/212.png "新建子级")
 
-![编辑文档](https://renlm.gitee.io/imgs/MyGraph2/213.png "编辑文档")
+![编辑文档](https://renlm.github.io/imgs/MyGraph2/213.png "编辑文档")
 
-![Markdown文档](https://renlm.gitee.io/imgs/MyGraph2/214.png "Markdown文档")
+![Markdown文档](https://renlm.github.io/imgs/MyGraph2/214.png "Markdown文档")
 
 #### 分享与收藏
 收藏或分享后，在知识文库可快速进入。
 
-![分享与收藏](https://renlm.gitee.io/imgs/MyGraph2/215.png "分享与收藏")
+![分享与收藏](https://renlm.github.io/imgs/MyGraph2/215.png "分享与收藏")
 
 ### 数据库设计
 #### 从数据源生成ER图
 新建数据源，选择表生成ER图后，根据提示进入文档管理中查看编辑图形。
 
-![新建数据源](https://renlm.gitee.io/imgs/MyGraph2/301.png "新建数据源")
+![新建数据源](https://renlm.github.io/imgs/MyGraph2/301.png "新建数据源")
 
-![选择表](https://renlm.gitee.io/imgs/MyGraph2/302.png "选择表")
+![选择表](https://renlm.github.io/imgs/MyGraph2/302.png "选择表")
 
-![生成ER图](https://renlm.gitee.io/imgs/MyGraph2/303.png "生成ER图")
+![生成ER图](https://renlm.github.io/imgs/MyGraph2/303.png "生成ER图")
 
 #### 数据库ER模型设计
 
-![打开工具](https://renlm.gitee.io/imgs/MyGraph2/304.png "打开工具")
+![打开工具](https://renlm.github.io/imgs/MyGraph2/304.png "打开工具")
 
-![工具栏](https://renlm.gitee.io/imgs/MyGraph2/305.png "工具栏")
+![工具栏](https://renlm.github.io/imgs/MyGraph2/305.png "工具栏")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph2/306.png "添加表")
+![添加表](https://renlm.github.io/imgs/MyGraph2/306.png "添加表")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph2/307.png "添加表")
+![添加表](https://renlm.github.io/imgs/MyGraph2/307.png "添加表")
 
-![双击表编辑](https://renlm.gitee.io/imgs/MyGraph2/308.png "双击表编辑")
+![双击表编辑](https://renlm.github.io/imgs/MyGraph2/308.png "双击表编辑")
 
-![我的字段库](https://renlm.gitee.io/imgs/MyGraph2/309.png "我的字段库")
+![我的字段库](https://renlm.github.io/imgs/MyGraph2/309.png "我的字段库")
 
 #### 导出DDL
 图形分类为ER模型的才可导出DDL，下载的DDL建表语句带注释，可直接执行。
 
-![下载DDL](https://renlm.gitee.io/imgs/MyGraph2/310.png "下载DDL")
+![下载DDL](https://renlm.github.io/imgs/MyGraph2/310.png "下载DDL")
 
-![DDL](https://renlm.gitee.io/imgs/MyGraph2/311.png "DDL")
+![DDL](https://renlm.github.io/imgs/MyGraph2/311.png "DDL")
 
 #### 图形设计
 展示所有公开及自己名下的图。  
 除了数据库ER图，同时支持其它诸如流程图、UML、思维导图等常见图形。  
 自动计算图形尺寸并生成封面。  
 
-![所有公开及自己名下的图](https://renlm.gitee.io/imgs/MyGraph2/312.png "所有公开及自己名下的图")
+![所有公开及自己名下的图](https://renlm.github.io/imgs/MyGraph2/312.png "所有公开及自己名下的图")
 
 ## 主要技术组件
 SpringBoot3.0.0 + SpringSecurity6.0.0 + spring-security-oauth2-authorization-server1.0.0  
@@ -739,31 +739,31 @@ EasyUI + Mxgraph + Editor.md
 数据库脚本在resource/db目录下。  
 项目默认启动test环境，启动dev环境会重建库。  
 
-![数据库初始脚本](https://renlm.gitee.io/imgs/MyGraph2/100.png "数据库初始脚本")
+![数据库初始脚本](https://renlm.github.io/imgs/MyGraph2/100.png "数据库初始脚本")
 
 ### Redis、Rabbitmq队列、数据库
 本地化部署请修改Redis、Rabbitmq队列、数据库的地址账号及密码。  
 
-![redis、mq队列、数据库](https://renlm.gitee.io/imgs/MyGraph2/101.png "redis、mq队列、数据库")
+![redis、mq队列、数据库](https://renlm.github.io/imgs/MyGraph2/101.png "redis、mq队列、数据库")
 
 ### 谷歌浏览器驱动
 生成封面用到了谷歌浏览器驱动，请修改驱动地址。  
 
-![谷歌浏览器驱动](https://renlm.gitee.io/imgs/MyGraph2/102.png "谷歌浏览器驱动")
+![谷歌浏览器驱动](https://renlm.github.io/imgs/MyGraph2/102.png "谷歌浏览器驱动")
 
 ### 修改自定义参数
 配置文件中的自定义参数请修改为自己的项目地址。  
 服务器监控Websocket配置等需要。  
 
-![修改自定义参数](https://renlm.gitee.io/imgs/MyGraph2/103.png "修改自定义参数")','',NULL,'','2023-01-08 16:03:31','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2023-01-08 16:05:07','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
+![修改自定义参数](https://renlm.github.io/imgs/MyGraph2/103.png "修改自定义参数")','',NULL,'','2023-01-08 16:03:31','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2023-01-08 16:05:07','ABFEE20BA6AC4783A683C7117763951E','令狐冲',0,NULL)
 ,(7,'修改','2023-01-08 16:05:36','ABFEE20BA6AC4783A683C7117763951E','令狐冲',2,'D4DAC29C74F247448149208E1AF5E0AD','MyGraph 管理后台/系统手册/Markdown',2,'# Markdown扩展
 
 在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
 
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
@@ -953,68 +953,68 @@ https://mygraph.renlm.cn/oauth2/token | python -m json.tool
 ### 在线文档
 #### 新建项目
 
-![新建项目](https://renlm.gitee.io/imgs/MyGraph2/201.png "新建项目")
+![新建项目](https://renlm.github.io/imgs/MyGraph2/201.png "新建项目")
 
 #### 成员管理
 
-![成员管理](https://renlm.gitee.io/imgs/MyGraph2/202.png "成员管理")
+![成员管理](https://renlm.github.io/imgs/MyGraph2/202.png "成员管理")
 
 #### 新建文档
 
 支持多级目录，支持Markdown文档、图形设计、在线表格三种类型。
 
-![点击项目名称，进入文档管理](https://renlm.gitee.io/imgs/MyGraph2/210.png "点击项目名称，进入文档管理")
+![点击项目名称，进入文档管理](https://renlm.github.io/imgs/MyGraph2/210.png "点击项目名称，进入文档管理")
 
-![新建分类](https://renlm.gitee.io/imgs/MyGraph2/211.png "新建分类")
+![新建分类](https://renlm.github.io/imgs/MyGraph2/211.png "新建分类")
 
-![新建子级](https://renlm.gitee.io/imgs/MyGraph2/212.png "新建子级")
+![新建子级](https://renlm.github.io/imgs/MyGraph2/212.png "新建子级")
 
-![编辑文档](https://renlm.gitee.io/imgs/MyGraph2/213.png "编辑文档")
+![编辑文档](https://renlm.github.io/imgs/MyGraph2/213.png "编辑文档")
 
-![Markdown文档](https://renlm.gitee.io/imgs/MyGraph2/214.png "Markdown文档")
+![Markdown文档](https://renlm.github.io/imgs/MyGraph2/214.png "Markdown文档")
 
 #### 分享与收藏
 收藏或分享后，在知识文库可快速进入。
 
-![分享与收藏](https://renlm.gitee.io/imgs/MyGraph2/215.png "分享与收藏")
+![分享与收藏](https://renlm.github.io/imgs/MyGraph2/215.png "分享与收藏")
 
 ### 数据库设计
 #### 从数据源生成ER图
 新建数据源，选择表生成ER图后，根据提示进入文档管理中查看编辑图形。
 
-![新建数据源](https://renlm.gitee.io/imgs/MyGraph2/301.png "新建数据源")
+![新建数据源](https://renlm.github.io/imgs/MyGraph2/301.png "新建数据源")
 
-![选择表](https://renlm.gitee.io/imgs/MyGraph2/302.png "选择表")
+![选择表](https://renlm.github.io/imgs/MyGraph2/302.png "选择表")
 
-![生成ER图](https://renlm.gitee.io/imgs/MyGraph2/303.png "生成ER图")
+![生成ER图](https://renlm.github.io/imgs/MyGraph2/303.png "生成ER图")
 
 #### 数据库ER模型设计
 
-![打开工具](https://renlm.gitee.io/imgs/MyGraph2/304.png "打开工具")
+![打开工具](https://renlm.github.io/imgs/MyGraph2/304.png "打开工具")
 
-![工具栏](https://renlm.gitee.io/imgs/MyGraph2/305.png "工具栏")
+![工具栏](https://renlm.github.io/imgs/MyGraph2/305.png "工具栏")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph2/306.png "添加表")
+![添加表](https://renlm.github.io/imgs/MyGraph2/306.png "添加表")
 
-![添加表](https://renlm.gitee.io/imgs/MyGraph2/307.png "添加表")
+![添加表](https://renlm.github.io/imgs/MyGraph2/307.png "添加表")
 
-![双击表编辑](https://renlm.gitee.io/imgs/MyGraph2/308.png "双击表编辑")
+![双击表编辑](https://renlm.github.io/imgs/MyGraph2/308.png "双击表编辑")
 
-![我的字段库](https://renlm.gitee.io/imgs/MyGraph2/309.png "我的字段库")
+![我的字段库](https://renlm.github.io/imgs/MyGraph2/309.png "我的字段库")
 
 #### 导出DDL
 图形分类为ER模型的才可导出DDL，下载的DDL建表语句带注释，可直接执行。
 
-![下载DDL](https://renlm.gitee.io/imgs/MyGraph2/310.png "下载DDL")
+![下载DDL](https://renlm.github.io/imgs/MyGraph2/310.png "下载DDL")
 
-![DDL](https://renlm.gitee.io/imgs/MyGraph2/311.png "DDL")
+![DDL](https://renlm.github.io/imgs/MyGraph2/311.png "DDL")
 
 #### 图形设计
 展示所有公开及自己名下的图。  
 除了数据库ER图，同时支持其它诸如流程图、UML、思维导图等常见图形。  
 自动计算图形尺寸并生成封面。  
 
-![所有公开及自己名下的图](https://renlm.gitee.io/imgs/MyGraph2/312.png "所有公开及自己名下的图")
+![所有公开及自己名下的图](https://renlm.github.io/imgs/MyGraph2/312.png "所有公开及自己名下的图")
 
 ## 主要技术组件
 SpringBoot3.0.0 + SpringSecurity6.0.0 + spring-security-oauth2-authorization-server1.0.0  
@@ -1034,23 +1034,23 @@ EasyUI + Mxgraph + Editor.md
 数据库脚本在resource/db目录下。  
 项目默认启动test环境，启动dev环境会重建库。  
 
-![数据库初始脚本](https://renlm.gitee.io/imgs/MyGraph2/100.png "数据库初始脚本")
+![数据库初始脚本](https://renlm.github.io/imgs/MyGraph2/100.png "数据库初始脚本")
 
 ### Redis、Rabbitmq队列、数据库
 本地化部署请修改Redis、Rabbitmq队列、数据库的地址账号及密码。  
 
-![redis、mq队列、数据库](https://renlm.gitee.io/imgs/MyGraph2/101.png "redis、mq队列、数据库")
+![redis、mq队列、数据库](https://renlm.github.io/imgs/MyGraph2/101.png "redis、mq队列、数据库")
 
 ### 谷歌浏览器驱动
 生成封面用到了谷歌浏览器驱动，请修改驱动地址。  
 
-![谷歌浏览器驱动](https://renlm.gitee.io/imgs/MyGraph2/102.png "谷歌浏览器驱动")
+![谷歌浏览器驱动](https://renlm.github.io/imgs/MyGraph2/102.png "谷歌浏览器驱动")
 
 ### 修改自定义参数
 配置文件中的自定义参数请修改为自己的项目地址。  
 服务器监控Websocket配置等需要。  
 
-![修改自定义参数](https://renlm.gitee.io/imgs/MyGraph2/103.png "修改自定义参数")','',NULL,'','2023-01-08 16:09:22','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2023-01-08 16:09:22',NULL,NULL,0,NULL)
+![修改自定义参数](https://renlm.github.io/imgs/MyGraph2/103.png "修改自定义参数")','',NULL,'','2023-01-08 16:09:22','ABFEE20BA6AC4783A683C7117763951E','令狐冲','2023-01-08 16:09:22',NULL,NULL,0,NULL)
 ;
 INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_id,operator_nickname,markdown_id,markdown_uuid,name,version,content,graph_uuid,graph_version,data_table,created_at,creator_user_id,creator_nickname,updated_at,updator_user_id,updator_nickname,deleted,remark) VALUES 
 (11,'新增','2023-01-08 16:09:35','ABFEE20BA6AC4783A683C7117763951E','令狐冲',7,'35111CB38E564A2684B934D954BA6F0F','Markdown',1,'# Markdown扩展
@@ -1058,9 +1058,9 @@ INSERT INTO markdown_history (history_id,change_label,operate_at,operator_user_i
 在<a href="https://github.com/pandao/editor.md" target="_blank"> editor.md </a>基础上进行了功能扩展，新增 **Json文档**、**Layui皮肤** 和 **Echarts图表**。  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/custom-extras.html?fullscreen=true" target="_blank"> 在线编辑器 </a>___  
 ___<a href="https://mygraph.renlm.cn/static/markdown/editor.md-1.5.0/examples/index.html" target="_blank"> 完整示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
-___<a href="https://renlm.gitee.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/001.png" target="_blank"> 截图-使用示例 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/002.png" target="_blank"> 截图-语法示例 </a>___  
+___<a href="https://renlm.github.io/imgs/MyGraph/003.png" target="_blank"> 截图-效果图 </a>___  
 
 ### Json文档
 扩展语法（json5），支持Json5数据规范，增加了Json文档插件按钮。
