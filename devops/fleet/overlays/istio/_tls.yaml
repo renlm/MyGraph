@@ -23,7 +23,7 @@ spec:
     - selector: {}
       http01:
         ingress:
-          # nginx | traefik
+          # nginx(k8s) | traefik(k3s)
           class: nginx
 ---
 apiVersion: cert-manager.io/v1
