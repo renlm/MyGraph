@@ -95,27 +95,25 @@
 ![所有公开及自己名下的图](https://renlm.github.io/imgs/MyGraph/312.png "所有公开及自己名下的图")
 
 ## 主要技术组件
-代码仓库：gitee、github
-Docker容器镜像仓库：阿里云个人免费版
-私有Chart仓库、自动化脚本、笔记：github 静态托管
-资源：京东云服务器（ubuntu）、域名（renlm.cn）、公网IP、cert-manager自申请免费https证书
-容器化部署流水线：k3s+rancher、k8s、Jenkins
-服务监控： Monitoring（Grafana + Prometheus）
-网关、流量及链路追踪：Istio（Kiali + Jaeger）
-微服务架构：最新版 SpringCloud2023.0.1（Service Mesh）
-辅助开发调试工具：VSCode、Nocalhost插件
+代码仓库：gitee、github  
+Docker容器镜像仓库：阿里云个人免费版  
+私有Chart仓库、自动化脚本、笔记：github 静态托管  
+资源：京东云服务器（ubuntu）、域名（renlm.cn）、公网IP、cert-manager自申请免费https证书  
+容器化部署流水线：k3s+rancher、k8s、Jenkins  
+服务监控： Monitoring（Grafana + Prometheus）  
+网关、流量及链路追踪：Istio（Kiali + Jaeger）  
+微服务架构：最新版 SpringCloud2023.0.1（Service Mesh）  
+辅助开发调试工具：VSCode、Nocalhost插件  
 
 ## 初始化部署
-部署清单（项目根目录）：devops/fleet
-
-### 基础环境
+部署清单：devops/fleet
 <a href="https://renlm.github.io" target="_blank">配置手册</a>  
 	
 ### 初始账号
+
 ```
 超级管理员：S-linghc，密码：123654
 普通用户：S-renyy，密码：123654
 ```
 
-### Kiali Console
-![Kiali Console](https://renlm.github.io/imgs/MyGraph/100.png "Kiali Console")
+![Kiali Console](https://renlm.github.io/imgs/MyGraph/100.png "Kiali Console")  
