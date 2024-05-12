@@ -34,7 +34,7 @@ spec:
   - port:
       number: 443
       protocol: HTTPS
-      name: https
+      name: tls
     hosts:
     - kubernetes.renlm.cn
     tls:
