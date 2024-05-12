@@ -98,7 +98,7 @@
 代码仓库：gitee、github  
 Docker容器镜像仓库：阿里云个人免费版  
 私有Chart仓库、自动化脚本、笔记：github 静态托管  
-资源：京东云服务器（ubuntu）、域名（renlm.cn）、公网IP、cert-manager自申请免费https证书  
+资源：京东云服务器、域名、公网IP、免费https证书（cert-manager）  
 容器化部署流水线：k3s+rancher、k8s、Jenkins  
 服务监控： Monitoring（Grafana + Prometheus）  
 网关、流量及链路追踪：Istio（Kiali + Jaeger）  
