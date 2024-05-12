@@ -65,7 +65,7 @@ metadata:
   namespace: default
 spec:
   hosts:
-  - kubernetes.renlm.cn
+  - "*"
   gateways:
   - istio-system/mygraph-gateway
   http:
