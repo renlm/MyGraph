@@ -1,3 +1,4 @@
 resources:
 - _gateway.yaml
+- _tls.yaml
 - _virtualservice.yaml
