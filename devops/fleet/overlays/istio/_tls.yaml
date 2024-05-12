@@ -23,10 +23,8 @@ spec:
     - selector: {}
       http01:
         ingress:
-          ingressTemplate:
-            metadata:
-              annotations:
-                kubernetes.io/ingress.class: istio
+          # istio | nginx | traefik
+          class: istio
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
@@ -44,7 +42,7 @@ spec:
     - renlm.cn
     - www.renlm.cn
     - kubernetes.renlm.cn
-    - rancher.renlm.cn
+    - istio.renlm.cn
     - jenkins.renlm.cn
     - rabbitmq.renlm.cn
     - mygraph.renlm.cn
