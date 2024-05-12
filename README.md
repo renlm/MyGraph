@@ -95,37 +95,18 @@
 ![所有公开及自己名下的图](https://renlm.github.io/imgs/MyGraph/312.png "所有公开及自己名下的图")
 
 ## 主要技术组件
-SpringBoot3.0.0 + SpringSecurity6.0.0 + spring-security-oauth2-authorization-server1.0.0  
+SpringCloud2023.0.1 + SpringBoot3.2.4 + SpringSecurity6.2.3 + SpringSecurityOauth2AuthorizationServer1.2.3  
 MyBatis-plus + My-Plugin  
 MySQL + Redis + Rabbitmq  
 Chrome + Chromedriver  
 EasyUI + Mxgraph + Editor.md  
 
-## 本地化部署
+## 初始化部署
+### 基础环境
+<a href="https://renlm.github.io" target="_blank">配置手册</a>  
+	
 ### 初始账号
 ```
 超级管理员：S-linghc，密码：123654
 普通用户：S-renyy，密码：123654
 ```
-
-### 数据库初始脚本
-数据库脚本在resource/db目录下。  
-项目默认启动test环境，启动dev环境会重建库。  
-
-![数据库初始脚本](https://renlm.github.io/imgs/MyGraph/100.png "数据库初始脚本")
-
-### Redis、Rabbitmq队列、数据库
-本地化部署请修改Redis、Rabbitmq队列、数据库的地址账号及密码。  
-
-![redis、mq队列、数据库](https://renlm.github.io/imgs/MyGraph/101.png "redis、mq队列、数据库")
-
-### 谷歌浏览器驱动
-生成封面用到了谷歌浏览器驱动，请修改驱动地址。  
-
-![谷歌浏览器驱动](https://renlm.github.io/imgs/MyGraph/102.png "谷歌浏览器驱动")
-
-### 修改自定义参数
-配置文件中的自定义参数请修改为自己的项目地址。  
-服务器监控Websocket配置等需要。  
-
-![修改自定义参数](https://renlm.github.io/imgs/MyGraph/103.png "修改自定义参数")
