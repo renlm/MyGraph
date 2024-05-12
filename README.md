@@ -106,14 +106,6 @@ Docker容器镜像仓库：阿里云个人免费版
 辅助开发调试工具：VSCode、Nocalhost插件  
 
 ## 初始化部署
-部署清单：devops/fleet
+部署清单：devops/fleet  
 <a href="https://renlm.github.io" target="_blank">配置手册</a>  
-	
-### 初始账号
-
-```
-超级管理员：S-linghc，密码：123654
-普通用户：S-renyy，密码：123654
-```
-
 ![Kiali Console](https://renlm.github.io/imgs/MyGraph/100.png "Kiali Console")  
