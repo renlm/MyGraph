@@ -14,6 +14,65 @@ spec:
     route:
     - weight: 100
       destination:
-        host: mygraph.renlm.svc.cluster.local
+        host: mygraph
         port:
           number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: mygraph-jenkins
+spec:
+  hosts:
+  - jenkins.renlm.cn
+  gateways:
+  - istio-system/mygraph-gateway
+  http:
+  - match:
+    - port: 80
+    - port: 443
+    route:
+    - weight: 100
+      destination:
+        host: mygraph-jenkins
+        port:
+          number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: mygraph-rabbitmq
+spec:
+  hosts:
+  - rabbitmq.renlm.cn
+  gateways:
+  - istio-system/mygraph-gateway
+  http:
+  - match:
+    - port: 80
+    - port: 443
+    route:
+    - weight: 100
+      destination:
+        host: mygraph-rabbitmq
+        port:
+          number: 15672
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: kubernetes
+spec:
+  hosts:
+  - kubernetes.renlm.cn
+  gateways:
+  - istio-system/mygraph-gateway
+  http:
+  - match:
+    - port: 443
+    route:
+    - weight: 100
+      destination:
+        host: kubernetes.default.svc.cluster.local
+        port:
+          number: 6443

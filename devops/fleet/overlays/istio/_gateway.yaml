@@ -12,14 +12,30 @@ spec:
       protocol: HTTP
       name: http
     hosts:
+    - renlm.cn
+    - www.renlm.cn
+    - jenkins.renlm.cn
+    - rabbitmq.renlm.cn
     - mygraph.renlm.cn
   - port:
       number: 443
       protocol: HTTPS
       name: https
     hosts:
+    - renlm.cn
+    - www.renlm.cn
+    - jenkins.renlm.cn
+    - rabbitmq.renlm.cn
     - mygraph.renlm.cn
     tls:
       mode: SIMPLE
       credentialName: istio-system.renlm.cn
       minProtocolVersion: TLSV1_2
+  - port:
+      number: 443
+      protocol: HTTPS
+      name: https
+    hosts:
+    - kubernetes.renlm.cn
+    tls:
+      mode: PASSTHROUGH
