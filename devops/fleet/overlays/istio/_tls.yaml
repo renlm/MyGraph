@@ -39,10 +39,7 @@ spec:
     organizations:
       - istio-system.renlm.cn
   dnsNames:
-    - renlm.cn
-    - www.renlm.cn
     - kubernetes.renlm.cn
-    - istio.renlm.cn
     - jenkins.renlm.cn
     - rabbitmq.renlm.cn
     - mygraph.renlm.cn
@@ -62,8 +59,6 @@ spec:
     organizations:
       - pubyun.renlm.cn
   dnsNames:
-    - renlm.cn
-    - www.renlm.cn
     - jenkins.renlm.cn
     - rabbitmq.renlm.cn
     - mygraph.renlm.cn
