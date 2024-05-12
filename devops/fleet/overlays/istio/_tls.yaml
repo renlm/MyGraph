@@ -41,8 +41,9 @@ spec:
   dnsNames:
     - renlm.cn
     - www.renlm.cn
-    - jenkins.renlm.cn
     - kubernetes.renlm.cn
+    - rancher.renlm.cn
+    - jenkins.renlm.cn
     - rabbitmq.renlm.cn
     - mygraph.renlm.cn
   issuerRef:
