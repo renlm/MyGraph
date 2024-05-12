@@ -3,6 +3,7 @@
 helm:
   chart: mygraph
   repo: https://renlm.github.io/helm/repo
+  releaseName: mygraph
   version: 1.0.1
 defaultNamespace: renlm
 targetCustomizations:
@@ -15,6 +16,3 @@ targetCustomizations:
   helm:
     valuesFiles:
     - overlays/values.yaml
-    values:
-      jenkins:
-        enabled: false

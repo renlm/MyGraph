@@ -1,0 +1,3 @@
+resources:
+- _gateway.yaml
+- _virtualservice.yaml

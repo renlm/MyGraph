@@ -22,7 +22,7 @@ data:
         wsHost: ws://localhost
         wsAllowedOrigins: http://localhost
         chrome:
-          driverPath: D:/chrome/chromedriver.exe
+          driverPath: ~/chromedriver.exe
           sleepTime: 800
     encrypt:
       keyStore:
@@ -82,7 +82,7 @@ data:
           database: 0
           host: renlm.cn
           port: 30379
-          password: PWD@20xx$
+          password: PWD@20xxKplstdm^8uttm$
           timeout: 10s
           lettuce:
             pool:
@@ -95,7 +95,7 @@ data:
         host: renlm.cn
         port: 30672
         username: mygraph
-        password: PWD@20xx$
+        password: PWD@20xxKplstdm^8uttm$
       datasource:
         dynamic:
           primary: master
@@ -104,7 +104,7 @@ data:
             master:
               url: jdbc:mysql://renlm.cn:30306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
               username: mygraph
-              password: PWD@20xx$
+              password: PWD@20xxKplstdm^8uttm$
               driver-class-name: com.mysql.cj.jdbc.Driver
       sql:
         init:

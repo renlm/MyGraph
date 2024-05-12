@@ -48,7 +48,7 @@ ingress:
     - path: /
       pathType: Prefix
   tls:
-  - secretName: renlm.secret
+  - secretName: pubyun.renlm.cn
     hosts:
     - mygraph.renlm.cn
 service:
@@ -68,14 +68,21 @@ actuator:
       successThreshold: 1
       failureThreshold: 20
       timeoutSeconds: 1
+resources:
+  limits:
+    memory: 4Gi
+    cpu: 2
+  requests:
+    memory: 500Mi
+    cpu: 200m
 autoscaling:
-  enabled: false
-  minReplicas: 1
+  enabled: true
+  minReplicas: 2
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
 # 子Chart配置
 prometheus:
-  enabled: false
+  enabled: true
   port: 9000
   portName: prometheus
   selector:
@@ -86,7 +93,7 @@ mysql:
   mini: true
   database: mygraph
   user: mygraph
-  password: PWD@20xx$
+  password: PWD@20xxKplstdm^8uttm$
   nodeSelector:
     mygraph/mysql: mark
   image:
@@ -106,7 +113,7 @@ rabbitmq:
   enabled: true
   defaultVhost: /mygraph
   defaultUser: mygraph
-  defaultPass: PWD@20xx$
+  defaultPass: PWD@20xxKplstdm^8uttm$
   nodeSelector:
     mygraph/rabbitmq: mark
   image:
@@ -122,7 +129,7 @@ rabbitmq:
       - path: /
         pathType: Prefix
     tls:
-    - secretName: renlm.secret
+    - secretName: pubyun.renlm.cn
       hosts:
       - rabbitmq.renlm.cn
   service:
@@ -137,7 +144,7 @@ rabbitmq:
     server: 192.168.16.3
 redis:
   enabled: true
-  requirepass: PWD@20xx$
+  requirepass: PWD@20xxKplstdm^8uttm$
   nodeSelector:
     mygraph/redis: mark
   image:
@@ -149,6 +156,7 @@ redis:
     port: 6379
     nodePort: 30379
 jenkins:
+  enabled: true
   nodeSelector:
     mygraph/jenkins: mark
   image:
@@ -164,7 +172,7 @@ jenkins:
       - path: /
         pathType: Prefix
     tls:
-    - secretName: renlm.secret
+    - secretName: pubyun.renlm.cn
       hosts:
       - jenkins.renlm.cn
   nfs:

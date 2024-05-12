@@ -1,3 +1,5 @@
+bases:
+- istio
 patchesStrategicMerge:
 - properties/dev.yaml
 - properties/prod.yaml
