@@ -23,8 +23,10 @@ spec:
     - selector: {}
       http01:
         ingress:
-          # istio | nginx | traefik
-          class: istio
+          ingressTemplate:
+            metadata:
+              annotations:
+                kubernetes.io/ingress.class: istio
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
