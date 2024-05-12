@@ -62,6 +62,7 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: kubernetes
+  namespace: default
 spec:
   hosts:
   - kubernetes.renlm.cn
