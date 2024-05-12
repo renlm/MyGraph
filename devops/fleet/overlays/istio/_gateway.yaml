@@ -36,6 +36,6 @@ spec:
       protocol: HTTPS
       name: tls
     hosts:
-    - "*"
+    - kubernetes.renlm.cn
     tls:
       mode: PASSTHROUGH

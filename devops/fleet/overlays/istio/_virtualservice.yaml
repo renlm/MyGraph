@@ -65,12 +65,14 @@ metadata:
   namespace: default
 spec:
   hosts:
-  - "*"
+  - kubernetes.renlm.cn
   gateways:
   - istio-system/mygraph-gateway
   http:
   - match:
     - port: 443
+      sniHosts:
+      - kubernetes.renlm.cn
     route:
     - weight: 100
       destination:
