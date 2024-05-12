@@ -84,7 +84,7 @@ autoscaling:
 prometheus:
   enabled: true
   port: 9000
-  portName: prometheus
+  portName: tcp-prometheus
   selector:
   - name: prometheus
     value: monitor
