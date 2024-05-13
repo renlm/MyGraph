@@ -39,10 +39,15 @@ spec:
     organizations:
       - istio-system.renlm.cn
   dnsNames:
-    - kubernetes.renlm.cn
-    - jenkins.renlm.cn
+    - renlm.cn
+    - www.renlm.cn
+    - redis.renlm.cn
+    - mysql.renlm.cn
+    - amqp.renlm.cn
     - rabbitmq.renlm.cn
+    - jenkins.renlm.cn
     - mygraph.renlm.cn
+    - kubernetes.renlm.cn
   issuerRef:
     name: istio-letsencrypt-issuer
     kind: ClusterIssuer
@@ -59,8 +64,13 @@ spec:
     organizations:
       - pubyun.renlm.cn
   dnsNames:
-    - jenkins.renlm.cn
+    - renlm.cn
+    - www.renlm.cn
+    - redis.renlm.cn
+    - mysql.renlm.cn
+    - amqp.renlm.cn
     - rabbitmq.renlm.cn
+    - jenkins.renlm.cn
     - mygraph.renlm.cn
   issuerRef:
     name: istio-letsencrypt-issuer
