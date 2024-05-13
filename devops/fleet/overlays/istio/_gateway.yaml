@@ -37,3 +37,5 @@ spec:
       name: tls
     hosts:
     - kubernetes.renlm.cn
+    tls:
+      mode: PASSTHROUGH
