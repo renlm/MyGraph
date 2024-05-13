@@ -32,7 +32,7 @@ spec:
       credentialName: istio-system.renlm.cn
       minProtocolVersion: TLSV1_2
   - port:
-      number: 443
+      number: 32671
       protocol: TLS
       name: tls
     hosts:

@@ -68,7 +68,7 @@ spec:
   - kubernetes.renlm.cn
   gateways:
   - istio-system/mygraph-gateway
-  http:
+  tls:
   - match:
     - port: 443
     route:
