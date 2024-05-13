@@ -71,6 +71,8 @@ spec:
   tls:
   - match:
     - port: 443
+      sniHosts:
+      - kubernetes.renlm.cn
     route:
     - weight: 100
       destination:
