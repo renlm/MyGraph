@@ -62,8 +62,7 @@ mysql:
   database: mygraph
   user: mygraph
   password: PWD@20xxKplstdm^8uttm$
-  nodeSelector:
-    mygraph/mysql: mark
+  nodeSelector: {}
   image:
     repository: mysql
     pullPolicy: IfNotPresent
@@ -82,8 +81,7 @@ rabbitmq:
   defaultVhost: /mygraph
   defaultUser: mygraph
   defaultPass: PWD@20xxKplstdm^8uttm$
-  nodeSelector:
-    mygraph/rabbitmq: mark
+  nodeSelector: {}
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
@@ -103,8 +101,7 @@ rabbitmq:
 redis:
   enabled: true
   requirepass: PWD@20xxKplstdm^8uttm$
-  nodeSelector:
-    mygraph/redis: mark
+  nodeSelector: {}
   image:
     repository: redis
     pullPolicy: IfNotPresent
@@ -115,8 +112,7 @@ redis:
     nodePort: 30379
 jenkins:
   enabled: true
-  nodeSelector:
-    mygraph/jenkins: mark
+  nodeSelector: {}
   image:
     repository: jenkins/jenkins
     pullPolicy: IfNotPresent
