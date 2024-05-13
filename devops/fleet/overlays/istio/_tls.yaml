@@ -51,27 +51,3 @@ spec:
   issuerRef:
     name: istio-letsencrypt-issuer
     kind: ClusterIssuer
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: pubyun.renlm.cn
-spec:
-  secretName: pubyun.renlm.cn
-  duration: 2160h
-  renewBefore: 360h
-  subject:
-    organizations:
-      - pubyun.renlm.cn
-  dnsNames:
-    - renlm.cn
-    - www.renlm.cn
-    - redis.renlm.cn
-    - mysql.renlm.cn
-    - amqp.renlm.cn
-    - rabbitmq.renlm.cn
-    - jenkins.renlm.cn
-    - mygraph.renlm.cn
-  issuerRef:
-    name: istio-letsencrypt-issuer
-    kind: ClusterIssuer
