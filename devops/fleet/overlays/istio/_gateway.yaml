@@ -38,4 +38,6 @@ spec:
     hosts:
     - kubernetes.renlm.cn
     tls:
-      mode: PASSTHROUGH
+      mode: MUTUAL
+      credentialName: kube-system/rke2-serving
+      minProtocolVersion: TLSV1_2
