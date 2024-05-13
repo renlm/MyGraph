@@ -32,8 +32,8 @@ spec:
       credentialName: istio-system.renlm.cn
       minProtocolVersion: TLSV1_2
   - port:
-      number: 15443
-      protocol: TLS
+      number: 443
+      protocol: HTTPS
       name: tls
     hosts:
     - kubernetes.renlm.cn
