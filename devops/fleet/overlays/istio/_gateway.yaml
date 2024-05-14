@@ -40,8 +40,8 @@ spec:
       credentialName: istio-system.renlm.cn
       minProtocolVersion: TLSV1_2
   - port:
-      number: 80
+      number: 31400
       protocol: TCP
       name: tcp
     hosts:
-    - mysql.renlm.cn
+    - "*"

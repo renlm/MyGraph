@@ -102,12 +102,12 @@ items:
     name: mygraph-mysql
   spec:
     hosts:
-    - mysql.renlm.cn
+    - "*"
     gateways:
     - istio-system/mygraph-gateway
     tcp:
     - match:
-      - port: 80
+      - port: 31400
       route:
       - weight: 100
         destination:
