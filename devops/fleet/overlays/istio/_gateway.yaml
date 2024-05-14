@@ -52,7 +52,7 @@ items:
       istio: redis-ingressgateway
     servers:
     - port:
-        number: 30379
+        number: 31379
         protocol: TCP
         name: tcp
       hosts:
@@ -67,7 +67,7 @@ items:
       istio: mysql-ingressgateway
     servers:
     - port:
-        number: 30306
+        number: 31306
         protocol: TCP
         name: tcp
       hosts:
@@ -82,7 +82,7 @@ items:
       istio: rabbitmq-ingressgateway
     servers:
     - port:
-        number: 30672
+        number: 31672
         protocol: TCP
         name: tcp
       hosts:
