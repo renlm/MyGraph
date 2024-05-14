@@ -38,7 +38,7 @@ items:
         destination:
           host: istio-kube-apiserver.kube-system.svc.cluster.local
           port:
-            number: 6443
+            number: 443
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
   metadata:
