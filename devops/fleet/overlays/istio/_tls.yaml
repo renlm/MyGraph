@@ -39,6 +39,8 @@ spec:
     organizations:
       - istio-system.renlm.cn
   dnsNames:
+    - renlm.cn
+    - www.renlm.cn
     - redis.renlm.cn
     - mysql.renlm.cn
     - rabbitmq.renlm.cn
