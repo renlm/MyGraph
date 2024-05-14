@@ -1,11 +1,28 @@
 apiVersion: v1
 kind: List
 items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: istio-kube-apiserver
+    namespace: kube-system
+    labels:
+      component: kube-apiserver
+      tier: control-plane
+  spec:
+    type: ClusterIP
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 6443
+    selector:
+      component: kube-apiserver
+      tier: control-plane
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
   metadata:
-    name: kubernetes
-    namespace: default
+    name: istio-kube-apiserver
   spec:
     hosts:
     - kubernetes.renlm.cn
@@ -19,7 +36,7 @@ items:
       route:
       - weight: 100
         destination:
-          host: kubernetes.default.svc.cluster.local
+          host: istio-kube-apiserver.kube-system.svc.cluster.local
           port:
             number: 6443
 - apiVersion: networking.istio.io/v1beta1
