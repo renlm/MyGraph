@@ -107,12 +107,12 @@ items:
     selector:
       istio: redis-ingressgateway
     servers:
-    - port: null
-      number: 30379
-      protocol: TCP
-      name: tcp
-    hosts:
-    - redis.renlm.cn
+    - port:
+        number: 30379
+        protocol: TCP
+        name: tcp
+      hosts:
+      - redis.renlm.cn
 - apiVersion: networking.istio.io/v1beta1
   kind: Gateway
   metadata:
@@ -122,12 +122,12 @@ items:
     selector:
       istio: mysql-ingressgateway
     servers:
-    - port: null
-      number: 30306
-      protocol: TCP
-      name: tcp
-    hosts:
-    - mysql.renlm.cn
+    - port:
+        number: 30306
+        protocol: TCP
+        name: tcp
+      hosts:
+      - mysql.renlm.cn
 - apiVersion: networking.istio.io/v1beta1
   kind: Gateway
   metadata:
@@ -137,9 +137,9 @@ items:
     selector:
       istio: rabbitmq-ingressgateway
     servers:
-    - port: null
-      number: 30672
-      protocol: TCP
-      name: tcp
-    hosts:
-    - rabbitmq.renlm.cn
+    - port:
+        number: 30672
+        protocol: TCP
+        name: tcp
+      hosts:
+      - rabbitmq.renlm.cnn
