@@ -61,6 +61,63 @@ spec:
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
+  name: redis
+spec:
+  hosts:
+  - redis.renlm.cn
+  gateways:
+  - istio-system/mygraph-gateway
+  tcp:
+  - match:
+    - port: 80
+    route:
+    - weight: 100
+      destination:
+        host: mygraph-redis
+        port:
+          number: 6379
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: mysql
+spec:
+  hosts:
+  - mysql.renlm.cn
+  gateways:
+  - istio-system/mygraph-gateway
+  tcp:
+  - match:
+    - port: 80
+    route:
+    - weight: 100
+      destination:
+        host: mygraph-mysql
+        port:
+          number: 3306
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: amqp
+spec:
+  hosts:
+  - amqp.renlm.cn
+  gateways:
+  - istio-system/mygraph-gateway
+  tcp:
+  - match:
+    - port: 80
+    route:
+    - weight: 100
+      destination:
+        host: mygraph-rabbitmq
+        port:
+          number: 5672
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
   name: kubernetes
   namespace: default
 spec:
