@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: networking.istio.io/v1beta1
+  kind: DestinationRule
+  metadata:
+    name: kubernetes
+    namespace: default
+  spec:
+    host: kubernetes.default.svc.cluster.local
+    trafficPolicy:
+      tls:
+        mode: ISTIO_MUTUAL
