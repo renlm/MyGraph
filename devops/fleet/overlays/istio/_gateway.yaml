@@ -142,4 +142,4 @@ items:
         protocol: TCP
         name: tcp
       hosts:
-      - rabbitmq.renlm.cnn
+      - rabbitmq.renlm.cn
