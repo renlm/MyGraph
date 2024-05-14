@@ -20,6 +20,14 @@ spec:
   - port:
       number: 443
       protocol: HTTPS
+      name: tls
+    hosts:
+    - kubernetes.renlm.cn
+    tls:
+      mode: PASSTHROUGH
+  - port:
+      number: 443
+      protocol: HTTPS
       name: https
     hosts:
     - renlm.cn
@@ -39,11 +47,3 @@ spec:
     - redis.renlm.cn
     - mysql.renlm.cn
     - amqp.renlm.cn
-  - port:
-      number: 443
-      protocol: HTTPS
-      name: tls
-    hosts:
-    - kubernetes.renlm.cn
-    tls:
-      mode: PASSTHROUGH

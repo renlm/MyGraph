@@ -4,6 +4,27 @@ items:
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
   metadata:
+    name: kubernetes
+    namespace: default
+  spec:
+    hosts:
+    - kubernetes.renlm.cn
+    gateways:
+    - istio-system/mygraph-gateway
+    tls:
+    - match:
+      - port: 443
+        sniHosts:
+        - kubernetes.renlm.cn
+      route:
+      - weight: 100
+        destination:
+          host: kubernetes.default.svc.cluster.local
+          port:
+            number: 6443
+- apiVersion: networking.istio.io/v1beta1
+  kind: VirtualService
+  metadata:
     name: mygraph
   spec:
     hosts:
@@ -112,24 +133,3 @@ items:
           host: mygraph-rabbitmq
           port:
             number: 5672
-- apiVersion: networking.istio.io/v1beta1
-  kind: VirtualService
-  metadata:
-    name: kubernetes
-    namespace: default
-  spec:
-    hosts:
-    - kubernetes.renlm.cn
-    gateways:
-    - istio-system/mygraph-gateway
-    tls:
-    - match:
-      - port: 443
-        sniHosts:
-        - kubernetes.renlm.cn
-      route:
-      - weight: 100
-        destination:
-          host: kubernetes.default.svc.cluster.local
-          port:
-            number: 6443
