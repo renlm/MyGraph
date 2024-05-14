@@ -41,7 +41,6 @@ spec:
   dnsNames:
     - redis.renlm.cn
     - mysql.renlm.cn
-    - amqp.renlm.cn
     - rabbitmq.renlm.cn
     - jenkins.renlm.cn
     - mygraph.renlm.cn

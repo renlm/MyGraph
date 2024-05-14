@@ -44,4 +44,6 @@ spec:
       protocol: TCP
       name: tcp
     hosts:
-    - "*"
+    - redis.renlm.cn
+    - mysql.renlm.cn
+    - rabbitmq.renlm.cn

@@ -96,13 +96,22 @@ items:
           host: mygraph-rabbitmq
           port:
             number: 15672
+    tcp:
+    - match:
+      - port: 31400
+      route:
+      - weight: 100
+        destination:
+          host: mygraph-rabbitmq
+          port:
+            number: 5672
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
   metadata:
     name: mygraph-mysql
   spec:
     hosts:
-    - "*"
+    - mysql.renlm.cn
     gateways:
     - istio-system/mygraph-gateway
     tcp:
@@ -114,3 +123,21 @@ items:
           host: mygraph-mysql
           port:
             number: 3306
+- apiVersion: networking.istio.io/v1beta1
+  kind: VirtualService
+  metadata:
+    name: mygraph-redis
+  spec:
+    hosts:
+    - redis.renlm.cn
+    gateways:
+    - istio-system/mygraph-gateway
+    tcp:
+    - match:
+      - port: 31400
+      route:
+      - weight: 100
+        destination:
+          host: mygraph-redis
+          port:
+            number: 6379
