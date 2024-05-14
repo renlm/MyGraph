@@ -39,11 +39,3 @@ spec:
       mode: SIMPLE
       credentialName: istio-system.renlm.cn
       minProtocolVersion: TLSV1_2
-  - port:
-      number: 31400
-      protocol: TCP
-      name: tcp
-    hosts:
-    - redis.renlm.cn
-    - mysql.renlm.cn
-    - amqp.renlm.cn
