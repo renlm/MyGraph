@@ -40,8 +40,8 @@ spec:
     - mysql.renlm.cn
     - amqp.renlm.cn
   - port:
-      number: 15443
-      protocol: TLS
+      number: 443
+      protocol: HTTPS
       name: tls
     hosts:
     - kubernetes.renlm.cn

@@ -124,7 +124,7 @@ items:
     - istio-system/mygraph-gateway
     tls:
     - match:
-      - port: 15443
+      - port: 443
         sniHosts:
         - kubernetes.renlm.cn
       route:
