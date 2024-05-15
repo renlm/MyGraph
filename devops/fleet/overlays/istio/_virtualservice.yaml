@@ -91,8 +91,8 @@ items:
     - match:
       - port: 80
       - port: 443
-      gateways:
-      - istio-system/mygraph-gateway
+      - gateways:
+        - istio-system/mygraph-gateway
       route:
       - weight: 100
         destination:
@@ -102,8 +102,8 @@ items:
     tcp:
     - match:
       - port: 31400
-      gateways:
-      - istio-system/mygraph-rabbitmq-gateway
+      - gateways:
+        - istio-system/mygraph-rabbitmq-gateway
       route:
       - weight: 100
         destination:
