@@ -5,7 +5,6 @@ items:
   kind: Gateway
   metadata:
     name: mygraph-gateway
-    namespace: istio-system
   spec:
     selector:
       istio: ingressgateway
@@ -40,7 +39,7 @@ items:
       - mygraph.renlm.cn
       tls:
         mode: SIMPLE
-        credentialName: istio-system.renlm.cn
+        credentialName: pubyun.renlm.cn
         minProtocolVersion: TLSV1_2
     - port:
         number: 6379

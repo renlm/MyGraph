@@ -27,7 +27,7 @@ items:
     hosts:
     - kubernetes.renlm.cn
     gateways:
-    - istio-system/mygraph-gateway
+    - mygraph-gateway
     tls:
     - match:
       - port: 443
@@ -47,7 +47,7 @@ items:
     hosts:
     - mygraph.renlm.cn
     gateways:
-    - istio-system/mygraph-gateway
+    - mygraph-gateway
     http:
     - match:
       - port: 80
@@ -66,7 +66,7 @@ items:
     hosts:
     - jenkins.renlm.cn
     gateways:
-    - istio-system/mygraph-gateway
+    - mygraph-gateway
     http:
     - match:
       - port: 80
@@ -85,7 +85,7 @@ items:
     hosts:
     - rabbitmq.renlm.cn
     gateways:
-    - istio-system/mygraph-gateway
+    - mygraph-gateway
     http:
     - match:
       - port: 80
@@ -113,7 +113,7 @@ items:
     hosts:
     - mysql.renlm.cn
     gateways:
-    - istio-system/mygraph-gateway
+    - mygraph-gateway
     tcp:
     - match:
       - port: 3306
@@ -131,7 +131,7 @@ items:
     hosts:
     - redis.renlm.cn
     gateways:
-    - istio-system/mygraph-gateway
+    - mygraph-gateway
     tcp:
     - match:
       - port: 6379
