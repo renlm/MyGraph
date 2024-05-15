@@ -80,8 +80,8 @@ data:
       data:
         redis:
           database: 0
-          host: renlm.cn
-          port: 30379
+          host: redis.renlm.cn
+          port: 31379
           password: PWD@20xxKplstdm^8uttm$
           timeout: 10s
           lettuce:
@@ -92,8 +92,8 @@ data:
               minIdle: 5
       rabbitmq:
         virtual-host: /mygraph
-        host: renlm.cn
-        port: 30672
+        host: rabbitmq.renlm.cn
+        port: 31672
         username: mygraph
         password: PWD@20xxKplstdm^8uttm$
       datasource:
@@ -102,7 +102,7 @@ data:
           strict: true
           datasource:
             master:
-              url: jdbc:mysql://renlm.cn:30306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+              url: jdbc:mysql://mysql.renlm.cn:31306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
               username: mygraph
               password: PWD@20xxKplstdm^8uttm$
               driver-class-name: com.mysql.cj.jdbc.Driver
