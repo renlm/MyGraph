@@ -42,47 +42,20 @@ items:
         mode: SIMPLE
         credentialName: istio-system.renlm.cn
         minProtocolVersion: TLSV1_2
-- apiVersion: networking.istio.io/v1beta1
-  kind: Gateway
-  metadata:
-    name: mygraph-redis-gateway
-    namespace: istio-system
-  spec:
-    selector:
-      mygraph/ingressgateway: redis
-    servers:
     - port:
-        number: 31400
+        number: 6379
         protocol: TCP
         name: tcp
       hosts:
       - redis.renlm.cn
-- apiVersion: networking.istio.io/v1beta1
-  kind: Gateway
-  metadata:
-    name: mygraph-mysql-gateway
-    namespace: istio-system
-  spec:
-    selector:
-      mygraph/ingressgateway: mysql
-    servers:
     - port:
-        number: 31400
+        number: 3306
         protocol: TCP
         name: tcp
       hosts:
       - mysql.renlm.cn
-- apiVersion: networking.istio.io/v1beta1
-  kind: Gateway
-  metadata:
-    name: mygraph-rabbitmq-gateway
-    namespace: istio-system
-  spec:
-    selector:
-      mygraph/ingressgateway: rabbitmq
-    servers:
     - port:
-        number: 31400
+        number: 5672
         protocol: TCP
         name: tcp
       hosts:

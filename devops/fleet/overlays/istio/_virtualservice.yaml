@@ -86,13 +86,10 @@ items:
     - rabbitmq.renlm.cn
     gateways:
     - istio-system/mygraph-gateway
-    - istio-system/mygraph-rabbitmq-gateway
     http:
     - match:
       - port: 80
       - port: 443
-      - gateways:
-        - istio-system/mygraph-gateway
       route:
       - weight: 100
         destination:
@@ -101,9 +98,7 @@ items:
             number: 15672
     tcp:
     - match:
-      - port: 31400
-      - gateways:
-        - istio-system/mygraph-rabbitmq-gateway
+      - port: 5672
       route:
       - weight: 100
         destination:
@@ -118,10 +113,10 @@ items:
     hosts:
     - mysql.renlm.cn
     gateways:
-    - istio-system/mygraph-mysql-gateway
+    - istio-system/mygraph-gateway
     tcp:
     - match:
-      - port: 31400
+      - port: 3306
       route:
       - weight: 100
         destination:
@@ -136,10 +131,10 @@ items:
     hosts:
     - redis.renlm.cn
     gateways:
-    - istio-system/mygraph-redis-gateway
+    - istio-system/mygraph-gateway
     tcp:
     - match:
-      - port: 31400
+      - port: 6379
       route:
       - weight: 100
         destination:
