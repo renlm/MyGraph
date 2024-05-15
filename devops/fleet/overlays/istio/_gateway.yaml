@@ -45,18 +45,18 @@ items:
     - port:
         number: 6379
         protocol: TCP
-        name: tcp
+        name: redis
       hosts:
       - redis.renlm.cn
     - port:
         number: 3306
         protocol: TCP
-        name: tcp
+        name: mysql
       hosts:
       - mysql.renlm.cn
     - port:
         number: 5672
         protocol: TCP
-        name: tcp
+        name: amqp
       hosts:
       - rabbitmq.renlm.cn
