@@ -52,7 +52,7 @@ items:
       mygraph/ingressgateway: redis
     servers:
     - port:
-        number: 31379
+        number: 31400
         protocol: TCP
         name: tcp
       hosts:
@@ -67,7 +67,7 @@ items:
       mygraph/ingressgateway: mysql
     servers:
     - port:
-        number: 31306
+        number: 31400
         protocol: TCP
         name: tcp
       hosts:
@@ -82,7 +82,7 @@ items:
       mygraph/ingressgateway: rabbitmq
     servers:
     - port:
-        number: 31672
+        number: 31400
         protocol: TCP
         name: tcp
       hosts:

@@ -101,7 +101,7 @@ items:
             number: 15672
     tcp:
     - match:
-      - port: 31672
+      - port: 31400
       gateways:
       - istio-system/mygraph-rabbitmq-gateway
       route:
@@ -121,7 +121,7 @@ items:
     - istio-system/mygraph-mysql-gateway
     tcp:
     - match:
-      - port: 31306
+      - port: 31400
       route:
       - weight: 100
         destination:
@@ -139,7 +139,7 @@ items:
     - istio-system/mygraph-redis-gateway
     tcp:
     - match:
-      - port: 31379
+      - port: 31400
       route:
       - weight: 100
         destination:
