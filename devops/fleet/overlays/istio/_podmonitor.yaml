@@ -1,18 +1,37 @@
-apiVersion: monitoring.coreos.com/v1
-kind: PodMonitor
-metadata:
-  name: jaeger-pod-monitor
-  namespace: istio-system
-  labels:
-    app: jaeger
-spec:
-  podMetricsEndpoints:
-  - interval: 5s
-    path: /metrics
-    port: admin-http
-  namespaceSelector:
-    matchNames:
-    - istio-system
-  selector:
-    matchLabels:
+apiVersion: v1
+kind: List
+items:
+- apiVersion: monitoring.coreos.com/v1
+  kind: PodMonitor
+  metadata:
+    name: jaeger-metrics-pod-monitor
+    namespace: istio-system
+    labels:
       app: jaeger
+      app.kubernetes.io/name: tracing
+  spec:
+    podMetricsEndpoints:
+    - interval: 5s
+      path: /metrics
+      port: admin-http
+    namespaceSelector:
+      matchNames:
+      - istio-system
+    selector:
+      matchLabels:
+        app: jaeger
+        app.kubernetes.io/name: tracing
+- apiVersion: monitoring.coreos.com/v1
+  kind: PodMonitor
+  metadata:
+    name: mygraph-metrics-pod-monitor
+    labels:
+      app: mygraph
+  spec:
+    podMetricsEndpoints:
+    - interval: 5s
+      path: /metrics
+      port: tcp-prometheus
+    selector:
+      matchLabels:
+        app: mygraph
