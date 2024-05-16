@@ -2,16 +2,15 @@ apiVersion: v1
 kind: List
 items:
 - apiVersion: monitoring.coreos.com/v1
-  kind: PodMonitor
+  kind: ServiceMonitor
   metadata:
-    name: jaeger-metrics-pod-monitor
+    name: jaeger-component-monitor
     namespace: istio-system
     labels:
-      app: jaeger
-      app.kubernetes.io/name: tracing
+      monitoring: jaeger-components
   spec:
     podMetricsEndpoints:
-    - interval: 5s
+    - interval: 15s
       path: /metrics
       port: admin-http
     namespaceSelector:
@@ -19,5 +18,4 @@ items:
       - istio-system
     selector:
       matchLabels:
-        app: jaeger
-        app.kubernetes.io/name: tracing
+        app.kubernetes.io/managed-by: jaeger-operator
