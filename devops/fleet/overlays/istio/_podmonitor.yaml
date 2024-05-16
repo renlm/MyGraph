@@ -21,17 +21,3 @@ items:
       matchLabels:
         app: jaeger
         app.kubernetes.io/name: tracing
-- apiVersion: monitoring.coreos.com/v1
-  kind: PodMonitor
-  metadata:
-    name: mygraph-metrics-pod-monitor
-    labels:
-      app: mygraph
-  spec:
-    podMetricsEndpoints:
-    - interval: 5s
-      path: /actuator/metrics
-      port: tcp-prometheus
-    selector:
-      matchLabels:
-        app: mygraph
