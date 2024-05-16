@@ -30,7 +30,7 @@ items:
   spec:
     podMetricsEndpoints:
     - interval: 5s
-      path: /metrics
+      path: /actuator/metrics
       port: tcp-prometheus
     selector:
       matchLabels:
