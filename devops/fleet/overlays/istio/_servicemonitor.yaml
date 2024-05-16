@@ -9,7 +9,7 @@ items:
     labels:
       monitoring: jaeger-components
   spec:
-    podMetricsEndpoints:
+    endpoints:
     - interval: 15s
       path: /metrics
       port: admin-http
@@ -17,5 +17,8 @@ items:
       matchNames:
       - istio-system
     selector:
-      matchLabels:
-        app.kubernetes.io/managed-by: jaeger-operator
+      matchExpressions:
+      - key: app.kubernetes.io/managed-by
+        operator: In
+        values:
+        - jaeger-operator
