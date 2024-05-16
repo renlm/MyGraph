@@ -3,3 +3,4 @@ resources:
 - _tls.yaml
 - _virtualservice.yaml
 - _podmonitor.yaml
+- _telemetry.yaml
