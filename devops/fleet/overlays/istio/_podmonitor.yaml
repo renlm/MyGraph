@@ -4,10 +4,11 @@ metadata:
   name: jaeger-pod-monitor
   namespace: istio-system
   labels:
-    release: prometheus
+    app: jaeger
 spec:
   podMetricsEndpoints:
-  - path: /metrics
+  - interval: 5s
+    path: /metrics
     port: admin-http
   namespaceSelector:
     matchNames:
