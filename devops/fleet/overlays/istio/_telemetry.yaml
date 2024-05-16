@@ -7,7 +7,7 @@ spec:
   tracing:
   - providers:
     - name: otel-tracing
-    randomSamplingPercentage: 25
+    randomSamplingPercentage: 1
     customTags:
       tracing:
         literal:
