@@ -2,14 +2,14 @@ apiVersion: v1
 kind: List
 items:
 - apiVersion: monitoring.coreos.com/v1
-  kind: ServiceMonitor
+  kind: PodMonitor
   metadata:
     name: jaeger-component-monitor
     namespace: istio-system
     labels:
       monitoring: jaeger-components
   spec:
-    endpoints:
+    podMetricsEndpoints:
     - interval: 15s
       path: /metrics
       port: admin-http
