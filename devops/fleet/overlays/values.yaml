@@ -1,5 +1,3 @@
-env: prod
-host: mygraph.renlm.cn
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/rlm/mygraph
   pullPolicy: Always
@@ -18,6 +16,18 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 2
   targetCPUUtilizationPercentage: 95
+configmap:
+  enabled: true
+redis:
+  enabled: true
+  requirepass: PWD@20xxKplstdm^8uttm$
+  image:
+    repository: redis
+    pullPolicy: IfNotPresent
+    tag: latest
+  service:
+    port: 6379
+    nodePort: 30379
 mysql:
   enabled: true
   mini: false
@@ -54,16 +64,6 @@ rabbitmq:
     storage: 5Gi
     path: /nfs_share/rabbitmq
     server: 192.168.16.3
-redis:
-  enabled: true
-  requirepass: PWD@20xxKplstdm^8uttm$
-  image:
-    repository: redis
-    pullPolicy: IfNotPresent
-    tag: latest
-  service:
-    port: 6379
-    nodePort: 30379
 jenkins:
   enabled: true
   image:
