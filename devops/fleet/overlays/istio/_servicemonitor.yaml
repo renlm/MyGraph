@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: monitoring.coreos.com/v1
+  kind: ServiceMonitor
+  metadata:
+    name: mygraph-component-monitor
+    labels:
+      monitoring: mygraph-components
+  spec:
+    endpoints:
+    - interval: 15s
+      port: tcp-prometheus
+      path: /actuator/prometheus
+    selector:
+      matchExpressions:
+      - key: app
+        operator: In
+        values:
+        - mygraph
