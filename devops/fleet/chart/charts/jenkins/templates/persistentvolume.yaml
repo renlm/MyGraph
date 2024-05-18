@@ -6,7 +6,7 @@ metadata:
   name: {{ $fullName }}-pv
   labels:
     {{- include "jenkins.labels" . | nindent 4 }}
-spec: 
+spec:
   volumeMode: Filesystem
   storageClassName: {{ $fullName }}-sc
   persistentVolumeReclaimPolicy: Retain
