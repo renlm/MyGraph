@@ -3,9 +3,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Chart.Name }}-configmap
+  name: {{ $fullName }}-configmap
 data:
-  {{ .Chart.Name | nindent 2 }}-{{ .Values.env }}.yaml: |-
+  {{ $fullName | nindent 2 }}-{{ .Values.env }}.yaml: |-
     server:
       port: {{ .Values.service.port }}
       shutdown: graceful
