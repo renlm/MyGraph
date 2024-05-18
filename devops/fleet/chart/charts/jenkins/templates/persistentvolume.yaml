@@ -2,19 +2,19 @@
 {{- $fullName := include "jenkins.fullname" . -}}
 apiVersion: v1
 kind: PersistentVolume
-metadata:
+metadata: 
   name: {{ $fullName }}-pv
   labels:
     {{- include "jenkins.labels" . | nindent 4 }}
-spec:
+spec: 
   volumeMode: Filesystem
   storageClassName: {{ $fullName }}-sc
   persistentVolumeReclaimPolicy: Retain
-  capacity:
+  capacity: 
     storage: {{ .Values.nfs.storage }}
-  accessModes:
+  accessModes: 
     - ReadWriteOnce
-  nfs:
+  nfs: 
     path: {{ .Values.nfs.path }}
     server: {{ .Values.nfs.server }}
 {{- end -}}
