@@ -23,6 +23,8 @@ service:
   type: ClusterIP
   port: 8080
 actuator:
+  port: 9000
+  portName: tcp-actuator
   health:
     liveness:
       initialDelaySeconds: 3
@@ -48,14 +50,6 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80
-# 子Chart配置
-prometheus:
-  enabled: false
-  port: 9000
-  portName: tcp-prometheus
-  selector:
-  - name: prometheus
-    value: monitor
 mysql:
   enabled: true
   mini: true

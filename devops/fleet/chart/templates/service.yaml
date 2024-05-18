@@ -4,9 +4,6 @@ metadata:
   name: {{ include "mygraph.fullname" . }}
   labels:
     {{- include "mygraph.labels" . | nindent 4 }}
-    {{- range .Values.prometheus.selector }}
-      {{ .name | nindent 4 }}: {{ .value }}
-    {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -14,9 +11,9 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
-    - port: {{ .Values.prometheus.port }}
-      targetPort: {{ .Values.prometheus.port }}
+    - port: {{ .Values.actuator.port }}
+      targetPort: {{ .Values.actuator.port }}
       protocol: TCP
-      name: {{ .Values.prometheus.portName }}
+      name: {{ .Values.actuator.portName }}
   selector:
     {{- include "mygraph.selectorLabels" . | nindent 4 }}

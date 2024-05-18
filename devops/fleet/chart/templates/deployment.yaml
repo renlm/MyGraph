@@ -53,13 +53,13 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-            - name: {{ .Values.prometheus.portName }}
-              containerPort: {{ .Values.prometheus.port }}
+            - name: {{ .Values.actuator.portName }}
+              containerPort: {{ .Values.actuator.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
-              port: {{ .Values.prometheus.portName }}
+              port: {{ .Values.actuator.portName }}
             initialDelaySeconds: {{ .Values.actuator.health.liveness.initialDelaySeconds }}
             periodSeconds: {{ .Values.actuator.health.liveness.periodSeconds }}
             successThreshold: {{ .Values.actuator.health.liveness.successThreshold }}
@@ -68,7 +68,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
-              port: {{ .Values.prometheus.portName }}
+              port: {{ .Values.actuator.portName }}
             initialDelaySeconds: {{ .Values.actuator.health.readiness.initialDelaySeconds }}
             periodSeconds: {{ .Values.actuator.health.readiness.periodSeconds }}
             successThreshold: {{ .Values.actuator.health.readiness.successThreshold }}
