@@ -1,0 +1,16 @@
+{{- if .Values.nfs.enabled -}}
+{{- $fullName := include "rabbitmq.fullname" . -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $fullName }}-pvc
+  labels:
+    {{- include "rabbitmq.labels" . | nindent 4 }}
+spec:
+  storageClassName: {{ $fullName }}-sc
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.nfs.storage }}
+{{- end -}}
