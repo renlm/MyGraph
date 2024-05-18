@@ -10,7 +10,7 @@ items:
   spec:
     endpoints:
     - interval: 15s
-      port: tcp-prometheus
+      port: tcp-actuator
       path: /actuator/prometheus
     selector:
       matchExpressions:
