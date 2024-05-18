@@ -16,7 +16,7 @@ image:
 serviceAccount:
   create: true
   annotations: {}
-  name: mygraph-service-account
+  name: mygraph-sa
 ingress:
   enabled: false
 service:
@@ -49,13 +49,13 @@ autoscaling:
   enabled: false
   minReplicas: 2
   maxReplicas: 3
-  targetCPUUtilizationPercentage: 80
+  targetCPUUtilizationPercentage: 95
 mysql:
   enabled: true
-  mini: true
+  mini: false
   database: mygraph
   user: mygraph
-  password: PWD@20xx$
+  password: PWD@20xxKplstdm^8uttm$
   nodeSelector: {}
   image:
     repository: mysql
@@ -74,7 +74,7 @@ rabbitmq:
   enabled: true
   defaultVhost: /mygraph
   defaultUser: mygraph
-  defaultPass: PWD@20xx$
+  defaultPass: PWD@20xxKplstdm^8uttm$
   nodeSelector: {}
   image:
     repository: rabbitmq
@@ -94,7 +94,7 @@ rabbitmq:
     server: 192.168.16.3
 redis:
   enabled: true
-  requirepass: PWD@20xx$
+  requirepass: PWD@20xxKplstdm^8uttm$
   nodeSelector: {}
   image:
     repository: redis
