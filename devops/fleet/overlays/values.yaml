@@ -1,9 +1,40 @@
+env: prod
+host: mygraph.renlm.cn
+replicaCount: 1
+nodeSelector: {}
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+tolerations: []
+affinity: {}
+imagePullSecrets: []
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/rlm/mygraph
   pullPolicy: Always
   tag: latest
+serviceAccount:
+  create: true
+  annotations: {}
+  name: mygraph-service-account
+ingress:
+  enabled: false
 service:
+  type: ClusterIP
   port: 8080
+actuator:
+  health:
+    liveness:
+      initialDelaySeconds: 3
+      periodSeconds: 10
+      successThreshold: 1
+      failureThreshold: 20
+      timeoutSeconds: 1
+    readiness:
+      initialDelaySeconds: 3
+      periodSeconds: 10
+      successThreshold: 1
+      failureThreshold: 20
+      timeoutSeconds: 1
 resources:
   limits:
     memory: 4Gi
@@ -12,33 +43,33 @@ resources:
     memory: 500Mi
     cpu: 200m
 autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 2
-  targetCPUUtilizationPercentage: 95
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
 configmap:
   enabled: true
-redis:
+# 子Chart配置
+prometheus:
   enabled: true
-  requirepass: PWD@20xxKplstdm^8uttm$
-  image:
-    repository: redis
-    pullPolicy: IfNotPresent
-    tag: latest
-  service:
-    port: 6379
-    nodePort: 30379
+  port: 9000
+  portName: tcp-prometheus
+  selector:
+  - name: prometheus
+    value: monitor
 mysql:
   enabled: true
-  mini: false
+  mini: true
   database: mygraph
   user: mygraph
   password: PWD@20xxKplstdm^8uttm$
+  nodeSelector: {}
   image:
     repository: mysql
     pullPolicy: IfNotPresent
     tag: 8.0.31
   service:
+    type: NodePort
     port: 3306
     nodePort: 30306
   nfs:
@@ -51,11 +82,15 @@ rabbitmq:
   defaultVhost: /mygraph
   defaultUser: mygraph
   defaultPass: PWD@20xxKplstdm^8uttm$
+  nodeSelector: {}
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
     tag: management
+  ingress:
+    enabled: false
   service:
+    type: NodePort
     port: 15672
     amqpPort: 5672
     amqpNodePort: 30672
@@ -64,12 +99,27 @@ rabbitmq:
     storage: 5Gi
     path: /nfs_share/rabbitmq
     server: 192.168.16.3
+redis:
+  enabled: true
+  requirepass: PWD@20xxKplstdm^8uttm$
+  nodeSelector: {}
+  image:
+    repository: redis
+    pullPolicy: IfNotPresent
+    tag: latest
+  service:
+    type: NodePort
+    port: 6379
+    nodePort: 30379
 jenkins:
   enabled: true
+  nodeSelector: {}
   image:
     repository: jenkins/jenkins
     pullPolicy: IfNotPresent
     tag: lts-jdk17
+  ingress:
+    enabled: false
   nfs:
     enabled: true
     storage: 20Gi
