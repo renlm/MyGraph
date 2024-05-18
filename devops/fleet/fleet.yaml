@@ -1,7 +1,7 @@
 # https://fleet.rancher.io/ref-fleet-yaml
 # https://github.com/rancher/fleet-examples
 helm:
-  chart: ./charts
+  chart: ./charts/mygraph
   releaseName: mygraph
   version: 1.0.1
 defaultNamespace: renlm
