@@ -1,0 +1,178 @@
+env: dev
+initDb: true
+host: mygraph.renlm.cn
+replicaCount: 1
+nodeSelector: {}
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+tolerations: []
+affinity: {}
+imagePullSecrets: []
+image:
+  repository: registry.cn-hangzhou.aliyuncs.com/rlm/mygraph
+  pullPolicy: Always
+  tag: latest
+serviceAccount:
+  create: true
+  annotations: {}
+  name: mygraph-service-account
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "512m"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "128k"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-next-upstream: "off"
+    nginx.ingress.kubernetes.io/server-snippet: |-
+      sendfile on;
+      tcp_nopush on;
+      tcp_nodelay on;
+      proxy_set_header Host $http_host;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Forwarded-Port $server_port;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      gzip on;
+      gzip_vary on;
+      gzip_comp_level 5;
+      gzip_min_length 1k;
+      gzip_disable "MSIE [1-6]\.";
+      gzip_types text/plain application/javascript application/x-javascript text/javascript text/xml text/css;
+  hosts:
+  - host: mygraph.renlm.cn
+    paths:
+    - path: /
+      pathType: Prefix
+  tls:
+  - secretName: pubyun.renlm.cn
+    hosts:
+    - mygraph.renlm.cn
+service:
+  type: ClusterIP
+  port: 8080
+actuator:
+  health:
+    liveness:
+      initialDelaySeconds: 3
+      periodSeconds: 10
+      successThreshold: 1
+      failureThreshold: 20
+      timeoutSeconds: 1
+    readiness:
+      initialDelaySeconds: 3
+      periodSeconds: 10
+      successThreshold: 1
+      failureThreshold: 20
+      timeoutSeconds: 1
+resources:
+  limits:
+    memory: 4Gi
+    cpu: 2
+  requests:
+    memory: 500Mi
+    cpu: 200m
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+# 子Chart配置
+prometheus:
+  enabled: false
+  port: 9000
+  portName: tcp-prometheus
+  selector:
+  - name: prometheus
+    value: monitor
+mysql:
+  enabled: true
+  mini: true
+  database: mygraph
+  user: mygraph
+  password: PWD@20xx$
+  nodeSelector: {}
+  image:
+    repository: mysql
+    pullPolicy: IfNotPresent
+    tag: 8.0.31
+  service:
+    type: NodePort
+    port: 3306
+    nodePort: 30306
+  nfs:
+    enabled: false
+    storage: 20Gi
+    path: /nfs_share/mysql
+    server: 192.168.16.3
+rabbitmq:
+  enabled: true
+  defaultVhost: /mygraph
+  defaultUser: mygraph
+  defaultPass: PWD@20xx$
+  nodeSelector: {}
+  image:
+    repository: rabbitmq
+    pullPolicy: IfNotPresent
+    tag: management
+  ingress:
+    enabled: true
+    annotations: {}
+    hosts:
+    - host: rabbitmq.renlm.cn
+      paths:
+      - path: /
+        pathType: Prefix
+    tls:
+    - secretName: pubyun.renlm.cn
+      hosts:
+      - rabbitmq.renlm.cn
+  service:
+    type: NodePort
+    port: 15672
+    amqpPort: 5672
+    amqpNodePort: 30672
+  nfs:
+    enabled: false
+    storage: 5Gi
+    path: /nfs_share/rabbitmq
+    server: 192.168.16.3
+redis:
+  enabled: true
+  requirepass: PWD@20xx$
+  nodeSelector: {}
+  image:
+    repository: redis
+    pullPolicy: IfNotPresent
+    tag: latest
+  service:
+    type: NodePort
+    port: 6379
+    nodePort: 30379
+jenkins:
+  enabled: false
+  nodeSelector: {}
+  image:
+    repository: jenkins/jenkins
+    pullPolicy: IfNotPresent
+    tag: lts-jdk17
+  ingress:
+    enabled: true
+    annotations: {}
+    hosts:
+    - host: jenkins.renlm.cn
+      paths:
+      - path: /
+        pathType: Prefix
+    tls:
+    - secretName: pubyun.renlm.cn
+      hosts:
+      - jenkins.renlm.cn
+  nfs:
+    enabled: false
+    storage: 20Gi
+    path: /nfs_share/jenkins
+    server: 192.168.16.3
