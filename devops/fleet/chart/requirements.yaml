@@ -1,13 +1,13 @@
 dependencies:
 - condition: redis.enabled
   name: redis
-  repository: file://../redis
+  repository: file://./charts/redis
 - condition: mysql.enabled
   name: mysql
-  repository: file://../mysql
+  repository: file://./charts/mysql
 - condition: rabbitmq.enabled
   name: rabbitmq
-  repository: file://../rabbitmq
+  repository: file://./charts/rabbitmq
 - condition: jenkins.enabled
   name: jenkins
-  repository: file://../jenkins
+  repository: file://./charts/jenkins
