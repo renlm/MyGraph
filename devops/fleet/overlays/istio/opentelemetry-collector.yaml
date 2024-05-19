@@ -1,0 +1,80 @@
+# https://github.com/open-telemetry/opentelemetry-operator/tree/main/cmd/otel-allocator#prometheuscr-specifics
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: opentelemetry-targetallocator-sa
+    namespace: observability
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRole
+  metadata:
+    name: opentelemetry-targetallocator-cr
+  rules:
+  - apiGroups:
+    - monitoring.coreos.com
+    resources:
+    - servicemonitors
+    - podmonitors
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get", "list", "watch"]
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    name: opentelemetry-targetallocator-crb
+    namespace: observability
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: opentelemetry-targetallocator-cr
+  subjects:
+  - kind: ServiceAccount
+    name: opentelemetry-targetallocator-sa
+    namespace: observability
+- apiVersion: opentelemetry.io/v1alpha1
+  kind: OpenTelemetryCollector
+  metadata:
+    name: opentelemetry-collector
+    namespace: observability
+  spec:
+    mode: statefulset
+    targetAllocator:
+      enabled: true
+      serviceAccount: opentelemetry-targetallocator-sa
+      prometheusCR:
+        enabled: true
+    config: |-
+      receivers:
+        otlp:
+          protocols:
+            grpc: {}
+            http: {}
+        prometheus:
+          target_allocator:
+            endpoint: http://opentelemetry-collector-targetallocator-service
+            interval: 30s
+            collector_id: ${POD_NAME}
+      exporters:
+        jaeger:
+          endpoint: tracing-collector.observability.svc.cluster.local:14250
+          tls:
+            insecure: true
+          sending_queue:
+            enabled: true
+          retry_on_failure:
+            enabled: true
+      service:
+        pipelines:
+          metrics:
+            receivers:
+            - prometheus
+            exporters:
+            - jaeger
+          traces:
+            receivers:
+            - otlp
+            exporters:
+            - jaeger

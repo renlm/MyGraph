@@ -5,3 +5,4 @@ resources:
 - _podmonitor.yaml
 - _servicemonitor.yaml
 - _telemetry.yaml
+- opentelemetry-collector.yaml
