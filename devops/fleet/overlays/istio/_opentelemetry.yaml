@@ -78,7 +78,7 @@ items:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
       extensions:
         health_check:
-          port: 131333
+          port: 13133
       service:
         extensions:
         - health_check
