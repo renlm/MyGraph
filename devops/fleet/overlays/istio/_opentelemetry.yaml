@@ -65,14 +65,22 @@ items:
         otlp:
           protocols:
             grpc:
+              endpoint: 0.0.0.0:4317
             http:
+              endpoint: 0.0.0.0:4318
         prometheus:
           target_allocator:
             endpoint: http://otel-targetallocator-service
             interval: 30s
             collector_id: ${POD_NAME}
       processors:
+        memory_limiter:
+          check_interval: 1s
+          limit_percentage: 75
+          spike_limit_percentage: 15
         batch:
+          send_batch_size: 100
+          timeout: 10s
       exporters:
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
@@ -86,12 +94,29 @@ items:
           metrics:
             receivers:
             - prometheus
+            processors:
+            - memory_limiter
+            - batch
             exporters:
             - zipkin
           traces:
             receivers:
             - otlp
             processors:
+            - memory_limiter
             - batch
             exporters:
             - zipkin
+- apiVersion: opentelemetry.io/v1alpha1
+  kind: Instrumentation
+  metadata:
+    name: java-instrumentation
+  spec:
+    propagators:
+      - tracecontext
+      - baggage
+      - b3
+    sampler:
+      type: always_on
+    java:
+      image: otel/autoinstrumentation-java:latest
