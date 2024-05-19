@@ -9,6 +9,7 @@ items:
     name: otel-sidecar
   spec:
     mode: sidecar
+    image: otel/opentelemetry-operator:latest
     config: |-
       receivers:
         jaeger:
