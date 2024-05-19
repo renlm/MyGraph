@@ -15,7 +15,6 @@ targetCustomizations:
     valuesFiles:
     - overlays/values.yaml
     values:
-      appVersion: v1.0.1
       env: prod
       initDb: true
       host: mygraph.renlm.cn
