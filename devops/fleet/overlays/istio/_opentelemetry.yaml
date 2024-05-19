@@ -38,7 +38,7 @@ items:
             processors:
             - memory_limiter
             - batch
-            exporters: 
+            exporters:
             - debug
             - zipkin
 - apiVersion: opentelemetry.io/v1alpha1
