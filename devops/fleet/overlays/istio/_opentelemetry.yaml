@@ -13,6 +13,7 @@ items:
     name: otel
     namespace: observability
   spec:
+    mode: statefulset
     image: otel/opentelemetry-collector:0.99.0
     config: |-
       receivers:
