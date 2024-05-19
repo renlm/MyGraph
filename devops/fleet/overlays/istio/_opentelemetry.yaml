@@ -91,4 +91,4 @@ items:
       image: otel/autoinstrumentation-java:latest
       env:
       - name: OTEL_METRICS_EXPORTER
-        value: otlp
+        value: none
