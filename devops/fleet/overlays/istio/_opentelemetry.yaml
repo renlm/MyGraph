@@ -24,7 +24,6 @@ items:
   kind: OpenTelemetryCollector
   metadata:
     name: otel-sidecar
-    namespace: observability
   spec:
     mode: sidecar
     config: |-
