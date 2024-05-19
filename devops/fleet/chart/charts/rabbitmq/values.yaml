@@ -5,7 +5,7 @@ nodeSelector: {}
 image:
   repository: rabbitmq
   pullPolicy: IfNotPresent
-  tag: management
+  tag: 3.13.2-management
 serviceAccount:
   create: false
 ingress:

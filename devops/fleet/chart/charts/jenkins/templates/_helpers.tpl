@@ -47,9 +47,7 @@ Selector labels
 */}}
 {{- define "jenkins.selectorLabels" -}}
 app: {{ include "jenkins.fullname" . }}
-{{- if .Chart.Version }}
-version: {{ .Chart.Version | quote }}
-{{- end }}
+version: {{ default .Chart.AppVersion .Values.appVersion | quote }}
 app.kubernetes.io/name: {{ include "jenkins.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

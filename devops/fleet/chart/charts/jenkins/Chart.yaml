@@ -1,4 +1,4 @@
 apiVersion: v2
-appVersion: 1.0.1
 name: jenkins
 version: 0.1.0
+appVersion: 2.452.1

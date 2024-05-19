@@ -47,9 +47,7 @@ Selector labels
 */}}
 {{- define "redis.selectorLabels" -}}
 app: {{ include "redis.fullname" . }}
-{{- if .Chart.Version }}
-version: {{ .Chart.Version | quote }}
-{{- end }}
+version: {{ default .Chart.AppVersion .Values.appVersion | quote }}
 app.kubernetes.io/name: {{ include "redis.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

@@ -47,9 +47,7 @@ Selector labels
 */}}
 {{- define "mysql.selectorLabels" -}}
 app: {{ include "mysql.fullname" . }}
-{{- if .Chart.Version }}
-version: {{ .Chart.Version | quote }}
-{{- end }}
+version: {{ default .Chart.AppVersion .Values.appVersion | quote }}
 app.kubernetes.io/name: {{ include "mysql.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}

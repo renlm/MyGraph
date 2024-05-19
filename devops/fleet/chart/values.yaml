@@ -1,4 +1,4 @@
-appVersion: 1.0.1
+appVersion: v1.0.1
 env: dev
 initDb: true
 host: mygraph.renlm.cn

@@ -3,7 +3,7 @@ nodeSelector: {}
 image:
   repository: redis
   pullPolicy: IfNotPresent
-  tag: latest
+  tag: 7.2.4
 serviceAccount:
   create: false
 ingress:
