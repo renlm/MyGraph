@@ -24,10 +24,6 @@ items:
             http: {}
       processors:
         batch: {}
-        memory_limiter:
-          check_interval: 5s
-          limit_mib: 4000
-          spike_limit_mib: 50
       exporters:
         logging:
           verbosity: detailed
@@ -40,15 +36,14 @@ items:
         pipelines:
           metrics:
             receivers: [otlp]
-            processors: [memory_limiter,batch]
             exporters: [prometheus]
           traces:
             receivers: [otlp]
-            processors: [memory_limiter,batch]
+            processors: [batch]
             exporters: [zipkin]
           logs:
             receivers: [otlp]
-            processors: [memory_limiter,batch]
+            processors: [batch]
             exporters: [logging]
 - apiVersion: telemetry.istio.io/v1alpha1
   kind: Telemetry
@@ -79,10 +74,6 @@ items:
             http: {}
       processors:
         batch: {}
-        memory_limiter:
-          check_interval: 5s
-          limit_mib: 4000
-          spike_limit_mib: 500
       exporters:
         logging:
           verbosity: detailed
@@ -95,15 +86,14 @@ items:
         pipelines:
           metrics:
             receivers: [otlp]
-            processors: [memory_limiter,batch]
             exporters: [prometheus]
           traces:
             receivers: [otlp]
-            processors: [memory_limiter,batch]
+            processors: [batch]
             exporters: [zipkin]
           logs:
             receivers: [otlp]
-            processors: [memory_limiter,batch]
+            processors: [batch]
             exporters: [logging]
 - apiVersion: opentelemetry.io/v1alpha1
   kind: Instrumentation
