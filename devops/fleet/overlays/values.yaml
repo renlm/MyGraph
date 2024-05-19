@@ -7,6 +7,7 @@ affinity: {}
 imagePullSecrets: []
 podAnnotations:
   sidecar.opentelemetry.io/inject: "true"
+  instrumentation.opentelemetry.io/inject-java: "true"
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/rlm/mygraph
   pullPolicy: Always
