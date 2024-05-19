@@ -30,8 +30,8 @@ items:
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
         prometheus:
-          endpoint: rancher-monitoring-prometheus:9090
-          namespace: cattle-monitoring-system
+          endpoint: rancher-monitoring-prometheus.cattle-monitoring-system.svc:9090
+          namespace: observability
       service:
         pipelines:
           metrics:
@@ -80,8 +80,8 @@ items:
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
         prometheus:
-          endpoint: rancher-monitoring-prometheus:9090
-          namespace: cattle-monitoring-system
+          endpoint: rancher-monitoring-prometheus.cattle-monitoring-system.svc:9090
+          namespace: observability
       service:
         pipelines:
           metrics:
