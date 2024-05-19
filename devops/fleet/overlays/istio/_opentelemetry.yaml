@@ -31,8 +31,6 @@ items:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
         prometheusremotewrite:
           endpoint: http://rancher-monitoring-prometheus.cattle-monitoring-system.svc:9090/api/prom/push
-          tls:
-            insecure: true
       service:
         pipelines:
           metrics:
@@ -82,8 +80,6 @@ items:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
         prometheusremotewrite:
           endpoint: http://rancher-monitoring-prometheus.cattle-monitoring-system.svc:9090/api/prom/push
-          tls:
-            insecure: true
       service:
         pipelines:
           metrics:
