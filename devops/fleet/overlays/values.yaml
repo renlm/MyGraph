@@ -5,8 +5,7 @@ securityContext: {}
 tolerations: []
 affinity: {}
 imagePullSecrets: []
-podAnnotations:
-  instrumentation.opentelemetry.io/inject-java: true
+podAnnotations: {}
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/rlm/mygraph
   pullPolicy: Always
