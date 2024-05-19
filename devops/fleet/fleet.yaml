@@ -2,6 +2,7 @@
 # https://github.com/rancher/fleet-examples
 helm:
   chart: ./chart
+  releaseName: mygraph
 defaultNamespace: renlm
 targetCustomizations:
 - name: mygraph
