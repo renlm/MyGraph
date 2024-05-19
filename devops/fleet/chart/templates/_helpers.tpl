@@ -47,7 +47,7 @@ Selector labels
 */}}
 {{- define "mygraph.selectorLabels" -}}
 app: {{ include "mygraph.fullname" . }}
-version: {{ default .Chart.Version .Values.appVersion }}
+version: {{ default .Chart.AppVersion .Values.appVersion | quote }}
 app.kubernetes.io/name: {{ include "mygraph.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
