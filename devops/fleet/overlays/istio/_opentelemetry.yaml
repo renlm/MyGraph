@@ -6,38 +6,6 @@ items:
   kind: Namespace
   metadata:
     name: observability
-- apiVersion: v1
-  kind: ServiceAccount
-  metadata:
-    name: opentelemetry-targetallocator-sa
-    namespace: observability
-- apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRole
-  metadata:
-    name: opentelemetry-targetallocator-cr
-  rules:
-  - apiGroups:
-    - monitoring.coreos.com
-    resources:
-    - servicemonitors
-    - podmonitors
-    verbs: ["*"]
-  - apiGroups: [""]
-    resources: ["namespaces"]
-    verbs: ["get", "list", "watch"]
-- apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRoleBinding
-  metadata:
-    name: opentelemetry-targetallocator-crb
-    namespace: observability
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: opentelemetry-targetallocator-cr
-  subjects:
-  - kind: ServiceAccount
-    name: opentelemetry-targetallocator-sa
-    namespace: observability
 - apiVersion: telemetry.istio.io/v1alpha1
   kind: Telemetry
   metadata:
@@ -55,26 +23,15 @@ items:
 - apiVersion: opentelemetry.io/v1alpha1
   kind: OpenTelemetryCollector
   metadata:
-    name: otel
+    name: otel-sidecar
     namespace: observability
   spec:
-    mode: statefulset
-    targetAllocator:
-      enabled: true
-      serviceAccount: opentelemetry-targetallocator-sa
-      prometheusCR:
-        enabled: true
-    config: |-
+    mode: sidecar
+    config:
       receivers:
-        otlp:
+        jaeger:
           protocols:
-            grpc:
-            http:
-        prometheus:
-          target_allocator:
-            endpoint: http://otel-targetallocator-service
-            interval: 30s
-            collector_id: "${POD_NAME}"
+            thrift_compact: {}
       processors:
         memory_limiter:
           check_interval: 1s
@@ -84,6 +41,7 @@ items:
           send_batch_size: 100
           timeout: 10s
       exporters:
+        debug: {}
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
       extensions:
@@ -93,36 +51,11 @@ items:
         extensions:
         - health_check
         pipelines:
-          metrics:
-            receivers:
-            - prometheus
-            processors:
-            - memory_limiter
-            - batch
-            exporters:
-            - zipkin
           traces:
-            receivers:
-            - otlp
+            receivers: [jaeger]
             processors:
             - memory_limiter
             - batch
-            exporters:
+            exporters: 
+            - debug
             - zipkin
-- apiVersion: opentelemetry.io/v1alpha1
-  kind: Instrumentation
-  metadata:
-    name: java-instrumentation
-  spec:
-    propagators:
-    - tracecontext
-    - baggage
-    - b3
-    sampler:
-      type: parentbased_traceidratio
-      argument: "1"
-    java:
-      image: otel/autoinstrumentation-java:latest
-      env:
-      - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: http://otel-collector.observability:4318
