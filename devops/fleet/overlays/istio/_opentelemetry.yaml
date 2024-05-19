@@ -30,7 +30,7 @@ items:
           spike_limit_mib: 50
       exporters:
         logging:
-          loglevel: debug
+          verbosity: detailed
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
         prometheus:
@@ -85,7 +85,7 @@ items:
           spike_limit_mib: 500
       exporters:
         logging:
-          loglevel: debug
+          verbosity: detailed
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
         prometheus:
