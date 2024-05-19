@@ -48,6 +48,8 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 3
   targetCPUUtilizationPercentage: 95
+configmap:
+  enabled: true
 mysql:
   enabled: true
   mini: false

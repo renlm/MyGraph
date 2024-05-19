@@ -1,10 +1,11 @@
+{{- if .Values.configmap.enabled }}
 {{- $fullName := include "mygraph.fullname" . -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Chart.Name }}-configmap
+  name: {{ $fullName }}-configmap
 data:
-  {{ .Chart.Name | nindent 2 }}-{{ .Values.env }}.yaml: |-
+  {{ $fullName | nindent 2 }}-{{ .Values.env }}.yaml: |-
     server:
       port: {{ .Values.service.port }}
       shutdown: graceful
@@ -146,3 +147,4 @@ data:
                 threadCount: 10
                 threadPriority: 5
                 threadsInheritContextClassLoaderOfInitializingThread: true
+{{- end }}
