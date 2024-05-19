@@ -51,7 +51,8 @@ items:
         - health_check
         pipelines:
           traces:
-            receivers: [jaeger]
+            receivers:
+            - jaeger
             processors:
             - memory_limiter
             - batch
