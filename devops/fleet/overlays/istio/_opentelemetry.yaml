@@ -16,32 +16,18 @@ items:
           protocols:
             thrift_compact: {}
       processors:
-        memory_limiter:
-          check_interval: 1s
-          limit_percentage: 75
-          spike_limit_percentage: 15
-        batch:
-          send_batch_size: 100
-          timeout: 10s
+        batch: {}
       exporters:
-        debug: {}
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
-      extensions:
-        health_check:
-          port: 13133
       service:
-        extensions:
-        - health_check
         pipelines:
           traces:
             receivers:
             - jaeger
             processors:
-            - memory_limiter
             - batch
             exporters:
-            - debug
             - zipkin
 - apiVersion: opentelemetry.io/v1alpha1
   kind: Instrumentation
