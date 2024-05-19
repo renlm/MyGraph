@@ -12,9 +12,10 @@ items:
     image: otel/opentelemetry-collector:0.99.0
     config: |-
       receivers:
-        jaeger:
+        otlp:
           protocols:
-            thrift_compact: {}
+            grpc: {}
+            http: {}8
       processors:
         batch: {}
       exporters:
@@ -24,7 +25,7 @@ items:
         pipelines:
           traces:
             receivers:
-            - jaeger
+            - otlp
             processors:
             - batch
             exporters:
