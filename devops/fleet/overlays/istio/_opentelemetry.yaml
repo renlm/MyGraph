@@ -69,7 +69,6 @@ items:
     - baggage
     - b3
     sampler:
-      type: parentbased_traceidratio
-      argument: "1"
+      type: parentbased_always_on
     java:
       image: otel/autoinstrumentation-java:latest
