@@ -89,3 +89,6 @@ items:
       type: parentbased_always_on
     java:
       image: otel/autoinstrumentation-java:latest
+      env:
+      - name: OTEL_METRICS_EXPORTER
+        value: otlp
