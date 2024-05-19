@@ -25,17 +25,26 @@ items:
       processors:
         batch: {}
       exporters:
+        logging:
+          loglevel: debug
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
+        prometheus:
+          endpoint: rancher-monitoring-prometheus:9090
+          namespace: cattle-monitoring-system
       service:
         pipelines:
+          metrics:
+            receivers: [otlp]
+            exporters: [prometheus]
           traces:
-            receivers:
-            - otlp
-            processors:
-            - batch
-            exporters:
-            - zipkin
+            receivers: [otlp]
+            processors: [batch]
+            exporters: [zipkin]
+          logs:
+            receivers: [otlp]
+            processors: [batch]
+            exporters: [logging]
 - apiVersion: telemetry.istio.io/v1alpha1
   kind: Telemetry
   metadata:
@@ -70,27 +79,22 @@ items:
           loglevel: debug
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
+        prometheus:
+          endpoint: rancher-monitoring-prometheus:9090
+          namespace: cattle-monitoring-system
       service:
         pipelines:
           metrics:
-            receivers:
-            - otlp
-            exporters:
-            - zipkin
+            receivers: [otlp]
+            exporters: [prometheus]
           traces:
-            receivers:
-            - otlp
-            processors:
-            - batch
-            exporters:
-            - zipkin
+            receivers: [otlp]
+            processors: [batch]
+            exporters: [zipkin]
           logs:
-            receivers:
-            - otlp
-            processors:
-            - batch
-            exporters:
-            - logging
+            receivers: [otlp]
+            processors: [batch]
+            exporters: [logging]
 - apiVersion: opentelemetry.io/v1alpha1
   kind: Instrumentation
   metadata:
