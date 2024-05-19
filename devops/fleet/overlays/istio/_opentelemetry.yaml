@@ -24,7 +24,10 @@ items:
             http: {}
       processors:
         batch: {}
-        queued_retry: {}
+        memory_limiter:
+          check_interval: 5s
+          limit_mib: 4000
+          spike_limit_mib: 50
       exporters:
         logging:
           loglevel: debug
@@ -32,20 +35,20 @@ items:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
         prometheus:
           endpoint: rancher-monitoring-prometheus.cattle-monitoring-system.svc:9090
-          namespace: observability
+          namespace: istio-system
       service:
         pipelines:
           metrics:
             receivers: [otlp]
-            processors: [batch,queued_retry]
+            processors: [batch,memory_limiter]
             exporters: [prometheus]
           traces:
             receivers: [otlp]
-            processors: [batch,queued_retry]
+            processors: [batch,memory_limiter]
             exporters: [zipkin]
           logs:
             receivers: [otlp]
-            processors: [batch,queued_retry]
+            processors: [batch,memory_limiter]
             exporters: [logging]
 - apiVersion: telemetry.istio.io/v1alpha1
   kind: Telemetry
@@ -76,7 +79,10 @@ items:
             http: {}
       processors:
         batch: {}
-        queued_retry: {}
+        memory_limiter:
+          check_interval: 5s
+          limit_mib: 4000
+          spike_limit_mib: 500
       exporters:
         logging:
           loglevel: debug
@@ -84,20 +90,20 @@ items:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
         prometheus:
           endpoint: rancher-monitoring-prometheus.cattle-monitoring-system.svc:9090
-          namespace: observability
+          namespace: renlm
       service:
         pipelines:
           metrics:
             receivers: [otlp]
-            processors: [batch,queued_retry]
+            processors: [batch,memory_limiter]
             exporters: [prometheus]
           traces:
             receivers: [otlp]
-            processors: [batch,queued_retry]
+            processors: [batch,memory_limiter]
             exporters: [zipkin]
           logs:
             receivers: [otlp]
-            processors: [batch,queued_retry]
+            processors: [batch,memory_limiter]
             exporters: [logging]
 - apiVersion: opentelemetry.io/v1alpha1
   kind: Instrumentation
