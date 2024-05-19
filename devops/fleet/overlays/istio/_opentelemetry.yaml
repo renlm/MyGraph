@@ -115,11 +115,14 @@ items:
     name: java-instrumentation
   spec:
     propagators:
-      - tracecontext
-      - baggage
-      - b3
+    - tracecontext
+    - baggage
+    - b3
     sampler:
       type: parentbased_traceidratio
       argument: "1"
     java:
       image: otel/autoinstrumentation-java:latest
+      env:
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        value: http://otel-collector.observability:4318
