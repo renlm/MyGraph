@@ -1,13 +1,12 @@
-env: prod
-host: mygraph.renlm.cn
 replicaCount: 1
 nodeSelector: {}
-podAnnotations: {}
 podSecurityContext: {}
 securityContext: {}
 tolerations: []
 affinity: {}
 imagePullSecrets: []
+podAnnotations:
+  instrumentation.opentelemetry.io/inject-java: true
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/rlm/mygraph
   pullPolicy: Always
@@ -15,13 +14,15 @@ image:
 serviceAccount:
   create: true
   annotations: {}
-  name: mygraph-service-account
+  name: mygraph-sa
 ingress:
   enabled: false
 service:
   type: ClusterIP
   port: 8080
 actuator:
+  port: 9000
+  portName: tcp-actuator
   health:
     liveness:
       initialDelaySeconds: 3
@@ -46,20 +47,10 @@ autoscaling:
   enabled: false
   minReplicas: 2
   maxReplicas: 3
-  targetCPUUtilizationPercentage: 80
-configmap:
-  enabled: true
-# 子Chart配置
-prometheus:
-  enabled: true
-  port: 9000
-  portName: tcp-prometheus
-  selector:
-  - name: prometheus
-    value: monitor
+  targetCPUUtilizationPercentage: 95
 mysql:
   enabled: true
-  mini: true
+  mini: false
   database: mygraph
   user: mygraph
   password: PWD@20xxKplstdm^8uttm$

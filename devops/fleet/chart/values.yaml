@@ -1,14 +1,16 @@
+appVersion: 1.0.1
 env: dev
 initDb: true
 host: mygraph.renlm.cn
 replicaCount: 1
 nodeSelector: {}
-podAnnotations: {}
 podSecurityContext: {}
 securityContext: {}
 tolerations: []
 affinity: {}
 imagePullSecrets: []
+podAnnotations:
+  instrumentation.opentelemetry.io/inject-java: true
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/rlm/mygraph
   pullPolicy: Always
