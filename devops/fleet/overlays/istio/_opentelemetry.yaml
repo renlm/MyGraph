@@ -35,7 +35,7 @@ items:
         pipelines:
           metrics:
             receivers: [otlp]
-            exporters: [prometheus]
+            exporters: [prometheusremotewrite]
           traces:
             receivers: [otlp]
             processors: [batch]
@@ -84,7 +84,7 @@ items:
         pipelines:
           metrics:
             receivers: [otlp]
-            exporters: [prometheus]
+            exporters: [prometheusremotewrite]
           traces:
             receivers: [otlp]
             processors: [batch]
