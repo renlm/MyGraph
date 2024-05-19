@@ -1,3 +1,4 @@
+# https://opentelemetry.io/zh/docs/collector/configuration/#receivers
 # https://github.com/open-telemetry/opentelemetry-operator/tree/main/cmd/otel-allocator#prometheuscr-specifics
 apiVersion: v1
 kind: List
