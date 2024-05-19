@@ -3,6 +3,38 @@
 apiVersion: v1
 kind: List
 items:
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: observability
+- apiVersion: opentelemetry.io/v1alpha1
+  kind: OpenTelemetryCollector
+  metadata:
+    name: otel
+    namespace: observability
+  spec:
+    mode: sidecar
+    image: otel/opentelemetry-collector:0.99.0
+    config: |-
+      receivers:
+        otlp:
+          protocols:
+            grpc: {}
+            http: {}
+      processors:
+        batch: {}
+      exporters:
+        zipkin:
+          endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
+      service:
+        pipelines:
+          traces:
+            receivers:
+            - otlp
+            processors:
+            - batch
+            exporters:
+            - zipkin
 - apiVersion: opentelemetry.io/v1alpha1
   kind: OpenTelemetryCollector
   metadata:
