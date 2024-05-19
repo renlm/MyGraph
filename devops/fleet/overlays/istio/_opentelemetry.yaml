@@ -74,7 +74,7 @@ items:
           target_allocator:
             endpoint: http://otel-targetallocator-service
             interval: 30s
-            collector_id: ${POD_NAME}
+            collector_id: "${POD_NAME}"
       processors:
         memory_limiter:
           check_interval: 1s
