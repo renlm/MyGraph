@@ -29,13 +29,13 @@ items:
           verbosity: detailed
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
-        prometheusremotewrite:
-          endpoint: http://rancher-monitoring-prometheus.cattle-monitoring-system.svc:9090/api/prom/push
+        otlp:
+          endpoint: jaeger-collector.istio-system.svc.cluster.local:14250
       service:
         pipelines:
           metrics:
             receivers: [otlp]
-            exporters: [prometheusremotewrite]
+            exporters: [otlp]
           traces:
             receivers: [otlp]
             processors: [batch]
@@ -78,13 +78,13 @@ items:
           verbosity: detailed
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
-        prometheusremotewrite:
-          endpoint: http://rancher-monitoring-prometheus.cattle-monitoring-system.svc:9090/api/prom/push
+        otlp:
+          endpoint: jaeger-collector.istio-system.svc.cluster.local:14250
       service:
         pipelines:
           metrics:
             receivers: [otlp]
-            exporters: [prometheusremotewrite]
+            exporters: [otlp]
           traces:
             receivers: [otlp]
             processors: [batch]
