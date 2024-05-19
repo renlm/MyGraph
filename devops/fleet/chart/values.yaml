@@ -53,7 +53,7 @@ autoscaling:
   maxReplicas: 3
   targetCPUUtilizationPercentage: 95
 mysql:
-  enabled: true
+  enabled: false
   mini: false
   database: mygraph
   user: mygraph
@@ -73,7 +73,7 @@ mysql:
     path: /nfs_share/mysql
     server: 192.168.16.3
 rabbitmq:
-  enabled: true
+  enabled: false
   defaultVhost: /mygraph
   defaultUser: mygraph
   defaultPass: PWD@20xxKplstdm^8uttm$
@@ -95,7 +95,7 @@ rabbitmq:
     path: /nfs_share/rabbitmq
     server: 192.168.16.3
 redis:
-  enabled: true
+  enabled: false
   requirepass: PWD@20xxKplstdm^8uttm$
   nodeSelector: {}
   image:
