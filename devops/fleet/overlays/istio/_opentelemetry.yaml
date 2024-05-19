@@ -34,10 +34,24 @@ items:
   - kind: ServiceAccount
     name: opentelemetry-targetallocator-sa
     namespace: observability
+- apiVersion: telemetry.istio.io/v1alpha1
+  kind: Telemetry
+  metadata:
+    name: otel-istio
+    namespace: istio-system
+  spec:
+    tracing:
+    - providers:
+      - name: otel-tracing
+      randomSamplingPercentage: 1
+      customTags:
+        tracing:
+          literal:
+            value: opentelemetry
 - apiVersion: opentelemetry.io/v1alpha1
   kind: OpenTelemetryCollector
   metadata:
-    name: opentelemetry-collector
+    name: otel
     namespace: observability
   spec:
     mode: statefulset
@@ -54,12 +68,12 @@ items:
             http: {}
         prometheus:
           target_allocator:
-            endpoint: http://opentelemetry-collector-targetallocator-service
+            endpoint: http://otel-targetallocator-service
             interval: 30s
             collector_id: ${POD_NAME}
       exporters:
-        jaeger:
-          endpoint: tracing-collector.observability.svc.cluster.local:14250
+        zipkin:
+          endpoint: zipkin.istio-system.svc.cluster.local:9411
           tls:
             insecure: true
           sending_queue:
@@ -72,9 +86,9 @@ items:
             receivers:
             - prometheus
             exporters:
-            - jaeger
+            - zipkin
           traces:
             receivers:
             - otlp
             exporters:
-            - jaeger
+            - zipkin

@@ -4,5 +4,4 @@ resources:
 - _virtualservice.yaml
 - _podmonitor.yaml
 - _servicemonitor.yaml
-- _telemetry.yaml
-- opentelemetry-collector.yaml
+- _opentelemetry.yaml
