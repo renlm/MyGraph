@@ -66,10 +66,17 @@ items:
       processors:
         batch: {}
       exporters:
+        logging:
+          loglevel: debug
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
       service:
         pipelines:
+          metrics:
+            receivers:
+            - otlp
+            exporters:
+            - zipkin
           traces:
             receivers:
             - otlp
@@ -77,6 +84,13 @@ items:
             - batch
             exporters:
             - zipkin
+          logs:
+            receivers:
+            - otlp
+            processors:
+            - batch
+            exporters:
+            - logging
 - apiVersion: opentelemetry.io/v1alpha1
   kind: Instrumentation
   metadata:
