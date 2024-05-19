@@ -27,7 +27,7 @@ items:
     namespace: observability
   spec:
     mode: sidecar
-    config:
+    config: |-
       receivers:
         jaeger:
           protocols:
