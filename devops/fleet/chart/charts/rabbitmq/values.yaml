@@ -1,3 +1,4 @@
+fullnameOverride: rabbitmq
 defaultVhost: /dev
 defaultUser: dev
 defaultPass: PWD

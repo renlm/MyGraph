@@ -1,3 +1,4 @@
+fullnameOverride: mygraph
 appVersion: v1.0.1
 env: dev
 initDb: true

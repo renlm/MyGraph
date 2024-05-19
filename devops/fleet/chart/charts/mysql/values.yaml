@@ -1,3 +1,4 @@
+fullnameOverride: mysql
 mini: true
 database: dev
 user: dev

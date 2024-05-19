@@ -1,3 +1,4 @@
+fullnameOverride: redis
 requirepass: PWD
 nodeSelector: {}
 image:

@@ -82,7 +82,7 @@ data:
       data:
         redis:
           database: 1
-          host: {{ $fullName }}-redis
+          host: redis
           port: 6379
           password: {{ .Values.redis.requirepass }}
           timeout: 10s
@@ -94,7 +94,7 @@ data:
               minIdle: 5
       rabbitmq:
         virtual-host: {{ .Values.rabbitmq.defaultVhost }}
-        host: {{ $fullName }}-rabbitmq
+        host: rabbitmq
         port: 5672
         username: {{ .Values.rabbitmq.defaultUser }}
         password: {{ .Values.rabbitmq.defaultPass }}
@@ -104,7 +104,7 @@ data:
           strict: true
           datasource:
             master:
-              url: jdbc:mysql://{{ $fullName }}-mysql:3306/{{ .Values.mysql.database }}?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+              url: jdbc:mysql://mysql:3306/{{ .Values.mysql.database }}?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
               username: {{ .Values.mysql.user }}
               password: {{ .Values.mysql.password }}
               driver-class-name: com.mysql.cj.jdbc.Driver
