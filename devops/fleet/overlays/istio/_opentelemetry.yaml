@@ -3,6 +3,10 @@ apiVersion: v1
 kind: List
 items:
 - apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: observabilityt
+- apiVersion: v1
   kind: ServiceAccount
   metadata:
     name: opentelemetry-targetallocator-sa
