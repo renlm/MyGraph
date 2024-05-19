@@ -65,9 +65,7 @@ items:
         otlp:
           protocols:
             grpc:
-              endpoint: 0.0.0.0:4317
             http:
-              endpoint: 0.0.0.0:4318
         prometheus:
           target_allocator:
             endpoint: http://otel-targetallocator-service
@@ -117,6 +115,7 @@ items:
       - baggage
       - b3
     sampler:
-      type: always_on
+      type: parentbased_traceidratio
+      argument: "1"
     java:
       image: otel/autoinstrumentation-java:latest
