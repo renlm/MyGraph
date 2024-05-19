@@ -24,6 +24,7 @@ items:
             http: {}
       processors:
         batch: {}
+        queued_retry: {}
       exporters:
         logging:
           loglevel: debug
@@ -36,14 +37,15 @@ items:
         pipelines:
           metrics:
             receivers: [otlp]
+            processors: [batch,queued_retry]
             exporters: [prometheus]
           traces:
             receivers: [otlp]
-            processors: [batch]
+            processors: [batch,queued_retry]
             exporters: [zipkin]
           logs:
             receivers: [otlp]
-            processors: [batch]
+            processors: [batch,queued_retry]
             exporters: [logging]
 - apiVersion: telemetry.istio.io/v1alpha1
   kind: Telemetry
@@ -74,6 +76,7 @@ items:
             http: {}
       processors:
         batch: {}
+        queued_retry: {}
       exporters:
         logging:
           loglevel: debug
@@ -86,14 +89,15 @@ items:
         pipelines:
           metrics:
             receivers: [otlp]
+            processors: [batch,queued_retry]
             exporters: [prometheus]
           traces:
             receivers: [otlp]
-            processors: [batch]
+            processors: [batch,queued_retry]
             exporters: [zipkin]
           logs:
             receivers: [otlp]
-            processors: [batch]
+            processors: [batch,queued_retry]
             exporters: [logging]
 - apiVersion: opentelemetry.io/v1alpha1
   kind: Instrumentation
