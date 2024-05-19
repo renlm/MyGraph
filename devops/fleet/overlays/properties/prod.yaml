@@ -81,7 +81,7 @@ data:
       data:
         redis:
           database: 15
-          host: mygraph-redis
+          host: redis
           port: 6379
           password: PWD@20xxKplstdm^8uttm$
           timeout: 10s
@@ -93,7 +93,7 @@ data:
               minIdle: 5
       rabbitmq:
         virtual-host: /mygraph
-        host: mygraph-rabbitmq
+        host: rabbitmq
         port: 5672
         username: mygraph
         password: PWD@20xxKplstdm^8uttm$
@@ -103,7 +103,7 @@ data:
           strict: true
           datasource:
             master:
-              url: jdbc:mysql://mygraph-mysql:3306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+              url: jdbc:mysql://mysql:3306/mygraph?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
               username: mygraph
               password: PWD@20xxKplstdm^8uttm$
               driver-class-name: com.mysql.cj.jdbc.Driver
