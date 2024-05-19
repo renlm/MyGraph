@@ -5,7 +5,7 @@ items:
 - apiVersion: v1
   kind: Namespace
   metadata:
-    name: observabilityt
+    name: observability
 - apiVersion: v1
   kind: ServiceAccount
   metadata:
