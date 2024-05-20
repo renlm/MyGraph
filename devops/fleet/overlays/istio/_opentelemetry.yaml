@@ -50,12 +50,14 @@ items:
     name: otel-istio
     namespace: istio-system
   spec:
-    metrics:
-    - providers:
-      - name: otel-collector
     tracing:
     - providers:
-      - name: otel-collector
+      - name: otel-tracing
+      randomSamplingPercentage: 1.00
+      customTags:
+        provider:
+          literal:
+            value: otel-tracing
 - apiVersion: opentelemetry.io/v1alpha1
   kind: Instrumentation
   metadata:
