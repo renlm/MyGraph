@@ -30,6 +30,7 @@ items:
           verbosity: detailed
         prometheus:
           endpoint: 0.0.0.0:8889
+          namespace: jaeger
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
       connectors:
@@ -81,6 +82,7 @@ items:
           verbosity: detailed
         prometheus:
           endpoint: 0.0.0.0:8889
+          namespace: jaeger
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
       connectors:
