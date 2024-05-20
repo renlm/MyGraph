@@ -38,9 +38,9 @@ spec:
           env:
             - name: TZ
               value: Asia/Shanghai
-            - name: OTEL_SERVICE_NAME
+            - name: APP_NAME
               value: {{ include "mygraph.fullname" . }}
-            - name: OTEL_SERVICE_VERSION
+            - name: APP_VERSION
               value: {{ default .Chart.AppVersion .Values.appVersion | quote }}
             - name: SPRING_APPLICATION_NAME
               value: {{ include "mygraph.fullname" . }}
