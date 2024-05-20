@@ -40,4 +40,4 @@ items:
       - key: instrumentation.opentelemetry.io/inject-java
         operator: In
         values:
-        - true
+        - "true"
