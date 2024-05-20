@@ -36,7 +36,7 @@ items:
       service:
         pipelines:
           metrics/spanmetrics:
-            receivers: [spanmetrics]
+            receivers: [otlp]
             exporters: [prometheus]
           traces:
             receivers: [otlp]
@@ -87,7 +87,7 @@ items:
       service:
         pipelines:
           metrics/spanmetrics:
-            receivers: [spanmetrics]
+            receivers: [otlp]
             exporters: [prometheus]
           traces:
             receivers: [otlp]
