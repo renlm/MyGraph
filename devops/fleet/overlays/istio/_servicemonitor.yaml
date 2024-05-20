@@ -13,9 +13,6 @@ items:
     - interval: 15s
       port: prometheus
       path: /metrics
-    namespaceSelector:
-      matchNames:
-      - observability
     selector:
       matchExpressions:
       - key: app.kubernetes.io/component
