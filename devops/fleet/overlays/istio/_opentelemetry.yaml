@@ -16,7 +16,7 @@ items:
     namespace: observability
   spec:
     mode: statefulset
-    image: otel/opentelemetry-collector:0.99.0
+    image: otel/opentelemetry-collector-contrib:0.99.0
     config: |-
       receivers:
         otlp:
@@ -68,7 +68,7 @@ items:
     namespace: observability
   spec:
     mode: sidecar
-    image: otel/opentelemetry-collector:0.99.0
+    image: otel/opentelemetry-collector-contrib:0.99.0
     config: |-
       receivers:
         otlp:
