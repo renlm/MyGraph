@@ -43,7 +43,7 @@ items:
           traces:
             receivers: [otlp]
             processors: [batch]
-            exporters: [zipkin]
+            exporters: [spanmetrics, zipkin]
           logs:
             receivers: [otlp]
             processors: [batch]
@@ -95,7 +95,7 @@ items:
           traces:
             receivers: [otlp]
             processors: [batch]
-            exporters: [zipkin]
+            exporters: [spanmetrics, zipkin]
           logs:
             receivers: [otlp]
             processors: [batch]
