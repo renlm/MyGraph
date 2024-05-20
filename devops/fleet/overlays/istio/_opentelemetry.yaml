@@ -1,6 +1,7 @@
 # https://opentelemetry.io/zh/docs/collector/configuration/#receivers
 # https://github.com/open-telemetry/opentelemetry-operator/tree/main/cmd/otel-allocator#prometheuscr-specifics
 # https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md
+# https://github.com/jaegertracing/jaeger/tree/main/docker-compose/monitor
 apiVersion: v1
 kind: List
 items:
@@ -25,17 +26,19 @@ items:
       processors:
         batch: {}
       exporters:
+        prometheus: {}
         logging:
           verbosity: detailed
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
-        otlp:
-          endpoint: jaeger-collector.istio-system.svc.cluster.local:14250
+      connectors:
+        spanmetrics: {}
       service:
         pipelines:
           metrics:
             receivers: [otlp]
-            exporters: [otlp]
+            processors: [batch]
+            exporters: [spanmetrics]
           traces:
             receivers: [otlp]
             processors: [batch]
@@ -74,17 +77,19 @@ items:
       processors:
         batch: {}
       exporters:
+        prometheus: {}
         logging:
           verbosity: detailed
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
-        otlp:
-          endpoint: jaeger-collector.istio-system.svc.cluster.local:14250
+      connectors:
+        spanmetrics: {}
       service:
         pipelines:
           metrics:
             receivers: [otlp]
-            exporters: [otlp]
+            processors: [batch]
+            exporters: [spanmetrics]
           traces:
             receivers: [otlp]
             processors: [batch]
