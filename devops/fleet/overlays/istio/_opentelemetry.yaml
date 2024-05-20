@@ -5,15 +5,11 @@
 apiVersion: v1
 kind: List
 items:
-- apiVersion: v1
-  kind: Namespace
-  metadata:
-    name: observability
 - apiVersion: opentelemetry.io/v1alpha1
   kind: OpenTelemetryCollector
   metadata:
     name: otel
-    namespace: observability
+    namespace: istio-system
   spec:
     mode: statefulset
     image: otel/opentelemetry-collector-contrib:0.99.0
@@ -63,44 +59,6 @@ items:
           literal:
             value: opentelemetry
 - apiVersion: opentelemetry.io/v1alpha1
-  kind: OpenTelemetryCollector
-  metadata:
-    name: otel-sidecar
-  spec:
-    mode: sidecar
-    image: otel/opentelemetry-collector-contrib:0.99.0
-    config: |-
-      receivers:
-        otlp:
-          protocols:
-            grpc: {}
-            http: {}
-      processors:
-        batch: {}
-      exporters:
-        logging:
-          verbosity: detailed
-        prometheus:
-          endpoint: 0.0.0.0:8889
-          namespace: span_metrics
-        zipkin:
-          endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
-      connectors:
-        spanmetrics: {}
-      service:
-        pipelines:
-          metrics/spanmetrics:
-            receivers: [spanmetrics]
-            exporters: [prometheus]
-          traces:
-            receivers: [otlp]
-            processors: [batch]
-            exporters: [spanmetrics, zipkin]
-          logs:
-            receivers: [otlp]
-            processors: [batch]
-            exporters: [logging]
-- apiVersion: opentelemetry.io/v1alpha1
   kind: Instrumentation
   metadata:
     name: java-instrumentation
@@ -116,3 +74,11 @@ items:
       env:
       - name: OTEL_EXPORTER_OTLP_PROTOCOL
         value: http/protobuf
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        value: http://otel-collector.istio-system:4318/v1/{signal}
+      - name: OTEL_METRICS_EXPORTER
+        value: otlp
+      - name: OTEL_TRACES_EXPORTER
+        value: otlp
+      - name: OTEL_LOGS_EXPORTER
+        value: otlp
