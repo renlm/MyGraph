@@ -26,9 +26,10 @@ items:
       processors:
         batch: {}
       exporters:
-        prometheus: {}
         logging:
           verbosity: detailed
+        prometheus:
+          endpoint: 0.0.0.0:8889
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
       connectors:
@@ -77,9 +78,10 @@ items:
       processors:
         batch: {}
       exporters:
-        prometheus: {}
         logging:
           verbosity: detailed
+        prometheus:
+          endpoint: 0.0.0.0:8889
         zipkin:
           endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
       connectors:
