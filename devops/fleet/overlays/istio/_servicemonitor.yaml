@@ -37,7 +37,7 @@ items:
       path: /actuator/prometheus
     selector:
       matchExpressions:
-      - key: instrumentation.opentelemetry.io/inject-java
+      - key: app
         operator: In
         values:
-        - "true"
+        - mygraph
