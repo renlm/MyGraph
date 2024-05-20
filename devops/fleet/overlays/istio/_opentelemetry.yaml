@@ -65,7 +65,6 @@ items:
   kind: OpenTelemetryCollector
   metadata:
     name: otel-sidecar
-    namespace: observability
   spec:
     mode: sidecar
     image: otel/opentelemetry-collector-contrib:0.99.0
