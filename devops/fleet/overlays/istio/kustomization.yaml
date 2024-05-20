@@ -2,6 +2,5 @@ resources:
 - _gateway.yaml
 - _tls.yaml
 - _virtualservice.yaml
-- _podmonitor.yaml
-- _servicemonitor.yaml
 - _opentelemetry.yaml
+- _servicemonitor.yaml

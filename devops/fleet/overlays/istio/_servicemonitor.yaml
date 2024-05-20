@@ -4,17 +4,23 @@ items:
 - apiVersion: monitoring.coreos.com/v1
   kind: ServiceMonitor
   metadata:
-    name: mygraph-component-monitor
+    name: otel-collector-monitor
+    namespace: observability
     labels:
-      monitoring: mygraph-components
+      monitoring: otel-collectors
   spec:
     endpoints:
     - interval: 15s
-      port: tcp-actuator
-      path: /actuator/prometheus
+      port: prometheus
+      path: /metrics
+    namespaceSelector:
+      matchNames:
+      - observability
     selector:
       matchExpressions:
-      - key: app
+      - key: app.kubernetes.io/component
         operator: In
         values:
-        - mygraph
+        - opentelemetry-collector
+      - key: operator.opentelemetry.io/collector-headless-service
+        operator: DoesNotExist
