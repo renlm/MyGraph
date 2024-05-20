@@ -24,3 +24,20 @@ items:
         - opentelemetry-collector
       - key: operator.opentelemetry.io/collector-headless-service
         operator: DoesNotExist
+- apiVersion: monitoring.coreos.com/v1
+  kind: ServiceMonitor
+  metadata:
+    name: mygraph-component-monitor
+    labels:
+      monitoring: mygraph-components
+  spec:
+    endpoints:
+    - interval: 15s
+      port: tcp-actuator
+      path: /actuator/prometheus
+    selector:
+      matchExpressions:
+      - key: instrumentation.opentelemetry.io/inject-java
+        operator: In
+        values:
+        - true
