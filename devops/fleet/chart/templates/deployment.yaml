@@ -38,14 +38,12 @@ spec:
           env:
             - name: TZ
               value: Asia/Shanghai
-            - name: APP_NAME
-              value: {{ include "mygraph.fullname" . }}
-            - name: APP_VERSION
-              value: {{ default .Chart.AppVersion .Values.appVersion | quote }}
             - name: SPRING_APPLICATION_NAME
               value: {{ include "mygraph.fullname" . }}
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env }}
+            - name: VERSION
+              value: {{ default .Chart.AppVersion .Values.appVersion | quote }}
             {{- if .Values.initDb }}
             - name: DB_INIT_MODE
               value: ALWAYS
