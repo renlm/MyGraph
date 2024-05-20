@@ -52,9 +52,10 @@ items:
   spec:
     metrics:
     - providers:
-      - name: otel-tracing
+      - name: otel-collector
     tracing:
-    - disableSpanReporting: true
+    - providers:
+      - name: otel-collector
 - apiVersion: opentelemetry.io/v1alpha1
   kind: Instrumentation
   metadata:
