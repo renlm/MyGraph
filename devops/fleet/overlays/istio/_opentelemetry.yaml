@@ -35,7 +35,7 @@ items:
         spanmetrics: {}
       service:
         pipelines:
-          metrics:
+          metrics/spanmetrics:
             receivers: [otlp]
             processors: [batch]
             exporters: [spanmetrics]
@@ -87,7 +87,7 @@ items:
         spanmetrics: {}
       service:
         pipelines:
-          metrics:
+          metrics/spanmetrics:
             receivers: [otlp]
             processors: [batch]
             exporters: [spanmetrics]
