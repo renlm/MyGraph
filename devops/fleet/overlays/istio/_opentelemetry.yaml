@@ -72,5 +72,11 @@ items:
     java:
       image: otel/autoinstrumentation-java:latest
       env:
-      - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: otel-collector.istio-system:4317
+      - name: OTEL_EXPORTER_OTLP_PROTOCOL
+        value: http/protobuf
+      - name: OTEL_EXPORTER_OTLP_METRICS_ENDPOINT
+        value: http://otel-collector.istio-system:4318/v1/metrics
+      - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+        value: http://otel-collector.istio-system:4318/v1/traces
+      - name: OTEL_EXPORTER_OTLP_LOGS_ENDPOINT
+        value: http://otel-collector.istio-system:4318/v1/logs
