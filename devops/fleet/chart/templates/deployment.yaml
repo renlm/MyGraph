@@ -43,7 +43,7 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.env }}
             - name: VERSION
-              value: {{ default .Chart.AppVersion .Values.appVersion | quote }}
+              value: {{ include "mygraph.version" . }}
             {{- if .Values.initDb }}
             - name: DB_INIT_MODE
               value: ALWAYS
