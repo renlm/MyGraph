@@ -75,7 +75,7 @@ items:
       - name: OTEL_EXPORTER_OTLP_PROTOCOL
         value: http/protobuf
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: http://otel-collector.istio-system:4318/v1/{signal}
+        value: http://otel-collector.istio-system:4318
       - name: OTEL_METRICS_EXPORTER
         value: otlp
       - name: OTEL_TRACES_EXPORTER
