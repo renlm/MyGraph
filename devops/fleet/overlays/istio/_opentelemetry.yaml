@@ -35,7 +35,7 @@ items:
           endpoint: 0.0.0.0:8889
           namespace: span_metrics
         otlp:
-          endpoint: jaeger-collector.istio-system:4317
+          endpoint: jaeger-collector.istio-system:14268
           tls:
             insecure: true
       connectors:
