@@ -3,5 +3,5 @@ resources:
 - _tls.yaml
 - _virtualservice.yaml
 - _opentelemetry.yaml
-#- _envoyfilter.yaml
+- _envoyfilter.yaml
 - _servicemonitor.yaml
