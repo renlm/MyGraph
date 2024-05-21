@@ -19,13 +19,6 @@ items:
           protocols:
             grpc: {}
             http: {}
-        prometheus:
-          config:
-            scrape_configs:
-            - job_name: jaeger-collector
-              scrape_interval: 15s
-              static_configs:
-              - targets: [tracing.istio-system:14269]
       processors:
         batch: {}
       exporters:
@@ -34,21 +27,19 @@ items:
         prometheus:
           endpoint: 0.0.0.0:8889
           namespace: span_metrics
-        otlp:
-          endpoint: jaeger-collector.istio-system:14268
-          tls:
-            insecure: true
+        zipkin:
+          endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
       connectors:
         spanmetrics: {}
       service:
         pipelines:
           metrics/spanmetrics:
-            receivers: [otlp, prometheus, spanmetrics]
+            receivers: [spanmetrics]
             exporters: [prometheus]
           traces:
             receivers: [otlp]
             processors: [batch]
-            exporters: [spanmetrics, otlp]
+            exporters: [spanmetrics, zipkin]
           logs:
             receivers: [otlp]
             processors: [batch]
@@ -62,7 +53,7 @@ items:
     tracing:
     - providers:
       - name: otel-tracing
-      randomSamplingPercentage: 100.00
+      randomSamplingPercentage: 1.00
       customTags:
         provider:
           literal:
