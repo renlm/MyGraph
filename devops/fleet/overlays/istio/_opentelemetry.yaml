@@ -25,7 +25,7 @@ items:
             - job_name: jaeger-collector
               scrape_interval: 15s
               static_configs:
-              - targets: [jaeger-collector.istio-system:16686]
+              - targets: [tracing.istio-system:14269]
       processors:
         batch: {}
       exporters:
