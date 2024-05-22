@@ -24,14 +24,31 @@ items:
 - apiVersion: monitoring.coreos.com/v1
   kind: ServiceMonitor
   metadata:
-    name: mygraph-component-monitor
+    name: mygraph-prometheus-monitor
     labels:
-      monitoring: mygraph-components
+      monitoring: prometheus
   spec:
     endpoints:
     - interval: 15s
       port: tcp-actuator
       path: /actuator/prometheus
+    selector:
+      matchExpressions:
+      - key: app
+        operator: In
+        values:
+        - mygraph
+- apiVersion: monitoring.coreos.com/v1
+  kind: ServiceMonitor
+  metadata:
+    name: mygraph-metrics-monitor
+    labels:
+      monitoring: metrics
+  spec:
+    endpoints:
+    - interval: 15s
+      port: tcp-actuator
+      path: /actuator/metrics
     selector:
       matchExpressions:
       - key: app

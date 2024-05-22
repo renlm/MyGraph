@@ -54,6 +54,9 @@ items:
       serviceAccount: opentelemetry-targetallocator-sa
       prometheusCR:
         enabled: true
+        serviceMonitorSelector:
+          matchLabels:
+            monitoring: metrics
     config:
       receivers:
         otlp:
