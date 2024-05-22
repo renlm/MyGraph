@@ -1,6 +1,24 @@
 apiVersion: v1
 kind: List
 items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: istiok8s
+    namespace: kube-system
+    labels:
+      component: kube-apiserver
+      tier: control-plane
+  spec:
+    ClusterIP: None
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 6443
+    selector:
+      component: kube-apiserver
+      tier: control-plane
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
   metadata:
@@ -18,9 +36,9 @@ items:
       route:
       - weight: 100
         destination:
-          host: kubernetes.default.svc.cluster.local
+          host: istiok8s.kube-system.svc.cluster.local
           port:
-            number: 6443
+            number: 443
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
   metadata:
