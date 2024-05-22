@@ -51,6 +51,7 @@ items:
     mode: statefulset
     targetAllocator:
       enabled: true
+      image: otel/target-allocator:latest
       serviceAccount: opentelemetry-targetallocator-sa
       prometheusCR:
         enabled: true
