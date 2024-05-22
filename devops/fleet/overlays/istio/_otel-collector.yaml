@@ -52,12 +52,12 @@ items:
         enabled: true
     config:
       receivers:
-        prometheus:
-          config: {}
         otlp:
           protocols:
             grpc: {}
             http: {}
+        prometheus:
+          config: {}
       processors:
         batch: {}
       exporters:
@@ -72,9 +72,9 @@ items:
         spanmetrics: {}
       service:
         pipelines:
-          metrics/spanmetrics:
-            receivers: [spanmetrics]
-            processors: []
+          metrics:
+            receivers: [otlp, prometheus, spanmetrics]
+            processors: [batch]
             exporters: [prometheus]
           traces:
             receivers: [otlp]
