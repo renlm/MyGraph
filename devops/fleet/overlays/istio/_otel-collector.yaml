@@ -63,6 +63,11 @@ items:
           protocols:
             grpc: {}
             http: {}
+        prometheus:
+          target_allocator:
+            endpoint: http://otel-targetallocator
+            interval: 15s
+            collector_id: ${POD_NAME}
       processors:
         batch: {}
       exporters:
@@ -78,7 +83,7 @@ items:
       service:
         pipelines:
           metrics:
-            receivers: [otlp, spanmetrics]
+            receivers: [spanmetrics]
             processors: [batch]
             exporters: [prometheus]
           traces:
