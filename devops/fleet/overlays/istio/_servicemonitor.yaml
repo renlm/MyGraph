@@ -5,7 +5,7 @@ items:
   kind: ServiceMonitor
   metadata:
     name: otel-metrics-monitor
-    namespace: istio-system
+    namespace: observability
     labels:
       monitoring: otel-metrics
   spec:
