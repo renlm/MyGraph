@@ -83,4 +83,4 @@ items:
           logs:
             receivers: [otlp]
             processors: [batch]
-            exporters: [loggingg]
+            exporters: [logging]
