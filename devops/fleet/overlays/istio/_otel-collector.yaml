@@ -26,7 +26,7 @@ items:
     - podmonitors
     verbs: ["*"]
   - apiGroups: ["", "extensions", "apps"]
-    resources: ["namespaces", "pods", "services", "endpoints"]
+    resources: ["namespaces", "pods", "services", "endpoints", "endpointslices"]
     verbs: ["get", "list", "watch"]
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: ClusterRoleBinding
