@@ -43,7 +43,7 @@ items:
     name: otel
     namespace: istio-system
   spec:
-    image: otel/opentelemetry-collector:latest
+    image: otel/opentelemetry-collector-contrib:latest
     mode: statefulset
     targetAllocator:
       enabled: true
