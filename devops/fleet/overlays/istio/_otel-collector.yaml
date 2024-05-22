@@ -2,52 +2,85 @@
 # https://github.com/open-telemetry/opentelemetry-operator/tree/main/cmd/otel-allocator#prometheuscr-specifics
 # https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md
 # https://github.com/jaegertracing/jaeger/tree/main/docker-compose/monitor
-apiVersion: opentelemetry.io/v1beta1
-kind: OpenTelemetryCollector
-metadata:
-  name: otel
-  namespace: istio-system
-spec:
-  mode: statefulset
-  image: otel/opentelemetry-collector:latest
-  config:
-    receivers:
-      otlp:
-        protocols:
-          grpc: {}
-          http: {}
-    processors:
-      batch: {}
-    exporters:
-      logging:
-        verbosity: detailed
-      prometheus:
-        endpoint: 0.0.0.0:8889
-        namespace: span_metrics
-      zipkin:
-        endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
-    connectors:
-      spanmetrics: {}
-    service:
-      pipelines:
-        metrics/spanmetrics:
-          receivers:
-          - spanmetrics
-          processors: []
-          exporters:
-          - prometheus
-        traces:
-          receivers:
-          - otlp
-          processors:
-          - batch
-          exporters:
-          - spanmetrics
-          - zipkin
-        logs:
-          receivers:
-          - otlp
-          processors:
-          - batch
-          exporters:
-          - logging
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: opentelemetry-targetallocator-sa
+    namespace: istio-system
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRole
+  metadata:
+    name: opentelemetry-targetallocator-cr
+  rules:
+  - apiGroups:
+    - monitoring.coreos.com
+    resources:
+    - servicemonitors
+    - podmonitors
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get", "list", "watch"]
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    name: opentelemetry-targetallocator-crb
+    namespace: istio-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: opentelemetry-targetallocator-cr
+  subjects:
+    - kind: ServiceAccount
+      name: opentelemetry-targetallocator-sa
+      namespace: istio-system
+- apiVersion: opentelemetry.io/v1beta1
+  kind: OpenTelemetryCollector
+  metadata:
+    name: otel
+    namespace: istio-system
+  spec:
+    image: otel/opentelemetry-collector:latest
+    mode: statefulset
+    targetAllocator:
+      enabled: true
+      serviceAccount: opentelemetry-targetallocator-sa
+      prometheusCR:
+        enabled: true
+    config:
+      receivers:
+        prometheus:
+          config: {}
+        otlp:
+          protocols:
+            grpc: {}
+            http: {}
+      processors:
+        batch: {}
+      exporters:
+        logging:
+          verbosity: detailed
+        prometheus:
+          endpoint: 0.0.0.0:8889
+          namespace: span_metrics
+        zipkin:
+          endpoint: http://zipkin.istio-system.svc.cluster.local:9411/api/v2/spans
+      connectors:
+        spanmetrics: {}
+      service:
+        pipelines:
+          metrics/spanmetrics:
+            receivers: [spanmetrics]
+            processors: []
+            exporters: [prometheus]
+          traces:
+            receivers: [otlp]
+            processors: [batch]
+            exporters: [spanmetrics, zipkin]
+          logs:
+            receivers: [otlp]
+            processors: [batch]
+            exporters: [loggingg]
