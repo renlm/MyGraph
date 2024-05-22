@@ -4,10 +4,10 @@ items:
 - apiVersion: monitoring.coreos.com/v1
   kind: ServiceMonitor
   metadata:
-    name: otel-collector-monitor
+    name: otel-metrics-monitor
     namespace: istio-system
     labels:
-      monitoring: otel-collectors
+      monitoring: otel-metrics
   spec:
     endpoints:
     - interval: 15s

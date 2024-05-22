@@ -55,8 +55,11 @@ items:
       prometheusCR:
         enabled: true
         serviceMonitorSelector:
-          matchLabels:
-            monitoring: metrics
+          matchExpressions:
+          - key: monitoring
+            operator: In
+            values:
+            - metrics
     config:
       receivers:
         otlp:
