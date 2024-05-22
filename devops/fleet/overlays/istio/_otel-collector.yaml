@@ -33,6 +33,7 @@ spec:
         metrics/spanmetrics:
           receivers:
           - spanmetrics
+          processors: []
           exporters:
           - prometheus
         traces:
