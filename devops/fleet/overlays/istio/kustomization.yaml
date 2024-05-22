@@ -1,6 +1,7 @@
 resources:
-- _gateway.yaml
+- _otel-collector.yaml
+- _otel-agent.yaml
 - _tls.yaml
+- _gateway.yaml
 - _virtualservice.yaml
-- _opentelemetry.yaml
 - _servicemonitor.yaml

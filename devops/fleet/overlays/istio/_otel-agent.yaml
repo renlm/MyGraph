@@ -20,6 +20,8 @@ items:
   metadata:
     name: java-instrumentation
   spec:
+    exporter:
+      endpoint: http://otel-collector.istio-system:4318
     propagators:
     - tracecontext
     - baggage
@@ -31,5 +33,3 @@ items:
       env:
       - name: OTEL_EXPORTER_OTLP_PROTOCOL
         value: http/protobuf
-      - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: http://otel-collector.istio-system:4318
