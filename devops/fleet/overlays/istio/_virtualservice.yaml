@@ -43,7 +43,7 @@ items:
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
   metadata:
-    name: mygraph-jenkins
+    name: jenkins
   spec:
     hosts:
     - jenkins.renlm.cn
@@ -56,13 +56,13 @@ items:
       route:
       - weight: 100
         destination:
-          host: mygraph-jenkins
+          host: jenkins
           port:
             number: 8080
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
   metadata:
-    name: mygraph-rabbitmq
+    name: rabbitmq
   spec:
     hosts:
     - rabbitmq.renlm.cn
@@ -75,7 +75,7 @@ items:
       route:
       - weight: 100
         destination:
-          host: mygraph-rabbitmq
+          host: rabbitmq
           port:
             number: 15672
     tcp:
@@ -84,13 +84,13 @@ items:
       route:
       - weight: 100
         destination:
-          host: mygraph-rabbitmq
+          host: rabbitmq
           port:
             number: 5672
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
   metadata:
-    name: mygraph-mysql
+    name: mysql
   spec:
     hosts:
     - mysql.renlm.cn
@@ -102,13 +102,13 @@ items:
       route:
       - weight: 100
         destination:
-          host: mygraph-mysql
+          host: mysql
           port:
             number: 3306
 - apiVersion: networking.istio.io/v1beta1
   kind: VirtualService
   metadata:
-    name: mygraph-redis
+    name: redis
   spec:
     hosts:
     - redis.renlm.cn
@@ -120,6 +120,6 @@ items:
       route:
       - weight: 100
         destination:
-          host: mygraph-redis
+          host: redis
           port:
             number: 6379
