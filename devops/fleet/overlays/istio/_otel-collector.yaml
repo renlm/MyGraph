@@ -86,7 +86,7 @@ items:
       service:
         pipelines:
           metrics:
-            receivers: [otlp, prometheus, spanmetrics]
+            receivers: [otlp, spanmetrics]
             processors: [batch]
             exporters: [prometheus]
           traces:
