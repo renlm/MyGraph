@@ -21,7 +21,7 @@ items:
     name: java-instrumentation
   spec:
     exporter:
-      endpoint: http://otel-collector.istio-system:4318
+      endpoint: http://otel-collector.observability:4318
     propagators:
     - tracecontext
     - baggage
