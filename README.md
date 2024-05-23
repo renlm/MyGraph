@@ -100,13 +100,17 @@
 *资源： 京东云服务器、域名、公网IP、免费https证书（cert-manager）*  
 *容器化部署流水线： k3s+rancher、k8s、Jenkins*  
 *服务监控： Monitoring（Grafana + Prometheus）*  
-*网关、流量及链路追踪： Istio（Kiali + Jaeger）*  
+*网关、流量及链路追踪： Istio（Kiali + OpenTelemetry + Jaeger）*  
 *微服务架构： SpringCloud2023.0.1（Service Mesh）*  
 *辅助开发调试工具： VSCode、Nocalhost插件*  
+
+![Service Mesh](https://renlm.github.io/imgs/MyGraph/100.png "Service Mesh")  
 
 ## 初始化部署
 <a href="https://renlm.github.io" target="_blank">配置手册</a>  
 
 部署清单：devops/fleet  
 
-![Kiali Console](https://renlm.github.io/imgs/MyGraph/100.png "Kiali Console")  
+![K8s Dashboard](https://renlm.github.io/imgs/MyGraph/101.png "K8s Dashboard")  
+
+![Kiali Console](https://renlm.github.io/imgs/MyGraph/102.png "Kiali Console")  
