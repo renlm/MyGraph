@@ -1,7 +1,0 @@
-resources:
-- _otel-collector.yaml
-- _otel-agent.yaml
-- _tls.yaml
-- _gateway.yaml
-- _virtualservice.yaml
-- _servicemonitor.yaml

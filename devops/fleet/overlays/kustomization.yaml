@@ -1,5 +1,5 @@
 bases:
-- istio
+- manifest
 patchesStrategicMerge:
 - properties/dev.yaml
 - properties/prod.yaml
