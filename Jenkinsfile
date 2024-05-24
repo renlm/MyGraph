@@ -31,7 +31,7 @@ pipeline {
                 	echo "构建镜像..."
                 	dir("${projectDir}") {
 	                	docker.withRegistry("${dockerRegistry}", "${aliyuncsCredential}") {
-	                        docker.build("${dockerImage}:${TAG}", "-f ${projectDir}/devops/Dockerfile .")
+	                        docker.build("${dockerImage}:${TAG}", "-f ${projectDir}/Dockerfile .")
 	                    }
                     }
                 }
