@@ -53,7 +53,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "mygraph.selectorLabels" -}}
-app: {{ default (include "mygraph.fullname" .) .Values.appName }}
+app: {{ include "mygraph.fullname" . }}
 version: {{ include "mygraph.version" . }}
 app.kubernetes.io/name: {{ include "mygraph.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
