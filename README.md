@@ -109,8 +109,6 @@
 ## 初始化部署
 <a href="https://renlm.github.io" target="_blank">配置手册</a>  
 
-部署清单：devops/fleet  
+<a href="https://gitee.com/renlm/MyGraph/tree/main/fleet" target="_blank">部署清单</a>  
 
-![K8s Dashboard](https://renlm.github.io/imgs/MyGraph/101.png "K8s Dashboard")  
-
-![Kiali Console](https://renlm.github.io/imgs/MyGraph/102.png "Kiali Console")  
+![Kiali Console](https://renlm.github.io/imgs/MyGraph/101.png "Kiali Console")  
