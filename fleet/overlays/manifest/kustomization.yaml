@@ -1,7 +1,2 @@
 resources:
-- servicemonitor.yaml
-- tls.yaml
-- istio/gateway.yaml
-- istio/virtualservice.yaml
-- otel/collector.yaml
-- otel/agent.yaml
+- virtualservice.yaml
