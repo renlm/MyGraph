@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: List
 items:
-- apiVersion: networking.istio.io/v1beta1
+- apiVersion: networking.istio.io/v1
   kind: VirtualService
   metadata:
     name: mygraph
@@ -9,18 +9,17 @@ items:
     hosts:
     - mygraph.renlm.cn
     gateways:
-    - istio-system/mygraph-gateway
+    - istio-system/gateway
     http:
     - match:
       - port: 80
       - port: 443
       route:
-      - weight: 100
-        destination:
+      - destination:
           host: mygraph
           port:
             number: 8080
-- apiVersion: networking.istio.io/v1beta1
+- apiVersion: networking.istio.io/v1
   kind: VirtualService
   metadata:
     name: rabbitmq
@@ -28,14 +27,13 @@ items:
     hosts:
     - rabbitmq.renlm.cn
     gateways:
-    - istio-system/mygraph-gateway
+    - istio-system/gateway
     http:
     - match:
       - port: 80
       - port: 443
       route:
-      - weight: 100
-        destination:
+      - destination:
           host: rabbitmq
           port:
             number: 15672
