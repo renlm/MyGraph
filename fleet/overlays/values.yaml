@@ -42,7 +42,7 @@ resources:
     memory: 500Mi
     cpu: 200m
 autoscaling:
-  enabled: true
+  enabled: false
   minReplicas: 2
   maxReplicas: 3
   targetCPUUtilizationPercentage: 95
@@ -50,7 +50,7 @@ configmap:
   enabled: true
 mysql:
   enabled: true
-  mini: false
+  mini: true
   database: mygraph
   user: mygraph
   password: PWD@20xxKplstdm^8uttm$
