@@ -1,0 +1,131 @@
+fullnameOverride: mygraph
+appVersion: v1.0.1
+host: mygraph.renlm.cn
+env: dev
+initDb: true
+defaultPassword: PWD
+replicaCount: 1
+nodeSelector: {}
+podAnnotations: {}
+podSecurityContext: {}
+securityContext: {}
+tolerations: []
+affinity: {}
+imagePullSecrets: []
+image:
+  repository: registry.cn-hangzhou.aliyuncs.com/rlm/mygraph
+  pullPolicy: Always
+  tag: latest
+serviceAccount:
+  create: true
+  annotations: {}
+  name: mygraph-sa
+ingress:
+  enabled: false
+service:
+  type: ClusterIP
+  port: 8080
+actuator:
+  port: 9000
+  portName: tcp-actuator
+  health:
+    liveness:
+      initialDelaySeconds: 3
+      periodSeconds: 10
+      successThreshold: 1
+      failureThreshold: 20
+      timeoutSeconds: 1
+    readiness:
+      initialDelaySeconds: 3
+      periodSeconds: 10
+      successThreshold: 1
+      failureThreshold: 20
+      timeoutSeconds: 1
+resources:
+  limits:
+    memory: 4Gi
+    cpu: 2
+  requests:
+    memory: 500Mi
+    cpu: 200m
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 95
+configmap:
+  enabled: true
+mysql:
+  enabled: false
+  appVersion: 8.0.31
+  mini: true
+  database: mygraph
+  user: mygraph
+  password: {}
+  nodeSelector: {}
+  image:
+    repository: mysql
+    pullPolicy: IfNotPresent
+    tag: 8.0.31
+  service:
+    type: NodePort
+    port: 3306
+    nodePort: 30306
+  nfs:
+    enabled: true
+    storage: 20Gi
+    path: /nfs_share/mysql
+    server: 192.168.16.3
+rabbitmq:
+  enabled: false
+  appVersion: 3.13.2
+  host: rabbitmq.renlm.cn
+  defaultVhost: /mygraph
+  defaultUser: mygraph
+  defaultPass: {}
+  nodeSelector: {}
+  image:
+    repository: rabbitmq
+    pullPolicy: IfNotPresent
+    tag: 3.13.2-management
+  ingress:
+    enabled: false
+  service:
+    type: NodePort
+    port: 15672
+    amqpPort: 5672
+    amqpNodePort: 30672
+  nfs:
+    enabled: true
+    storage: 5Gi
+    path: /nfs_share/rabbitmq
+    server: 192.168.16.3
+redis:
+  enabled: false
+  appVersion: 7.2.4
+  requirepass: {}
+  nodeSelector: {}
+  image:
+    repository: redis
+    pullPolicy: IfNotPresent
+    tag: 7.2.4
+  service:
+    type: NodePort
+    port: 6379
+    nodePort: 30379
+jenkins:
+  enabled: false
+  appVersion: 2.452.1
+  host: jenkins.renlm.cn
+  nodeSelector: {}
+  image:
+    repository: jenkins/jenkins
+    pullPolicy: IfNotPresent
+    tag: lts-jdk17
+  ingress:
+    enabled: false
+  nfs:
+    enabled: true
+    storage: 20Gi
+    path: /nfs_share/jenkins
+    server: 192.168.16.3
