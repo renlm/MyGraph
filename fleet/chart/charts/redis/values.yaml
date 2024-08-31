@@ -1,10 +1,9 @@
 fullnameOverride: redis
-requirepass: PWD
 nodeSelector: {}
 image:
   repository: redis
   pullPolicy: IfNotPresent
-  tag: 7.2.4
+  tag: latest
 serviceAccount:
   create: false
 ingress:

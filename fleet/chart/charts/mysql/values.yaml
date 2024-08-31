@@ -2,7 +2,6 @@ fullnameOverride: mysql
 mini: true
 database: dev
 user: dev
-password: PWD
 nodeSelector: {}
 image:
   repository: mysql
@@ -18,6 +17,6 @@ service:
   nodePort: 30306
 nfs:
   enabled: false
-  storage: 20Gi
+  storage: 25Gi
   path: /nfs_share/mysql
   server: 192.168.16.3

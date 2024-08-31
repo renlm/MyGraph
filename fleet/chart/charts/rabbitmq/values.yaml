@@ -1,26 +1,15 @@
 fullnameOverride: rabbitmq
 defaultVhost: /dev
 defaultUser: dev
-defaultPass: PWD
 nodeSelector: {}
 image:
   repository: rabbitmq
   pullPolicy: IfNotPresent
-  tag: 3.13.2-management
+  tag: management
 serviceAccount:
   create: false
 ingress:
-  enabled: true
-  annotations: {}
-  hosts:
-  - host: rabbitmq.renlm.cn
-    paths:
-    - path: /
-      pathType: Prefix
-  tls:
-  - secretName: pubyun.renlm.cn
-    hosts:
-    - rabbitmq.renlm.cn
+  enabled: false
 service:
   type: NodePort
   port: 15672
@@ -28,6 +17,6 @@ service:
   amqpNodePort: 30672
 nfs:
   enabled: false
-  storage: 5Gi
+  storage: 25Gi
   path: /nfs_share/rabbitmq
   server: 192.168.16.3
