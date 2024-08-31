@@ -1,10 +1,11 @@
 fullnameOverride: mygraph
 appVersion: v1.0.1
+host: mygraph.renlm.cn
 env: dev
 initDb: true
-host: mygraph.renlm.cn
 replicaCount: 1
 nodeSelector: {}
+podAnnotations: {}
 podSecurityContext: {}
 securityContext: {}
 tolerations: []
@@ -55,6 +56,7 @@ configmap:
   enabled: false
 mysql:
   enabled: false
+  appVersion: 8.0.31
   mini: true
   database: mygraph
   user: mygraph
@@ -74,6 +76,7 @@ mysql:
     server: 192.168.16.3
 rabbitmq:
   enabled: false
+  appVersion: 3.13.2
   host: rabbitmq.renlm.cn
   defaultVhost: /mygraph
   defaultUser: mygraph
@@ -81,7 +84,7 @@ rabbitmq:
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
-    tag: management
+    tag: 3.13.2-management
   ingress:
     enabled: false
   service:
@@ -96,17 +99,19 @@ rabbitmq:
     server: 192.168.16.3
 redis:
   enabled: false
+  appVersion: 7.2.4
   nodeSelector: {}
   image:
     repository: redis
     pullPolicy: IfNotPresent
-    tag: latest
+    tag: 7.2.4
   service:
     type: NodePort
     port: 6379
     nodePort: 30379
 jenkins:
   enabled: false
+  appVersion: 2.452.1
   host: jenkins.renlm.cn
   nodeSelector: {}
   image:
