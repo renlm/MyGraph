@@ -1,4 +1,6 @@
 fullnameOverride: jenkins
+appVersion: lts-jdk17
+host: jenkins.renlm.cn
 nodeSelector: {}
 securityContext: {}
 podSecurityContext:

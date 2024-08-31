@@ -1,4 +1,5 @@
 fullnameOverride: redis
+appVersion: latest
 nodeSelector: {}
 image:
   repository: redis

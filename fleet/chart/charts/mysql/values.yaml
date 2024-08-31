@@ -1,4 +1,5 @@
 fullnameOverride: mysql
+appVersion: latest
 mini: true
 database: dev
 user: dev

@@ -1,4 +1,6 @@
 fullnameOverride: rabbitmq
+appVersion: management
+host: rabbitmq.renlm.cn
 defaultVhost: /dev
 defaultUser: dev
 nodeSelector: {}
