@@ -1,5 +1,6 @@
 # https://fleet.rancher.io/ref-fleet-yaml
 # https://github.com/rancher/fleet-examples
+# 注意：必须设置集群选择条件，才能覆盖 chart 的 values.yaml
 helm:
   chart: ./chart
   releaseName: mygraph
