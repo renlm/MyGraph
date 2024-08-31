@@ -1,11 +1,12 @@
+{{- $fullName := include "redis.fullname" . -}}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "redis.fullname" . }}
+  name: {{ $fullName }}
   labels:
     {{- include "redis.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "redis.fullname" . }}
+  serviceName: {{ $fullName }}
   replicas: 1
   selector:
     matchLabels:
@@ -28,11 +29,6 @@ spec:
           env:
             - name: TZ
               value: Asia/Shanghai
-            - name: REQUIREPASS
-              valueFrom: 
-                secretKeyRef:
-                  name: mygraph
-                  key: defaultPassword
           command: 
             - redis-server
             - /etc/redis/redis.conf
@@ -42,17 +38,17 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: redis-conf
-              mountPath: /etc/redis/redis.conf
-              subPath: redis.conf
+              mountPath: /etc/redis
+              readOnly: true
             - name: redis-lib
               mountPath: /var/lib/redis
       volumes:
         - name: redis-conf
-          configMap:
-            name: {{ include "redis.fullname" . }}-configmap
+          secret:
+            secretName: mygraph
             items:
-            - key: redis.conf
-              path: redis.conf
+            - key: .Redis.conf
+              path: redis.confe
         - name: redis-lib
           hostPath:
             path: /var/lib/redis
