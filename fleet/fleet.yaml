@@ -6,10 +6,9 @@ helm:
 defaultNamespace: renlm
 targetCustomizations:
 - name: mygraph
-  yaml:
-    overlays:
-    - custom
   helm:
+    valuesFiles:
+    - overlays/values.yaml
     values:
       host: mygraph.renlm.cn
       env: prod
