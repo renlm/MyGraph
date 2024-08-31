@@ -34,7 +34,10 @@ spec:
             - name: RABBITMQ_DEFAULT_USER
               value: {{ .Values.defaultUser }}
             - name: RABBITMQ_DEFAULT_PASS
-              value: {{ .Values.defaultPass }}
+              valueFrom: 
+                secretKeyRef:
+                  name: mygraph
+                  key: defaultPassword
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
