@@ -6,6 +6,9 @@ helm:
 defaultNamespace: renlm
 targetCustomizations:
 - name: mygraph
+  clusterSelector:
+    matchLabels:
+      env: prod
   helm:
     valuesFiles:
     - overlays/values.yaml
