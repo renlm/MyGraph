@@ -10,8 +10,6 @@ securityContext: {}
 tolerations: []
 affinity: {}
 imagePullSecrets: []
-podAnnotations:
-  instrumentation.opentelemetry.io/inject-java: "true"
 image:
   repository: registry.cn-hangzhou.aliyuncs.com/rlm/mygraph
   pullPolicy: Always
@@ -57,10 +55,9 @@ configmap:
   enabled: false
 mysql:
   enabled: false
-  mini: false
+  mini: true
   database: mygraph
   user: mygraph
-  password: PWD@20xxKplstdm^8uttm$
   nodeSelector: {}
   image:
     repository: mysql
@@ -71,15 +68,15 @@ mysql:
     port: 3306
     nodePort: 30306
   nfs:
-    enabled: false
+    enabled: true
     storage: 20Gi
     path: /nfs_share/mysql
     server: 192.168.16.3
 rabbitmq:
   enabled: false
+  host: rabbitmq.renlm.cn
   defaultVhost: /mygraph
   defaultUser: mygraph
-  defaultPass: PWD@20xxKplstdm^8uttm$
   nodeSelector: {}
   image:
     repository: rabbitmq
@@ -93,13 +90,12 @@ rabbitmq:
     amqpPort: 5672
     amqpNodePort: 30672
   nfs:
-    enabled: false
+    enabled: true
     storage: 5Gi
     path: /nfs_share/rabbitmq
     server: 192.168.16.3
 redis:
   enabled: false
-  requirepass: PWD@20xxKplstdm^8uttm$
   nodeSelector: {}
   image:
     repository: redis
@@ -111,6 +107,7 @@ redis:
     nodePort: 30379
 jenkins:
   enabled: false
+  host: jenkins.renlm.cn
   nodeSelector: {}
   image:
     repository: jenkins/jenkins
@@ -119,7 +116,7 @@ jenkins:
   ingress:
     enabled: false
   nfs:
-    enabled: false
+    enabled: true
     storage: 20Gi
     path: /nfs_share/jenkins
     server: 192.168.16.3
