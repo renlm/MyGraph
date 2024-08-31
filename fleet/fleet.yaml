@@ -6,6 +6,8 @@ helm:
 defaultNamespace: renlm
 targetCustomizations:
 - name: mygraph
+  kustomize:
+    dir: overlays
   helm:
     valuesFiles:
     - overlays/values.yaml
