@@ -6,7 +6,7 @@ nodeSelector: {}
 image:
   repository: mysql
   pullPolicy: IfNotPresent
-  tag: 8.0.31
+  tag: latest
 serviceAccount:
   create: false
 ingress:
