@@ -29,6 +29,9 @@ spec:
           env:
             - name: TZ
               value: Asia/Shanghai
+          envFrom:
+            - secretRef:
+                name: redis-env
           command: 
             - redis-server
             - /etc/redis/redis.conf
