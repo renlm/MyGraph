@@ -20,6 +20,8 @@ targetCustomizations:
         enabled: true
       redis:
         enabled: true
+      jenkins:
+        enabled: false
       valuesFrom:
       - secretKeyRef:
           name: mygraph
