@@ -107,8 +107,8 @@
 ![Service Mesh](https://renlm.github.io/imgs/MyGraph/100.png "Service Mesh")  
 
 ## 初始化部署
-<a href="https://renlm.github.io" target="_blank">配置手册</a>  
+<a href="https://renlm.github.io/doc/MYGRAPH.html" target="_blank">配置手册</a>  
 
-<a href="https://gitee.com/renlm/MyGraph/tree/main/fleet" target="_blank">部署清单</a>  
+<a href="https://gitee.com/renlm/MyGraph/tree/master/fleet" target="_blank">部署清单</a>  
 
 ![Kiali Console](https://renlm.github.io/imgs/MyGraph/101.png "Kiali Console")  
