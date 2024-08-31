@@ -16,10 +16,12 @@ targetCustomizations:
       host: mygraph.renlm.cn
       mysql:
         enabled: true
-        password: ${ .ClusterValues.MYGRAPH_PASSWORD | quote }
       rabbitmq:
         enabled: true
-        defaultPass: ${ .ClusterValues.MYGRAPH_PASSWORD | quote }
       redis:
         enabled: true
-        requirepass: ${ .ClusterValues.MYGRAPH_PASSWORD | quote }
+      valuesFrom:
+      - secretKeyRef:
+          name: mygraph
+          namespace: renlm
+          key: defaultPassword

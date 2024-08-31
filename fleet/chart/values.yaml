@@ -3,6 +3,7 @@ appVersion: v1.0.1
 host: mygraph.renlm.cn
 env: dev
 initDb: true
+defaultPassword: PWD
 replicaCount: 1
 nodeSelector: {}
 podAnnotations: {}
@@ -60,7 +61,7 @@ mysql:
   mini: true
   database: mygraph
   user: mygraph
-  password: PWD
+  password: {}
   nodeSelector: {}
   image:
     repository: mysql
@@ -81,7 +82,7 @@ rabbitmq:
   host: rabbitmq.renlm.cn
   defaultVhost: /mygraph
   defaultUser: mygraph
-  defaultPass: PWD
+  defaultPass: {}
   nodeSelector: {}
   image:
     repository: rabbitmq
@@ -102,7 +103,7 @@ rabbitmq:
 redis:
   enabled: false
   appVersion: 7.2.4
-  requirepass: PWD
+  requirepass: {}
   nodeSelector: {}
   image:
     repository: redis
