@@ -1,5 +1,6 @@
 fullnameOverride: jenkins
 appVersion: lts-jdk17
+gateway: istio-ingress/gateway
 host: jenkins.renlm.cn
 nodeSelector: {}
 securityContext: {}
