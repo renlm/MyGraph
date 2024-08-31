@@ -36,7 +36,6 @@ spec:
           command: 
             - redis-server
             - /etc/redis/redis.conf
-            - --requirepass $REQUIREPASS
           ports:
             - name: tcp
               containerPort: {{ .Values.service.port }}

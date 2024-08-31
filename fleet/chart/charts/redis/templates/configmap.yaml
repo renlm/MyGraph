@@ -6,6 +6,7 @@ metadata:
     {{- include "redis.labels" . | nindent 4 }}
 data:
   redis.conf: |-
+    requirepass $REQUIREPASS
     protected-mode no
     port {{ .Values.service.port }}
     databases 16
