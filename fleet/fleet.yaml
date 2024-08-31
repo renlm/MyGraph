@@ -8,8 +8,9 @@ targetCustomizations:
 - name: mygraph
   helm:
     values:
-      initDb: true
       host: mygraph.renlm.cn
+      env: prod
+      initDb: true
       mysql:
         enabled: true
       rabbitmq:
