@@ -28,6 +28,11 @@ spec:
           env:
             - name: TZ
               value: Asia/Shanghai
+            - name: REQUIREPASS
+              valueFrom: 
+                secretKeyRef:
+                  name: mygraph
+                  key: defaultPassword
           command: 
             - redis-server
             - /etc/redis/redis.conf
