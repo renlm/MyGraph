@@ -6,11 +6,10 @@ helm:
 defaultNamespace: renlm
 targetCustomizations:
 - name: mygraph
+  yaml:
+    overlays:
+    - custom
   helm:
-    correctDrift:
-      enabled: true
-      force: true
-      keepFailHistory: false
     values:
       host: mygraph.renlm.cn
       env: prod
