@@ -6,6 +6,8 @@ podSecurityContext: {}
 securityContext: {}
 tolerations: []
 affinity: {}
+configmap:
+  enabled: true
 serviceAccount:
   create: true
   annotations: {}
@@ -41,8 +43,6 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 3
   targetCPUUtilizationPercentage: 95
-configmap:
-  enabled: true
 mysql:
   nodeSelector: {}
   service:

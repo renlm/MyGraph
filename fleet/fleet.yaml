@@ -16,8 +16,7 @@ targetCustomizations:
     valuesFrom:
     - secretKeyRef:
         name: mygraph
-        namespace: renlm
-        key: .values.yaml
+        key: values.yaml
     values:
       host: mygraph.renlm.cn
       env: prod
