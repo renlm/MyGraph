@@ -31,7 +31,7 @@ spec:
               value: Asia/Shanghai
           envFrom:
             - secretRef:
-              name: mysql-env
+              name: rabbitmq-env
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

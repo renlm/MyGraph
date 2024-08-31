@@ -38,20 +38,9 @@ spec:
           env:
             - name: TZ
               value: Asia/Shanghai
-            - name: MYSQL_DATABASE
-              value: {{ .Values.database }}
-            - name: MYSQL_USER
-              value: {{ .Values.user }}
-            - name: MYSQL_PASSWORD
-              valueFrom: 
-                secretKeyRef:
-                  name: mygraph
-                  key: defaultPassword
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom: 
-                secretKeyRef:
-                  name: mygraph
-                  key: defaultPassword
+          envFrom:
+            - secretRef:
+              name: mysql-env
           ports:
             - name: tcp
               containerPort: {{ .Values.service.port }}
