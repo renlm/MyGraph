@@ -51,6 +51,13 @@ spec:
             - name: DB_INIT_MODE
               value: NEVER
             {{- end }}
+          envFrom:
+            - secretRef:
+                name: redis-env
+            - secretRef:
+                name: mysql-env
+            - secretRef:
+                name: rabbitmq-env
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

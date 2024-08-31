@@ -84,7 +84,7 @@ data:
           database: 1
           host: redis
           port: 6379
-          password: {{ default .Values.defaultPassword .Values.redis.requirepass }}
+          password: ${REQUIREPASS}
           timeout: 10s
           lettuce:
             pool:
@@ -93,20 +93,20 @@ data:
               maxIdle: 10
               minIdle: 5
       rabbitmq:
-        virtual-host: {{ .Values.rabbitmq.defaultVhost }}
+        virtual-host: ${RABBITMQ_DEFAULT_VHOST}
         host: rabbitmq
         port: 5672
-        username: {{ .Values.rabbitmq.defaultUser }}
-        password: {{ default .Values.defaultPassword .Values.rabbitmq.defaultPass }}
+        username: ${RABBITMQ_DEFAULT_USER}
+        password: ${RABBITMQ_DEFAULT_PASS}
       datasource:
         dynamic:
           primary: master
           strict: true
           datasource:
             master:
-              url: jdbc:mysql://mysql:3306/{{ .Values.mysql.database }}?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
-              username: {{ .Values.mysql.user }}
-              password: {{ default .Values.defaultPassword .Values.mysql.password }}
+              url: jdbc:mysql://mysql:3306/${MYSQL_DATABASE}?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+              username: ${MYSQL_USER}
+              password: ${MYSQL_PASSWORD}
               driver-class-name: com.mysql.cj.jdbc.Driver
       sql:
         init:
