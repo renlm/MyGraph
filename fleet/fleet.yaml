@@ -13,6 +13,11 @@ targetCustomizations:
   helm:
     valuesFiles:
     - overlays/values.yaml
+    valuesFrom:
+    - secretKeyRef:
+        name: mygraph
+        namespace: renlm
+        key: defaultPassword
     values:
       host: mygraph.renlm.cn
       env: prod
@@ -25,8 +30,3 @@ targetCustomizations:
         enabled: true
       jenkins:
         enabled: false
-      valuesFrom:
-      - secretKeyRef:
-          name: mygraph
-          namespace: renlm
-          key: defaultPassword

@@ -95,13 +95,13 @@ rabbitmq:
     path: /nfs_share/rabbitmq
     server: 192.168.16.3
 redis:
-  appVersion: latest
+  appVersion: 7.4.0
   requirepass: {}
   nodeSelector: {}
   image:
     repository: redis
     pullPolicy: IfNotPresent
-    tag: latest
+    tag: 7.4.0
   service:
     type: NodePort
     port: 6379
