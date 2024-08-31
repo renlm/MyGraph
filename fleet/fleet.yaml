@@ -6,11 +6,11 @@ helm:
 defaultNamespace: renlm
 targetCustomizations:
 - name: mygraph
-  kustomize:
-    dir: overlays
   helm:
-    valuesFiles:
-    - overlays/values.yaml
+    correctDrift:
+      enabled: true
+      force: false
+      keepFailHistory: false
     values:
       host: mygraph.renlm.cn
       env: prod
