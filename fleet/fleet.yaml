@@ -18,7 +18,6 @@ targetCustomizations:
         name: mygraph
         key: values.yaml
     values:
-      host: mygraph.renlm.cn
       env: prod
       initDb: true
       mysql:
