@@ -17,7 +17,7 @@ targetCustomizations:
     - secretKeyRef:
         name: mygraph
         namespace: renlm
-        key: defaultPassword
+        key: values.yaml
     values:
       host: mygraph.renlm.cn
       env: prod
