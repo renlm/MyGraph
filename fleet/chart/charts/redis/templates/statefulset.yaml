@@ -35,6 +35,7 @@ spec:
                   key: defaultPassword
           command: 
             - redis-server
+            - --requirepass ${REQUIREPASS}
             - /etc/redis/redis.conf
           ports:
             - name: tcp
