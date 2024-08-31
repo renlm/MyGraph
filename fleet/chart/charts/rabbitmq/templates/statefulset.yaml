@@ -29,15 +29,9 @@ spec:
           env:
             - name: TZ
               value: Asia/Shanghai
-            - name: RABBITMQ_DEFAULT_VHOST
-              value: {{ .Values.defaultVhost }}
-            - name: RABBITMQ_DEFAULT_USER
-              value: {{ .Values.defaultUser }}
-            - name: RABBITMQ_DEFAULT_PASS
-              valueFrom: 
-                secretKeyRef:
-                  name: mygraph
-                  key: defaultPassword
+          envFrom:
+            - secretRef:
+              name: mysql-env
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

@@ -1,8 +1,7 @@
 fullnameOverride: rabbitmq
 appVersion: management
+gateway: istio-ingress/gateway
 host: rabbitmq.renlm.cn
-defaultVhost: /dev
-defaultUser: dev
 nodeSelector: {}
 image:
   repository: rabbitmq

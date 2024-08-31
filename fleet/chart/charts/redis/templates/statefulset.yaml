@@ -47,8 +47,8 @@ spec:
           secret:
             secretName: mygraph
             items:
-            - key: .Redis.conf
-              path: redis.confe
+            - key: redis.conf
+              path: redis.conf
         - name: redis-lib
           hostPath:
             path: /var/lib/redis
