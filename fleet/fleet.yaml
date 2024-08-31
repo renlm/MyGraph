@@ -9,7 +9,7 @@ targetCustomizations:
   helm:
     correctDrift:
       enabled: true
-      force: false
+      force: true
       keepFailHistory: false
     values:
       host: mygraph.renlm.cn
