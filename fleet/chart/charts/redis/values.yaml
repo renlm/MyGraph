@@ -1,5 +1,6 @@
 fullnameOverride: redis
 appVersion: latest
+requirepass: PWD
 nodeSelector: {}
 image:
   repository: redis

@@ -53,13 +53,14 @@ autoscaling:
   maxReplicas: 3
   targetCPUUtilizationPercentage: 95
 configmap:
-  enabled: false
+  enabled: true
 mysql:
   enabled: false
   appVersion: 8.0.31
   mini: true
   database: mygraph
   user: mygraph
+  password: PWD
   nodeSelector: {}
   image:
     repository: mysql
@@ -80,6 +81,7 @@ rabbitmq:
   host: rabbitmq.renlm.cn
   defaultVhost: /mygraph
   defaultUser: mygraph
+  defaultPass: PWD
   nodeSelector: {}
   image:
     repository: rabbitmq
@@ -100,6 +102,7 @@ rabbitmq:
 redis:
   enabled: false
   appVersion: 7.2.4
+  requirepass: PWD
   nodeSelector: {}
   image:
     repository: redis

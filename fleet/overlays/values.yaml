@@ -1,5 +1,9 @@
+fullnameOverride: mygraph
+appVersion: v1.0.1
+env: prod
 replicaCount: 1
 nodeSelector: {}
+podAnnotations: {}
 podSecurityContext: {}
 securityContext: {}
 tolerations: []
@@ -13,8 +17,6 @@ serviceAccount:
   create: true
   annotations: {}
   name: mygraph-sa
-ingress:
-  enabled: false
 service:
   type: ClusterIP
   port: 8080
@@ -50,10 +52,10 @@ configmap:
   enabled: true
 mysql:
   enabled: true
+  appVersion: 8.0.31
   mini: true
   database: mygraph
   user: mygraph
-  password: PWD@20xxKplstdm^8uttm$
   nodeSelector: {}
   image:
     repository: mysql
@@ -70,16 +72,15 @@ mysql:
     server: 192.168.16.3
 rabbitmq:
   enabled: true
+  appVersion: 3.13.2
+  host: rabbitmq.renlm.cn
   defaultVhost: /mygraph
   defaultUser: mygraph
-  defaultPass: PWD@20xxKplstdm^8uttm$
   nodeSelector: {}
   image:
     repository: rabbitmq
     pullPolicy: IfNotPresent
-    tag: management
-  ingress:
-    enabled: false
+    tag: 3.13.2-management
   service:
     type: NodePort
     port: 15672
@@ -92,13 +93,27 @@ rabbitmq:
     server: 192.168.16.3
 redis:
   enabled: true
-  requirepass: PWD@20xxKplstdm^8uttm$
+  appVersion: 7.2.4
   nodeSelector: {}
   image:
     repository: redis
     pullPolicy: IfNotPresent
-    tag: latest
+    tag: 7.2.4
   service:
     type: NodePort
     port: 6379
     nodePort: 30379
+jenkins:
+  enabled: true
+  appVersion: 2.452.1
+  host: jenkins.renlm.cn
+  nodeSelector: {}
+  image:
+    repository: jenkins/jenkins
+    pullPolicy: IfNotPresent
+    tag: lts-jdk17
+  nfs:
+    enabled: true
+    storage: 20Gi
+    path: /nfs_share/jenkins
+    server: 192.168.16.3

@@ -6,15 +6,17 @@ helm:
 defaultNamespace: renlm
 targetCustomizations:
 - name: mygraph
-  clusterSelector:
-    matchLabels:
-      env: prod
   kustomize:
     dir: overlays
   helm:
     valuesFiles:
     - overlays/values.yaml
     values:
-      env: prod
       initDb: true
       host: mygraph.renlm.cn
+      mysql:
+        password: PWD@20xxKplstdm^8uttm$
+      rabbitmq:
+        defaultPass: PWD@20xxKplstdm^8uttm$
+      redis:
+        requirepass: PWD@20xxKplstdm^8uttm$
