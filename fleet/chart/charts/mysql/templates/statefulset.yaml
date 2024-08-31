@@ -40,7 +40,7 @@ spec:
               value: Asia/Shanghai
           envFrom:
             - secretRef:
-              name: mysql-env
+                name: mysql-env
           ports:
             - name: tcp
               containerPort: {{ .Values.service.port }}
