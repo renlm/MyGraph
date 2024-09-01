@@ -88,8 +88,6 @@ rabbitmq:
     repository: rabbitmq
     pullPolicy: IfNotPresent
     tag: 3.13.2-management
-  ingress:
-    enabled: false
   service:
     type: NodePort
     port: 15672
@@ -122,8 +120,6 @@ jenkins:
     repository: jenkins/jenkins
     pullPolicy: IfNotPresent
     tag: lts-jdk17
-  ingress:
-    enabled: false
   nfs:
     enabled: true
     storage: 20Gi
