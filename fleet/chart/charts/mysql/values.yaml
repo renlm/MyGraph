@@ -1,5 +1,7 @@
 fullnameOverride: mysql
 appVersion: latest
+gateway: istio-ingress/gateway
+host: mysql.renlm.cn
 mini: true
 nodeSelector: {}
 image:

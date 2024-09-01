@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: mysql
+spec:
+  hosts:
+  - {{ .Values.host }}
+  gateways:
+  - {{ .Values.gateway }}
+  tcp:
+  - match:
+    - port: 31306
+    route:
+    - destination:
+        host: mysql
+        port:
+          number: 3306

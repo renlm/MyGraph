@@ -59,6 +59,8 @@ configmap:
 mysql:
   enabled: false
   appVersion: 8.0.31
+  gateway: istio-ingress/gateway
+  host: mysql.renlm.cn
   mini: true
   database: mygraph
   user: mygraph
@@ -80,6 +82,7 @@ mysql:
 rabbitmq:
   enabled: false
   appVersion: 3.13.2
+  gateway: istio-ingress/gateway
   host: rabbitmq.renlm.cn
   defaultVhost: /mygraph
   defaultUser: mygraph
@@ -102,6 +105,8 @@ rabbitmq:
 redis:
   enabled: false
   appVersion: 7.2.4
+  gateway: istio-ingress/gateway
+  host: redis.renlm.cn
   requirepass: {}
   nodeSelector: {}
   image:
@@ -115,6 +120,7 @@ redis:
 jenkins:
   enabled: false
   appVersion: 2.452.1
+  gateway: istio-ingress/gateway
   host: jenkins.renlm.cn
   nodeSelector: {}
   image:
