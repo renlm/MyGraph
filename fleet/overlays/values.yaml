@@ -1,8 +1,7 @@
 fullnameOverride: mygraph
 replicaCount: 1
 nodeSelector: {}
-podAnnotations:
-  sidecar.istio.io/interceptionMode: TPROXY
+podAnnotations: {}
 podSecurityContext: {}
 securityContext: {}
 tolerations: []
