@@ -80,7 +80,7 @@ data:
       data:
         redis:
           database: 0
-          host: renlm.cn
+          host: redis.renlm.cn
           port: 31379
           password: ${DEFAULT_PASSWORD}
           timeout: 10s
@@ -92,7 +92,7 @@ data:
               minIdle: 5
       rabbitmq:
         virtual-host: /dev
-        host: renlm.cn
+        host: rabbitmq.renlm.cn
         port: 31672
         username: dev
         password: ${DEFAULT_PASSWORD}
@@ -102,7 +102,7 @@ data:
           strict: true
           datasource:
             master:
-              url: jdbc:mysql://renlm.cn:31306/dev?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
+              url: jdbc:mysql://mysql.renlm.cn:31306/dev?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&rewriteBatchedStatements=true
               username: dev
               password: ${DEFAULT_PASSWORD}
               driver-class-name: com.mysql.cj.jdbc.Driver
