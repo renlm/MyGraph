@@ -11,6 +11,8 @@ targetCustomizations:
   clusterSelector:
     matchLabels:
       env: prod
+  kustomize:
+    dir: overlays
   helm:
     valuesFiles:
     - overlays/values.yaml
