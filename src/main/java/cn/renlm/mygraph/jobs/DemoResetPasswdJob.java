@@ -41,13 +41,15 @@ public class DemoResetPasswdJob extends JobBean {
 	@Override
 	public void exec(String batch, AtomicInteger seq, Map<String, Object> params) {
 		JobExecutionContext context = (JobExecutionContext) params.get(CONTEXT_KEY);
-		List<String> usernames = CollUtil.newArrayList("S-linghc", "S-renyy");
+		List<String> usernames = CollUtil.newArrayList("S-renyy");
 		String password = "123654";
 		iSysUserService.update(Wrappers.<SysUser>lambdaUpdate().func(wrapper -> {
 			wrapper.set(SysUser::getPassword, passwordEncoder.encode(password));
 			wrapper.in(SysUser::getUsername, usernames);
 		}));
-		this.log(context, batch, seq, Level.INFO, JSONUtil.toJsonStr(usernames) + "，重置密码为：" + password);
+		{
+			this.log(context, batch, seq, Level.INFO, JSONUtil.toJsonStr(usernames) + "，重置密码为：" + password);
+		}
 	}
 
 }
