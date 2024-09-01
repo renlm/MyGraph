@@ -16,3 +16,11 @@ spec:
         host: rabbitmq
         port:
           number: 15672
+  tcp:
+  - match:
+    - port: 31672
+    route:
+    - destination:
+        host: rabbitmq
+        port:
+          number: 5672
