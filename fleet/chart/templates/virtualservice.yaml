@@ -6,7 +6,7 @@ spec:
   hosts:
   - {{ .Values.host }}
   gateways:
-  - istio-system/gateway
+  - {{ .Values.gateway }}
   http:
   - match:
     - port: 80

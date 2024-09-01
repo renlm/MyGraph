@@ -1,5 +1,6 @@
 fullnameOverride: mygraph
 appVersion: v1.0.1
+gateway: istio-ingress/gateway
 host: mygraph.renlm.cn
 env: dev
 initDb: true
