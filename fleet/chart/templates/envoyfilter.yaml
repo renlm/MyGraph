@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: mygraph-pp
+spec:
+  configPatches:
+  - applyTo: LISTENER
+    match:
+      context: SIDECAR_INBOUND
+    patch:
+      operation: MERGE
+      value:
+        listener_filters:
+        - name: envoy.filters.listener.proxy_protocol
+          typed_config:
+            "@type": type.googleapis.com/envoy.extensions.filters.listener.proxy_protocol.v3.ProxyProtocol
+        - name: envoy.filters.listener.original_dst
+        - name: envoy.filters.listener.original_src
+  workloadSelector:
+    labels:
+      app: mygraph
