@@ -5,7 +5,6 @@ import java.time.Duration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
@@ -17,7 +16,7 @@ import org.springframework.security.oauth2.server.authorization.settings.OAuth2T
 import org.springframework.security.oauth2.server.authorization.settings.TokenSettings;
 import org.springframework.test.context.ActiveProfiles;
 
-import cn.hutool.core.lang.UUID;
+import cn.hutool.core.util.IdUtil;
 
 /**
  * 注册客户端
@@ -30,11 +29,12 @@ import cn.hutool.core.lang.UUID;
 public class OAuth2ClientTest {
 
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private JdbcRegisteredClientRepository registeredClientRepository;
 
 	@Test
 	public void test() {
-		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
+		registeredClientRepository.save(RegisteredClient
+				.withId(IdUtil.simpleUUID().toUpperCase())
 				.clientId("test-client")
 				.clientSecret("{noop}secret")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_POST)
@@ -46,20 +46,18 @@ public class OAuth2ClientTest {
 				.scope(OidcScopes.OPENID)
 				.scope(OidcScopes.PROFILE)
 				.clientSettings(ClientSettings.builder()
-						.requireProofKey(false)
-						.requireAuthorizationConsent(false)
-						.build())
+					.requireProofKey(false)
+					.requireAuthorizationConsent(false)
+					.build())
 				.tokenSettings(TokenSettings.builder()
-						.authorizationCodeTimeToLive(Duration.ofMinutes(5))
-						.accessTokenTimeToLive(Duration.ofMinutes(5))
-						.accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)
-						.reuseRefreshTokens(true)
-						.refreshTokenTimeToLive(Duration.ofMinutes(60))
-						.idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)
-						.build())
-				.build();
-		JdbcRegisteredClientRepository registeredClientRepository = new JdbcRegisteredClientRepository(jdbcTemplate);
-		registeredClientRepository.save(registeredClient);
+					.authorizationCodeTimeToLive(Duration.ofMinutes(5))
+					.accessTokenTimeToLive(Duration.ofMinutes(5))
+					.accessTokenFormat(OAuth2TokenFormat.SELF_CONTAINED)
+					.reuseRefreshTokens(true)
+					.refreshTokenTimeToLive(Duration.ofMinutes(60))
+					.idTokenSignatureAlgorithm(SignatureAlgorithm.RS256)
+					.build())
+				.build());
 	}
 
 }
