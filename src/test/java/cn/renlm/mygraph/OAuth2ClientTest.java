@@ -20,7 +20,7 @@ import org.springframework.test.context.ActiveProfiles;
 import cn.hutool.core.lang.UUID;
 
 /**
- * 注册客户端（注意启动时添加VM参数） 
+ * 注册客户端
  * 
  * @author RenLiMing(任黎明)
  *
