@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.Authentication;
@@ -28,7 +27,6 @@ import org.springframework.security.oauth2.server.authorization.oidc.authenticat
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.oauth2.server.authorization.token.JwtEncodingContext;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenCustomizer;
-import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenGenerator;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
@@ -40,8 +38,6 @@ import com.nimbusds.jose.proc.SecurityContext;
 import cn.renlm.mygraph.dto.User;
 import cn.renlm.mygraph.dto.UserBase;
 import cn.renlm.mygraph.properties.KeyStoreProperties;
-import cn.renlm.mygraph.security.OAuth2PasswordAuthenticationConverter;
-import cn.renlm.mygraph.security.OAuth2PasswordAuthenticationProvider;
 
 /**
  * 认证服务
@@ -62,11 +58,6 @@ public class AuthorizationServerConfig {
 		http.exceptionHandling(exceptions -> {
 			exceptions.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint(WebSecurityConfig.LoginPage));
 		});
-		oAuth2Configurer.tokenEndpoint(tokenEndpoint -> {
-			tokenEndpoint.accessTokenRequestConverters(accessTokenRequestConvertersConsumer -> {
-				accessTokenRequestConvertersConsumer.add(new OAuth2PasswordAuthenticationConverter());
-			});
-		});
 		Function<OidcUserInfoAuthenticationContext, OidcUserInfo> userInfoMapper = (context) -> {
 			OidcUserInfoAuthenticationToken authentication = context.getAuthentication();
 			JwtAuthenticationToken principal = (JwtAuthenticationToken) authentication.getPrincipal();
@@ -75,7 +66,6 @@ public class AuthorizationServerConfig {
 		oAuth2Configurer.oidc((oidc) -> oidc.userInfoEndpoint((userInfo) -> userInfo.userInfoMapper(userInfoMapper)));
 		http.oauth2ResourceServer((resourceServer) -> resourceServer.jwt(Customizer.withDefaults()));
 		SecurityFilterChain securityFilterChain = http.build();
-		this.addCustomOAuth2GrantAuthenticationProvider(http);
 		return securityFilterChain;
 	}
 
@@ -134,19 +124,6 @@ public class AuthorizationServerConfig {
 				});
 			}
 		};
-	}
-
-	/**
-	 * 自定义授权认证
-	 * 
-	 * @param http
-	 */
-	private void addCustomOAuth2GrantAuthenticationProvider(HttpSecurity http) {
-		AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
-		OAuth2AuthorizationService authorizationService = http.getSharedObject(OAuth2AuthorizationService.class);
-		OAuth2TokenGenerator<?> tokenGenerator = http.getSharedObject(OAuth2TokenGenerator.class);
-		http.authenticationProvider(
-				new OAuth2PasswordAuthenticationProvider(authenticationManager, authorizationService, tokenGenerator));
 	}
 
 }
