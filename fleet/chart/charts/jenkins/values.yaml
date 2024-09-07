@@ -19,6 +19,6 @@ service:
   port: 8080
 nfs:
   enabled: false
-  storage: 25Gi
+  storage: 20Gi
   path: /nfs_share/jenkins
   server: 192.168.16.3
