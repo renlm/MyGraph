@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -44,7 +45,7 @@ public class RequestAuthorizationManager implements AuthorizationManager<Request
 	public AuthorizationDecision check(Supplier<Authentication> authentication, RequestAuthorizationContext object) {
 		Authentication info = authentication.get();
 
-		if (info == null) {
+		if (Objects.isNull(info)) {
 			return new AuthorizationDecision(false);
 		}
 
@@ -72,8 +73,9 @@ public class RequestAuthorizationManager implements AuthorizationManager<Request
 				}
 			}
 		}
-
-		return new AuthorizationDecision(granted);
+		{
+			return new AuthorizationDecision(granted);
+		}
 	}
 
 }
