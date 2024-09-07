@@ -30,4 +30,4 @@ targetCustomizations:
       redis:
         enabled: true
       jenkins:
-        enabled: false
+        enabled: true
