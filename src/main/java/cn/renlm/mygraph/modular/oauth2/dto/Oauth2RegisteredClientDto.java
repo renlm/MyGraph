@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * Oauth2.0 注册客户端
+ * Oauth2 注册客户端
  * 
  * @author RenLiMing(任黎明)
  *

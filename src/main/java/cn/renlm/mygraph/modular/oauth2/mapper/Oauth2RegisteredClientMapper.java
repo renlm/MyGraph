@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- *  Oauth2.0 注册客户端 Mapper 接口
+ *  Oauth2 注册客户端 Mapper 接口
  * </p>
  *
  * @author RenLiMing(任黎明)

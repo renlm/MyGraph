@@ -14,7 +14,7 @@ import cn.renlm.mygraph.modular.oauth2.service.IOauth2RegisteredClientService;
 
 /**
  * <p>
- * Oauth2.0 注册客户端 服务实现类
+ * Oauth2 注册客户端 服务实现类
  * </p>
  *
  * @author RenLiMing(任黎明)

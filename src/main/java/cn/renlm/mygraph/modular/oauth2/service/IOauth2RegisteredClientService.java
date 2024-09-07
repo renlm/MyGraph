@@ -8,7 +8,7 @@ import cn.renlm.mygraph.modular.oauth2.entity.Oauth2RegisteredClient;
 
 /**
  * <p>
- * Oauth2.0 注册客户端 服务类
+ * Oauth2 注册客户端 服务类
  * </p>
  *
  * @author RenLiMing(任黎明)
