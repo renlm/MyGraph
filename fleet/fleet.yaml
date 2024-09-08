@@ -22,7 +22,7 @@ targetCustomizations:
         key: values.yaml
     values:
       env: prod
-      initDb: false
+      initDb: true
       mysql:
         enabled: true
       rabbitmq:
