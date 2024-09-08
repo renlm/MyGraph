@@ -172,7 +172,7 @@ CREATE TABLE sys_file(
     file_type       			VARCHAR(255) 									COMMENT '文件类型',
     file_content       			LONGBLOB 										COMMENT '文件内容',
     size       					BIGINT 											COMMENT '文件大小',
-    actuator       				VARCHAR(255) 									COMMENT '执行器',
+    actuator       				TEXT 											COMMENT '执行器',
     param_json       			TEXT 											COMMENT '执行参数（Json格式）',
     status       				INT 			DEFAULT 1						COMMENT '状态，1：正常，2：任务初始化，3：任务执行中，4：任务异常，5：任务已完成',
     message       				TEXT											COMMENT '消息内容（异常信息）',
