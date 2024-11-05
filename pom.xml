@@ -7,8 +7,9 @@
 	<artifactId>mygraph</artifactId>
 	<version>1.0.1</version>
 	<name>MyGraph</name>
-	<description>MyGraph
-		管理后台，集成经典RABC权限管理、Oauth2认证服务、在线画图、ER模型设计与在线文档管理，是一个高度集成的后台模板。</description>
+	<description>
+		MyGraph 管理后台，集成经典RABC权限管理、Oauth2认证服务、在线画图、ER模型设计与在线文档管理，是一个高度集成的后台模板。
+	</description>
 	<url>https://gitee.com/renlm/MyGraph.git</url>
 	<packaging>jar</packaging>
 	<parent>
@@ -49,16 +50,12 @@
 	</dependencyManagement>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bootstrap</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -111,6 +108,10 @@
 		<dependency>
 			<groupId>com.github.ben-manes.caffeine</groupId>
 			<artifactId>caffeine</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
