@@ -7,7 +7,7 @@ spring:
     import: configserver:${CONFIGSERVER:https://default:123654@config.renlm.cn}
   cloud:
     config:
-      name: mygraph,logging,actuator,redis,mysql,rabbitmq
+      name: mygraph,logging,actuator
       profile: ${spring.profiles.active}
       label: master
       failFast: true
