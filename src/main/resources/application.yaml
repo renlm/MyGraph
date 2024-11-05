@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: mygraph
+  profiles:
+    active: ${PROFILES_ACTIVE:dev}
+  config:
+    import: configserver:${CONFIGSERVER:https://default:123654@config.renlm.cn}
+  cloud:
+    config:
+      name: mygraph,logging,actuator,redis,mysql,rabbitmq
+      profile: ${spring.profiles.active}
+      label: master
+      failFast: true
