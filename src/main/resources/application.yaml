@@ -3,6 +3,8 @@
 spring:
   application:
     name: mygraph
+  main:
+    allowCircularReferences: true
   profiles:
     active: ${PROFILES_ACTIVE:dev}
   config:
