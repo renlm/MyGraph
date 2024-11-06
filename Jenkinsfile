@@ -21,7 +21,7 @@ pipeline {
                 	echo "构建镜像..."
                 	dir("${WORKSPACE}") {
 	                	docker.withRegistry("${params.DockerRegistry}", "${params.DockerCredential}") {
-	                        docker.build("${params.DockerImage}:${TAG}", "--build-arg PROFILES_ACTIVE=${params.Profile} -f gateway/Dockerfile .")
+	                        docker.build("${params.DockerImage}:${TAG}", "--build-arg PROFILES_ACTIVE=${params.Profile} -f Dockerfile .")
 	                    }
                     }
                 }
