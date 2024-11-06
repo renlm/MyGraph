@@ -1,3 +1,5 @@
+# -DDB_INIT_MODE={ALWAYS|NEVER}
+# -DCONFIGSERVER={https://default:123654@config.renlm.cn}
 spring:
   application:
     name: mygraph
