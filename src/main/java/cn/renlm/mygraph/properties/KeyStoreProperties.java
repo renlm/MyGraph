@@ -25,17 +25,17 @@ import lombok.SneakyThrows;
  */
 @Data
 @Configuration
-@ConfigurationProperties("encrypt.key-store")
+@ConfigurationProperties("encrypt.keyStore")
 public class KeyStoreProperties {
 
 	private Resource location;
 
 	private String alias;
 
-	private String storepass;
+	private String password;
 
 	public RSAKey getRSAKey() {
-		KeyStoreKeyFactory factory = new KeyStoreKeyFactory(location, storepass.toCharArray());
+		KeyStoreKeyFactory factory = new KeyStoreKeyFactory(location, password.toCharArray());
 		KeyPair keyPair = factory.getKeyPair(alias);
 		RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
 		RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
