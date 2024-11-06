@@ -25,7 +25,7 @@ import lombok.SneakyThrows;
  */
 @Data
 @Configuration
-@ConfigurationProperties("encrypt.keyStore")
+@ConfigurationProperties("encrypt.key-store")
 public class KeyStoreProperties {
 
 	private Resource location;
