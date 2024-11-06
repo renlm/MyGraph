@@ -21,7 +21,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   && apk upgrade \
   && apk --no-cache add fontconfig \
   && apk --no-cache add chromium chromium-chromedriver \
-  && apk --no-cache add tini \
+  && apk --no-cache add tini curl \
   && touch /app.jar
 EXPOSE 8080
 EXPOSE 9000
