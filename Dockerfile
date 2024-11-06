@@ -1,6 +1,8 @@
 FROM openjdk:17-slim
 ADD . /build
 WORKDIR /build
+ARG PROFILES_ACTIVE
+ENV PROFILES_ACTIVE ${PROFILES_ACTIVE}
 RUN --mount=type=cache,target=/root/.m2 \
   # https://mirrors.tuna.tsinghua.edu.cn/help/debian/
   cp -a /etc/apt/sources.list /etc/apt/sources.list.bak \
@@ -8,7 +10,7 @@ RUN --mount=type=cache,target=/root/.m2 \
   && sed -i 's/security.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
   && apt update \
   && apt install -y maven \
-  && mvn clean package
+  && mvn clean package -P ${PROFILES_ACTIVE}
 
 FROM openjdk:17-jdk-alpine
 COPY --from=0 "/build/target/MyGraph.jar" app.jar
