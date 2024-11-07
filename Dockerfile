@@ -23,8 +23,8 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   && apk --no-cache add chromium chromium-chromedriver \
   && apk --no-cache add tini curl \
   && touch /app.jar
-EXPOSE 8080
-EXPOSE 9000
+EXPOSE 7080
+EXPOSE 7090
 ARG PROFILES_ACTIVE
 ENV PROFILES_ACTIVE ${PROFILES_ACTIVE}
 ENTRYPOINT ["/sbin/tini","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
