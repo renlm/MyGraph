@@ -7,10 +7,11 @@ spring:
     allowCircularReferences: true
   profiles:
     active: ${PROFILES_ACTIVE:dev}
-  config:
-    import: configserver:${CONFIGSERVER:https://default:123654@config.renlm.cn}
   cloud:
     config:
+      uri: ${CONFIGSERVER:https://config.renlm.cn}
+      username: ${SECURITY_USER_NAME:default}
+      password: ${SECURITY_USER_PASSWORD:123654}
       name: mygraph,logging,actuator
       profile: ${spring.profiles.active}
       label: master
