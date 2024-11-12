@@ -1,5 +1,7 @@
 # -DDB_INIT_MODE={ALWAYS|NEVER}
-# -DCONFIGSERVER={https://default:123654@config.renlm.cn}
+# -DSECURITY_USER_NAME={default}
+# -DSECURITY_USER_PASSWORD={123654}
+# -DCONFIGSERVER={https://config.renlm.cn}
 spring:
   application:
     name: mygraph
