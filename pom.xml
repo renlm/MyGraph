@@ -35,7 +35,7 @@
 		<mica-xss.version>3.3.2</mica-xss.version>
 		<webjars-locator.version>0.52</webjars-locator.version>
 		<ip2region.version>2.7.0</ip2region.version>
-		<oshi-core.version>6.6.3</oshi-core.version>
+		<oshi-core.version>6.6.5</oshi-core.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
