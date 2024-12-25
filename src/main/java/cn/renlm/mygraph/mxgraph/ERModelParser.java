@@ -22,6 +22,7 @@ import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.file.FileNameUtil;
+import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
@@ -204,6 +205,12 @@ public class ERModelParser {
 				}
 			});
 		}
+		// 代码生成
+		File demo = FileUtil.copyFile(ResourceUtil.getStream("ftl/demo.zip"), FileUtil.file(temp, "demo.zip"));
+		File unzip = ZipUtil.unzip(demo, FileUtil.file(temp, "unzip"));
+		FileUtil.moveContent(unzip, temp, true);
+		FileUtil.del(unzip);
+		demo.delete();
 		// MySQL
 		String MySQL = MyFreemarkerUtil.read("ftl/MySQL.DDL.ftl", "ers", ers);
 		FileUtil.writeUtf8String(MySQL, folder + File.separator + "MySQL.sql");
