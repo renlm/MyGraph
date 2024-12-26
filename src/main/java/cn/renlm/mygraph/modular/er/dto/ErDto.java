@@ -36,7 +36,7 @@ public class ErDto extends Er {
 		List<ErField> list = new ArrayList<>();
 		if (CollUtil.isNotEmpty(this.getFields())) {
 			this.getFields().forEach(it -> {
-				if (BooleanUtil.isTrue(it.getIsFk())) {
+				if (BooleanUtil.isTrue(it.getIsPk())) {
 					list.add(it);
 				}
 			});
