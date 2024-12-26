@@ -212,8 +212,8 @@ public class ERModelParser {
 		String PostgreSQL = MyFreemarkerUtil.read("ftl/PostgreSQL.DDL.ftl", "ers", ers);
 		FileUtil.writeUtf8String(PostgreSQL, folder + File.separator + "PostgreSQL.sql");
 		// SQLite
-		String SQLite = MyFreemarkerUtil.read("ftl/SQLite.DDL.ftl", "ers", ers);
-		FileUtil.writeUtf8String(SQLite, folder + File.separator + "SQLite.sql");
+		String sqlite = MyFreemarkerUtil.read("ftl/SQLite.DDL.ftl", "ers", ers);
+		FileUtil.writeUtf8String(sqlite, folder + File.separator + "SQLite.sql");
 		// 代码生成
 		File demo = FileUtil.copyFile(ResourceUtil.getStream("ftl/demo.zip"), FileUtil.file(temp, "demo.zip"));
 		File unzip = ZipUtil.unzip(demo, FileUtil.file(temp, "unzip"));
