@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -53,8 +54,10 @@ import cn.renlm.mygraph.mxgraph.model.MxGraphModel;
 import cn.renlm.mygraph.mxgraph.model.Root;
 import cn.renlm.mygraph.mxgraph.model.UserObject;
 import cn.renlm.plugins.MyGeneratorUtil;
+import cn.renlm.plugins.MyGeneratorUtil.GeneratorConfig;
 import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.plugins.MyUtil.MyFreemarkerUtil;
+import cn.renlm.plugins.MyUtil.MyXStreamUtil;
 
 /**
  * ER图形解析器
@@ -181,10 +184,11 @@ public class ERModelParser {
 	/**
 	 * 根据ER模型生成DDL
 	 * 
+	 * @param user
 	 * @param graphUuid
 	 * @return
 	 */
-	public SysFile generateDDL(String graphUuid) {
+	public SysFile generateDDL(User user, String graphUuid) {
 		SysFile sysFile = new SysFile();
 		// 获取图形信息
 		Graph graph = iGraphService.getOne(Wrappers.<Graph>lambdaQuery().eq(Graph::getUuid, graphUuid));
@@ -224,15 +228,20 @@ public class ERModelParser {
 		FileUtil.del(unzip);
 		demo.delete();
 		{
-			String dbPath = FileUtil.touch(FileUtil.file(temp, "demo/demo.db")).getAbsolutePath();
-			SQLite db = SQLite.load(dbPath, 1);
-			db.execute(sqlite);
-			String ftlPath = folder + "/src/test/resources/MyGenerator.ftl";
-			String xmlPath = folder + "/src/test/resources/MyGenerator.xml";
-			String xmlContent = MyFreemarkerUtil.readFromFile(ftlPath, MapUtil.of("ers", ers));
+			String demoPath = folder + "/demo";
+			String dbPath = FileUtil.touch(demoPath + "/demo.db").getAbsolutePath();
+			SQLite dbUtil = SQLite.load(dbPath, 1);
+			dbUtil.execute(sqlite);
+			String xmlPath = demoPath + "/src/test/resources/MyGenerator.xml";
+			Map<String, List<ErDto>> erGroup = ers.stream().collect(Collectors.groupingBy(it -> StrUtil.subBefore(it.getTableName(), StrUtil.UNDERLINE, false)));
+			Map<String, Object> map = MapUtil.of("erGroup", erGroup);
+			map.put("url", StrUtil.format("jdbc:sqlite:{}", dbPath));
+			map.put("author", StrUtil.format("{}({})", user.getUsername(), user.getNickname()));
+			String xmlContent = MyFreemarkerUtil.read("ftl/MyGenerator.ftl", map);
 			FileUtil.writeUtf8String(xmlContent, xmlPath);
-			MyGeneratorUtil.run(xmlPath);
-			FileUtil.del(ftlPath);
+			GeneratorConfig conf = MyXStreamUtil.readFromFile(GeneratorConfig.class, xmlPath);
+			MyGeneratorUtil.run(conf);
+			dbUtil.close();
 		}
 		// 压缩文件夹
 		File zip = ZipUtil.zip(temp);

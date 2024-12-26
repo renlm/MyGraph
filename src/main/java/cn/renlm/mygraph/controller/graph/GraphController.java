@@ -245,9 +245,10 @@ public class GraphController {
 	 * @throws IOException
 	 */
 	@GetMapping("/downloadERDDL")
-	public void downloadERDDL(HttpServletRequest request, HttpServletResponse response, String uuid)
+	public void downloadERDDL(HttpServletRequest request, HttpServletResponse response, Authentication authentication, String uuid)
 			throws IOException {
-		SysFile file = eRModelParser.generateDDL(uuid);
+		User user = (User) authentication.getPrincipal();
+		SysFile file = eRModelParser.generateDDL(user, uuid);
 		String filename = URLEncoder.encode(file.getOriginalFilename(), "UTF-8");
 		response.setHeader("Content-Type", file.getFileType());
 		response.setHeader("Content-Disposition", "attachment;fileName=" + filename);
