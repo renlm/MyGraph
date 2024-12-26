@@ -238,8 +238,8 @@ public class ERModelParser {
 			map.put("url", StrUtil.format("jdbc:sqlite:{}", dbPath));
 			map.put("author", StrUtil.format("{}({})", user.getUsername(), user.getNickname()));
 			String xmlContent = MyFreemarkerUtil.read("ftl/MyGenerator.ftl", map);
-			GeneratorConfig conf = MyXStreamUtil.readFromFile(GeneratorConfig.class, xmlPath);
 			FileUtil.writeUtf8String(xmlContent, xmlPath);
+			GeneratorConfig conf = MyXStreamUtil.readFromFile(GeneratorConfig.class, xmlPath);
 			conf.setOutput(demoPath);
 			MyGeneratorUtil.run(conf);
 			dbUtil.close();
