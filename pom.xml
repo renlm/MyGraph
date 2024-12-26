@@ -25,12 +25,12 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<!-- 版本管理 -->
 		<spring-cloud.version>2023.0.3</spring-cloud.version>
-		<mybatis-plus-boot-starter.version>3.5.7</mybatis-plus-boot-starter.version>
+		<mybatis-plus-boot-starter.version>3.5.9</mybatis-plus-boot-starter.version>
 		<dynamic-datasource-spring-boot-starter.version>4.3.1</dynamic-datasource-spring-boot-starter.version>
-		<mybatis-plus-generator.version>3.5.7</mybatis-plus-generator.version>
+		<mybatis-plus-generator.version>3.5.9</mybatis-plus-generator.version>
 		<mybatis-spring.version>3.0.4</mybatis-spring.version>
 		<spring-boot-starter-captcha.version>1.3.0</spring-boot-starter-captcha.version>
-		<cn.renlm.plugins.version>2.8.9</cn.renlm.plugins.version>
+		<cn.renlm.plugins.version>2.8.10</cn.renlm.plugins.version>
 		<selenium-devtools-v93.version>4.0.0</selenium-devtools-v93.version>
 		<mica-xss.version>3.3.2</mica-xss.version>
 		<webjars-locator.version>0.52</webjars-locator.version>
@@ -140,15 +140,20 @@
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 			<version>${mybatis-plus-boot-starter.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-			<version>${dynamic-datasource-spring-boot-starter.version}</version>
+		<dependency>  
+			<groupId>com.baomidou</groupId>  
+			<artifactId>mybatis-plus-jsqlparser</artifactId>  
+			<version>${mybatis-plus-boot-starter.version}</version>  
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatis-spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+			<version>${dynamic-datasource-spring-boot-starter.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.baomidou</groupId>

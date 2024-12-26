@@ -33,6 +33,8 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
+import cn.hutool.db.meta.Column;
+import cn.hutool.db.meta.Table;
 import cn.hutool.http.HtmlUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.mygraph.common.Mxgraph;
@@ -213,13 +215,13 @@ public class ERModelParser {
 			});
 		}
 		// MySQL
-		String MySQL = MyFreemarkerUtil.read("ftl/MySQL.DDL.ftl", "ers", ers);
+		String MySQL = MyFreemarkerUtil.read("ftl/MySQL.DDL.ftl", MapUtil.of("ers", ers));
 		FileUtil.writeUtf8String(MySQL, folder + File.separator + "MySQL.sql");
 		// PostgreSQL
-		String PostgreSQL = MyFreemarkerUtil.read("ftl/PostgreSQL.DDL.ftl", "ers", ers);
+		String PostgreSQL = MyFreemarkerUtil.read("ftl/PostgreSQL.DDL.ftl", MapUtil.of("ers", ers));
 		FileUtil.writeUtf8String(PostgreSQL, folder + File.separator + "PostgreSQL.sql");
 		// SQLite
-		String sqlite = MyFreemarkerUtil.read("ftl/SQLite.DDL.ftl", "ers", ers);
+		String sqlite = MyFreemarkerUtil.read("ftl/SQLite.DDL.ftl", MapUtil.of("ers", ers));
 		FileUtil.writeUtf8String(sqlite, folder + File.separator + "SQLite.sql");
 		// 代码生成
 		File demo = FileUtil.copyFile(ResourceUtil.getStream("ftl/demo.zip"), FileUtil.file(temp, "demo.zip"));
@@ -239,10 +241,28 @@ public class ERModelParser {
 			map.put("author", StrUtil.format("{}({})", user.getUsername(), user.getNickname()));
 			String xmlContent = MyFreemarkerUtil.read("ftl/MyGenerator.ftl", map);
 			FileUtil.writeUtf8String(xmlContent, xmlPath);
-			GeneratorConfig conf = MyXStreamUtil.readFromFile(GeneratorConfig.class, xmlPath);
-			conf.setOutput(demoPath);
-			MyGeneratorUtil.run(conf);
-			dbUtil.close();
+			{
+				GeneratorConfig conf = MyXStreamUtil.readFromFile(GeneratorConfig.class, xmlPath);
+				conf.setTableInfoMap(MapUtil.newHashMap(true));
+				ers.forEach(er -> {
+					Table table = Table.create(er.getTableName());
+					table.setComment(er.getComment());
+					conf.getTableInfoMap().put(table.getTableName(), table);
+					if (CollUtil.isNotEmpty(er.getFields())) {
+						er.getFields().forEach(field -> {
+							Column column = new Column();
+							column.setName(field.getName());
+							column.setComment(field.getComment());
+							table.setColumn(column);
+						});
+					}
+				});
+				{
+					conf.setOutput(demoPath);
+					MyGeneratorUtil.run(conf);
+					dbUtil.close();
+				}
+			}
 			{
 				map.put("url", "jdbc:sqlite:demo.db");
 				xmlContent = MyFreemarkerUtil.read("ftl/MyGenerator.ftl", map);
