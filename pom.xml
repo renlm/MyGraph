@@ -179,6 +179,10 @@
 			<artifactId>postgresql</artifactId>
 		</dependency>
 		<dependency>
+		    <groupId>org.xerial</groupId>
+		    <artifactId>sqlite-jdbc</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>cn.renlm.plugins</groupId>
 			<artifactId>My-Plugin</artifactId>
 			<version>${cn.renlm.plugins.version}</version>

@@ -34,6 +34,7 @@ import cn.hutool.core.util.ZipUtil;
 import cn.hutool.http.HtmlUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.mygraph.common.Mxgraph;
+import cn.renlm.mygraph.common.SQLite;
 import cn.renlm.mygraph.common.TreeState;
 import cn.renlm.mygraph.dto.User;
 import cn.renlm.mygraph.modular.doc.entity.DocCategory;
@@ -221,7 +222,9 @@ public class ERModelParser {
 		FileUtil.del(unzip);
 		demo.delete();
 		{
-			
+			String dbPath = FileUtil.touch(FileUtil.file(temp, "demo.db")).getAbsolutePath();
+			SQLite db = SQLite.load(dbPath, 1);
+			db.execute(sqlite);
 		}
 		// 压缩文件夹
 		File zip = ZipUtil.zip(temp);
