@@ -222,7 +222,7 @@ public class ERModelParser {
 		FileUtil.del(unzip);
 		demo.delete();
 		{
-			String dbPath = FileUtil.touch(FileUtil.file(temp, "demo.db")).getAbsolutePath();
+			String dbPath = FileUtil.touch(FileUtil.file(temp, "demo/demo.db")).getAbsolutePath();
 			SQLite db = SQLite.load(dbPath, 1);
 			db.execute(sqlite);
 		}
