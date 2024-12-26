@@ -24,6 +24,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.file.FileNameUtil;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.lang.Assert;
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.NumberUtil;
@@ -51,6 +52,7 @@ import cn.renlm.mygraph.mxgraph.model.MxGeometry;
 import cn.renlm.mygraph.mxgraph.model.MxGraphModel;
 import cn.renlm.mygraph.mxgraph.model.Root;
 import cn.renlm.mygraph.mxgraph.model.UserObject;
+import cn.renlm.plugins.MyGeneratorUtil;
 import cn.renlm.plugins.MyResponse.Result;
 import cn.renlm.plugins.MyUtil.MyFreemarkerUtil;
 
@@ -225,6 +227,12 @@ public class ERModelParser {
 			String dbPath = FileUtil.touch(FileUtil.file(temp, "demo/demo.db")).getAbsolutePath();
 			SQLite db = SQLite.load(dbPath, 1);
 			db.execute(sqlite);
+			String ftlPath = folder + "/src/test/resources/MyGenerator.ftl";
+			String xmlPath = folder + "/src/test/resources/MyGenerator.xml";
+			String xmlContent = MyFreemarkerUtil.readFromFile(ftlPath, MapUtil.of("ers", ers));
+			FileUtil.writeUtf8String(xmlContent, xmlPath);
+			MyGeneratorUtil.run(xmlPath);
+			FileUtil.del(ftlPath);
 		}
 		// 压缩文件夹
 		File zip = ZipUtil.zip(temp);
