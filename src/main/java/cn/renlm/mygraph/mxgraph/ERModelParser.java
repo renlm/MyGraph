@@ -235,11 +235,12 @@ public class ERModelParser {
 			String xmlPath = demoPath + "/src/test/resources/MyGenerator.xml";
 			Map<String, List<ErDto>> erGroup = ers.stream().collect(Collectors.groupingBy(it -> StrUtil.subBefore(it.getTableName(), StrUtil.UNDERLINE, false)));
 			Map<String, Object> map = MapUtil.of("erGroup", erGroup);
-			map.put("url", StrUtil.format("jdbc:sqlite:{}", dbPath));
+			map.put("url", StrUtil.format("jdbc:sqlite:demo.db", dbPath));
 			map.put("author", StrUtil.format("{}({})", user.getUsername(), user.getNickname()));
 			String xmlContent = MyFreemarkerUtil.read("ftl/MyGenerator.ftl", map);
-			FileUtil.writeUtf8String(xmlContent, xmlPath);
 			GeneratorConfig conf = MyXStreamUtil.readFromFile(GeneratorConfig.class, xmlPath);
+			FileUtil.writeUtf8String(xmlContent, xmlPath);
+			conf.setOutput(demoPath);
 			MyGeneratorUtil.run(conf);
 			dbUtil.close();
 		}

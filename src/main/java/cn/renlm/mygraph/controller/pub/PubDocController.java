@@ -22,6 +22,7 @@ import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.renlm.mygraph.dto.DocShareUser;
+import cn.renlm.mygraph.dto.User;
 import cn.renlm.mygraph.modular.doc.dto.DocCategoryShareDto;
 import cn.renlm.mygraph.modular.doc.entity.DocCategory;
 import cn.renlm.mygraph.modular.doc.service.IDocCategoryService;
@@ -263,7 +264,10 @@ public class PubDocController {
 				throw new RuntimeException("行为异常");
 			}
 		}
-		SysFile file = eRModelParser.generateDDL(uuid);
+		User user = new User();
+		user.setUsername("anonymous");
+		user.setUsername("访客");
+		SysFile file = eRModelParser.generateDDL(user, uuid);
 		String filename = URLEncoder.encode(file.getOriginalFilename(), "UTF-8");
 		response.setHeader("Content-Type", file.getFileType());
 		response.setHeader("Content-Disposition", "attachment;fileName=" + filename);

@@ -241,6 +241,7 @@ public class GraphController {
 	 * 
 	 * @param request
 	 * @param response
+	 * @param authentication
 	 * @param uuid
 	 * @throws IOException
 	 */
