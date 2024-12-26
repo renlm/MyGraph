@@ -235,7 +235,7 @@ public class ERModelParser {
 			String xmlPath = demoPath + "/src/test/resources/MyGenerator.xml";
 			Map<String, List<ErDto>> erGroup = ers.stream().collect(Collectors.groupingBy(it -> StrUtil.subBefore(it.getTableName(), StrUtil.UNDERLINE, false)));
 			Map<String, Object> map = MapUtil.of("erGroup", erGroup);
-			map.put("url", StrUtil.format("jdbc:sqlite:demo.db", dbPath));
+			map.put("url", StrUtil.format("jdbc:sqlite:{}", dbPath));
 			map.put("author", StrUtil.format("{}({})", user.getUsername(), user.getNickname()));
 			String xmlContent = MyFreemarkerUtil.read("ftl/MyGenerator.ftl", map);
 			GeneratorConfig conf = MyXStreamUtil.readFromFile(GeneratorConfig.class, xmlPath);
@@ -243,6 +243,11 @@ public class ERModelParser {
 			conf.setOutput(demoPath);
 			MyGeneratorUtil.run(conf);
 			dbUtil.close();
+			{
+				map.put("url", "jdbc:sqlite:demo.db");
+				xmlContent = MyFreemarkerUtil.read("ftl/MyGenerator.ftl", map);
+				FileUtil.writeUtf8String(xmlContent, xmlPath);
+			}
 		}
 		// 压缩文件夹
 		File zip = ZipUtil.zip(temp);
