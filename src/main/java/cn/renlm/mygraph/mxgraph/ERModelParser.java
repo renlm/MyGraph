@@ -205,18 +205,24 @@ public class ERModelParser {
 				}
 			});
 		}
-		// 代码生成
-		File demo = FileUtil.copyFile(ResourceUtil.getStream("ftl/demo.zip"), FileUtil.file(temp, "demo.zip"));
-		File unzip = ZipUtil.unzip(demo, FileUtil.file(temp, "unzip"));
-		FileUtil.moveContent(unzip, temp, true);
-		FileUtil.del(unzip);
-		demo.delete();
 		// MySQL
 		String MySQL = MyFreemarkerUtil.read("ftl/MySQL.DDL.ftl", "ers", ers);
 		FileUtil.writeUtf8String(MySQL, folder + File.separator + "MySQL.sql");
 		// PostgreSQL
 		String PostgreSQL = MyFreemarkerUtil.read("ftl/PostgreSQL.DDL.ftl", "ers", ers);
 		FileUtil.writeUtf8String(PostgreSQL, folder + File.separator + "PostgreSQL.sql");
+		// SQLite
+		String SQLite = MyFreemarkerUtil.read("ftl/SQLite.DDL.ftl", "ers", ers);
+		FileUtil.writeUtf8String(SQLite, folder + File.separator + "SQLite.sql");
+		// 代码生成
+		File demo = FileUtil.copyFile(ResourceUtil.getStream("ftl/demo.zip"), FileUtil.file(temp, "demo.zip"));
+		File unzip = ZipUtil.unzip(demo, FileUtil.file(temp, "unzip"));
+		FileUtil.moveContent(unzip, temp, true);
+		FileUtil.del(unzip);
+		demo.delete();
+		{
+			
+		}
 		// 压缩文件夹
 		File zip = ZipUtil.zip(temp);
 		sysFile.setFileContent(FileUtil.readBytes(zip));
