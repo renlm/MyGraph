@@ -215,13 +215,13 @@ public class ERModelParser {
 			});
 		}
 		// MySQL
-		String MySQL = MyFreemarkerUtil.read("ftl/MySQL.DDL.ftl", MapUtil.of("ers", ers));
+		String MySQL = MyFreemarkerUtil.read("ftl/MySQL.DDL.ftl", "ers", ers);
 		FileUtil.writeUtf8String(MySQL, folder + File.separator + "MySQL.sql");
 		// PostgreSQL
-		String PostgreSQL = MyFreemarkerUtil.read("ftl/PostgreSQL.DDL.ftl", MapUtil.of("ers", ers));
+		String PostgreSQL = MyFreemarkerUtil.read("ftl/PostgreSQL.DDL.ftl", "ers", ers);
 		FileUtil.writeUtf8String(PostgreSQL, folder + File.separator + "PostgreSQL.sql");
 		// SQLite
-		String sqlite = MyFreemarkerUtil.read("ftl/SQLite.DDL.ftl", MapUtil.of("ers", ers));
+		String sqlite = MyFreemarkerUtil.read("ftl/SQLite.DDL.ftl", "ers", ers);
 		FileUtil.writeUtf8String(sqlite, folder + File.separator + "SQLite.sql");
 		// 代码生成
 		File demo = FileUtil.copyFile(ResourceUtil.getStream("ftl/demo.zip"), FileUtil.file(temp, "demo.zip"));
@@ -240,9 +240,8 @@ public class ERModelParser {
 			map.put("url", StrUtil.format("jdbc:sqlite:{}", dbPath));
 			map.put("author", StrUtil.format("{}({})", user.getUsername(), user.getNickname()));
 			String xmlContent = MyFreemarkerUtil.read("ftl/MyGenerator.ftl", map);
-			FileUtil.writeUtf8String(xmlContent, xmlPath);
 			{
-				GeneratorConfig conf = MyXStreamUtil.readFromFile(GeneratorConfig.class, xmlPath);
+				GeneratorConfig conf = MyXStreamUtil.readFromStr(GeneratorConfig.class, xmlContent);
 				conf.setTableInfoMap(MapUtil.newHashMap(true));
 				ers.forEach(er -> {
 					Table table = Table.create(er.getTableName());
